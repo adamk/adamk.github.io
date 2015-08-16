@@ -1,3 +1,16 @@
+#nav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+}
+
+#nav li {
+    display: inline-block;
+    text-align: center;
+}
+
 html { 
   background: url(OldRag.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
