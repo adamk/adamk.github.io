@@ -1,20 +1,35 @@
-#nav {
-    width: 100%;
+html { 
+      background: url(OldRag.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover; 
+      -moz-background-size: cover; 
+      -o-background-size: cover;      
+      background-size: cover; 
+  }
+
+#nav { 
+	width: 100%;
     margin: 0;
-    padding: 0;
-    text-align: center;
-    list-style: none;
-}
+	padding: 0;
+	text-align: center;
+	list-style: none;
+    }
 
 #nav li {
     display: inline-block;
     text-align: center;
-}
+    } 
+a:link, a:visited {
+	display: block;
+	width: 100px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #98bf21;
+	text-align: center;
+	padding: 4px;
+	text-decoration: none;
+	text-transform: uppercase;
+	}
 
-html { 
-  background: url(OldRag.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+a:hover, a:active {
+    background-color: #7A991A;  
+    }
