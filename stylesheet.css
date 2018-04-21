@@ -21,7 +21,7 @@ html {
 a:link, a:visited {
 	display: block;
 	width: 100px;
-	font-weight: bold;
+	font-weight: bold; 
 	color: #FFFFFF;
 	background-color: #98bf21;
 	text-align: center;
@@ -29,7 +29,19 @@ a:link, a:visited {
 	text-decoration: none;
 	text-transform: uppercase;
 	}
+	
+a.contact:link {
 
-a:hover, a:active {
-    background-color: #7A991A;  
-    }
+	color:#0000EE;
+	text-decoration:none;
+    background-color: inherit;
+    font-weight: normal;
+    text-transform: inherit;
+	display: inline;
+		
+	}
+ae.one:link {color:#355ec4;}
+ae.one:visited {color:#0000ff;}
+ae.one:hover {color:#ffcc00;}	
+	
+}
