@@ -1,3 +1,14 @@
+/* styles.css or <style> in <head> */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+}
+
 body {
   margin: 0;
   font-family: Georgia, serif;
