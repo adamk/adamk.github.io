@@ -7,33 +7,40 @@ body {
 
 .container {
   padding: 4rem 2rem;
-  max-width: 600px; /* reduce width for tighter left alignment */
-  margin-left: 3rem; /* move content to the left */
+  max-width: 100%; /* Ensure container takes full width */
+  margin: 0 auto; /* Center content horizontally */
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: 600;
   color: #0f1c3f;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem; /* Reduce bottom margin for mobile */
+  text-align: center; /* Center logo on mobile */
+}
+
+.content {
+  text-align: center; /* Center content */
 }
 
 .content h2 {
-  font-size: 3rem;
+  font-size: 2rem; /* Adjust font size for better mobile readability */
   line-height: 1.2;
   margin: 0 0 1rem 0;
   color: #0f1c3f;
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1rem; /* Adjusted for better mobile viewing */
   color: #555;
-  margin-bottom: 2rem;
-  max-width: 500px;
+  margin-bottom: 1.5rem; /* Reduced bottom margin */
+  max-width: 100%;
+  text-align: center; /* Center description text */
 }
 
 .contact {
   font-size: 1rem;
+  text-align: center; /* Center contact information */
 }
 
 .contact .icon {
@@ -47,4 +54,28 @@ body {
 
 .contact a:hover {
   text-decoration: underline;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .content h2 {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .contact {
+    font-size: 0.9rem;
+  }
 }
