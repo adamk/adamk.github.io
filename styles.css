@@ -1,19 +1,13 @@
 /* styles.css or <style> in <head> */
 html, body {
   height: 100%;
+  margin: 0;
   display: flex;
   flex-direction: column;
 }
 
-.container {
+body > .container {
   flex: 1;
-}
-
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background-color: #ffffff;
-  color: #1a1a1a;
 }
 
 .container {
