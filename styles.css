@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.container {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f1c3f;
+  margin-bottom: 4rem;
+}
+
+.content h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  color: #0f1c3f;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.contact {
+  font-size: 1rem;
+}
+
+.contact .icon {
+  margin-right: 0.5rem;
+}
+
+.contact a {
+  color: #0f1c3f;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
