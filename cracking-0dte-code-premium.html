@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cracking the 0DTE Code, Part 3: The Call‑Premium Divergence Method | Foxchase Trading</title>
+
+  <!-- SEO -->
+  <meta name="description" content="0DTE edge: when slightly‑OTM call premium diverges from SPY at turning points. Full rules, examples, risk, and when it shines." />
+  <meta name="author" content="Foxchase Trading" />
+
+  <!-- Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body class="bg-light text-dark">
+  <!-- Header -->
+  <header class="bg-white border-bottom py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="/" class="d-flex align-items-center text-decoration-none">
+        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" class="me-2" style="max-width:40px;height:auto;" />
+        <span class="h3 mb-0 text-dark">Foxchase Trading</span>
+      </a>
+      <nav>
+        <a href="/" class="me-3">Home</a>
+        <a href="https://discord.com/invite/qt8EYfFn?utm_source=Discord%20Widget&utm_medium=Connecta" target="_blank" rel="noopener noreferrer">Discord</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <article class="mb-5">
+      <header class="mb-3">
+        <h1 class="display-6">Cracking the 0DTE Code, Part 3: The Call‑Premium Divergence Method</h1>
+        <p class="text-muted mb-0">5 min read · Just now · by Adam · <a href="/cracking-0dte-code-spx.html" target="_blank" rel="noopener noreferrer">Read Part 1</a> · <a href="/cracking-0dte-code-part-2-spy-premarket-regimes.html" target="_blank" rel="noopener noreferrer">Read Part 2</a></p>
+      </header>
+
+      <section class="mb-4">
+        <h2 class="h4">1) What we’re exploiting (quick recap)</h2>
+        <p><strong>Observation:</strong> On 0DTE, call premium sometimes diverges from SPY at turning points.</p>
+        <ul>
+          <li><strong>Bullish Divergence (buy calls / long):</strong> Call premium prints a <strong>Lower Low (LL)</strong> while <strong>SPY</strong> prints a <strong>Higher Low (HL)</strong>.</li>
+          <li><strong>Bearish Divergence (short bias / buy puts / short):</strong> Call premium prints a <strong>Lower High (LH)</strong> while <strong>SPY</strong> prints a <strong>Higher High (HH)</strong>.</li>
+        </ul>
+        <h3 class="h6">Why it happens</h3>
+        <ul>
+          <li><strong>Into dips</strong>, call IV is crushed and dealers lean short‑gamma; calls get “underpriced” vs the underlying. When SPY forms a HL, call premium is still lagging → cheap convexity.</li>
+          <li><strong>Near tops</strong>, upside IV can be capped (supply/hedging dynamics), so even with a SPY HH, calls sometimes fail to make a HH (they make LH) → loss of upside momentum/convexity.</li>
+        </ul>
+        <p>You’re trading <em>price + vol microstructure</em>, not just price.</p>
+        <div class="alert alert-info small mb-0"><strong>Note:</strong> Divergence shows best in <strong>slightly OTM calls</strong>. Deep ITM deltas are too high (≈1), so they mirror SPY; far OTM can be too noisy.</div>
+        <p class="mt-2">OTM strikes exaggerate IV and gamma ripples, making market‑maker repositioning and convexity shifts easiest to observe.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">2) Instruments, charting, and baseline settings</h2>
+        <ul>
+          <li><strong>Underlying:</strong> SPY (5‑minute chart).</li>
+          <li><strong>Option to watch:</strong> Slightly OTM same‑day call (~15–35 delta). If SPY rips through, roll to the next slight‑OTM strike.</li>
+          <li><strong>Timeframe:</strong> 5‑minute for both price and premium (same RTH session).</li>
+          <li><strong>Session focus:</strong> 9:35–11:15 ET and 13:30–15:50 ET. Fade/ignore lunch unless it’s a trend day.</li>
+          <li><strong>Visibility:</strong> Put SPY on the left, the call premium on the right. Mark simple swing highs/lows. Look for pivot pairs within ~3–8 bars.</li>
+        </ul>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">3) Entry rules (mechanical)</h2>
+        <h3 class="h6">A) Bullish Divergence (Long bias / Buy Calls)</h3>
+        <ol>
+          <li>Identify latest two lows on SPY and on the call premium.</li>
+          <li>SPY: newest low &gt; prior low → <strong>Higher Low (HL)</strong>.</li>
+          <li>Call: newest low &lt; prior low (or equal within a tick) → <strong>Lower Low (LL)</strong>.</li>
+          <li>The two low pivots occur within your pairing window (neither must lead).</li>
+          <li><strong>Trigger:</strong> Enter on the next bar only if the candle closes above the SPY‑HL bar’s high (confirmation).</li>
+        </ol>
+        <h3 class="h6">B) Bearish Divergence (Short bias / Buy Puts / Short)</h3>
+        <ol>
+          <li>Identify latest two highs on SPY and on the call premium.</li>
+          <li>SPY: newest high &gt; prior high → <strong>Higher High (HH)</strong>.</li>
+          <li>Call: newest high &lt; prior high (or equal within a tick) → <strong>Lower High (LH)</strong>.</li>
+          <li>The two high pivots occur within your pairing window.</li>
+          <li><strong>Trigger:</strong> Enter on the next bar only if the candle closes below the SPY‑HH bar’s low (failure/roll).</li>
+        </ol>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">4) Risk, exits, and management</h2>
+        <ul>
+          <li><strong>Initial stop</strong>: Longs — below the call LL or the SPY HL (tighter). Shorts — above the call LH or the SPY HH (tighter).</li>
+          <li><strong>Time stop</strong>: If the move hasn’t started within 4–6 bars, reduce or exit; decay is real.</li>
+          <li><strong>Profit taking</strong>: Scale at +30–50% on premium; trail under/over the latest 5‑min swing.</li>
+          <li><strong>No averaging down</strong>: 0DTE convexity only helps when your timing is right.</li>
+        </ul>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">5) Trade outline (Pin This)</h2>
+        <figure class="text-center mb-4">
+          <img src="/assets/img/part3/divergence-playbook.png" alt="Divergence Playbook diagram" class="img-fluid" />
+          <figcaption class="small text-muted mt-1">Divergence Playbook (insert your diagram here)</figcaption>
+        </figure>
+
+        <h3 class="h6">Bullish divergences</h3>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <figure class="mb-0 text-center">
+              <img src="/assets/img/part3/2025-10-21-672C-a.png" alt="Example 1: 10/21/25 672C" class="img-fluid" />
+              <figcaption class="small text-muted">Example 1: 10/21/25 672C</figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6">
+            <figure class="mb-0 text-center">
+              <img src="/assets/img/part3/2025-10-24-678C-a.png" alt="Example 2: 10/24/25 678C" class="img-fluid" />
+              <figcaption class="small text-muted">Example 2: 10/24/25 678C</figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6">
+            <figure class="mb-0 text-center mt-3">
+              <img src="/assets/img/part3/2025-10-23-671C-a.png" alt="Example 3: 10/23/25 671C" class="img-fluid" />
+              <figcaption class="small text-muted">Example 3: 10/23/25 671C</figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6">
+            <figure class="mb-0 text-center mt-3">
+              <img src="/assets/img/part3/2025-10-20-670C-a.png" alt="Example 4: 10/20/25 670C" class="img-fluid" />
+              <figcaption class="small text-muted">Example 4: 10/20/25 670C</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <h3 class="h6">Bearish divergences</h3>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <figure class="mb-0 text-center">
+              <img src="/assets/img/part3/2025-10-24-678C-b.png" alt="Example 1: 10/24/25 678C" class="img-fluid" />
+              <figcaption class="small text-muted">Example 1: 10/24/25 678C</figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6">
+            <figure class="mb-0 text-center">
+              <img src="/assets/img/part3/2025-10-24-678C-eod.png" alt="Example 2: 10/24/25 678C (end of day flush)" class="img-fluid" />
+              <figcaption class="small text-muted">Example 2: 10/24/25 678C (end of day flush)</figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6">
+            <figure class="mb-0 text-center mt-3">
+              <img src="/assets/img/part3/2025-10-14-662C-b.png" alt="Example 3: 10/14/25 662C" class="img-fluid" />
+              <figcaption class="small text-muted">Example 3: 10/14/25 662C</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">6) Where this shines</h2>
+        <ul>
+          <li><strong>Open reversals</strong>: Early SPY HL against still‑crushed call premium.</li>
+          <li><strong>Trend exhaustion</strong>: SPY forces a marginal HH while call premium prints LH → short.</li>
+          <li><strong>Gamma pivot days</strong>: Dealers switching gamma profile intraday amplifies the IV snap‑back.</li>
+        </ul>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Final word</h2>
+        <p>For <strong>bullish divergences</strong>, you’re buying calls at their cheapest point, mispriced vs the underlying. IV is still compressed, the market is fearful, and premium hasn’t reflected the rebound. As price and IV recover, convexity works for you.</p>
+        <p>For <strong>bearish divergences</strong>, SPY pushes to a marginal new high but call premiums fail to confirm (LH) as IV fades. Upside momentum weakens and dealers stop bidding up calls; once price rolls, IV expands and call premiums collapse — the short bias pays.</p>
+        <div class="border rounded-3 p-3 bg-white">
+          <p class="mb-2"><strong>In short:</strong></p>
+          <ul class="mb-0">
+            <li><strong>Calls</strong> reward <em>anticipation</em> (buying into fear & low IV).</li>
+            <li><strong>Puts</strong> reward <em>confirmation</em> (joining the move & fading IV).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA Buttons -->
+      <div class="mt-4">
+        <a href="/cracking-0dte-code-spx.html" class="btn btn-primary btn-lg me-2" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-link"></i> Cracking the Code to 0DTE Trading (Part 1)
+        </a>
+        <a href="/cracking-0dte-code-part-2-spy-premarket-regimes.html" class="btn btn-outline-primary btn-lg me-2" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-link"></i> Cracking the Code, Part 2 (SPY Pre‑Market Regimes)
+        </a>
+        <a href="https://whop.com/foxchase-trading/spy-premarket-regime-indicator/" class="btn btn-outline-secondary btn-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-chart-line"></i> TradingView SPY Pre‑Market Regime Indicator
+        </a>
+      </div>
+
+      <aside class="alert alert-warning small mt-4">
+        <strong>Disclaimer:</strong> Education only, not financial advice. Options and derivatives carry significant risk. Do your own research and manage risk.
+      </aside>
+    </article>
+  </main>
+
+  <!-- Social / Support -->
+  <div class="bg-dark text-secondary text-center py-2">
+    <div class="d-flex justify-content-center gap-2">
+      <a href="https://twitter.com/FoxchaseTrading" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm px-3">
+        <i class="fa-brands fa-x-twitter"></i> Follow us on X
+      </a>
+      <a href="https://coff.ee/foxchasetrading" target="_blank" rel="noopener noreferrer" class="btn btn-outline-warning btn-sm px-3">
+        <i class="fa-solid fa-mug-hot"></i> Buy me a coffee
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cracking the 0DTE Code, Part 3: The Call‑Premium Divergence Method",
+    "author": {"@type":"Person","name":"Adam"},
+    "datePublished": "2025-10-27",
+    "dateModified": "2025-10-27",
+    "publisher": {"@type":"Organization","name":"Foxchase Trading"},
+    "image": "https://foxchasetrading.com/foxchasetrading.png",
+    "mainEntityOfPage": {"@type":"WebPage","@id": "https://foxchasetrading.com/cracking-0dte-code-part-3-call-premium-divergence"},
+    "description": "0DTE edge: when slightly‑OTM call premium diverges from SPY at turning points. Full rules, examples, risk, and when it shines."
+  }
+  </script>
+</body>
+</html>
