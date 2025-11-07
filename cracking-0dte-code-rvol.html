@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cracking the 0DTE Code, Part 4: RVOL (Relative Volume) | Foxchase Trading</title>
+  <title>Cracking the 0DTE Code, Part 4: RVOL | Foxchase Trading</title>
 
   <!-- SEO -->
   <meta name="description" content="Part 4 adds RVOL confirmation to the Part 3 extrinsic divergence setup. Why divergences sometimes lag, how RVOL times the move, and a simple playbook." />
@@ -100,6 +100,21 @@
           <li><strong>Unwind:</strong> Over‑hedged short SPY → they buy to rebalance → <strong>rally</strong>.</li>
         </ul>
         <p class="small text-muted">Mirror this for the bearish case with short calls and long‑SPY hedges unwinding via selling.</p>
+        
+      <div class="row g-3 my-3">
+        <div class="col-md-6 text-center">
+          <figure class="mb-0">
+            <img loading="lazy" src="https://miro.medium.com/v2/resize:fit:554/format:webp/1*nhsH8ADuzXww7-yJMCL5ng.jpeg" alt="Dealer logic visual A" class="img-fluid rounded" />
+            <figcaption class="small text-muted mt-1">Dealer Gamma/Theta Cycle (visual A)</figcaption>
+          </figure>
+        </div>
+        <div class="col-md-6 text-center">
+          <figure class="mb-0">
+            <img loading="lazy" src="https://miro.medium.com/v2/resize:fit:1448/format:webp/1*_9jQgRkrE2Gxqjbe_Whv3Q.jpeg" alt="Dealer logic visual B" class="img-fluid rounded" />
+            <figcaption class="small text-muted mt-1">Dealer Gamma/Theta Cycle (visual B)</figcaption>
+          </figure>
+        </div>
+      </div>
       </section>
 
       <section class="mb-4">
@@ -121,49 +136,13 @@
       </section>
 
       <section class="mb-4">
-        <h2 class="h6">RVOL / Extrinsic Behaviors → Actions</h2>
-        <div class="table-responsive">
-          <table class="table table-sm align-middle mb-0">
-            <thead class="table-light">
-              <tr>
-                <th style="min-width:160px">State</th>
-                <th>RVOL</th>
-                <th>Extrinsic</th>
-                <th>Action</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Bullish divergence fires</td>
-                <td>&lt; 1.2</td>
-                <td>Compression ongoing</td>
-                <td class="text-muted">Wait</td>
-                <td class="small">Setup found; hedging flow not yet visible.</td>
-              </tr>
-              <tr>
-                <td>Bullish divergence</td>
-                <td>≥ 1.5</td>
-                <td>Compression → basing</td>
-                <td><strong>Enter calls</strong></td>
-                <td class="small">Use candle close over HL bar’s high.</td>
-              </tr>
-              <tr>
-                <td>Bearish divergence fires</td>
-                <td>&lt; 1.2</td>
-                <td>Fading upside IV</td>
-                <td class="text-muted">Wait</td>
-                <td class="small">Timing likely late without tape activity.</td>
-              </tr>
-              <tr>
-                <td>Bearish divergence</td>
-                <td>≥ 1.5</td>
-                <td>Upside IV capped</td>
-                <td><strong>Enter puts / short</strong></td>
-                <td class="small">Trigger: close under HH bar’s low.</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="text-start my-3">
+          <h2 class="h4">💡How RVOL solves the timing problem</h2>
+          <p>The divergence shows when volatility compression starts.<br>RVOL shows when hedging flow hits the tape.</p>
+          <figure class="text-center">
+            <img loading="lazy" src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*DpgXbsPZkQiXxUpGxz5zIw.jpeg" alt="RVOL/Extrinsic Behaviors and Actions" class="img-fluid rounded" />
+            <figcaption class="small text-muted mt-1">RVOL / Extrinsic Behaviors and Actions</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -226,4 +205,7 @@
   }
   </script>
 </body>
+<p class="text-center mb-0" style="color: black;">
+  © 2025 Foxchase Trading™
+</p>
 </html>
