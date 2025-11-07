@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cracking the 0DTE Code, Part 4: RVOL (Relative Volume) | Foxchase Trading</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Part 4 adds RVOL confirmation to the Part 3 extrinsic divergence setup. Why divergences sometimes lag, how RVOL times the move, and a simple playbook." />
+  <meta name="author" content="Foxchase Trading" />
+
+  <!-- Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body class="bg-light text-dark">
+  <!-- Header -->
+  <header class="bg-white border-bottom py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="/" class="d-flex align-items-center text-decoration-none">
+        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" class="me-2" style="max-width:40px;height:auto;" />
+        <span class="h3 mb-0 text-dark">Foxchase Trading</span>
+      </a>
+      <nav>
+        <a href="/" class="me-3">Home</a>
+        <a href="https://discord.com/invite/qt8EYfFn?utm_source=Discord%20Widget&utm_medium=Connecta" target="_blank" rel="noopener noreferrer">Discord</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <article class="mb-5">
+      <header class="mb-3">
+        <h1 class="display-6">Cracking the 0DTE Code, Part 4: RVOL</h1>
+        <p class="text-muted mb-0">3 min read · Just now · by Adam · <a href="/cracking-0dte-code-spx.html" target="_blank" rel="noopener noreferrer">Read Part 1</a> · <a href="/cracking-0dte-code-spy.html" target="_blank" rel="noopener noreferrer">Read Part 2</a> · <a href="/cracking-0dte-code-part-3-call-premium-divergence.html" target="_blank" rel="noopener noreferrer">Read Part 3</a></p>
+      </header>
+
+      <section class="mb-4">
+        <p>In <strong>Part 3</strong>, we introduced options premium divergences with the underlying (SPY), including <em>extrinsic</em> divergences, and built a ToS indicator to apply the study to both call and put charts across SPY strikes. Those divergences help spot when volatility expectations begin shifting ahead of SPY’s next move.</p>
+        <p>Now we’re adding the missing piece of confirmation: <strong>RVOL (Relative Volume)</strong>.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">🕒 Why some divergences “lag”</h2>
+        <p>If you’ve used the indicator already, you’ve noticed BULL/BEAR <em>EX</em> can sometimes fire early, especially 12:30–15:00 ET. After the trigger, SPY may drift for 5–15 minutes, putting option contracts in drawdown before the expected move accelerates. That delay isn’t random — it’s the <strong>dealer gamma/theta cycle</strong> through the day.</p>
+
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="p-3 bg-white border rounded h-100">
+              <h3 class="h6 mb-2">Morning (09:30–10:00): Low γ, IV expanding</h3>
+              <ul class="mb-0 small">
+                <li>Dealers are still building 0DTE inventory; hedging is instant.</li>
+                <li><strong>No delay</strong>, but our setup is rarer (we target IV compression, not expansion).</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 bg-white border rounded h-100">
+              <h3 class="h6 mb-2">Mid‑day (10:30–14:30): Peak γ pin</h3>
+              <ul class="mb-0 small">
+                <li>Books heavy with short‑gamma exposure.</li>
+                <li>Hedges wait for confirmation → <strong>5–15 min lag</strong> from EX signal to price response.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 bg-white border rounded h-100">
+              <h3 class="h6 mb-2">Afternoon (15:00+): γ collapse → Δ‑dominant</h3>
+              <ul class="mb-0 small">
+                <li>Gamma evaporates; hedging becomes linear.</li>
+                <li>Responses are <strong>immediate</strong>; options trade like stock (amplified).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <pre class="p-3 bg-white border rounded small" aria-label="MM Gamma Exposure over time"><code>MM Gamma Exposure
+│
+│                     ████████████  ← Mid‑day: Peak pin zone
+│                 ███████████
+│             █████████
+│         ██████
+│     ████
+│   ███
+│ ██
+│█
+│
+└───────────────────────────────────────── Time (ET)
+  09:30      11:00      13:00      15:00      16:00</code></pre>
+        </div>
+
+        <h3 class="h6 mt-3">🧠 Dealer logic (bullish case)</h3>
+        <ul>
+          <li><strong>Signal:</strong> Extrinsic drops (IV compression) while SPY forms a higher low.</li>
+          <li><strong>Posture:</strong> Dealers short puts → short SPY to hedge. They <em>stop selling</em> but don’t buy yet → slight drift lower.</li>
+          <li><strong>Decay:</strong> IV and theta bleed puts; dealers’ delta shrinks.</li>
+          <li><strong>Unwind:</strong> Over‑hedged short SPY → they buy to rebalance → <strong>rally</strong>.</li>
+        </ul>
+        <p class="small text-muted">Mirror this for the bearish case with short calls and long‑SPY hedges unwinding via selling.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">💡 How RVOL solves the timing problem</h2>
+        <div class="row g-3 align-items-stretch">
+          <div class="col-md-6">
+            <div class="p-3 bg-white border rounded h-100">
+              <p class="mb-1"><strong>Extrinsic divergence</strong> tells you <em>the setup</em>: when volatility compression has started.</p>
+              <p class="mb-0"><strong>RVOL</strong> tells you <em>the timing</em>: when hedging flow actually hits the tape.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <figure class="mb-0 text-center p-2 bg-white border rounded h-100 d-flex flex-column justify-content-center">
+              <img class="img-fluid" src="/assets/img/part4/example-rvol-divergence.png" alt="11/06/25 Example with Divergence and RVOL" />
+              <figcaption class="small text-muted mt-2">11/06/25 — Divergence + RVOL example (replace with your chart)</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h6">RVOL / Extrinsic Behaviors → Actions</h2>
+        <div class="table-responsive">
+          <table class="table table-sm align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="min-width:160px">State</th>
+                <th>RVOL</th>
+                <th>Extrinsic</th>
+                <th>Action</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bullish divergence fires</td>
+                <td>&lt; 1.2</td>
+                <td>Compression ongoing</td>
+                <td class="text-muted">Wait</td>
+                <td class="small">Setup found; hedging flow not yet visible.</td>
+              </tr>
+              <tr>
+                <td>Bullish divergence</td>
+                <td>≥ 1.5</td>
+                <td>Compression → basing</td>
+                <td><strong>Enter calls</strong></td>
+                <td class="small">Use candle close over HL bar’s high.</td>
+              </tr>
+              <tr>
+                <td>Bearish divergence fires</td>
+                <td>&lt; 1.2</td>
+                <td>Fading upside IV</td>
+                <td class="text-muted">Wait</td>
+                <td class="small">Timing likely late without tape activity.</td>
+              </tr>
+              <tr>
+                <td>Bearish divergence</td>
+                <td>≥ 1.5</td>
+                <td>Upside IV capped</td>
+                <td><strong>Enter puts / short</strong></td>
+                <td class="small">Trigger: close under HH bar’s low.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Closing thoughts</h2>
+        <p>The <strong>extrinsic divergence</strong> reveals the setup. <strong>RVOL</strong> reveals the timing. When both align, you’re not guessing — you’re trading in sync with the dealer hedging cycle itself.</p>
+        <p><em>Is this the “price and time” that ICT was talking about all along?</em></p>
+        <div class="alert alert-info small mb-0">
+          💬 For access to my <strong>free RVOL indicator</strong>, join my Discord and check the pinned messages!
+        </div>
+      </section>
+
+      <!-- CTA Buttons -->
+      <div class="mt-4">
+        <a href="/cracking-0dte-code-spx.html" class="btn btn-primary btn-lg me-2" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-link"></i> Part 1 (Naive Gamma → Live Delta)
+        </a>
+        <a href="/cracking-0dte-code-spy.html" class="btn btn-outline-primary btn-lg me-2" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-link"></i> Part 2 (SPY Pre‑Market Regimes)
+        </a>
+        <a href="/cracking-0dte-code-part-3-call-premium-divergence.html" class="btn btn-outline-secondary btn-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-link"></i> Part 3 (Call‑Premium Divergence)
+        </a>
+      </div>
+
+      <aside class="alert alert-warning small mt-4">
+        <strong>Disclaimer:</strong> Education only, not financial advice. Options and derivatives carry significant risk. Do your own research and manage risk.
+      </aside>
+    </article>
+  </main>
+
+  <!-- Social / Support -->
+  <div class="bg-dark text-secondary text-center py-2">
+    <div class="d-flex justify-content-center gap-2">
+      <a href="https://twitter.com/FoxchaseTrading" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm px-3">
+        <i class="fa-brands fa-x-twitter"></i> Follow us on X
+      </a>
+      <a href="https://coff.ee/foxchasetrading" target="_blank" rel="noopener noreferrer" class="btn btn-outline-warning btn-sm px-3">
+        <i class="fa-solid fa-mug-hot"></i> Buy me a coffee
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cracking the 0DTE Code, Part 4: RVOL",
+    "author": {"@type":"Person","name":"Adam"},
+    "datePublished": "2025-11-06",
+    "dateModified": "2025-11-06",
+    "publisher": {"@type":"Organization","name":"Foxchase Trading"},
+    "image": "https://foxchasetrading.com/foxchasetrading.png",
+    "mainEntityOfPage": {"@type":"WebPage","@id": "https://foxchasetrading.com/cracking-0dte-code-part-4-rvol"},
+    "description": "Part 4 adds RVOL confirmation to the Part 3 extrinsic divergence setup. Why divergences sometimes lag, how RVOL times the move, and a simple playbook."
+  }
+  </script>
+</body>
+</html>
