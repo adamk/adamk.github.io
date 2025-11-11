@@ -6,7 +6,7 @@
   <title>Cracking the 0DTE Code, Part 5: The z-Score Playbook | Foxchase Trading</title>
 
   <!-- SEO -->
-  <meta name="description" content="Part 5 adds a z-score framework to the extrinsic divergence method: interpret IV compression/expansion, map regimes (R1/R4/R5), and time reversals." />
+  <meta name="description" content="Part 5 adds a z-score framework to the Foxchase divergence method. Learn how extrinsic slope + z-score contextualize IV, map regimes (R1/R4/R5), and time reversals." />
   <meta name="author" content="Foxchase Trading" />
 
   <!-- Styles -->
@@ -25,7 +25,7 @@
       </a>
       <nav>
         <a href="/" class="me-3">Home</a>
-        <a href="https://discord.com/invite/UmNFh8CfkQ?utm_source=Discord%20Widget&utm_medium=Connecta" target="_blank" rel="noopener noreferrer">Discord</a>
+        <a href="https://discord.com/invite/qt8EYfFn?utm_source=Discord%20Widget&utm_medium=Connecta" target="_blank" rel="noopener noreferrer">Discord</a>
       </nav>
     </div>
   </header>
@@ -45,131 +45,123 @@
 
       <!-- Glossary -->
       <section class="mb-4">
-        <h2 class="h4">📘 Quick Glossary</h2>
-        <ul class="mb-0">
-          <li><strong>IV (Implied Volatility):</strong> The market’s forecast of future volatility, reflected in option pricing.</li>
-          <li><strong>Extrinsic Value:</strong> The portion of an option’s price beyond intrinsic value; mainly driven by IV and time decay.</li>
-          <li><strong>Extrinsic Slope:</strong> The rate of change in extrinsic value. Positive = IV expansion; negative = IV compression (shown as green/red in the ToS lower study).</li>
-          <li><strong>z-Score (EX z-Score):</strong> Measures how high or low the current extrinsic value is relative to its intraday mean.</li>
-          <li><strong>RVOL (Relative Volume):</strong> Compares current volume to its average for that time of day; confirms when dealer hedging flow is active.</li>
-          <li><strong>Regime (R1 / R4 / R5):</strong> Context for dealer positioning:
-            <ul>
-              <li><strong>R1</strong> = SPY opens inside yesterday’s range (neutral gamma)</li>
-              <li><strong>R4</strong> = Premarket high is above yesterday’s high (dealers short calls)</li>
-              <li><strong>R5</strong> = Premarket low is below yesterday’s low (dealers short puts)</li>
-            </ul>
-          </li>
-          <li><strong>Charm:</strong> The rate of delta decay with time, which drives end-of-day hedging bursts.</li>
-        </ul>
+        <h2 class="h5">📘 Quick Glossary</h2>
+        <div class="bg-white border rounded-3 p-3">
+          <dl class="row mb-0">
+            <dt class="col-sm-4">IV (Implied Volatility)</dt>
+            <dd class="col-sm-8">Market’s forecast of future volatility, reflected in option pricing.</dd>
+
+            <dt class="col-sm-4">Extrinsic Value</dt>
+            <dd class="col-sm-8">Portion of an option’s price beyond intrinsic value; driven by IV and time decay.</dd>
+
+            <dt class="col-sm-4">Extrinsic Slope</dt>
+            <dd class="col-sm-8">Rate of change in extrinsic value. Positive = IV expansion; negative = IV compression (shown as green/red in the ToS lower study).</dd>
+
+            <dt class="col-sm-4">z-Score (EX z-Score)</dt>
+            <dd class="col-sm-8">How high/low current extrinsic value is relative to its intraday mean.</dd>
+
+            <dt class="col-sm-4">RVOL (Relative Volume)</dt>
+            <dd class="col-sm-8">Current volume vs its average for the same time of day; confirms when dealer hedging flow is active.</dd>
+
+            <dt class="col-sm-4">Regime (R1 / R4 / R5)</dt>
+            <dd class="col-sm-8 mb-0">
+              <div><strong>R1</strong> = SPY opens inside yesterday’s range (neutral gamma)</div>
+              <div><strong>R4</strong> = Premarket high above yesterday’s high (dealers short calls)</div>
+              <div><strong>R5</strong> = Premarket low below yesterday’s low (dealers short puts)</div>
+            </dd>
+
+            <dt class="col-sm-4 mt-2">Charm</dt>
+            <dd class="col-sm-8 mt-2">Rate of delta decay with time, which drives end-of-day hedging bursts.</dd>
+          </dl>
+        </div>
       </section>
 
       <!-- Problem -->
       <section class="mb-4">
         <h2 class="h4">Problem</h2>
-        <p>Our original divergence indicator, specifically the extrinsic element, worked best when implied volatility was compressing, the ideal “dealer-hedging environment.”</p>
-        <p>But on days when volatility expanded instead of flattening, the tool lost its edge:</p>
+        <p>Our original divergence indicator—especially the extrinsic element—worked best when implied volatility was compressing, the ideal “dealer-hedging environment.” On expansion days, the tool lost its edge:</p>
         <ul>
-          <li>Bearish EX divergences would appear prematurely and fail.</li>
-          <li>SPY could keep grinding without a bullish signal as implied volatility reprices higher.</li>
-          <li>No clear signal existed to show why the divergence wasn’t actionable.</li>
+          <li>Bearish EX divergences could appear prematurely and fail.</li>
+          <li>SPY could grind higher without a bullish signal as IV repriced upward.</li>
+          <li>No clear “why” explained when a divergence wasn’t actionable.</li>
         </ul>
-        <p class="mb-0">That limitation wasn’t the indicator’s fault; it was the market’s volatility regime shifting.</p>
+        <p class="mb-0"><em>The limitation wasn’t the indicator; it was a shift in the volatility regime.</em></p>
       </section>
 
       <!-- Solution -->
       <section class="mb-4">
-        <h2 class="h4">Solution (z-Score Framework)</h2>
-        <p>The new <strong>Extrinsic Slope + z-Score Monitor</strong> study fixes that blind spot. It adds context to every divergence by revealing what the option’s implied volatility is doing intraday.</p>
+        <h2 class="h4">Solution: z-Score Framework</h2>
+        <p>The new <strong>Extrinsic Slope + z-Score Monitor</strong> adds missing context by revealing what the option’s IV is doing intraday.</p>
         <ul>
-          <li><strong>Extrinsic Slope:</strong> “Is IV compressing or expanding?”
-            <ul>
-              <li>Measures the rate of change of extrinsic value.</li>
-              <li>Negative slope = IV compression → dealer hedging pressure / controlled sell.</li>
-              <li>Positive slope = IV expansion → vol repricing or unwind flow.</li>
-            </ul>
-          </li>
-        </ul>
-        <p><em>This tells you why an option’s premium is behaving differently from SPY.</em></p>
-        <ul>
-          <li><strong>z-Score of Extrinsic:</strong> “Is premium high, normal, or cheap?”
-            <ul>
-              <li>High z (+4 to +6) = over-inflated premium → potential vol-crush fade.</li>
-              <li>Low z (−4 to −6) = deflated premium → possible unwind / bounce setup.</li>
-              <li>Crossings of z = 0 often mark the transition between compression and expansion phases.</li>
-            </ul>
-          </li>
+          <li><strong>Extrinsic Slope:</strong> “Is IV compressing or expanding?”<br/>Negative slope = IV compression → dealer-hedging pressure / controlled sell. Positive slope = IV expansion → vol repricing or unwind flow.</li>
+          <li class="mt-2"><strong>z-Score of Extrinsic:</strong> “Is premium high, normal, or cheap?”<br/>High z (+4 → +6) = over-inflated premium → potential vol-crush fade. Low z (−4 → −6) = deflated premium → potential unwind/bounce. Crossings of <em>z = 0</em> often mark transitions between compression and expansion phases.</li>
         </ul>
       </section>
 
-      <!-- Interpretations -->
+      <!-- Context -->
       <section class="mb-4">
         <h2 class="h4">How to Interpret Dealer/MM Reactions with Context</h2>
-        <p>For the first time, we can see the volatility regime forming in real time, not infer it afterward.</p>
-      </section>
-
-      <!-- Regime Context -->
-      <section class="mb-4">
-        <h2 class="h4">The Regime Context Returns</h2>
-        <p>The extrinsic z-score completes the regime map first laid out in Part 2. It quantifies how implied volatility evolves within each regime, whether dealers are expanding, compressing, or stabilizing IV as they hedge.</p>
+        <p>For the first time, you can see the volatility regime forming in real time, not infer it afterward.</p>
+        <h3 class="h6 mt-3">The Regime Context Returns</h3>
+        <p>The extrinsic z-score completes the regime map from Part 2. It quantifies how IV evolves within each regime—whether dealers are expanding, compressing, or stabilizing IV as they hedge.</p>
         <ul>
-          <li><strong>R1:</strong> Neutral Gamma → balanced dealers, direction comes from IV behavior.</li>
+          <li><strong>R1:</strong> Neutral Gamma → direction comes from IV behavior.</li>
           <li><strong>R4:</strong> Above Range (Short Calls) → bearish gap-fade or vol-crush continuation.</li>
           <li><strong>R5:</strong> Below Range (Short Puts) → panic sell → bullish unwind reversal.</li>
         </ul>
-        <p>R2, R3, and R6 are low-frequency environments that rarely produce actionable intraday signals, so the framework focuses on the dominant regimes: R1, R4, and R5.</p>
-        <p>The z-score complements the slope, showing how elevated or depressed extrinsic value is relative to its intraday mean. Together, they reveal not just what IV is doing (expanding vs compressing) but how extreme or stable that activity has become.</p>
-        <ul>
-          <li>Rising z while SPY falls → volatility expansion / dealer hedging pressure.</li>
-          <li>Falling z while SPY rises → volatility compression or unwind.</li>
-          <li>Flat z + negative slope → controlled compression or low-energy drift.</li>
-        </ul>
-        <p class="mb-0"><em>The following regime-specific patterns show how slope + z-score interact to reveal dealer positioning in real time.</em></p>
+        <p class="mb-0">Slope shows <em>what</em> IV is doing; z-score shows <em>how extreme</em> it is.</p>
       </section>
 
-      <!-- R1 -->
+      <!-- Heuristics -->
       <section class="mb-4">
-        <h3 class="h5">🟩 Regime 1: Inside Prior Range (Neutral Gamma)</h3>
+        <h2 class="h5">z-Score + Slope Heuristics</h2>
+        <ul class="mb-0">
+          <li><strong>Rising z while SPY falls</strong> → volatility expansion / dealer-hedging pressure.</li>
+          <li><strong>Falling z while SPY rises</strong> → volatility compression or unwind.</li>
+          <li><strong>Flat z + negative slope</strong> → controlled compression / low-energy drift.</li>
+        </ul>
+      </section>
+
+      <!-- Regime 1 -->
+      <section class="mb-4">
+        <h2 class="h4">🟩 Regime 1: Inside Prior Range (Neutral Gamma)</h2>
         <p><strong>Dealer posture:</strong> Balanced. Direction depends on IV behavior and z-score slope.</p>
         <ul>
-          <li><strong>Upside Breakout:</strong> z-score starts deeply negative (−4 → −2 → 0) and rises with SPY.<br>
-            → IV expands with price → dealers hedge with the move → <strong>bullish continuation</strong>.</li>
-          <li><strong>Downside Breakout:</strong> z-score near 0 → falls negative while SPY drops.<br>
-            → IV expands against price → dealers hedge against the move → <strong>bearish continuation</strong>.</li>
-          <li><strong>Compression Sell-Off:</strong> z-score extremely negative (−6 → −1) but SPY keeps drifting down on flat IV.<br>
-            → <strong>Bearish continuation.</strong> Wait for z-score to cross 0 + RVOL uptick before longing → bullish reversal zone once vol stabilizes.</li>
-          <li><strong>Controlled Compression Sell (R1-CC):</strong> z-score flat or slightly rising (−4 → −3), extrinsic slope negative (compression), SPY drifting or falling steadily.<br>
-            → Dealers are selling vol into the decline, allowing price to slide in an orderly bleedout → <strong>bearish bias</strong> until extrinsic slope flattens or turns positive (vol stops compressing).</li>
+          <li><strong>Upside Breakout:</strong> z starts deeply negative (−4 → −2 → 0) and rises with SPY → IV expands with price → dealers hedge with the move → <strong>bullish continuation</strong>.</li>
+          <li><strong>Downside Breakout:</strong> z near 0 → falls negative while SPY drops → IV expands against price → dealers hedge against the move → <strong>bearish continuation</strong>.</li>
+          <li><strong>Compression Sell-Off:</strong> z extremely negative (−6 → −1) but SPY keeps drifting down on flat IV → <strong>bearish continuation</strong>. Wait for z to cross 0 + RVOL uptick before longing → <strong>bullish reversal zone</strong> once vol stabilizes.</li>
+          <li><strong>Controlled Compression Sell (R1-CC):</strong> z flat or slightly rising (−4 → −3), slope negative (compression), SPY drifting/falling as dealers sell vol → <strong>bearish bias</strong>.</li>
+          <li><strong>R1-VC (Vol-Crush Continuation):</strong> after an upside breakout, z peaks (+3 → +6) then fades toward +1 as IV compresses → vol-crush exhaustion often produces a <strong>sharp drop</strong> once IV collapses.</li>
         </ul>
       </section>
 
-      <!-- R4 -->
+      <!-- Regime 4 -->
       <section class="mb-4">
-        <h3 class="h5">🟥 Regime 4: Opens Above Prior Range (Dealers Short Calls)</h3>
-        <p><strong>Dealer posture:</strong> Short call gamma = they short SPY as vol expands.</p>
+        <h2 class="h4">🟥 Regime 4: Opens Above Prior Range (Dealers Short Calls)</h2>
+        <p><strong>Dealer posture:</strong> Short call gamma → they short SPY as vol expands.</p>
         <ul>
-          <li><strong>R4-S (Standard Gap-Fade Start):</strong> z-score high (+3 → +5) then falls with SPY → IV expanding = <strong>bearish fade</strong> of the gap.</li>
-          <li><strong>R4-C (Compressed Start):</strong> z-score starts negative (−3 → −4) and rises toward 0 while SPY drifts down.<br>
-            → Rising z-score against falling SPY = IV repricing higher, not new hedging → <strong>bearish bias</strong> until z-score flattens near 0.</li>
-          <li><strong>R4-R (Reversal / Unwind Phase):</strong> z-score starts elevated (+1 → +2), then compresses through to around −2 as SPY fades. Once z-score turns back up and crosses above 0, dealers begin to unwind short hedges, triggering a <strong>bullish reversal</strong>.</li>
-          <li><strong>R4-VC (Vol-Crush Continuation):</strong> z-score very high (+4 → +6) then falls while SPY grinds up → IV collapsing = <strong>bullish trend holds</strong> as dealers stop hedging.</li>
+          <li><strong>R4-S (Standard Gap-Fade Start):</strong> z high (+3 → +5) then falls with SPY → IV expanding = <strong>bearish</strong> gap-fade.</li>
+          <li><strong>R4-C (Compressed Start):</strong> z starts negative (−3 → −4) and rises toward 0 while SPY drifts down. Rising z against falling SPY = IV repricing higher (not fresh hedging) → <strong>bearish bias</strong> until z flattens near 0.</li>
+          <li><strong>R4-R (Reversal / Unwind Phase):</strong> z starts elevated (+1 → +2), compresses to ~−2 as SPY fades. When z turns up and crosses above 0, dealers unwind short hedges → <strong>bullish reversal</strong>.</li>
+          <li><strong>R4-VC (Vol-Crush Continuation):</strong> z very high (+4 → +6) then falls while SPY grinds up → IV collapsing = <strong>bullish continuation</strong> as dealers stop hedging.</li>
         </ul>
       </section>
 
-      <!-- R5 -->
+      <!-- Regime 5 -->
       <section class="mb-4">
-        <h3 class="h5">🟦 Regime 5: Opens Below Prior Range (Dealers Short Puts)</h3>
-        <p><strong>Dealer posture:</strong> Short put gamma = they must buy SPY on declines.</p>
+        <h2 class="h4">🟦 Regime 5: Opens Below Prior Range (Dealers Short Puts)</h2>
+        <p><strong>Dealer posture:</strong> Short put gamma → they must buy SPY on declines.</p>
         <ul>
-          <li><strong>R5-E (Expansion Start / Capitulation):</strong> z-score very negative (−4 → −6) = vol expansion and panic hedging → <strong>bearish leg down</strong>.</li>
-          <li><strong>R5-C (Compressed Start / Controlled Buy):</strong> z-score flat (−3 → −2) and extrinsic slope slightly positive; SPY grinds up slowly → <strong>bullish continuation</strong> from open until z-score stalls or turns down.</li>
-          <li><strong>R5-R (Reversal / Unwind Phase):</strong> z-score curves up (−6 → −2 → −1) as SPY fades lower, IV begins re-expanding as dealers start buying → <strong>bullish unwind</strong> as hedges flip near z-score ≈ −1.</li>
+          <li><strong>R5-E (Expansion Start / Capitulation):</strong> z very negative (−4 → −6) = vol expansion and panic hedging → <strong>bearish leg down</strong>.</li>
+          <li><strong>R5-C (Compressed Start / Controlled Buy):</strong> z flat (−3 → −2) and slope slightly positive; SPY grinds up slowly → <strong>bullish continuation</strong> from open until z stalls/turns down.</li>
+          <li><strong>R5-R (Reversal / Unwind Phase):</strong> z curves up (−6 → −2 → −1) as SPY fades lower; IV begins re-expanding as dealers start buying → <strong>bullish unwind</strong> as hedges flip near z ≈ −1.</li>
         </ul>
-        <p class="small text-muted">
-          Note: Regime 5 only includes three practical setups. Put-side gamma reactions are asymmetric, so once dealers hedge the initial selloff, the sequence typically transitions directly from panic expansion (R5-E) to compression and unwind (R5-C → R5-R), without the extended vol-crush continuation seen in R4.
+        <p class="small text-muted mb-0">
+          <strong>Note:</strong> R5 typically transitions from panic expansion to compression and unwind (R5-E → R5-C → R5-R) without the extended vol-crush continuation seen in R4.
         </p>
       </section>
 
-      <!-- Rhythm -->
+      <!-- Time of day -->
       <section class="mb-4">
         <h2 class="h4">Time-of-Day Edge (The Gamma–Theta Rhythm)</h2>
         <ul>
@@ -178,48 +170,56 @@
           <li><strong>12:30–13:30:</strong> Low RVOL → skip choppy compression.</li>
           <li><strong>15:30+:</strong> Charm magnets → quick ATM scalps only.</li>
         </ul>
-        <p class="mb-0">Most of your best setups will appear in that 10 to 11 AM window when IV stabilizes and hedging flows normalize.</p>
+        <p class="mb-0">Most A-setups appear between <strong>10:00–11:00</strong> when IV stabilizes and hedging flows normalize.</p>
       </section>
 
-      <!-- Why proxies don't work -->
+      <!-- VXX note -->
       <section class="mb-4">
-        <h2 class="h4">Why SPY Implied Volatility and VXX Don’t Work</h2>
-        <p>Those proxies track index-level implied vol, not the live premium structure of the option you’re trading. You must read extrinsic value from the option itself. That said, using VXX key levels (PML, PMH, YDL, YDH) can still be useful for take-profit timing as they often align with short-term vol spikes or compressions that mark the end of a move.</p>
+        <h2 class="h4">Why SPY Implied Volatility and VXX Don’t Work (as Triggers)</h2>
+        <p>Those proxies track index-level implied vol, not the live premium structure of the exact option you’re trading. You must read extrinsic value from the option itself. That said, using VXX key levels (PML, PMH, YDL, YDH) can help with exits—these often align with short-term vol spikes or compressions that mark the end of a move.</p>
       </section>
 
-      <!-- Final Thoughts -->
+      <!-- Summary rules -->
       <section class="mb-4">
         <h2 class="h4">Final Thoughts</h2>
         <p>This update bridges all five parts of the series:</p>
         <ul>
-          <li><strong>Part 1:</strong> MM Gamma → “0DTE flow is a product of dealer positioning, gamma exposure, and intraday volatility shifts.”</li>
-          <li><strong>Part 2:</strong> The Regime Model → “Know the environment.”</li>
-          <li><strong>Part 3–4:</strong> The Divergence Tool → “See the turning points.”</li>
-          <li><strong>Part 5:</strong> The z-Score Playbook → “Understand why/when the turn is happening with higher accuracy.”</li>
+          <li><strong>Part 1:</strong> MM Gamma → 0DTE flow = dealer positioning + gamma exposure + intraday vol shifts.</li>
+          <li><strong>Part 2:</strong> The Regime Model → Know the environment.</li>
+          <li><strong>Parts 3–4:</strong> The Divergence Tool → See the turning points.</li>
+          <li><strong>Part 5:</strong> The z-Score Playbook → Understand why/when the turn is happening with higher accuracy.</li>
         </ul>
-        <p>Now, each divergence you see isn’t just a pattern on a chart, it’s a window into dealer positioning, volatility repricing, and flow intensity.</p>
+        <p class="mb-3">Each divergence becomes a window into dealer positioning, volatility repricing, and flow intensity—not just a pattern.</p>
 
-        <h3 class="h6">🧠 Summary Rules</h3>
-        <ul>
-          <li>z falling with SPY → IV expanding against price → hedging pressure → <strong>bearish</strong>.</li>
-          <li>z rising with SPY → IV expanding with price → dealer unwind → <strong>bullish</strong>.</li>
-          <li>z rising while SPY falls → vol repricing → controlled sell bias (<strong>R4-C / R5-E</strong>).</li>
-          <li>z very high then falling while SPY rises → vol crush continuation (<strong>R4-VC</strong>).</li>
-        </ul>
-        <p class="mb-3">Together, slope and z-score act as the volatility compass. The slope tells you what’s happening to IV, and z-score shows how extreme or balanced that behavior has become.</p>
-
-        <div class="alert alert-secondary">
-          📘 Full chart examples and annotated z-Score patterns are included in the <strong>Foxchase Regime Framework</strong> document (available free in Discord or with the indicator on Whop).
+        <div class="border rounded-3 p-3 bg-white">
+          <p class="mb-2"><strong>🧠 Summary Rules</strong></p>
+          <ul class="mb-0">
+            <li><strong>z falling with SPY</strong> → IV expanding against price → hedging pressure → <strong>bearish</strong>.</li>
+            <li><strong>z rising with SPY</strong> → IV expanding with price → dealer unwind → <strong>bullish</strong>.</li>
+            <li><strong>z rising while SPY falls</strong> → vol repricing → controlled sell bias (<strong>R4-C / R5-E</strong>).</li>
+            <li><strong>z very high then falling while SPY rises</strong> → vol-crush phase → <strong>bullish continuation (R4-VC)</strong> or <strong>bearish exhaustion drop (R1-VC)</strong>.</li>
+          </ul>
         </div>
-
-        <h3 class="h6">💡 Try the Foxchase Divergence + z-Score Indicator</h3>
-        <p class="mb-2">This framework is fully compatible with ThinkorSwim trading platform using the latest Foxchase SPY Divergence Indicator. It detects divergences between SPY and option premium behavior in real time. Includes a framework/playbook guide document to help you interpret different daily scenarios.</p>
-        <p class="mb-0"><a class="btn btn-outline-primary btn-sm" href="https://whop.com/foxchase-trading/spy-divergence-indicator/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link"></i> Get the indicator on Whop</a></p>
-
-        <aside class="alert alert-warning small mt-3 mb-0">
-          <strong>Disclaimer:</strong> Education only, not financial advice. Options and derivatives carry significant risk. Do your own research and manage risk.
-        </aside>
       </section>
+
+      <!-- CTA -->
+      <section class="mb-4">
+        <p class="mb-2">Together, slope and z-score act as the volatility compass: slope tells you what IV is doing; z-score shows how extreme (or balanced) it is.</p>
+        <p class="mb-2">📘 Full chart examples and annotated z-Score patterns are included in the Foxchase Regime Framework document (free in Discord or included with the indicator on Whop).</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="https://whop.com/foxchase-trading/spy-divergence-indicator/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            💡 Try the Foxchase Divergence + z-Score Indicator
+          </a>
+          <a href="https://discord.com/invite/qt8EYfFn?utm_source=Discord%20Widget&utm_medium=Connecta" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary">
+            Join the Discord
+          </a>
+        </div>
+        <p class="small text-muted mt-3 mb-0">(For educational use only. No performance guarantees.)</p>
+      </section>
+
+      <aside class="alert alert-warning small mt-4 mb-0">
+        <strong>Disclaimer:</strong> Education only, not financial advice. Options and derivatives carry significant risk. Do your own research and manage risk.
+      </aside>
     </article>
   </main>
 
@@ -234,6 +234,9 @@
       </a>
     </div>
   </div>
+
+  <!-- Footer -->
+  <p class="text-center mb-0 py-2" style="color:black;">© 2025 Foxchase Trading™</p>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -250,10 +253,8 @@
     "publisher": {"@type":"Organization","name":"Foxchase Trading"},
     "image": "https://foxchasetrading.com/foxchasetrading.png",
     "mainEntityOfPage": {"@type":"WebPage","@id": "https://foxchasetrading.com/cracking-0dte-code-part-5-zscore"},
-    "description": "Part 5 adds a z-score framework to the extrinsic divergence method: interpret IV compression/expansion, map regimes (R1/R4/R5), and time reversals."
+    "description": "Part 5 adds a z-score framework to the Foxchase divergence method. Learn how extrinsic slope + z-score contextualize IV, map regimes (R1/R4/R5), and time reversals."
   }
   </script>
-
-  <p class="text-center mb-0" style="color: black;">© 2025 Foxchase Trading™</p>
 </body>
 </html>
