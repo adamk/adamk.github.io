@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cracking the 0DTE Code, Part 3: The Call‑Premium Divergence Method | Foxchase Trading</title>
+  <title>Cracking the 0DTE Code, Part 3: The Call-Premium Divergence Method | Foxchase Trading</title>
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/foxchasetrading.png">
   <link rel="apple-touch-icon" href="/foxchasetrading.png">
   <link rel="shortcut icon" href="/foxchasetrading.png">
   <!-- SEO -->
-  <meta name="description" content="0DTE edge: when slightly‑OTM call premium diverges from SPY at turning points. Full rules, examples, risk, and when it shines." />
+  <meta name="description" content="0DTE edge: when ATM call premium diverges from SPY at turning points. Full rules, examples, risk, and when it shines." />
   <meta name="author" content="Foxchase Trading" />
 
   <!-- Styles -->
@@ -36,7 +36,7 @@
   <main class="container">
     <article class="mb-5">
       <header class="mb-3">
-        <h1 class="display-6">Cracking the 0DTE Code, Part 3: The Call‑Premium Divergence Method</h1>
+        <h1 class="display-6">Cracking the 0DTE Code, Part 3: The Call-Premium Divergence Method</h1>
         <p class="text-muted mb-0"><a href="/cracking-0dte-code-spx.html" target="_blank" rel="noopener noreferrer">Read Part 1</a> · <a href="/cracking-0dte-code-spy.html" target="_blank" rel="noopener noreferrer">Read Part 2</a></p>
       </header>
 
@@ -49,20 +49,22 @@
         </ul>
         <h3 class="h6">Why it happens</h3>
         <ul>
-          <li><strong>Into dips</strong>, call IV is crushed and dealers lean short‑gamma; calls get “underpriced” vs the underlying. When SPY forms a HL, call premium is still lagging → cheap convexity.</li>
+          <li><strong>Into dips</strong>, call IV is crushed and dealers lean short-gamma; calls get “underpriced” vs the underlying. When SPY forms a HL, call premium is still lagging → cheap convexity.</li>
           <li><strong>Near tops</strong>, upside IV can be capped (supply/hedging dynamics), so even with a SPY HH, calls sometimes fail to make a HH (they make LH) → loss of upside momentum/convexity.</li>
         </ul>
         <p>You’re trading <em>price + vol microstructure</em>, not just price.</p>
-        <div class="alert alert-info small mb-0"><strong>Note:</strong> Divergence shows best in <strong>slightly OTM calls</strong>. Deep ITM deltas are too high (≈1), so they mirror SPY; far OTM can be too noisy.</div>
-        <p class="mt-2">OTM strikes exaggerate IV and gamma ripples, making market‑maker repositioning and convexity shifts easiest to observe.</p>
+        <div class="alert alert-info small mb-0">
+          <strong>Note:</strong> Divergence should be <strong>measured on the ATM call</strong> (max extrinsic &amp; gamma sensitivity) and <strong>traded using a slightly OTM call</strong> (~15–35 delta) for better convexity. Deep ITM deltas are too high (≈1), so they mirror SPY; far OTM can be too illiquid and noisy.
+        </div>
+        <p class="mt-2">ATM strikes show dealer hedging behavior most clearly, while slightly OTM strikes are where you express the trade for higher % return.</p>
       </section>
 
       <section class="mb-4">
         <h2 class="h4">2) Instruments, charting, and baseline settings</h2>
         <ul>
-          <li><strong>Underlying:</strong> SPY (5‑minute chart).</li>
-          <li><strong>Option to watch:</strong> Slightly OTM same‑day call (~15–35 delta). If SPY rips through, roll to the next slight‑OTM strike.</li>
-          <li><strong>Timeframe:</strong> 5‑minute for both price and premium (same RTH session).</li>
+          <li><strong>Underlying:</strong> SPY (5-minute chart).</li>
+          <li><strong>Option to watch:</strong> The <strong>ATM same-day call</strong> for divergence detection. Once a clean signal forms, you can enter using a <strong>slightly OTM call (~15–35 delta)</strong> if you want more convexity. If SPY rips through, roll to the next slight-OTM strike.</li>
+          <li><strong>Timeframe:</strong> 5-minute for both price and premium (same RTH session).</li>
           <li><strong>Session focus:</strong> 9:35–11:15 ET and 13:30–15:50 ET. Fade/ignore lunch unless it’s a trend day.</li>
           <li><strong>Visibility:</strong> Put SPY in the center, the call premium on the left. Mark simple swing highs/lows. Look for pivot pairs within ~3–8 bars.</li>
         </ul>
@@ -72,19 +74,19 @@
         <h2 class="h4">3) Entry rules (mechanical)</h2>
         <h3 class="h6">A) Bullish Divergence (Long bias / Buy Calls)</h3>
         <ol>
-          <li>Identify latest two lows on SPY and on the call premium.</li>
+          <li>Identify latest two lows on SPY and on the <strong>ATM call</strong> premium.</li>
           <li>SPY: newest low &gt; prior low → <strong>Higher Low (HL)</strong>.</li>
           <li>Call: newest low &lt; prior low (or equal within a tick) → <strong>Lower Low (LL)</strong>.</li>
           <li>The two low pivots occur within your pairing window (neither must lead).</li>
-          <li><strong>Trigger:</strong> Enter on the next bar only if the candle closes above the SPY‑HL bar’s high (confirmation).</li>
+          <li><strong>Trigger:</strong> Enter on the next bar only if the candle closes above the SPY-HL bar’s high (confirmation). You can execute using the ATM call or a slightly OTM call for more convexity.</li>
         </ol>
         <h3 class="h6">B) Bearish Divergence (Short bias / Buy Puts / Short)</h3>
         <ol>
-          <li>Identify latest two highs on SPY and on the call premium.</li>
+          <li>Identify latest two highs on SPY and on the <strong>ATM call</strong> premium.</li>
           <li>SPY: newest high &gt; prior high → <strong>Higher High (HH)</strong>.</li>
           <li>Call: newest high &lt; prior high (or equal within a tick) → <strong>Lower High (LH)</strong>.</li>
           <li>The two high pivots occur within your pairing window.</li>
-          <li><strong>Trigger:</strong> Enter on the next bar only if the candle closes below the SPY‑HH bar’s low (failure/roll).</li>
+          <li><strong>Trigger:</strong> Enter on the next bar only if the candle closes below the SPY-HH bar’s low (failure/roll). Express the short bias via puts or shorting SPY directly.</li>
         </ol>
       </section>
 
@@ -93,7 +95,7 @@
         <ul>
           <li><strong>Initial stop</strong>: Longs — below the call LL or the SPY HL (tighter). Shorts — above the call LH or the SPY HH (tighter).</li>
           <li><strong>Time stop</strong>: If the move hasn’t started within 4–6 bars, reduce or exit; decay is real.</li>
-          <li><strong>Profit taking</strong>: Scale at +30–50% on premium; trail under/over the latest 5‑min swing.</li>
+          <li><strong>Profit taking</strong>: Scale at +30–50% on premium; trail under/over the latest 5-min swing.</li>
           <li><strong>No averaging down</strong>: 0DTE convexity only helps when your timing is right.</li>
         </ul>
       </section>
@@ -233,9 +235,9 @@
       <section class="mb-4">
         <h2 class="h4">6) Where this shines</h2>
         <ul>
-          <li><strong>Open reversals</strong>: Early SPY HL against still‑crushed call premium.</li>
-          <li><strong>Trend exhaustion</strong>: SPY forces a marginal HH while call premium prints LH → short.</li>
-          <li><strong>Gamma pivot days</strong>: Dealers switching gamma profile intraday amplifies the IV snap‑back.</li>
+          <li><strong>Open reversals</strong>: Early SPY HL against still-crushed ATM call premium.</li>
+          <li><strong>Trend exhaustion</strong>: SPY forces a marginal HH while ATM call premium prints LH → short.</li>
+          <li><strong>Gamma pivot days</strong>: Dealers switching gamma profile intraday amplifies the IV snap-back.</li>
         </ul>
       </section>
 
@@ -246,8 +248,9 @@
         <div class="border rounded-3 p-3 bg-white">
           <p class="mb-2"><strong>In short:</strong></p>
           <ul class="mb-0">
-            <li><strong>Calls</strong> reward <em>anticipation</em> (buying into fear & low IV).</li>
-            <li><strong>Puts</strong> reward <em>confirmation</em> (joining the move & fading IV).</li>
+            <li><strong>Use ATM calls</strong> to <em>measure</em> the divergence (they show dealer hedging most clearly).</li>
+            <li><strong>Use slightly OTM calls</strong> (≈15–35 delta) to <em>express</em> the long trade for better % returns.</li>
+            <li><strong>Puts</strong> still reward <em>confirmation</em> (joining the move &amp; fading IV) on the bearish side.</li>
           </ul>
         </div>
       </section>
@@ -278,14 +281,14 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Cracking the 0DTE Code, Part 3: The Call‑Premium Divergence Method",
+    "headline": "Cracking the 0DTE Code, Part 3: The Call-Premium Divergence Method",
     "author": {"@type":"Person","name":"Adam"},
     "datePublished": "2025-10-27",
     "dateModified": "2025-10-27",
     "publisher": {"@type":"Organization","name":"Foxchase Trading"},
     "image": "https://foxchasetrading.com/foxchasetrading.png",
     "mainEntityOfPage": {"@type":"WebPage","@id": "https://foxchasetrading.com/cracking-0dte-code-part-3-call-premium-divergence"},
-    "description": "0DTE edge: when slightly‑OTM call premium diverges from SPY at turning points. Full rules, examples, risk, and when it shines."
+    "description": "0DTE edge: when ATM call premium diverges from SPY at turning points. Full rules, examples, risk, and when it shines."
   }
   </script>
 </body>
