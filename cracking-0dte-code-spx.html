@@ -32,9 +32,21 @@
     </div>
   </header>
 
-  <main class="container">
-    <article>
-      <h2 class="display-6">Cracking the 0DTE Code: From Naive Gamma to Live SPX Delta</h2>
+<main class="container">
+  <article>
+    <h2 class="display-6">Cracking the 0DTE Code: From Naive Gamma to Live SPX Delta</h2>
+
+    <!-- Editor's Note -->
+    <div class="alert alert-info mt-3 mb-4">
+      <h5 class="mb-2"><strong>Editor's Note (Updated November 2025)</strong></h5>
+      <p class="mb-1">Since publishing this article, my workflow has evolved.</p>
+      <p class="mb-1">I no longer rely on intraday dealer delta at all, and I now use gamma only as broad context, not as a trade signal.</p>
+      <p class="mb-1">The biggest addition: <strong>NDX intraday gamma</strong> has proven to be the leading gamma signal, often moving earlier and more responsively than SPX.</p>
+      <p class="mb-1">Because each NDX contract carries <strong>~3.7× the notional exposure</strong> of an SPX contract, even small shifts in NDX OI or dealer hedging can create outsized impact.</p>
+      <p class="mb-1">SPX gamma is still useful—especially late-day for charm-driven moves—but if I track gamma at all now, <strong>NDX is primary</strong>.</p>
+      <p class="mb-0">The rest of the article remains valuable for understanding how gamma shapes market regimes, but keep this updated context in mind.</p>
+    </div>
+    <!-- End Editor's Note -->
       <section class="mb-4">
         <h3>TL;DR</h3>
         <p>Static ("naive") gamma & delta maps built from yesterday's open interest (OI) are great for pre‑market terrain mapping (where are the big strikes, possible pin areas, regime bias) but are not sufficient for intraday 0DTE trade timing because they ignore same‑day opening/closing flow.</p>
