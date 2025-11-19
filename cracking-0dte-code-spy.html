@@ -44,7 +44,17 @@
         <h2 class="h4">Intro</h2>
         <p>In <a href="cracking-0dte-code-spx.html">Part 1</a>, we showed why static (“naive”) gamma maps are great for pre‑market terrain but weak for intraday timing and how live customer/market‑maker (MM) delta positioning sharpens 0DTE entries. In Part 2, we add a second lens: <strong>pre‑market structure on SPY</strong>. By classifying the open into six regimes, we can attach <em>unconditional</em> and <em>conditional</em> probabilities to the day’s key level interactions. (Note: this applies to SPY; SPX doesn’t trade pre‑market.)</p>
       </section>
+      <section class="alert alert-info small mb-4">
+        <strong>Editor’s Note (2025 Update):</strong>
+        The probabilities and behaviors described in this article are derived from the past five years of historical data 
+        (2021–2025), which include a 2022 bear market, extended mean-reversion phases, and only a short window of persistent 
+        all-time-high conditions. Because of this, the regime probabilities carry a natural historical bias and may behave 
+        differently during strong ATH environments where volatility structure and option flows shift.
 
+        This does <em>not</em> eliminate the edge — the framework remains very effective as a structural guide. However, it 
+        becomes even more powerful when combined with real-time tools that do not rely on historical patterns.  
+        For the latest evolution of the Foxchase edge (extrinsic slope + z-score), continue through <strong>Part 5</strong>.
+      </section>
       <section class="mb-4">
         <h2 class="h4">Key Levels & Notation</h2>
         <ul>
@@ -142,7 +152,7 @@
         <h2 class="h4">Putting It Together with 0DTE Flow</h2>
         <p>Pair regime probabilities with <strong>live customer/MM delta positioning</strong> (from CBOE open‑close 10‑min data) to build a two‑factor playbook:</p>
         <ul>
-          <li><strong>Inside range</strong>: Fade extremes; favor mean reversion.</li>
+          <li><strong>Inside range</strong>: Fade extremes; favor mean reversion. PMH to PML, and PML to PMH ranges very common. Watch gamma for breakouts.</li>
           <li><strong>Full gaps</strong>: Look for backtests before continuation.</li>
           <li><strong>Overhangs</strong>: Watch for failed pokes to reverse, or continuation traps to spring.</li>
           <li><strong>Wide spans</strong>: Expect multiple high‑volatility setups.</li>
