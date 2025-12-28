@@ -119,6 +119,115 @@
       </a>
     </div>
   </div>
+<!-- Bootstrap 5 JS bundle (required for modal) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- New Year Coupon Modal -->
+<div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="couponModalLabel">New Year Deal 🎉</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-2">
+          <strong>40% off</strong> the <strong>ToS Foxchase Bundle</strong> for a limited time.
+        </p>
+
+        <div class="d-flex align-items-center gap-2 p-2 border rounded">
+          <code id="couponCode" class="fs-5 mb-0">NYBUNDLE40</code>
+          <button id="copyCouponBtn" class="btn btn-sm btn-outline-primary ms-auto" type="button">
+            Copy code
+          </button>
+        </div>
+
+        <small class="text-muted d-block mt-2">Expires end of day Jan 1.</small>
+      </div>
+
+      <div class="modal-footer">
+        <div class="form-check me-auto">
+          <input class="form-check-input" type="checkbox" value="" id="dontShowAgain">
+          <label class="form-check-label" for="dontShowAgain">
+            Don’t show again
+          </label>
+        </div>
+
+        <a
+          href="https://whop.com/foxchase-trading/tos-foxchase-bundle/"
+          class="btn btn-warning"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Bundle
+        </a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    const STORAGE_KEY = "foxchase_coupon_modal_hide_until";
+    const HIDE_DAYS = 7;
+
+    function shouldShowModal() {
+      const hideUntil = localStorage.getItem(STORAGE_KEY);
+      if (!hideUntil) return true;
+      return Date.now() > Number(hideUntil);
+    }
+
+    function hideForDays(days) {
+      const ms = days * 24 * 60 * 60 * 1000;
+      localStorage.setItem(STORAGE_KEY, String(Date.now() + ms));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Copy-to-clipboard
+      const copyBtn = document.getElementById("copyCouponBtn");
+      const codeEl = document.getElementById("couponCode");
+
+      if (copyBtn && codeEl) {
+        copyBtn.addEventListener("click", async () => {
+          const code = codeEl.textContent.trim();
+          try {
+            await navigator.clipboard.writeText(code);
+            copyBtn.textContent = "Copied!";
+            setTimeout(() => (copyBtn.textContent = "Copy code"), 1200);
+          } catch (e) {
+            // Fallback
+            const range = document.createRange();
+            range.selectNodeContents(codeEl);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            document.execCommand("copy");
+            sel.removeAllRanges();
+            copyBtn.textContent = "Copied!";
+            setTimeout(() => (copyBtn.textContent = "Copy code"), 1200);
+          }
+        });
+      }
+
+      // Auto-show modal (once per X days unless user opts out)
+      if (shouldShowModal()) {
+        setTimeout(() => {
+          const modalEl = document.getElementById("couponModal");
+          if (!modalEl) return;
+
+          const modal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+          modal.show();
+
+          // If user checks "Don't show again" and closes, respect it
+          const dontShow = document.getElementById("dontShowAgain");
+          modalEl.addEventListener("hidden.bs.modal", () => {
+            if (dontShow && dontShow.checked) hideForDays(HIDE_DAYS);
+          }, { once: true });
+        }, 900);
+      }
+    });
+  })();
+</script>
 </body>
 <p class="text-center mb-0" style="color: black;">
   © 2025 Foxchase Trading™
