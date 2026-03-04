@@ -1,0 +1,78 @@
+# Author: Foxchase Trading
+# Charles Schwab & Co. (c) 2014-2025
+# Smart-Adaptive Relative Volume (1m→30 bars @ 1.0σ, 5m→60 bars @ 2.0σ)
+
+declare lower;
+declare zerobase;
+
+# ── Controls
+input autoMapByAggregation = yes;     # yes = auto map both length & threshold by chart TF
+input length_1min_bars     = 45;      # bars for 1-minute charts
+input length_5min_bars     = 9;      # bars for 5-minute charts
+input fallbackLength       = 45;      # any other TF (2m, 15m, etc.)
+input manualLength         = 45;      # used when autoMapByAggregation = no
+
+input numDev_1min          = 1.0;     # horizontal line for 1-minute charts
+input numDev_5min          = 2.0;     # horizontal line for 5-minute charts
+input fallbackNumDev       = 1.5;     # any other TF
+input manualNumDev         = 2.0;     # used when autoMapByAggregation = no
+
+input allowNegativeValues  = no;
+input quietMinutes         = 15;      # alert if no spike for this many minutes
+
+# ── Detect current chart aggregation
+def agg = GetAggregationPeriod();
+
+# Map aggregation → bars
+def useLen =
+    if !autoMapByAggregation then manualLength
+    else if agg == AggregationPeriod.MIN then length_1min_bars
+    else if agg == AggregationPeriod.FIVE_MIN then length_5min_bars
+    else fallbackLength;
+
+# Map aggregation → σ threshold
+def useNumDev =
+    if !autoMapByAggregation then manualNumDev
+    else if agg == AggregationPeriod.MIN then numDev_1min
+    else if agg == AggregationPeriod.FIVE_MIN then numDev_5min
+    else fallbackNumDev;
+
+# ── Relative Volume calc
+def rawRelVol = (volume - Average(volume, useLen)) / StDev(volume, useLen);
+
+plot RelVol      = if allowNegativeValues then rawRelVol else Max(0, rawRelVol);
+plot StDevLevel  = useNumDev;
+
+# ── Spike / quiet tracking
+def aggMillis = agg;
+def minutesPerBar = if aggMillis <= 0 then 1.0 else aggMillis / 60000.0;
+def safeMinutesPerBar = if minutesPerBar <= 0 then 1.0 else minutesPerBar;
+def quietBars = Max(1, Round(quietMinutes / safeMinutesPerBar, 0));
+def spikeNow = RelVol >= useNumDev;
+def positiveNow = RelVol > 0;
+rec barsSinceSpike =
+    if BarNumber() == 1 then 0
+    else if spikeNow then 0
+    else Min(quietBars + 1, barsSinceSpike[1] + 1);
+rec barsSincePositive =
+    if BarNumber() == 1 then 0
+    else if positiveNow then 0
+    else Min(quietBars + 1, barsSincePositive[1] + 1);
+
+def spikeEvent = spikeNow and !spikeNow[1];
+def quietEvent = (barsSincePositive == quietBars) and (barsSincePositive[1] < quietBars);
+def positiveReturnEvent = positiveNow and !positiveNow[1];
+
+Alert(spikeEvent, "RVOL spike (>= " + AsText(useNumDev) + ")", Alert.BAR, Sound.Chimes);
+Alert(quietEvent, "RVOL quiet: no positive RVOL in " + quietMinutes + "m", Alert.BAR, Sound.Ding);
+Alert(positiveReturnEvent, "RVOL active again (positive RVOL detected)", Alert.BAR, Sound.Bell);
+
+# ── Styling
+RelVol.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+RelVol.SetLineWeight(3);
+RelVol.DefineColor("Above", GetColor(0));
+RelVol.DefineColor("Below", GetColor(2));
+RelVol.AssignValueColor(if RelVol >= useNumDev then RelVol.Color("Above") else RelVol.Color("Below"));
+
+StDevLevel.SetDefaultColor(GetColor(7));
+StDevLevel.SetStyle(Curve.SHORT_DASH);
