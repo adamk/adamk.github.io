@@ -67,6 +67,21 @@
       border-color: #dc6502;
       color: #fff;
     }
+    .testimonial-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1rem;
+  scroll-snap-type: x proximity;
+  }
+  
+  .testimonial-shot {
+    flex: 0 0 auto;
+    width: min(420px, 85vw);
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    scroll-snap-align: start;
+  }
   </style>
 </head>
 
@@ -230,6 +245,14 @@
         </div>
       </div>
     </div>
+  </div>
+  <h3 class="section-title">Testimonials</h3>
+  <p class="section-subtitle">Verified customer reviews from Whop</p>
+  
+  <div class="testimonial-scroll">
+    <img src="review1.jpg" alt="Whop review from Su Fairchild" class="testimonial-shot">
+    <img src="review2.jpg" alt="Whop review from Sunil Mirpuri" class="testimonial-shot">
+    <img src="review3.jpg" alt="Whop review from dbnite03" class="testimonial-shot">
   </div>
 
   <!-- (your modal JS is currently commented out; leaving it as-is) -->
