@@ -1,443 +1,274 @@
-<!-- Blog Article: NDX GEX -->
-<article class="blog-post">
-  <header class="mb-4">
-    <h1>NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins</h1>
-    <p class="lead mb-0">How Options Positioning Can Support Continuation, Create Chop, or Hold Price in Place</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins | Foxchase Trading</title>
+
+  <!-- SEO -->
+  <meta name="description" content="A practical guide to NDX GEX, including gamma ramps, mixed gamma, gamma pins, and how options positioning can support continuation, create chop, or hold price in place." />
+  <meta name="author" content="Foxchase Trading" />
+
+  <!-- Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="/foxchasetrading.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body class="bg-light text-dark">
+  <!-- Header -->
+  <header class="bg-white border-bottom py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="/" class="d-flex align-items-center text-decoration-none">
+        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" class="me-2" style="max-width:40px;height:auto;" />
+        <span class="h3 mb-0 text-dark">Foxchase Trading</span>
+      </a>
+      <nav>
+        <a href="/" class="me-3">Home</a>
+        <a href="https://discord.com/invite/c2FCDJ35?utm_source=Discord%20Widget&utm_medium=Connect" target="_blank" rel="noopener noreferrer">Discord</a>
+      </nav>
+    </div>
   </header>
 
-  <p>
-    Options markets are not passive observers of price. In 0DTE especially, dealer hedging and positioning can influence
-    how easily price moves through certain areas, where it tends to stall, and when momentum is more likely to accelerate
-    or get absorbed.
-  </p>
-
-  <p>
-    That does not mean GEX predicts exact turning points. It does not. And it certainly does not mean gamma should be
-    treated like a mechanical buy or sell signal. What it <em>does</em> provide is a practical way to think about market terrain.
-  </p>
-
-  <p>
-    Some areas of the market allow movement to travel more smoothly. Other areas create friction and resist continuation.
-    Still others act like sticky zones where price stalls, chops, and struggles to escape. That is the framework I use when
-    looking at NDX GEX intraday: not as an entry trigger, top-calling tool, or substitute for price action. I use it as a
-    context layer.
-  </p>
-
-  <p>
-    Execution still comes from real-time structure, volatility posture, and participation. GEX simply helps answer a
-    different question:
-  </p>
-
-  <blockquote class="blockquote my-4">
-    <p class="mb-0"><strong>Is price moving through open terrain, mixed terrain, or pinned terrain?</strong></p>
-  </blockquote>
-
-  <h2>Why 0DTE Behaves Differently</h2>
-
-  <p>
-    0DTE options compress time. That compression changes how market structure behaves intraday.
-  </p>
-
-  <p>
-    When expiration is the same day, hedging flows can update more quickly, and relatively small changes in price can create
-    larger changes in dealer delta exposure. The result is a market that can become highly responsive to local positioning.
-    Areas of heavy interest can pin price. Areas of lower friction can allow fast extensions. And transitions between the two
-    can produce sudden shifts in behavior that feel confusing if you are only looking at candles.
-  </p>
-
-  <p>
-    This is one reason 0DTE trading often feels different from swing trading or even from trading longer-dated intraday
-    options. The positioning landscape matters more in the moment because time decay is rapidly reshaping the terrain
-    underneath price.
-  </p>
-
-  <p>
-    In practical terms, that tends to produce two recurring behaviors.
-  </p>
-
-  <p>
-    The first is pinning behavior near high-interest strikes or concentrated positioning zones. Price gravitates there,
-    stalls there, and can spend far longer than expected chopping around that area.
-  </p>
-
-  <p>
-    The second is reflexive acceleration once price leaves balance and enters a low-friction region. In those moments,
-    hedging adjustments can reinforce the move, and the market starts to travel rather than simply move.
-  </p>
-
-  <p>
-    Understanding that difference is critical. There is a big gap between a market that is active and a market that is
-    actually free to go somewhere.
-  </p>
-
-  <h2>GEX as Terrain, Flow as Timing</h2>
-
-  <p>
-    I do not use GEX to call exact reaction points. I do not use it to predict precise highs and lows. And I do not use it
-    as a standalone reason to enter a trade.
-  </p>
-
-  <p>
-    I use it as a terrain map.
-  </p>
-
-  <p>
-    Terrain tells you where continuation may be easier, where it may face friction, and where it may stall entirely. It
-    helps explain why two moves that look similar at first glance can behave very differently once they push into a specific
-    area. That is why I separate terrain from timing.
-  </p>
-
-  <p><strong>GEX is terrain.</strong><br><strong>Flow is timing.</strong></p>
-
-  <p>
-    The green light still comes from structure, volatility posture, and participation. Price action still matters. Relative
-    volume (RVOL) still matters. Context still matters. But GEX can tell you whether the path ahead looks open, cluttered,
-    or sticky. This not only changes expectations for price movement, but also confidence and conviction. It may mean the
-    difference between letting a position run longer, taking profits faster, or sizing smaller or larger.
-  </p>
-
-  <h2>General Gamma Observations</h2>
-
-  <p>
-    At a broad level, there are a few recurring tendencies worth keeping in mind.
-  </p>
-
-  <p>
-    High positive gamma zones often act like magnets once price is inside them. Movement tends to slow, rotation increases,
-    and mean reversion becomes more common.
-  </p>
-
-  <p>
-    Negative gamma zones tend to allow more volatility and more expansion. Price is not automatically guaranteed to trend
-    there, but movement is generally less dampened and can become more reflexive.
-  </p>
-
-  <p>
-    Again, these are not rules in the absolute sense. They are structural tendencies. Strong directional flow can still
-    overpower a pin, and a seemingly open zone can still fail if broader participation is not there. But as a working
-    intraday framework, these observations are useful.
-  </p>
-
-  <p>
-    The point is not precision. The point is to understand whether the current market structure is helping movement travel
-    or making it work much harder for every point.
-  </p>
-
-  <h2>How Gamma Shows Up Intraday</h2>
-
-  <p>
-    Gamma positioning is not static. Even if the morning structure looks clean, the effective terrain can evolve as the
-    session progresses. Time decay matters. Intraday positioning changes matter. What looked like a clear path at 9:45 can
-    become much messier by midday.
-  </p>
-
-  <p>
-    That is why I think of gamma in terms of recurring intraday behaviors rather than fixed levels.
-  </p>
-
-  <p>
-    One common behavior is <strong>morning position resolution</strong>. Early in the session, price often has to resolve
-    overnight positioning. If the market opens near a dominant strike or concentrated positioning zone, the first phase of
-    the day may be more about pinning and balancing than immediate continuation. Price can feel stuck until directional
-    pressure finally becomes strong enough to pull it away.
-  </p>
-
-  <p>
-    Another common behavior is <strong>mid-session acceleration</strong>. Once price leaves a pinned region and enters lower
-    friction terrain, the move can suddenly become cleaner. This is often where traders start to see the kind of fast
-    extension that 0DTE seems famous for. The market is no longer fighting the same local restraint, and travel becomes easier.
-  </p>
-
-  <figure class="my-4 text-center">
-    <img src="images/ndx-gamma-pin-em-acceleration.jpg" class="img-fluid rounded" alt="Gamma pin at the daily expected move level followed by mid-session acceleration on April 1, 2026">
-    <figcaption class="figure-caption mt-2">
-      April 1, 2026: Gamma pin at the daily expected move level, followed by mid-session acceleration.
-    </figcaption>
-  </figure>
-
-  <p>
-    The third common behavior is <strong>late-session stabilization</strong>. As expiration approaches, positioning can
-    become more concentrated around key strikes. Price frequently gravitates back toward those areas, and movement tends to
-    slow. That does not mean late-session movement cannot be directional, but it does mean aggression often deserves to come
-    down unless the structure is clearly open.
-  </p>
-
-  <p>
-    These intraday shifts are one reason gamma should never be treated as static support and resistance. The terrain is
-    alive. It changes with time.
-  </p>
-
-  <h2>Gamma Pins: When Price Gets Stuck</h2>
-
-  <figure class="my-4 text-center">
-    <img src="images/ndx-gamma-pin-1pm.jpg" class="img-fluid rounded" alt="Gamma pin around 1 PM ET on April 1, 2026">
-    <figcaption class="figure-caption mt-2">
-      April 1, 2026, around 1:00 PM ET: Gamma pin.
-    </figcaption>
-  </figure>
-
-  <p>
-    A gamma pin is one of the clearest and most practical expressions of local positioning.
-  </p>
-
-  <p>
-    This is when price becomes sticky around a strike or zone and repeatedly struggles to separate from it. The market may
-    probe away briefly, but it keeps coming back. Traders see compression and anticipate a breakout, yet price continues to
-    stall and chop around the same area.
-  </p>
-
-  <p>
-    Pinned behavior has a very recognizable feel to it. Candles are small and compressed, and attempts to push fail. Without
-    seeing the live GEX, a trader could easily become frustrated at the lack of movement. Using a tool such as GEXstream can
-    help identify these conditions early and avoid getting chopped up in flat, choppy price action.
-  </p>
-
-  <p>
-    However, gamma pins are not permanent. Price can eventually leave a pinned zone as described and shown earlier with the
-    mid-session acceleration behavior.
-  </p>
-
-  <h2>Gamma Ramps: When the Structure Stacks for or Against Continuation</h2>
-
-  <p>
-    When I refer to an NDX gamma ramp, I am talking about how dealer gamma is distributed across strikes around price, and
-    whether that distribution tends to support momentum or cap it like a ceiling or floor.
-  </p>
-
-  <p>
-    This is one of the most practical ways to think about GEX intraday because it goes beyond asking whether gamma is
-    positive or negative in the abstract. It asks how positioning is stacked.
-  </p>
-
-  <h3>Forward Ramps</h3>
-
-  <p>
-    A forward ramp is generally the more continuation-friendly structure. On the upside, imagine price is below a sequence
-    of positive gamma strikes, and those positive gamma bars get larger as strikes go higher. In other words:
-  </p>
-
-  <p><strong>small → bigger → biggest</strong></p>
-
-  <p>
-    That is a forward positive gamma ramp.
-  </p>
-
-  <p>
-    The practical heuristic is that price may be able to walk up the strikes more smoothly. Instead of immediately running
-    into one dominant nearby wall, the structure is progressively stacked. If the underlying move has real participation
-    behind it, continuation often feels cleaner in this environment. Note: the less negative gamma in between the positive
-    gamma ramp bars, the cleaner it will be.
-  </p>
-
-  <figure class="my-4 text-center">
-    <img src="images/forward-positive-gamma-ramp.jpg" class="img-fluid rounded" alt="Forward positive gamma ramp example">
-    <figcaption class="figure-caption mt-2">Forward positive gamma ramp.</figcaption>
-  </figure>
-
-  <p>
-    The downside version works the same way.
-  </p>
-
-  <p>
-    If negative gamma below price becomes larger as strikes go lower, you have a forward negative gamma ramp downward. In
-    that case, if price starts moving lower, downside continuation can become easier because the terrain below is aligned in
-    a way that supports travel rather than immediately catching the move.
-  </p>
-
-  <p>
-    Again, a forward ramp does not guarantee a trend. It simply makes continuation easier to trust when the rest of the
-    tape agrees.
-  </p>
-
-  <h3>Backwards Ramps</h3>
-
-  <p>
-    A backwards ramp usually creates more friction. On the upside, if the biggest positive gamma sits closest to price and
-    then shrinks as strikes go higher, that is a backwards positive gamma ramp:
-  </p>
-
-  <p><strong>big → smaller → smallest</strong></p>
-
-  <p>
-    This structure often acts more like nearby resistance. The first strike above price can absorb a lot of flow, and there
-    is less progressively stacked structure beyond it. Instead of a clean walk upward, the market often stalls, chops, or
-    rejects, sometimes quite violently.
-  </p>
-
-  <figure class="my-4 text-center">
-    <img src="images/backwards-positive-gamma-ramp.jpg" class="img-fluid rounded" alt="Backwards positive gamma ramp example">
-    <figcaption class="figure-caption mt-2">Backwards positive gamma ramp.</figcaption>
-  </figure>
-
-  <p>
-    The same logic applies on the downside.
-  </p>
-
-  <p>
-    If negative gamma below price is largest nearest current price and then fades as strikes go lower, the first breakdown
-    may still matter, but continuation often gets less efficient afterward. Price may stall, get caught, or mean-revert
-    unless a major nearby level breaks first.
-  </p>
-
-  <p>
-    That is the real value of ramps. They do not tell you exactly what will happen. They tell you whether the path ahead is
-    structured in a way that makes continuation easier or harder.
-  </p>
-
-  <h2>Mixed Gamma: Why Some Sessions Become So Choppy</h2>
-
-  <p>
-    Not all gamma structure is clean. In fact, many of the most frustrating NDX sessions come from mixed gamma.
-  </p>
-
-  <p>
-    Mixed gamma is what I call an environment where the positioning landscape is not clearly aligned in one direction. You
-    may have supportive-looking structure at one set of strikes, but nearby opposing concentrations that interrupt the move.
-    Or you may have a layout where price is repeatedly pulled between multiple areas of influence instead of cleanly
-    separating away from them.
-  </p>
-
-  <p>
-    This is where the market begins to feel messy.
-  </p>
-
-  <p>
-    Breakouts fail. Breakdowns fail. Price pushes, stalls, chops, and then snaps back. Spotting mixed gamma is how you can
-    limit your expectations of expansion. It does not mean mixed gamma days are untradeable. You can still catch smaller
-    moves within your trading framework.
-  </p>
-
-  <figure class="my-4 text-center">
-    <img src="images/mixed-negative-gamma-forward-negative-ramp.jpg" class="img-fluid rounded" alt="Mixed negative gamma with a forward negative gamma ramp">
-    <figcaption class="figure-caption mt-2">
-      Mixed negative gamma with a forward negative gamma ramp.
-    </figcaption>
-  </figure>
-
-  <p>
-    For example, in the NDX GEX above you can see the negative GEX is a bit mixed in its amplitude; however, after the
-    25200 strike there is actually a very clean forward negative gamma ramp. Most likely on this day, price was either
-    around or below PML (premarket low), and supported further downside expansion, though not before some chop or a retest
-    of PML first.
-  </p>
-
-  <h2>Why I Watch NDX Gamma Even When Trading SPY/SPX</h2>
-
-  <p>
-    Gamma is not intended to be an entry trigger in my framework, but it is still a contextual layer I care about. And one
-    of the most useful places I watch that context is NDX.
-  </p>
-
-  <p>
-    The Nasdaq-100 often behaves like a useful reference market for intraday risk appetite and index positioning. NDX option
-    contracts also represent more notional exposure per contract than SPX contracts, which means the local positioning can
-    matter in significant ways.
-  </p>
-
-  <p>
-    Let’s take a look at a concept known as notional hedging load.
-  </p>
-
-  <p>
-    One NDX option contract is roughly <strong>100 x NDX</strong>.<br>
-    One SPX option contract is roughly <strong>100 x SPX</strong>.
-  </p>
-
-  <p>
-    So, if NDX is around $25,000 and SPX is around $6,700, then the notional exposure is very different.
-  </p>
-
-  <p>
-    An NDX contract represents roughly $2.5 million of notional.<br>
-    An SPX contract represents roughly $670,000 of notional.
-  </p>
-
-  <p>
-    That means an NDX contract carries roughly 3.7 times the notional of an SPX contract.
-  </p>
-
-  <p>
-    When a contract represents more notional, hedging adjustments can be larger for a given change in price and positioning.
-    In practice, I often observe NDX gamma levels and ramps mattering first, with SPX or SPY responding afterward. This is
-    not a hard rule, and it should not be treated as one. It is simply another contextual layer that can help explain why
-    extension may stall, accelerate, or become more difficult than it first appears on SPY alone.
-  </p>
-
-  <h2>Practical Gamma Interpretation</h2>
-
-  <p>
-    The goal of using gamma in this framework is not to forecast exact reaction levels. It is to improve the quality of the
-    questions you ask.
-  </p>
-
-  <ul>
-    <li>Is price moving toward an area of higher positioning where movement may slow?</li>
-    <li>Is price leaving a dense positioning area where continuation may become easier?</li>
-    <li>Is the current move happening in terrain that tends to pin price or create friction?</li>
-  </ul>
-
-  <p>
-    When gamma positioning aligns with structure and volatility posture, continuation becomes easier to trust. When it
-    conflicts with them, it often acts as a warning that the move may stall, chop, or reverse harder than expected. This
-    can affect trade aggressiveness, patience, and trade sizing.
-  </p>
-
-  <h2>Common Misuses of Gamma</h2>
-
-  <p>
-    Gamma exposure is discussed constantly in trading groups, but it is often misunderstood. One of the most common mistakes
-    is treating gamma levels like exact support and resistance. They are not. They describe regions where positioning and
-    hedging may influence movement. Price can still move through them quickly if directional flow is strong enough.
-  </p>
-
-  <p>
-    Another mistake is using gamma as a standalone signal. Gamma should not be used in isolation to call tops, bottoms, or
-    exact reversals. Without confirmation from structure, volatility posture, and participation, it is simply context.
-  </p>
-
-  <p>
-    A third mistake is ignoring intraday changes. A ramp that looks clean in the morning may not behave the same way by
-    midday. Time decay and position changes can reshape the terrain during the session, sometimes faster than traders expect.
-  </p>
-
-  <p>
-    The final mistake is overcomplicating the interpretation. The practical goal is simple: identify where continuation is
-    structurally easier and where it is more likely to face friction. Once traders start trying to extract precision
-    forecasts from every gamma model, the added complexity often stops helping execution. Sometimes it is as simple as being
-    in a sea of positive gamma and buying the dips, or being in a sea of negative gamma and shorting the pumps.
-  </p>
-
-  <h2>Final Thought</h2>
-
-  <p>
-    The point of using NDX GEX is not to predict exact turning points. It is to better understand the 0DTE environment.
-  </p>
-
-  <p>
-    Gamma ramps help show whether positioning supports continuation or creates friction.<br>
-    Mixed gamma helps explain why some sessions feel directionless and choppy even when price keeps moving.<br>
-    Gamma pins explain why price can stall around a strike for far longer than traders expect, even if it eventually breaks free.
-  </p>
-
-  <p>
-    Using NDX GEX on a daily basis serves to alleviate the confusion around intraday behavior.
-  </p>
-
-  <p class="small text-muted">
-    I am not affiliated with GEXstream. I only use their service because I find it the most accurate, simple to use, and
-    reasonably priced.
-  </p>
-
-  <hr class="my-4">
-
-  <div class="blog-cta">
-    <p>
-      If you found this useful, I share more of my work on intraday options structure, volatility posture, and execution at
-      <a href="https://foxchasetrading.com" target="_blank" rel="noopener">foxchasetrading.com</a>.
-    </p>
-    <p class="mb-0">
-      For more day-to-day charts, market context, and discussion around SPY/SPX intraday behavior, you can also join the
-      <a href="/discord">Foxchase Trading Discord</a>.
-    </p>
+  <!-- Main -->
+  <main class="container">
+    <article class="mb-5">
+      <header class="mb-3">
+        <h1 class="display-6">NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins</h1>
+        <p class="text-muted mb-0">8 min read · by Adam</p>
+      </header>
+
+      <section class="mb-4">
+        <p>Options markets are not passive observers of price. In 0DTE especially, dealer hedging and positioning can influence how easily price moves through certain areas, where it tends to stall, and when momentum is more likely to accelerate or get absorbed.</p>
+        <p>That does not mean GEX predicts exact turning points. It does not. And it certainly does not mean gamma should be treated like a mechanical buy or sell signal. What it does provide is a practical way to think about market terrain.</p>
+        <p>Some areas of the market allow movement to travel more smoothly. Other areas create friction and resist continuation. Still others act like sticky zones where price stalls, chops, and struggles to escape. That is the framework I use when looking at NDX GEX intraday: not as an entry trigger, top-calling tool, or substitute for price action. I use it as a context layer.</p>
+        <p>Execution still comes from real-time structure, volatility posture, and participation. GEX simply helps answer a different question:</p>
+        <blockquote class="blockquote my-4">
+          <p class="mb-0"><strong>Is price moving through open terrain, mixed terrain, or pinned terrain?</strong></p>
+        </blockquote>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Why 0DTE Behaves Differently</h2>
+        <p>0DTE options compress time. That compression changes how market structure behaves intraday.</p>
+        <p>When expiration is the same day, hedging flows can update more quickly, and relatively small changes in price can create larger changes in dealer delta exposure. The result is a market that can become highly responsive to local positioning. Areas of heavy interest can pin price. Areas of lower friction can allow fast extensions. And transitions between the two can produce sudden shifts in behavior that feel confusing if you are only looking at candles.</p>
+        <p>This is one reason 0DTE trading often feels different from swing trading or even from trading longer-dated intraday options. The positioning landscape matters more in the moment because time decay is rapidly reshaping the terrain underneath price.</p>
+        <p>In practical terms, that tends to produce two recurring behaviors.</p>
+        <p>The first is pinning behavior near high-interest strikes or concentrated positioning zones. Price gravitates there, stalls there, and can spend far longer than expected chopping around that area.</p>
+        <p>The second is reflexive acceleration once price leaves balance and enters a low-friction region. In those moments, hedging adjustments can reinforce the move, and the market starts to travel rather than simply move.</p>
+        <p>Understanding that difference is critical. There is a big gap between a market that is active and a market that is actually free to go somewhere.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">GEX as Terrain, Flow as Timing</h2>
+        <p>I do not use GEX to call exact reaction points. I do not use it to predict precise highs and lows. And I do not use it as a standalone reason to enter a trade.</p>
+        <p>I use it as a terrain map.</p>
+        <p>Terrain tells you where continuation may be easier, where it may face friction, and where it may stall entirely. It helps explain why two moves that look similar at first glance can behave very differently once they push into a specific area. That is why I separate terrain from timing.</p>
+        <p><strong>GEX is terrain.</strong><br><strong>Flow is timing.</strong></p>
+        <p>The green light still comes from structure, volatility posture, and participation. Price action still matters. Relative volume (RVOL) still matters. Context still matters. But GEX can tell you whether the path ahead looks open, cluttered, or sticky. This not only changes expectations for price movement, but also confidence and conviction. It may mean the difference between letting a position run longer, taking profits faster, or sizing smaller or larger.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">General Gamma Observations</h2>
+        <p>At a broad level, there are a few recurring tendencies worth keeping in mind.</p>
+        <p>High positive gamma zones often act like magnets once price is inside them. Movement tends to slow, rotation increases, and mean reversion becomes more common.</p>
+        <p>Negative gamma zones tend to allow more volatility and more expansion. Price is not automatically guaranteed to trend there, but movement is generally less dampened and can become more reflexive.</p>
+        <p>Again, these are not rules in the absolute sense. They are structural tendencies. Strong directional flow can still overpower a pin, and a seemingly open zone can still fail if broader participation is not there. But as a working intraday framework, these observations are useful.</p>
+        <p>The point is not precision. The point is to understand whether the current market structure is helping movement travel or making it work much harder for every point.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">How Gamma Shows Up Intraday</h2>
+        <p>Gamma positioning is not static. Even if the morning structure looks clean, the effective terrain can evolve as the session progresses. Time decay matters. Intraday positioning changes matter. What looked like a clear path at 9:45 can become much messier by midday.</p>
+        <p>That is why I think of gamma in terms of recurring intraday behaviors rather than fixed levels.</p>
+        <p>One common behavior is <strong>morning position resolution</strong>. Early in the session, price often has to resolve overnight positioning. If the market opens near a dominant strike or concentrated positioning zone, the first phase of the day may be more about pinning and balancing than immediate continuation. Price can feel stuck until directional pressure finally becomes strong enough to pull it away.</p>
+        <p>Another common behavior is <strong>mid-session acceleration</strong>. Once price leaves a pinned region and enters lower-friction terrain, the move can suddenly become cleaner. This is often where traders start to see the kind of fast extension that 0DTE seems famous for. The market is no longer fighting the same local restraint, and travel becomes easier.</p>
+
+        <figure class="mb-4 text-center">
+          <img
+            src="/assets/img/blog/ndx-gex-mid-session-acceleration.jpg"
+            alt="Gamma pin at the daily expected move level followed by mid-session acceleration"
+            class="img-fluid rounded"
+          />
+          <figcaption class="small text-muted mt-1">April 1, 2026: Gamma pin at the daily expected move level, followed by mid-session acceleration.</figcaption>
+        </figure>
+
+        <p>The third common behavior is <strong>late-session stabilization</strong>. As expiration approaches, positioning can become more concentrated around key strikes. Price frequently gravitates back toward those areas, and movement tends to slow. That does not mean late-session movement cannot be directional, but it does mean aggression often deserves to come down unless the structure is clearly open.</p>
+        <p>These intraday shifts are one reason gamma should never be treated as static support and resistance. The terrain is alive. It changes with time.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Gamma Pins: When Price Gets Stuck</h2>
+
+        <figure class="mb-4 text-center">
+          <img
+            src="/assets/img/blog/ndx-gex-gamma-pin-1pm.jpg"
+            alt="Gamma pin around 1 PM ET on April 1, 2026"
+            class="img-fluid rounded"
+          />
+          <figcaption class="small text-muted mt-1">April 1, 2026, around 1:00 PM ET: Gamma pin.</figcaption>
+        </figure>
+
+        <p>A gamma pin is one of the clearest and most practical expressions of local positioning.</p>
+        <p>This is when price becomes sticky around a strike or zone and repeatedly struggles to separate from it. The market may probe away briefly, but it keeps coming back. Traders see compression and anticipate a breakout, yet price continues to stall and chop around the same area.</p>
+        <p>Pinned behavior has a very recognizable feel to it. Candles are small and compressed, and attempts to push fail. Without seeing the live GEX, a trader could easily become frustrated at the lack of movement. Using a tool such as GEXstream can help identify these conditions early and avoid getting chopped up in flat, choppy price action.</p>
+        <p>However, gamma pins are not permanent. Price can eventually leave a pinned zone as described and shown earlier with the mid-session acceleration behavior.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Gamma Ramps: When the Structure Stacks for or Against Continuation</h2>
+        <p>When I refer to an NDX gamma ramp, I am talking about how dealer gamma is distributed across strikes around price, and whether that distribution tends to support momentum or cap it like a ceiling or floor.</p>
+        <p>This is one of the most practical ways to think about GEX intraday because it goes beyond asking whether gamma is positive or negative in the abstract. It asks how positioning is stacked.</p>
+
+        <h3 class="h6 mt-3">Forward Ramps</h3>
+        <p>A forward ramp is generally the more continuation-friendly structure. On the upside, imagine price is below a sequence of positive gamma strikes, and those positive gamma bars get larger as strikes go higher. In other words:</p>
+        <p><strong>small → bigger → biggest</strong></p>
+        <p>That is a forward positive gamma ramp.</p>
+        <p>The practical heuristic is that price may be able to walk up the strikes more smoothly. Instead of immediately running into one dominant nearby wall, the structure is progressively stacked. If the underlying move has real participation behind it, continuation often feels cleaner in this environment. Note: the less negative gamma in between the positive gamma ramp bars, the cleaner it will be.</p>
+
+        <figure class="mb-4 text-center">
+          <img
+            src="/assets/img/blog/ndx-gex-forward-positive-ramp.jpg"
+            alt="Forward positive gamma ramp"
+            class="img-fluid rounded"
+          />
+          <figcaption class="small text-muted mt-1">Forward positive gamma ramp.</figcaption>
+        </figure>
+
+        <p>The downside version works the same way.</p>
+        <p>If negative gamma below price becomes larger as strikes go lower, you have a forward negative gamma ramp downward. In that case, if price starts moving lower, downside continuation can become easier because the terrain below is aligned in a way that supports travel rather than immediately catching the move.</p>
+        <p>Again, a forward ramp does not guarantee a trend. It simply makes continuation easier to trust when the rest of the tape agrees.</p>
+
+        <h3 class="h6 mt-3">Backwards Ramps</h3>
+        <p>A backwards ramp usually creates more friction. On the upside, if the biggest positive gamma sits closest to price and then shrinks as strikes go higher, that is a backwards positive gamma ramp:</p>
+        <p><strong>big → smaller → smallest</strong></p>
+        <p>This structure often acts more like nearby resistance. The first strike above price can absorb a lot of flow, and there is less progressively stacked structure beyond it. Instead of a clean walk upward, the market often stalls, chops, or rejects, sometimes quite violently.</p>
+
+        <figure class="mb-4 text-center">
+          <img
+            src="/assets/img/blog/ndx-gex-backwards-positive-ramp.jpg"
+            alt="Backwards positive gamma ramp"
+            class="img-fluid rounded"
+          />
+          <figcaption class="small text-muted mt-1">Backwards positive gamma ramp.</figcaption>
+        </figure>
+
+        <p>The same logic applies on the downside.</p>
+        <p>If negative gamma below price is largest nearest current price and then fades as strikes go lower, the first breakdown may still matter, but continuation often gets less efficient afterward. Price may stall, get caught, or mean-revert unless a major nearby level breaks first.</p>
+        <p>That is the real value of ramps. They do not tell you exactly what will happen. They tell you whether the path ahead is structured in a way that makes continuation easier or harder.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Mixed Gamma: Why Some Sessions Become So Choppy</h2>
+        <p>Not all gamma structure is clean. In fact, many of the most frustrating NDX sessions come from mixed gamma.</p>
+        <p>Mixed gamma is what I call an environment where the positioning landscape is not clearly aligned in one direction. You may have supportive-looking structure at one set of strikes, but nearby opposing concentrations that interrupt the move. Or you may have a layout where price is repeatedly pulled between multiple areas of influence instead of cleanly separating away from them.</p>
+        <p>This is where the market begins to feel messy.</p>
+        <p>Breakouts fail. Breakdowns fail. Price pushes, stalls, chops, and then snaps back. Spotting mixed gamma is how you can limit your expectations for expansion. It does not mean mixed gamma days are untradeable. You can still catch smaller moves within your trading framework.</p>
+
+        <figure class="mb-4 text-center">
+          <img
+            src="/assets/img/blog/ndx-gex-mixed-negative-forward-ramp.jpg"
+            alt="Mixed negative gamma with a forward negative gamma ramp"
+            class="img-fluid rounded"
+          />
+          <figcaption class="small text-muted mt-1">Mixed negative gamma with a forward negative gamma ramp.</figcaption>
+        </figure>
+
+        <p>For example, in the NDX GEX above you can see the negative GEX is a bit mixed in its amplitude. However, after the 25200 strike there is actually a very clean forward negative gamma ramp. Most likely on this day, price was either around or below PML (premarket low), which supported further downside expansion, though not before some chop or a retest of PML first.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Why I Watch NDX Gamma Even When Trading SPY/SPX</h2>
+        <p>Gamma is not intended to be an entry trigger in my framework, but it is still a contextual layer I care about. And one of the most useful places I watch that context is NDX.</p>
+        <p>The Nasdaq-100 often behaves like a useful reference market for intraday risk appetite and index positioning. NDX option contracts also represent more notional exposure per contract than SPX contracts, which means the local positioning can matter in significant ways.</p>
+        <p>Let's take a look at a concept known as notional hedging load.</p>
+        <p>One NDX option contract is roughly <strong>100 x NDX</strong>.<br>One SPX option contract is roughly <strong>100 x SPX</strong>.</p>
+        <p>So, if NDX is around $25,000 and SPX is around $6,700, then the notional exposure is very different.</p>
+        <p>An NDX contract represents roughly $2.5 million of notional.<br>An SPX contract represents roughly $670,000 of notional.</p>
+        <p>That means an NDX contract carries roughly 3.7 times the notional of an SPX contract.</p>
+        <p>When a contract represents more notional, hedging adjustments can be larger for a given change in price and positioning. In practice, I often observe NDX gamma levels and ramps mattering first, with SPX or SPY responding afterward. This is not a hard rule, and it should not be treated as one. It is simply another contextual layer that can help explain why extension may stall, accelerate, or become more difficult than it first appears on SPY alone.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Practical Gamma Interpretation</h2>
+        <p>The goal of using gamma in this framework is not to forecast exact reaction levels. It is to improve the quality of the questions you ask.</p>
+        <ul>
+          <li>Is price moving toward an area of higher positioning where movement may slow?</li>
+          <li>Is price leaving a dense positioning area where continuation may become easier?</li>
+          <li>Is the current move happening in terrain that tends to pin price or create friction?</li>
+        </ul>
+        <p>When gamma positioning aligns with structure and volatility posture, continuation becomes easier to trust. When it conflicts with them, it often acts as a warning that the move may stall, chop, or reverse harder than expected. This can affect trade aggressiveness, patience, and trade sizing.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Common Misuses of Gamma</h2>
+        <p>Gamma exposure is discussed constantly in trading groups, but it is often misunderstood. One of the most common mistakes is treating gamma levels like exact support and resistance. They are not. They describe regions where positioning and hedging may influence movement. Price can still move through them quickly if directional flow is strong enough.</p>
+        <p>Another mistake is using gamma as a standalone signal. Gamma should not be used in isolation to call tops, bottoms, or exact reversals. Without confirmation from structure, volatility posture, and participation, it is simply context.</p>
+        <p>A third mistake is ignoring intraday changes. A ramp that looks clean in the morning may not behave the same way by midday. Time decay and position changes can reshape the terrain during the session, sometimes faster than traders expect.</p>
+        <p>The final mistake is overcomplicating the interpretation. The practical goal is simple: identify where continuation is structurally easier and where it is more likely to face friction. Once traders start trying to extract precision forecasts from every gamma model, the added complexity often stops helping execution. Sometimes it's as simple as being in a sea of positive gamma and buying the dips, or being in a sea of negative gamma and shorting the pumps.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Final Thought</h2>
+        <p>The point of using NDX GEX is not to predict exact turning points. It is to better understand the 0DTE environment.</p>
+        <p>Gamma ramps help show whether positioning supports continuation or creates friction.<br>Mixed gamma helps explain why some sessions feel directionless and choppy even when price keeps moving.<br>Gamma pins explain why price can stall around a strike for far longer than traders expect, even if it eventually breaks free.</p>
+        <p>Using NDX GEX on a daily basis serves to alleviate the confusion around intraday behavior.</p>
+        <p>I am not affiliated with GEXstream. I only use their service because I find it the most accurate, simple to use, and reasonably priced.</p>
+        <p>If you found this useful, I share more of my work on intraday options structure, volatility posture, and execution at <a href="https://foxchasetrading.com">foxchasetrading.com</a>.</p>
+        <p>For more day-to-day charts, market context, and discussion around SPY/SPX intraday behavior, you can also join the <a href="https://discord.com/invite/c2FCDJ35?utm_source=Discord%20Widget&utm_medium=Connect" target="_blank" rel="noopener noreferrer">Foxchase Trading Discord</a>.</p>
+      </section>
+
+      <aside class="alert alert-warning small mt-4">
+        <strong>Disclaimer:</strong> This content is for educational purposes only and does not constitute financial or investment advice. Markets can remain irrational longer than expected, and all trading or investing carries risk.
+      </aside>
+    </article>
+  </main>
+
+  <!-- Social / Support -->
+  <div class="bg-dark text-secondary text-center py-2">
+    <div class="d-flex justify-content-center gap-2">
+      <a
+        href="https://twitter.com/FoxchaseTrading"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outline-primary btn-sm px-3"
+      >
+        <i class="fa-brands fa-x-twitter"></i> Follow us on X
+      </a>
+      <a
+        href="https://coff.ee/foxchasetrading"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-outline-warning btn-sm px-3"
+      >
+        <i class="fa-solid fa-mug-hot"></i> Buy me a coffee
+      </a>
+    </div>
   </div>
-</article>
+
+  <!-- Footer -->
+  <footer class="bg-light py-3">
+    <p class="text-center mb-0 text-muted">© 2025 Foxchase Trading™</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins",
+    "author": {"@type":"Person","name":"Adam"},
+    "publisher": {"@type":"Organization","name":"Foxchase Trading"},
+    "image": "https://foxchasetrading.com/foxchasetrading.png",
+    "mainEntityOfPage": {
+      "@type":"WebPage",
+      "@id":"https://foxchasetrading.com/ndx-gex.html"
+    },
+    "description": "A practical guide to NDX GEX, including gamma ramps, mixed gamma, gamma pins, and how options positioning can support continuation, create chop, or hold price in place."
+  }
+  </script>
+</body>
+</html>
