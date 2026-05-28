@@ -364,9 +364,6 @@
       <p class="sub">
         A public day-by-day archive of the small account series. The goal is not to blindly maximize every move, but to compound the account within the Foxchase framework while staying accountable to clean execution, risk structure, and cash-account discipline.
       </p>
-      <div class="info-actions">
-      <button class="info-btn" id="openSeriesInfo">Why this series matters</button>
-      </div>
 
     <div class="grid">
       <div class="card">
@@ -2097,9 +2094,16 @@
       <button class="modal-close" id="closeSeriesInfo" aria-label="Close">×</button>
     </div>
 
+<div class="modal-backdrop" id="seriesInfoModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="seriesInfoTitle">
+    <div class="modal-head">
+      <h2 class="modal-title" id="seriesInfoTitle">Before You Read This Series</h2>
+      <button class="modal-close" id="closeSeriesInfo" aria-label="Close">×</button>
+    </div>
+
     <div class="modal-body">
       <p>
-        The performance on this page is a realistic example of what discretionary <strong>0DTE trading</strong> can look like. Depending on market conditions, progress can be uneven, frustrating, and sometimes very choppy. The biggest separator is not finding a magical setup every day — it is <strong>risk management</strong>.
+        The performance on this page is a realistic example of what discretionary <strong>trading</strong> can look like. Depending on market conditions, progress can be uneven, frustrating, and sometimes very choppy. The biggest separator is not finding a magical setup every day. It is <strong>risk management</strong>.
       </p>
 
       <p>
@@ -2107,15 +2111,15 @@
       </p>
 
       <p>
-        Being flat or near breakeven over a month — or even over multiple months — does <strong>not</strong> automatically mean a trader is unprofitable. In 0DTE, there can be extended stretches of chop before conditions line up again. What matters is surviving those stretches with enough discipline and capital intact to participate when the better periods arrive.
+        Being flat or near breakeven over a month, or even over multiple months, does <strong>not</strong> automatically mean a trader is unprofitable. Trading strategies often go through choppy periods before conditions become favorable again. What matters is surviving those stretches with enough discipline and capital intact to participate when the better periods arrive.
       </p>
 
       <p>
-        The goal of this challenge is <strong>$25,000</strong>. That represents the transition from a true small account into a more flexible account base, where the same framework can be traded with a <strong>smaller percentage of total equity at risk</strong>. At that point, the goal is no longer small-account aggression for its own sake. The goal is more normal sizing, better flexibility, and eventually the ability to pull profits more regularly as income.
+        The goal of this challenge is <strong>$25,000</strong>. That represents the transition from a true small account into a more flexible account base, where the same framework can be traded with a <strong>smaller percentage of total equity at risk</strong>. At that point, the goal is no longer small-account aggression for its own sake. The goal becomes more normal sizing, better flexibility, and eventually the ability to pull profits more regularly as income.
       </p>
 
       <p>
-        Longer term, the purpose of the small account is not just to grow it for its own sake. It is to build enough capital to transition into a more durable structure — including more consistent discretionary sizing and, over time, allocation toward the <strong>options-selling algo</strong>.
+        Longer term, the purpose of the small account is not just to grow it for its own sake. It is to build enough capital to transition into a more durable structure, including more consistent discretionary sizing and, over time, allocation toward the <strong>options-selling algo</strong>.
       </p>
 
       <div class="modal-callout">
@@ -2126,7 +2130,6 @@
 </div>
 
 <script>
-  const openSeriesInfo = document.getElementById('openSeriesInfo');
   const closeSeriesInfo = document.getElementById('closeSeriesInfo');
   const seriesInfoModal = document.getElementById('seriesInfoModal');
 
@@ -2140,9 +2143,16 @@
     seriesInfoModal.classList.remove('active');
     seriesInfoModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    localStorage.setItem('foxchaseSeriesIntroSeen', 'true');
   }
 
-  openSeriesInfo.addEventListener('click', openModal);
+  window.addEventListener('load', () => {
+    const seen = localStorage.getItem('foxchaseSeriesIntroSeen');
+    if (!seen) {
+      setTimeout(openModal, 500);
+    }
+  });
+
   closeSeriesInfo.addEventListener('click', closeModal);
 
   seriesInfoModal.addEventListener('click', (e) => {
