@@ -2090,13 +2090,6 @@
 <div class="modal-backdrop" id="seriesInfoModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="seriesInfoTitle">
     <div class="modal-head">
-      <h2 class="modal-title" id="seriesInfoTitle">About the $3k Account Series</h2>
-      <button class="modal-close" id="closeSeriesInfo" aria-label="Close">×</button>
-    </div>
-
-<div class="modal-backdrop" id="seriesInfoModal" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="seriesInfoTitle">
-    <div class="modal-head">
       <h2 class="modal-title" id="seriesInfoTitle">Before You Read This Series</h2>
       <button class="modal-close" id="closeSeriesInfo" aria-label="Close">×</button>
     </div>
@@ -2128,42 +2121,5 @@
     </div>
   </div>
 </div>
-
-<script>
-  const closeSeriesInfo = document.getElementById('closeSeriesInfo');
-  const seriesInfoModal = document.getElementById('seriesInfoModal');
-
-  function openModal() {
-    seriesInfoModal.classList.add('active');
-    seriesInfoModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    seriesInfoModal.classList.remove('active');
-    seriesInfoModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    localStorage.setItem('foxchaseSeriesIntroSeen', 'true');
-  }
-
-  window.addEventListener('load', () => {
-    const seen = localStorage.getItem('foxchaseSeriesIntroSeen');
-    if (!seen) {
-      setTimeout(openModal, 500);
-    }
-  });
-
-  closeSeriesInfo.addEventListener('click', closeModal);
-
-  seriesInfoModal.addEventListener('click', (e) => {
-    if (e.target === seriesInfoModal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && seriesInfoModal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-</script>
 </body>
 </html>
