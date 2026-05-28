@@ -2126,6 +2126,7 @@
   const seriesInfoModal = document.getElementById('seriesInfoModal');
 
   function openModal() {
+    console.log('openModal ran');
     seriesInfoModal.classList.add('active');
     seriesInfoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -2139,10 +2140,7 @@
   }
 
   window.addEventListener('load', () => {
-    const seen = localStorage.getItem('foxchaseSeriesIntroSeen');
-    if (!seen) {
-      setTimeout(openModal, 500);
-    }
+    openModal();
   });
 
   closeSeriesInfo.addEventListener('click', closeModal);
