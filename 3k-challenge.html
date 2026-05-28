@@ -256,6 +256,104 @@
       .day-card { padding: 18px; }
       .day-title { font-size: 22px; }
     }
+      .info-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  
+  .info-btn {
+    appearance: none;
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    background: rgba(245, 158, 11, 0.12);
+    color: #ffd38a;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.18s ease;
+  }
+  
+  .info-btn:hover {
+    background: rgba(245, 158, 11, 0.18);
+    transform: translateY(-1px);
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 8, 18, 0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+  }
+  
+  .modal-backdrop.active {
+    display: flex;
+  }
+  
+  .modal {
+    width: min(760px, 100%);
+    max-height: 85vh;
+    overflow: auto;
+    background: linear-gradient(180deg, rgba(18, 27, 45, 0.98) 0%, rgba(24, 35, 58, 0.98) 100%);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+  }
+  
+  .modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  
+  .modal-title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  
+  .modal-close {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    color: var(--muted);
+  }
+  
+  .modal-body p {
+    margin: 0 0 14px;
+  }
+  
+  .modal-body strong {
+    color: var(--text);
+  }
+  
+  .modal-callout {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--accent);
+    background: rgba(245, 158, 11, 0.08);
+    border-radius: 0 12px 12px 0;
+    color: var(--text);
+  }
   </style>
 </head>
 <body>
@@ -266,6 +364,9 @@
       <p class="sub">
         A public day-by-day archive of the small account series. The goal is not to blindly maximize every move, but to compound the account within the Foxchase framework while staying accountable to clean execution, risk structure, and cash-account discipline.
       </p>
+      <div class="info-actions">
+      <button class="info-btn" id="openSeriesInfo">Why this series matters</button>
+      </div>
 
     <div class="grid">
       <div class="card">
@@ -1990,4 +2091,69 @@
     </section>
   </div>
 </body>
+<div class="modal-backdrop" id="seriesInfoModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="seriesInfoTitle">
+    <div class="modal-head">
+      <h2 class="modal-title" id="seriesInfoTitle">About the $3k Account Series</h2>
+      <button class="modal-close" id="closeSeriesInfo" aria-label="Close">×</button>
+    </div>
+
+    <div class="modal-body">
+      <p>
+        The performance on this page is a realistic example of what discretionary <strong>0DTE trading</strong> can look like. Depending on market conditions, progress can be uneven, frustrating, and sometimes very choppy. The biggest separator is not finding a magical setup every day — it is <strong>risk management</strong>.
+      </p>
+
+      <p>
+        The clearest example of poor risk management in this series was <strong>Day 5</strong>. After that, stricter <strong>bracket orders</strong> and more disciplined stop-loss execution were implemented. From there, the curve stabilized and eventually broke out higher. That does not mean every day became easy. It means the downside became more controlled.
+      </p>
+
+      <p>
+        Being flat or near breakeven over a month — or even over multiple months — does <strong>not</strong> automatically mean a trader is unprofitable. In 0DTE, there can be extended stretches of chop before conditions line up again. What matters is surviving those stretches with enough discipline and capital intact to participate when the better periods arrive.
+      </p>
+
+      <p>
+        The goal of this challenge is <strong>$25,000</strong>. That represents the transition from a true small account into a more flexible account base, where the same framework can be traded with a <strong>smaller percentage of total equity at risk</strong>. At that point, the goal is no longer small-account aggression for its own sake. The goal is more normal sizing, better flexibility, and eventually the ability to pull profits more regularly as income.
+      </p>
+
+      <p>
+        Longer term, the purpose of the small account is not just to grow it for its own sake. It is to build enough capital to transition into a more durable structure — including more consistent discretionary sizing and, over time, allocation toward the <strong>options-selling algo</strong>.
+      </p>
+
+      <div class="modal-callout">
+        The purpose of this series is not to glorify aggression forever. It is to compound a small account to the point where <strong>small-account aggression is no longer necessary</strong>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const openSeriesInfo = document.getElementById('openSeriesInfo');
+  const closeSeriesInfo = document.getElementById('closeSeriesInfo');
+  const seriesInfoModal = document.getElementById('seriesInfoModal');
+
+  function openModal() {
+    seriesInfoModal.classList.add('active');
+    seriesInfoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    seriesInfoModal.classList.remove('active');
+    seriesInfoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openSeriesInfo.addEventListener('click', openModal);
+  closeSeriesInfo.addEventListener('click', closeModal);
+
+  seriesInfoModal.addEventListener('click', (e) => {
+    if (e.target === seriesInfoModal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && seriesInfoModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+</script>
 </html>
