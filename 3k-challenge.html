@@ -2121,5 +2121,41 @@
     </div>
   </div>
 </div>
+<script>
+  const closeSeriesInfo = document.getElementById('closeSeriesInfo');
+  const seriesInfoModal = document.getElementById('seriesInfoModal');
+
+  function openModal() {
+    seriesInfoModal.classList.add('active');
+    seriesInfoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    seriesInfoModal.classList.remove('active');
+    seriesInfoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    localStorage.setItem('foxchaseSeriesIntroSeen', 'true');
+  }
+
+  window.addEventListener('load', () => {
+    const seen = localStorage.getItem('foxchaseSeriesIntroSeen');
+    if (!seen) {
+      setTimeout(openModal, 500);
+    }
+  });
+
+  closeSeriesInfo.addEventListener('click', closeModal);
+
+  seriesInfoModal.addEventListener('click', (e) => {
+    if (e.target === seriesInfoModal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && seriesInfoModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+</script>
 </body>
 </html>
