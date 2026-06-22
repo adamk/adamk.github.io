@@ -54,16 +54,13 @@
         <p>In <a href="cracking-0dte-code-spx.html">Part 1</a>, we showed why static (“naive”) gamma maps are great for pre‑market terrain but weak for intraday timing and how live customer/market‑maker (MM) delta positioning sharpens 0DTE entries. In Part 2, we add a second lens: <strong>pre‑market structure on SPY</strong>. By classifying the open into six regimes, we can attach <em>unconditional</em> and <em>conditional</em> probabilities to the day’s key level interactions. (Note: this applies to SPY; SPX doesn’t trade pre‑market.)</p>
       </section>
       <section class="alert alert-info small mb-4">
-        <strong>Editor’s Note (November 2025 Update):</strong>
-        The probabilities and behaviors described in this article are derived from the past five years of historical data 
-        (2021–2025), which include a 2022 bear market, extended mean-reversion phases, and only a short window of persistent 
-        all-time-high conditions. Because of this, the regime probabilities carry a natural historical bias and may behave 
-        differently during strong ATH environments where volatility structure and option flows shift.
-
-        This does <em>not</em> eliminate the edge of using regimes — the framework remains very effective as a structural guide. However, it 
-        becomes even more powerful when combined with real-time tools that do not rely on historical patterns.  
-        For the latest evolution of the Foxchase edge (extrinsic slope + z-score), continue through <strong>Part 5</strong>.
+        <strong>Editor’s Note:</strong>
+        The probabilities and behaviors described in this article come from historical SPY pre-market regime research. The exact frequencies may shift depending on the dataset, cleaning method, and market environment.
+        The more recent cleaned framework filters bad pre-market OHLC spikes and uses confirmed PMH/PML construction, which improves regime quality but can slightly change the distribution versus earlier versions of the model.
+        <br><br>
+        This does <em>not</em> eliminate the edge of using regimes — the framework remains very effective as a structural guide. However, it becomes even more powerful when combined with real-time tools that do not rely only on historical patterns.
       </section>
+
       <section class="mb-4">
         <h2 class="h4">Key Levels & Notation</h2>
         <ul>
@@ -111,13 +108,13 @@
               </tr>
               <tr>
                 <td><strong>4) Top Overhang (poke above)</strong></td>
-                <td><code>PMH &gt; YDH, PML ≥ YDL</code> — prior session poked above and held support.</td>
-                <td>Short‑trap dynamics; often fuels continuation higher.</td>
+                <td><code>PMH &gt; YDH, PML ≥ YDL</code> — pre-market poked above yesterday’s high but stayed supported above yesterday’s low.</td>
+                <td>Short-trap dynamics; often fuels continuation higher.</td>
               </tr>
               <tr>
                 <td><strong>5) Bottom Overhang (poke below)</strong></td>
-                <td><code>PML &lt; YDL, PMH ≤ YDH</code> — prior session poked below and recovered.</td>
-                <td>Long‑trap dynamics; often sets up reversal rallies.</td>
+                <td><code>PML &lt; YDL, PMH ≤ YDH</code> — pre-market poked below yesterday’s low but stayed capped below yesterday’s high.</td>
+                <td>Long-trap dynamics; often sets up reversal rallies.</td>
               </tr>
               <tr>
                 <td><strong>6) Spans Both Sides (Wide PM)</strong></td>
@@ -128,7 +125,60 @@
           </table>
         </div>
       </section>
-
+      <section class="mb-4">
+        <h2 class="h4">How Often Each Regime Appears</h2>
+        <p>Before looking at trade setups, it helps to understand how often each structure actually shows up. In my cleaned SPY pre-market research sample, the regime distribution looked like this:</p>
+      <div class="table-responsive">
+        <table class="table table-sm align-middle">
+          <thead class="table-light">
+            <tr>
+              <th style="min-width:120px;">Regime</th>
+              <th>Description</th>
+              <th style="min-width:120px;">Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Regime 1</strong></td>
+              <td>Inside / mixed / overlapping structure</td>
+              <td>29.69%</td>
+            </tr>
+            <tr>
+              <td><strong>Regime 2</strong></td>
+              <td>Full gap above yesterday’s range</td>
+              <td>1.61%</td>
+            </tr>
+            <tr>
+              <td><strong>Regime 3</strong></td>
+              <td>Full gap below yesterday’s range</td>
+              <td>1.50%</td>
+            </tr>
+            <tr>
+              <td><strong>Regime 4</strong></td>
+              <td>Top overhang / pre-market poke above YDH</td>
+              <td>37.74%</td>
+            </tr>
+            <tr>
+              <td><strong>Regime 5</strong></td>
+              <td>Bottom overhang / pre-market poke below YDL</td>
+              <td>25.09%</td>
+            </tr>
+            <tr>
+              <td><strong>Regime 6</strong></td>
+              <td>Wide pre-market range spanning both sides</td>
+              <td>2.53%</td>
+            </tr>
+            <tr>
+              <td><strong>Unknown / filtered</strong></td>
+              <td>Insufficient, overlapping, or filtered level data</td>
+              <td>1.84%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Regime 4 and Regime 1 make up the largest share of days, followed by Regime 5. Full gap regimes, Regime 2 and Regime 3, are relatively rare. Regime 6 is also uncommon, but when it appears it often signals a wider volatility environment.</p>
+      <p>This matters because a setup that looks attractive in a rare regime may not provide many opportunities over time. For 0DTE trading, the goal is not just to find a setup with theoretical edge. The goal is to find structures that appear often enough to matter while still being selective enough to avoid low-quality chop.</p>
+    </section>
       <section class="mb-4">
         <h2 class="h4">The Probabilities Framework</h2>
         <p>Once the regime is known, frame the day with two sets of stats:</p>
