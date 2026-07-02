@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foxchase Trading Algo P&L</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foxchase Trading live algorithm P&L dashboard.">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pnl-wrap { max-width:1000px; margin:40px auto; padding:0 20px; }
+    .pnl-note { background:#fff8e5; border:1px solid #e8c66a; color:#2b2b2b; padding:16px; border-radius:10px; margin:20px 0; line-height:1.5; }
+    .pnl-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin:25px 0; }
+    .pnl-card { border:1px solid #ddd; border-radius:10px; padding:16px; background:#fff; }
+    .pnl-label { color:#666; font-size:14px; }
+    .pnl-value { font-size:24px; font-weight:700; margin-top:8px; }
+    .chart-box { margin-top:25px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fff; }
+    .small { color:#666; font-size:13px; margin-top:15px; line-height:1.5; }
+  </style>
+</head>
+<body>
+  <div class="pnl-wrap">
+    <h1>Foxchase Algo P&L</h1>
+    <p>Live account performance dashboard for the Foxchase options-selling algorithm.</p>
+
+    <div class="pnl-note">
+      <strong>Important note:</strong> This dashboard uses live Alpaca account data. Deposits and withdrawals are excluded where possible,
+      but performance stats should still be considered unaudited and informational only.
+    </div>
+
+    <div class="pnl-grid">
+      <div class="pnl-card"><div class="pnl-label">Account</div><div class="pnl-value" id="accountType">Live account</div></div>
+      <div class="pnl-card"><div class="pnl-label">Current Equity</div><div class="pnl-value" id="equity">-</div></div>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="equityChart"></canvas>
+    </div>
+
+    <h2>Main Stats</h2>
+    <div class="pnl-grid">
+      <div class="pnl-card"><div class="pnl-label">Realized Algo P&L</div><div class="pnl-value" id="realizedPnl">-</div></div>
+      <div class="pnl-card"><div class="pnl-label">Win Rate</div><div class="pnl-value" id="winRate">-</div></div>
+      <div class="pnl-card"><div class="pnl-label">Closed Trades</div><div class="pnl-value" id="closedTrades">-</div></div>
+      <div class="pnl-card"><div class="pnl-label">Avg Win / Avg Loss</div><div class="pnl-value" id="avgWinLoss">-</div></div>
+    </div>
+
+    <p class="small" id="updated"></p>
+    <p class="small" id="note"></p>
+  </div>
+
+  <script>
+    function dollars(value) {
+      return Number(value).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    }
+
+    function pct(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "-";
+      return Number(value).toFixed(1) + "%";
+    }
+
+    fetch("/data/algo-pnl.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("accountType").textContent = data.account_type || "Live account";
+        document.getElementById("equity").textContent = dollars(data.current_equity);
+
+        const stats = data.stats || {};
+        document.getElementById("realizedPnl").textContent = dollars(stats.realized_algo_pnl || 0);
+        document.getElementById("winRate").textContent = pct(stats.win_rate_pct);
+        document.getElementById("closedTrades").textContent = stats.closed_trades ?? "-";
+        document.getElementById("avgWinLoss").textContent = dollars(stats.avg_win || 0) + " / " + dollars(stats.avg_loss || 0);
+
+        document.getElementById("updated").textContent =
+          "Last updated: " + new Date(data.updated_at).toLocaleString();
+        document.getElementById("note").textContent = data.note || "";
+
+        const points = data.points || [];
+        new Chart(document.getElementById("equityChart"), {
+          type: "line",
+          data: {
+            labels: points.map(p => p.date),
+            datasets: [{
+              label: "Account Equity",
+              data: points.map(p => p.equity),
+              tension: 0.25,
+              pointRadius: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              tooltip: { callbacks: { label: context => "Equity: " + dollars(context.parsed.y) } }
+            },
+            scales: {
+              y: { ticks: { callback: value => "$" + Number(value).toLocaleString() } }
+            }
+          }
+        });
+      })
+      .catch(() => {
+        document.querySelector(".chart-box").innerHTML = "<p>Unable to load P&L data right now.</p>";
+      });
+  </script>
+</body>
+</html>
+
+<footer style="margin:60px auto 20px auto;max-width:1000px;padding-top:20px;border-top:1px solid #ddd;text-align:center;font-size:14px;color:#666;">
+  <p>© 2026 Foxchase Trading LLC. All rights reserved.</p>
+  <p style="max-width:700px;margin:0 auto;">
+    Options trading involves substantial risk and is not suitable for all investors.
+    Past performance does not guarantee future results.
+  </p>
+</footer>
+
