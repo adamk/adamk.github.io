@@ -12,9 +12,9 @@
   </script>
 
   <meta charset="UTF-8">
-  <title>Foxchase Trading Algo P&L</title>
+  <title>Foxchase Trading Algo Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Foxchase Trading live algorithm P&L dashboard.">
+  <meta name="description" content="Foxchase Trading live algorithm performance dashboard with research backtest context.">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -31,7 +31,7 @@
 <body>
   <div class="pnl-wrap">
     <h1>Foxchase Algo P&L</h1>
-    <p>Live account performance dashboard for the Foxchase options-selling algorithm.</p>
+    <p>Live account performance dashboard for the Foxchase options strategy algorithm.</p>
 
     <div class="pnl-note">
       <strong>Important note:</strong> The equity chart reflects live Alpaca account equity and may include the effect of deposits or withdrawals.
@@ -56,6 +56,35 @@
       <div class="pnl-card"><div class="pnl-label">Closed Trades</div><div class="pnl-value" id="closedTrades">-</div></div>
       <div class="pnl-card"><div class="pnl-label">Avg Win / Avg Loss</div><div class="pnl-value" id="avgWinLoss">-</div></div>
     </div>
+
+
+    <h2>Research Backtest</h2>
+
+    <div class="pnl-note">
+      <strong>Research backtest, not live performance:</strong>
+      The chart below shows a historical research backtest of the current Foxchase algo configuration compared with SPY buy and hold.
+      This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
+    </div>
+
+    <div class="chart-box">
+      <img
+        src="/images/foxchase_algo_backtest_10pct_vs_spy_with_stats.png"
+        alt="Foxchase Algo Research Backtest vs SPY Buy and Hold"
+        style="width:100%; height:auto; border-radius:8px;"
+      >
+    </div>
+
+    <p class="small">
+      Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, non-compounded position sizing,
+      one trade per day maximum, SPY 0DTE options, and mid-price entry/exit assumptions.
+      Historical options quote data was sourced from ThetaData.
+    </p>
+
+    <p class="small">
+      Backtested results are hypothetical and may not reflect actual live execution, slippage, partial fills, rejected orders,
+      commissions, liquidity constraints, assignment or exercise risk, platform outages, data issues, or execution latency.
+      Live results shown above should be considered more important than historical backtest results.
+    </p>
 
     <p class="small" id="updated"></p>
     <p class="small" id="note"></p>
@@ -118,8 +147,6 @@
         document.querySelector(".chart-box").innerHTML = "<p>Unable to load P&L data right now.</p>";
       });
   </script>
-</body>
-</html>
 
 <footer style="margin:60px auto 20px auto;max-width:1000px;padding-top:20px;border-top:1px solid #ddd;text-align:center;font-size:14px;color:#666;">
   <p>© 2026 Foxchase Trading LLC. All rights reserved.</p>
@@ -128,4 +155,6 @@
     Past performance does not guarantee future results.
   </p>
 </footer>
+</body>
+</html>
 
