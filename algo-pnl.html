@@ -27,51 +27,58 @@
     .pnl-value { font-size:24px; font-weight:700; margin-top:8px; }
     .chart-box { margin-top:25px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fff; }
     .small { color:#666; font-size:13px; margin-top:15px; line-height:1.5; }
-    .site-header {
+    .algo-header {
       max-width:1000px;
-      margin:20px auto 0 auto;
-      padding:0 20px 20px 20px;
+      margin:24px auto 0 auto;
+      padding:0 20px 18px 20px;
+      border-bottom:1px solid #eee;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      border-bottom:1px solid #eee;
+      gap:16px;
     }
-    .brand-link {
+    .algo-brand {
       display:flex;
       align-items:center;
-      gap:10px;
-      text-decoration:none;
+      gap:12px;
       color:#111;
+      text-decoration:none;
       font-weight:700;
+      font-size:18px;
     }
-    .brand-link img {
-      width:38px;
-      height:38px;
-      border-radius:8px;
-      object-fit:cover;
+    .algo-brand img {
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      display:block;
     }
-    .back-link {
+    .algo-back {
       color:#666;
       text-decoration:none;
       font-size:14px;
+      white-space:nowrap;
     }
-    .back-link:hover {
+    .algo-back:hover {
       text-decoration:underline;
     }
-
-  </style>
+    @media (max-width:600px) {
+      .algo-header {
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+</style>
 </head>
 <body>
-
-  <header class="site-header">
-    <a class="brand-link" href="/">
-      <img src="/images/logo.jpg" alt="Foxchase Trading logo">
+  <header class="algo-header">
+    <a class="algo-brand" href="/">
+      <img src="foxchasetrading.png" alt="Foxchase Trading Logo">
       <span>Foxchase Trading</span>
     </a>
-    <a class="back-link" href="/">Back to main page</a>
+    <a class="algo-back" href="/">Back to main page</a>
   </header>
 
-  <div class="pnl-wrap">
+<div class="pnl-wrap">
     <h1>Foxchase Algo P&L</h1>
     <p>Live account performance dashboard for the Foxchase options strategy algorithm.</p>
 
