@@ -76,6 +76,55 @@
     }
   </style>
 
+
+<style>
+  .article-series-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2.5rem 0 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .article-series-nav a {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    background: #fff;
+    text-decoration: none;
+    color: #212529;
+  }
+
+  .article-series-nav a:hover {
+    border-color: #ffc107;
+    color: #b45309;
+    text-decoration: none;
+  }
+
+  .article-series-nav .nav-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+  }
+
+  .article-series-nav .next {
+    text-align: right;
+  }
+
+  @media (max-width: 700px) {
+    .article-series-nav {
+      flex-direction: column;
+    }
+
+    .article-series-nav .next {
+      text-align: left;
+    }
+  }
+</style>
+
 </head>
 <body class="bg-light text-dark">
   <!-- Header -->
@@ -274,6 +323,15 @@
       <aside class="alert alert-warning small mt-4 mb-0">
         <strong>Disclaimer:</strong> Education only, not financial advice. Options and derivatives carry significant risk. Do your own research and manage risk.
       </aside>
+    
+<div class="article-series-nav">
+    <a class="prev" href="/cracking-0dte-code-rvol.html">
+      <span class="nav-label">← Previous</span>
+      <strong>Part 4: RVOL</strong>
+    </a>
+    
+</div>
+
     </article>
   </main>
 
