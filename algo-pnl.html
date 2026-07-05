@@ -27,16 +27,6 @@
     .pnl-value { font-size:24px; font-weight:700; margin-top:8px; }
     .chart-box { margin-top:25px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fff; }
     .small { color:#666; font-size:13px; margin-top:15px; line-height:1.5; }
-    .algo-header {
-      max-width:1000px;
-      margin:24px auto 0 auto;
-      padding:0 20px 18px 20px;
-      border-bottom:1px solid #eee;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
     .algo-brand {
       display:flex;
       align-items:center;
@@ -67,17 +57,47 @@
         flex-direction:column;
       }
     }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin: 18px auto 8px;
+      padding: 10px 16px;
+      width: fit-content;
+      border: 1px solid #dee2e6;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    }
+    .nav-wrap a {
+      color: #212529;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-wrap a:hover {
+      text-decoration: none;
+      color: #b45309;
+    }
+    .nav-wrap a.active {
+      background: rgba(245, 158, 11, 0.14);
+      color: #b45309;
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
 </style>
 </head>
 <body>
-  <header class="algo-header">
-    <a class="algo-brand" href="/">
-      <img src="foxchasetrading.png" alt="Foxchase Trading Logo">
-      <span>Foxchase Trading</span>
-    </a>
-    <a class="algo-back" href="/">Back to main page</a>
-  </header>
-
+  <nav class="nav-wrap">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/3k-challenge">Small Account Series</a>
+    <a href="/planner/">Planner</a>
+    <a href="https://whop.com/foxchase-trading/" target="_blank" rel="noopener noreferrer">Whop</a>
+  </nav>
 <div class="pnl-wrap">
     <h1>Foxchase Algo P&L</h1>
     <p>Live account performance dashboard for the Foxchase options strategy algorithm.</p>
