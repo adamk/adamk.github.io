@@ -23,23 +23,72 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="icon" href="/foxchasetrading.png" type="image/png" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <style>
+    .foxchase-nav {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 8px;
+      padding: 0 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .foxchase-nav-inner {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    }
+
+    .foxchase-nav a {
+      color: #212529;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .foxchase-nav a:hover {
+      color: #b45309;
+      text-decoration: none;
+    }
+
+    .foxchase-nav a.active {
+      background: rgba(245, 158, 11, 0.14);
+      color: #b45309;
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
+    @media (max-width: 640px) {
+      .foxchase-nav {
+        justify-content: flex-end;
+      }
+
+      .foxchase-nav-inner {
+        gap: 12px;
+        border-radius: .75rem;
+      }
+    }
+  </style>
+
 </head>
 <body class="bg-light text-dark">
   <!-- Header -->
-  <header class="bg-white border-bottom py-3 mb-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="/" class="d-flex align-items-center text-decoration-none">
-        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" class="me-2" style="max-width:40px;height:auto;" />
-        <span class="h3 mb-0 text-dark">Foxchase Trading</span>
-      </a>
-      <nav>
-        <a href="/" class="me-3">Home</a>
-        <a href="https://discord.com/invite/UmNFh8CfkQ?utm_source=Discord%20Widget&utm_medium=Connect" target="_blank" rel="noopener noreferrer">Discord</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main -->
+  <nav class="foxchase-nav">
+  <div class="foxchase-nav-inner">
+    <a href="/">Home</a>
+    <a href="/blog.html" class="active">Blog</a>
+    <a href="/3k-challenge">Small Account Series</a>
+    <a href="/planner/">Planner</a>
+    <a href="https://whop.com/foxchase-trading/" target="_blank" rel="noopener noreferrer">Whop</a>
+  </div>
+</nav>
+<!-- Main -->
   <main class="container">
     <article class="mb-5">
       <header class="mb-3">
