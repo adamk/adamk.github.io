@@ -98,6 +98,29 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.06);
       height: 100%;
     }
+  
+    @media (min-width: 992px) {
+      .rounded-lg-pill { border-radius: 50rem !important; }
+      .bg-lg-white { background-color: #fff !important; }
+      .shadow-lg-sm { box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important; }
+      .border-lg { border: 1px solid #dee2e6 !important; }
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        margin-top: .75rem;
+        width: 100%;
+      }
+
+      .navbar-nav {
+        background: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: .75rem;
+        padding: .75rem 1rem;
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+      }
+    }
+
   </style>
 </head>
 
@@ -116,7 +139,7 @@
       </button>
 
       <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
-        <ul class="navbar-nav px-3 py-2 rounded-pill bg-white shadow-sm border">
+        <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-white shadow-lg-sm border-lg">
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
