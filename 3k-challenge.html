@@ -363,9 +363,40 @@
     border-radius: 0 12px 12px 0;
     color: var(--text);
   }
+  
+    .nav-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin: 18px auto 8px;
+      padding: 10px 16px;
+      width: fit-content;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(18, 27, 45, 0.85);
+    }
+
+    .nav-wrap a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .nav-wrap a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
   </style>
 </head>
 <body>
+  <nav class="nav-wrap">
+    <a href="/">Home</a>
+    <a href="/3k-challenge">Small Account Series</a>
+    <a href="/planner/">Planner</a>
+    <a href="https://whop.com/foxchase-trading/" target="_blank" rel="noopener noreferrer">Whop</a>
+  </nav>
   <div class="wrap">
     <section class="hero">
       <span class="eyebrow">🦊 Public Series Archive</span>
