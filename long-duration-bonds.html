@@ -23,23 +23,100 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="icon" href="/foxchasetrading.png" type="image/png" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <style>
+    .foxchase-nav {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 8px;
+      padding: 0 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .foxchase-nav-toggle {
+      display: none;
+      border: 1px solid #dee2e6;
+      background: #fff;
+      border-radius: .5rem;
+      padding: .45rem .65rem;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .foxchase-nav-inner {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    }
+
+    .foxchase-nav a {
+      color: #212529;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .foxchase-nav a:hover {
+      color: #b45309;
+      text-decoration: none;
+    }
+
+    .foxchase-nav a.active {
+      background: rgba(245, 158, 11, 0.14);
+      color: #b45309;
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
+    @media (max-width: 640px) {
+      .foxchase-nav {
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+      }
+
+      .foxchase-nav-toggle {
+        display: block;
+      }
+
+      .foxchase-nav-inner {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        border-radius: .75rem;
+        padding: 12px 16px;
+      }
+
+      .foxchase-nav.open .foxchase-nav-inner {
+        display: flex;
+      }
+    }
+  </style>
+
 </head>
 <body class="bg-light text-dark">
   <!-- Header -->
-  <header class="bg-white border-bottom py-3 mb-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="/" class="d-flex align-items-center text-decoration-none">
-        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" class="me-2" style="max-width:40px;height:auto;" />
-        <span class="h3 mb-0 text-dark">Foxchase Trading</span>
-      </a>
-      <nav>
-        <a href="/" class="me-3">Home</a>
-        <a href="https://discord.gg/2qJ7YJJuBv" target="_blank" rel="noopener noreferrer">Discord</a>
-      </nav>
-    </div>
-  </header>
+<nav class="foxchase-nav" id="foxchaseArticleNav">
+  <button class="foxchase-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleFoxchaseArticleNav()">☰</button>
+  <div class="foxchase-nav-inner">
+    <a href="/">Home</a>
+    <a href="/blog.html" class="active">Blog</a>
+    <a href="/3k-challenge">Small Account Series</a>
+    <a href="/planner/">Planner</a>
+    <a href="https://whop.com/foxchase-trading/" target="_blank" rel="noopener noreferrer">Whop</a>
+  </div>
+</nav>
 
-  <!-- Main -->
+<!-- Main -->
   <main class="container">
     <article class="mb-5">
       <header class="mb-3">
@@ -211,5 +288,15 @@
     "description": "A macro and technical look at why long-end Treasury yields can rise without a single obvious catalyst, with discussion of term premium, fiscal supply, inflation risk, /ZB, and TLT/IWM."
   }
   </script>
+
+<script>
+  function toggleFoxchaseArticleNav() {
+    const nav = document.getElementById("foxchaseArticleNav");
+    const btn = nav.querySelector(".foxchase-nav-toggle");
+    nav.classList.toggle("open");
+    btn.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
+  }
+</script>
+
 </body>
 </html>
