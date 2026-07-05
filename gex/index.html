@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZKVBZ3QJ1F');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Foxchase GEX is a focused NDX 0DTE gamma exposure dashboard built for spotting GEX ramps, concentrations, and potential gamma pinning areas.">
+  <title>Foxchase GEX | NDX 0DTE Gamma Exposure Dashboard</title>
+
+  <link rel="icon" href="/foxchasetrading.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    .btn-whop {
+      background-color: #ffc107;
+      border-color: #ffca2c;
+      color: #212529;
+    }
+
+    .btn-whop:hover {
+      background-color: #ffcd39;
+      border-color: #ffc720;
+      color: #212529;
+    }
+
+    .btn-dark-outline {
+      border: 1px solid #212529;
+      color: #212529;
+      background: #fff;
+    }
+
+    .btn-dark-outline:hover {
+      background: #212529;
+      color: #fff;
+    }
+
+    .section-title {
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      margin-top: -0.25rem;
+      margin-bottom: 1.25rem;
+      color: #6c757d;
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid #e9ecef;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .image-placeholder {
+      min-height: 420px;
+      border: 2px dashed #adb5bd;
+      border-radius: 1rem;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6c757d;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .feature-card {
+      height: 100%;
+      border: 1px solid #e9ecef;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+
+    .pricing-card {
+      border: 1px solid #e9ecef;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      height: 100%;
+    }
+
+    .nav-link {
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" style="width:42px; height:42px;">
+        <span class="fw-bold">Foxchase Trading</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#foxchaseNav" aria-controls="foxchaseNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="foxchaseNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/gex">GEX</a></li>
+          <li class="nav-item"><a class="nav-link" href="/3k-challenge">Challenge</a></li>
+          <li class="nav-item"><a class="nav-link" href="/planner/">Planner</a></li>
+          <li class="nav-item">
+            <a class="btn btn-whop btn-sm ms-lg-2" href="https://whop.com/foxchase-trading/" target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-link"></i> Whop
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow-1">
+    <div class="container my-5">
+
+      <!-- Hero -->
+      <section class="hero-card p-4 p-md-5 text-center">
+        <img src="/foxchasetrading.png" alt="Foxchase Trading Logo" class="mb-3 mx-auto d-block" style="max-width: 120px;">
+
+        <h1 class="display-5 fw-bold mb-3">Foxchase GEX</h1>
+
+        <p class="lead mb-3">
+          A focused NDX 0DTE gamma exposure dashboard for spotting GEX ramps, concentrations, and potential gamma pinning areas.
+        </p>
+
+        <p class="text-muted mb-4">
+          No trade signals. No AI predictions. No oversized dashboard full of features we do not use.
+          Just the gamma exposure view we actually care about during the trading day.
+        </p>
+
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+          <a href="https://whop.com/foxchase-trading/"
+             class="btn btn-whop btn-lg"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-solid fa-lock"></i> Get Access on Whop
+          </a>
+
+          <a href="#pricing"
+             class="btn btn-dark-outline btn-lg">
+            View Pricing
+          </a>
+        </div>
+      </section>
+
+      <!-- Tool Screenshot Placeholder -->
+      <section class="my-5">
+        <div class="image-placeholder">
+          <div>
+            <i class="fa-solid fa-chart-column fa-3x mb-3"></i>
+            <h3 class="h5">GEX Dashboard Screenshot</h3>
+            <p class="mb-0">
+              Replace this section with a large screenshot or demo image of the tool once the interface is ready.
+            </p>
+            <!-- Example later:
+            <img src="/images/foxchase-gex-dashboard.jpg" alt="Foxchase GEX dashboard screenshot" class="img-fluid rounded-4 shadow">
+            -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Origin Story -->
+      <section class="my-5">
+        <h2 class="section-title">Why We Built It</h2>
+
+        <p>
+          I never imagined Foxchase Trading would release a GEX tool.
+        </p>
+
+        <p>
+          There are already plenty of gamma exposure dashboards on the market, and I have never believed traders need another screen full of indicators, signals, and complicated features. GEX can be useful, but it is only one small piece of a much larger trading process.
+        </p>
+
+        <p>
+          For a long time, I personally paid nearly $40 per month for a GEX platform. My daily use was very simple: I opened the NDX 0DTE GEX chart, identified the areas that mattered, and moved on with the trading day. I had little use for most of the additional indicators and extra features included with the subscription.
+        </p>
+
+        <p>
+          Eventually, one of the members of the Foxchase Trading community began developing his own solution. Together, we focused on the specific NDX gamma exposure view we actually use: GEX ramps, major concentrations, and potential gamma pinning areas.
+        </p>
+      </section>
+
+      <!-- Features -->
+      <section class="my-5">
+        <h2 class="section-title text-center">What Foxchase GEX Is Built For</h2>
+        <p class="section-subtitle text-center">
+          Essential NDX 0DTE gamma exposure context without unnecessary noise.
+        </p>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-card">
+              <h3 class="h5"><i class="fa-solid fa-arrow-trend-up"></i> GEX Ramps</h3>
+              <p class="mb-0">
+                Identify areas where gamma exposure begins to build across nearby strikes.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="feature-card">
+              <h3 class="h5"><i class="fa-solid fa-location-dot"></i> Gamma Concentrations</h3>
+              <p class="mb-0">
+                Spot large exposure zones that may become important reference areas during the session.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="feature-card">
+              <h3 class="h5"><i class="fa-solid fa-thumbtack"></i> Potential Pins</h3>
+              <p class="mb-0">
+                Watch areas where gamma may help create magnet-like behavior around important strikes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Philosophy -->
+      <section class="my-5 p-4 bg-white border rounded-4 shadow-sm">
+        <h2 class="section-title mt-0">How We Use GEX</h2>
+
+        <p>
+          We use GEX as a contextual tool, not a standalone trading system.
+        </p>
+
+        <p>
+          A large GEX concentration does not mean price must stop there. A gamma ramp does not guarantee continuation. A potential pin does not mean the market cannot move away from it.
+        </p>
+
+        <p>
+          At Foxchase Trading, GEX is used alongside market structure, key levels, regime context, volatility posture, and price action. It is one input in the decision process.
+        </p>
+
+        <p class="mb-0">
+          The goal is not to turn gamma exposure into a magic signal. The goal is to understand where important option-positioning pressure may exist during the NDX 0DTE session.
+        </p>
+      </section>
+
+      <!-- Pricing -->
+      <section id="pricing" class="my-5">
+        <h2 class="section-title text-center">Pricing</h2>
+        <p class="section-subtitle text-center">
+          Standalone access or bundled with Foxchase memberships.
+        </p>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="pricing-card text-center">
+              <h3 class="h4">GEX</h3>
+              <p class="display-6 fw-bold">$19.99<span class="fs-6 text-muted">/mo</span></p>
+              <p>Standalone access to the NDX GEX dashboard.</p>
+              <a href="https://whop.com/foxchase-trading/"
+                 class="btn btn-whop"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Get GEX
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="pricing-card text-center">
+              <h3 class="h4">GEX + Discord</h3>
+              <p class="display-6 fw-bold">$49.99<span class="fs-6 text-muted">/mo</span></p>
+              <p>GEX access plus the Foxchase Discord membership.</p>
+              <a href="https://whop.com/foxchase-trading/"
+                 class="btn btn-whop"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Join Bundle
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="pricing-card text-center">
+              <h3 class="h4">All Access</h3>
+              <p class="display-6 fw-bold">$59.99<span class="fs-6 text-muted">/mo</span></p>
+              <p>Discord, TradingView access, and GEX in one membership.</p>
+              <a href="https://whop.com/foxchase-trading/"
+                 class="btn btn-whop"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Get All Access
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Sticky Discord widget at bottom -->
+  <div class="mt-auto">
+    <iframe src="https://discord.com/widget?id=1226289778035527840&theme=dark"
+            style="width: 100%; height: 250px; border: none;"
+            allowtransparency="true"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+  </div>
+
+  <!-- Social & Support Section -->
+  <div class="bg-dark text-secondary text-center py-2">
+    <div class="d-flex justify-content-center gap-2">
+      <a href="https://twitter.com/FoxchaseTrading" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary btn-sm px-3">
+        <i class="fa-brands fa-x-twitter"></i> Follow us on X
+      </a>
+      <a href="https://coff.ee/foxchasetrading" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-warning btn-sm px-3">
+        <i class="fa-solid fa-mug-hot"></i> Buy me a coffee
+      </a>
+    </div>
+  </div>
+
+  <footer style="text-align:center; color:black; font-size:14px; padding:20px;">
+    <p style="margin-bottom:5px;">
+      © 2026 Foxchase Trading, LLC
+    </p>
+    <p style="max-width:800px; margin:0 auto; font-size:12px; color:#555;">
+      Foxchase Trading, LLC provides educational content only and does not provide investment advice.
+      Trading involves substantial risk of loss and is not suitable for all investors.
+      Past performance does not guarantee future results.
+    </p>
+  </footer>
+
+  <!-- Bootstrap 5 JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
