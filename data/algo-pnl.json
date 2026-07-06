@@ -1086,7 +1086,13 @@
   "cash": 7594.51,
   "portfolioValue": 7594.51,
   "openPositions": 0,
-  "lastUpdated": "2026-07-06T17:26:32.704913-04:00",
-  "lastUpdatedDisplay": "07/06/2026, 05:26:32 PM ET",
-  "source": "Alpaca live account"
+  "lastUpdated": "2026-07-06T17:33:04.731542-04:00",
+  "lastUpdatedDisplay": "07/06/2026, 05:33:04 PM ET",
+  "source": "Alpaca live account",
+  "equityHistory": [
+    {
+      "date": "2026-07-06",
+      "equity": 7594.51
+    }
+  ]
 }
