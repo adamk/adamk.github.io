@@ -176,7 +176,7 @@
       return Number(value).toFixed(1) + "%";
     }
 
-    fetch("/data/algo-pnl.json")
+    fetch("/data/algo-pnl.json?v=" + Date.now(), { cache: "no-store" })
       .then(response => response.json())
       .then(data => {
         document.getElementById("accountType").textContent = data.account_type || "Live account";
