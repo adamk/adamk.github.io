@@ -222,8 +222,7 @@ function setTextIfExists(id, value) {
         const stats = data.stats || {};
         document.getElementById("realizedPnl").textContent = dollars(stats.realized_algo_pnl || 0);
         document.getElementById("winRate").textContent = pct(stats.win_rate_pct);
-        document.getElementById("closedTrades").textContent = stats.closed_trades ?? "-";
-        document.getElementById("avgWinLoss").textContent = dollars(stats.avg_win || 0) + " / " + dollars(stats.avg_loss || 0);
+        // closedTrades and avgWinLoss are handled by Dynamic Main Stats above.
 
         document.getElementById("updated").textContent =
           "Last updated: " + new Date(data.updated_at).toLocaleString();
