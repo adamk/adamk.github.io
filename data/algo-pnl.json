@@ -1,6 +1,6 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-07-06T23:45:01.721090-04:00",
+  "updated_at": "2026-07-07T00:00:01.923359-04:00",
   "current_equity": 7594.51,
   "points": [
     {
@@ -1010,6 +1010,10 @@
     {
       "date": "2026-07-06",
       "equity": 7594.51
+    },
+    {
+      "date": "2026-07-07",
+      "equity": 7594.51
     }
   ],
   "stats": {
@@ -1090,8 +1094,8 @@
   "cash": 7594.51,
   "portfolioValue": 7594.51,
   "openPositions": 0,
-  "lastUpdated": "2026-07-06T23:45:01.721090-04:00",
-  "lastUpdatedDisplay": "07/06/2026, 11:45:01 PM ET",
+  "lastUpdated": "2026-07-07T00:00:01.923359-04:00",
+  "lastUpdatedDisplay": "07/07/2026, 12:00:01 AM ET",
   "source": "Alpaca live account",
   "equityHistory": [
     {
@@ -2100,6 +2104,10 @@
     },
     {
       "date": "2026-07-06",
+      "equity": 7594.51
+    },
+    {
+      "date": "2026-07-07",
       "equity": 7594.51
     }
   ]
