@@ -197,16 +197,25 @@ function setTextIfExists(id, value) {
       .then(data => {
 
       // Dynamic Main Stats
-      const realizedAlgoPnl = data.realized_algo_pnl ?? data.realizedAlgoPnl ?? 0;
-      const winRate = data.win_rate ?? data.winRate ?? 0;
-      const closedTrades = data.closed_trades ?? data.closedTrades ?? 0;
-      const avgWin = data.avg_win ?? data.avgWin ?? 0;
-      const avgLoss = data.avg_loss ?? data.avgLoss ?? 0;
+      const tradeStats = data.trade_stats || data.tradeStats || data.stats || {};
+      const realizedAlgoPnl = tradeStats.realized_algo_pnl ?? data.realized_algo_pnl ?? data.realizedAlgoPnl ?? 0;
+      const winRate = tradeStats.win_rate_pct ?? tradeStats.win_rate ?? data.win_rate ?? data.winRate ?? 0;
+      const closedTrades = tradeStats.closed_trades ?? data.closed_trades ?? data.closedTrades ?? 0;
+      const avgWin = tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? 0;
+      const avgLoss = tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? 0;
 
       setTextIfExists("realized-algo-pnl", formatMoneyValue(realizedAlgoPnl));
+      setTextIfExists("realizedAlgoPnl", formatMoneyValue(realizedAlgoPnl));
+
       setTextIfExists("win-rate", formatPctValue(winRate));
+      setTextIfExists("winRate", formatPctValue(winRate));
+
       setTextIfExists("closed-trades", String(closedTrades));
-      setTextIfExists("avg-win-loss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLoss)}`);
+      setTextIfExists("closedTrades", String(closedTrades));
+
+      const avgLossDisplay = avgLoss === null ? 0 : avgLoss;
+      setTextIfExists("avg-win-loss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
+      setTextIfExists("avgWinLoss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
         document.getElementById("accountType").textContent = data.account_type || "Live account";
         document.getElementById("equity").textContent = dollars(data.current_equity);
 
