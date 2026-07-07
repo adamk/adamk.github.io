@@ -4,6 +4,22 @@
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
   <script>
+
+function formatMoneyValue(value) {
+  const n = Number(value || 0);
+  return n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+}
+
+function formatPctValue(value) {
+  const n = Number(value || 0);
+  return n.toFixed(1) + "%";
+}
+
+function setTextIfExists(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -179,6 +195,18 @@
     fetch("/data/algo-pnl.json?v=" + Date.now(), { cache: "no-store" })
       .then(response => response.json())
       .then(data => {
+
+      // Dynamic Main Stats
+      const realizedAlgoPnl = data.realized_algo_pnl ?? data.realizedAlgoPnl ?? 0;
+      const winRate = data.win_rate ?? data.winRate ?? 0;
+      const closedTrades = data.closed_trades ?? data.closedTrades ?? 0;
+      const avgWin = data.avg_win ?? data.avgWin ?? 0;
+      const avgLoss = data.avg_loss ?? data.avgLoss ?? 0;
+
+      setTextIfExists("realized-algo-pnl", formatMoneyValue(realizedAlgoPnl));
+      setTextIfExists("win-rate", formatPctValue(winRate));
+      setTextIfExists("closed-trades", String(closedTrades));
+      setTextIfExists("avg-win-loss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLoss)}`);
         document.getElementById("accountType").textContent = data.account_type || "Live account";
         document.getElementById("equity").textContent = dollars(data.current_equity);
 
