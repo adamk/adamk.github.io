@@ -13,12 +13,12 @@
     .nav-inner a{color:#212529;text-decoration:none;font-weight:600;font-size:14px}
     .nav-inner a.active{background:rgba(245,158,11,.14);color:#b45309;border-radius:999px;padding:4px 10px}
     .section-card{background:#fff;border:1px solid #dee2e6;border-radius:16px;padding:22px;margin-bottom:22px;box-shadow:0 4px 14px rgba(0,0,0,.05)}
-    .product-row{display:flex;justify-content:space-between;gap:16px;align-items:center;border-top:1px solid #eee;padding:14px 0}
+    .product-row{display:grid;grid-template-columns:1fr 120px;gap:16px;align-items:center;border-top:1px solid #eee;padding:14px 0}
     .product-row:first-of-type{border-top:0}
     .product-title{font-weight:700;margin-bottom:2px}
     .product-desc{color:#6c757d;font-size:14px;margin:0}
-    .price{font-weight:800;white-space:nowrap}
-    @media(max-width:700px){.product-row{display:block}.price{margin:8px 0}}
+    .price{font-weight:800;white-space:nowrap;text-align:right;margin-bottom:8px}.product-action{text-align:right}
+    @media(max-width:700px){.product-row{display:block}.price{text-align:left;margin:8px 0}.product-action{text-align:left}}
   </style>
 </head>
 <body>
@@ -44,11 +44,11 @@
       <h2 class="h4">Memberships</h2>
       <div class="product-row">
         <div><div class="product-title">Foxchase Gameplan Discord</div><p class="product-desc">Private #gameplan channel for chat, questions, and mentorship.</p></div>
-        <div><div class="price">$39.99/mo</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/foxchase-gameplan-discord/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$39.99/mo</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/foxchase-gameplan-discord/" target="_blank">View</a></div>
       </div>
       <div class="product-row">
         <div><div class="product-title">TradingView + Discord</div><p class="product-desc">TradingView SPY Key Levels & Regimes indicator plus private Discord access.</p></div>
-        <div><div class="price">$49.99/mo</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/tradingview-discord-bundle/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$49.99/mo</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/tradingview-discord-bundle/" target="_blank">View</a></div>
       </div>
     </section>
 
@@ -56,11 +56,11 @@
       <h2 class="h4">Thinkorswim Bundles</h2>
       <div class="product-row">
         <div><div class="product-title">Thinkorswim Foxchase Bundle Pro</div><p class="product-desc">Full ToS workflow: Key Levels, Regimes, Expected Move, ZWAP, and Divergence.</p></div>
-        <div><div class="price">$100</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/thinkorswim-foxchase-bundle-pro/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$100</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/thinkorswim-foxchase-bundle-pro/" target="_blank">View</a></div>
       </div>
       <div class="product-row">
         <div><div class="product-title">Thinkorswim Foxchase Bundle</div><p class="product-desc">ZWAP Bias Engine plus Extrinsic Divergence for SPY 0DTE execution.</p></div>
-        <div><div class="price">$79</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/tos-foxchase-bundle/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$79</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/tos-foxchase-bundle/" target="_blank">View</a></div>
       </div>
     </section>
 
@@ -68,19 +68,19 @@
       <h2 class="h4">Individual Indicators</h2>
       <div class="product-row">
         <div><div class="product-title">TradingView Key Levels & Regimes</div><p class="product-desc">SPY intraday levels, regimes, and expected move context for TradingView.</p></div>
-        <div><div class="price">$19.99/mo</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/spy-key-levels-regimes-indicator/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$19.99/mo</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/spy-key-levels-regimes-indicator/" target="_blank">View</a></div>
       </div>
       <div class="product-row">
         <div><div class="product-title">ToS Key Levels & Regimes</div><p class="product-desc">SPY intraday levels, regimes, and expected move context for Thinkorswim.</p></div>
-        <div><div class="price">$30</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/tos-spy-key-levels-regimes-indicator/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$30</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/tos-spy-key-levels-regimes-indicator/" target="_blank">View</a></div>
       </div>
       <div class="product-row">
         <div><div class="product-title">ZWAP</div><p class="product-desc">VWAP-based directional bias engine optimized for SPY 0DTE and IV behavior.</p></div>
-        <div><div class="price">$49</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/zwap/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$49</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/zwap/" target="_blank">View</a></div>
       </div>
       <div class="product-row">
         <div><div class="product-title">SPY Divergence Indicator</div><p class="product-desc">Thinkorswim SPY/options premium divergence indicator.</p></div>
-        <div><div class="price">$39</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/spy-divergence-indicator/" target="_blank">View</a></div>
+        <div class="product-action"><div class="price">$39</div><a class="btn btn-sm btn-warning" href="https://whop.com/joined/foxchase-trading/products/spy-divergence-indicator/" target="_blank">View</a></div>
       </div>
     </section>
 
