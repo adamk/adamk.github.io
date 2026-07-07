@@ -1,6 +1,6 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-07-07T11:45:02.086715-04:00",
+  "updated_at": "2026-07-07T11:52:54.489042-04:00",
   "current_equity": 7790.29,
   "points": [
     {
@@ -1094,8 +1094,8 @@
   "cash": 7790.29,
   "portfolioValue": 7790.29,
   "openPositions": 0,
-  "lastUpdated": "2026-07-07T11:45:02.086715-04:00",
-  "lastUpdatedDisplay": "07/07/2026, 11:45:02 AM ET",
+  "lastUpdated": "2026-07-07T11:52:54.489042-04:00",
+  "lastUpdatedDisplay": "07/07/2026, 11:52:54 AM ET",
   "source": "Alpaca live account",
   "equityHistory": [
     {
@@ -2111,14 +2111,14 @@
       "equity": 7790.29
     }
   ],
-  "realized_algo_pnl": 0.0,
-  "win_rate": 0.0,
-  "closed_trades": 0,
-  "avg_win": 0.0,
+  "realized_algo_pnl": 607.9999999999999,
+  "win_rate": 100.0,
+  "closed_trades": 6,
+  "avg_win": 101.33333333333331,
   "avg_loss": 0.0,
-  "realizedAlgoPnl": 0.0,
-  "winRate": 0.0,
-  "closedTrades": 0,
-  "avgWin": 0.0,
+  "realizedAlgoPnl": 607.9999999999999,
+  "winRate": 100.0,
+  "closedTrades": 6,
+  "avgWin": 101.33333333333331,
   "avgLoss": 0.0
 }
