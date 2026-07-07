@@ -1017,13 +1017,106 @@
     }
   ],
   "stats": {
-    "realized_algo_pnl": 607.9999999999999,
-    "closed_trades": 6,
-    "wins": 6,
+    "realized_algo_pnl": 805.9999999999999,
+    "closed_trades": 7,
+    "wins": 7,
     "losses": 0,
     "win_rate_pct": 100.0,
-    "avg_win": 101.33333333333331,
-    "avg_loss": null
+    "avg_win": 115.14285714285712,
+    "avg_loss": 0.0,
+    "trades": [
+      {
+        "opened_at": "2026-06-25T16:35:19.789Z",
+        "closed_at": "2026-06-25T17:45:39.475Z",
+        "symbols": [
+          "SPY260625C00735000",
+          "SPY260625C00736000"
+        ],
+        "qty": 2.0,
+        "open_avg": -0.28,
+        "close_avg": 0.16,
+        "pnl": 24.000000000000004,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-06-29T14:09:19.999Z",
+        "closed_at": "2026-06-29T14:34:52.178Z",
+        "symbols": [
+          "SPY260629P00733000",
+          "SPY260629P00734000"
+        ],
+        "qty": 3.0,
+        "open_avg": -0.31,
+        "close_avg": 0.19,
+        "pnl": 36.0,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-06-30T13:31:03.829Z",
+        "closed_at": "2026-06-30T13:55:16.382Z",
+        "symbols": [
+          "SPY260630P00739000",
+          "SPY260630P00740000"
+        ],
+        "qty": 17.0,
+        "open_avg": -0.3,
+        "close_avg": 0.15,
+        "pnl": 254.99999999999997,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-01T13:39:37.628Z",
+        "closed_at": "2026-07-01T13:53:00.525Z",
+        "symbols": [
+          "SPY260701P00741000",
+          "SPY260701P00742000"
+        ],
+        "qty": 3.0,
+        "open_avg": -0.32,
+        "close_avg": 0.2,
+        "pnl": 36.0,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-02T13:31:06.125Z",
+        "closed_at": "2026-07-02T13:37:29.323Z",
+        "symbols": [
+          "SPY260702P00745000",
+          "SPY260702P00746000"
+        ],
+        "qty": 19.0,
+        "open_avg": -0.25,
+        "close_avg": 0.17,
+        "pnl": 151.99999999999997,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-02T15:10:05.436Z",
+        "closed_at": "2026-07-02T15:12:16.258Z",
+        "symbols": [
+          "SPY260702P00743000",
+          "SPY260702P00744000"
+        ],
+        "qty": 21.0,
+        "open_avg": -0.29,
+        "close_avg": 0.24,
+        "pnl": 104.99999999999999,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-07T14:17:26.133Z",
+        "closed_at": "2026-07-07T15:25:21.793Z",
+        "symbols": [
+          "SPY260707C00748000",
+          "SPY260707C00749000"
+        ],
+        "qty": 11.0,
+        "open_avg": -0.35,
+        "close_avg": 0.17,
+        "pnl": 197.99999999999994,
+        "result": "win"
+      }
+    ]
   },
   "recent_trades": [
     {
@@ -2111,14 +2204,116 @@
       "equity": 7790.29
     }
   ],
-  "realized_algo_pnl": 607.9999999999999,
+  "realized_algo_pnl": 805.9999999999999,
   "win_rate": 100.0,
-  "closed_trades": 6,
-  "avg_win": 101.33333333333331,
+  "closed_trades": 7,
+  "avg_win": 115.14285714285712,
   "avg_loss": 0.0,
-  "realizedAlgoPnl": 607.9999999999999,
+  "realizedAlgoPnl": 805.9999999999999,
   "winRate": 100.0,
-  "closedTrades": 6,
-  "avgWin": 101.33333333333331,
-  "avgLoss": 0.0
+  "closedTrades": 7,
+  "avgWin": 115.14285714285712,
+  "avgLoss": 0.0,
+  "trade_stats": {
+    "realized_algo_pnl": 805.9999999999999,
+    "closed_trades": 7,
+    "wins": 7,
+    "losses": 0,
+    "win_rate_pct": 100.0,
+    "avg_win": 115.14285714285712,
+    "avg_loss": 0.0,
+    "trades": [
+      {
+        "opened_at": "2026-06-25T16:35:19.789Z",
+        "closed_at": "2026-06-25T17:45:39.475Z",
+        "symbols": [
+          "SPY260625C00735000",
+          "SPY260625C00736000"
+        ],
+        "qty": 2.0,
+        "open_avg": -0.28,
+        "close_avg": 0.16,
+        "pnl": 24.000000000000004,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-06-29T14:09:19.999Z",
+        "closed_at": "2026-06-29T14:34:52.178Z",
+        "symbols": [
+          "SPY260629P00733000",
+          "SPY260629P00734000"
+        ],
+        "qty": 3.0,
+        "open_avg": -0.31,
+        "close_avg": 0.19,
+        "pnl": 36.0,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-06-30T13:31:03.829Z",
+        "closed_at": "2026-06-30T13:55:16.382Z",
+        "symbols": [
+          "SPY260630P00739000",
+          "SPY260630P00740000"
+        ],
+        "qty": 17.0,
+        "open_avg": -0.3,
+        "close_avg": 0.15,
+        "pnl": 254.99999999999997,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-01T13:39:37.628Z",
+        "closed_at": "2026-07-01T13:53:00.525Z",
+        "symbols": [
+          "SPY260701P00741000",
+          "SPY260701P00742000"
+        ],
+        "qty": 3.0,
+        "open_avg": -0.32,
+        "close_avg": 0.2,
+        "pnl": 36.0,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-02T13:31:06.125Z",
+        "closed_at": "2026-07-02T13:37:29.323Z",
+        "symbols": [
+          "SPY260702P00745000",
+          "SPY260702P00746000"
+        ],
+        "qty": 19.0,
+        "open_avg": -0.25,
+        "close_avg": 0.17,
+        "pnl": 151.99999999999997,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-02T15:10:05.436Z",
+        "closed_at": "2026-07-02T15:12:16.258Z",
+        "symbols": [
+          "SPY260702P00743000",
+          "SPY260702P00744000"
+        ],
+        "qty": 21.0,
+        "open_avg": -0.29,
+        "close_avg": 0.24,
+        "pnl": 104.99999999999999,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-07T14:17:26.133Z",
+        "closed_at": "2026-07-07T15:25:21.793Z",
+        "symbols": [
+          "SPY260707C00748000",
+          "SPY260707C00749000"
+        ],
+        "qty": 11.0,
+        "open_avg": -0.35,
+        "close_avg": 0.17,
+        "pnl": 197.99999999999994,
+        "result": "win"
+      }
+    ]
+  }
 }
