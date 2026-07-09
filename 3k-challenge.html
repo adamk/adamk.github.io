@@ -10,7 +10,6 @@
   
     gtag('config', 'G-ZKVBZ3QJ1F');
   </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Foxchase $3k Account Series</title>
@@ -364,82 +363,93 @@
     border-radius: 0 12px 12px 0;
     color: var(--text);
   }
-.navbar {
+
+    .fc-nav {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 8px;
+      padding: 0 18px;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    @media (min-width: 992px) {
-      .rounded-lg-pill { border-radius: 50rem !important; }
-      .bg-lg-panel { background: rgba(18, 27, 45, 0.92) !important; }
-      .shadow-lg-sm { box-shadow: 0 .125rem .25rem rgba(0,0,0,.25) !important; }
-      .border-lg { border: 1px solid var(--border) !important; }
+    .fc-nav-inner {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: rgba(18, 27, 45, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.25);
     }
 
-    @media (max-width: 991.98px) {
-      .navbar-collapse {
-        margin-top: .75rem;
-        width: 100%;
-      }
-
-      .navbar-nav {
-        background: rgba(18, 27, 45, 0.95);
-        border: 1px solid var(--border);
-        border-radius: .75rem;
-        padding: .75rem 1rem;
-        box-shadow: 0 .125rem .25rem rgba(0,0,0,.25);
-      }
-    }
-
-    .navbar-nav .nav-link {
+    .fc-nav a {
       color: var(--muted);
+      text-decoration: none;
       font-weight: 600;
       font-size: 14px;
     }
 
-    .navbar-nav .nav-link:hover {
+    .fc-nav a:hover {
       color: var(--accent);
+      text-decoration: none;
     }
 
-    .navbar-nav .nav-link.active {
+    .fc-nav a.active {
       background: rgba(245, 158, 11, 0.14);
-      color: var(--accent) !important;
+      color: var(--accent);
       border-radius: 999px;
-      padding-left: 0.85rem;
-      padding-right: 0.85rem;
+      padding: 4px 10px;
     }
 
-    .navbar-toggler {
-      border-color: var(--border);
+    .fc-nav-toggle {
+      display: none;
+      border: 1px solid var(--border);
       background: rgba(18, 27, 45, 0.95);
+      color: var(--text);
+      border-radius: .5rem;
+      padding: .45rem .65rem;
+      font-size: 1.25rem;
+      line-height: 1;
     }
 
-    .navbar-toggler-icon {
-      filter: invert(1);
+    @media (max-width: 991.98px) {
+      .fc-nav {
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+      }
+
+      .fc-nav-toggle {
+        display: block;
+      }
+
+      .fc-nav-inner {
+        display: none;
+        width: 100%;
+        border-radius: .75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .fc-nav.open .fc-nav-inner {
+        display: flex;
+      }
     }
 
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-transparent pt-3">
-    <div class="container justify-content-end justify-content-lg-center">
-      <button class="navbar-toggler mb-2" type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#foxchaseNav"
-              aria-controls="foxchaseNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
-        <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-panel shadow-lg-sm border-lg">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/3k-challenge">Small Account Series</a></li>
-          <li class="nav-item"><a class="nav-link" href="/planner/">Planner</a></li>
-          <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
-        </ul>
-      </div>
+  <nav class="fc-nav" id="fcNav">
+    <button class="fc-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleFcNav()">☰</button>
+    <div class="fc-nav-inner">
+      <a href="/">Home</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/3k-challenge" class="active">Small Account Series</a>
+      <a href="/planner/">Planner</a>
+      <a href="/products.html">Products</a>
     </div>
   </nav>
   <div class="wrap">
@@ -3364,6 +3374,15 @@
     }
   });
 </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function toggleFcNav() {
+      const nav = document.getElementById("fcNav");
+      const btn = nav.querySelector(".fc-nav-toggle");
+      nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
+    }
+  </script>
+
 </body>
 </html>
