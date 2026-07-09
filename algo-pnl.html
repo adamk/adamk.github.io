@@ -236,6 +236,32 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&L</div><div class="research-value">+$3,676.50</div></div>
     </div>
 
+    <h2>Volatility Guardrail Candidate</h2>
+
+    <div class="pnl-note">
+      <strong>Forward-validation candidate:</strong>
+      A VXX 60-day percentile guardrail has been added to the live and paper algorithm as a volatility-context filter.
+      The rule is intentionally narrow: it only blocks two specific strategy sleeves under extreme volatility conditions.
+      It does not broadly block low-volatility or high-volatility markets.
+    </div>
+
+    <div class="research-metrics">
+      <div class="research-card"><div class="research-label">Baseline Research Sample</div><div class="research-value">193 trades</div></div>
+      <div class="research-card"><div class="research-label">Filtered Candidate Sample</div><div class="research-value">187 trades</div></div>
+      <div class="research-card"><div class="research-label">Baseline Research P&amp;L</div><div class="research-value">+$20,115.50</div></div>
+      <div class="research-card"><div class="research-label">Filtered Candidate P&amp;L</div><div class="research-value">+$22,766.00</div></div>
+      <div class="research-card"><div class="research-label">Baseline Profit Factor</div><div class="research-value">2.01</div></div>
+      <div class="research-card"><div class="research-label">Filtered Profit Factor</div><div class="research-value">2.39</div></div>
+      <div class="research-card"><div class="research-label">Baseline Max Drawdown</div><div class="research-value">-7.46%</div></div>
+      <div class="research-card"><div class="research-label">Filtered Max Drawdown</div><div class="research-value">-4.60%</div></div>
+    </div>
+
+    <p class="small">
+      The VXX guardrail blocks one debit-spread sleeve when VXX is in the bottom 15th percentile of its prior 60-day range,
+      and blocks one credit-spread sleeve when VXX is in the top 15th percentile of its prior 60-day range.
+      This improved the selected-sample research result, but it remains a forward-validation candidate until confirmed through live/paper execution.
+    </p>
+
     <h2>Anonymized Setup Attribution</h2>
 
     <div class="research-table-wrap">
