@@ -1,53 +1,129 @@
 declare upper;
 
 input showEM = yes;
-input sessionMinutes = 390;        # 09:30 -> 16:00 = 390
-input useRTHOpenAnchor = yes;      # if no, uses prior close
+input sessionMinutes = 390;  
+input anchorMode = {default RTH_Open, Prior_Close};
 input showLabels = yes;
 
-# --- New day ---
-def newDay = GetYYYYMMDD() <> GetYYYYMMDD()[1];
+# =========================================================
+# SESSION LOGIC
+# =========================================================
 
-# --- RTH session flags (constants only) ---
-def isRTH = SecondsFromTime(0930) >= 0 and SecondsTillTime(1600) > 0;
-def rthStart = isRTH and !isRTH[1];
-  
-# --- Anchor price (latched) ---
+def newDay =
+    GetYYYYMMDD() <> GetYYYYMMDD()[1];
+
+def isRTH =
+    SecondsFromTime(0930) >= 0 and
+    SecondsTillTime(1600) > 0;
+
+def rthStart =
+    isRTH and !isRTH[1];
+
+# =========================================================
+# RTH OPEN ANCHOR
+# =========================================================
+# rthStart is checked before newDay so this works properly
+# on both SPY and SPX charts.
+
 def rthOpenLatched =
-    CompoundValue(1,
-        if newDay then Double.NaN
-        else if rthStart then open
+    CompoundValue(
+        1,
+        if rthStart then open
+        else if newDay then Double.NaN
         else rthOpenLatched[1],
         Double.NaN
     );
 
-def priorClose = close(period = AggregationPeriod.DAY)[1];
-def anchor = if useRTHOpenAnchor then rthOpenLatched else priorClose;
+# =========================================================
+# PRIOR CLOSE ANCHOR
+# =========================================================
 
-# --- Real IV from Thinkorswim (decimal, e.g., 0.18 = 18%) ---
-def iv = ImpVolatility();
+def priorClose =
+    close(period = AggregationPeriod.DAY)[1];
 
-# --- Time fraction in years ---
-def T = sessionMinutes / 525600.0;
+# =========================================================
+# SELECTED ANCHOR
+# =========================================================
 
-# --- Expected Move (1σ) ---
-def em = if !IsNaN(anchor) and !IsNaN(iv) then anchor * iv * Sqrt(T) else Double.NaN;
-def emUpper = anchor + em;
-def emLower = anchor - em;
+def anchor =
+    if anchorMode == anchorMode.RTH_Open
+    then rthOpenLatched
+    else priorClose;
 
-plot EM_Upper = if showEM then emUpper else Double.NaN;
-plot EM_Lower = if showEM then emLower else Double.NaN;
+# =========================================================
+# IMPLIED VOLATILITY
+# =========================================================
+# Uses the implied volatility of the charted symbol.
+# SPY chart = SPY IV
+# SPX chart = SPX IV
+
+def iv =
+    ImpVolatility();
+
+# =========================================================
+# EXPECTED MOVE CALCULATION
+# =========================================================
+# Convert session minutes into a fraction of one year.
+
+def T =
+    sessionMinutes / 525600.0;
+
+# One-standard-deviation expected move.
+
+def em =
+    if !IsNaN(anchor) and !IsNaN(iv)
+    then anchor * iv * Sqrt(T)
+    else Double.NaN;
+
+def emUpper =
+    anchor + em;
+
+def emLower =
+    anchor - em;
+
+# =========================================================
+# PLOTS
+# =========================================================
+
+plot EM_Upper =
+    if showEM and isRTH
+    then emUpper
+    else Double.NaN;
+
+plot EM_Lower =
+    if showEM and isRTH
+    then emLower
+    else Double.NaN;
+
+EM_Upper.SetDefaultColor(Color.CYAN);
+EM_Lower.SetDefaultColor(Color.CYAN);
 
 EM_Upper.SetLineWeight(2);
 EM_Lower.SetLineWeight(2);
+
 EM_Upper.SetStyle(Curve.FIRM);
 EM_Lower.SetStyle(Curve.FIRM);
 
-AddLabel(showLabels and showEM and !IsNaN(em),
-    "EM ±1σ: " + AsDollars(em) + " | IV: " + AsPercent(iv) + " | Anchor: " + AsDollars(anchor),
+# =========================================================
+# LABEL
+# =========================================================
+
+AddLabel(
+    showLabels and
+    showEM and
+    !IsNaN(em),
+
+    "EM ±1σ: " + AsDollars(em)
+    + " | Upper: " + AsDollars(emUpper)
+    + " | Lower: " + AsDollars(emLower)
+    + " | IV: " + AsPercent(iv)
+    + " | Anchor: "
+    + (
+        if anchorMode == anchorMode.RTH_Open
+        then "RTH Open "
+        else "Prior Close "
+      )
+    + AsDollars(anchor),
+
     Color.GRAY
 );
-EM_Upper.SetDefaultColor(Color.CYAN);
-EM_Lower.SetDefaultColor(Color.CYAN);
-EM_Upper.SetLineWeight(2);
-EM_Lower.SetLineWeight(2);
