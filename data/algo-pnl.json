@@ -1,7 +1,7 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-07-10T10:45:02.278146-04:00",
-  "current_equity": 7870.68,
+  "updated_at": "2026-07-10T11:00:01.921103-04:00",
+  "current_equity": 7869.78,
   "points": [
     {
       "date": "2025-07-03",
@@ -1025,16 +1025,16 @@
     },
     {
       "date": "2026-07-10",
-      "equity": 7870.68
+      "equity": 7869.78
     }
   ],
   "stats": {
-    "realized_algo_pnl": 805.9999999999999,
-    "closed_trades": 7,
-    "wins": 7,
+    "realized_algo_pnl": 886.9999999999999,
+    "closed_trades": 8,
+    "wins": 8,
     "losses": 0,
     "win_rate_pct": 100.0,
-    "avg_win": 115.14285714285712,
+    "avg_win": 110.87499999999999,
     "avg_loss": 0.0,
     "trades": [
       {
@@ -1127,6 +1127,19 @@
         "close_avg": 0.17,
         "pnl": 197.99999999999994,
         "result": "win"
+      },
+      {
+        "opened_at": "2026-07-10T14:34:52.179Z",
+        "closed_at": "2026-07-10T14:48:35.453Z",
+        "symbols": [
+          "SPY260710P00748000",
+          "SPY260710P00749000"
+        ],
+        "qty": 9.0,
+        "open_avg": -0.22,
+        "close_avg": 0.13,
+        "pnl": 81.0,
+        "result": "win"
       }
     ]
   },
@@ -1194,13 +1207,13 @@
   ],
   "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. Account equity history excludes cashflows where possible, but the chart may still differ from pure strategy returns.",
   "account": "Live account",
-  "currentEquity": 7870.68,
-  "buyingPower": 28350.72,
-  "cash": 7987.68,
-  "portfolioValue": 7870.68,
-  "openPositions": 2,
-  "lastUpdated": "2026-07-10T10:45:02.278146-04:00",
-  "lastUpdatedDisplay": "07/10/2026, 10:45:02 AM ET",
+  "currentEquity": 7869.78,
+  "buyingPower": 31479.12,
+  "cash": 7869.78,
+  "portfolioValue": 7869.78,
+  "openPositions": 0,
+  "lastUpdated": "2026-07-10T11:00:01.921103-04:00",
+  "lastUpdatedDisplay": "07/10/2026, 11:00:01 AM ET",
   "source": "Alpaca live account",
   "equityHistory": [
     {
@@ -2225,26 +2238,26 @@
     },
     {
       "date": "2026-07-10",
-      "equity": 7870.68
+      "equity": 7869.78
     }
   ],
-  "realized_algo_pnl": 805.9999999999999,
+  "realized_algo_pnl": 886.9999999999999,
   "win_rate": 100.0,
-  "closed_trades": 7,
-  "avg_win": 115.14285714285712,
+  "closed_trades": 8,
+  "avg_win": 110.87499999999999,
   "avg_loss": 0.0,
-  "realizedAlgoPnl": 805.9999999999999,
+  "realizedAlgoPnl": 886.9999999999999,
   "winRate": 100.0,
-  "closedTrades": 7,
-  "avgWin": 115.14285714285712,
+  "closedTrades": 8,
+  "avgWin": 110.87499999999999,
   "avgLoss": 0.0,
   "trade_stats": {
-    "realized_algo_pnl": 805.9999999999999,
-    "closed_trades": 7,
-    "wins": 7,
+    "realized_algo_pnl": 886.9999999999999,
+    "closed_trades": 8,
+    "wins": 8,
     "losses": 0,
     "win_rate_pct": 100.0,
-    "avg_win": 115.14285714285712,
+    "avg_win": 110.87499999999999,
     "avg_loss": 0.0,
     "trades": [
       {
@@ -2336,6 +2349,19 @@
         "open_avg": -0.35,
         "close_avg": 0.17,
         "pnl": 197.99999999999994,
+        "result": "win"
+      },
+      {
+        "opened_at": "2026-07-10T14:34:52.179Z",
+        "closed_at": "2026-07-10T14:48:35.453Z",
+        "symbols": [
+          "SPY260710P00748000",
+          "SPY260710P00749000"
+        ],
+        "qty": 9.0,
+        "open_avg": -0.22,
+        "close_avg": 0.13,
+        "pnl": 81.0,
         "result": "win"
       }
     ]
