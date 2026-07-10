@@ -1,7 +1,7 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-07-10T10:15:01.826886-04:00",
-  "current_equity": 7790.6,
+  "updated_at": "2026-07-10T10:45:02.278146-04:00",
+  "current_equity": 7870.68,
   "points": [
     {
       "date": "2025-07-03",
@@ -1025,7 +1025,7 @@
     },
     {
       "date": "2026-07-10",
-      "equity": 7790.6
+      "equity": 7870.68
     }
   ],
   "stats": {
@@ -1194,13 +1194,13 @@
   ],
   "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. Account equity history excludes cashflows where possible, but the chart may still differ from pure strategy returns.",
   "account": "Live account",
-  "currentEquity": 7790.6,
-  "buyingPower": 31162.4,
-  "cash": 7790.6,
-  "portfolioValue": 7790.6,
-  "openPositions": 0,
-  "lastUpdated": "2026-07-10T10:15:01.826886-04:00",
-  "lastUpdatedDisplay": "07/10/2026, 10:15:01 AM ET",
+  "currentEquity": 7870.68,
+  "buyingPower": 28350.72,
+  "cash": 7987.68,
+  "portfolioValue": 7870.68,
+  "openPositions": 2,
+  "lastUpdated": "2026-07-10T10:45:02.278146-04:00",
+  "lastUpdatedDisplay": "07/10/2026, 10:45:02 AM ET",
   "source": "Alpaca live account",
   "equityHistory": [
     {
@@ -2225,7 +2225,7 @@
     },
     {
       "date": "2026-07-10",
-      "equity": 7790.6
+      "equity": 7870.68
     }
   ],
   "realized_algo_pnl": 805.9999999999999,
