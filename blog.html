@@ -234,6 +234,54 @@
   }
 
 </style>
+
+<style>
+  /* Blog hamburger clipping final fix */
+  @media (max-width: 991.98px) {
+    body {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    body > nav.navbar {
+      position: relative !important;
+      top: 0 !important;
+      margin-top: 0 !important;
+      padding-top: 16px !important;
+      min-height: 64px !important;
+      overflow: visible !important;
+    }
+
+    body > nav.navbar > .container {
+      position: relative !important;
+      min-height: 48px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      overflow: visible !important;
+    }
+
+    body > nav.navbar .navbar-toggler {
+      position: relative !important;
+      top: 0 !important;
+      right: 0 !important;
+      margin: 0 0 8px auto !important;
+      padding: 6px 10px !important;
+      line-height: 1 !important;
+      transform: none !important;
+      overflow: visible !important;
+    }
+
+    body > nav.navbar .navbar-toggler-icon {
+      display: block !important;
+      width: 1.5em !important;
+      height: 1.5em !important;
+      margin: 0 !important;
+      vertical-align: middle !important;
+    }
+  }
+</style>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
