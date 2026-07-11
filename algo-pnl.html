@@ -261,7 +261,7 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below shows a historical research backtest of the latest deployed Foxchase algo research ruleset compared with SPY buy and hold.
-      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, the R1 call-fly replacement component, and the frozen failed-downside fade sleeve now enabled in live/paper.
+      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, the R1 call-fly replacement candidate, and the frozen no-steal failed-downside fade sleeve now enabled in live/paper.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
@@ -275,12 +275,12 @@ function setTextIfExists(id, value) {
 
 
     <!-- latest-ruleset-start -->
-    <h2>Latest Research Ruleset</h2>
+    <h2>Latest Deployed Research Ruleset</h2>
 
     <div class="pnl-note">
-      <strong>Latest research ruleset:</strong>
-      The current ruleset includes the official selected-trade framework, a narrow VXX volatility guardrail,
-      and an R1 call-butterfly replacement component. This latest research variant produced +$27,683.50 on a $10,000 starting account,
+      <strong>Latest deployed research ruleset:</strong>
+      The current live/paper bot includes the official selected-trade framework, a narrow VXX volatility guardrail,
+      an R1 call-butterfly replacement candidate, and a frozen no-steal failed-downside fade sleeve. This latest research variant produced +$27,683.50 on a $10,000 starting account,
       ending at $37,683.50. This represents a 276.84% total return over the research sample, not annualized,
       with a 77.18% win rate, 2.60 profit factor, and -4.52% historical maximum drawdown.
     </div>
@@ -315,8 +315,11 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Profitable Rolling 12-Month Windows</div><div class="research-value">31 / 31</div></div>
       <div class="research-card"><div class="research-label">Worst Rolling 3-Month P&L</div><div class="research-value">-$120.50</div></div>
       <div class="research-card"><div class="research-label">Worst Rolling 6-Month P&L</div><div class="research-value">+$846.00</div></div>
-      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&L</div>
-<h2>Anonymized Setup Attribution</h2>
+      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&L</div><div class="research-value">+$3,676.50</div></div>
+    </div>
+
+
+    <h2>Anonymized Setup Attribution</h2>
 
     <div class="research-table-wrap">
       <table class="research-table">
@@ -359,7 +362,7 @@ function setTextIfExists(id, value) {
       Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, and non-compounded position sizing.
       Position size does not increase as the backtest equity curve grows.
       The backtest allows one trade per day maximum, uses SPY 0DTE options, and assumes mid-price entry/exit fills.
-      The latest ruleset uses replacement logic for the R1 call-butterfly component rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
+      The latest ruleset uses replacement logic for the R1 call-butterfly candidate rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
       Historical options quote data was sourced from ThetaData.
     </p>
 
