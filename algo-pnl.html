@@ -233,14 +233,14 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below shows a historical research backtest of the latest deployed Foxchase algo research ruleset compared with SPY buy and hold.
-      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, and the R1 call-fly replacement candidate now enabled in live/paper.
+      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, the R1 call-fly replacement candidate, and the frozen failed-downside fade sleeve now enabled in live/paper.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
         src="/images/foxchase_latest_algo_vs_spy.png"
-        alt="Foxchase Algo Latest Ruleset Research Backtest vs SPY Buy and Hold"
+        alt="Foxchase Algo Latest Ruleset + Frozen Fade Research Backtest vs SPY Buy and Hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
@@ -252,19 +252,19 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Latest deployed research ruleset:</strong>
       The current live/paper bot includes the official selected-trade framework, a narrow VXX volatility guardrail,
-      and an R1 call-butterfly replacement candidate. This latest research variant produced +$24,656.50 on a $10,000 starting account,
-      ending at $34,656.50. This represents a 246.56% total return over the research sample, not annualized,
-      with a 75.94% win rate, 2.51 profit factor, and -4.60% historical maximum drawdown.
+      and an R1 call-butterfly replacement candidate. This latest research variant produced +$27,683.50 on a $10,000 starting account,
+      ending at $37,683.50. This represents a 276.84% total return over the research sample, not annualized,
+      with a 77.18% win rate, 2.60 profit factor, and -4.52% historical maximum drawdown.
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Latest Research Sample</div><div class="research-value">187 trades</div></div>
-      <div class="research-card"><div class="research-label">Latest Research P&amp;L</div><div class="research-value">+$24,656.50</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$34,656.50</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">246.56%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">75.94%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.51</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.60%</div></div>
+      <div class="research-card"><div class="research-label">Latest Research Sample</div><div class="research-value">206 trades</div></div>
+      <div class="research-card"><div class="research-label">Latest Research P&amp;L</div><div class="research-value">+$27,683.50</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$37,683.50</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">276.84%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.18%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.60</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.52%</div></div>
       <div class="research-card"><div class="research-label">Worst Trade</div><div class="research-value">-$745.50</div></div>
       <div class="research-card"><div class="research-label">SPY Buy &amp; Hold Return</div><div class="research-value">91.73%</div></div>
       <div class="research-card"><div class="research-label">SPY Buy &amp; Hold Max DD</div><div class="research-value">-19.89%</div></div>
@@ -301,14 +301,14 @@ function setTextIfExists(id, value) {
 
     <div class="research-metrics">
       <div class="research-card"><div class="research-label">Official Baseline Research P&amp;L</div><div class="research-value">+$20,115.50</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Research P&amp;L</div><div class="research-value">+$24,656.50</div></div>
+      <div class="research-card"><div class="research-label">Latest Ruleset Research P&amp;L</div><div class="research-value">+$27,683.50</div></div>
       <div class="research-card"><div class="research-label">Official Baseline Sample</div><div class="research-value">193 trades</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Sample</div><div class="research-value">187 trades</div></div>
+      <div class="research-card"><div class="research-label">Latest Ruleset Sample</div><div class="research-value">206 trades</div></div>
       <div class="research-card"><div class="research-label">VXX-Blocked Trades</div><div class="research-value">6</div></div>
       <div class="research-card"><div class="research-label">Blocked-Trade Net P&amp;L Removed</div><div class="research-value">-$2,650.50</div></div>
       <div class="research-card"><div class="research-label">R1 Call-Fly Replacements</div><div class="research-value">6</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Profit Factor</div><div class="research-value">2.51</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Max Drawdown</div><div class="research-value">-4.60%</div></div>
+      <div class="research-card"><div class="research-label">Latest Ruleset Profit Factor</div><div class="research-value">2.60</div></div>
+      <div class="research-card"><div class="research-label">Latest Ruleset Max Drawdown</div><div class="research-value">-4.52%</div></div>
     </div>
 
     <p class="small">
@@ -352,7 +352,7 @@ function setTextIfExists(id, value) {
       Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, and non-compounded position sizing.
       Position size does not increase as the backtest equity curve grows.
       The backtest allows one trade per day maximum, uses SPY 0DTE options, and assumes mid-price entry/exit fills.
-      The latest ruleset uses replacement logic for the R1 call-butterfly candidate rather than adding a second same-day trade.
+      The latest ruleset uses replacement logic for the R1 call-butterfly candidate rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
       Historical options quote data was sourced from ThetaData.
     </p>
 
