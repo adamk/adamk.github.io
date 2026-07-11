@@ -197,67 +197,59 @@
 </style>
 
 <style>
-  /* Blog mobile navbar authoritative fix */
+  /* Blog navbar reset to standard Bootstrap layout */
+  @media (min-width: 992px) {
+    .rounded-lg-pill {
+      border-radius: 50rem !important;
+    }
+
+    .bg-lg-white {
+      background-color: #fff !important;
+    }
+
+    .shadow-lg-sm {
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+    }
+
+    .border-lg {
+      border: 1px solid #dee2e6 !important;
+    }
+  }
+
   @media (max-width: 991.98px) {
-    body > nav.navbar {
-      position: relative !important;
-      display: block !important;
-      width: 100% !important;
-      min-height: 72px !important;
-      margin: 0 !important;
-      padding: 20px 0 8px !important;
-      overflow: visible !important;
+    .navbar {
+      position: static;
+      width: 100%;
+      margin: 0;
+      padding-top: 1rem !important;
+      overflow: visible;
     }
 
-    body > nav.navbar > .container {
-      position: relative !important;
-      display: flex !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      min-height: 44px !important;
-      margin: 0 auto !important;
-      padding: 0 12px !important;
+    .navbar > .container {
+      width: 100%;
+      max-width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
       justify-content: flex-end !important;
-      align-items: flex-start !important;
-      overflow: visible !important;
+      overflow: visible;
     }
 
-    body > nav.navbar .navbar-toggler {
-      position: relative !important;
-      display: inline-flex !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      width: 56px !important;
-      height: 42px !important;
-      margin: 0 0 0 auto !important;
-      padding: 7px 12px !important;
-      align-items: center !important;
-      justify-content: center !important;
-      line-height: 1 !important;
-      transform: none !important;
-      overflow: visible !important;
-      z-index: 1000 !important;
+    .navbar-toggler {
+      margin-left: auto;
+      margin-bottom: .5rem;
     }
 
-    body > nav.navbar .navbar-toggler-icon {
-      position: relative !important;
-      display: block !important;
-      width: 24px !important;
-      height: 24px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      flex: 0 0 24px !important;
-      background-position: center !important;
-      background-size: 24px 24px !important;
-      background-repeat: no-repeat !important;
-      transform: none !important;
-      overflow: visible !important;
+    .navbar-collapse {
+      margin-top: .75rem;
+      width: 100%;
     }
 
-    body > nav.navbar .navbar-collapse {
-      flex-basis: 100% !important;
-      width: 100% !important;
-      margin-top: 8px !important;
+    .navbar-nav {
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: .75rem;
+      padding: .75rem 1rem;
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
     }
   }
 </style>
@@ -267,7 +259,7 @@
 <body class="d-flex flex-column min-vh-100">
 
   <nav class="navbar navbar-expand-lg bg-transparent pt-3">
-    <div class="container justify-content-end justify-content-lg-center mt-0">
+    <div class="container justify-content-end justify-content-lg-center">
       <button class="navbar-toggler mb-2" type="button"
               data-bs-toggle="collapse"
               data-bs-target="#foxchaseNav"
@@ -279,23 +271,11 @@
 
       <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
         <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-white shadow-lg-sm border-lg">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/blog.html">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/3k-challenge">Small Account Series</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/planner/">Planner</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               href="/products.html"
-               >Products</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/3k-challenge">Small Account Series</a></li>
+          <li class="nav-item"><a class="nav-link" href="/planner/">Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
         </ul>
       </div>
     </div>
