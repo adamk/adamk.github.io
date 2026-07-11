@@ -236,48 +236,38 @@
 </style>
 
 <style>
-  /* Blog hamburger clipping final fix */
+  /* Blog mobile hamburger minimal fix */
   @media (max-width: 991.98px) {
-    body {
-      padding-top: env(safe-area-inset-top, 0px);
-    }
-
     body > nav.navbar {
-      position: relative !important;
-      top: 0 !important;
-      margin-top: 0 !important;
-      padding-top: 16px !important;
-      min-height: 64px !important;
+      padding-top: 20px !important;
       overflow: visible !important;
     }
 
     body > nav.navbar > .container {
-      position: relative !important;
-      min-height: 48px !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      align-items: center !important;
+      width: 100%;
       justify-content: flex-end !important;
       overflow: visible !important;
     }
 
     body > nav.navbar .navbar-toggler {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
       position: relative !important;
-      top: 0 !important;
-      right: 0 !important;
       margin: 0 0 8px auto !important;
-      padding: 6px 10px !important;
-      line-height: 1 !important;
       transform: none !important;
-      overflow: visible !important;
+      z-index: 1000;
     }
 
     body > nav.navbar .navbar-toggler-icon {
-      display: block !important;
-      width: 1.5em !important;
-      height: 1.5em !important;
-      margin: 0 !important;
-      vertical-align: middle !important;
+      display: inline-block !important;
+      visibility: visible !important;
+    }
+  }
+
+  @media (min-width: 992px) {
+    body > nav.navbar .navbar-toggler {
+      display: none !important;
     }
   }
 </style>
