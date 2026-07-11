@@ -261,7 +261,7 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below shows a historical research backtest of the latest deployed Foxchase algo research ruleset compared with SPY buy and hold.
-      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, the R1 call-fly replacement candidate, and the frozen failed-downside fade sleeve now enabled in live/paper.
+      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, the R1 call-fly replacement component, and the frozen failed-downside fade sleeve now enabled in live/paper.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
@@ -275,12 +275,12 @@ function setTextIfExists(id, value) {
 
 
     <!-- latest-ruleset-start -->
-    <h2>Latest Deployed Research Ruleset</h2>
+    <h2>Latest Research Ruleset</h2>
 
     <div class="pnl-note">
-      <strong>Latest deployed research ruleset:</strong>
-      The current live/paper bot includes the official selected-trade framework, a narrow VXX volatility guardrail,
-      and an R1 call-butterfly replacement candidate. This latest research variant produced +$27,683.50 on a $10,000 starting account,
+      <strong>Latest research ruleset:</strong>
+      The current ruleset includes the official selected-trade framework, a narrow VXX volatility guardrail,
+      and an R1 call-butterfly replacement component. This latest research variant produced +$27,683.50 on a $10,000 starting account,
       ending at $37,683.50. This represents a 276.84% total return over the research sample, not annualized,
       with a 77.18% win rate, 2.60 profit factor, and -4.52% historical maximum drawdown.
     </div>
@@ -319,12 +319,12 @@ function setTextIfExists(id, value) {
     </div>
 
 
-    <h2>Deployed Research Candidates</h2>
+    <h2>What Changed From the Official Baseline</h2>
 
     <div class="pnl-note">
-      <strong>Forward-validation candidates now enabled:</strong>
-      The live and paper bot now include a narrow VXX 60-day percentile guardrail and an R1 call-butterfly replacement candidate.
-      These rules improved the selected-sample research result, but they remain forward-validation candidates until confirmed through live/paper execution.
+      <strong>Forward-validation components now enabled:</strong>
+      The live and paper bot now include a narrow VXX 60-day percentile guardrail and an R1 call-butterfly replacement component.
+      These rules improved the selected-sample research result, but they remain forward-validation components until confirmed through live/paper execution.
     </div>
 
     <div class="research-metrics">
@@ -334,7 +334,15 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Latest Ruleset Sample</div><div class="research-value">206 trades</div></div>
       <div class="research-card"><div class="research-label">VXX-Blocked Trades</div><div class="research-value">6</div></div>
       <div class="research-card"><div class="research-label">Blocked-Trade Net P&amp;L Removed</div><div class="research-value">-$2,650.50</div></div>
-      <div class="research-card"><div class="research-label">R1 Call-Fly Replacements</div><div class="research-value">6</div></div>
+      <div class="research-card"><div class="research-label">R1 Call-Fly Replacements</div><div class="research-value">6</div>
+      <div class="stat-card">
+        <div class="stat-label">Failed-Downside Fade Trades</div>
+        <div class="stat-value">19</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Failed-Downside Fade P&amp;L</div>
+        <div class="stat-value">+$3,027.00</div>
+      </div></div>
       <div class="research-card"><div class="research-label">Latest Ruleset Profit Factor</div><div class="research-value">2.60</div></div>
       <div class="research-card"><div class="research-label">Latest Ruleset Max Drawdown</div><div class="research-value">-4.52%</div></div>
     </div>
@@ -342,7 +350,7 @@ function setTextIfExists(id, value) {
     <p class="small">
       The VXX guardrail blocks one debit-spread sleeve when VXX is in the bottom 15th percentile of its prior 60-day range,
       and blocks one credit-spread sleeve when VXX is in the top 15th percentile of its prior 60-day range.
-      The R1 call-butterfly candidate replaces, rather than adds to, a specific R1 iron-condor sleeve when the butterfly passes quote, debit, and sizing filters.
+      The R1 call-butterfly component replaces, rather than adds to, a specific R1 iron-condor sleeve when the butterfly passes quote, debit, and sizing filters.
       These are narrow strategy-specific rules, not broad volatility or market-direction filters.
     </p>
 
@@ -367,12 +375,21 @@ function setTextIfExists(id, value) {
           <tr><td>Setup C</td><td>16</td><td>$4,705.00</td><td>81.25%</td><td>3.41</td><td>$502.25</td><td>-$745.50</td></tr>
           <tr><td>Setup D</td><td>11</td><td>$2,645.50</td><td>81.82%</td><td>2.34</td><td>$500.00</td><td>-$997.50</td></tr>
           <tr><td>Setup E</td><td>34</td><td>$1,102.50</td><td>70.59%</td><td>1.28</td><td>$162.00</td><td>-$855.00</td></tr>
+            <tr>
+              <td>Setup F</td>
+              <td>19</td>
+              <td>$3,027.00</td>
+              <td>89.47%</td>
+              <td>4.33</td>
+              <td>$208.00</td>
+              <td>-$546.00</td>
+            </tr>
         </tbody>
       </table>
     </div>
 
     <p class="small">
-      Setup-level attribution is shown using anonymized strategy sleeves. The exact trigger logic, regime definitions,
+      Setup-level attribution is shown using anonymized strategy sleeves. Setups A–E represent the original official selected-trade framework, while Setup F represents the frozen no-steal expansion sleeve now enabled in live/paper. The exact trigger logic, regime definitions,
       level framework, and execution rules are proprietary to the Foxchase framework.
     </p>
 
@@ -380,7 +397,7 @@ function setTextIfExists(id, value) {
       Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, and non-compounded position sizing.
       Position size does not increase as the backtest equity curve grows.
       The backtest allows one trade per day maximum, uses SPY 0DTE options, and assumes mid-price entry/exit fills.
-      The latest ruleset uses replacement logic for the R1 call-butterfly candidate rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
+      The latest ruleset uses replacement logic for the R1 call-butterfly component rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
       Historical options quote data was sourced from ThetaData.
     </p>
 
