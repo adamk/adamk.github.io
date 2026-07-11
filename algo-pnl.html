@@ -315,46 +315,8 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Profitable Rolling 12-Month Windows</div><div class="research-value">31 / 31</div></div>
       <div class="research-card"><div class="research-label">Worst Rolling 3-Month P&L</div><div class="research-value">-$120.50</div></div>
       <div class="research-card"><div class="research-label">Worst Rolling 6-Month P&L</div><div class="research-value">+$846.00</div></div>
-      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&L</div><div class="research-value">+$3,676.50</div></div>
-    </div>
-
-
-    <h2>What Changed From the Official Baseline</h2>
-
-    <div class="pnl-note">
-      <strong>Forward-validation components now enabled:</strong>
-      The live and paper bot now include a narrow VXX 60-day percentile guardrail and an R1 call-butterfly replacement component.
-      These rules improved the selected-sample research result, but they remain forward-validation components until confirmed through live/paper execution.
-    </div>
-
-    <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Official Baseline Research P&amp;L</div><div class="research-value">+$20,115.50</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Research P&amp;L</div><div class="research-value">+$27,683.50</div></div>
-      <div class="research-card"><div class="research-label">Official Baseline Sample</div><div class="research-value">193 trades</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Sample</div><div class="research-value">206 trades</div></div>
-      <div class="research-card"><div class="research-label">VXX-Blocked Trades</div><div class="research-value">6</div></div>
-      <div class="research-card"><div class="research-label">Blocked-Trade Net P&amp;L Removed</div><div class="research-value">-$2,650.50</div></div>
-      <div class="research-card"><div class="research-label">R1 Call-Fly Replacements</div><div class="research-value">6</div>
-      <div class="stat-card">
-        <div class="stat-label">Failed-Downside Fade Trades</div>
-        <div class="stat-value">19</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Failed-Downside Fade P&amp;L</div>
-        <div class="stat-value">+$3,027.00</div>
-      </div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Profit Factor</div><div class="research-value">2.60</div></div>
-      <div class="research-card"><div class="research-label">Latest Ruleset Max Drawdown</div><div class="research-value">-4.52%</div></div>
-    </div>
-
-    <p class="small">
-      The VXX guardrail blocks one debit-spread sleeve when VXX is in the bottom 15th percentile of its prior 60-day range,
-      and blocks one credit-spread sleeve when VXX is in the top 15th percentile of its prior 60-day range.
-      The R1 call-butterfly component replaces, rather than adds to, a specific R1 iron-condor sleeve when the butterfly passes quote, debit, and sizing filters.
-      These are narrow strategy-specific rules, not broad volatility or market-direction filters.
-    </p>
-
-    <h2>Anonymized Setup Attribution</h2>
+      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&L</div>
+<h2>Anonymized Setup Attribution</h2>
 
     <div class="research-table-wrap">
       <table class="research-table">
