@@ -161,6 +161,34 @@ function setTextIfExists(id, value) {
       padding-right: 0.85rem;
     }
 
+
+/* Mobile nav fix: keep hamburger pinned top-right */
+@media (max-width: 768px) {
+  .hamburger,
+  .menu-toggle,
+  .mobile-menu-toggle,
+  .nav-toggle,
+  button[aria-label="Toggle navigation"],
+  button[aria-label="Menu"] {
+    position: absolute !important;
+    top: 18px !important;
+    right: 18px !important;
+    left: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+    z-index: 9999 !important;
+  }
+
+  header,
+  .site-header,
+  .navbar,
+  .nav-container,
+  .header-inner {
+    position: relative !important;
+  }
+}
+
 </style>
 </head>
 <body>
