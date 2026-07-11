@@ -7,7 +7,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'G-ZKVBZ3QJ1F');
   </script>
   <!-- Bootstrap 5 CSS -->
@@ -60,7 +60,7 @@
       border-color: #6f42c1;
       color: #fff;
     }
-    
+
     .btn-planner:hover {
       background-color: #5e35b1;
       border-color: #59359a;
@@ -108,7 +108,7 @@
       padding: 0.5rem 0 1rem;
       scroll-snap-type: x proximity;
     }
-  
+
     .testimonial-shot {
       flex: 0 0 auto;
       width: min(420px, 85vw);
@@ -116,7 +116,7 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.18);
       scroll-snap-align: start;
     }
-  
+
     @media (min-width: 992px) {
       .rounded-lg-pill { border-radius: 50rem !important; }
       .bg-lg-white { background-color: #fff !important; }
@@ -139,7 +139,7 @@
       }
     }
 
-  
+
     .navbar-nav .nav-link.active {
       background: rgba(245, 158, 11, 0.14);
       color: #b45309 !important;
@@ -148,12 +148,12 @@
       padding-right: 0.85rem;
     }
 
-  
+
     body { padding-top: 0 !important; }
     body > .navbar { margin-top: 0 !important; padding-top: 0 !important; }
     body > .container:first-of-type { margin-top: 0.75rem !important; }
 
-  
+
     html, body {
       margin: 0 !important;
       padding: 0 !important;
@@ -164,14 +164,14 @@
       padding-top: 0.75rem !important;
     }
 
-  
+
     /* Blog-only navbar spacing fix */
     body > nav.navbar {
       padding-top: 0.35rem !important;
       margin-top: 0 !important;
     }
 
-  
+
     /* Hard blog-only top offset fix */
     body > nav.navbar:first-of-type {
       position: relative !important;
@@ -179,7 +179,7 @@
       margin-bottom: -3rem !important;
     }
 
-  
+
     /* Blog-only navbar top alignment */
     body > nav.navbar:first-of-type {
       position: relative !important;
@@ -187,7 +187,7 @@
       margin-bottom: -3.76rem !important;
     }
 
-  
+
     /* Blog-only navbar top alignment */
     body > nav.navbar:first-of-type {
       position: relative !important;
@@ -195,7 +195,45 @@
       margin-bottom: -3.76rem !important;
     }
 
-  </style>
+
+  /* Foxchase mobile layout fixes */
+
+  /* Mobile navbar positioning fix */
+  @media (max-width: 991.98px) {
+    body > nav.navbar {
+      padding-top: 1rem !important;
+      overflow: visible !important;
+    }
+
+    body > nav.navbar > .container,
+    body > nav.navbar > .container-fluid {
+      width: 100%;
+      max-width: 100%;
+      min-height: 48px;
+      padding-left: 12px;
+      padding-right: 12px;
+      justify-content: flex-end !important;
+      align-items: center;
+      overflow: visible;
+    }
+
+    body > nav.navbar .navbar-toggler {
+      position: relative;
+      z-index: 10;
+      flex: 0 0 auto;
+      margin-top: 0 !important;
+      margin-right: 0 !important;
+      margin-left: auto !important;
+      margin-bottom: 0.5rem !important;
+      transform: none !important;
+    }
+
+    body > nav.navbar .navbar-toggler-icon {
+      display: block;
+    }
+  }
+
+</style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -253,7 +291,7 @@
           High-Win-Rate "1:1" Trading in 0DTE Options
         </a>
       </p>
-      
+
       <p class="mt-3">
         <a href="/ndx-gex.html"
            class="btn btn-blog btn-lg"
@@ -263,7 +301,7 @@
           NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins
         </a>
       </p>
-      
+
       <p class="mt-4">
         <a href="/long-duration-bonds.html"
            class="btn btn-blog btn-lg"

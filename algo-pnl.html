@@ -189,6 +189,96 @@ function setTextIfExists(id, value) {
   }
 }
 
+
+  /* Foxchase mobile layout fixes */
+
+  /* Mobile responsiveness fixes */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .pnl-wrap {
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .chart-box,
+  .research-table-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chart-box {
+    overflow: hidden;
+  }
+
+  .chart-box canvas,
+  .chart-box img {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .navbar > .container,
+  .navbar > .container-fluid {
+    justify-content: flex-end !important;
+  }
+
+  .navbar-toggler {
+    margin-left: auto !important;
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .pnl-wrap {
+      margin: 24px auto;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .pnl-grid,
+    .research-metrics {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pnl-card,
+    .research-card,
+    .pnl-note,
+    .chart-box {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .chart-box {
+      padding: 8px;
+    }
+
+    .research-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .navbar {
+      width: 100%;
+    }
+
+    .navbar > .container,
+    .navbar > .container-fluid {
+      width: 100%;
+      max-width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+
 </style>
 </head>
 <body>
