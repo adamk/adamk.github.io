@@ -350,52 +350,55 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
-      The chart below shows a historical research backtest of the latest deployed Foxchase algo research ruleset compared with SPY buy and hold.
-      The latest research ruleset includes the official selected-trade configuration, the VXX volatility guardrail, the R1 call-fly replacement candidate, and the frozen no-steal failed-downside fade sleeve now enabled in live/paper.
+      The chart below shows the corrected historical production research ledger compared with SPY buy and hold.
+      The corrected research ledger includes the official selected-trade configuration, the VXX volatility guardrail, the frozen R1 call-butterfly replacement rule, and the no-steal failed-downside fade sleeve.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
         src="/images/foxchase_latest_algo_vs_spy.png"
-        alt="Foxchase Algo Latest Ruleset + Frozen Fade Research Backtest vs SPY Buy and Hold"
+        alt="Foxchase corrected production research backtest versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
 
 
-    <!-- latest-ruleset-start -->
+        <!-- latest-ruleset-start -->
     <h2>Latest Deployed Research Ruleset</h2>
 
     <div class="pnl-note">
       <strong>Latest deployed research ruleset:</strong>
-      The current live/paper bot includes the official selected-trade framework, a narrow VXX volatility guardrail,
-      an R1 call-butterfly replacement candidate, and a frozen no-steal failed-downside fade sleeve. This latest research variant produced +$27,683.50 on a $10,000 starting account,
-      ending at $37,683.50. This represents a 276.84% total return over the research sample, not annualized,
-      with a 77.18% win rate, 2.60 profit factor, and -4.52% historical maximum drawdown.
+      The corrected production research ledger contains 206 historical trades and uses a fixed 10% risk budget per trade with non-compounded position sizing.
+      It includes the official selected-trade framework, the VXX volatility guardrail, the frozen R1 call-butterfly replacement rule, and the no-steal failed-downside fade sleeve.
+      The corrected backtest produced +$25,759.00 on a $10,000.00 starting account, ending at $35,759.00.
+      This represents a 257.59% total return over the research sample, not annualized, with a 76.70% win rate,
+      2.43 profit factor, and -9.81% historical maximum drawdown.
     </div>
 
     <div class="research-metrics">
       <div class="research-card"><div class="research-label">Latest Research Sample</div><div class="research-value">206 trades</div></div>
-      <div class="research-card"><div class="research-label">Latest Research P&amp;L</div><div class="research-value">+$27,683.50</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$37,683.50</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">276.84%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.18%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.60</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.52%</div></div>
-      <div class="research-card"><div class="research-label">Worst Trade</div><div class="research-value">-$745.50</div></div>
+      <div class="research-card"><div class="research-label">Latest Research P&amp;L</div><div class="research-value">+$25,759.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$35,759.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">257.59%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">76.70%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.43</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-9.81%</div></div>
+      <div class="research-card"><div class="research-label">Average Trade</div><div class="research-value">$125.04</div></div>
+      <div class="research-card"><div class="research-label">Median Trade</div><div class="research-value">$195.00</div></div>
+      <div class="research-card"><div class="research-label">Best Trade</div><div class="research-value">$1,400.00</div></div>
+      <div class="research-card"><div class="research-label">Worst Trade</div><div class="research-value">-$765.00</div></div>
       <div class="research-card"><div class="research-label">SPY Buy &amp; Hold Return</div><div class="research-value">91.73%</div></div>
       <div class="research-card"><div class="research-label">SPY Buy &amp; Hold Max DD</div><div class="research-value">-19.89%</div></div>
     </div>
     <!-- latest-ruleset-end -->
 
-    <h2>Research Durability</h2>
+        <h2>Research Durability</h2>
 
     <div class="pnl-note">
       <strong>Research sample context:</strong>
-      The latest 206-trade research ruleset produced $27,683.50 in total P&amp;L on a $10,000 starting account,
-      ending at $37,683.50. This represents a 276.84% total return over the research sample, not annualized,
-      with a 77.18% win rate, 2.60 profit factor, and -4.52% historical maximum drawdown.
+      The corrected 206-trade production research ledger generated +$25,759.00 from $10,000.00 of starting equity.
+      Results below are recalculated directly from the corrected trade ledger rather than carried forward from the superseded butterfly ledger.
     </div>
 
     <div class="research-metrics">
@@ -405,9 +408,8 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Profitable Rolling 12-Month Windows</div><div class="research-value">31 / 31</div></div>
       <div class="research-card"><div class="research-label">Worst Rolling 3-Month P&amp;L</div><div class="research-value">-$484.50</div></div>
       <div class="research-card"><div class="research-label">Worst Rolling 6-Month P&amp;L</div><div class="research-value">+$1,919.50</div></div>
-      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&amp;L</div><div class="research-value">+$4,622.50</div></div>
+      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&amp;L</div><div class="research-value">+$4,634.00</div></div>
     </div>
-
 
     <h2>Anonymized Setup Attribution</h2>
 
@@ -417,7 +419,7 @@ function setTextIfExists(id, value) {
           <tr>
             <th>Strategy Sleeve</th>
             <th>Trades</th>
-            <th>P&L</th>
+            <th>P&amp;L</th>
             <th>Win Rate</th>
             <th>PF</th>
             <th>Median</th>
@@ -427,32 +429,27 @@ function setTextIfExists(id, value) {
         <tbody>
           <tr><td>Setup A</td><td>108</td><td>$6,509.00</td><td>72.22%</td><td>1.64</td><td>$168.00</td><td>-$570.00</td></tr>
           <tr><td>Setup B</td><td>24</td><td>$5,153.50</td><td>83.33%</td><td>3.90</td><td>$301.00</td><td>-$511.00</td></tr>
-          <tr><td>Setup C</td><td>16</td><td>$4,705.00</td><td>81.25%</td><td>3.41</td><td>$502.25</td><td>-$745.50</td></tr>
-          <tr><td>Setup D</td><td>11</td><td>$2,645.50</td><td>81.82%</td><td>2.34</td><td>$500.00</td><td>-$997.50</td></tr>
-          <tr><td>Setup E</td><td>34</td><td>$1,102.50</td><td>70.59%</td><td>1.28</td><td>$162.00</td><td>-$855.00</td></tr>
-            <tr>
-              <td>Setup F</td>
-              <td>19</td>
-              <td>$3,027.00</td>
-              <td>89.47%</td>
-              <td>4.33</td>
-              <td>$208.00</td>
-              <td>-$546.00</td>
-            </tr>
+          <tr><td>Setup C</td><td>10</td><td>$2,204.00</td><td>70.00%</td><td>2.13</td><td>$440.00</td><td>-$745.50</td></tr>
+          <tr><td>Setup D</td><td>8</td><td>$4,123.00</td><td>100.00%</td><td>∞</td><td>$509.25</td><td>$480.00</td></tr>
+          <tr><td>Setup E</td><td>6</td><td>$2,467.00</td><td>83.33%</td><td>4.22</td><td>$350.75</td><td>-$765.00</td></tr>
+          <tr><td>Setup F</td><td>31</td><td>$2,275.50</td><td>74.19%</td><td>1.96</td><td>$168.00</td><td>-$483.00</td></tr>
+          <tr><td>Setup G</td><td>19</td><td>$3,027.00</td><td>89.47%</td><td>4.33</td><td>$208.00</td><td>-$546.00</td></tr>
         </tbody>
       </table>
     </div>
 
     <p class="small">
-      Setup-level attribution is shown using anonymized strategy sleeves. Setups A–E represent the original official selected-trade framework, while Setup F represents the frozen no-steal expansion sleeve now enabled in live/paper. The exact trigger logic, regime definitions,
-      level framework, and execution rules are proprietary to the Foxchase framework.
+      Setup-level attribution is shown using seven anonymized production sleeves.
+      Setups A–F represent the corrected primary production framework, including the frozen call-butterfly replacement as its own sleeve.
+      Setup G represents the frozen no-steal failed-downside fade sleeve.
+      The exact trigger logic, regime definitions, level framework, and execution rules are proprietary to the Foxchase framework.
     </p>
 
     <p class="small">
       Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, and non-compounded position sizing.
       Position size does not increase as the backtest equity curve grows.
       The backtest allows one trade per day maximum, uses SPY 0DTE options, and assumes mid-price entry/exit fills.
-      The latest ruleset uses replacement logic for the R1 call-butterfly candidate rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
+      The corrected ruleset uses frozen replacement logic for the R1 call butterfly rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
       Historical options quote data was sourced from ThetaData.
     </p>
 
