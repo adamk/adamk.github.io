@@ -350,8 +350,8 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
-      The chart below shows the corrected historical production research ledger compared with SPY buy and hold.
-      The corrected research ledger includes the official selected-trade configuration, the VXX volatility guardrail, the frozen R1 call-butterfly replacement rule, and the no-steal failed-downside fade sleeve.
+      The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
+      The metrics below reflect the conservative 210-trade natural-fill candidate ledger, including the corrected production framework and the frozen sequential R4 candidate sleeve.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
@@ -365,26 +365,32 @@ function setTextIfExists(id, value) {
 
 
         <!-- latest-ruleset-start -->
-    <h2>Latest Deployed Research Ruleset</h2>
+    <h2>Latest Research Candidate Ruleset</h2>
 
     <div class="pnl-note">
-      <strong>Latest deployed research ruleset:</strong>
-      The corrected production research ledger contains 206 historical trades and uses a fixed 10% risk budget per trade with non-compounded position sizing.
-      It includes the official selected-trade framework, the VXX volatility guardrail, the frozen R1 call-butterfly replacement rule, and the no-steal failed-downside fade sleeve.
-      The corrected backtest produced +$25,759.00 on a $10,000.00 starting account, ending at $35,759.00.
-      This represents a 257.59% total return over the research sample, not annualized, with a 76.70% win rate,
-      2.43 profit factor, and -9.81% historical maximum drawdown.
+      <strong>Latest research candidate ruleset:</strong>
+      The conservative candidate ledger contains 210 historical trades and uses a fixed 10% risk budget per trade with non-compounded position sizing.
+      It contains the corrected 206-trade production framework plus one narrowly defined sequential exception:
+      after a profitable R4 PML trade has closed, one independently triggered R4 PDC trade may be taken later that day,
+      provided it enters no later than 1:15 p.m. ET and produces at least $0.20 of entry credit.
+      The four added sequential trades are valued using natural bid/ask fills rather than midpoint fills.
+      The candidate backtest produced +$26,504.00 on a $10,000.00 starting account,
+      ending at $36,504.00.
+      This represents a 265.04% total return over the research sample, not annualized,
+      with a 77.14% win rate, 2.47 profit factor,
+      and -9.81% historical maximum drawdown.
+      The added sequential rule remains a research candidate because it occurred only four times historically.
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Latest Research Sample</div><div class="research-value">206 trades</div></div>
-      <div class="research-card"><div class="research-label">Latest Research P&amp;L</div><div class="research-value">+$25,759.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$35,759.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">257.59%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">76.70%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.43</div></div>
+      <div class="research-card"><div class="research-label">Research Candidate Sample</div><div class="research-value">210 trades</div></div>
+      <div class="research-card"><div class="research-label">Research Candidate P&amp;L</div><div class="research-value">+$26,504.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$36,504.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">265.04%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.14%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.47</div></div>
       <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-9.81%</div></div>
-      <div class="research-card"><div class="research-label">Average Trade</div><div class="research-value">$125.04</div></div>
+      <div class="research-card"><div class="research-label">Average Trade</div><div class="research-value">$126.21</div></div>
       <div class="research-card"><div class="research-label">Median Trade</div><div class="research-value">$195.00</div></div>
       <div class="research-card"><div class="research-label">Best Trade</div><div class="research-value">$1,400.00</div></div>
       <div class="research-card"><div class="research-label">Worst Trade</div><div class="research-value">-$765.00</div></div>
@@ -397,8 +403,10 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Research sample context:</strong>
-      The corrected 206-trade production research ledger generated +$25,759.00 from $10,000.00 of starting equity.
-      Results below are recalculated directly from the corrected trade ledger rather than carried forward from the superseded butterfly ledger.
+      The conservative 210-trade candidate ledger generated +$26,504.00
+      from $10,000.00 of starting equity.
+      Same-day trades are grouped together when calculating monthly and quarterly durability.
+      The four sequential candidate trades use natural bid/ask execution assumptions.
     </div>
 
     <div class="research-metrics">
@@ -406,9 +414,9 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Profitable Rolling 3-Month Windows</div><div class="research-value">39 / 40</div></div>
       <div class="research-card"><div class="research-label">Profitable Rolling 6-Month Windows</div><div class="research-value">37 / 37</div></div>
       <div class="research-card"><div class="research-label">Profitable Rolling 12-Month Windows</div><div class="research-value">31 / 31</div></div>
-      <div class="research-card"><div class="research-label">Worst Rolling 3-Month P&amp;L</div><div class="research-value">-$484.50</div></div>
-      <div class="research-card"><div class="research-label">Worst Rolling 6-Month P&amp;L</div><div class="research-value">+$1,919.50</div></div>
-      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&amp;L</div><div class="research-value">+$4,634.00</div></div>
+      <div class="research-card"><div class="research-label">Worst Rolling 3-Month P&amp;L</div><div class="research-value">-$352.50</div></div>
+      <div class="research-card"><div class="research-label">Worst Rolling 6-Month P&amp;L</div><div class="research-value">+$2,051.50</div></div>
+      <div class="research-card"><div class="research-label">Worst Rolling 12-Month P&amp;L</div><div class="research-value">+$4,935.00</div></div>
     </div>
 
     <h2>Anonymized Setup Attribution</h2>
@@ -434,22 +442,29 @@ function setTextIfExists(id, value) {
           <tr><td>Setup E</td><td>6</td><td>$2,467.00</td><td>83.33%</td><td>4.22</td><td>$350.75</td><td>-$765.00</td></tr>
           <tr><td>Setup F</td><td>31</td><td>$2,275.50</td><td>74.19%</td><td>1.96</td><td>$168.00</td><td>-$483.00</td></tr>
           <tr><td>Setup G</td><td>19</td><td>$3,027.00</td><td>89.47%</td><td>4.33</td><td>$208.00</td><td>-$546.00</td></tr>
+          <tr><td>Setup H</td><td>4</td><td>$745.00</td><td>100.00%</td><td>∞</td><td>$156.50</td><td>$132.00</td></tr>
         </tbody>
       </table>
     </div>
 
-    <p class="small">
-      Setup-level attribution is shown using seven anonymized production sleeves.
-      Setups A–F represent the corrected primary production framework, including the frozen call-butterfly replacement as its own sleeve.
+<p class="small">
+      Setup-level attribution is shown using eight anonymized research sleeves.
+      Setups A–F represent the corrected primary framework, including the frozen call-butterfly replacement as its own sleeve.
       Setup G represents the frozen no-steal failed-downside fade sleeve.
+      Setup H represents the four conservative natural-fill R4 PML-winner to later R4 PDC sequential candidate trades.
       The exact trigger logic, regime definitions, level framework, and execution rules are proprietary to the Foxchase framework.
     </p>
 
-    <p class="small">
+<p class="small">
       Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, and non-compounded position sizing.
       Position size does not increase as the backtest equity curve grows.
-      The backtest allows one trade per day maximum, uses SPY 0DTE options, and assumes mid-price entry/exit fills.
-      The corrected ruleset uses frozen replacement logic for the R1 call butterfly rather than adding a second same-day trade. The failed-downside fade sleeve is also no-steal only and is used only on days where the primary ruleset has no trade.
+      The framework normally allows one selected trade per day.
+      The candidate ledger includes one frozen exception that permits a single later R4 PDC trade after a profitable R4 PML trade has fully closed,
+      only when the later PDC setup independently triggers by 1:15 p.m. ET with at least $0.20 of entry credit.
+      The primary research ledger uses historical SPY 0DTE option quote marks.
+      The four sequential candidate trades are reported using the more conservative natural bid/ask fill replay.
+      The R1 call butterfly remains replacement logic rather than an additional same-day trade,
+      and the failed-downside fade remains no-steal only on days where the primary framework has no selected trade.
       Historical options quote data was sourced from ThetaData.
     </p>
 
