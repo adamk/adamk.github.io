@@ -50,7 +50,40 @@
     }
 
     </style>
-  </head>
+  
+<style id="sitewide-navbar-spacing">
+  html,
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body > nav.navbar:first-of-type {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 1rem !important;
+  }
+
+  body > nav.navbar:first-of-type > .container {
+    margin-top: 0 !important;
+  }
+
+  @media (max-width: 991.98px) {
+    body > nav.navbar:first-of-type > .container {
+      justify-content: flex-end !important;
+    }
+
+    body > nav.navbar:first-of-type .navbar-toggler {
+      margin-left: auto !important;
+    }
+  }
+</style>
+
+</head>
   <body>
   <nav class="navbar navbar-expand-lg bg-transparent pt-3">
     <div class="container justify-content-end justify-content-lg-center">
