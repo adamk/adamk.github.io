@@ -264,9 +264,7 @@
   }
 </style>
 
-
-<style id="blog-navbar-spacing-fix">
-  /* Match navbar spacing used on Products and Planner */
+<style id="sitewide-navbar-spacing">
   html,
   body {
     margin-top: 0 !important;
@@ -275,10 +273,16 @@
 
   body > nav.navbar:first-of-type {
     position: static !important;
+    inset: auto !important;
     top: auto !important;
+    transform: none !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 1rem !important;
+  }
+
+  body > nav.navbar:first-of-type > .container {
+    margin-top: 0 !important;
   }
 
   @media (max-width: 991.98px) {
