@@ -109,7 +109,7 @@
 </head>
 <body class="bg-light text-dark">
   <!-- Header -->
-  <nav class="navbar navbar-expand-lg bg-transparent pt-3">
+  <nav class="navbar navbar-expand-lg bg-transparent pt-0" style="padding-top:0 !important; margin-top:0 !important;">
   <div class="container justify-content-end justify-content-lg-center">
     <button class="navbar-toggler mb-2" type="button"
             data-bs-toggle="collapse"
@@ -413,56 +413,6 @@
     btn.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
   }
 </script>
-
-<style id="foxchase-navbar-uniform-spacing">
-  /*
-   * Force the same top placement on every page.
-   * Bootstrap pt-3 equals 1rem.
-   */
-  html {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  body {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  nav.navbar.navbar-expand-lg {
-    position: static !important;
-    inset: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-
-    padding-top: 1rem !important;
-  }
-
-  nav.navbar.navbar-expand-lg > .container,
-  nav.navbar.navbar-expand-lg > .container-fluid {
-    margin-top: 0 !important;
-  }
-
-  @media (max-width: 991.98px) {
-    nav.navbar.navbar-expand-lg {
-      padding-top: 1rem !important;
-    }
-
-    nav.navbar.navbar-expand-lg > .container,
-    nav.navbar.navbar-expand-lg > .container-fluid {
-      justify-content: flex-end !important;
-    }
-
-    nav.navbar.navbar-expand-lg .navbar-toggler {
-      margin-left: auto !important;
-    }
-  }
-</style>
-
 </body>
 <p class="text-center mb-0" style="color: black;">
   © 2026 Foxchase Trading, LLC
