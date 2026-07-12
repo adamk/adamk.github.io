@@ -370,16 +370,12 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Latest research candidate ruleset:</strong>
       The conservative candidate ledger contains 210 historical trades and uses a fixed 10% risk budget per trade with non-compounded position sizing.
-      It contains the corrected 206-trade production framework plus one narrowly defined sequential exception:
-      after a profitable R4 PML trade has closed, one independently triggered R4 PDC trade may be taken later that day,
-      provided it enters no later than 1:15 p.m. ET and produces at least $0.20 of entry credit.
-      The four added sequential trades are valued using natural bid/ask fills rather than midpoint fills.
-      The candidate backtest produced +$26,504.00 on a $10,000.00 starting account,
-      ending at $36,504.00.
-      This represents a 265.04% total return over the research sample, not annualized,
-      with a 77.14% win rate, 2.47 profit factor,
-      and -9.81% historical maximum drawdown.
-      The added sequential rule remains a research candidate because it occurred only four times historically.
+      It includes the corrected 206-trade production framework plus a narrowly defined same-day sequential-entry exception that added four historical trades.
+      Those additional trades are valued using conservative natural bid/ask execution assumptions rather than midpoint fills.
+      The candidate backtest produced +$26,504.00 on a $10,000.00 starting account, ending at $36,504.00.
+      This represents a 265.04% total return over the research sample, not annualized, with a 77.14% win rate,
+      2.47 profit factor, and -9.81% historical maximum drawdown.
+      The sequential rule remains a research candidate because of its limited historical sample.
     </div>
 
     <div class="research-metrics">
@@ -451,7 +447,7 @@ function setTextIfExists(id, value) {
       Setup-level attribution is shown using eight anonymized research sleeves.
       Setups A–F represent the corrected primary framework, including the frozen call-butterfly replacement as its own sleeve.
       Setup G represents the frozen no-steal failed-downside fade sleeve.
-      Setup H represents the four conservative natural-fill R4 PML-winner to later R4 PDC sequential candidate trades.
+      Setup H represents the four conservative natural-fill same-day sequential-entry candidate trades.
       The exact trigger logic, regime definitions, level framework, and execution rules are proprietary to the Foxchase framework.
     </p>
 
@@ -459,8 +455,8 @@ function setTextIfExists(id, value) {
       Backtest assumptions: $10,000 starting equity, fixed 10% risk budget per trade, and non-compounded position sizing.
       Position size does not increase as the backtest equity curve grows.
       The framework normally allows one selected trade per day.
-      The candidate ledger includes one frozen exception that permits a single later R4 PDC trade after a profitable R4 PML trade has fully closed,
-      only when the later PDC setup independently triggers by 1:15 p.m. ET with at least $0.20 of entry credit.
+      The candidate ledger includes one frozen same-day sequential-entry exception.
+      The additional trade must independently satisfy the proprietary production framework after the original trade has fully closed.
       The primary research ledger uses historical SPY 0DTE option quote marks.
       The four sequential candidate trades are reported using the more conservative natural bid/ask fill replay.
       The R1 call butterfly remains replacement logic rather than an additional same-day trade,
