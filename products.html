@@ -47,39 +47,6 @@
     }
 
   </style>
-
-<style id="sitewide-navbar-spacing">
-  html,
-  body {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  body > nav.navbar:first-of-type {
-    position: static !important;
-    inset: auto !important;
-    top: auto !important;
-    transform: none !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 1rem !important;
-  }
-
-  body > nav.navbar:first-of-type > .container {
-    margin-top: 0 !important;
-  }
-
-  @media (max-width: 991.98px) {
-    body > nav.navbar:first-of-type > .container {
-      justify-content: flex-end !important;
-    }
-
-    body > nav.navbar:first-of-type .navbar-toggler {
-      margin-left: auto !important;
-    }
-  }
-</style>
-
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-transparent pt-3">
@@ -173,5 +140,55 @@
     <p style="max-width:800px;margin:0 auto;font-size:12px;color:#555;">Foxchase Trading, LLC provides educational content only and does not provide investment advice. Trading involves substantial risk of loss.</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style id="foxchase-navbar-uniform-spacing">
+  /*
+   * Force the same top placement on every page.
+   * Bootstrap pt-3 equals 1rem.
+   */
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  nav.navbar.navbar-expand-lg {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    padding-top: 1rem !important;
+  }
+
+  nav.navbar.navbar-expand-lg > .container,
+  nav.navbar.navbar-expand-lg > .container-fluid {
+    margin-top: 0 !important;
+  }
+
+  @media (max-width: 991.98px) {
+    nav.navbar.navbar-expand-lg {
+      padding-top: 1rem !important;
+    }
+
+    nav.navbar.navbar-expand-lg > .container,
+    nav.navbar.navbar-expand-lg > .container-fluid {
+      justify-content: flex-end !important;
+    }
+
+    nav.navbar.navbar-expand-lg .navbar-toggler {
+      margin-left: auto !important;
+    }
+  }
+</style>
+
 </body>
 </html>

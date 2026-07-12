@@ -150,45 +150,8 @@
 
 
 
-    /* Blog-only navbar spacing fix */
-    body > nav.navbar {
-      padding-top: 0.35rem !important;
-      margin-top: 0 !important;
-    }
 
 
-    /* Hard blog-only top offset fix */
-    body > nav.navbar:first-of-type {
-      position: relative !important;
-      top: -3rem !important;
-      margin-bottom: -3rem !important;
-    }
-
-
-    /* Blog-only navbar top alignment */
-    body > nav.navbar:first-of-type {
-      position: relative !important;
-      top: -3.76rem !important;
-      margin-bottom: -3.76rem !important;
-    }
-
-
-    /* Blog-only navbar top alignment */
-    body > nav.navbar:first-of-type {
-      position: relative !important;
-      top: -3.76rem !important;
-      margin-bottom: -3.76rem !important;
-    }
-
-
-  /* Clean blog navbar positioning */
-  body > nav.navbar:first-of-type {
-    position: static !important;
-    top: auto !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 0.75rem !important;
-  }
 
   @media (max-width: 991.98px) {
     body > nav.navbar:first-of-type {
@@ -263,39 +226,6 @@
     }
   }
 </style>
-
-<style id="sitewide-navbar-spacing">
-  html,
-  body {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  body > nav.navbar:first-of-type {
-    position: static !important;
-    inset: auto !important;
-    top: auto !important;
-    transform: none !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 1rem !important;
-  }
-
-  body > nav.navbar:first-of-type > .container {
-    margin-top: 0 !important;
-  }
-
-  @media (max-width: 991.98px) {
-    body > nav.navbar:first-of-type > .container {
-      justify-content: flex-end !important;
-    }
-
-    body > nav.navbar:first-of-type .navbar-toggler {
-      margin-left: auto !important;
-    }
-  }
-</style>
-
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -471,6 +401,56 @@
     Trading involves substantial risk of loss and is not suitable for all investors.
   </p>
 </footer>
+
+
+<style id="foxchase-navbar-uniform-spacing">
+  /*
+   * Force the same top placement on every page.
+   * Bootstrap pt-3 equals 1rem.
+   */
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  nav.navbar.navbar-expand-lg {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    padding-top: 1rem !important;
+  }
+
+  nav.navbar.navbar-expand-lg > .container,
+  nav.navbar.navbar-expand-lg > .container-fluid {
+    margin-top: 0 !important;
+  }
+
+  @media (max-width: 991.98px) {
+    nav.navbar.navbar-expand-lg {
+      padding-top: 1rem !important;
+    }
+
+    nav.navbar.navbar-expand-lg > .container,
+    nav.navbar.navbar-expand-lg > .container-fluid {
+      justify-content: flex-end !important;
+    }
+
+    nav.navbar.navbar-expand-lg .navbar-toggler {
+      margin-left: auto !important;
+    }
+  }
+</style>
 
 </body>
 </html>
