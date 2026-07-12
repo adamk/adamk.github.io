@@ -264,6 +264,34 @@
   }
 </style>
 
+
+<style id="blog-navbar-spacing-fix">
+  /* Match navbar spacing used on Products and Planner */
+  html,
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body > nav.navbar:first-of-type {
+    position: static !important;
+    top: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 1rem !important;
+  }
+
+  @media (max-width: 991.98px) {
+    body > nav.navbar:first-of-type > .container {
+      justify-content: flex-end !important;
+    }
+
+    body > nav.navbar:first-of-type .navbar-toggler {
+      margin-left: auto !important;
+    }
+  }
+</style>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
