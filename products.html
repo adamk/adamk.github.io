@@ -9,11 +9,11 @@
   <style>
     body { background:#f8f9fa; color:#212529; }
     .section-card{background:#fff;border:1px solid #dee2e6;border-radius:16px;padding:22px;margin-bottom:22px;box-shadow:0 4px 14px rgba(0,0,0,.05)}
-    .product-row{display:grid;grid-template-columns:1fr 120px;gap:16px;align-items:center;border-top:1px solid #eee;padding:14px 0}
+    .product-row{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:16px;align-items:center;border-top:1px solid #eee;padding:14px 0}
     .product-row:first-of-type{border-top:0}
     .product-title{font-weight:700;margin-bottom:2px}
     .product-desc{color:#6c757d;font-size:14px;margin:0}
-    .price{font-weight:800;white-space:nowrap;text-align:right;margin-bottom:8px}.product-action{text-align:right}
+    .price{font-weight:800;white-space:nowrap;text-align:right;margin-bottom:8px}.product-action{text-align:right;min-width:0}.product-action .badge{white-space:normal;line-height:1.25;max-width:100%;display:inline-block;text-align:center;padding:.55rem .7rem}
     @media(max-width:700px){.product-row{display:block}.price{text-align:left;margin:8px 0}.product-action{text-align:left}}
   
     @media (min-width: 992px) {
