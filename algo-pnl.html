@@ -340,6 +340,10 @@ function setTextIfExists(id, value) {
     <h2>Main Stats</h2>
     <div class="pnl-grid">
       <div class="pnl-card"><div class="pnl-label">Realized Algo P&L</div><div class="pnl-value" id="realizedPnl">-</div></div>
+      <div class="pnl-card">
+        <div class="pnl-label">Realized Algo Return</div>
+        <div class="pnl-value" id="realizedAlgoReturn">-</div>
+      </div>
       <div class="pnl-card"><div class="pnl-label">Win Rate</div><div class="pnl-value" id="winRate">-</div></div>
       <div class="pnl-card"><div class="pnl-label">Closed Trades</div><div class="pnl-value" id="closedTrades">-</div></div>
       <div class="pnl-card"><div class="pnl-label">Avg Win / Avg Loss</div><div class="pnl-value" id="avgWinLoss">-</div></div>
@@ -494,8 +498,24 @@ function setTextIfExists(id, value) {
       const avgWin = tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? 0;
       const avgLoss = tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? 0;
 
+      const strategyStartingCapital = Number(
+        data.strategy_starting_capital ?? 0
+      );
+
+      const realizedAlgoReturn =
+        strategyStartingCapital > 0
+          ? (Number(realizedAlgoPnl) / strategyStartingCapital) * 100
+          : null;
+
       setTextIfExists("realized-algo-pnl", formatMoneyValue(realizedAlgoPnl));
       setTextIfExists("realizedAlgoPnl", formatMoneyValue(realizedAlgoPnl));
+
+      setTextIfExists(
+        "realizedAlgoReturn",
+        realizedAlgoReturn === null
+          ? "-"
+          : realizedAlgoReturn.toFixed(2) + "%"
+      );
 
       setTextIfExists("win-rate", formatPctValue(winRate));
       setTextIfExists("winRate", formatPctValue(winRate));
