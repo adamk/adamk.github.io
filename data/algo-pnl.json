@@ -2381,5 +2381,6 @@
         "result": "win"
       }
     ]
-  }
+  },
+  "strategy_starting_capital": 0.0
 }
