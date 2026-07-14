@@ -1213,7 +1213,7 @@
       "result": "win"
     }
   ],
-  "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. Account equity history excludes cashflows where possible, but the chart may still differ from pure strategy returns.",
+  "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. The equity chart reflects broker-reported account equity and may include deposits or withdrawals. Trade statistics are calculated separately from closed algorithm trades and are intended to better isolate strategy performance.",
   "account": "Live account",
   "currentEquity": 7870.03,
   "buyingPower": 31480.12,
