@@ -137,14 +137,20 @@
           <div>
             <div class="product-title">Foxchase Trading Corduroy Hat</div>
           <p class="product-desc">
-            Corduroy Foxchase Trading hat featuring the embroidered official fox logo. Made and shipped on demand by Printful.
+            Exclusive corduroy Foxchase Trading hat featuring the embroidered official fox logo. Reserved for qualifying Discord members and not sold publicly.
           </p>
           </div>
         </div>
 
         <div class="product-action">
-          <div class="price">$34.99</div>
-          <span class="badge text-bg-secondary">Member Reward — Coming Soon</span>
+          <div class="price">Exclusive Member Reward</div>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#hatEligibilityModal">
+            View Eligibility
+          </button>
         </div>
       </div>
     </section>
@@ -159,6 +165,40 @@
 
     <p class="text-muted small text-center">All products are educational tools only and do not constitute investment advice.</p>
   </main>
+
+
+  <div class="modal fade" id="hatEligibilityModal" tabindex="-1" aria-labelledby="hatEligibilityModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="hatEligibilityModalLabel">Hat Reward Eligibility</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <p class="mb-3">
+            The Foxchase Trading Corduroy Hat is an exclusive loyalty reward for qualifying Discord members.
+          </p>
+
+          <ul class="mb-3">
+            <li>Reach at least <strong>$500 in lifetime Whop spend</strong>.</li>
+            <li>Maintain an active Foxchase Discord membership when the reward is claimed.</li>
+            <li>Limit of one complimentary hat per member.</li>
+            <li>Refunded or disputed payments do not count toward eligibility.</li>
+            <li>Fulfillment is subject to product availability and supported shipping destinations.</li>
+          </ul>
+
+          <p class="small text-muted mb-0">
+            Eligible members will be verified through their Whop account before fulfillment.
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer style="text-align:center;color:black;font-size:14px;padding:20px;">
     <p style="margin-bottom:5px;">© 2026 Foxchase Trading, LLC</p>
