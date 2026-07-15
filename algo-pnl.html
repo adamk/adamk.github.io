@@ -40,6 +40,11 @@ function setTextIfExists(id, value) {
     .pnl-note { background:#fff8e5; border:1px solid #e8c66a; color:#2b2b2b; padding:16px; border-radius:10px; margin:20px 0; line-height:1.5; }
     .pnl-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin:25px 0; }
     .pnl-card { border:1px solid #ddd; border-radius:10px; padding:16px; background:#fff; }
+    @media (min-width: 800px) {
+      .live-stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
     .pnl-label { color:#666; font-size:14px; }
     .pnl-value { font-size:24px; font-weight:700; margin-top:8px; }
     .chart-box { margin-top:25px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fff; }
@@ -325,9 +330,48 @@ function setTextIfExists(id, value) {
       Foxchase Trading is independent and is not affiliated with, sponsored by, or endorsed by Alpaca.
     </div>
 
-    <div class="pnl-grid">
-      <div class="pnl-card"><div class="pnl-label">Account</div><div class="pnl-value" id="accountType">Live account</div></div>
-      <div class="pnl-card"><div class="pnl-label">Current Equity</div><div class="pnl-value" id="equity">-</div></div>
+    <h2>Live Performance</h2>
+
+    <div class="pnl-grid live-stats-grid">
+      <div class="pnl-card">
+        <div class="pnl-label">Current Equity</div>
+        <div class="pnl-value" id="equity">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Realized Algo P&amp;L</div>
+        <div class="pnl-value" id="realizedPnl">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Total Return</div>
+        <div class="pnl-value" id="realizedAlgoReturn">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Today’s Account P&amp;L</div>
+        <div class="pnl-value" id="todayAccountPnl">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Closed Trades</div>
+        <div class="pnl-value" id="closedTrades">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Win Rate</div>
+        <div class="pnl-value" id="winRate">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Profit Factor</div>
+        <div class="pnl-value" id="profitFactor">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Avg Win / Avg Loss</div>
+        <div class="pnl-value" id="avgWinLoss">-</div>
+      </div>
     </div>
 
     <div class="chart-box">
@@ -336,19 +380,6 @@ function setTextIfExists(id, value) {
 
     <p class="small" id="updated"></p>
     <p class="small" id="note"></p>
-
-    <h2>Main Stats</h2>
-    <div class="pnl-grid">
-      <div class="pnl-card"><div class="pnl-label">Realized Algo P&L</div><div class="pnl-value" id="realizedPnl">-</div></div>
-      <div class="pnl-card">
-        <div class="pnl-label">Realized Algo Return</div>
-        <div class="pnl-value" id="realizedAlgoReturn">-</div>
-      </div>
-      <div class="pnl-card"><div class="pnl-label">Win Rate</div><div class="pnl-value" id="winRate">-</div></div>
-      <div class="pnl-card"><div class="pnl-label">Closed Trades</div><div class="pnl-value" id="closedTrades">-</div></div>
-      <div class="pnl-card"><div class="pnl-label">Avg Win / Avg Loss</div><div class="pnl-value" id="avgWinLoss">-</div></div>
-    </div>
-
 
     <h2>Research Backtest</h2>
 
@@ -498,7 +529,20 @@ function setTextIfExists(id, value) {
       const avgWin = tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? 0;
       const avgLoss = tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? 0;
 
-      const strategyStartingCapital = Number(
+
+      const profitFactor =
+        tradeStats.profit_factor ??
+        data.profit_factor ??
+        data.profitFactor ??
+        null;
+
+      const todayAccountPnl =
+        tradeStats.today_account_pnl ??
+        data.today_account_pnl ??
+        data.todayAccountPnl ??
+        data.account_today_pnl ??
+        null;
+const strategyStartingCapital = Number(
         data.strategy_starting_capital ?? 0
       );
 
@@ -523,10 +567,25 @@ function setTextIfExists(id, value) {
       setTextIfExists("closed-trades", String(closedTrades));
       setTextIfExists("closedTrades", String(closedTrades));
 
+      setTextIfExists(
+        "todayAccountPnl",
+        todayAccountPnl === null
+          ? "-"
+          : formatMoneyValue(todayAccountPnl)
+      );
+
+      setTextIfExists(
+        "profitFactor",
+        profitFactor === null ||
+        !Number.isFinite(Number(profitFactor))
+          ? "-"
+          : Number(profitFactor).toFixed(2)
+      );
+
       const avgLossDisplay = avgLoss === null ? 0 : avgLoss;
       setTextIfExists("avg-win-loss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
       setTextIfExists("avgWinLoss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
-        document.getElementById("accountType").textContent = data.account_type || "Live account";
+        setTextIfExists("accountType", data.account_type || "Live account");
         document.getElementById("equity").textContent = dollars(data.current_equity);
 
         const stats = data.stats || {};
