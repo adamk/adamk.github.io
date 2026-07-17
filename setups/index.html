@@ -530,6 +530,34 @@ nav {
       }
     }
 
+
+    /* Center desktop navigation */
+    @media (min-width: 992px) {
+      .site-header {
+        position: relative;
+      }
+
+      .nav-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .setups-navbar {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      .setups-navbar-inner {
+        width: auto;
+      }
+    }
+
 </style>
 </head>
 <body>
