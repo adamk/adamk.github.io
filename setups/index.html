@@ -56,21 +56,7 @@
       justify-content: space-between;
       gap: 24px;
     }
-
-    .brand {
-      color: inherit;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: normal;
-      white-space: nowrap;
-    }
-
-    .brand:hover {
-      color: inherit;
-    }
-
-    nav {
+nav {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -241,12 +227,59 @@
       .section-head p { margin-top: 4px; text-align: left; }
       .chart-image { border-radius: 9px; }
     }
-  </style>
+  
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: inherit;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: normal;
+      white-space: nowrap;
+    }
+
+    .brand-logo {
+      display: block;
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      color: inherit;
+    }
+
+    .brand:hover {
+      color: inherit;
+    }
+
+    @media (max-width: 640px) {
+      .brand-logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .brand-name {
+        font-size: 1rem;
+      }
+    }
+
+</style>
 </head>
 <body>
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="/">Foxchase Trading</a>
+      <a class="brand" href="/">
+  <img
+    src="/foxchasetrading-transparent.png"
+    alt=""
+    class="brand-logo"
+  >
+  <span class="brand-name">Foxchase Trading</span>
+</a>
       <nav aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/blog.html">Blog</a>
