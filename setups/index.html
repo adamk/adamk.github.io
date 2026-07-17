@@ -296,7 +296,8 @@ nav {
 
 
     .setups-navbar {
-      width: 100%;
+      width: auto;
+      margin-left: auto;
       padding: 16px 20px 0;
       position: relative;
       z-index: 1000;
@@ -368,9 +369,18 @@ nav {
         padding: 12px 16px 0;
       }
 
+      .setups-navbar {
+        width: auto;
+        margin-left: auto;
+        padding: 0;
+      }
+
       .setups-navbar-inner {
         position: relative;
+        display: flex;
+        justify-content: flex-end;
         flex-wrap: wrap;
+        width: auto;
       }
 
       .setups-menu-toggle {
