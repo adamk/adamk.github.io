@@ -294,6 +294,110 @@ nav {
       border-radius: 16px;
     }
 
+
+    .setups-navbar {
+      width: 100%;
+      padding: 16px 20px 0;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .setups-navbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .setups-navigation {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 999px;
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    }
+
+    .setups-navigation a {
+      color: #495057;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .setups-navigation a:hover {
+      color: #111;
+      background: #f1f3f5;
+    }
+
+    .setups-navigation a.active {
+      color: #111;
+      background: #e9ecef;
+      font-weight: 700;
+    }
+
+    .setups-menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 9px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .setups-menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin: 4px 0;
+      background: #212529;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 991.98px) {
+      .setups-navbar {
+        padding: 12px 16px 0;
+      }
+
+      .setups-navbar-inner {
+        position: relative;
+        flex-wrap: wrap;
+      }
+
+      .setups-menu-toggle {
+        display: block;
+      }
+
+      .setups-navigation {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        padding: 10px;
+        border-radius: 14px;
+      }
+
+      .setups-navigation.is-open {
+        display: flex;
+      }
+
+      .setups-navigation a {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -307,14 +411,39 @@ nav {
   >
   <span class="brand-name">Foxchase Trading</span>
 </a>
-      <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/3k-challenge.html">Small Account Series</a>
-        <a href="/setups/" aria-current="page">Setups</a>
-        <a href="/planner.html">Planner</a>
-        <a href="/products.html">Products</a>
-      </nav>
+      <nav class="setups-navbar" aria-label="Main navigation">
+  <div class="setups-navbar-inner">
+    <a class="brand" href="/">
+      <img
+        src="/foxchasetrading-transparent.png"
+        alt=""
+        class="brand-logo"
+      >
+      <span class="brand-name">Foxchase Trading</span>
+    </a>
+
+    <button
+      class="setups-menu-toggle"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-controls="setups-navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="setups-navigation" id="setups-navigation">
+      <a href="/">Home</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/3k-challenge">Small Account Series</a>
+      <a href="/setups/" class="active" aria-current="page">Setups</a>
+      <a href="/planner/">Planner</a>
+      <a href="/products.html">Products</a>
+    </div>
+  </div>
+</nav>
     </div>
   </header>
 
@@ -411,5 +540,27 @@ nav {
   <footer>
     © 2026 Foxchase Trading, LLC. Educational content only. Trading involves substantial risk of loss.
   </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.querySelector(".setups-menu-toggle");
+    const navigation = document.querySelector(".setups-navigation");
+
+    if (!toggle || !navigation) return;
+
+    toggle.addEventListener("click", function () {
+      const isOpen = navigation.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navigation.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navigation.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
