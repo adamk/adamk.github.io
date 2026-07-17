@@ -420,6 +420,81 @@ nav {
       }
     }
 
+
+    /* Final mobile header override */
+    @media (max-width: 991.98px) {
+      .site-header {
+        position: relative;
+        width: 100%;
+        padding: 14px 18px;
+        z-index: 2000;
+      }
+
+      .nav-wrap {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 16px;
+      }
+
+      .nav-wrap > .brand {
+        flex: 0 1 auto;
+        min-width: 0;
+      }
+
+      .setups-navbar {
+        flex: 0 0 auto;
+        width: auto;
+        margin: 0 0 0 auto;
+        padding: 0;
+      }
+
+      .setups-navbar-inner {
+        position: static;
+        display: block;
+        width: auto;
+        margin: 0;
+      }
+
+      .setups-menu-toggle {
+        display: block;
+        margin: 0;
+      }
+
+      .setups-navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 16px;
+        right: 16px;
+        width: auto;
+        margin: 0;
+        padding: 10px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        border-radius: 0 0 14px 14px;
+        background: #fff;
+        z-index: 2001;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, .35);
+      }
+
+      .setups-navigation.is-open {
+        display: flex;
+      }
+
+      .setups-navigation a {
+        display: block;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 8px;
+      }
+    }
+
 </style>
 </head>
 <body>
