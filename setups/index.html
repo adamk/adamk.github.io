@@ -58,14 +58,17 @@
     }
 
     .brand {
+      color: inherit;
       text-decoration: none;
-      font-weight: 900;
-      letter-spacing: -.03em;
-      white-space: nowrap;
       font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: normal;
+      white-space: nowrap;
     }
 
-    .brand span { color: var(--green); }
+    .brand:hover {
+      color: inherit;
+    }
 
     nav {
       display: flex;
@@ -243,7 +246,7 @@
 <body>
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="/">FOXCHASE <span>TRADING</span></a>
+      <a class="brand" href="/">Foxchase Trading</a>
       <nav aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/blog.html">Blog</a>
