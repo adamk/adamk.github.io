@@ -387,15 +387,15 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the validated 206-trade research baseline.
+      The metrics below reflect the validated 187-trade research baseline.
       Experimental sequential second-trade logic is excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
-        src="/images/foxchase_latest_algo_vs_spy.png?v=20260717-baseline-206"
-        alt="Foxchase validated 206-trade research baseline versus SPY buy and hold"
+        src="/images/foxchase_latest_algo_vs_spy.png?v=20260717-baseline-187"
+        alt="Foxchase validated 187-trade research baseline versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
@@ -404,22 +404,22 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Latest research ruleset:</strong>
-      The 206-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
-      It reflects the validated 206-trade research baseline and produced +$25,793.00
+      The 187-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
+      It reflects the validated 187-trade research baseline and produced +$22,766.00
       on a $10,000.00 starting account. Experimental sequential second-trade logic
       is excluded pending a fully mechanical, non-preselected historical and forward
       validation process.
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Baseline Sample</div><div class="research-value">206 trades</div></div>
-      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">206 days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$25,793.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$35,793.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">257.93%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.18%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.49</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.52%</div></div>
+      <div class="research-card"><div class="research-label">Research Baseline Sample</div><div class="research-value">187 trades</div></div>
+      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">187 days</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$22,766.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$32,766.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">227.66%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">75.94%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.39</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.60%</div></div>
     </div>
     <!-- latest-ruleset-end -->
 
@@ -575,6 +575,291 @@ const strategyStartingCapital = Number(
   </p>
 </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FOXCHASE_SETUP_STATS_START -->
+<section id="per-setup-performance" class="foxchase-setup-performance">
+  <style>
+    .foxchase-setup-performance {
+      margin: 48px auto 24px;
+      max-width: 1180px;
+    }
+
+    .foxchase-setup-performance-header {
+      margin-bottom: 22px;
+    }
+
+    .foxchase-setup-performance-header h2 {
+      margin: 0 0 8px;
+    }
+
+    .foxchase-setup-performance-header p {
+      margin: 0;
+      opacity: 0.78;
+      line-height: 1.6;
+    }
+
+    .foxchase-setup-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 18px;
+    }
+
+    .foxchase-setup-stat-card {
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .foxchase-setup-stat-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .foxchase-setup-stat-heading h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .foxchase-setup-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 72px;
+      min-height: 34px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .foxchase-setup-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 18px;
+    }
+
+    .foxchase-setup-stat-grid div {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .foxchase-setup-stat-label {
+      font-size: 0.76rem;
+      opacity: 0.66;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .foxchase-setup-stat-grid strong {
+      font-size: 1rem;
+    }
+  </style>
+
+  <div class="foxchase-setup-performance-header">
+    <h2>Per-Setup Performance</h2>
+    <p>
+      Mechanical attribution from the clean 187-trade native research ledger.
+      The failed-downside fade research sleeve is excluded.
+    </p>
+  </div>
+
+  <div class="foxchase-setup-cards">
+    <article class="foxchase-setup-stat-card">
+          <div class="foxchase-setup-stat-heading">
+            <span class="foxchase-setup-letter">Setup A</span>
+            <h3>R4 PDC Reclaim Put Credit</h3>
+          </div>
+
+          <div class="foxchase-setup-stat-grid">
+            <div>
+              <span class="foxchase-setup-stat-label">Trades</span>
+              <strong>108</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
+              <strong>$6,509</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Win Rate</span>
+              <strong>72.22%</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Profit Factor</span>
+              <strong>1.64</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Median Win</span>
+              <strong>$208</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Worst Trade</span>
+              <strong>-$570</strong>
+            </div>
+          </div>
+        </article><article class="foxchase-setup-stat-card">
+          <div class="foxchase-setup-stat-heading">
+            <span class="foxchase-setup-letter">Setup B</span>
+            <h3>R1 Lower EM Bear Call Credit</h3>
+          </div>
+
+          <div class="foxchase-setup-stat-grid">
+            <div>
+              <span class="foxchase-setup-stat-label">Trades</span>
+              <strong>24</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
+              <strong>$5,154</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Win Rate</span>
+              <strong>83.33%</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Profit Factor</span>
+              <strong>3.90</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Median Win</span>
+              <strong>$319</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Worst Trade</span>
+              <strong>-$511</strong>
+            </div>
+          </div>
+        </article><article class="foxchase-setup-stat-card">
+          <div class="foxchase-setup-stat-heading">
+            <span class="foxchase-setup-letter">Setup C</span>
+            <h3>R1 Relaxed Inside Iron Condor</h3>
+          </div>
+
+          <div class="foxchase-setup-stat-grid">
+            <div>
+              <span class="foxchase-setup-stat-label">Trades</span>
+              <strong>16</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
+              <strong>$4,705</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Win Rate</span>
+              <strong>81.25%</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Profit Factor</span>
+              <strong>3.41</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Median Win</span>
+              <strong>$520</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Worst Trade</span>
+              <strong>-$746</strong>
+            </div>
+          </div>
+        </article><article class="foxchase-setup-stat-card">
+          <div class="foxchase-setup-stat-heading">
+            <span class="foxchase-setup-letter">Setup D</span>
+            <h3>R5 PML Break Put Debit Spread</h3>
+          </div>
+
+          <div class="foxchase-setup-stat-grid">
+            <div>
+              <span class="foxchase-setup-stat-label">Trades</span>
+              <strong>8</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
+              <strong>$4,123</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Win Rate</span>
+              <strong>100.00%</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Profit Factor</span>
+              <strong>∞</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Median Win</span>
+              <strong>$509</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Worst Trade</span>
+              <strong>-$480</strong>
+            </div>
+          </div>
+        </article><article class="foxchase-setup-stat-card">
+          <div class="foxchase-setup-stat-heading">
+            <span class="foxchase-setup-letter">Setup E</span>
+            <h3>R4 PML Reclaim Put Credit</h3>
+          </div>
+
+          <div class="foxchase-setup-stat-grid">
+            <div>
+              <span class="foxchase-setup-stat-label">Trades</span>
+              <strong>31</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
+              <strong>$2,276</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Win Rate</span>
+              <strong>74.19%</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Profit Factor</span>
+              <strong>1.96</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Median Win</span>
+              <strong>$195</strong>
+            </div>
+
+            <div>
+              <span class="foxchase-setup-stat-label">Worst Trade</span>
+              <strong>-$483</strong>
+            </div>
+          </div>
+        </article>
+  </div>
+</section>
+<!-- FOXCHASE_SETUP_STATS_END -->
+
 </body>
 </html>
 
