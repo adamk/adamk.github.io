@@ -394,7 +394,7 @@ function setTextIfExists(id, value) {
 
     <div class="chart-box">
       <img
-        src="/images/foxchase_latest_algo_vs_spy.png?v=20260717-baseline-187"
+        src="/images/foxchase_latest_algo_vs_spy.png?v=187-clean-20260717"
         alt="Foxchase validated 187-trade research baseline versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
@@ -576,92 +576,96 @@ const strategyStartingCapital = Number(
 </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- FOXCHASE_SETUP_STATS_START -->
-<section id="per-setup-performance" class="foxchase-setup-performance">
+<section id="per-setup-performance" class="setup-performance-section">
   <style>
-    .foxchase-setup-performance {
-      margin: 48px auto 24px;
+    .setup-performance-section {
       max-width: 1180px;
+      margin: 48px auto 28px;
     }
 
-    .foxchase-setup-performance-header {
-      margin-bottom: 22px;
-    }
-
-    .foxchase-setup-performance-header h2 {
-      margin: 0 0 8px;
-    }
-
-    .foxchase-setup-performance-header p {
-      margin: 0;
-      opacity: 0.78;
-      line-height: 1.6;
-    }
-
-    .foxchase-setup-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 18px;
-    }
-
-    .foxchase-setup-stat-card {
-      padding: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .foxchase-setup-stat-heading {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .setup-performance-header {
       margin-bottom: 18px;
     }
 
-    .foxchase-setup-stat-heading h3 {
+    .setup-performance-header h2 {
+      margin: 0 0 8px;
+    }
+
+    .setup-performance-header p {
       margin: 0;
-      font-size: 1.05rem;
-      line-height: 1.35;
+      line-height: 1.6;
+      opacity: 0.78;
     }
 
-    .foxchase-setup-letter {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 72px;
-      min-height: 34px;
-      padding: 0 10px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      background: rgba(255, 255, 255, 0.09);
+    .setup-performance-table-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.025);
     }
 
-    .foxchase-setup-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px 18px;
+    .setup-performance-table {
+      width: 100%;
+      min-width: 780px;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
     }
 
-    .foxchase-setup-stat-grid div {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .setup-performance-table th,
+    .setup-performance-table td {
+      padding: 13px 16px;
+      text-align: right;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      white-space: nowrap;
     }
 
-    .foxchase-setup-stat-label {
+    .setup-performance-table th {
       font-size: 0.76rem;
-      opacity: 0.66;
+      font-weight: 700;
+      letter-spacing: 0.045em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      opacity: 0.76;
+      background: rgba(255, 255, 255, 0.045);
     }
 
-    .foxchase-setup-stat-grid strong {
-      font-size: 1rem;
+    .setup-performance-table th:first-child,
+    .setup-performance-table td:first-child {
+      text-align: left;
+    }
+
+    .setup-performance-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .setup-performance-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .setup-name {
+      font-weight: 700;
+    }
+
+    .positive-value {
+      font-weight: 700;
+    }
+
+    .negative-value {
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .setup-performance-section {
+        margin-top: 34px;
+      }
+
+      .setup-performance-table th,
+      .setup-performance-table td {
+        padding: 11px 13px;
+      }
     }
   </style>
 
-  <div class="foxchase-setup-performance-header">
+  <div class="setup-performance-header">
     <h2>Per-Setup Performance</h2>
     <p>
       Mechanical attribution from the clean 187-trade native research ledger.
@@ -669,193 +673,72 @@ const strategyStartingCapital = Number(
     </p>
   </div>
 
-  <div class="foxchase-setup-cards">
-    <article class="foxchase-setup-stat-card">
-          <div class="foxchase-setup-stat-heading">
-            <span class="foxchase-setup-letter">Setup A</span>
-            <h3>R4 PDC Reclaim Put Credit</h3>
-          </div>
+  <div class="setup-performance-table-wrap">
+    <table class="setup-performance-table">
+      <thead>
+        <tr>
+          <th scope="col">Setup</th>
+          <th scope="col">Trades</th>
+          <th scope="col">Net P&amp;L</th>
+          <th scope="col">Win Rate</th>
+          <th scope="col">Profit Factor</th>
+          <th scope="col">Median Win</th>
+          <th scope="col">Worst Trade</th>
+        </tr>
+      </thead>
 
-          <div class="foxchase-setup-stat-grid">
-            <div>
-              <span class="foxchase-setup-stat-label">Trades</span>
-              <strong>108</strong>
-            </div>
+      <tbody>
+        <tr>
+          <td class="setup-name">Setup A</td>
+          <td>108</td>
+          <td class="positive-value">$6,509</td>
+          <td>72.22%</td>
+          <td>1.64</td>
+          <td>$208</td>
+          <td class="negative-value">−$570</td>
+        </tr>
 
-            <div>
-              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
-              <strong>$6,509</strong>
-            </div>
+        <tr>
+          <td class="setup-name">Setup B</td>
+          <td>24</td>
+          <td class="positive-value">$5,154</td>
+          <td>83.33%</td>
+          <td>3.90</td>
+          <td>$319</td>
+          <td class="negative-value">−$511</td>
+        </tr>
 
-            <div>
-              <span class="foxchase-setup-stat-label">Win Rate</span>
-              <strong>72.22%</strong>
-            </div>
+        <tr>
+          <td class="setup-name">Setup C</td>
+          <td>16</td>
+          <td class="positive-value">$4,705</td>
+          <td>81.25%</td>
+          <td>3.41</td>
+          <td>$520</td>
+          <td class="negative-value">−$746</td>
+        </tr>
 
-            <div>
-              <span class="foxchase-setup-stat-label">Profit Factor</span>
-              <strong>1.64</strong>
-            </div>
+        <tr>
+          <td class="setup-name">Setup D</td>
+          <td>8</td>
+          <td class="positive-value">$4,123</td>
+          <td>100.00%</td>
+          <td>∞</td>
+          <td>$509</td>
+          <td class="negative-value">−$480</td>
+        </tr>
 
-            <div>
-              <span class="foxchase-setup-stat-label">Median Win</span>
-              <strong>$208</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Worst Trade</span>
-              <strong>-$570</strong>
-            </div>
-          </div>
-        </article><article class="foxchase-setup-stat-card">
-          <div class="foxchase-setup-stat-heading">
-            <span class="foxchase-setup-letter">Setup B</span>
-            <h3>R1 Lower EM Bear Call Credit</h3>
-          </div>
-
-          <div class="foxchase-setup-stat-grid">
-            <div>
-              <span class="foxchase-setup-stat-label">Trades</span>
-              <strong>24</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
-              <strong>$5,154</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Win Rate</span>
-              <strong>83.33%</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Profit Factor</span>
-              <strong>3.90</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Median Win</span>
-              <strong>$319</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Worst Trade</span>
-              <strong>-$511</strong>
-            </div>
-          </div>
-        </article><article class="foxchase-setup-stat-card">
-          <div class="foxchase-setup-stat-heading">
-            <span class="foxchase-setup-letter">Setup C</span>
-            <h3>R1 Relaxed Inside Iron Condor</h3>
-          </div>
-
-          <div class="foxchase-setup-stat-grid">
-            <div>
-              <span class="foxchase-setup-stat-label">Trades</span>
-              <strong>16</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
-              <strong>$4,705</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Win Rate</span>
-              <strong>81.25%</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Profit Factor</span>
-              <strong>3.41</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Median Win</span>
-              <strong>$520</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Worst Trade</span>
-              <strong>-$746</strong>
-            </div>
-          </div>
-        </article><article class="foxchase-setup-stat-card">
-          <div class="foxchase-setup-stat-heading">
-            <span class="foxchase-setup-letter">Setup D</span>
-            <h3>R5 PML Break Put Debit Spread</h3>
-          </div>
-
-          <div class="foxchase-setup-stat-grid">
-            <div>
-              <span class="foxchase-setup-stat-label">Trades</span>
-              <strong>8</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
-              <strong>$4,123</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Win Rate</span>
-              <strong>100.00%</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Profit Factor</span>
-              <strong>∞</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Median Win</span>
-              <strong>$509</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Worst Trade</span>
-              <strong>-$480</strong>
-            </div>
-          </div>
-        </article><article class="foxchase-setup-stat-card">
-          <div class="foxchase-setup-stat-heading">
-            <span class="foxchase-setup-letter">Setup E</span>
-            <h3>R4 PML Reclaim Put Credit</h3>
-          </div>
-
-          <div class="foxchase-setup-stat-grid">
-            <div>
-              <span class="foxchase-setup-stat-label">Trades</span>
-              <strong>31</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Net P&amp;L</span>
-              <strong>$2,276</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Win Rate</span>
-              <strong>74.19%</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Profit Factor</span>
-              <strong>1.96</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Median Win</span>
-              <strong>$195</strong>
-            </div>
-
-            <div>
-              <span class="foxchase-setup-stat-label">Worst Trade</span>
-              <strong>-$483</strong>
-            </div>
-          </div>
-        </article>
+        <tr>
+          <td class="setup-name">Setup E</td>
+          <td>31</td>
+          <td class="positive-value">$2,276</td>
+          <td>74.19%</td>
+          <td>1.96</td>
+          <td>$195</td>
+          <td class="negative-value">−$483</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 <!-- FOXCHASE_SETUP_STATS_END -->
