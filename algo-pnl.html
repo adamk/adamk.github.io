@@ -387,15 +387,15 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the 210-trade natural-fill research candidate ledger,
-      built from the native production framework and four predefined sequential candidate trades.
+      The metrics below reflect the validated 206-trade research baseline.
+      Experimental sequential second-trade logic is excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
-        src="/images/foxchase_latest_algo_vs_spy.png?v=20260717-native-210"
-        alt="Foxchase native production research candidate versus SPY buy and hold"
+        src="/images/foxchase_latest_algo_vs_spy.png?v=20260717-baseline-206"
+        alt="Foxchase validated 206-trade research baseline versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
@@ -403,36 +403,31 @@ function setTextIfExists(id, value) {
     <h2>Latest Research Candidate Ruleset</h2>
 
     <div class="pnl-note">
-      <strong>Latest research candidate ruleset:</strong>
-      The 210-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
-      It contains 206 native production trades and four predefined sequential candidate trades.
-      The backtest produced +$26,538.00 on a $10,000.00 starting account.
-      The four-trade sequential sleeve remains preliminary and requires additional execution and forward validation.
+      <strong>Latest research ruleset:</strong>
+      The 206-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
+      It reflects the validated 206-trade research baseline and produced +$25,793.00
+      on a $10,000.00 starting account. Experimental sequential second-trade logic
+      is excluded pending a fully mechanical, non-preselected historical and forward
+      validation process.
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Candidate Sample</div><div class="research-value">210 trades</div></div>
+      <div class="research-card"><div class="research-label">Research Baseline Sample</div><div class="research-value">206 trades</div></div>
       <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">206 days</div></div>
-      <div class="research-card"><div class="research-label">Research Candidate P&amp;L</div><div class="research-value">+$26,538.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$36,538.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">265.38%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.62%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.54</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$25,793.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$35,793.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">257.93%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.18%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.49</div></div>
       <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.52%</div></div>
-      <div class="research-card"><div class="research-label">Average Trade</div><div class="research-value">$126.37</div></div>
-      <div class="research-card"><div class="research-label">Median Trade</div><div class="research-value">$195.00</div></div>
-      <div class="research-card"><div class="research-label">Best Trade</div><div class="research-value">$1,334.00</div></div>
-      <div class="research-card"><div class="research-label">Worst Trade</div><div class="research-value">-$745.50</div></div>
     </div>
     <!-- latest-ruleset-end -->
 
 
     <p class="small">
       Backtest assumptions: $10,000 starting equity, fixed 10% risk per trade,
-      and non-compounded sizing. The framework generally permits one selected
-      trade per day, with a small number of predefined exceptions.
-      The four sequential candidate additions use conservative natural bid/ask replay
-      and still require additional execution and forward validation.
+      and non-compounded sizing. The framework generally permits one selected trade per day.
+      Experimental sequential second-trade logic is not included in the published results.
       Historical options data was sourced from ThetaData.
     </p>
 
