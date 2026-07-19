@@ -387,7 +387,7 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the validated 187-trade research baseline.
+      The metrics below reflect the validated 200-trade research portfolio.
       Experimental sequential second-trade logic is excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
@@ -395,7 +395,7 @@ function setTextIfExists(id, value) {
     <div class="chart-box">
       <img
         src="/images/foxchase_latest_algo_vs_spy.png?v=200-r3-clean-spy-20260719"
-        alt="Foxchase validated 187-trade research baseline versus SPY buy and hold"
+        alt="Foxchase validated 200-trade research portfolio versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
@@ -404,21 +404,21 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Latest research ruleset:</strong>
-      The 187-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
-      It reflects the validated 187-trade research baseline and produced +$22,766.00
+      The 200-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
+      It reflects the validated 200-trade research portfolio and produced +$26,578.00
       on a $10,000.00 starting account. Experimental sequential second-trade logic
       is excluded pending a fully mechanical, non-preselected historical and forward
       validation process.
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Baseline Sample</div><div class="research-value">187 trades</div></div>
-      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">187 days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$22,766.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$32,766.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">227.66%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">75.94%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.39</div></div>
+      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">200 trades</div></div>
+      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">200 days</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$26,578.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$36,578.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">265.78%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.00%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.59</div></div>
       <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.60%</div></div>
     </div>
     <!-- latest-ruleset-end -->
@@ -662,7 +662,7 @@ const strategyStartingCapital = Number(
   <div class="setup-performance-header">
     <h2>Per-Setup Performance</h2>
     <p>
-      Mechanical attribution from the clean 187-trade native research ledger.
+      Mechanical attribution from the clean 200-trade native research ledger.
       The failed-downside fade research sleeve is excluded.
     </p>
   </div>
@@ -730,6 +730,16 @@ const strategyStartingCapital = Number(
           <td>1.96</td>
           <td>$195</td>
           <td class="negative-value">−$483</td>
+        </tr>
+
+        <tr>
+          <td class="setup-name">Setup F</td>
+          <td>13</td>
+          <td class="positive-value">$3,812</td>
+          <td>92.31%</td>
+          <td>12.07</td>
+          <td>$221</td>
+          <td class="negative-value">−$345</td>
         </tr>
       </tbody>
     </table>
