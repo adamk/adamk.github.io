@@ -226,33 +226,240 @@
     }
   }
 </style>
+
+<style id="foxchase-interior-header-css">
+  .foxchase-site-header,
+  .foxchase-site-header * {
+    box-sizing: border-box;
+  }
+
+  .foxchase-site-header {
+    position: relative;
+    z-index: 3000;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: rgba(5, 5, 5, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .foxchase-header-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1180px;
+    min-height: 66px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+  }
+
+  .foxchase-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #f4f4f4 !important;
+    text-decoration: none !important;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .foxchase-brand:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+  }
+
+  .foxchase-brand-logo {
+    display: block;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex: 0 0 42px;
+  }
+
+  .foxchase-main-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .foxchase-navigation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 999px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .2);
+  }
+
+  .foxchase-navigation a {
+    display: block;
+    color: #495057 !important;
+    background: transparent;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 8px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .foxchase-navigation a:hover {
+    color: #111 !important;
+    background: #f1f3f5;
+    text-decoration: none !important;
+  }
+
+  .foxchase-navigation a.active {
+    color: #111 !important;
+    background: #e9ecef;
+    font-weight: 700;
+  }
+
+  .foxchase-menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 991.98px) {
+    .foxchase-site-header {
+      padding: 0;
+    }
+
+    .foxchase-header-wrap {
+      min-height: 66px;
+      max-width: none;
+      padding: 0 18px;
+      justify-content: space-between;
+    }
+
+    .foxchase-brand {
+      min-width: 0;
+      font-size: 1rem;
+    }
+
+    .foxchase-brand-logo {
+      width: 36px;
+      height: 36px;
+      flex-basis: 36px;
+    }
+
+    .foxchase-main-nav {
+      position: static;
+      transform: none;
+      margin-left: auto;
+    }
+
+    .foxchase-menu-toggle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin: 0;
+      padding: 9px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .foxchase-menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 2px 0;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .foxchase-navigation {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 18px;
+      right: 18px;
+      width: auto;
+      padding: 10px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+    }
+
+    .foxchase-navigation.is-open {
+      display: flex;
+    }
+
+    .foxchase-navigation a {
+      width: 100%;
+      padding: 12px 14px;
+      color: #f4f4f4 !important;
+      background: transparent;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .foxchase-navigation a:hover {
+      color: #fff !important;
+      background: rgba(255,255,255,.08);
+    }
+
+    .foxchase-navigation a.active {
+      color: #050505 !important;
+      background: #f4f4f4;
+    }
+  }
+</style>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
-  <nav class="navbar navbar-expand-lg bg-transparent" style="margin-top:16px !important; padding-top:0 !important;">
-    <div class="container justify-content-end justify-content-lg-center">
-      <button class="navbar-toggler mb-2" type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#foxchaseNav"
-              aria-controls="foxchaseNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
-        <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-white shadow-lg-sm border-lg">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/blog.html">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="/3k-challenge">Small Account Series</a></li>
-          <li class="nav-item"><a class="nav-link" href="/setups/">Setups</a></li>
-          <li class="nav-item"><a class="nav-link" href="/planner/">Planner</a></li>
-          <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
-        </ul>
-      </div>
+  <header class="foxchase-site-header">
+    <div class="foxchase-header-wrap">
+      <a class="foxchase-brand" href="/" aria-label="Foxchase Trading home">
+        <img
+          src="/foxchasetrading-transparent.png"
+          alt="Foxchase Trading logo"
+          class="foxchase-brand-logo"
+        />
+        <span>Foxchase Trading</span>
+      </a>
+  
+      <nav class="foxchase-main-nav" aria-label="Main navigation">
+        <button
+          class="foxchase-menu-toggle"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+  
+        <div class="foxchase-navigation">
+            <a href="/">Home</a>
+            <a href="/blog.html" class="active" aria-current="page">Blog</a>
+            <a href="/3k-challenge">Small Account Series</a>
+            <a href="/setups/">Setups</a>
+            <a href="/planner/">Planner</a>
+            <a href="/products.html">Products</a>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </header>
+
   <div class="container mt-2 mb-4">
     <div class="container text-center pt-0">
 <section class="mb-4 p-4 bg-white border rounded-4 shadow-sm">
@@ -394,5 +601,29 @@
     Trading involves substantial risk of loss and is not suitable for all investors.
   </p>
 </footer>
+
+<script id="foxchase-interior-header-script">
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".foxchase-site-header").forEach(function (header) {
+      const toggle = header.querySelector(".foxchase-menu-toggle");
+      const navigation = header.querySelector(".foxchase-navigation");
+
+      if (!toggle || !navigation) return;
+
+      toggle.addEventListener("click", function () {
+        const open = navigation.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      navigation.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navigation.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
