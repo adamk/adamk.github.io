@@ -473,94 +473,17 @@
   }
 </style>
 
-<style>
-    /* Foxchase branded dark-page header */
-    .fc-nav {
-      width: 100%;
-      max-width: var(--max);
-      margin: 18px auto 8px;
-      padding: 0 24px;
-      display: block;
-    }
-
-    .fc-nav-bar {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .fc-dark-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--text) !important;
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1;
-      white-space: nowrap;
-      text-decoration: none !important;
-    }
-
-    .fc-dark-brand:hover {
-      color: #ffd38a !important;
-    }
-
-    .fc-dark-brand img {
-      width: 40px;
-      height: 40px;
-      display: block;
-      object-fit: contain;
-    }
-
-    .fc-nav-inner {
-      margin-left: auto;
-    }
-
-    @media (max-width: 991.98px) {
-      .fc-nav {
-        padding: 0 18px;
-      }
-
-      .fc-nav-bar {
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-
-      .fc-nav-toggle {
-        margin-left: auto;
-      }
-
-      .fc-nav-inner {
-        flex-basis: 100%;
-        margin-left: 0;
-      }
-
-      .fc-dark-brand img {
-        width: 36px;
-        height: 36px;
-      }
-    }
-</style>
 </head>
 <body>
   <nav class="fc-nav" id="fcNav">
-    <div class="fc-nav-bar">
-      <a class="fc-dark-brand" href="/" aria-label="Foxchase Trading home">
-        <img src="/foxchasetrading-transparent.png" alt="" />
-        <span>Foxchase Trading</span>
-      </a>
-
-      <button class="fc-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleFcNav()">☰</button>
-
-      <div class="fc-nav-inner">
-        <a href="/">Home</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/3k-challenge" class="active">Small Account Series</a>
-        <a href="/setups/">Setups</a>
-        <a href="/planner/">Planner</a>
-        <a href="/products.html">Products</a>
-      </div>
+    <button class="fc-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleFcNav()">☰</button>
+    <div class="fc-nav-inner">
+      <a href="/">Home</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/3k-challenge" class="active">Small Account Series</a>
+      <a href="/setups">Setups</a>
+      <a href="/planner/">Planner</a>
+      <a href="/products.html">Products</a>
     </div>
   </nav>
   <div class="wrap">
