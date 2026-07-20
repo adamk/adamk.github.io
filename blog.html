@@ -226,78 +226,12 @@
     }
   }
 </style>
-<style>
-  /* Foxchase branded interior-page header */
-  .fc-brand-nav > .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between !important;
-    gap: 1rem;
-  }
-
-  .fc-site-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: .55rem;
-    margin-right: 1rem;
-    color: #212529;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .fc-site-brand:hover {
-    color: #b45309;
-    text-decoration: none;
-  }
-
-  .fc-site-brand img {
-    width: 38px;
-    height: 38px;
-    object-fit: contain;
-    display: block;
-  }
-
-  .fc-brand-nav .navbar-collapse {
-    flex-grow: 0;
-  }
-
-  @media (max-width: 991.98px) {
-    .fc-brand-nav > .container {
-      flex-wrap: wrap;
-    }
-
-    .fc-brand-nav .navbar-toggler {
-      margin-left: auto !important;
-    }
-
-    .fc-brand-nav .navbar-collapse {
-      flex-basis: 100%;
-      width: 100%;
-    }
-
-    .fc-site-brand {
-      margin-right: 0;
-    }
-
-    .fc-site-brand img {
-      width: 34px;
-      height: 34px;
-    }
-  }
-</style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-  <nav class="navbar navbar-expand-lg bg-transparent fc-brand-nav" style="margin-top:16px !important; padding-top:0 !important;">
-    <div class="container">
-      <a class="navbar-brand fc-site-brand" href="/" aria-label="Foxchase Trading home">
-        <img src="/foxchasetrading-transparent.png" alt="" />
-        <span>Foxchase Trading</span>
-      </a>
+  <nav class="navbar navbar-expand-lg bg-transparent" style="margin-top:16px !important; padding-top:0 !important;">
+    <div class="container justify-content-end justify-content-lg-center">
       <button class="navbar-toggler mb-2" type="button"
               data-bs-toggle="collapse"
               data-bs-target="#foxchaseNav"
@@ -307,7 +241,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-lg-end" id="foxchaseNav">
+      <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
         <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-white shadow-lg-sm border-lg">
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="/blog.html">Blog</a></li>
