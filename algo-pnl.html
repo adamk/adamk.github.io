@@ -393,47 +393,50 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the validated 200-trade research portfolio.
-      Experimental sequential second-trade logic is excluded from the results shown.
+      The metrics below reflect the latest 200-trade research portfolio.
+      The R4 Open sleeve and experimental sequential second-trade logic are excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
-        src="/images/foxchase_latest_algo_vs_spy.png?v=200-r3-clean-spy-20260719"
-        alt="Foxchase validated 200-trade research portfolio versus SPY buy and hold"
+        src="/images/foxchase_latest_algo_vs_spy.png?v=200-r5-reject-pmh-20260719-2"
+        alt="Foxchase latest 200-trade research portfolio versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
     <!-- latest-ruleset-start -->
-    <h2>Latest Research Candidate Ruleset</h2>
+    <h2>Latest Research Ruleset</h2>
 
     <div class="pnl-note">
       <strong>Latest research ruleset:</strong>
       The 200-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
-      It reflects the validated 200-trade research portfolio and produced +$26,578.00
-      on a $10,000.00 starting account. Experimental sequential second-trade logic
-      is excluded pending a fully mechanical, non-preselected historical and forward
-      validation process.
+      It produced +$21,422.50 on a $10,000.00 starting account, ending at $31,422.50.
+      The effectively breakeven R4 Open sleeve and experimental sequential second-trade
+      logic are excluded.
     </div>
 
     <div class="research-metrics">
       <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">200 trades</div></div>
       <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">200 days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$26,578.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$36,578.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">265.78%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.00%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.59</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.60%</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$21,422.50</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$31,422.50</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">214.23%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">74.50%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.64</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-7.20%</div></div>
+      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$107.11</div></div>
+      <div class="research-card"><div class="research-label">Annualized Return</div><div class="research-value">40.38%</div></div>
+      <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">92.36%</div></div>
+      <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-18.92%</div></div>
     </div>
     <!-- latest-ruleset-end -->
 
 
     <p class="small">
-      Backtest assumptions: $10,000 starting equity, fixed 10% risk per trade,
-      and non-compounded sizing. The framework generally permits one selected trade per day.
-      Experimental sequential second-trade logic is not included in the published results.
+      Backtest assumptions: $10,000 starting equity, a fixed $1,000 maximum risk
+      per trade, and non-compounded sizing. The framework generally permits one selected trade per day.
+      The R4 Open sleeve and experimental sequential second-trade logic are not included in the published results.
       Historical options data was sourced from ThetaData.
     </p>
 
@@ -637,39 +640,19 @@ const strategyStartingCapital = Number(
       border-bottom: 0;
     }
 
-    .setup-performance-table tbody tr:hover {
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .setup-name {
-      font-weight: 700;
-    }
-
-    .positive-value {
-      font-weight: 700;
-    }
-
+    .setup-name,
+    .positive-value,
     .negative-value {
       font-weight: 700;
-    }
-
-    @media (max-width: 700px) {
-      .setup-performance-section {
-        margin-top: 34px;
-      }
-
-      .setup-performance-table th,
-      .setup-performance-table td {
-        padding: 11px 13px;
-      }
     }
   </style>
 
   <div class="setup-performance-header">
     <h2>Per-Setup Performance</h2>
     <p>
-      Mechanical attribution from the clean 200-trade native research ledger.
-      The failed-downside fade research sleeve is excluded.
+      Mechanical attribution from the latest 200-trade native research ledger.
+      Setup labels are anonymized. The R4 Open sleeve and experimental sequential
+      second-trade logic are excluded.
     </p>
   </div>
 
@@ -686,67 +669,14 @@ const strategyStartingCapital = Number(
           <th scope="col">Worst Trade</th>
         </tr>
       </thead>
-
       <tbody>
-        <tr>
-          <td class="setup-name">Setup A</td>
-          <td>108</td>
-          <td class="positive-value">$6,509</td>
-          <td>72.22%</td>
-          <td>1.64</td>
-          <td>$208</td>
-          <td class="negative-value">−$570</td>
-        </tr>
-
-        <tr>
-          <td class="setup-name">Setup B</td>
-          <td>24</td>
-          <td class="positive-value">$5,154</td>
-          <td>83.33%</td>
-          <td>3.90</td>
-          <td>$319</td>
-          <td class="negative-value">−$511</td>
-        </tr>
-
-        <tr>
-          <td class="setup-name">Setup C</td>
-          <td>16</td>
-          <td class="positive-value">$4,705</td>
-          <td>81.25%</td>
-          <td>3.41</td>
-          <td>$520</td>
-          <td class="negative-value">−$746</td>
-        </tr>
-
-        <tr>
-          <td class="setup-name">Setup D</td>
-          <td>8</td>
-          <td class="positive-value">$4,123</td>
-          <td>100.00%</td>
-          <td>∞</td>
-          <td>$509</td>
-          <td class="negative-value">−$480</td>
-        </tr>
-
-        <tr>
-          <td class="setup-name">Setup E</td>
-          <td>31</td>
-          <td class="positive-value">$2,276</td>
-          <td>74.19%</td>
-          <td>1.96</td>
-          <td>$195</td>
-          <td class="negative-value">−$483</td>
-        </tr>
-
-        <tr>
-          <td class="setup-name">Setup F</td>
-          <td>13</td>
-          <td class="positive-value">$3,812</td>
-          <td>92.31%</td>
-          <td>12.07</td>
-          <td>$221</td>
-          <td class="negative-value">−$345</td>
-        </tr>
+        <tr><td class="setup-name">Setup A</td><td>29</td><td class="positive-value">+$4,863.50</td><td>89.66%</td><td>5.43</td><td>$203.00</td><td class="negative-value">−$688.00</td></tr>
+        <tr><td class="setup-name">Setup B</td><td>69</td><td class="positive-value">+$4,670.50</td><td>56.52%</td><td>2.04</td><td>$210.00</td><td class="negative-value">−$294.50</td></tr>
+        <tr><td class="setup-name">Setup C</td><td>24</td><td class="positive-value">+$4,195.00</td><td>87.50%</td><td>3.98</td><td>$240.00</td><td class="negative-value">−$511.00</td></tr>
+        <tr><td class="setup-name">Setup D</td><td>11</td><td class="positive-value">+$3,348.00</td><td>90.91%</td><td>10.72</td><td>$213.50</td><td class="negative-value">−$344.50</td></tr>
+        <tr><td class="setup-name">Setup E</td><td>44</td><td class="positive-value">+$2,306.00</td><td>77.27%</td><td>1.58</td><td>$169.00</td><td class="negative-value">−$570.00</td></tr>
+        <tr><td class="setup-name">Setup F</td><td>19</td><td class="positive-value">+$1,642.50</td><td>84.21%</td><td>2.32</td><td>$169.00</td><td class="negative-value">−$855.00</td></tr>
+        <tr><td class="setup-name">Setup G</td><td>4</td><td class="positive-value">+$397.00</td><td>75.00%</td><td>1.85</td><td>$288.00</td><td class="negative-value">−$469.00</td></tr>
       </tbody>
     </table>
   </div>
