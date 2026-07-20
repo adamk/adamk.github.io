@@ -426,7 +426,7 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.64</div></div>
       <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-7.20%</div></div>
       <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$107.11</div></div>
-      <div class="research-card"><div class="research-label">Annualized Return</div><div class="research-value">40.38%</div></div>
+      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">40.38%</div></div>
       <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">92.36%</div></div>
       <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-18.92%</div></div>
     </div>
@@ -530,8 +530,8 @@ const strategyStartingCapital = Number(
       );
 
       const avgLossDisplay = avgLoss === null ? 0 : avgLoss;
-      setTextIfExists("avg-win-loss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
-      setTextIfExists("avgWinLoss", `${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
+      setTextIfExists("avg-win-loss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
+      setTextIfExists("avgWinLoss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
         setTextIfExists("accountType", data.account_type || "Live account");
         document.getElementById("equity").textContent = dollars(data.current_equity);
 
