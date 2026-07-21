@@ -1,7 +1,7 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-07-21T10:45:01.937993-04:00",
-  "current_equity": 8663.81,
+  "updated_at": "2026-07-21T11:00:01.963287-04:00",
+  "current_equity": 8723.81,
   "points": [
     {
       "date": "2025-07-03",
@@ -1053,7 +1053,7 @@
     },
     {
       "date": "2026-07-21",
-      "equity": 8663.81
+      "equity": 8723.81
     }
   ],
   "stats": {
@@ -1264,13 +1264,13 @@
   ],
   "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. The equity chart reflects broker-reported account equity and may include deposits or withdrawals. Trade statistics are calculated separately from closed algorithm trades and are intended to better isolate strategy performance.",
   "account": "Live account",
-  "currentEquity": 8663.81,
+  "currentEquity": 8723.81,
   "buyingPower": 31615.24,
   "cash": 9903.81,
-  "portfolioValue": 8663.81,
+  "portfolioValue": 8723.81,
   "openPositions": 4,
-  "lastUpdated": "2026-07-21T10:45:01.937993-04:00",
-  "lastUpdatedDisplay": "07/21/2026, 10:45:01 AM ET",
+  "lastUpdated": "2026-07-21T11:00:01.963287-04:00",
+  "lastUpdatedDisplay": "07/21/2026, 11:00:01 AM ET",
   "source": "Alpaca live account",
   "equityHistory": [
     {
@@ -2323,7 +2323,7 @@
     },
     {
       "date": "2026-07-21",
-      "equity": 8663.81
+      "equity": 8723.81
     }
   ],
   "realized_algo_pnl": 788.0,
@@ -2482,13 +2482,13 @@
   },
   "strategy_starting_capital": 6983.03,
   "last_equity": 8767.19,
-  "today_account_pnl": -103.38000000000102,
-  "todays_account_pnl": -103.38000000000102,
-  "today_pnl": -103.38000000000102,
+  "today_account_pnl": -43.38000000000102,
+  "todays_account_pnl": -43.38000000000102,
+  "today_pnl": -43.38000000000102,
   "lastEquity": 8767.19,
-  "todayAccountPnl": -103.38000000000102,
-  "todaysAccountPnl": -103.38000000000102,
-  "todayPnl": -103.38000000000102,
+  "todayAccountPnl": -43.38000000000102,
+  "todaysAccountPnl": -43.38000000000102,
+  "todayPnl": -43.38000000000102,
   "gross_profit": 1052.0,
   "gross_loss": 263.99999999999994,
   "profit_factor": 3.9848484848484858,
