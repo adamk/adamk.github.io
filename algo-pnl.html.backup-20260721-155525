@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script>
+
+function formatMoneyValue(value) {
+  const n = Number(value || 0);
+  return n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+}
+
+function formatPctValue(value) {
+  const n = Number(value || 0);
+  return n.toFixed(1) + "%";
+}
+
+function setTextIfExists(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZKVBZ3QJ1F');
+  </script>
+
+  <link rel="icon" href="foxchasetrading.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Foxchase Trading Algo Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Foxchase Trading live algorithm performance dashboard with research backtest context.">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pnl-wrap { max-width:1000px; margin:40px auto; padding:0 20px; }
+    .pnl-note { background:#fff8e5; border:1px solid #e8c66a; color:#2b2b2b; padding:16px; border-radius:10px; margin:20px 0; line-height:1.5; }
+    .pnl-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin:25px 0; }
+    .pnl-card { border:1px solid #ddd; border-radius:10px; padding:16px; background:#fff; }
+    @media (min-width: 800px) {
+      .live-stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+    .pnl-label { color:#666; font-size:14px; }
+    .pnl-value { font-size:24px; font-weight:700; margin-top:8px; }
+    .chart-box { margin-top:25px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fff; }
+    .small { color:#666; font-size:13px; margin-top:15px; line-height:1.5; }
+    .algo-brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#111;
+      text-decoration:none;
+      font-weight:700;
+      font-size:18px;
+    }
+    .algo-brand img {
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      display:block;
+    }
+    .algo-back {
+      color:#666;
+      text-decoration:none;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .algo-back:hover {
+      text-decoration:underline;
+    }
+    @media (max-width:600px) {
+      .algo-header {
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+
+    .research-metrics {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+      gap:16px;
+      margin:22px 0;
+    }
+    .research-card {
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fff;
+    }
+    .research-label {
+      color:#666;
+      font-size:13px;
+      line-height:1.35;
+    }
+    .research-value {
+      font-size:22px;
+      font-weight:700;
+      margin-top:8px;
+    }
+    .research-table-wrap {
+      overflow-x:auto;
+      margin:20px 0;
+      border:1px solid #ddd;
+      border-radius:10px;
+      background:#fff;
+    }
+    .research-table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+    }
+    .research-table th,
+    .research-table td {
+      padding:12px 14px;
+      border-bottom:1px solid #eee;
+      text-align:right;
+      white-space:nowrap;
+    }
+    .research-table th:first-child,
+    .research-table td:first-child {
+      text-align:left;
+    }
+    .research-table tr:last-child td {
+      border-bottom:none;
+    }
+    .research-table th {
+      background:#fafafa;
+      color:#444;
+      font-weight:700;
+    }
+
+
+    @media (min-width: 992px) {
+      .rounded-lg-pill { border-radius: 50rem !important; }
+      .bg-lg-white { background-color: #fff !important; }
+      .shadow-lg-sm { box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important; }
+      .border-lg { border: 1px solid #dee2e6 !important; }
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        margin-top: .75rem;
+        width: 100%;
+      }
+
+      .navbar-nav {
+        background: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: .75rem;
+        padding: .75rem 1rem;
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+      }
+    }
+
+    .navbar-nav .nav-link.active {
+      background: rgba(245, 158, 11, 0.14);
+      color: #b45309 !important;
+      border-radius: 999px;
+      padding-left: 0.85rem;
+      padding-right: 0.85rem;
+    }
+
+
+/* Mobile nav fix: keep hamburger pinned top-right */
+@media (max-width: 768px) {
+  .hamburger,
+  .menu-toggle,
+  .mobile-menu-toggle,
+  .nav-toggle,
+  button[aria-label="Toggle navigation"],
+  button[aria-label="Menu"] {
+    position: absolute !important;
+    top: 18px !important;
+    right: 18px !important;
+    left: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+    z-index: 9999 !important;
+  }
+
+  header,
+  .site-header,
+  .navbar,
+  .nav-container,
+  .header-inner {
+    position: relative !important;
+  }
+}
+
+
+  /* Foxchase mobile layout fixes */
+
+  /* Mobile responsiveness fixes */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .pnl-wrap {
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .chart-box,
+  .research-table-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chart-box {
+    overflow: hidden;
+  }
+
+  .chart-box canvas,
+  .chart-box img {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .navbar > .container,
+  .navbar > .container-fluid {
+    justify-content: flex-end !important;
+  }
+
+  .navbar-toggler {
+    margin-left: auto !important;
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .pnl-wrap {
+      margin: 24px auto;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .pnl-grid,
+    .research-metrics {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pnl-card,
+    .research-card,
+    .pnl-note,
+    .chart-box {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .chart-box {
+      padding: 8px;
+    }
+
+    .research-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .navbar {
+      width: 100%;
+    }
+
+    .navbar > .container,
+    .navbar > .container-fluid {
+      width: 100%;
+      max-width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-transparent" style="margin-top:16px !important; padding-top:0 !important;">
+    <div class="container justify-content-end justify-content-lg-center">
+      <button class="navbar-toggler mb-2" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#foxchaseNav"
+              aria-controls="foxchaseNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
+        <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-white shadow-lg-sm border-lg">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog.html">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/3k-challenge">Small Account Series</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/setups/">Setups</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/planner/">Planner</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/products.html">Products</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="pnl-wrap">
+    <h1>Foxchase Algo P&L</h1>
+    <p>Live account performance dashboard for the Foxchase options strategy algorithm.</p>
+
+    <div class="pnl-note">
+      <strong>Important note:</strong>
+      The equity chart reflects live Alpaca account equity and may include the effects of deposits,
+      withdrawals, and interest earned on eligible cash balances at Alpaca’s applicable rate,
+      currently 3.3% APY. The statistics below are calculated separately from filled multi-leg
+      option trades and exclude deposits, withdrawals, and cash interest.<br><br>
+
+      This is a privately operated strategy traded only in my own account. It is not a managed account,
+      copy-trading service, or trade recommendation service.<br><br>
+
+      Foxchase Trading is independent and is not affiliated with, sponsored by, or endorsed by Alpaca.
+    </div>
+
+    <h2>Live Performance</h2>
+
+    <div class="pnl-grid live-stats-grid">
+      <div class="pnl-card">
+        <div class="pnl-label">Current Equity</div>
+        <div class="pnl-value" id="equity">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Realized Algo P&amp;L</div>
+        <div class="pnl-value" id="realizedPnl">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Total Return</div>
+        <div class="pnl-value" id="realizedAlgoReturn">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Today’s Account P&amp;L</div>
+        <div class="pnl-value" id="todayAccountPnl">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Closed Trades</div>
+        <div class="pnl-value" id="closedTrades">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Win Rate</div>
+        <div class="pnl-value" id="winRate">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Profit Factor</div>
+        <div class="pnl-value" id="profitFactor">-</div>
+      </div>
+
+      <div class="pnl-card">
+        <div class="pnl-label">Avg Win / Avg Loss</div>
+        <div class="pnl-value" id="avgWinLoss">-</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <canvas id="equityChart"></canvas>
+    </div>
+
+    <p class="small" id="updated"></p>
+    <p class="small" id="note"></p>
+
+    <h2>Research Backtest</h2>
+
+    <div class="pnl-note">
+      <strong>Research backtest, not live performance:</strong>
+      The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
+      The metrics below reflect the latest 200-trade research portfolio.
+      The R4 Open sleeve and experimental sequential second-trade logic are excluded from the results shown.
+      This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
+    </div>
+
+    <div class="chart-box">
+      <img
+        src="/images/foxchase_latest_algo_vs_spy.png?v=200-r5-reject-pmh-20260719-2"
+        alt="Foxchase latest 200-trade research portfolio versus SPY buy and hold"
+        style="width:100%; height:auto; border-radius:8px;"
+      >
+    </div>
+    <!-- latest-ruleset-start -->
+    <h2>Latest Research Ruleset</h2>
+
+    <div class="pnl-note">
+      <strong>Latest research ruleset:</strong>
+      The 200-trade backtest uses a fixed 10% risk budget with non-compounded sizing.
+      It produced +$26,578.00 on a $10,000.00 starting account, ending at $36,578.00.
+      The effectively breakeven R4 Open sleeve and experimental sequential second-trade
+      logic are excluded.
+    </div>
+
+    <div class="research-metrics">
+      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">200 trades</div></div>
+      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">200 days</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$26,578.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$36,578.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">265.78%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.00%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.59</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-4.60%</div></div>
+      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$107.11</div></div>
+      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">40.38%</div></div>
+      <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">92.36%</div></div>
+      <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-18.92%</div></div>
+    </div>
+    <!-- latest-ruleset-end -->
+
+
+    <p class="small">
+      Backtest assumptions: $10,000 starting equity, a fixed $1,000 maximum risk
+      per trade, and non-compounded sizing. The framework generally permits one selected trade per day.
+      The R4 Open sleeve and experimental sequential second-trade logic are not included in the published results.
+      Historical options data was sourced from ThetaData.
+    </p>
+
+    <p class="small">
+      The backtest begins in 2023 because daily index 0DTE trading became structurally more representative after Cboe expanded SPX Weeklys to include expirations every trading day in 2022.
+      Earlier periods had a different expiration structure and are less comparable to the current 0DTE market.
+    </p>
+
+
+    <p class="small">
+      Backtested results are hypothetical and may not reflect actual live execution, slippage, partial fills, rejected orders,
+      commissions, liquidity constraints, assignment or exercise risk, platform outages, data issues, or execution latency.
+      Live results shown above should be considered more important than historical backtest results.
+    </p>
+
+  </div>
+
+  <script>
+    function dollars(value) {
+      return Number(value).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    }
+
+    function pct(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "-";
+      return Number(value).toFixed(1) + "%";
+    }
+
+    fetch("/data/algo-pnl.json?v=" + Date.now(), { cache: "no-store" })
+      .then(response => response.json())
+      .then(data => {
+
+      // Dynamic Main Stats
+      const tradeStats = data.trade_stats || data.tradeStats || data.stats || {};
+      const realizedAlgoPnl = tradeStats.realized_algo_pnl ?? data.realized_algo_pnl ?? data.realizedAlgoPnl ?? 0;
+      const winRate = tradeStats.win_rate_pct ?? tradeStats.win_rate ?? data.win_rate ?? data.winRate ?? 0;
+      const closedTrades = tradeStats.closed_trades ?? data.closed_trades ?? data.closedTrades ?? 0;
+      const avgWin = tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? 0;
+      const avgLoss = tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? 0;
+
+
+      const profitFactor =
+        tradeStats.profit_factor ??
+        data.profit_factor ??
+        data.profitFactor ??
+        null;
+
+      const todayAccountPnl =
+        tradeStats.today_account_pnl ??
+        data.today_account_pnl ??
+        data.todayAccountPnl ??
+        data.account_today_pnl ??
+        null;
+const strategyStartingCapital = Number(
+        data.strategy_starting_capital ?? 0
+      );
+
+      const realizedAlgoReturn =
+        strategyStartingCapital > 0
+          ? (Number(realizedAlgoPnl) / strategyStartingCapital) * 100
+          : null;
+
+      setTextIfExists("realized-algo-pnl", formatMoneyValue(realizedAlgoPnl));
+      setTextIfExists("realizedAlgoPnl", formatMoneyValue(realizedAlgoPnl));
+
+      setTextIfExists(
+        "realizedAlgoReturn",
+        realizedAlgoReturn === null
+          ? "-"
+          : realizedAlgoReturn.toFixed(2) + "%"
+      );
+
+      setTextIfExists("win-rate", formatPctValue(winRate));
+      setTextIfExists("winRate", formatPctValue(winRate));
+
+      setTextIfExists("closed-trades", String(closedTrades));
+      setTextIfExists("closedTrades", String(closedTrades));
+
+      setTextIfExists(
+        "todayAccountPnl",
+        todayAccountPnl === null
+          ? "-"
+          : formatMoneyValue(todayAccountPnl)
+      );
+
+      setTextIfExists(
+        "profitFactor",
+        profitFactor === null ||
+        !Number.isFinite(Number(profitFactor))
+          ? "-"
+          : Number(profitFactor).toFixed(2)
+      );
+
+      const avgLossDisplay = avgLoss === null ? 0 : avgLoss;
+      setTextIfExists("avg-win-loss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
+      setTextIfExists("avgWinLoss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
+        setTextIfExists("accountType", data.account_type || "Live account");
+        document.getElementById("equity").textContent = dollars(data.current_equity);
+
+        const stats = data.stats || {};
+        document.getElementById("realizedPnl").textContent = dollars(stats.realized_algo_pnl || 0);
+        document.getElementById("winRate").textContent = pct(stats.win_rate_pct);
+        // closedTrades and avgWinLoss are handled by Dynamic Main Stats above.
+
+        document.getElementById("updated").textContent =
+          "Last updated: " + new Date(data.updated_at).toLocaleString();
+        document.getElementById("note").textContent = data.note || "";
+
+        const points = data.points || [];
+        new Chart(document.getElementById("equityChart"), {
+          type: "line",
+          data: {
+            labels: points.map(p => p.date),
+            datasets: [{
+              label: "Account Equity",
+              data: points.map(p => p.equity),
+              tension: 0.25,
+              pointRadius: 2,
+              borderColor: "#f4c430",
+              backgroundColor: "rgba(244, 196, 48, 0.18)",
+              pointBackgroundColor: "#f4c430",
+              pointBorderColor: "#f4c430"
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              tooltip: { callbacks: { label: context => "Equity: " + dollars(context.parsed.y) } }
+            },
+            scales: {
+              y: { ticks: { callback: value => "$" + Number(value).toLocaleString() } }
+            }
+          }
+        });
+      })
+      .catch(() => {
+        document.querySelector(".chart-box").innerHTML = "<p>Unable to load P&L data right now.</p>";
+      });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FOXCHASE_SETUP_STATS_START -->
+<section id="per-setup-performance" class="setup-performance-section">
+  <style>
+    .setup-performance-section {
+      max-width: 1180px;
+      margin: 48px auto 28px;
+    }
+
+    .setup-performance-header {
+      margin-bottom: 18px;
+    }
+
+    .setup-performance-header h2 {
+      margin: 0 0 8px;
+    }
+
+    .setup-performance-header p {
+      margin: 0;
+      line-height: 1.6;
+      opacity: 0.78;
+    }
+
+    .setup-performance-table-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .setup-performance-table {
+      width: 100%;
+      min-width: 780px;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .setup-performance-table th,
+    .setup-performance-table td {
+      padding: 13px 16px;
+      text-align: right;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      white-space: nowrap;
+    }
+
+    .setup-performance-table th {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+      opacity: 0.76;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .setup-performance-table th:first-child,
+    .setup-performance-table td:first-child {
+      text-align: left;
+    }
+
+    .setup-performance-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .setup-name,
+    .positive-value,
+    .negative-value {
+      font-weight: 700;
+    }
+  </style>
+
+  <div class="setup-performance-header">
+    <h2>Per-Setup Performance</h2>
+    <p>
+      Mechanical attribution from the latest 200-trade native research ledger.
+      Setup labels are anonymized. The R4 Open sleeve and experimental sequential
+      second-trade logic are excluded.
+    </p>
+  </div>
+
+  <div class="setup-performance-table-wrap">
+    <table class="setup-performance-table">
+      <thead>
+        </tbody>
+    </table>
+  </div>
+</section>
+<!-- FOXCHASE_SETUP_STATS_END -->
+
+<footer style="margin:60px auto 20px auto;max-width:1000px;padding-top:20px;border-top:1px solid #ddd;text-align:center;font-size:14px;color:#666;">
+  <p>© 2026 Foxchase Trading LLC. All rights reserved.</p>
+  <p style="max-width:900px;margin:0 auto;white-space:normal;">
+    Options trading involves substantial risk and is not suitable for all investors.
+    Past performance does not guarantee future results.
+  </p>
+</footer>
+
+
+</body>
+</html>
+
+
+<!-- force algo nav redeploy -->
