@@ -1,7 +1,7 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-07-23T12:30:01.805742-04:00",
-  "current_equity": 8753.16,
+  "updated_at": "2026-07-24T05:30:02.717882-04:00",
+  "current_equity": 8752.95,
   "points": [
     {
       "date": "2025-07-03",
@@ -1062,6 +1062,10 @@
     {
       "date": "2026-07-23",
       "equity": 8753.16
+    },
+    {
+      "date": "2026-07-24",
+      "equity": 8752.95
     }
   ],
   "stats": {
@@ -1300,13 +1304,13 @@
   ],
   "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. The equity chart reflects broker-reported account equity and may include deposits or withdrawals. Trade statistics are calculated separately from closed algorithm trades and are intended to better isolate strategy performance.",
   "account": "Live account",
-  "currentEquity": 8753.16,
-  "buyingPower": 35012.64,
-  "cash": 8753.16,
-  "portfolioValue": 8753.16,
+  "currentEquity": 8752.95,
+  "buyingPower": 35011.8,
+  "cash": 8752.95,
+  "portfolioValue": 8752.95,
   "openPositions": 0,
-  "lastUpdated": "2026-07-23T12:30:01.805742-04:00",
-  "lastUpdatedDisplay": "07/23/2026, 12:30:01 PM ET",
+  "lastUpdated": "2026-07-24T05:30:02.717882-04:00",
+  "lastUpdatedDisplay": "07/24/2026, 05:30:02 AM ET",
   "source": "Alpaca live account",
   "equityHistory": [
     {
@@ -2368,6 +2372,10 @@
     {
       "date": "2026-07-23",
       "equity": 8753.16
+    },
+    {
+      "date": "2026-07-24",
+      "equity": 8752.95
     }
   ],
   "realized_algo_pnl": 783.9999999999998,
@@ -2553,14 +2561,14 @@
     ]
   },
   "strategy_starting_capital": 6983.03,
-  "last_equity": 8300.37,
-  "today_account_pnl": 452.78999999999905,
-  "todays_account_pnl": 452.78999999999905,
-  "today_pnl": 452.78999999999905,
-  "lastEquity": 8300.37,
-  "todayAccountPnl": 452.78999999999905,
-  "todaysAccountPnl": 452.78999999999905,
-  "todayPnl": 452.78999999999905,
+  "last_equity": 8752.95,
+  "today_account_pnl": 0.0,
+  "todays_account_pnl": 0.0,
+  "today_pnl": 0.0,
+  "lastEquity": 8752.95,
+  "todayAccountPnl": 0.0,
+  "todaysAccountPnl": 0.0,
+  "todayPnl": 0.0,
   "gross_profit": 1507.9999999999998,
   "gross_loss": 724.0,
   "profit_factor": 2.0828729281767955,
