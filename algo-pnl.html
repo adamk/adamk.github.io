@@ -393,14 +393,14 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the latest 214-trade exact native live-rule core backtest.
+      The metrics below reflect the latest 220-trade exact live-rule core plus add-on backtest.
       Experimental sequential second-trade logic is excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
-        src="/images/foxchase_live_exact_native_vs_spy.png?v=20260726-native214"
+        src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260726-native220"
         alt="Foxchase 214-trade exact native live-rule core research portfolio versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
@@ -417,16 +417,16 @@ function setTextIfExists(id, value) {
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">214 trades</div></div>
-      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">214 trading days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$25,646.50</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$35,646.50</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">256.46%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">72.90%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.00</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-9.10%</div></div>
-      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$119.84</div></div>
-      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">45.02%</div></div>
+      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">220 trades</div></div>
+      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">220 trading days</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$30,719.00</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$40,719.00</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">307.19%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">73.18%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.18</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-7.55%</div></div>
+      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$139.63</div></div>
+      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">50.82%</div></div>
       <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">93.04%</div></div>
       <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-19.89%</div></div>
     </div>
@@ -649,7 +649,7 @@ const strategyStartingCapital = Number(
   <div class="setup-performance-header">
     <h2>Per-Setup Performance</h2>
     <p>
-      Mechanical attribution from the verified 214-trade exact native live-rule core research ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
+      Mechanical attribution from the verified 220-trade exact live-rule research ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
     </p>
   </div>
 
@@ -670,25 +670,14 @@ const strategyStartingCapital = Number(
         <tr><td class="setup-name">Setup A</td><td>37</td><td class="positive-value">+$7,488.50</td><td>64.86%</td><td>1.91</td><td>$500.00</td><td>$202.39</td></tr>
         <tr><td class="setup-name">Setup B</td><td>82</td><td class="positive-value">+$5,864.50</td><td>74.39%</td><td>1.84</td><td>$168.00</td><td>$71.52</td></tr>
         <tr><td class="setup-name">Setup C</td><td>28</td><td class="positive-value">+$5,309.00</td><td>82.14%</td><td>3.23</td><td>$273.00</td><td>$189.61</td></tr>
-        <tr><td class="setup-name">Setup D</td><td>18</td><td class="positive-value">+$4,551.00</td><td>83.33%</td><td>4.71</td><td>$276.50</td><td>$252.83</td></tr>
-        <tr><td class="setup-name">Setup E</td><td>9</td><td class="positive-value">+$3,129.00</td><td>88.89%</td><td>4.19</td><td>$500.00</td><td>$347.67</td></tr>
-        <tr><td class="setup-name">Setup F</td><td>40</td><td class="negative-value">−$695.50</td><td>62.50%</td><td>0.88</td><td>$144.00</td><td>$-17.39</td></tr>
+        <tr><td class="setup-name">Setup D</td><td>6</td><td class="positive-value">+$5,072.50</td><td>83.33%</td><td>12.27</td><td>$843.25</td><td>$845.42</td></tr>
+        <tr><td class="setup-name">Setup E</td><td>18</td><td class="positive-value">+$4,551.00</td><td>83.33%</td><td>4.71</td><td>$276.50</td><td>$252.83</td></tr>
+        <tr><td class="setup-name">Setup F</td><td>9</td><td class="positive-value">+$3,129.00</td><td>88.89%</td><td>4.19</td><td>$500.00</td><td>$347.67</td></tr>
+        <tr><td class="setup-name">Setup G</td><td>40</td><td class="negative-value">−$695.50</td><td>62.50%</td><td>0.88</td><td>$144.00</td><td>$-17.39</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="setup-performance-header" style="margin-top:28px;">
-    <h2>Experimental Add-On Sleeve</h2>
-    <p>
-      Separate fixed-rule replay for the newly deployed no-steal R1 butterfly fallback. It is not included in the 214-trade core headline metrics and cannot replace an existing setup.
-    </p>
-  </div>
-  <div class="setup-performance-table-wrap">
-    <table class="setup-performance-table">
-      <thead><tr><th scope="col">Sleeve</th><th scope="col">Trades</th><th scope="col">Net P&amp;L</th><th scope="col">Win Rate</th><th scope="col">Profit Factor</th><th scope="col">Median Trade</th><th scope="col">Average Trade</th></tr></thead>
-      <tbody><tr><td class="setup-name">Add-On Sleeve</td><td>6</td><td class="positive-value">+$5,072.50</td><td>83.33%</td><td>12.27</td><td>$600.00</td><td>$845.42</td></tr></tbody>
-    </table>
-  </div>
 </section>
 <!-- FOXCHASE_SETUP_STATS_END -->
 
