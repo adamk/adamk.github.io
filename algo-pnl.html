@@ -393,15 +393,15 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the latest 206-trade preferred_206 research portfolio.
+      The metrics below reflect the latest 214-trade exact native live-rule core backtest.
       Experimental sequential second-trade logic is excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box">
       <img
-        src="/images/foxchase_native206_vs_spy.png?v=20260726-native206"
-        alt="Foxchase 206-trade preferred_206 research portfolio versus SPY buy and hold"
+        src="/images/foxchase_live_exact_native_vs_spy.png?v=20260726-native214"
+        alt="Foxchase 214-trade exact native live-rule core research portfolio versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
@@ -410,25 +410,25 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Latest research ruleset:</strong>
-      The 206-trade preferred_206 backtest uses a fixed $2,000 target-risk budget for the existing setups,
-      the canonical preferred_206 setup selection for the complementary R1 butterfly trades, and non-compounded sizing.
-      It produced +$65,365.00 on a $10,000.00 starting account, ending at $75,365.00.
-      The canonical ledger uses the full preferred_206 setup selection, one selected trade per day, and the verified full 2023–2026 SPY/ThetaData inputs.
+      The 214-trade exact native live-rule core backtest uses a fixed $1,000 target-risk budget on a $10,000 account,
+      the exact deployed core setup selection, and non-compounded sizing. Live-only candidate sleeves are excluded.
+      It produced +$25,646.50 on a $10,000.00 starting account, ending at $35,646.50.
+      The native ledger uses one selected trade per day and the available 2023–2026 SPY/ThetaData inputs through 2026-06-05. The available stock file does not contain July 2026 data.
     </div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">206 trades</div></div>
-      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">206 days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$65,365.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$75,887.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">653.65%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">78.64%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">3.07</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-13.86%</div></div>
-      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$317.31</div></div>
-      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">75.95%</div></div>
-      <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">97.01%</div></div>
-      <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-19.86%</div></div>
+      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">214 trades</div></div>
+      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">214 trading days</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$25,646.50</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$35,646.50</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">256.46%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">72.90%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.00</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-9.10%</div></div>
+      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$119.84</div></div>
+      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">45.02%</div></div>
+      <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">93.04%</div></div>
+      <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-19.89%</div></div>
     </div>
     <!-- latest-ruleset-end -->
 
@@ -649,7 +649,7 @@ const strategyStartingCapital = Number(
   <div class="setup-performance-header">
     <h2>Per-Setup Performance</h2>
     <p>
-      Mechanical attribution from the verified 206-trade preferred_206 research ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
+      Mechanical attribution from the verified 214-trade exact native live-rule core research ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
     </p>
   </div>
 
@@ -667,17 +667,12 @@ const strategyStartingCapital = Number(
         </tr>
       </thead>
       <tbody>
-        <tr><td class="setup-name">Setup A</td><td>22</td><td class="positive-value">+$13,949.00</td><td>86.36%</td><td>6.04</td><td>$549.00</td><td>$634.05</td></tr>
-        <tr><td class="setup-name">Setup B</td><td>17</td><td class="positive-value">+$11,519.50</td><td>88.24%</td><td>3.95</td><td>$1,006.50</td><td>$677.62</td></tr>
-        <tr><td class="setup-name">Setup C</td><td>37</td><td class="positive-value">+$10,816.00</td><td>89.19%</td><td>3.41</td><td>$435.00</td><td>$292.32</td></tr>
-        <tr><td class="setup-name">Setup D</td><td>16</td><td class="positive-value">+$10,246.50</td><td>100.00%</td><td>∞</td><td>$449.50</td><td>$640.41</td></tr>
-        <tr><td class="setup-name">Setup E</td><td>31</td><td class="positive-value">+$5,431.00</td><td>80.65%</td><td>1.96</td><td>$420.00</td><td>$175.19</td></tr>
-        <tr><td class="setup-name">Setup F</td><td>15</td><td class="positive-value">+$4,907.50</td><td>86.67%</td><td>4.34</td><td>$435.00</td><td>$327.17</td></tr>
-        <tr><td class="setup-name">Setup G</td><td>40</td><td class="positive-value">+$4,906.00</td><td>47.50%</td><td>1.63</td><td>$-78.50</td><td>$122.65</td></tr>
-        <tr><td class="setup-name">Setup H</td><td>4</td><td class="positive-value">+$1,819.00</td><td>100.00%</td><td>∞</td><td>$486.50</td><td>$454.75</td></tr>
-        <tr><td class="setup-name">Setup I</td><td>11</td><td class="positive-value">+$817.50</td><td>72.73%</td><td>1.34</td><td>$392.00</td><td>$74.32</td></tr>
-        <tr><td class="setup-name">Setup J</td><td>12</td><td class="positive-value">+$737.00</td><td>75.00%</td><td>1.24</td><td>$399.00</td><td>$61.42</td></tr>
-        <tr><td class="setup-name">Setup K</td><td>1</td><td class="positive-value">+$216.00</td><td>100.00%</td><td>∞</td><td>$216.00</td><td>$216.00</td></tr>
+        <tr><td class="setup-name">Setup A</td><td>37</td><td class="positive-value">+$7,488.50</td><td>64.86%</td><td>1.91</td><td>$500.00</td><td>$202.39</td></tr>
+        <tr><td class="setup-name">Setup B</td><td>82</td><td class="positive-value">+$5,864.50</td><td>74.39%</td><td>1.84</td><td>$168.00</td><td>$71.52</td></tr>
+        <tr><td class="setup-name">Setup C</td><td>28</td><td class="positive-value">+$5,309.00</td><td>82.14%</td><td>3.23</td><td>$273.00</td><td>$189.61</td></tr>
+        <tr><td class="setup-name">Setup D</td><td>18</td><td class="positive-value">+$4,551.00</td><td>83.33%</td><td>4.71</td><td>$276.50</td><td>$252.83</td></tr>
+        <tr><td class="setup-name">Setup E</td><td>9</td><td class="positive-value">+$3,129.00</td><td>88.89%</td><td>4.19</td><td>$500.00</td><td>$347.67</td></tr>
+        <tr><td class="setup-name">Setup F</td><td>40</td><td class="negative-value">−$695.50</td><td>62.50%</td><td>0.88</td><td>$144.00</td><td>$-17.39</td></tr>
       </tbody>
     </table>
   </div>
