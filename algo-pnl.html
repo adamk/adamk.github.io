@@ -405,6 +405,74 @@ function setTextIfExists(id, value) {
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
+
+    <!-- rolling-robustness-start -->
+    <section id="rolling-robustness" class="rolling-robustness-section">
+      <style>
+        .rolling-robustness-section {
+          margin: 34px 0 8px;
+        }
+        .rolling-robustness-section h3 {
+          margin-bottom: 8px;
+        }
+        .rolling-robustness-section p {
+          line-height: 1.6;
+        }
+        .rolling-table-wrap {
+          overflow-x: auto;
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          background: #fff;
+          margin: 18px 0;
+        }
+        .rolling-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 14px;
+        }
+        .rolling-table th,
+        .rolling-table td {
+          padding: 12px 14px;
+          border-bottom: 1px solid #eee;
+          text-align: right;
+          white-space: nowrap;
+        }
+        .rolling-table th:first-child,
+        .rolling-table td:first-child {
+          text-align: left;
+        }
+        .rolling-table tr:last-child td {
+          border-bottom: none;
+        }
+        .rolling-table th {
+          background: #fafafa;
+          color: #444;
+          font-weight: 700;
+        }
+      </style>
+      <h3>Rolling-Window Robustness</h3>
+      <p class="small">
+        Completed calendar-month windows from the same 205-trade ledger. Same-day trades are grouped together;
+        the partial final month is excluded. Windows overlap, so they are not independent out-of-sample tests.
+      </p>
+      <div class="rolling-table-wrap">
+        <table class="rolling-table">
+          <thead>
+            <tr>
+              <th scope="col">Window</th>
+              <th scope="col">Profitable Windows</th>
+              <th scope="col">Worst P&amp;L</th>
+              <th scope="col">Median P&amp;L</th>
+              <th scope="col">Best P&amp;L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>3 months</td><td>36 / 39</td><td>−$702.00</td><td>+$2,557.00</td><td>+$6,811.00</td></tr><tr><td>6 months</td><td>36 / 36</td><td>+$1,709.00</td><td>+$4,808.25</td><td>+$9,504.00</td></tr><tr><td>12 months</td><td>30 / 30</td><td>+$4,249.50</td><td>+$8,906.25</td><td>+$15,794.50</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- rolling-robustness-end -->
     <!-- latest-ruleset-start -->
     <h2>Latest Research Ruleset</h2>
 
@@ -413,8 +481,12 @@ function setTextIfExists(id, value) {
       The 205-trade live-rule portfolio backtest uses a fixed $1,000 target-risk budget on a $10,000 account,
       the deployed core setup selection, and non-compounded sizing. The portfolio uses the deployed setup selection and fixed management rules.
       It produced +$36,559.50 on a $10,000.00 starting account, ending at $46,559.50.
-      
-      
+
+
+
+
+
+
       The native ledger uses one selected trade per day and the available 2023–2026 SPY/ThetaData inputs through 2026-06-05. The available stock file does not contain July 2026 data.
     </div>
 
