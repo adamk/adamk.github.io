@@ -340,6 +340,20 @@ function setTextIfExists(id, value) {
       }
     }
 
+    .research-chart-box {
+      width: min(1200px, calc(100vw - 32px));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 600px) {
+      .research-chart-box {
+        width: 100%;
+        margin-left: 0;
+        transform: none;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -456,7 +470,7 @@ function setTextIfExists(id, value) {
 
     <div class="chart-box research-chart-box">
       <img
-        src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260727-native-r2"
+        src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260727-native-r2-0945"
         alt="Foxchase 210-trade live-rule portfolio research portfolio versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
