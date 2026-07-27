@@ -284,6 +284,20 @@ function setTextIfExists(id, value) {
     }
   }
 
+    .research-chart-box {
+      width: min(1200px, calc(100vw - 32px));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 600px) {
+      .research-chart-box {
+        width: 100%;
+        margin-left: 0;
+        transform: none;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -398,7 +412,7 @@ function setTextIfExists(id, value) {
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
-    <div class="chart-box">
+    <div class="chart-box research-chart-box">
       <img
         src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260726-native220"
         alt="Foxchase 205-trade live-rule portfolio research portfolio versus SPY buy and hold"
@@ -480,7 +494,7 @@ function setTextIfExists(id, value) {
       <strong>Latest research ruleset:</strong>
       The 205-trade live-rule portfolio backtest uses a fixed $1,000 target-risk budget on a $10,000 account,
       the deployed core setup selection, and non-compounded sizing. The portfolio uses the deployed setup selection and fixed management rules.
-      It produced +$36,559.50 on a $10,000.00 starting account, ending at $46,559.50.50 on a $10,000.00 starting account, ending at $46,559.50.
+      It produced +$36,559.50 on a $10,000.00 starting account, ending at $46,559.50.50 on a $10,000.00 starting account, ending at $46,559.50.50 on a $10,000.00 starting account, ending at $46,559.50.
 
 
 
