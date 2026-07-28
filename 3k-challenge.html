@@ -46,6 +46,9 @@
       max-width: var(--max);
       margin: 0 auto;
       padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .hero {
@@ -250,9 +253,11 @@
     }
 
     .footer {
+      margin-top: auto;
       padding: 48px 0 64px;
       color: var(--muted);
       font-size: 14px;
+      text-align: center;
     }
 
     @media (max-width: 900px) {
