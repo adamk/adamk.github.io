@@ -407,15 +407,15 @@ function setTextIfExists(id, value) {
     <div class="pnl-note">
       <strong>Research backtest, not live performance:</strong>
       The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the latest 204-trade live-rule portfolio backtest.
+      The metrics below reflect the latest 214-trade live-rule portfolio backtest.
       Experimental sequential second-trade logic is excluded from the results shown.
       This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
     </div>
 
     <div class="chart-box research-chart-box">
       <img
-        src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260727-native-r2-0945"
-        alt="Foxchase 204-trade live-rule portfolio research portfolio versus SPY buy and hold"
+        src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260728-r3-bear-additive"
+        alt="Foxchase 214-trade live-rule portfolio research portfolio versus SPY buy and hold"
         style="width:100%; height:auto; border-radius:8px;"
       >
     </div>
@@ -466,7 +466,7 @@ function setTextIfExists(id, value) {
       </style>
       <h3>Rolling-Window Robustness</h3>
       <p class="small">
-        Completed calendar-month windows from the same 204-trade ledger. Same-day trades are grouped together;
+        Completed calendar-month windows from the same 214-trade ledger. Same-day trades are grouped together;
         the partial final month is excluded. Windows overlap, so they are not independent out-of-sample tests.
       </p>
       <div class="rolling-table-wrap">
@@ -481,7 +481,7 @@ function setTextIfExists(id, value) {
             </tr>
           </thead>
           <tbody>
-            <tr><td>3 months</td><td>36 / 39</td><td>−$702.00</td><td>+$2,212.50</td><td>+$6,500.00</td></tr><tr><td>6 months</td><td>36 / 36</td><td>+$399.50</td><td>+$4,227.75</td><td>+$9,193.00</td></tr><tr><td>12 months</td><td>30 / 30</td><td>+$2,863.50</td><td>+$8,990.50</td><td>+$13,899.00</td></tr>
+            <tr><td>3 months</td><td>37 / 39</td><td>−$334.00</td><td>+$2,352.50</td><td>+$7,701.50</td></tr><tr><td>6 months</td><td>36 / 36</td><td>+$483.00</td><td>+$4,606.25</td><td>+$10,394.50</td></tr><tr><td>12 months</td><td>30 / 30</td><td>+$3,452.50</td><td>+$9,703.25</td><td>+$15,807.50</td></tr>
           </tbody>
         </table>
       </div>
@@ -491,25 +491,25 @@ function setTextIfExists(id, value) {
     <h2>Latest Research Ruleset</h2>
 
     <div class="pnl-note">
-      <strong>Latest research ruleset:</strong> The 204-trade live-rule core backtest uses fixed $1,000 target-risk sizing on a $10,000 account, the deployed core setup selection and bearish R2. It produced +$31,700.00 on a $10,000.00 starting account, ending at $41,700.00. The data sample runs through June 5, 2026; July 2026 is not included because the required data is unavailable.</div>
+      <strong>Latest research ruleset:</strong> The 214-trade live-rule portfolio backtest uses fixed $1,000 target-risk sizing on a $10,000 account, the deployed core setup selection and one additive non-conflicting continuation sleeve. It produced +$34,358.50 on a $10,000.00 starting account, ending at $44,358.50. The data sample runs through June 5, 2026; July 2026 is not included because the required data is unavailable.</div>
 
     <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">204 trades</div></div>
-      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">204 trading days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$31,700.00</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$41,700.00</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">317.00%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">81.86%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.83</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-9.57%</div></div>
-      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$155.39</div></div>
-      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">51.83%</div></div>
+      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">214 trades</div></div>
+      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">214 trading days</div></div>
+      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$34,358.50</div></div>
+      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$44,358.50</div></div>
+      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">343.58%</div></div>
+      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">82.24%</div></div>
+      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.94</div></div>
+      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-13.09%</div></div>
+      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$160.55</div></div>
+      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">54.60%</div></div>
       <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">93.04%</div></div>
       <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-19.89%</div></div>
     </div>
     <!-- latest-ruleset-end -->
     <p class="small">
-      Backtest assumptions: $10,000 starting equity, fixed $1,000 target-risk sizing per trade, non-compounded accounting, and one selected trade per day. Historical options data was sourced from ThetaData.
+      Backtest assumptions: $10,000 starting equity, fixed $1,000 target-risk sizing per trade, non-compounded accounting, and a maximum of one live position per day. Historical options data was sourced from ThetaData.
     </p>
 
     <p class="small">
@@ -722,7 +722,7 @@ const strategyStartingCapital = Number(
   <div class="setup-performance-header">
     <h2>Per-Setup Performance</h2>
     <p>
-      Mechanical attribution from the verified 204-trade live-rule core ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
+      Mechanical attribution from the verified 214-trade live-rule portfolio ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
     </p>
   </div>
 
@@ -745,8 +745,9 @@ const strategyStartingCapital = Number(
         <tr><td class="setup-name">Setup C</td><td>27</td><td class="positive-value">+$5,088.00</td><td>81.48%</td><td>3.13</td><td>$280.00</td><td>$188.44</td></tr>
         <tr><td class="setup-name">Setup D</td><td>18</td><td class="positive-value">+$4,551.00</td><td>83.33%</td><td>4.71</td><td>$276.50</td><td>$252.83</td></tr>
         <tr><td class="setup-name">Setup E</td><td>9</td><td class="positive-value">+$3,129.00</td><td>88.89%</td><td>4.19</td><td>$500.00</td><td>$347.67</td></tr>
-        <tr><td class="setup-name">Setup F</td><td>36</td><td class="positive-value">+$1,600.50</td><td>75.00%</td><td>1.59</td><td>$108.00</td><td>$44.46</td></tr>
-        <tr><td class="setup-name">Setup G</td><td>7</td><td class="positive-value">+$630.00</td><td>85.71%</td><td>2.04</td><td>$143.00</td><td>$90.00</td></tr>
+        <tr><td class="setup-name">Setup F</td><td>10</td><td class="positive-value">+$2,658.50</td><td>90.00%</td><td>7.82</td><td>$349.00</td><td>$265.85</td></tr>
+        <tr><td class="setup-name">Setup G</td><td>36</td><td class="positive-value">+$1,600.50</td><td>75.00%</td><td>1.59</td><td>$108.00</td><td>$44.46</td></tr>
+        <tr><td class="setup-name">Setup H</td><td>7</td><td class="positive-value">+$630.00</td><td>85.71%</td><td>2.04</td><td>$143.00</td><td>$90.00</td></tr>
       </tbody>
     </table>
   </div>
