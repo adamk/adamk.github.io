@@ -403,114 +403,23 @@ function setTextIfExists(id, value) {
     <p class="small" id="note"></p>
 
     <h2>Research Backtest</h2>
-
-    <div class="pnl-note">
-      <strong>Research backtest, not live performance:</strong>
-      The chart below compares the Foxchase historical research equity curve with SPY buy and hold.
-      The metrics below reflect the latest 252-trade research portfolio backtest.
-      Experimental sequential second-trade logic is excluded from the results shown.
-      This is hypothetical backtested performance and was not achieved by the live account during the full period shown.
-    </div>
-
-    <div class="chart-box research-chart-box">
-      <img
-        src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260730-r4-failed-pml"
-        alt="Foxchase 252-trade research portfolio versus SPY buy and hold"
-        style="width:100%; height:auto; border-radius:8px;"
-      >
-    </div>
-
-    <!-- rolling-robustness-start -->
-    <section id="rolling-robustness" class="rolling-robustness-section">
-      <style>
-        .rolling-robustness-section {
-          margin: 34px 0 8px;
-        }
-        .rolling-robustness-section h3 {
-          margin-bottom: 8px;
-        }
-        .rolling-robustness-section p {
-          line-height: 1.6;
-        }
-        .rolling-table-wrap {
-          overflow-x: auto;
-          border: 1px solid #ddd;
-          border-radius: 10px;
-          background: #fff;
-          margin: 18px 0;
-        }
-        .rolling-table {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: 14px;
-        }
-        .rolling-table th,
-        .rolling-table td {
-          padding: 12px 14px;
-          border-bottom: 1px solid #eee;
-          text-align: right;
-          white-space: nowrap;
-        }
-        .rolling-table th:first-child,
-        .rolling-table td:first-child {
-          text-align: left;
-        }
-        .rolling-table tr:last-child td {
-          border-bottom: none;
-        }
-        .rolling-table th {
-          background: #fafafa;
-          color: #444;
-          font-weight: 700;
-        }
-      </style>
-      <h3>Rolling-Window Robustness</h3>
-      <p class="small">
-        Completed calendar-month windows from the same 252-trade ledger. Same-day trades are grouped together;
-        the partial final month is excluded. Windows overlap, so they are not independent out-of-sample tests.
-      </p>
-      <div class="rolling-table-wrap">
-        <table class="rolling-table">
-          <thead>
-            <tr>
-              <th scope="col">Window</th>
-              <th scope="col">Profitable Windows</th>
-              <th scope="col">Worst P&amp;L</th>
-              <th scope="col">Median P&amp;L</th>
-              <th scope="col">Best P&amp;L</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>3 months</td><td>38 / 39</td><td>−$182.00</td><td>+$2,532.50</td><td>+$8,510.00</td></tr><tr><td>6 months</td><td>36 / 36</td><td>+$848.00</td><td>+$5,375.25</td><td>+$12,057.50</td></tr><tr><td>12 months</td><td>30 / 30</td><td>+$4,073.50</td><td>+$11,276.25</td><td>+$17,325.50</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <div class="pnl-note"><strong>Research backtest, not live performance:</strong> The chart below compares the historical research equity curve with SPY buy and hold. The metrics reflect the current 226-trade portfolio. Experimental sequential second-trade logic is excluded. This is hypothetical backtested performance and was not achieved by the live account during the full period shown.</div>
+    <div class="chart-box research-chart-box"><img src="/images/foxchase_live_exact_native_vs_spy.svg?v=20260731-formal-r2" alt="Foxchase research portfolio versus SPY buy and hold" style="width:100%; height:auto; border-radius:8px;"></div>
+<!-- rolling-robustness-start -->
+    <section id="rolling-robustness" class="rolling-robustness-section"><style>
+      .rolling-robustness-section { margin:34px 0 8px; } .rolling-robustness-section p { line-height:1.6; }
+      .rolling-table-wrap { overflow-x:auto; border:1px solid #ddd; border-radius:10px; background:#fff; margin:18px 0; }
+      .rolling-table { width:100%; border-collapse:collapse; font-size:14px; } .rolling-table th,.rolling-table td { padding:12px 14px; border-bottom:1px solid #eee; text-align:right; white-space:nowrap; }
+      .rolling-table th:first-child,.rolling-table td:first-child { text-align:left; } .rolling-table tr:last-child td { border-bottom:0; } .rolling-table th { background:#fafafa; color:#444; font-weight:700; }
+    </style><h3>Rolling-Window Robustness</h3><p class="small">Completed calendar-month windows from the same research ledger. Same-day trades are grouped together; the partial final month is excluded. Windows overlap and are not independent out-of-sample tests.</p>
+    <div class="rolling-table-wrap"><table class="rolling-table"><thead><tr><th>Window</th><th>Profitable Windows</th><th>Worst P&amp;L</th><th>Median P&amp;L</th><th>Best P&amp;L</th></tr></thead><tbody><tr><td>3 months</td><td>31 / 39</td><td>−$1,263.00</td><td>+$1,654.00</td><td>+$5,047.00</td></tr><tr><td>6 months</td><td>32 / 36</td><td>−$2,031.00</td><td>+$3,074.50</td><td>+$6,752.00</td></tr><tr><td>12 months</td><td>30 / 30</td><td>+$300.00</td><td>+$6,033.50</td><td>+$9,350.00</td></tr></tbody></table></div></section>
     <!-- rolling-robustness-end -->
-    <!-- latest-ruleset-start -->
+<!-- latest-ruleset-start -->
     <h2>Latest Research Ruleset</h2>
-
-    <div class="pnl-note">
-      <strong>Latest research ruleset:</strong> The 252-trade research portfolio backtest combines the deployed core setup families with a validated, non-overlapping R4 continuation candidate. It uses fixed $1,000 target-risk sizing on a $10,000 account and non-compounded accounting. It produced +$39,304.50 on a $10,000.00 starting account, ending at $49,304.50. The data sample runs through June 5, 2026; July 2026 is not included because the required data is unavailable.</div>
-
-    <div class="research-metrics">
-      <div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">252 trades</div></div>
-      <div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">252 trading days</div></div>
-      <div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$39,304.50</div></div>
-      <div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$49,304.50</div></div>
-      <div class="research-card"><div class="research-label">Total Return</div><div class="research-value">393.05%</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">83.33%</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">3.03</div></div>
-      <div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-13.09%</div></div>
-      <div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$155.97</div></div>
-      <div class="research-card"><div class="research-label">CAGR</div><div class="research-value">59.51%</div></div>
-      <div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">93.04%</div></div>
-      <div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-19.89%</div></div>
-    </div>
+    <div class="pnl-note"><strong>Latest research ruleset:</strong> This 226-trade research portfolio uses the deployed setup selection, fixed $1,000 target-risk sizing on a $10,000 account, and non-compounded accounting. Signal levels use Alpaca SIP one-minute SPY bars; option entries and exits use ThetaData bid/ask quotes. It produced +$22,560.00 on a $10,000.00 starting account, ending at $32,560.00. The sample runs through June 5, 2026.</div>
+    <div class="research-metrics"><div class="research-card"><div class="research-label">Research Portfolio Sample</div><div class="research-value">226 trades</div></div><div class="research-card"><div class="research-label">Active Trading Days</div><div class="research-value">226 trade days</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value">+$22,560.00</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value">$32,560.00</div></div><div class="research-card"><div class="research-label">Total Return</div><div class="research-value">225.60%</div></div><div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">80.53%</div></div><div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value">2.04</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value">-11.90%</div></div><div class="research-card"><div class="research-label">Expectancy Per Trade</div><div class="research-value">+$99.82</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value">41.27%</div></div><div class="research-card"><div class="research-label">SPY Total Return</div><div class="research-value">92.29%</div></div><div class="research-card"><div class="research-label">SPY Max Drawdown</div><div class="research-value">-18.92%</div></div></div>
     <!-- latest-ruleset-end -->
-    <p class="small">
-      Backtest assumptions: $10,000 starting equity, fixed $1,000 target-risk sizing per trade, non-compounded accounting, and a maximum of one live position per day. Historical options data was sourced from ThetaData.
-    </p>
+    <p class="small">Backtest assumptions: $10,000 starting equity, fixed $1,000 target-risk sizing per trade, non-compounded accounting, and a maximum of one live position per day. Signal levels use Alpaca SIP one-minute SPY bars; historical option pricing uses ThetaData bid/ask quotes.</p>
 
     <p class="small">
       The backtest begins in 2023 because daily index 0DTE trading became structurally more representative after Cboe expanded SPX Weeklys to include expirations every trading day in 2022.
@@ -651,111 +560,12 @@ const strategyStartingCapital = Number(
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- FOXCHASE_SETUP_STATS_START -->
-<section id="per-setup-performance" class="setup-performance-section">
-  <style>
-    .setup-performance-section {
-      max-width: 1180px;
-      margin: 48px auto 28px;
-    }
-
-    .setup-performance-header {
-      margin-bottom: 18px;
-    }
-
-    .setup-performance-header h2 {
-      margin: 0 0 8px;
-    }
-
-    .setup-performance-header p {
-      margin: 0;
-      line-height: 1.6;
-      opacity: 0.78;
-    }
-
-    .setup-performance-table-wrap {
-      overflow-x: auto;
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.025);
-    }
-
-    .setup-performance-table {
-      width: 100%;
-      min-width: 780px;
-      border-collapse: collapse;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .setup-performance-table th,
-    .setup-performance-table td {
-      padding: 13px 16px;
-      text-align: right;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      white-space: nowrap;
-    }
-
-    .setup-performance-table th {
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.045em;
-      text-transform: uppercase;
-      opacity: 0.76;
-      background: rgba(255, 255, 255, 0.045);
-    }
-
-    .setup-performance-table th:first-child,
-    .setup-performance-table td:first-child {
-      text-align: left;
-    }
-
-    .setup-performance-table tbody tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .setup-name,
-    .positive-value,
-    .negative-value {
-      font-weight: 700;
-    }
-  </style>
-
-  <div class="setup-performance-header">
-    <h2>Per-Setup Performance</h2>
-    <p>
-      Mechanical attribution from the verified 252-trade research portfolio ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.
-    </p>
-  </div>
-
-  <div class="setup-performance-table-wrap">
-    <table class="setup-performance-table">
-      <thead>
-        <tr>
-          <th scope="col">Setup</th>
-          <th scope="col">Trades</th>
-          <th scope="col">Net P&amp;L</th>
-          <th scope="col">Win Rate</th>
-          <th scope="col">Profit Factor</th>
-          <th scope="col">Median Trade</th>
-          <th scope="col">Average Trade</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="setup-name">Setup A</td><td>70</td><td class="positive-value">+$9,213.00</td><td>92.86%</td><td>8.78</td><td>$149.50</td><td>$131.61</td></tr>
-        <tr><td class="setup-name">Setup B</td><td>37</td><td class="positive-value">+$7,488.50</td><td>64.86%</td><td>1.91</td><td>$500.00</td><td>$202.39</td></tr>
-        <tr><td class="setup-name">Setup C</td><td>27</td><td class="positive-value">+$5,088.00</td><td>81.48%</td><td>3.13</td><td>$280.00</td><td>$188.44</td></tr>
-        <tr><td class="setup-name">Setup D</td><td>18</td><td class="positive-value">+$4,551.00</td><td>83.33%</td><td>4.71</td><td>$276.50</td><td>$252.83</td></tr>
-        <tr><td class="setup-name">Setup E</td><td>9</td><td class="positive-value">+$3,129.00</td><td>88.89%</td><td>4.19</td><td>$500.00</td><td>$347.67</td></tr>
-        <tr><td class="setup-name">Setup F</td><td>10</td><td class="positive-value">+$2,658.50</td><td>90.00%</td><td>7.82</td><td>$349.00</td><td>$265.85</td></tr>
-        <tr><td class="setup-name">Setup G</td><td>24</td><td class="positive-value">+$2,587.00</td><td>83.33%</td><td>2.59</td><td>$196.00</td><td>$107.79</td></tr>
-        <tr><td class="setup-name">Setup H</td><td>36</td><td class="positive-value">+$1,600.50</td><td>75.00%</td><td>1.59</td><td>$108.00</td><td>$44.46</td></tr>
-        <tr><td class="setup-name">Setup I</td><td>8</td><td class="positive-value">+$1,386.00</td><td>100.00%</td><td>inf</td><td>$156.00</td><td>$173.25</td></tr>
-        <tr><td class="setup-name">Setup J</td><td>6</td><td class="positive-value">+$973.00</td><td>100.00%</td><td>inf</td><td>$138.00</td><td>$162.17</td></tr>
-        <tr><td class="setup-name">Setup K</td><td>7</td><td class="positive-value">+$630.00</td><td>85.71%</td><td>2.04</td><td>$143.00</td><td>$90.00</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-</section>
+<section id="per-setup-performance" class="setup-performance-section"><style>
+  .setup-performance-section { max-width:1180px; margin:48px auto 28px; } .setup-performance-header { margin-bottom:18px; } .setup-performance-header h2 { margin:0 0 8px; } .setup-performance-header p { margin:0; line-height:1.6; opacity:.78; }
+  .setup-performance-table-wrap { overflow-x:auto; border:1px solid rgba(255,255,255,.10); border-radius:14px; background:rgba(255,255,255,.025); } .setup-performance-table { width:100%; min-width:780px; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  .setup-performance-table th,.setup-performance-table td { padding:13px 16px; text-align:right; border-bottom:1px solid rgba(255,255,255,.08); white-space:nowrap; } .setup-performance-table th { font-size:.76rem; font-weight:700; letter-spacing:.045em; text-transform:uppercase; opacity:.76; background:rgba(255,255,255,.045); } .setup-performance-table th:first-child,.setup-performance-table td:first-child { text-align:left; } .setup-performance-table tbody tr:last-child td { border-bottom:0; } .setup-name,.positive-value,.negative-value { font-weight:700; }
+</style><div class="setup-performance-header"><h2>Per-Setup Performance</h2><p>Mechanical attribution from the verified 226-trade research portfolio ledger. Setup labels are anonymized. Experimental sequential second-trade logic is excluded.</p></div>
+<div class="setup-performance-table-wrap"><table class="setup-performance-table"><thead><tr><th>Setup</th><th>Trades</th><th>Net P&amp;L</th><th>Win Rate</th><th>Profit Factor</th><th>Median Trade</th><th>Average Trade</th></tr></thead><tbody><tr><td class="setup-name">Setup A</td><td>27</td><td class="positive-value">+$6,393.00</td><td>88.89%</td><td>6.13</td><td>+$280.00</td><td>+$236.78</td></tr><tr><td class="setup-name">Setup B</td><td>59</td><td class="positive-value">+$6,212.00</td><td>91.53%</td><td>3.73</td><td>+$144.00</td><td>+$105.29</td></tr><tr><td class="setup-name">Setup C</td><td>14</td><td class="positive-value">+$3,543.00</td><td>85.71%</td><td>6.45</td><td>+$266.00</td><td>+$253.07</td></tr><tr><td class="setup-name">Setup D</td><td>7</td><td class="positive-value">+$1,508.00</td><td>85.71%</td><td>5.46</td><td>+$315.00</td><td>+$215.43</td></tr><tr><td class="setup-name">Setup E</td><td>17</td><td class="positive-value">+$1,403.00</td><td>76.47%</td><td>2.28</td><td>+$169.00</td><td>+$82.53</td></tr><tr><td class="setup-name">Setup F</td><td>48</td><td class="positive-value">+$1,289.00</td><td>72.92%</td><td>1.28</td><td>+$131.50</td><td>+$26.85</td></tr><tr><td class="setup-name">Setup G</td><td>10</td><td class="positive-value">+$1,069.00</td><td>90.00%</td><td>3.04</td><td>+$156.00</td><td>+$106.90</td></tr><tr><td class="setup-name">Setup H</td><td>7</td><td class="positive-value">+$769.00</td><td>85.71%</td><td>2.62</td><td>+$196.00</td><td>+$109.86</td></tr><tr><td class="setup-name">Setup I</td><td>6</td><td class="positive-value">+$589.00</td><td>83.33%</td><td>3.34</td><td>+$138.00</td><td>+$98.17</td></tr><tr><td class="setup-name">Setup J</td><td>7</td><td class="positive-value">+$20.00</td><td>57.14%</td><td>1.01</td><td>+$520.00</td><td>+$2.86</td></tr><tr><td class="setup-name">Setup K</td><td>24</td><td class="negative-value">−$235.00</td><td>58.33%</td><td>0.97</td><td>+$279.00</td><td>−$9.79</td></tr></tbody></table></div></section>
 <!-- FOXCHASE_SETUP_STATS_END -->
 
 <footer style="margin:60px auto 20px auto;max-width:1000px;padding-top:20px;border-top:1px solid #ddd;text-align:center;font-size:14px;color:#666;">
