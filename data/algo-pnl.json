@@ -1089,16 +1089,16 @@
     }
   ],
   "stats": {
-    "realized_algo_pnl": 785.9999999999997,
-    "closed_trades": 14,
-    "wins": 11,
+    "realized_algo_pnl": 1009.9999999999997,
+    "closed_trades": 15,
+    "wins": 12,
     "losses": 3,
-    "win_rate_pct": 78.57142857142857,
-    "avg_win": 177.99999999999997,
+    "win_rate_pct": 80.0,
+    "avg_win": 181.8333333333333,
     "avg_loss": -390.6666666666667,
-    "gross_profit": 1957.9999999999998,
+    "gross_profit": 2181.9999999999995,
     "gross_loss": 1172.0,
-    "profit_factor": 1.6706484641638224,
+    "profit_factor": 1.8617747440273034,
     "trades": [
       {
         "opened_at": "2026-06-25T16:35:19.789Z",
@@ -1285,6 +1285,19 @@
         "close_avg": 0.67,
         "pnl": -448.00000000000006,
         "result": "loss"
+      },
+      {
+        "opened_at": "2026-07-31T13:52:35.798Z",
+        "closed_at": "2026-07-31T14:07:03.964Z",
+        "symbols": [
+          "SPY260731C00744000",
+          "SPY260731C00745000"
+        ],
+        "qty": 14.0,
+        "open_avg": -0.35,
+        "close_avg": 0.19,
+        "pnl": 223.99999999999997,
+        "result": "win"
       }
     ]
   },
@@ -2446,27 +2459,27 @@
       "equity": 8967.89
     }
   ],
-  "realized_algo_pnl": 785.9999999999997,
-  "win_rate": 78.57142857142857,
-  "closed_trades": 14,
-  "avg_win": 177.99999999999997,
+  "realized_algo_pnl": 1009.9999999999997,
+  "win_rate": 80.0,
+  "closed_trades": 15,
+  "avg_win": 181.8333333333333,
   "avg_loss": -390.6666666666667,
-  "realizedAlgoPnl": 785.9999999999997,
-  "winRate": 78.57142857142857,
-  "closedTrades": 14,
-  "avgWin": 177.99999999999997,
+  "realizedAlgoPnl": 1009.9999999999997,
+  "winRate": 80.0,
+  "closedTrades": 15,
+  "avgWin": 181.8333333333333,
   "avgLoss": -390.6666666666667,
   "trade_stats": {
-    "realized_algo_pnl": 785.9999999999997,
-    "closed_trades": 14,
-    "wins": 11,
+    "realized_algo_pnl": 1009.9999999999997,
+    "closed_trades": 15,
+    "wins": 12,
     "losses": 3,
-    "win_rate_pct": 78.57142857142857,
-    "avg_win": 177.99999999999997,
+    "win_rate_pct": 80.0,
+    "avg_win": 181.8333333333333,
     "avg_loss": -390.6666666666667,
-    "gross_profit": 1957.9999999999998,
+    "gross_profit": 2181.9999999999995,
     "gross_loss": 1172.0,
-    "profit_factor": 1.6706484641638224,
+    "profit_factor": 1.8617747440273034,
     "trades": [
       {
         "opened_at": "2026-06-25T16:35:19.789Z",
@@ -2653,6 +2666,19 @@
         "close_avg": 0.67,
         "pnl": -448.00000000000006,
         "result": "loss"
+      },
+      {
+        "opened_at": "2026-07-31T13:52:35.798Z",
+        "closed_at": "2026-07-31T14:07:03.964Z",
+        "symbols": [
+          "SPY260731C00744000",
+          "SPY260731C00745000"
+        ],
+        "qty": 14.0,
+        "open_avg": -0.35,
+        "close_avg": 0.19,
+        "pnl": 223.99999999999997,
+        "result": "win"
       }
     ]
   },
@@ -2665,10 +2691,10 @@
   "todayAccountPnl": 221.6299999999992,
   "todaysAccountPnl": 221.6299999999992,
   "todayPnl": 221.6299999999992,
-  "gross_profit": 1957.9999999999998,
+  "gross_profit": 2181.9999999999995,
   "gross_loss": 1172.0,
-  "profit_factor": 1.6706484641638224,
-  "grossProfit": 1957.9999999999998,
+  "profit_factor": 1.8617747440273034,
+  "grossProfit": 2181.9999999999995,
   "grossLoss": 1172.0,
-  "profitFactor": 1.6706484641638224
+  "profitFactor": 1.8617747440273034
 }
