@@ -527,6 +527,13 @@ const strategyStartingCapital = Number(
         document.getElementById("note").textContent = data.note || "";
 
         const points = data.points || [];
+        const formatPointDate = value => {
+          const [year, month, day] = String(value).split("-").map(Number);
+          const date = new Date(year, month - 1, day);
+          return Number.isNaN(date.getTime())
+            ? String(value)
+            : date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+        };
         new Chart(document.getElementById("equityChart"), {
           type: "line",
           data: {
@@ -545,9 +552,22 @@ const strategyStartingCapital = Number(
           options: {
             responsive: true,
             plugins: {
-              tooltip: { callbacks: { label: context => "Equity: " + dollars(context.parsed.y) } }
+              tooltip: {
+                callbacks: {
+                  title: contexts => formatPointDate(points[contexts[0].dataIndex]?.date),
+                  label: context => "Equity: " + dollars(context.parsed.y)
+                }
+              }
             },
             scales: {
+              x: {
+                ticks: {
+                  callback: function(value) {
+                    const rawDate = this.getLabelForValue(value);
+                    return formatPointDate(rawDate).replace(/, \d{4}$/, "");
+                  }
+                }
+              },
               y: { ticks: { callback: value => "$" + Number(value).toLocaleString() } }
             }
           }
