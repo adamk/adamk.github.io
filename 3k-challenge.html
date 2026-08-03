@@ -166,6 +166,45 @@
       background: rgba(3, 8, 18, 0.24);
     }
 
+    .equity-point {
+      cursor: pointer;
+    }
+
+    .equity-point-dot {
+      fill: #fbbf24;
+      stroke: #0b1220;
+      stroke-width: 1.5;
+      transition: r 0.15s ease, fill 0.15s ease, stroke 0.15s ease;
+    }
+
+    .equity-point:hover .equity-point-dot,
+    .equity-point:focus .equity-point-dot {
+      fill: #fff7d6;
+      stroke: #f59e0b;
+      stroke-width: 2.5;
+    }
+
+    .equity-tooltip {
+      pointer-events: none;
+    }
+
+    .equity-tooltip rect {
+      fill: #111b2d;
+      stroke: rgba(251, 191, 36, 0.72);
+      stroke-width: 1;
+    }
+
+    .equity-tooltip-title {
+      fill: #fff7d6;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .equity-tooltip-detail {
+      fill: #cbd5e1;
+      font-size: 11px;
+    }
+
     .equity-caption {
       color: var(--muted);
       font-size: 14px;
@@ -203,6 +242,14 @@
       border-radius: 24px;
       padding: 22px;
       box-shadow: var(--shadow);
+      scroll-margin-top: 24px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .day-card:target,
+    .day-card.is-chart-target {
+      border-color: rgba(251, 191, 36, 0.8);
+      box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.14), var(--shadow);
     }
 
     .day-head {
@@ -833,11 +880,11 @@
       <span>Finish<strong>$6,277.33</strong></span>
     </div>
   </div>
-  <svg class="equity-chart" id="seriesEquityChart" viewBox="0 0 1000 390" role="img" aria-labelledby="equityChartTitle equityChartDescription">
+  <svg class="equity-chart" id="seriesEquityChart" viewBox="0 0 1000 390" role="group" aria-labelledby="equityChartTitle equityChartDescription">
     <title id="equityChartTitle">Foxchase Small Account Series documented equity curve</title>
-    <desc id="equityChartDescription">A static line chart of the account balance from the three-thousand-dollar start through the peak above twenty-two thousand dollars and the six-thousand-two-hundred-seventy-seven-dollar closing balance.</desc>
+    <desc id="equityChartDescription">An interactive account-balance chart from the three-thousand-dollar start through the peak above twenty-two thousand dollars and the six-thousand-two-hundred-seventy-seven-dollar closing balance. Each daily point links to its detailed archive entry.</desc>
   </svg>
-  <p class="equity-caption">This is not an idealized equity curve. It is a public record of discretionary 0DTE trading, including rapid gains, sharp drawdowns, missed setups, low-volume sessions, poor decisions, recoveries, and periods of strong execution. No single equity curve represents every trader or guarantees future results.</p>
+  <p class="equity-caption">Hover a point to see the session and exact closing balance; click or tap it to jump to that day’s outcome and notes. This is not an idealized equity curve. It is a public record of discretionary 0DTE trading, including rapid gains, sharp drawdowns, missed setups, low-volume sessions, poor decisions, recoveries, and periods of strong execution. No single equity curve represents every trader or guarantees future results.</p>
 </section>
 
 <section>
@@ -4364,6 +4411,22 @@
     const svg = document.getElementById('seriesEquityChart');
     if (!svg) return;
 
+    const dayCards = Array.from(document.querySelectorAll('.day-log .day-card'));
+    const dayCount = balances.length - 1;
+    const dayCardByNumber = new Map();
+
+    dayCards.forEach((card) => {
+      const title = card.querySelector('.day-title');
+      const match = title && title.textContent.match(/Day\s+(\d+)/);
+      if (!match) return;
+
+      const day = Number(match[1]);
+      if (day < 1 || day > dayCount) return;
+      card.id = `day-${day}`;
+      card.tabIndex = -1;
+      dayCardByNumber.set(day, card);
+    });
+
     const width = 1000;
     const height = 390;
     const margin = { top: 30, right: 32, bottom: 46, left: 76 };
@@ -4373,6 +4436,12 @@
     const x = (index) => margin.left + (index / (balances.length - 1)) * chartWidth;
     const y = (value) => margin.top + (1 - value / maxBalance) * chartHeight;
     const money = (value) => `$${Math.round(value / 1000)}k`;
+    const exactMoney = (value) => value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
     const points = balances.map((value, index) => `${x(index).toFixed(1)},${y(value).toFixed(1)}`).join(' ');
     const linePath = balances.map((value, index) => `${index === 0 ? 'M' : 'L'}${x(index).toFixed(1)} ${y(value).toFixed(1)}`).join(' ');
     const baseline = margin.top + chartHeight;
@@ -4396,13 +4465,23 @@
       return `<g><line x1="${margin.left}" y1="${position}" x2="${width - margin.right}" y2="${position}" stroke="rgba(159,176,204,.18)" stroke-width="1"/><text x="${margin.left - 12}" y="${Number(position) + 4}" text-anchor="end" fill="#9fb0cc" font-size="12">${money(value)}</text></g>`;
     }).join('');
 
-    const labels = xLabels.map(({ index, label }) => `<text x="${x(index).toFixed(1)}" y="${height - 17}" text-anchor="middle" fill="#9fb0cc" font-size="12">${label}</text>`).join('');
-    const markerDots = markers.map(({ index }) => `<circle cx="${x(index).toFixed(1)}" cy="${y(balances[index]).toFixed(1)}" r="4.5" fill="#fbbf24" stroke="#0b1220" stroke-width="2"/>`).join('');
-    const markerLabels = markers.map(({ index, label, anchor, dx, dy }) => `<text x="${(x(index) + dx).toFixed(1)}" y="${(y(balances[index]) + dy).toFixed(1)}" text-anchor="${anchor}" fill="#fde68a" font-size="12" font-weight="700">${label}</text>`).join('');
+    const labels = xLabels.map(({ index, label }) => `<text x="${x(index).toFixed(1)}" y="${height - 17}" text-anchor="middle" fill="#9fb0cc" font-size="12" pointer-events="none">${label}</text>`).join('');
+    const markerDots = markers.map(({ index }) => `<circle cx="${x(index).toFixed(1)}" cy="${y(balances[index]).toFixed(1)}" r="4.5" fill="#fbbf24" stroke="#0b1220" stroke-width="2" pointer-events="none"/>`).join('');
+    const markerLabels = markers.map(({ index, label, anchor, dx, dy }) => `<text x="${(x(index) + dx).toFixed(1)}" y="${(y(balances[index]) + dy).toFixed(1)}" text-anchor="${anchor}" fill="#fde68a" font-size="12" font-weight="700" pointer-events="none">${label}</text>`).join('');
+    const pointBandWidth = chartWidth / (balances.length - 1);
+    const pointLinks = balances.slice(1).map((_, offset) => {
+      const index = offset + 1;
+      if (!dayCardByNumber.has(index)) return '';
+      const bandStart = Math.max(margin.left, x(index) - pointBandWidth / 2);
+      const bandEnd = Math.min(width - margin.right, x(index) + pointBandWidth / 2);
+      const day = index;
+      const balance = exactMoney(balances[index]);
+      return `<a class="equity-point" data-day="${day}" href="#day-${day}" aria-label="View Day ${day} details. Closing balance ${balance}."><rect x="${bandStart.toFixed(1)}" y="${margin.top}" width="${(bandEnd - bandStart).toFixed(1)}" height="${chartHeight}" fill="#000" fill-opacity="0"/><circle class="equity-point-dot" cx="${x(index).toFixed(1)}" cy="${y(balances[index]).toFixed(1)}" r="3.2" pointer-events="none"/></a>`;
+    }).join('');
 
     svg.innerHTML = `
       <title id="equityChartTitle">Foxchase Small Account Series documented equity curve</title>
-      <desc id="equityChartDescription">A static line chart of the account balance from the three-thousand-dollar start through the peak above twenty-two thousand dollars and the six-thousand-two-hundred-seventy-seven-dollar closing balance.</desc>
+      <desc id="equityChartDescription">An interactive account-balance chart from the three-thousand-dollar start through the peak above twenty-two thousand dollars and the six-thousand-two-hundred-seventy-seven-dollar closing balance. Each daily point links to its detailed archive entry.</desc>
       <defs>
         <linearGradient id="seriesEquityFill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#f59e0b" stop-opacity=".34" />
@@ -4413,9 +4492,87 @@
       <path d="${areaPath}" fill="url(#seriesEquityFill)" />
       <polyline points="${points}" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
       ${markerDots}
+      ${pointLinks}
+      <g class="equity-tooltip" id="equityChartTooltip" visibility="hidden" aria-hidden="true">
+        <rect width="182" height="48" rx="8" />
+        <text class="equity-tooltip-title" id="equityChartTooltipTitle" x="12" y="19"></text>
+        <text class="equity-tooltip-detail" id="equityChartTooltipDetail" x="12" y="36"></text>
+      </g>
       ${markerLabels}
       ${labels}
     `;
+
+    const tooltip = document.getElementById('equityChartTooltip');
+    const tooltipTitle = document.getElementById('equityChartTooltipTitle');
+    const tooltipDetail = document.getElementById('equityChartTooltipDetail');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activePoint;
+    let highlightTimer;
+
+    function showTooltip(day, point) {
+      if (!tooltip || !tooltipTitle || !tooltipDetail) return;
+
+      const tooltipWidth = 182;
+      const tooltipHeight = 48;
+      const pointX = x(day);
+      const pointY = y(balances[day]);
+      const tooltipX = Math.max(margin.left + 4, Math.min(pointX - tooltipWidth / 2, width - margin.right - tooltipWidth - 4));
+      const tooltipY = pointY < margin.top + tooltipHeight + 14 ? pointY + 14 : pointY - tooltipHeight - 14;
+
+      if (activePoint) activePoint.classList.remove('is-active');
+      activePoint = point;
+      activePoint.classList.add('is-active');
+      tooltip.setAttribute('transform', `translate(${tooltipX.toFixed(1)} ${tooltipY.toFixed(1)})`);
+      tooltip.setAttribute('visibility', 'visible');
+      tooltipTitle.textContent = `Day ${day}`;
+      tooltipDetail.textContent = `${exactMoney(balances[day])} closing balance`;
+    }
+
+    function hideTooltip(point) {
+      if (activePoint && (!point || activePoint === point)) {
+        activePoint.classList.remove('is-active');
+        activePoint = null;
+        tooltip.setAttribute('visibility', 'hidden');
+      }
+    }
+
+    function openDay(day, updateHash) {
+      const card = dayCardByNumber.get(day);
+      if (!card) return;
+
+      if (updateHash && window.location.hash !== `#day-${day}`) {
+        window.history.pushState(null, '', `#day-${day}`);
+      }
+
+      dayCards.forEach((entry) => entry.classList.remove('is-chart-target'));
+      card.classList.add('is-chart-target');
+      window.clearTimeout(highlightTimer);
+      highlightTimer = window.setTimeout(() => card.classList.remove('is-chart-target'), 2200);
+      card.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      window.setTimeout(() => card.focus({ preventScroll: true }), prefersReducedMotion ? 0 : 450);
+    }
+
+    svg.querySelectorAll('.equity-point').forEach((point) => {
+      const day = Number(point.dataset.day);
+      point.addEventListener('pointerenter', () => showTooltip(day, point));
+      point.addEventListener('pointerleave', () => hideTooltip(point));
+      point.addEventListener('focus', () => showTooltip(day, point));
+      point.addEventListener('blur', () => hideTooltip(point));
+      point.addEventListener('click', (event) => {
+        event.preventDefault();
+        openDay(day, true);
+      });
+    });
+
+    function openHashTarget() {
+      const match = window.location.hash.match(/^#day-(\d+)$/);
+      if (!match) return;
+      const day = Number(match[1]);
+      if (dayCardByNumber.has(day)) openDay(day, false);
+    }
+
+    window.addEventListener('hashchange', openHashTarget);
+    window.requestAnimationFrame(openHashTarget);
   })();
 </script>
 
