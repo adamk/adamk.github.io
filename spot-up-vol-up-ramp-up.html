@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZKVBZ3QJ1F');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spot Up, Vol Up, Ramp Up: A Lesson in Price Discovery | Foxchase Trading</title>
+  <meta name="description" content="Why SPY and VXX can rise together during all-time-high price discovery, and what that changes in a Regime 4 volatility-compression setup." />
+  <meta name="author" content="Foxchase Trading" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="/foxchasetrading.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <style>
+    .article-callout {
+      border-left: 4px solid #fd7e14;
+      background: #fff8e7;
+      border-radius: 0.35rem;
+      padding: 1rem 1.15rem;
+    }
+
+    .article-figure img {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+    }
+
+    .article-figure.figure-zscore-reset img {
+      max-width: 360px;
+    }
+
+    @media (min-width: 992px) {
+      .rounded-lg-pill { border-radius: 50rem !important; }
+      .bg-lg-white { background-color: #fff !important; }
+      .shadow-lg-sm { box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important; }
+      .border-lg { border: 1px solid #dee2e6 !important; }
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-collapse { margin-top: .75rem; width: 100%; }
+      .navbar-nav {
+        background: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: .75rem;
+        padding: .75rem 1rem;
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+      }
+    }
+
+    .navbar-nav .nav-link.active {
+      background: rgba(245, 158, 11, 0.14);
+      color: #b45309 !important;
+      border-radius: 999px;
+      padding-left: 0.85rem;
+      padding-right: 0.85rem;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+  <nav class="navbar navbar-expand-lg bg-transparent" style="margin-top:16px !important; padding-top:0 !important;">
+    <div class="container justify-content-end justify-content-lg-center">
+      <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#foxchaseNav" aria-controls="foxchaseNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="foxchaseNav">
+        <ul class="navbar-nav nav-pill-desktop px-lg-3 py-lg-2 rounded-lg-pill bg-lg-white shadow-lg-sm border-lg">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/3k-challenge">Small Account Series</a></li>
+          <li class="nav-item"><a class="nav-link" href="/setups/">Setups</a></li>
+          <li class="nav-item"><a class="nav-link" href="/planner/">Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="mb-5">
+      <header class="mb-4">
+        <h1 class="display-6">Spot Up, Vol Up, Ramp Up: A Lesson in Price Discovery</h1>
+        <p class="text-muted mb-0">August 4, 2026 · by Adam</p>
+      </header>
+
+      <section class="mb-4">
+        <p>One of the most commonly recognized behaviors in the market is that when the underlying price rises, volatility falls. When the market falls, volatility rises.</p>
+
+        <p>That inverse relationship often becomes instinctive for traders. A rising VIX or VXX is commonly interpreted as bearish, while a decline in volatility is treated as confirmation that an equity rally is healthy.</p>
+
+        <p>But this relationship does not always hold. You have probably seen the exception before: SPY rises while VXX rises with it. SPY call options appreciate from the movement in the underlying, while their extrinsic value also remains elevated, or even increases, despite the passage of time and the effect of theta.</p>
+
+        <p>Instead of producing the reversal normally associated with elevated option premium, the market continues grinding higher.</p>
+
+        <div class="article-callout my-4 text-center">
+          <strong>Spot up. Vol up. Ramp up.</strong>
+        </div>
+
+        <p>Two recent examples occurred on May 8 and August 4, 2026. Both sessions developed within the same Regime 4 volatility-compression setup, or R4-VC, within the Foxchase Trading framework. Both also shared another important characteristic: they were new all-time-high days.</p>
+
+        <p>The S&amp;P 500 and Nasdaq reached records on May 8, while the S&amp;P 500 returned to record territory and established a new intraday high on August 4. The same Regime 4 structure appeared on both days, along with the opening spike in SPY call extrinsic value. The extrinsic-value z-score began decaying toward zero. But the sharp downside reversal normally associated with R4-VC, particularly around 10:00 a.m., never arrived. Instead, SPY continued grinding higher while VXX rose alongside it. That shared all-time-high context turned out to be an important clue. Let’s review the basics of the setup.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">What Is Regime 4?</h2>
+
+        <p>The Foxchase Trading regime framework classifies each session according to the order of four important reference levels:</p>
+        <ul>
+          <li>Premarket high, or PMH</li>
+          <li>Premarket low, or PML</li>
+          <li>Yesterday high, or YDH</li>
+          <li>Yesterday low, or YDL</li>
+        </ul>
+
+        <p>In Regime 4, those levels are arranged from highest to lowest as follows:</p>
+        <p class="fw-semibold text-center">PMH → YDH → PML → YDL</p>
+
+        <p>For a complete visual explanation of the 6-regime framework, see <a href="/cracking-0dte-code-spy.html">Cracking the 0DTE Code, Part 2: The 6 Pre-Market Trading Regimes</a>.</p>
+
+        <p>This structure tells us that the premarket range has expanded beyond both sides of the previous day’s range. The premarket high is above the prior-day high, while the premarket low is below it but remains above the prior-day low. The regime itself does not automatically dictate direction. It merely establishes the market structure in which a particular setup may develop.</p>
+
+        <p>One important A+ setup within this regime is R4-VC, where SPY initially pushes higher while call extrinsic value spikes after the open. As the morning progresses, the underlying may continue rising, but the opening volatility shock begins to fade. The call gains value from the movement in SPY, while its extrinsic value gradually decays because of falling implied volatility and the continuous effect of theta.</p>
+
+        <p>The call’s total price may still be rising, but the composition of that price is changing. More of its value is coming from the movement in the underlying, while less is coming from the market’s willingness to pay for remaining uncertainty. As the call’s extrinsic-value z-score approaches zero, SPY has often already begun weakening. On a standard R4-VC session, this normalization accompanies a sharp downside reversal around 10:00 a.m., sometimes earlier.</p>
+
+        <figure class="article-figure mb-4 text-center">
+          <img src="https://cdn-images-1.medium.com/max/1600/1*5Pv_gGhsPRjBvGVNMTQbaw.jpeg" alt="Standard Regime 4 volatility-compression example" class="img-fluid rounded border" />
+          <figcaption class="small text-muted mt-2">In a standard R4-VC session, SPY initially rises while VXX and call extrinsic value decay. As the volatility shock normalizes, SPY becomes vulnerable to the typical downside reversal.</figcaption>
+        </figure>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">What Changed on May 8 and August 4?</h2>
+
+        <p>May 8 and August 4 began with recognizable R4-VC characteristics. The Regime 4 level structure was present. SPY moved higher after the open. Call extrinsic value spiked at the open and began decaying toward its normal range as SPY continued making new highs. Based on the standard setup, the market appeared to be progressing toward the familiar downside reversal, typically as the call extrinsic-value z-score approaches approximately +1 to +1.5. But VXX was not behaving normally. Rather than declining as SPY advanced, VXX rose with it.</p>
+
+        <figure class="article-figure mb-4 text-center">
+          <img src="https://cdn-images-1.medium.com/max/1600/1*GUHuNaJm09TyrjUyAaipaw.jpeg" alt="August 4 2026 SPY and VXX rising together after the open" class="img-fluid rounded border" />
+          <figcaption class="small text-muted mt-2">August 4, 2026: SPY and VXX rise together after the open. Instead of confirming the normal R4-VC volatility unwind, VXX remains bid while SPY continues moving higher.</figcaption>
+        </figure>
+
+        <p>That was the first indication that the opening volatility shock was not undergoing the usual compression. Once the call extrinsic-value z-score reached approximately +1.5, we would normally begin expecting a sharp reversal back below PMH. But it never happened. Instead, the volatility posture reset higher as SPY continued advancing, and this pattern repeated throughout the entire day.</p>
+
+        <p><strong>The volatility shock was not fully unwinding; it was being repriced.</strong></p>
+
+        <figure class="article-figure figure-zscore-reset mb-4 text-center">
+          <img src="https://cdn-images-1.medium.com/max/1600/1*jopPNT-iAx6uJA7wE42tXg.jpeg" alt="August 4 2026 SPY call extrinsic-value z-score repeatedly resetting higher" class="img-fluid rounded border" />
+          <figcaption class="small text-muted mt-2">August 4, 2026: The SPY call extrinsic-value z-score repeatedly decays toward the normal R4-VC reversal area, then resets higher as the option’s volatility posture recharges and SPY continues higher.</figcaption>
+        </figure>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Volatility Is Not a Directional Indicator</h2>
+
+        <p>The VIX is commonly described as the market’s “fear gauge,” but that description can lead traders to treat it as a purely bearish directional indicator. It is not.</p>
+
+        <p>The VIX reflects the options market’s expectation of future S&amp;P 500 volatility. It measures how much movement the market is pricing, not necessarily the direction in which that movement must occur. VXX is also not a direct bearish signal. It tracks short-term VIX futures exposure and therefore reflects how the market is pricing forward volatility. We use VXX on our charts because it is tradable, liquid, and can move with or against SPY. Most of the time, falling equity prices are associated with rising volatility because downside moves tend to be faster, more disorderly, and accompanied by increased demand for protection. But volatility can also rise during an equity rally.</p>
+
+        <p>Traders may be buying upside calls to participate in a breakout, while existing investors may buy puts to protect recent gains. Market makers may also demand more premium as the expected range of future outcomes widens. Demand for spot and demand for volatility can therefore coexist. That is what appeared to be happening on May 8 and August 4.</p>
+
+        <p>The rise in VXX was not causing SPY to rally. Instead, it confirmed that the broader volatility market was not undergoing the normal compression during a standard R4-VC setup. The more direct evidence was visible in the SPY call itself: its extrinsic value remained unusually supported despite theta, even as the call gained intrinsic value from the rise in SPY. That is very different from a rally in which spot rises while volatility steadily collapses.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Understanding Volatility Posture</h2>
+
+        <p>Within the Foxchase Trading framework, I use the call extrinsic-value z-score to describe the option’s volatility posture. Volatility posture tells us whether the option’s extrinsic premium is unusually elevated, compressed, or close to its expected intraday baseline. On a standard R4-VC session, the call begins with an elevated volatility posture after the opening spike. As VXX and implied volatility decline, the extrinsic-value z-score normalizes toward zero. Under those conditions, the normalization reflects a genuine unwind of the opening volatility shock and often accompanies the R4-VC downside reversal.</p>
+
+        <p>On May 8 and August 4, the measured volatility posture still began moving lower, but it did so while VXX was rising alongside SPY.</p>
+
+        <figure class="article-figure mb-4 text-center">
+          <img src="https://cdn-images-1.medium.com/max/1600/1*fpShkLwO5UqdVYXExSa9Iw.jpeg" alt="May 8 2026 SPY advancing while VXX reverses higher" class="img-fluid rounded border" />
+          <figcaption class="small text-muted mt-2">May 8, 2026: SPY advanced while VXX reversed higher, showing the same positive spot-volatility relationship later seen on August 4.</figcaption>
+        </figure>
+
+        <p>Each time the z-score approached the normal reversal area, it reset higher again as SPY pushed to another high, effectively recharging the volatility posture. It then began decaying from the newly elevated level, only for the pattern to repeat. A call extrinsic-value z-score of approximately +1 to +1.5 means one thing after volatility has steadily compressed from the open and another when the z-score has repeatedly reset higher while spot and volatility rise together. The level matters because of the volatility-compression process that normally brings it there, not simply because the z-score touches a particular number.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">The Price-Discovery Connection</h2>
+
+        <p>The most important characteristic shared by May 8 and August 4 was that both were new all-time-high sessions. At a new all-time high, the market is operating in price discovery. There is no historical trading activity above the current market price: no established resistance overhead, no trapped buyers waiting to exit at breakeven, and no prior volume profile showing where sellers previously became aggressive. The market must discover where meaningful supply will emerge in real time.</p>
+
+        <p>I’m not saying that no selling happens. Traders can always take profits, institutions can rebalance, dealers can adjust hedges, systematic strategies can reduce exposure, and new short positions can be opened. As long as buyers continue accepting higher prices and sellers fail to overwhelm them, the auction can continue upward. In these sessions, forward variance was being repriced higher while spot demand remained strong.</p>
+
+        <p>This specific R4-VC variation was not included in my book, <em>0DTE: Regimes, Volatility, and Execution</em>. It is a more recent observation that emerged from comparing these two sessions side by side. The underlying Regime 4 framework was already established, but the significance of SPY and VXX rising together during all-time-high price discovery was not yet fully recognized.</p>
+
+        <p class="mb-0">This gives us another reason to keep VXX directly alongside SPY on our charts: it can reveal when the volatility behavior beneath a familiar setup has changed.</p>
+      </section>
+
+      <aside class="alert alert-warning small mt-4">
+        <strong>Disclaimer:</strong> This article is for educational purposes only and does not constitute financial or investment advice. The observations described are contextual and are not standalone trade signals. Trading involves substantial risk of loss.
+      </aside>
+    </article>
+  </main>
+
+  <div class="bg-dark text-secondary text-center py-2">
+    <div class="d-flex justify-content-center gap-2">
+      <a href="https://twitter.com/FoxchaseTrading" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm px-3"><i class="fa-brands fa-x-twitter"></i> Follow us on X</a>
+      <a href="https://coff.ee/foxchasetrading" target="_blank" rel="noopener noreferrer" class="btn btn-outline-warning btn-sm px-3"><i class="fa-solid fa-mug-hot"></i> Buy me a coffee</a>
+    </div>
+  </div>
+
+  <footer class="bg-light py-3">
+    <p class="text-center mb-0 text-muted">© 2026 Foxchase Trading, LLC</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Spot Up, Vol Up, Ramp Up: A Lesson in Price Discovery",
+    "author": {"@type": "Person", "name": "Adam"},
+    "publisher": {"@type": "Organization", "name": "Foxchase Trading"},
+    "datePublished": "2026-08-04",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.foxchasetrading.com/spot-up-vol-up-ramp-up.html"},
+    "description": "Why SPY and VXX can rise together during all-time-high price discovery, and what that changes in a Regime 4 volatility-compression setup."
+  }
+  </script>
+</body>
+</html>
