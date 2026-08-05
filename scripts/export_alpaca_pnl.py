@@ -91,19 +91,23 @@ for o in sorted(mleg_orders, key=order_time):
     elif is_close and open_orders_by_key[key]:
         open_order = open_orders_by_key[key].pop(0)
 
-        open_price = abs(float(open_order["filled_avg_price"]))
-        close_price = abs(float(o["filled_avg_price"]))
+        # Alpaca signs the parent multi-leg price by cash flow: credits are
+        # negative and debits are positive.  Preserve those signs so this
+        # works for both credit and debit spreads; absolute values would turn
+        # a profitable debit spread into a loss.
+        open_price = float(open_order["filled_avg_price"])
+        close_price = float(o["filled_avg_price"])
         qty = float(o["filled_qty"])
 
-        pnl = (open_price - close_price) * qty * 100
+        pnl = -(open_price + close_price) * qty * 100
 
         closed_trades.append({
             "symbols": key,
             "opened_at": open_order.get("filled_at"),
             "closed_at": o.get("filled_at"),
             "qty": qty,
-            "open_credit": open_price,
-            "close_debit": close_price,
+            "open_price": open_price,
+            "close_price": close_price,
             "pnl": pnl,
             "result": "win" if pnl > 0 else "loss" if pnl < 0 else "breakeven",
         })

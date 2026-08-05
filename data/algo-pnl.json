@@ -1,88 +1,8 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-08-01T17:25:24.989822+00:00",
-  "current_equity": 9981.11,
+  "updated_at": "2026-08-05T14:12:31.758329-04:00",
+  "current_equity": 9762.92,
   "points": [
-    {
-      "date": "2025-07-03",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-03",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-08",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-09",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-10",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-11",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-12",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-15",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-16",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-17",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-18",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-19",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-22",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-23",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-24",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-25",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-26",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-29",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-30",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-31",
-      "equity": 0.0
-    },
     {
       "date": "2025-08-01",
       "equity": 0.0
@@ -1008,12 +928,12 @@
       "equity": 7345.7
     },
     {
-      "date": "2026-07-06",
+      "date": "2026-07-03",
       "equity": 7594.51
     },
     {
       "date": "2026-07-07",
-      "equity": 7790.29
+      "equity": 7594.51
     },
     {
       "date": "2026-07-08",
@@ -1025,10 +945,10 @@
     },
     {
       "date": "2026-07-10",
-      "equity": 7869.78
+      "equity": 7790.6
     },
     {
-      "date": "2026-07-13",
+      "date": "2026-07-11",
       "equity": 7870.03
     },
     {
@@ -1037,23 +957,23 @@
     },
     {
       "date": "2026-07-15",
-      "equity": 8604.16
+      "equity": 7870.03
     },
     {
       "date": "2026-07-16",
-      "equity": 8767.24
+      "equity": 8604.11
     },
     {
       "date": "2026-07-17",
       "equity": 8767.19
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-18",
       "equity": 8767.19
     },
     {
       "date": "2026-07-21",
-      "equity": 8283.81
+      "equity": 8767.19
     },
     {
       "date": "2026-07-22",
@@ -1061,14 +981,14 @@
     },
     {
       "date": "2026-07-23",
-      "equity": 8753.16
+      "equity": 8300.37
     },
     {
       "date": "2026-07-24",
-      "equity": 9196.89
+      "equity": 8752.95
     },
     {
-      "date": "2026-07-27",
+      "date": "2026-07-25",
       "equity": 9196.83
     },
     {
@@ -1077,7 +997,7 @@
     },
     {
       "date": "2026-07-29",
-      "equity": 8746.46
+      "equity": 9196.83
     },
     {
       "date": "2026-07-30",
@@ -1085,24 +1005,28 @@
     },
     {
       "date": "2026-07-31",
-      "equity": 8967.89
+      "equity": 8746.26
     },
     {
       "date": "2026-08-01",
       "equity": 9981.11
+    },
+    {
+      "date": "2026-08-05",
+      "equity": 9762.92
     }
   ],
   "stats": {
-    "realized_algo_pnl": 1009.9999999999997,
-    "closed_trades": 15,
+    "realized_algo_pnl": 792.9999999999997,
+    "closed_trades": 16,
     "wins": 12,
-    "losses": 3,
-    "win_rate_pct": 80.0,
+    "losses": 4,
+    "win_rate_pct": 75.0,
     "avg_win": 181.8333333333333,
-    "avg_loss": -390.6666666666667,
+    "avg_loss": -347.25,
     "gross_profit": 2181.9999999999995,
-    "gross_loss": 1172.0,
-    "profit_factor": 1.8617747440273034,
+    "gross_loss": 1389.0,
+    "profit_factor": 1.5709143268538515,
     "trades": [
       {
         "opened_at": "2026-06-25T16:35:19.789Z",
@@ -1302,60 +1226,23 @@
         "close_avg": 0.19,
         "pnl": 223.99999999999997,
         "result": "win"
+      },
+      {
+        "opened_at": "2026-08-05T14:55:14.072Z",
+        "closed_at": "2026-08-05T16:09:32.015Z",
+        "symbols": [
+          "SPY260805P00771000",
+          "SPY260805P00772000"
+        ],
+        "qty": 7.0,
+        "open_avg": -0.34,
+        "close_avg": 0.65,
+        "pnl": -217.0,
+        "result": "loss"
       }
     ]
   },
   "recent_trades": [
-    {
-      "symbols": "SPY260625C00735000|SPY260625C00736000",
-      "opened_at": "2026-06-25T16:35:19.789Z",
-      "closed_at": "2026-06-25T17:45:39.475Z",
-      "qty": 2.0,
-      "open_credit": 0.28,
-      "close_debit": 0.16,
-      "pnl": 24.000000000000004,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260629P00733000|SPY260629P00734000",
-      "opened_at": "2026-06-29T14:09:19.999Z",
-      "closed_at": "2026-06-29T14:34:52.178Z",
-      "qty": 3.0,
-      "open_credit": 0.31,
-      "close_debit": 0.19,
-      "pnl": 36.0,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260630P00739000|SPY260630P00740000",
-      "opened_at": "2026-06-30T13:31:03.829Z",
-      "closed_at": "2026-06-30T13:55:16.382Z",
-      "qty": 17.0,
-      "open_credit": 0.3,
-      "close_debit": 0.15,
-      "pnl": 254.99999999999997,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260701P00741000|SPY260701P00742000",
-      "opened_at": "2026-07-01T13:39:37.628Z",
-      "closed_at": "2026-07-01T13:53:00.525Z",
-      "qty": 3.0,
-      "open_credit": 0.32,
-      "close_debit": 0.2,
-      "pnl": 36.0,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260702P00745000|SPY260702P00746000",
-      "opened_at": "2026-07-02T13:31:06.125Z",
-      "closed_at": "2026-07-02T13:37:29.323Z",
-      "qty": 19.0,
-      "open_credit": 0.25,
-      "close_debit": 0.17,
-      "pnl": 151.99999999999997,
-      "result": "win"
-    },
     {
       "symbols": "SPY260702P00743000|SPY260702P00744000",
       "opened_at": "2026-07-02T15:10:05.436Z",
@@ -1365,99 +1252,100 @@
       "close_debit": 0.24,
       "pnl": 104.99999999999999,
       "result": "win"
+    },
+    {
+      "symbols": "SPY260707C00748000|SPY260707C00749000",
+      "opened_at": "2026-07-07T14:17:26.133Z",
+      "closed_at": "2026-07-07T15:25:21.793Z",
+      "qty": 11.0,
+      "open_credit": 0.35,
+      "close_debit": 0.17,
+      "pnl": 197.99999999999994,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260710P00748000|SPY260710P00749000",
+      "opened_at": "2026-07-10T14:34:52.179Z",
+      "closed_at": "2026-07-10T14:48:35.453Z",
+      "qty": 9.0,
+      "open_credit": 0.22,
+      "close_debit": 0.13,
+      "pnl": 81.0,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260715P00750000|SPY260715P00751000",
+      "opened_at": "2026-07-15T16:05:08.227Z",
+      "closed_at": "2026-07-15T16:35:36.849Z",
+      "qty": 11.0,
+      "open_credit": 0.24,
+      "close_debit": 0.48,
+      "pnl": -263.99999999999994,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260716P00749000|SPY260716P00750000",
+      "opened_at": "2026-07-16T13:50:14.998Z",
+      "closed_at": "2026-07-16T14:09:33.479Z",
+      "qty": 11.0,
+      "open_credit": 0.28,
+      "close_debit": 0.13,
+      "pnl": 165.00000000000003,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260721C00747000|SPY260721C00748000|SPY260721P00743000|SPY260721P00744000",
+      "opened_at": "2026-07-21T14:00:30.183Z",
+      "closed_at": "2026-07-21T18:30:27.99Z",
+      "qty": 20.0,
+      "open_credit": 0.57,
+      "close_debit": 0.8,
+      "pnl": -460.0000000000001,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260723P00739000|SPY260723P00740000",
+      "opened_at": "2026-07-23T14:37:46.095Z",
+      "closed_at": "2026-07-23T15:06:55.924Z",
+      "qty": 19.0,
+      "open_credit": 0.45,
+      "close_debit": 0.69,
+      "pnl": -455.9999999999999,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260724C00742000|SPY260724C00743000|SPY260724P00736000|SPY260724P00737000",
+      "opened_at": "2026-07-24T15:14:47.356Z",
+      "closed_at": "2026-07-24T17:48:26.003Z",
+      "qty": 18.0,
+      "open_credit": 0.52,
+      "close_debit": 0.27,
+      "pnl": 450.0,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260729P00737000|SPY260729P00738000",
+      "opened_at": "2026-07-29T13:31:39.376Z",
+      "closed_at": "2026-07-29T14:40:33.319Z",
+      "qty": 14.0,
+      "open_credit": 0.35,
+      "close_debit": 0.67,
+      "pnl": -448.00000000000006,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260731C00744000|SPY260731C00745000",
+      "opened_at": "2026-07-31T13:52:35.798Z",
+      "closed_at": "2026-07-31T14:07:03.964Z",
+      "qty": 14.0,
+      "open_credit": 0.35,
+      "close_debit": 0.19,
+      "pnl": 223.99999999999997,
+      "result": "win"
     }
   ],
-  "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. The equity chart reflects broker-reported account equity and may include deposits or withdrawals. Trade statistics are calculated separately from closed algorithm trades and are intended to better isolate strategy performance.",
-  "account": "Live account",
-  "currentEquity": 9981.11,
-  "buyingPower": 39924.68,
-  "cash": 9981.11,
-  "portfolioValue": 9981.11,
-  "openPositions": 0,
-  "lastUpdated": "2026-08-01T17:25:24.989822+00:00",
-  "lastUpdatedDisplay": "08/01/2026, 1:25:24 PM ET",
-  "source": "Alpaca live account",
+  "note": "Trade stats are calculated from filled Alpaca multi-leg option orders by matching opening spreads with closing spreads using the same option legs. Account equity history excludes cashflows where possible, but the chart may still differ from pure strategy returns.",
   "equityHistory": [
-    {
-      "date": "2025-07-03",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-03",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-08",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-09",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-10",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-11",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-12",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-15",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-16",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-17",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-18",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-19",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-22",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-23",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-24",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-25",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-26",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-29",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-30",
-      "equity": 0.0
-    },
-    {
-      "date": "2025-07-31",
-      "equity": 0.0
-    },
     {
       "date": "2025-08-01",
       "equity": 0.0
@@ -2383,12 +2271,12 @@
       "equity": 7345.7
     },
     {
-      "date": "2026-07-06",
+      "date": "2026-07-03",
       "equity": 7594.51
     },
     {
       "date": "2026-07-07",
-      "equity": 7790.29
+      "equity": 7594.51
     },
     {
       "date": "2026-07-08",
@@ -2400,10 +2288,10 @@
     },
     {
       "date": "2026-07-10",
-      "equity": 7869.78
+      "equity": 7790.6
     },
     {
-      "date": "2026-07-13",
+      "date": "2026-07-11",
       "equity": 7870.03
     },
     {
@@ -2412,23 +2300,23 @@
     },
     {
       "date": "2026-07-15",
-      "equity": 8604.16
+      "equity": 7870.03
     },
     {
       "date": "2026-07-16",
-      "equity": 8767.24
+      "equity": 8604.11
     },
     {
       "date": "2026-07-17",
       "equity": 8767.19
     },
     {
-      "date": "2026-07-20",
+      "date": "2026-07-18",
       "equity": 8767.19
     },
     {
       "date": "2026-07-21",
-      "equity": 8283.81
+      "equity": 8767.19
     },
     {
       "date": "2026-07-22",
@@ -2436,14 +2324,14 @@
     },
     {
       "date": "2026-07-23",
-      "equity": 8753.16
+      "equity": 8300.37
     },
     {
       "date": "2026-07-24",
-      "equity": 9196.89
+      "equity": 8752.95
     },
     {
-      "date": "2026-07-27",
+      "date": "2026-07-25",
       "equity": 9196.83
     },
     {
@@ -2452,7 +2340,7 @@
     },
     {
       "date": "2026-07-29",
-      "equity": 8746.46
+      "equity": 9196.83
     },
     {
       "date": "2026-07-30",
@@ -2460,34 +2348,55 @@
     },
     {
       "date": "2026-07-31",
-      "equity": 8967.89
+      "equity": 8746.26
     },
     {
       "date": "2026-08-01",
       "equity": 9981.11
+    },
+    {
+      "date": "2026-08-05",
+      "equity": 9762.92
     }
   ],
-  "realized_algo_pnl": 1009.9999999999997,
-  "win_rate": 80.0,
-  "closed_trades": 15,
+  "last_equity": 9981.11,
+  "today_account_pnl": -218.1900000000005,
+  "todays_account_pnl": -218.1900000000005,
+  "today_pnl": -218.1900000000005,
+  "account": "Live account",
+  "currentEquity": 9762.92,
+  "lastEquity": 9981.11,
+  "todayAccountPnl": -218.1900000000005,
+  "todaysAccountPnl": -218.1900000000005,
+  "todayPnl": -218.1900000000005,
+  "buyingPower": 39051.68,
+  "cash": 9762.92,
+  "portfolioValue": 9762.92,
+  "openPositions": 0,
+  "lastUpdated": "2026-08-05T14:12:31.758329-04:00",
+  "lastUpdatedDisplay": "08/05/2026, 02:12:31 PM ET",
+  "source": "Alpaca live account",
+  "realized_algo_pnl": 792.9999999999997,
+  "closed_trades": 16,
+  "win_rate": 75.0,
   "avg_win": 181.8333333333333,
-  "avg_loss": -390.6666666666667,
-  "realizedAlgoPnl": 1009.9999999999997,
-  "winRate": 80.0,
-  "closedTrades": 15,
+  "avg_loss": -347.25,
+  "realizedAlgoPnl": 792.9999999999997,
+  "closedTrades": 16,
+  "winRate": 75.0,
   "avgWin": 181.8333333333333,
-  "avgLoss": -390.6666666666667,
+  "avgLoss": -347.25,
   "trade_stats": {
-    "realized_algo_pnl": 1009.9999999999997,
-    "closed_trades": 15,
+    "realized_algo_pnl": 792.9999999999997,
+    "closed_trades": 16,
     "wins": 12,
-    "losses": 3,
-    "win_rate_pct": 80.0,
+    "losses": 4,
+    "win_rate_pct": 75.0,
     "avg_win": 181.8333333333333,
-    "avg_loss": -390.6666666666667,
+    "avg_loss": -347.25,
     "gross_profit": 2181.9999999999995,
-    "gross_loss": 1172.0,
-    "profit_factor": 1.8617747440273034,
+    "gross_loss": 1389.0,
+    "profit_factor": 1.5709143268538515,
     "trades": [
       {
         "opened_at": "2026-06-25T16:35:19.789Z",
@@ -2687,22 +2596,26 @@
         "close_avg": 0.19,
         "pnl": 223.99999999999997,
         "result": "win"
+      },
+      {
+        "opened_at": "2026-08-05T14:55:14.072Z",
+        "closed_at": "2026-08-05T16:09:32.015Z",
+        "symbols": [
+          "SPY260805P00771000",
+          "SPY260805P00772000"
+        ],
+        "qty": 7.0,
+        "open_avg": -0.34,
+        "close_avg": 0.65,
+        "pnl": -217.0,
+        "result": "loss"
       }
     ]
   },
-  "strategy_starting_capital": 6983.03,
-  "last_equity": 8746.26,
-  "today_account_pnl": 221.6299999999992,
-  "todays_account_pnl": 221.6299999999992,
-  "today_pnl": 221.6299999999992,
-  "lastEquity": 8746.26,
-  "todayAccountPnl": 221.6299999999992,
-  "todaysAccountPnl": 221.6299999999992,
-  "todayPnl": 221.6299999999992,
   "gross_profit": 2181.9999999999995,
-  "gross_loss": 1172.0,
-  "profit_factor": 1.8617747440273034,
+  "gross_loss": 1389.0,
+  "profit_factor": 1.5709143268538515,
   "grossProfit": 2181.9999999999995,
-  "grossLoss": 1172.0,
-  "profitFactor": 1.8617747440273034
+  "grossLoss": 1389.0,
+  "profitFactor": 1.5709143268538515
 }
