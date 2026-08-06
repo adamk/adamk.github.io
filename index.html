@@ -394,7 +394,7 @@
     (() => {
       const target = document.getElementById('exz-online');
       if (!target) return;
-      fetch('https://exz-api.foxchasetrading.com/api/public/zwap-presence', {cache: 'no-store'})
+      fetch('https://exz-api.foxchasetrading.com/api/public/exz-presence', {cache: 'no-store'})
         .then(response => response.ok ? response.json() : Promise.reject())
         .then(data => {
           const count = Number(data.online);
