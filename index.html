@@ -336,6 +336,22 @@
           <i class="fa-brands fa-github"></i> ExpectedMove.txt (ThinkorSwim Study)
         </a>
       </p>
+      <p class="mt-4 d-flex align-items-center flex-wrap gap-2">
+        <a href="https://github.com/adamk/foxchase-zwap-dashboard"
+           class="btn btn-free btn-lg" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+          Foxchase ZWAP Dashboard (Alpaca historical data)
+        </a>
+        <span class="small text-muted" aria-live="polite">
+          Active sessions: <span id="zwap-online">—</span>
+        </span>
+      </p>
+      <p class="small text-muted mt-2 mb-0">
+        Requires your own
+        <a href="https://alpaca.markets/data" target="_blank" rel="noopener noreferrer">Alpaca Algo Trader Plus</a>
+        market-data subscription (currently listed at $99/month) for archived historical sessions.
+        The free Basic plan is not sufficient for this historical-data workflow.
+      </p>
 
     </div>
     <h3 class="section-title">Testimonials</h3>
@@ -374,6 +390,19 @@
 
   <!-- Bootstrap 5 JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (() => {
+      const target = document.getElementById('zwap-online');
+      if (!target) return;
+      fetch('https://bot.foxchasetrading.com/api/public/zwap-presence', {cache: 'no-store'})
+        .then(response => response.ok ? response.json() : Promise.reject())
+        .then(data => {
+          const count = Number(data.online);
+          target.textContent = Number.isFinite(count) ? String(Math.max(0, count)) : '—';
+        })
+        .catch(() => { target.textContent = '—'; });
+    })();
+  </script>
 
   <!-- New Year Coupon Modal -->
   <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
