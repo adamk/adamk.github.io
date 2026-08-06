@@ -55,6 +55,28 @@
       border-color: #146c43;
     }
 
+    .exz-link-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+    .exz-link-row .exz-online-count {
+      grid-column: 3;
+      justify-self: start;
+      margin-left: 1rem;
+      white-space: nowrap;
+    }
+    @media (max-width: 767.98px) {
+      .exz-link-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .exz-link-row .exz-online-count {
+        margin-left: 0;
+      }
+    }
+
     .btn-planner {
       background-color: #6f42c1;
       border-color: #6f42c1;
@@ -336,16 +358,16 @@
           <i class="fa-brands fa-github"></i> ExpectedMove.txt (ThinkorSwim Study)
         </a>
       </p>
-      <p class="mt-4 text-center mb-1">
+      <div class="exz-link-row mt-4">
         <a href="https://github.com/adamk/foxchase-exz-dashboard"
            class="btn btn-free btn-lg" target="_blank" rel="noopener noreferrer">
           <i class="fa-brands fa-github"></i>
           Foxchase EXZ Dashboard (Alpaca historical data)
         </a>
-      </p>
-      <p class="small text-muted text-center mt-0 mb-0" aria-live="polite">
-        Active sessions: <span id="exz-online">—</span>
-      </p>
+        <span class="small text-muted exz-online-count" aria-live="polite">
+          Active sessions: <span id="exz-online">—</span>
+        </span>
+      </div>
       <p class="small text-muted mt-2 mb-0">
         Requires your own
         <a href="https://alpaca.markets/data" target="_blank" rel="noopener noreferrer">Alpaca Algo Trader Plus</a>
