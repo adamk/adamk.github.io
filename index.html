@@ -135,10 +135,13 @@
     }
     .testimonial-scroll {
       display: flex;
-      justify-content: center;
+      /* Keep the first card anchored inside the viewport when the row
+         overflows horizontally; centering an overflowing flex row clips its
+         left edge and hides the start of the review text. */
+      justify-content: flex-start;
       gap: 1rem;
       overflow-x: auto;
-      padding: 0.5rem 0 1rem;
+      padding: 0.5rem 0.25rem 1rem;
       scroll-snap-type: x proximity;
     }
   
