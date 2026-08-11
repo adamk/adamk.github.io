@@ -1,7 +1,7 @@
 {
   "account_type": "Live account",
-  "updated_at": "2026-08-11T11:30:01.800171-04:00",
-  "current_equity": 9872.48,
+  "updated_at": "2026-08-11T11:45:01.809692-04:00",
+  "current_equity": 9854.48,
   "points": [
     {
       "date": "2025-08-01",
@@ -1025,7 +1025,7 @@
     },
     {
       "date": "2026-08-11",
-      "equity": 9872.48
+      "equity": 9854.48
     }
   ],
   "stats": {
@@ -2406,25 +2406,25 @@
     },
     {
       "date": "2026-08-11",
-      "equity": 9872.48
+      "equity": 9854.48
     }
   ],
   "last_equity": 9881.75,
-  "today_account_pnl": -9.270000000000437,
-  "todays_account_pnl": -9.270000000000437,
-  "today_pnl": -9.270000000000437,
+  "today_account_pnl": -27.270000000000437,
+  "todays_account_pnl": -27.270000000000437,
+  "today_pnl": -27.270000000000437,
   "account": "Live account",
-  "currentEquity": 9872.48,
+  "currentEquity": 9854.48,
   "lastEquity": 9881.75,
-  "todayAccountPnl": -9.270000000000437,
-  "todaysAccountPnl": -9.270000000000437,
-  "todayPnl": -9.270000000000437,
+  "todayAccountPnl": -27.270000000000437,
+  "todaysAccountPnl": -27.270000000000437,
+  "todayPnl": -27.270000000000437,
   "buyingPower": 36237.92,
   "cash": 9959.48,
-  "portfolioValue": 9872.48,
+  "portfolioValue": 9854.48,
   "openPositions": 2,
-  "lastUpdated": "2026-08-11T11:30:01.800171-04:00",
-  "lastUpdatedDisplay": "08/11/2026, 11:30:01 AM ET",
+  "lastUpdated": "2026-08-11T11:45:01.809692-04:00",
+  "lastUpdatedDisplay": "08/11/2026, 11:45:01 AM ET",
   "source": "Alpaca live account",
   "realized_algo_pnl": 914.0001999999996,
   "closed_trades": 18,
