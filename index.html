@@ -153,21 +153,22 @@
       scroll-snap-align: start;
     }
 
-    /* Wide screens have enough room for a balanced gallery. Keep the
+    /* Wide screens have enough room for one centered horizontal row. Keep the
        horizontally scrollable, left-anchored treatment on smaller displays
        where centering overflowing flex content can clip the first review. */
     @media (min-width: 992px) {
       .testimonial-scroll {
-        max-width: 856px;
         margin-inline: auto;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 420px));
+        display: flex;
+        flex-wrap: nowrap;
         justify-content: center;
         overflow: visible;
       }
 
       .testimonial-shot {
-        width: 100%;
+        width: calc((100% - 3rem) / 4);
+        min-width: 0;
+        max-width: 420px;
       }
     }
   
