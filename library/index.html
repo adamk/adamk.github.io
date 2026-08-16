@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZKVBZ3QJ1F');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Library | Foxchase Trading</title>
+  <meta name="description" content="Explore the physical trading library behind Foxchase Trading, including books on market structure, trading psychology, execution, risk, and professional traders.">
+  <link rel="canonical" href="https://www.foxchasetrading.com/library/">
+  <link rel="icon" href="/foxchasetrading.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/library/library.css">
+</head>
+<body>
+  <header class="foxchase-site-header">
+    <div class="foxchase-header-wrap">
+      <a class="foxchase-brand" href="/" aria-label="Foxchase Trading home">
+        <img src="/foxchasetrading-fox-only.jpg" alt="" class="foxchase-brand-logo" width="42" height="42">
+        <span>Foxchase Trading</span>
+      </a>
+      <nav class="foxchase-main-nav" aria-label="Main navigation">
+        <button class="foxchase-menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="foxchase-navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="foxchase-navigation" id="foxchase-navigation">
+          <a href="/">Home</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/3k-challenge">$3k Series</a>
+          <a href="/setups/">Setups</a>
+          <a href="/planner/">Planner</a>
+          <a href="/algo-pnl.html">Algo</a>
+          <a href="/library/" class="active" aria-current="page">Library</a>
+          <a href="/products.html">Products</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="library-main">
+    <header class="library-hero">
+      <p class="library-kicker">Personal collection</p>
+      <h1>The Foxchase Trading Library</h1>
+      <p class="library-subtitle">The books that have shaped the way I think about markets, trading, risk, and execution.</p>
+      <p class="library-physical-note">These are my actual physical copies, photographed from my own collection, not a generic reading list.</p>
+    </header>
+
+    <section class="library-tools" aria-label="Filter and search the library">
+      <div class="library-filter-list" id="library-filters" aria-label="Book categories"></div>
+      <div class="library-tool-row">
+        <label class="library-search-wrap" for="library-search">
+          <span class="visually-hidden">Search by title or author</span>
+          <i class="fa-solid fa-magnifying-glass library-search-icon" aria-hidden="true"></i>
+          <input class="library-search" id="library-search" type="search" placeholder="Search title or author" autocomplete="off">
+        </label>
+        <button class="library-random" id="library-random" type="button"><i class="fa-solid fa-shuffle" aria-hidden="true"></i> Pick a Book for Me</button>
+        <output class="library-result-count" id="library-result-count" aria-live="polite"></output>
+      </div>
+    </section>
+
+    <section aria-label="Trading books">
+      <div class="library-grid" id="library-grid"></div>
+      <p class="library-empty" id="library-empty" hidden>No books match that filter and search.</p>
+    </section>
+
+    <!-- Future Explore the Shelf hotspots can use data-book-slug and the same dialog controller. -->
+  </main>
+
+  <dialog class="book-dialog" id="book-dialog" aria-labelledby="book-dialog-title">
+    <button class="book-dialog-close" id="book-dialog-close" type="button" aria-label="Close book details">&times;</button>
+    <div class="book-dialog-layout">
+      <div class="book-dialog-photo-wrap">
+        <img class="book-dialog-photo" id="book-dialog-image" alt="" width="1350" height="1800">
+      </div>
+      <div class="book-dialog-copy">
+        <p class="book-dialog-kicker">From the physical library</p>
+        <h2 class="book-dialog-title" id="book-dialog-title"></h2>
+        <p class="book-dialog-author" id="book-dialog-author"></p>
+        <p class="book-dialog-edition" id="book-dialog-edition" hidden></p>
+        <div class="library-tags book-dialog-categories" id="book-dialog-categories" aria-label="Categories"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="library-social">
+    <a class="library-social-x" href="https://twitter.com/FoxchaseTrading" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i> Follow us on X</a>
+    <a class="library-social-coffee" href="https://coff.ee/foxchasetrading" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i> Buy me a coffee</a>
+  </div>
+
+  <footer class="library-footer">
+    <p>© 2026 Foxchase Trading, LLC</p>
+    <p>Foxchase Trading, LLC provides educational content only and does not provide investment advice. Trading involves substantial risk of loss and is not suitable for all investors.</p>
+  </footer>
+
+  <noscript><p class="library-empty">JavaScript is required to browse and filter this library.</p></noscript>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const header = document.querySelector(".foxchase-site-header");
+      const toggle = header && header.querySelector(".foxchase-menu-toggle");
+      const navigation = header && header.querySelector(".foxchase-navigation");
+      if (!toggle || !navigation) return;
+      toggle.addEventListener("click", function () {
+        const open = navigation.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      navigation.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navigation.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
+  </script>
+  <script type="module" src="/library/library.js"></script>
+</body>
+</html>
