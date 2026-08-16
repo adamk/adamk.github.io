@@ -208,6 +208,21 @@ export const LIBRARY_BOOKS = Object.freeze([
     whyInLibrary: null,
     foxchaseConnection: null,
     externalUrl: null
+  },
+  {
+    slug: "derivatives-for-the-trading-floor",
+    title: "Derivatives for the Trading Floor",
+    authors: ["Patrick Boyle", "Jesse McDougall"],
+    edition: null,
+    categories: ["Market Structure", "Trading Process"],
+    image: "/images/library/web/derivatives-for-the-trading-floor.webp",
+    sourceImage: "/images/library/derivatives-for-the-trading-floor.JPG",
+    rating: null,
+    recommendation: null,
+    personalNotes: null,
+    whyInLibrary: null,
+    foxchaseConnection: null,
+    externalUrl: null
   }
 ]);
 
