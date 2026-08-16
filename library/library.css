@@ -187,7 +187,10 @@ body {
 .book-dialog-kicker { margin: 0 0 9px; color: var(--library-amber); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .book-dialog-title { margin: 0 0 12px; color: #0f1c3f; font-size: clamp(1.7rem, 4vw, 2.65rem); line-height: 1.08; }
 .book-dialog-author { margin: 0 0 12px; color: #495057; font-size: 1.08rem; line-height: 1.5; }
-.book-dialog-edition { display: inline-block; margin: 0 0 22px; padding: 5px 9px; border-left: 3px solid #f59e0b; color: var(--library-muted); font-size: .9rem; font-weight: 700; }
+.book-dialog-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.book-dialog-meta [hidden] { display: none; }
+.book-dialog-edition,
+.book-dialog-pages { display: inline-block; margin: 0; padding: 5px 9px; border-left: 3px solid #f59e0b; color: var(--library-muted); font-size: .9rem; font-weight: 700; }
 .book-dialog-categories { margin-top: 8px; }
 
 .library-social { padding: 8px 16px; display: flex; justify-content: center; gap: 8px; background: #212529; }

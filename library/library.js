@@ -15,6 +15,7 @@ const dialogImage = document.querySelector("#book-dialog-image");
 const dialogTitle = document.querySelector("#book-dialog-title");
 const dialogAuthor = document.querySelector("#book-dialog-author");
 const dialogEdition = document.querySelector("#book-dialog-edition");
+const dialogPages = document.querySelector("#book-dialog-pages");
 const dialogCategories = document.querySelector("#book-dialog-categories");
 let activeTrigger = null;
 
@@ -114,6 +115,7 @@ function addStructuredData() {
           name: book.title,
           author: book.authors.map((author) => ({ "@type": "Person", name: author })),
           bookEdition: book.edition || undefined,
+          numberOfPages: book.pageCount || undefined,
           image: `https://www.foxchasetrading.com${book.image}`,
           url: `https://www.foxchasetrading.com/library/#${book.slug}`
         }
@@ -141,6 +143,8 @@ function openBook(book, trigger = null, updateHash = true) {
   dialogAuthor.textContent = authorText(book);
   dialogEdition.textContent = book.edition || "";
   dialogEdition.hidden = !book.edition;
+  dialogPages.textContent = book.pageCount ? `${book.pageCount.toLocaleString()} pages` : "";
+  dialogPages.hidden = !book.pageCount;
   dialogCategories.replaceChildren(...book.categories.map(makeTag));
   dialog.dataset.slug = book.slug;
   if (!dialog.open) dialog.showModal();
