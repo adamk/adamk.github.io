@@ -214,7 +214,7 @@ export const LIBRARY_BOOKS = Object.freeze([
     title: "Derivatives for the Trading Floor",
     authors: ["Patrick Boyle", "Jesse McDougall"],
     edition: null,
-    categories: ["Market Structure", "Trading Process"],
+    categories: ["Market Structure", "Trading Process", "Options"],
     image: "/images/library/web/derivatives-for-the-trading-floor.webp",
     sourceImage: "/images/library/derivatives-for-the-trading-floor.JPG",
     rating: null,
