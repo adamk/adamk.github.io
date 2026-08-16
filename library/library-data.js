@@ -193,6 +193,21 @@ export const LIBRARY_BOOKS = Object.freeze([
     whyInLibrary: null,
     foxchaseConnection: null,
     externalUrl: null
+  },
+  {
+    slug: "dao-of-capital",
+    title: "The Dao of Capital",
+    authors: ["Mark Spitznagel"],
+    edition: null,
+    categories: ["Market Structure", "Trading Process"],
+    image: "/images/library/web/dao-of-capital.webp",
+    sourceImage: "/images/library/dao-of-capital.JPG",
+    rating: null,
+    recommendation: null,
+    personalNotes: null,
+    whyInLibrary: null,
+    foxchaseConnection: null,
+    externalUrl: null
   }
 ]);
 
