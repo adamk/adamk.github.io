@@ -14,6 +14,7 @@ const dialogClose = document.querySelector("#book-dialog-close");
 const dialogImage = document.querySelector("#book-dialog-image");
 const dialogTitle = document.querySelector("#book-dialog-title");
 const dialogAuthor = document.querySelector("#book-dialog-author");
+const dialogYear = document.querySelector("#book-dialog-year");
 const dialogEdition = document.querySelector("#book-dialog-edition");
 const dialogPages = document.querySelector("#book-dialog-pages");
 const dialogCategories = document.querySelector("#book-dialog-categories");
@@ -66,7 +67,7 @@ function createBookCard(book, index) {
   title.textContent = book.title;
   const author = document.createElement("span");
   author.className = "library-card-author";
-  author.textContent = authorText(book);
+  author.textContent = `${authorText(book)} · ${book.publicationYear}`;
   const tags = document.createElement("span");
   tags.className = "library-tags";
   book.categories.forEach((category) => tags.append(makeTag(category)));
@@ -114,6 +115,7 @@ function addStructuredData() {
           "@type": "Book",
           name: book.title,
           author: book.authors.map((author) => ({ "@type": "Person", name: author })),
+          datePublished: String(book.publicationYear),
           bookEdition: book.edition || undefined,
           numberOfPages: book.pageCount || undefined,
           image: `https://www.foxchasetrading.com${book.image}`,
@@ -141,6 +143,7 @@ function openBook(book, trigger = null, updateHash = true) {
   dialogImage.alt = `Adam's physical copy of ${book.title} by ${authorText(book)}`;
   dialogTitle.textContent = book.title;
   dialogAuthor.textContent = authorText(book);
+  dialogYear.textContent = String(book.publicationYear);
   dialogEdition.textContent = book.edition || "";
   dialogEdition.hidden = !book.edition;
   dialogPages.textContent = book.pageCount ? `${book.pageCount.toLocaleString()} pages` : "";

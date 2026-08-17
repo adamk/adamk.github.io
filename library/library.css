@@ -189,6 +189,7 @@ body {
 .book-dialog-author { margin: 0 0 12px; color: #495057; font-size: 1.08rem; line-height: 1.5; }
 .book-dialog-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
 .book-dialog-meta [hidden] { display: none; }
+.book-dialog-year,
 .book-dialog-edition,
 .book-dialog-pages { display: inline-block; margin: 0; padding: 5px 9px; border-left: 3px solid #f59e0b; color: var(--library-muted); font-size: .9rem; font-weight: 700; }
 .book-dialog-categories { margin-top: 8px; }
