@@ -17,22 +17,11 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Foxchase Trading Blog | 0DTE Market Structure & Strategy</title>
+  <title>Foxchase Trading Blog | 0DTE Market Structure &amp; Strategy</title>
   <link rel="icon" href="foxchasetrading.png" type="image/png">
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Blog links: blue tone */
-    .btn-blog {
-      background-color: #0d6efd;
-      border-color: #0d6efd;
-      color: #fff;
-    }
-    .btn-blog:hover {
-      background-color: #0b5ed7;
-      border-color: #0a58ca;
-    }
-
     /* Whop product links: gold tone */
     .btn-whop {
       background-color: #ffc107;
@@ -422,6 +411,354 @@
   }
 </style>
 
+<style id="foxchase-blog-editorial-css">
+  :root {
+    --blog-ink: #10233f;
+    --blog-muted: #617083;
+    --blog-line: #dfe5ec;
+    --blog-paper: #ffffff;
+    --blog-wash: #f4f7fa;
+    --blog-blue: #1d5f91;
+    --blog-gold: #d38a16;
+  }
+
+  .blog-page {
+    flex: 1;
+    padding: 52px 20px 64px;
+    background:
+      radial-gradient(circle at 10% 0%, rgba(29, 95, 145, .09), transparent 30rem),
+      linear-gradient(180deg, #f8fafc 0%, var(--blog-wash) 100%);
+  }
+
+  .blog-wrap {
+    width: min(100%, 980px);
+    margin: 0 auto;
+  }
+
+  .blog-hero {
+    margin-bottom: 28px;
+    padding: 0 2px;
+  }
+
+  .blog-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: var(--blog-blue);
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .blog-eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--blog-gold);
+  }
+
+  .blog-hero h1 {
+    max-width: 760px;
+    margin: 0 0 12px;
+    color: var(--blog-ink);
+    font-size: clamp(2.2rem, 5vw, 3.65rem);
+    font-weight: 780;
+    letter-spacing: -.045em;
+    line-height: 1.02;
+  }
+
+  .blog-intro {
+    max-width: 760px;
+    margin: 0;
+    color: var(--blog-muted);
+    font-size: clamp(1rem, 2vw, 1.16rem);
+    line-height: 1.7;
+  }
+
+  .blog-wire-note {
+    margin: 14px 0 0;
+    color: #758194;
+    font-size: .88rem;
+  }
+
+  .blog-wire-note a {
+    color: var(--blog-blue);
+    font-weight: 650;
+    text-underline-offset: 3px;
+  }
+
+  .featured-story {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 48px;
+    padding: clamp(26px, 5vw, 46px);
+    color: #fff !important;
+    background: linear-gradient(135deg, #0e2543 0%, #143a60 70%, #1d5f91 100%);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 22px;
+    box-shadow: 0 22px 55px rgba(15, 35, 62, .18);
+    text-decoration: none !important;
+    isolation: isolate;
+  }
+
+  .featured-story::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -72px;
+    bottom: -110px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 50%;
+    box-shadow: 0 0 0 42px rgba(255,255,255,.035), 0 0 0 84px rgba(255,255,255,.025);
+  }
+
+  .featured-kicker,
+  .story-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    font-size: .76rem;
+    font-weight: 750;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .featured-kicker {
+    margin-bottom: 28px;
+    color: #f3c56c;
+  }
+
+  .featured-kicker time {
+    color: rgba(255,255,255,.68);
+  }
+
+  .featured-story h2 {
+    max-width: 740px;
+    margin: 0 0 14px;
+    color: #fff;
+    font-size: clamp(1.7rem, 3.8vw, 2.65rem);
+    font-weight: 740;
+    letter-spacing: -.035em;
+    line-height: 1.12;
+  }
+
+  .featured-story p {
+    max-width: 700px;
+    margin: 0 0 28px;
+    color: rgba(255,255,255,.77);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .story-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #fff;
+    font-size: .92rem;
+    font-weight: 750;
+  }
+
+  .story-cta span {
+    transition: transform .2s ease;
+  }
+
+  .featured-story:hover .story-cta span,
+  .article-row:hover .article-arrow,
+  .series-row:hover .article-arrow {
+    transform: translateX(4px);
+  }
+
+  .blog-section {
+    margin-top: 46px;
+  }
+
+  .blog-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 16px;
+    padding: 0 2px;
+  }
+
+  .blog-section-heading h2 {
+    margin: 0;
+    color: var(--blog-ink);
+    font-size: clamp(1.45rem, 3vw, 1.85rem);
+    font-weight: 760;
+    letter-spacing: -.025em;
+  }
+
+  .blog-section-heading p {
+    max-width: 510px;
+    margin: 0;
+    color: var(--blog-muted);
+    font-size: .92rem;
+    line-height: 1.55;
+  }
+
+  .article-list {
+    overflow: hidden;
+    background: var(--blog-paper);
+    border: 1px solid var(--blog-line);
+    border-radius: 18px;
+    box-shadow: 0 12px 34px rgba(16, 35, 63, .06);
+  }
+
+  .article-row,
+  .series-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+    padding: 24px 26px;
+    color: inherit !important;
+    background: #fff;
+    text-align: left;
+    text-decoration: none !important;
+    transition: background-color .2s ease, transform .2s ease;
+  }
+
+  .article-row + .article-row,
+  .series-row + .series-row {
+    border-top: 1px solid var(--blog-line);
+  }
+
+  .article-row:hover,
+  .series-row:hover {
+    background: #f8fafc;
+  }
+
+  .story-meta {
+    margin-bottom: 7px;
+    color: #7a8797;
+    letter-spacing: .06em;
+  }
+
+  .story-meta .story-topic {
+    color: var(--blog-blue);
+  }
+
+  .article-row h3,
+  .series-row h3 {
+    margin: 0 0 7px;
+    color: var(--blog-ink);
+    font-size: 1.1rem;
+    font-weight: 720;
+    letter-spacing: -.015em;
+    line-height: 1.32;
+  }
+
+  .article-row p,
+  .series-row p {
+    margin: 0;
+    color: var(--blog-muted);
+    font-size: .91rem;
+    line-height: 1.55;
+  }
+
+  .article-arrow {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    color: var(--blog-blue);
+    background: #edf4f9;
+    border-radius: 50%;
+    font-size: 1.05rem;
+    transition: transform .2s ease;
+  }
+
+  .series-panel {
+    padding: clamp(20px, 4vw, 30px);
+    background: #eaf0f5;
+    border: 1px solid #d8e1ea;
+    border-radius: 22px;
+  }
+
+  .series-panel .article-list {
+    box-shadow: none;
+  }
+
+  .series-row {
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    padding: 20px 22px;
+  }
+
+  .series-number {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    color: #fff;
+    background: var(--blog-ink);
+    border-radius: 11px;
+    font-size: .82rem;
+    font-weight: 800;
+  }
+
+  .featured-story:focus-visible,
+  .article-row:focus-visible,
+  .series-row:focus-visible {
+    outline: 3px solid #e4a130;
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 720px) {
+    .blog-page {
+      padding: 36px 14px 48px;
+    }
+
+    .featured-story {
+      margin-bottom: 38px;
+      border-radius: 18px;
+    }
+
+    .blog-section {
+      margin-top: 36px;
+    }
+
+    .blog-section-heading {
+      display: block;
+    }
+
+    .blog-section-heading p {
+      margin-top: 7px;
+    }
+
+    .article-row {
+      padding: 21px 18px;
+    }
+
+    .series-panel {
+      padding: 14px;
+      border-radius: 18px;
+    }
+
+    .series-row {
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 14px;
+      padding: 18px 15px;
+    }
+
+    .series-row .article-arrow {
+      display: none;
+    }
+
+    .article-row p,
+    .series-row p {
+      font-size: .87rem;
+    }
+  }
+</style>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -462,100 +799,149 @@
     </div>
   </header>
 
-  <div class="container mt-0 mb-4">
-    <div class="container text-center pt-2">
-<section class="mb-4 p-4 bg-white border rounded-4 shadow-sm">
-  <h1 class="mb-2">Foxchase Trading Blog</h1>
-  <p class="section-subtitle mb-0">
-    Research and practical analysis on 0DTE market structure, volatility posture, gamma exposure, and intraday execution.
-  </p>
-  <p class="small text-muted mt-2 mb-0">
-    Selected research is also published through
-    <a href="https://wire.insiderfinance.io" target="_blank" rel="noopener noreferrer">InsiderFinance Wire on Medium</a>.
-  </p>
-</section>
+  <main class="blog-page">
+    <div class="blog-wrap">
+      <header class="blog-hero">
+        <div class="blog-eyebrow">Foxchase Research</div>
+        <h1>Market structure, made practical.</h1>
+        <p class="blog-intro">
+          Research and field notes on 0DTE positioning, volatility posture, gamma exposure, risk, and intraday execution.
+        </p>
+        <p class="blog-wire-note">
+          Selected research also appears on
+          <a href="https://wire.insiderfinance.io" target="_blank" rel="noopener noreferrer">InsiderFinance Wire</a>.
+        </p>
+      </header>
 
-      <!-- Articles -->
-      <p class="mt-3">
-        <a href="/small-account-growth-to-income-0dte.html"
-           class="btn btn-blog btn-lg"
-           target="_blank"
-           rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i>
-          From Small-Account Growth to Normal-Account Income in 0DTE Trading
-        </a>
-      </p>
+      <a href="/small-account-growth-to-income-0dte.html" class="featured-story">
+        <div class="featured-kicker">
+          <span>Featured · Strategy &amp; Risk</span>
+          <time datetime="2026-08-15">Aug 15, 2026</time>
+        </div>
+        <h2>From Small-Account Growth to Normal-Account Income in 0DTE Trading</h2>
+        <p>
+          What the $3k Account Series teaches about aggressive compounding, position sizing, drawdowns, withdrawals, and the transition from growth mode to income mode.
+        </p>
+        <span class="story-cta">Read the article <span aria-hidden="true">→</span></span>
+      </a>
 
-      <p class="mt-3">
-        <a href="/spot-up-vol-up-ramp-up.html"
-           class="btn btn-blog btn-lg"
-           target="_blank"
-           rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i>
-          Spot Up, Vol Up, Ramp Up: A Lesson in Price Discovery
-        </a>
-      </p>
+      <section class="blog-section" aria-labelledby="latest-analysis-title">
+        <div class="blog-section-heading">
+          <h2 id="latest-analysis-title">Latest analysis</h2>
+          <p>Standalone research notes spanning volatility, risk management, market structure, and macro context.</p>
+        </div>
 
-      <p class="mt-3">
-        <a href="/0dte-risk-reward.html"
-           class="btn btn-blog btn-lg"
-           target="_blank"
-           rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i>
-          High-Win-Rate "1:1" Trading in 0DTE Options
-        </a>
-      </p>
+        <div class="article-list">
+          <a href="/spot-up-vol-up-ramp-up.html" class="article-row">
+            <div>
+              <div class="story-meta">
+                <span class="story-topic">Volatility</span>
+                <time datetime="2026-08-04">Aug 4, 2026</time>
+              </div>
+              <h3>Spot Up, Vol Up, Ramp Up: A Lesson in Price Discovery</h3>
+              <p>Why SPY and VXX can rise together during all-time-high price discovery—and what that changes in a volatility-compression setup.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
 
-      <p class="mt-3">
-        <a href="/ndx-gex.html"
-           class="btn btn-blog btn-lg"
-           target="_blank"
-           rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i>
-          NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins
-        </a>
-      </p>
+          <a href="/0dte-risk-reward.html" class="article-row">
+            <div>
+              <div class="story-meta">
+                <span class="story-topic">Risk Management</span>
+                <time datetime="2026-04-10">Apr 10, 2026</time>
+              </div>
+              <h3>High-Win-Rate “1:1” Trading in 0DTE Options</h3>
+              <p>A practical look at compounding, drawdowns, setup quality, and why headline reward-to-risk ratios rarely tell the whole story.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
 
-      <p class="mt-4">
-        <a href="/long-duration-bonds.html"
-           class="btn btn-blog btn-lg"
-           target="_blank"
-           rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i>
-          The Long End’s Silent Reset: Why Treasury Yields Can Rise Without a Clear Catalyst
-        </a>
-      </p>
-      <!-- Blog Series -->
-      <h3 class="section-title">Cracking the 0DTE Code</h3>
-      <p class="section-subtitle">A five-part series on the Foxchase 0DTE framework.</p>
+          <a href="/ndx-gex.html" class="article-row">
+            <div>
+              <div class="story-meta">
+                <span class="story-topic">Market Structure</span>
+                <time datetime="2026-04-04">Apr 4, 2026</time>
+              </div>
+              <h3>NDX GEX: Gamma Ramps, Mixed Gamma, and Gamma Pins</h3>
+              <p>How options positioning can support continuation, create two-way chop, or help hold price near a dominant strike.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
 
-      <p class="mt-3">
-        <a href="/cracking-0dte-code-spx.html" class="btn btn-blog btn-lg" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i> Cracking the 0DTE Code, Part 1: From Naive Gamma to Live SPX Delta
-        </a>
-      </p>
-      <p class="mt-4">
-        <a href="/cracking-0dte-code-spy.html" class="btn btn-blog btn-lg" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i> Cracking the 0DTE Code, Part 2: The 6 Pre-Market Trading Regimes
-        </a>
-      </p>
-      <p class="mt-4">
-        <a href="/cracking-0dte-code-premium.html" class="btn btn-blog btn-lg" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i> Cracking the 0DTE Code, Part 3: The Call-Premium Divergence Method
-        </a>
-      </p>
-      <p class="mt-4">
-        <a href="/cracking-0dte-code-rvol.html" class="btn btn-blog btn-lg" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i> Cracking the 0DTE Code, Part 4: RVOL (Relative Volume)
-        </a>
-      </p>
-      <p class="mt-4">
-        <a href="/cracking-0dte-code-zscore.html" class="btn btn-blog btn-lg" target="_blank" rel="noopener noreferrer">
-          <i class="fa-solid fa-link"></i> Cracking the 0DTE Code, Part 5: The z-Score Playbook
-        </a>
-      </p>
+          <a href="/long-duration-bonds.html" class="article-row">
+            <div>
+              <div class="story-meta">
+                <span class="story-topic">Macro</span>
+                <time datetime="2026-04-02">Apr 2, 2026</time>
+              </div>
+              <h3>The Long End’s Silent Reset</h3>
+              <p>Why Treasury yields can rise without one obvious catalyst, through the lens of term premium, fiscal supply, inflation risk, and market ratios.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
 
-  </div>
+      <section class="blog-section series-panel" aria-labelledby="series-title">
+        <div class="blog-section-heading">
+          <h2 id="series-title">Cracking the 0DTE Code</h2>
+          <p>A five-part progression from live positioning and market regimes to premium divergence, relative volume, and z-score context.</p>
+        </div>
+
+        <div class="article-list">
+          <a href="/cracking-0dte-code-spx.html" class="series-row">
+            <span class="series-number">01</span>
+            <div>
+              <div class="story-meta"><span class="story-topic">Positioning</span></div>
+              <h3>From Naive Gamma to Live SPX Delta</h3>
+              <p>Build the positioning foundation before interpreting the rest of the 0DTE framework.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="/cracking-0dte-code-spy.html" class="series-row">
+            <span class="series-number">02</span>
+            <div>
+              <div class="story-meta"><span class="story-topic">Regimes</span></div>
+              <h3>The 6 Pre-Market Trading Regimes</h3>
+              <p>Classify SPY’s pre-market structure and frame the day’s higher-probability paths.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="/cracking-0dte-code-premium.html" class="series-row">
+            <span class="series-number">03</span>
+            <div>
+              <div class="story-meta"><span class="story-topic">Premium</span></div>
+              <h3>The Call-Premium Divergence Method</h3>
+              <p>Use ATM call-premium behavior alongside SPY to add context around potential turning points.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="/cracking-0dte-code-rvol.html" class="series-row">
+            <span class="series-number">04</span>
+            <div>
+              <div class="story-meta"><span class="story-topic">Confirmation</span></div>
+              <h3>RVOL: Relative Volume</h3>
+              <p>Add participation and timing context to the premium-divergence framework.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="/cracking-0dte-code-zscore.html" class="series-row">
+            <span class="series-number">05</span>
+            <div>
+              <div class="story-meta"><span class="story-topic">Context</span></div>
+              <h3>The z-Score Playbook</h3>
+              <p>Contextualize implied volatility and divergence through a regime-aware statistical lens.</p>
+            </div>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
 
 
   <!-- Social & Support Section -->
