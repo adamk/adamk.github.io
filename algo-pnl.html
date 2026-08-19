@@ -607,7 +607,7 @@ function setTextIfExists(id, value) {
       if (!chart || !note || !fixed || !compounded) return;
       const isCompounded = mode === "compounded";
       chart.src = isCompounded
-        ? "/images/foxchase_live_exact_native_no_r3_compounded_20pct_vs_spy.svg?v=20260818-clean-legend-compounded-v3"
+        ? "/images/foxchase_live_exact_native_no_r3_compounded_20pct_vs_spy.svg?v=20260818-clean-legend-compounded-v4"
         : "/images/foxchase_live_exact_native_no_r3_vs_spy.svg?v=20260818-clean-legend-fixed-v3";
       note.innerHTML = isCompounded
         ? "<strong>Sizing note:</strong> Compounded historical simulation using the portfolio's aggressive research allocation and predefined setup-specific sizing as equity changes. Current live sizing uses the same setup-specific rules at a lower base allocation."
