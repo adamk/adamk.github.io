@@ -595,7 +595,7 @@ function setTextIfExists(id, value) {
       <button type="button" id="fixedSizingButton" class="btn btn-dark btn-sm" onclick="showResearchSizing('fixed')">Fixed risk · Non-compounding</button>
       <button type="button" id="compoundedSizingButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('compounded')">15% · Compounded</button>
     </div>
-    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_v2_fixed_risk_vs_spy.png?v=20260822-v2-sizing-toggle-default-fixed" alt="Foxchase Trading v2 fixed-risk research portfolio versus SPY buy and hold"></div>
+    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_fixed_risk_vs_spy.png?v=20260822-public-sizing-toggle" alt="Foxchase Trading fixed-risk research portfolio versus SPY buy and hold"></div>
     <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> This comparison holds risk budgets fixed rather than increasing them as equity grows. It uses the same frozen signals, allocation multipliers, and validated exit management.</p>
     <p class="small">Test window: January 4, 2023 through June 5, 2026, using the same dates for the SPY benchmark. Setup labels are intentionally anonymized.</p>
     <h3 style="margin-top:30px;">Rolling and Sequence-Risk Validation</h3>
@@ -615,8 +615,8 @@ function setTextIfExists(id, value) {
       if (!chart || !note || !fixed || !compounded) return;
       const isCompounded = mode === "compounded";
       chart.src = isCompounded
-        ? "/images/foxchase_v2_frozen_15pct_vs_spy.png?v=20260822-v2-sizing-toggle"
-        : "/images/foxchase_v2_fixed_risk_vs_spy.png?v=20260822-v2-sizing-toggle";
+        ? "/images/foxchase_compounded_15pct_vs_spy.png?v=20260822-public-sizing-toggle"
+        : "/images/foxchase_fixed_risk_vs_spy.png?v=20260822-public-sizing-toggle";
       const metrics = isCompounded
         ? { pnl: "+$105,344", ending: "$115,344", cagr: "105.38%", sharpe: "5.502", drawdown: "-8.68%", average: "$264.68", framework: "15% sequential" }
         : { pnl: "+$32,472", ending: "$42,472", cagr: "53.06%", sharpe: "3.066", drawdown: "-8.28%", average: "$81.59", framework: "Fixed risk" };
@@ -628,7 +628,7 @@ function setTextIfExists(id, value) {
       document.getElementById("researchAverageTrade").textContent = metrics.average;
       document.getElementById("researchRiskFramework").textContent = metrics.framework;
       note.innerHTML = isCompounded
-        ? "<strong>Sizing note:</strong> This graph uses the frozen v2 portfolio’s validated 15% sequential compounded risk framework and predefined allocation multipliers. Validated runner management is enabled. This hypothetical research curve is separate from the live account performance shown above."
+        ? "<strong>Sizing note:</strong> This graph uses the validated 15% sequential compounded risk framework and predefined allocation multipliers. Validated runner management is enabled. This hypothetical research curve is separate from the live account performance shown above."
         : "<strong>Sizing note:</strong> This comparison holds risk budgets fixed rather than increasing them as equity grows. It uses the same frozen signals, allocation multipliers, and validated exit management.";
       fixed.className = isCompounded ? "btn btn-outline-dark btn-sm" : "btn btn-dark btn-sm";
       compounded.className = isCompounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
