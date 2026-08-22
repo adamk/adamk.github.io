@@ -590,13 +590,13 @@ function setTextIfExists(id, value) {
 
     <h2>Research Backtest</h2>
     <div class="pnl-note"><strong>Research backtest, not live performance:</strong> Results are hypothetical and do not reflect the live account over the full test period. Past performance does not guarantee future results. <strong>Last updated August 22, 2026.</strong></div>
-    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value">398 trades</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$32,472</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$42,472</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">53.06%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.066</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-8.28%</div></div><div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.89%</div></div><div class="research-card"><div class="research-label">Average Trade</div><div class="research-value" id="researchAverageTrade">$81.59</div></div><div class="research-card"><div class="research-label">Risk Framework</div><div class="research-value" id="researchRiskFramework">20% fixed</div></div></div>
+    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value">398 trades</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$23,797</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$33,797</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">43.11%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.131</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-6.47%</div></div><div class="research-card"><div class="research-label">Win Rate</div><div class="research-value">77.89%</div></div><div class="research-card"><div class="research-label">Average Trade</div><div class="research-value" id="researchAverageTrade">$59.79</div></div><div class="research-card"><div class="research-label">Risk Framework</div><div class="research-value" id="researchRiskFramework">15% fixed</div></div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;" role="group" aria-label="Research chart sizing">
-      <button type="button" id="fixedSizingButton" class="btn btn-dark btn-sm" onclick="showResearchSizing('fixed')">20% fixed · Non-compounding</button>
+      <button type="button" id="fixedSizingButton" class="btn btn-dark btn-sm" onclick="showResearchSizing('fixed')">15% fixed · Non-compounding</button>
       <button type="button" id="compoundedSizingButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('compounded')">15% · Compounded</button>
     </div>
     <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_fixed_risk_vs_spy.png?v=20260822-public-sizing-toggle" alt="Foxchase Trading fixed-risk research portfolio versus SPY buy and hold"></div>
-    <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> This comparison uses a fixed 20% target-risk budget based on the $10,000 starting account rather than increasing risk as equity grows. Predefined allocation multipliers still apply.</p>
+    <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> This comparison uses a fixed 15% target-risk budget based on the $10,000 starting account rather than increasing risk as equity grows. Predefined allocation multipliers still apply.</p>
     <p class="small">Test window: January 4, 2023 through June 5, 2026, using the same dates for the SPY benchmark. Setup labels are intentionally anonymized.</p>
     <h3 style="margin-top:30px;">Rolling and Sequence-Risk Validation</h3>
     <p class="small">Rolling results below use the current 15% live-risk assumption and predefined allocation multipliers. Across the pre-2026 portion, the strategy returned 415.68% versus 72.58% for aligned SPY price performance while retaining a lower historical drawdown.</p>
@@ -619,7 +619,7 @@ function setTextIfExists(id, value) {
         : "/images/foxchase_fixed_risk_vs_spy.png?v=20260822-public-sizing-toggle";
       const metrics = isCompounded
         ? { pnl: "+$105,344", ending: "$115,344", cagr: "105.38%", sharpe: "5.502", drawdown: "-8.68%", average: "$264.68", framework: "15% sequential" }
-        : { pnl: "+$32,472", ending: "$42,472", cagr: "53.06%", sharpe: "3.066", drawdown: "-8.28%", average: "$81.59", framework: "20% fixed" };
+        : { pnl: "+$23,797", ending: "$33,797", cagr: "43.11%", sharpe: "3.131", drawdown: "-6.47%", average: "$59.79", framework: "15% fixed" };
       document.getElementById("researchPnl").textContent = metrics.pnl;
       document.getElementById("researchEndingEquity").textContent = metrics.ending;
       document.getElementById("researchCagr").textContent = metrics.cagr;
@@ -629,7 +629,7 @@ function setTextIfExists(id, value) {
       document.getElementById("researchRiskFramework").textContent = metrics.framework;
       note.innerHTML = isCompounded
         ? "<strong>Sizing note:</strong> This graph uses the validated 15% sequential compounded risk framework and predefined allocation multipliers. Validated runner management is enabled. This hypothetical research curve is separate from the live account performance shown above."
-        : "<strong>Sizing note:</strong> This comparison uses a fixed 20% target-risk budget based on the $10,000 starting account rather than increasing risk as equity grows. Predefined allocation multipliers still apply.";
+        : "<strong>Sizing note:</strong> This comparison uses a fixed 15% target-risk budget based on the $10,000 starting account rather than increasing risk as equity grows. Predefined allocation multipliers still apply.";
       fixed.className = isCompounded ? "btn btn-outline-dark btn-sm" : "btn btn-dark btn-sm";
       compounded.className = isCompounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
     }
