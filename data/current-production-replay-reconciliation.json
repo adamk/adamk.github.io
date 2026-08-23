@@ -1,0 +1,12 @@
+{
+  "exact_trade_count": true,
+  "fixed_endpoint": true,
+  "sequential_endpoint": true,
+  "fixed_pnl": true,
+  "sequential_pnl": true,
+  "setup_fixed_reconciles": true,
+  "monthly_reconciles": true,
+  "yearly_reconciles": true,
+  "legacy_unchanged": true,
+  "default_exact_chart": true
+}
