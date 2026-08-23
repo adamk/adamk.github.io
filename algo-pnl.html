@@ -601,12 +601,36 @@ function setTextIfExists(id, value) {
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;" role="group" aria-label="Exact replay sizing">
       <button type="button" id="fixedSizingButton" class="btn btn-dark btn-sm" onclick="showResearchSizing('fixed')">15% fixed · Non-compounding</button>
       <button type="button" id="compoundedSizingButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('compounded')">15% · Compounded</button>
-      <button type="button" id="overlayResearchButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay')">Current Intraday + R5 30DTE Overlay — Historical Research (Compounded)</button>
+      <button type="button" id="overlayFixedButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay-fixed')">Intraday + R5 30DTE Overlay · Fixed</button>
+      <button type="button" id="overlayCompoundedButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay-compounded')">Intraday + R5 30DTE Overlay · Compounded</button>
     </div>
     <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj" alt="Exact current-production fixed-risk replay versus SPY"></div>
     <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> Today's policy is applied hypothetically across history: 15% global base risk, current setup multipliers, and R4 at 0.50. The default does not compound.</p>
+    <div id="fixedOverlayResearchDetails" hidden>
+      <div class="pnl-note"><strong>Historical research—live activation pending.</strong> The R5 30DTE overlay is not active on the Pis. Deployment awaits regular-market-hours Alpaca delta validation. No live 30DTE trades have occurred, and all pre-activation overlay trades shown here are hypothetical.</div>
+      <h3 style="margin-top:24px;">Fixed-Size Overlay Results</h3>
+      <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Fixed intraday only</th><th>Fixed intraday + overlay</th></tr></thead><tbody>
+        <tr><td>Ending equity</td><td>$20,203.00</td><td>$27,671.60</td></tr>
+        <tr><td>P&amp;L</td><td>+$10,203.00</td><td>+$17,671.60</td></tr>
+        <tr><td>CAGR</td><td>21.52%</td><td>32.59%</td></tr>
+        <tr><td>Sharpe</td><td>1.910</td><td>2.894</td></tr>
+        <tr><td>Maximum drawdown</td><td>-10.23%</td><td>-9.94%</td></tr>
+        <tr><td>Worst month</td><td>-9.84%</td><td>-7.14%</td></tr>
+        <tr><td>Longest recovery</td><td>192 days</td><td>139 days</td></tr>
+      </tbody></table></div>
+      <div class="research-table-wrap" style="margin-top:18px;"><table class="research-table"><thead><tr><th>Fixed-overlay reconciliation</th><th>Result</th></tr></thead><tbody>
+        <tr><td>Ending-equity reconciliation</td><td>$10,000 + $10,203 + $7,468.60 = $27,671.60</td></tr>
+        <tr><td>Net swing contribution after commission</td><td>+$7,468.60</td></tr>
+        <tr><td>Worst trade / day</td><td>-$1,386 on April 2, 2025</td></tr>
+        <tr><td>Swing skips / intraday reductions</td><td>0 / 0</td></tr>
+        <tr><td>Simultaneous-exposure days / both-components-loss days</td><td>116 / 23</td></tr>
+        <tr><td>SPY comparison</td><td>First exceeded January 11, 2023; continuously ahead from July 29, 2025</td></tr>
+      </tbody></table></div>
+      <p class="small"><strong>Fixed sizing:</strong> The $10,000 sizing base remains unchanged. Profits and losses change displayed equity but never increase later contract quantities. The swing maximum loss and remaining costs stay reserved while open.</p>
+      <p class="small"><strong>Disclosure:</strong> The current live strategy remains the six-setup intraday portfolio. The overlay was developed after reviewing historical data and has no completed post-freeze trades. Results are in-sample and selection-sensitive. The 96.06% historical target-hit rate includes asymmetric loss risk; one maximum loss may offset numerous target wins.</p>
+    </div>
     <div id="overlayResearchDetails" hidden>
-      <div class="pnl-note"><strong>Historical research only—live activation pending.</strong> The production candidate passed position-isolation and mocked integration tests, but deployment is blocked until live point-in-time option delta is verified during regular market hours. No R5 30DTE live trades have occurred.</div>
+      <div class="pnl-note"><strong>Historical research—live activation pending.</strong> The R5 30DTE overlay is not active on the Pis. Deployment awaits regular-market-hours Alpaca delta validation. No live 30DTE trades have occurred, and all pre-activation overlay trades shown here are hypothetical.</div>
       <h3 style="margin-top:24px;">Overlay Attribution</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current intraday only</th><th>Intraday + overlay</th></tr></thead><tbody>
         <tr><td>Starting equity</td><td>$10,000</td><td>$10,000</td></tr>
@@ -629,8 +653,8 @@ function setTextIfExists(id, value) {
         <tr><td>Simultaneous-exposure days / both-components-loss days</td><td>116 / 23</td></tr>
         <tr><td>Zero-quantity swing skips</td><td>0</td></tr>
       </tbody></table></div>
-      <p class="small"><strong>Current policy distinction:</strong> The six-setup intraday strategy remains the current live policy and the default view. This overlay is a hypothetical historical simulation. Any future live overlay results would begin only after an actual deployment timestamp and would remain separate from both this research and actual intraday results.</p>
-      <p class="small"><strong>Disclosure:</strong> The overlay was developed after reviewing historical data and has no completed post-freeze trades. Historical results are in-sample and selection-sensitive. The 96.06% historical target-hit rate does not eliminate asymmetric loss risk; one maximum loss may offset numerous target wins.</p>
+      <p class="small"><strong>Compounded sizing:</strong> The larger endpoint includes direct net swing P&amp;L and later intraday quantity increases caused only by previously realized swing profits. Sizing uses realized equity only, reserves the full swing maximum loss, and never treats unrealized swing gains or entry premium as sizing capital.</p>
+      <p class="small"><strong>Disclosure:</strong> The current live strategy remains the six-setup intraday portfolio. The overlay was developed after reviewing historical data and has no completed post-freeze trades. Results are in-sample and selection-sensitive. The 96.06% historical target-hit rate includes asymmetric loss risk; one maximum loss may offset numerous target wins.</p>
     </div>
     <div id="intradayResearchTables">
     <p class="small"><strong>Data through August 21, 2026.</strong> Includes 209 replay trades through August 20, 2026. Setup labels remain anonymized.</p>
@@ -644,11 +668,13 @@ function setTextIfExists(id, value) {
 
   <script>
     function showResearchSizing(mode) {
-      const overlay = mode === "overlay";
+      const overlayFixed = mode === "overlay-fixed";
+      const overlayCompounded = mode === "overlay-compounded";
+      const overlay = overlayFixed || overlayCompounded;
       const compounded = mode === "compounded";
-      const metrics = overlay ? {"trades": "209 intraday", "pnl": 31193.6, "ending": 41193.6, "cagr": 48.04060295943833, "sharpe": 2.6832463608466326, "max_dd": -15.279179280188382, "win_rate": null, "average": null, "profit_factor": null} : compounded ? {"trades": 209, "pnl": 16672.0, "ending": 26672.0, "cagr": 31.486074629191595, "sharpe": 4.501384092312359, "max_dd": -13.430708941930892, "win_rate": 69.85645933014354, "average": 79.77033492822966, "profit_factor": 2.340947478484678, "best_trade": 1120.0, "worst_trade": -1848.0000000000007, "peak": 26882.0, "current_dd": -0.7811918756044922, "gain_to_recover": 0.7873425314937066} : {"trades": 209, "pnl": 10203.0, "ending": 20203.0, "cagr": 21.679768725566163, "sharpe": 4.3410135303775865, "max_dd": -10.229599298040359, "win_rate": 69.85645933014354, "average": 48.81818181818182, "profit_factor": 2.2014837494112105, "best_trade": 490.0, "worst_trade": -1386.0000000000005, "peak": 20263.0, "current_dd": -0.29610620342496174, "gain_to_recover": 0.29698559619857345};
-      document.getElementById("researchSizingChart").src = overlay ? "/images/foxchase_r5_30dte_overlay_historical.png?v=20260823-spy" : compounded ? "/images/foxchase_exact_current_sequential_vs_spy_setup_i_disabled.png?v=20260823-efj" : "/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj";
-      document.getElementById("researchSizingChart").alt = overlay ? "Historical equity comparison of the current intraday strategy and R5 30DTE overlay" : compounded ? "Exact current-production compounded replay versus SPY" : "Exact current-production fixed-risk replay versus SPY";
+      const metrics = overlayFixed ? {"trades": "209 intraday", "pnl": 17671.6, "ending": 27671.6, "cagr": 32.58548466098503, "sharpe": 2.893626087004187, "max_dd": -9.935791270670391, "win_rate": null, "average": null, "profit_factor": null} : overlayCompounded ? {"trades": "209 intraday", "pnl": 31193.6, "ending": 41193.6, "cagr": 48.04060295943833, "sharpe": 2.6832463608466326, "max_dd": -15.279179280188382, "win_rate": null, "average": null, "profit_factor": null} : compounded ? {"trades": 209, "pnl": 16672.0, "ending": 26672.0, "cagr": 31.486074629191595, "sharpe": 4.501384092312359, "max_dd": -13.430708941930892, "win_rate": 69.85645933014354, "average": 79.77033492822966, "profit_factor": 2.340947478484678, "best_trade": 1120.0, "worst_trade": -1848.0000000000007, "peak": 26882.0, "current_dd": -0.7811918756044922, "gain_to_recover": 0.7873425314937066} : {"trades": 209, "pnl": 10203.0, "ending": 20203.0, "cagr": 21.679768725566163, "sharpe": 4.3410135303775865, "max_dd": -10.229599298040359, "win_rate": 69.85645933014354, "average": 48.81818181818182, "profit_factor": 2.2014837494112105, "best_trade": 490.0, "worst_trade": -1386.0000000000005, "peak": 20263.0, "current_dd": -0.29610620342496174, "gain_to_recover": 0.29698559619857345};
+      document.getElementById("researchSizingChart").src = overlayFixed ? "/images/foxchase_r5_30dte_fixed_overlay_historical.png?v=20260823-fixed" : overlayCompounded ? "/images/foxchase_r5_30dte_overlay_historical.png?v=20260823-spy" : compounded ? "/images/foxchase_exact_current_sequential_vs_spy_setup_i_disabled.png?v=20260823-efj" : "/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj";
+      document.getElementById("researchSizingChart").alt = overlay ? "Historical equity comparison of the current intraday strategy, R5 30DTE overlay, and SPY" : compounded ? "Exact current-production compounded replay versus SPY" : "Exact current-production fixed-risk replay versus SPY";
       document.getElementById("researchTradeCount").textContent = typeof metrics.trades === "number" ? metrics.trades + " trades" : metrics.trades + " trades";
       document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString();
       document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString();
@@ -658,12 +684,14 @@ function setTextIfExists(id, value) {
       document.getElementById("researchWinRate").textContent = metrics.win_rate === null ? "Research view" : metrics.win_rate.toFixed(2) + "%";
       document.getElementById("researchAverageTrade").textContent = metrics.average === null ? "One swing spread" : "$" + metrics.average.toFixed(2);
       document.getElementById("researchProfitFactor").textContent = metrics.profit_factor === null ? "Not displayed" : metrics.profit_factor.toFixed(2);
-      document.getElementById("researchRiskFramework").textContent = overlay ? "Sequentially compounded" : compounded ? "15% sequential" : "15% fixed";
-      document.getElementById("researchSizingNote").innerHTML = overlay ? "<strong>Compounding note:</strong> This overlay view is sequentially compounded. It uses one shared $10,000 account and one swing spread maximum; full swing maximum loss remains reserved, and only strictly prior realized swing profits can increase later intraday sizing. SPY is shown as buy and hold from the same starting capital." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
+      document.getElementById("researchRiskFramework").textContent = overlayFixed ? "Fixed · Non-compounding" : overlayCompounded ? "Sequentially compounded" : compounded ? "15% sequential" : "15% fixed";
+      document.getElementById("researchSizingNote").innerHTML = overlayFixed ? "<strong>Fixed-sizing note:</strong> The $10,000 sizing base never changes. Displayed profits and losses do not increase later quantities; one swing spread maximum remains fully reserved. SPY is buy and hold from the same starting capital." : overlayCompounded ? "<strong>Compounding note:</strong> This overlay view is sequentially compounded. It uses one shared $10,000 account and one swing spread maximum; full swing maximum loss remains reserved, and only strictly prior realized swing profits can increase later intraday sizing. SPY is buy and hold from the same starting capital." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
       document.getElementById("fixedSizingButton").className = !overlay && !compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
       document.getElementById("compoundedSizingButton").className = compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
-      document.getElementById("overlayResearchButton").className = overlay ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
-      document.getElementById("overlayResearchDetails").hidden = !overlay;
+      document.getElementById("overlayFixedButton").className = overlayFixed ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
+      document.getElementById("overlayCompoundedButton").className = overlayCompounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
+      document.getElementById("fixedOverlayResearchDetails").hidden = !overlayFixed;
+      document.getElementById("overlayResearchDetails").hidden = !overlayCompounded;
       document.getElementById("intradayResearchTables").hidden = overlay;
     }
     function dollars(value) {
