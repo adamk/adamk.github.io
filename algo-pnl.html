@@ -601,7 +601,7 @@ function setTextIfExists(id, value) {
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;" role="group" aria-label="Exact replay sizing">
       <button type="button" id="fixedSizingButton" class="btn btn-dark btn-sm" onclick="showResearchSizing('fixed')">15% fixed · Non-compounding</button>
       <button type="button" id="compoundedSizingButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('compounded')">15% · Compounded</button>
-      <button type="button" id="overlayResearchButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay')">Current Intraday + R5 30DTE Overlay — Historical Research</button>
+      <button type="button" id="overlayResearchButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay')">Current Intraday + R5 30DTE Overlay — Historical Research (Compounded)</button>
     </div>
     <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj" alt="Exact current-production fixed-risk replay versus SPY"></div>
     <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> Today's policy is applied hypothetically across history: 15% global base risk, current setup multipliers, and R4 at 0.50. The default does not compound.</p>
@@ -658,8 +658,8 @@ function setTextIfExists(id, value) {
       document.getElementById("researchWinRate").textContent = metrics.win_rate === null ? "Research view" : metrics.win_rate.toFixed(2) + "%";
       document.getElementById("researchAverageTrade").textContent = metrics.average === null ? "One swing spread" : "$" + metrics.average.toFixed(2);
       document.getElementById("researchProfitFactor").textContent = metrics.profit_factor === null ? "Not displayed" : metrics.profit_factor.toFixed(2);
-      document.getElementById("researchRiskFramework").textContent = overlay ? "Shared capital" : compounded ? "15% sequential" : "15% fixed";
-      document.getElementById("researchSizingNote").innerHTML = overlay ? "<strong>Overlay note:</strong> One shared $10,000 account; one swing spread maximum; full swing maximum loss remains reserved, and only strictly prior realized swing profits can increase later intraday sizing." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
+      document.getElementById("researchRiskFramework").textContent = overlay ? "Sequentially compounded" : compounded ? "15% sequential" : "15% fixed";
+      document.getElementById("researchSizingNote").innerHTML = overlay ? "<strong>Compounding note:</strong> This overlay view is sequentially compounded. It uses one shared $10,000 account and one swing spread maximum; full swing maximum loss remains reserved, and only strictly prior realized swing profits can increase later intraday sizing. SPY is shown as buy and hold from the same starting capital." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
       document.getElementById("fixedSizingButton").className = !overlay && !compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
       document.getElementById("compoundedSizingButton").className = compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
       document.getElementById("overlayResearchButton").className = overlay ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
