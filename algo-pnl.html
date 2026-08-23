@@ -604,6 +604,7 @@ function setTextIfExists(id, value) {
       <button type="button" id="overlayFixedButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay-fixed')">Intraday + R5 30DTE Overlay · Fixed</button>
       <button type="button" id="overlayCompoundedButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay-compounded')">Intraday + R5 30DTE Overlay · Compounded</button>
     </div>
+    <label style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
     <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj" alt="Exact current-production fixed-risk replay versus SPY"></div>
     <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> Today's policy is applied hypothetically across history: 15% global base risk, current setup multipliers, and R4 at 0.50. The default does not compound.</p>
     <div id="fixedOverlayResearchDetails" hidden>
@@ -656,6 +657,23 @@ function setTextIfExists(id, value) {
       <p class="small"><strong>Compounded sizing:</strong> The larger endpoint includes direct net swing P&amp;L and later intraday quantity increases caused only by previously realized swing profits. Sizing uses realized equity only, reserves the full swing maximum loss, and never treats unrealized swing gains or entry premium as sizing capital.</p>
       <p class="small"><strong>Disclosure:</strong> The current live strategy remains the six-setup intraday portfolio. The overlay was developed after reviewing historical data and has no completed post-freeze trades. Results are in-sample and selection-sensitive. The 96.06% historical target-hit rate includes asymmetric loss risk; one maximum loss may offset numerous target wins.</p>
     </div>
+    <div id="interestResearchDetails" hidden>
+      <div class="pnl-note"><strong>Hypothetical cash-yield scenario.</strong> Cash yield is a hypothetical constant-3.30%-APY scenario applied to eligible idle cash. Alpaca’s High-Yield Cash program requires enrollment, rates are variable, and 3.30% was not available throughout the historical period. Actual swept balances and interest may differ.</div>
+      <p class="small">Interest is modeled conservatively after excluding open-spread maximum-loss reservations and remaining costs. It accrues daily on the prior day’s eligible balance and is credited only on the last business day of each month. Uncredited interest cannot affect quantities.</p>
+      <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Cash-yield attribution</th><th>Result</th></tr></thead><tbody>
+        <tr><td>Total credited interest</td><td id="interestTotal"></td></tr>
+        <tr><td>Average eligible cash</td><td id="interestAverageCash"></td></tr>
+        <tr><td>Average excluded reservation</td><td id="interestAverageReservation"></td></tr>
+        <tr><td>Contract quantities changed after monthly credits</td><td id="interestQuantityChanges"></td></tr>
+        <tr><td>Subsequent trade-P&amp;L change</td><td id="interestTradePnlChange"></td></tr>
+        <tr><td>Ending-equity reconciliation</td><td id="interestReconciliation"></td></tr>
+        <tr><td>SPY comparison</td><td id="interestSpyComparison"></td></tr>
+      </tbody></table></div>
+      <h3 style="margin-top:24px;">Interest-Adjusted Yearly Results</h3>
+      <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Year</th><th>Return</th><th>Ending equity</th></tr></thead><tbody id="interestYearlyRows"></tbody></table></div>
+      <details style="margin-top:20px;"><summary><strong>Interest-adjusted monthly results</strong></summary><div class="research-table-wrap" style="margin-top:12px;"><table class="research-table"><thead><tr><th>Month</th><th>Return</th><th>Ending equity</th></tr></thead><tbody id="interestMonthlyRows"></tbody></table></div></details>
+      <p class="small"><strong>Research status:</strong> Cash yield was not actually earned throughout this history. The R5 30DTE overlay is not active on the Pis, no live 30DTE trades have occurred, and the current live strategy remains the six-setup intraday portfolio.</p>
+    </div>
     <div id="intradayResearchTables">
     <p class="small"><strong>Data through August 21, 2026.</strong> Includes 209 replay trades through August 20, 2026. Setup labels remain anonymized.</p>
     <h3 style="margin-top:30px;">Regime Contribution</h3><p class="small">Current-policy sequential hypothetical view.</p><div class="research-table-wrap"><table class="research-table"><thead><tr><th>Regime</th><th>Trades</th><th>P&amp;L</th></tr></thead><tbody><tr><td>R1</td><td>41</td><td>+$9,770</td></tr><tr><td>R4</td><td>52</td><td>+$1,716</td></tr><tr><td>R5</td><td>116</td><td>+$5,186</td></tr></tbody></table></div>
@@ -667,32 +685,70 @@ function setTextIfExists(id, value) {
   </div>
 
   <script>
+    let currentResearchMode = "fixed";
+    let idleCashInterestData = null;
+    fetch("/data/alpaca_idle_cash_interest.json?v=20260823-330apy", { cache: "no-store" })
+      .then(response => response.json())
+      .then(data => { idleCashInterestData = data; })
+      .catch(() => { document.getElementById("idleCashInterestToggle").disabled = true; });
+    function toggleIdleCashInterest() {
+      if (document.getElementById("idleCashInterestToggle").checked && !idleCashInterestData) {
+        document.getElementById("idleCashInterestToggle").checked = false;
+        return;
+      }
+      showResearchSizing(currentResearchMode);
+    }
     function showResearchSizing(mode) {
+      currentResearchMode = mode;
       const overlayFixed = mode === "overlay-fixed";
       const overlayCompounded = mode === "overlay-compounded";
       const overlay = overlayFixed || overlayCompounded;
       const compounded = mode === "compounded";
-      const metrics = overlayFixed ? {"trades": "209 intraday", "pnl": 17671.6, "ending": 27671.6, "cagr": 32.58548466098503, "sharpe": 2.893626087004187, "max_dd": -9.935791270670391, "win_rate": null, "average": null, "profit_factor": null} : overlayCompounded ? {"trades": "209 intraday", "pnl": 31193.6, "ending": 41193.6, "cagr": 48.04060295943833, "sharpe": 2.6832463608466326, "max_dd": -15.279179280188382, "win_rate": null, "average": null, "profit_factor": null} : compounded ? {"trades": 209, "pnl": 16672.0, "ending": 26672.0, "cagr": 31.486074629191595, "sharpe": 4.501384092312359, "max_dd": -13.430708941930892, "win_rate": 69.85645933014354, "average": 79.77033492822966, "profit_factor": 2.340947478484678, "best_trade": 1120.0, "worst_trade": -1848.0000000000007, "peak": 26882.0, "current_dd": -0.7811918756044922, "gain_to_recover": 0.7873425314937066} : {"trades": 209, "pnl": 10203.0, "ending": 20203.0, "cagr": 21.679768725566163, "sharpe": 4.3410135303775865, "max_dd": -10.229599298040359, "win_rate": 69.85645933014354, "average": 48.81818181818182, "profit_factor": 2.2014837494112105, "best_trade": 490.0, "worst_trade": -1386.0000000000005, "peak": 20263.0, "current_dd": -0.29610620342496174, "gain_to_recover": 0.29698559619857345};
-      document.getElementById("researchSizingChart").src = overlayFixed ? "/images/foxchase_r5_30dte_fixed_overlay_historical.png?v=20260823-fixed" : overlayCompounded ? "/images/foxchase_r5_30dte_overlay_historical.png?v=20260823-spy" : compounded ? "/images/foxchase_exact_current_sequential_vs_spy_setup_i_disabled.png?v=20260823-efj" : "/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj";
+      let metrics = overlayFixed ? {"trades": "209 intraday", "pnl": 17671.6, "ending": 27671.6, "cagr": 32.58548466098503, "sharpe": 2.893626087004187, "max_dd": -9.935791270670391, "win_rate": null, "average": null, "profit_factor": null} : overlayCompounded ? {"trades": "209 intraday", "pnl": 31193.6, "ending": 41193.6, "cagr": 48.04060295943833, "sharpe": 2.6832463608466326, "max_dd": -15.279179280188382, "win_rate": null, "average": null, "profit_factor": null} : compounded ? {"trades": 209, "pnl": 16672.0, "ending": 26672.0, "cagr": 31.486074629191595, "sharpe": 4.501384092312359, "max_dd": -13.430708941930892, "win_rate": 69.85645933014354, "average": 79.77033492822966, "profit_factor": 2.340947478484678, "best_trade": 1120.0, "worst_trade": -1848.0000000000007, "peak": 26882.0, "current_dd": -0.7811918756044922, "gain_to_recover": 0.7873425314937066} : {"trades": 209, "pnl": 10203.0, "ending": 20203.0, "cagr": 21.679768725566163, "sharpe": 4.3410135303775865, "max_dd": -10.229599298040359, "win_rate": 69.85645933014354, "average": 48.81818181818182, "profit_factor": 2.2014837494112105, "best_trade": 490.0, "worst_trade": -1386.0000000000005, "peak": 20263.0, "current_dd": -0.29610620342496174, "gain_to_recover": 0.29698559619857345};
+      const interestEnabled = document.getElementById("idleCashInterestToggle").checked && idleCashInterestData;
+      const scenarioKey = overlayFixed ? "fixed_overlay" : overlayCompounded ? "compounded_overlay" : compounded ? "compounded_intraday" : "fixed_intraday";
+      const interestScenario = interestEnabled ? idleCashInterestData[scenarioKey] : null;
+      if (interestScenario) {
+        const im = interestScenario.metrics;
+        metrics = {"trades": overlay ? "209 intraday" : 209, "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct, "win_rate": null, "average": null, "profit_factor": null};
+      }
+      const normalChart = overlayFixed ? "/images/foxchase_r5_30dte_fixed_overlay_historical.png?v=20260823-fixed" : overlayCompounded ? "/images/foxchase_r5_30dte_overlay_historical.png?v=20260823-spy" : compounded ? "/images/foxchase_exact_current_sequential_vs_spy_setup_i_disabled.png?v=20260823-efj" : "/images/foxchase_exact_current_fixed_vs_spy_setup_i_disabled.png?v=20260823-efj";
+      const interestChart = "/images/foxchase_" + scenarioKey + "_interest_330.png?v=20260823-330apy";
+      document.getElementById("researchSizingChart").src = interestEnabled ? interestChart : normalChart;
       document.getElementById("researchSizingChart").alt = overlay ? "Historical equity comparison of the current intraday strategy, R5 30DTE overlay, and SPY" : compounded ? "Exact current-production compounded replay versus SPY" : "Exact current-production fixed-risk replay versus SPY";
       document.getElementById("researchTradeCount").textContent = typeof metrics.trades === "number" ? metrics.trades + " trades" : metrics.trades + " trades";
-      document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString();
-      document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString();
+      document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString("en-US", {minimumFractionDigits: interestEnabled || overlay ? 2 : 0, maximumFractionDigits: 2});
+      document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString("en-US", {minimumFractionDigits: interestEnabled || overlay ? 2 : 0, maximumFractionDigits: 2});
       document.getElementById("researchCagr").textContent = metrics.cagr.toFixed(2) + "%";
       document.getElementById("researchSharpe").textContent = metrics.sharpe.toFixed(3);
       document.getElementById("researchMaxDrawdown").textContent = metrics.max_dd.toFixed(2) + "%";
-      document.getElementById("researchWinRate").textContent = metrics.win_rate === null ? "Research view" : metrics.win_rate.toFixed(2) + "%";
-      document.getElementById("researchAverageTrade").textContent = metrics.average === null ? "One swing spread" : "$" + metrics.average.toFixed(2);
+      document.getElementById("researchWinRate").textContent = metrics.win_rate === null ? (interestEnabled ? "Unchanged trades" : "Research view") : metrics.win_rate.toFixed(2) + "%";
+      document.getElementById("researchAverageTrade").textContent = metrics.average === null ? (overlay ? "One swing spread" : "Unchanged trades") : "$" + metrics.average.toFixed(2);
       document.getElementById("researchProfitFactor").textContent = metrics.profit_factor === null ? "Not displayed" : metrics.profit_factor.toFixed(2);
       document.getElementById("researchRiskFramework").textContent = overlayFixed ? "Fixed · Non-compounding" : overlayCompounded ? "Sequentially compounded" : compounded ? "15% sequential" : "15% fixed";
-      document.getElementById("researchSizingNote").innerHTML = overlayFixed ? "<strong>Fixed-sizing note:</strong> The $10,000 sizing base never changes. Displayed profits and losses do not increase later quantities; one swing spread maximum remains fully reserved. SPY is buy and hold from the same starting capital." : overlayCompounded ? "<strong>Compounding note:</strong> This overlay view is sequentially compounded. It uses one shared $10,000 account and one swing spread maximum; full swing maximum loss remains reserved, and only strictly prior realized swing profits can increase later intraday sizing. SPY is buy and hold from the same starting capital." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
+      document.getElementById("researchSizingNote").innerHTML = interestEnabled ? "<strong>Cash-yield note:</strong> 3.30% APY is hypothetical, credited monthly, and applied only to nonnegative eligible cash after reservations. SPY receives no interest." : overlayFixed ? "<strong>Fixed-sizing note:</strong> The $10,000 sizing base never changes. Displayed profits and losses do not increase later quantities; one swing spread maximum remains fully reserved. SPY is buy and hold from the same starting capital." : overlayCompounded ? "<strong>Compounding note:</strong> This overlay view is sequentially compounded. It uses one shared $10,000 account and one swing spread maximum; full swing maximum loss remains reserved, and only strictly prior realized swing profits can increase later intraday sizing. SPY is buy and hold from the same starting capital." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
       document.getElementById("fixedSizingButton").className = !overlay && !compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
       document.getElementById("compoundedSizingButton").className = compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
       document.getElementById("overlayFixedButton").className = overlayFixed ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
       document.getElementById("overlayCompoundedButton").className = overlayCompounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
-      document.getElementById("fixedOverlayResearchDetails").hidden = !overlayFixed;
-      document.getElementById("overlayResearchDetails").hidden = !overlayCompounded;
-      document.getElementById("intradayResearchTables").hidden = overlay;
+      document.getElementById("fixedOverlayResearchDetails").hidden = !overlayFixed || interestEnabled;
+      document.getElementById("overlayResearchDetails").hidden = !overlayCompounded || interestEnabled;
+      document.getElementById("intradayResearchTables").hidden = overlay || interestEnabled;
+      document.getElementById("interestResearchDetails").hidden = !interestEnabled;
+      if (interestScenario) {
+        const im = interestScenario.metrics;
+        const money = value => (value >= 0 ? "+" : "-") + "$" + Math.abs(value).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById("interestTotal").textContent = money(im.total_credited_interest);
+        document.getElementById("interestAverageCash").textContent = "$" + im.average_eligible_cash.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById("interestAverageReservation").textContent = "$" + im.average_excluded_reservation.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById("interestQuantityChanges").textContent = im.quantity_changes_from_interest;
+        document.getElementById("interestTradePnlChange").textContent = money(im.subsequent_trade_pnl_change);
+        const baseEnding = {fixed_intraday:20203, fixed_overlay:27671.6, compounded_intraday:26672, compounded_overlay:41193.6}[scenarioKey];
+        document.getElementById("interestReconciliation").textContent = "$" + baseEnding.toLocaleString("en-US", {minimumFractionDigits:2}) + " + " + money(im.total_credited_interest).replace("+", "") + " + " + money(im.subsequent_trade_pnl_change).replace("+", "") + " = $" + im.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+        document.getElementById("interestSpyComparison").textContent = "First crossed " + im.first_spy_crossover + "; continuously ahead from " + im.continuously_ahead_spy_from;
+        document.getElementById("interestYearlyRows").innerHTML = interestScenario.yearly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
+        document.getElementById("interestMonthlyRows").innerHTML = interestScenario.monthly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
+      }
     }
     function dollars(value) {
       return Number(value).toLocaleString("en-US", { style: "currency", currency: "USD" });
