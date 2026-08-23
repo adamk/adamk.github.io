@@ -596,17 +596,17 @@ function setTextIfExists(id, value) {
 
 
 
-    <h2>Current Live Allocation</h2>
+    <h2>Current Live R4 Policy</h2>
     <div class="research-metrics current-allocation-grid" aria-label="Current live allocation policy">
       <div class="research-card"><div class="research-label">Global Risk Setting</div><div class="research-value">15%</div></div>
       <div class="research-card"><div class="research-label">R4 Allocation Multiplier</div><div class="research-value">0.50</div></div>
       <div class="research-card"><div class="research-label">Effective R4 Target Risk</div><div class="research-value">7.5%</div><div class="small">of broker equity</div></div>
       <div class="research-card"><div class="research-label">Effective Date</div><div class="research-value">Aug. 23, 2026</div></div>
-      <div class="research-card"><div class="research-label">Policy Status</div><div class="research-value">Live</div><div class="small">Primary and standby</div></div>
+      <div class="research-card"><div class="research-label">New R4 Entries</div><div class="research-value">Suspended</div><div class="small">Primary and standby</div></div>
     </div>
     <div class="pnl-note">
-      <strong>Prospective R4 allocation policy:</strong> Effective August 23, 2026, new R4 positions use a 0.50 setup allocation multiplier. With the unchanged 15% global risk setting, this gives R4 a target maximum-loss budget of 7.5% of broker equity. R1, R5, and all R4 signal, entry, exit, spread, and management rules remain unchanged. The multiplier applies only to new R4 positions.<br><br>
-      Historical and extension results below reflect the allocation actually used at the time and have not been retroactively restated. Future results after August 23 will include the new R4 allocation policy and will be identified as a distinct live-policy period. Setups without a reduced setup-specific multiplier continue to use the unchanged 15% global risk convention.
+      <strong>R4 live-entry suspension:</strong> Effective August 23, 2026, new live R4 entries are suspended. R4 signal detection, executable hypothetical planning, and shadow outcome tracking remain active. The preserved R4 reactivation allocation is 0.50, equivalent to a 7.5% target maximum-loss budget under the unchanged 15% global risk setting. R1 and R5 remain live and unchanged. Existing R4 position management remains available if required.<br><br>
+      This change is prospective. Historical and extension results below reflect the allocation actually used at the time and have not been retroactively restated. Historical statistics and plots through August 21 remain unchanged. Future actual portfolio results exclude R4 orders while the separate shadow ledger measures hypothetical R4 performance; shadow outcomes are not included in actual P&amp;L.
     </div>
     <h3 style="margin-top:30px;">Allocation Policy Timeline</h3>
     <div class="research-table-wrap">
@@ -614,7 +614,8 @@ function setTextIfExists(id, value) {
         <thead><tr><th>Period</th><th>R4 Allocation Policy</th></tr></thead>
         <tbody>
           <tr><td>Results through August 21, 2026</td><td>Full, current-at-the-time R4 sizing</td></tr>
-          <tr><td>August 23, 2026 onward</td><td>R4 setup allocation multiplier 0.50; effective target risk 7.5%</td></tr>
+          <tr><td>Initial August 23, 2026 deployment</td><td>R4 setup allocation multiplier reduced to 0.50; effective target risk 7.5%</td></tr>
+          <tr><td>Subsequent August 23, 2026 risk response</td><td>New live R4 entries suspended; detection and shadow tracking remain active; 0.50 retained for prospective reactivation</td></tr>
         </tbody>
       </table>
     </div>
