@@ -597,18 +597,12 @@ function setTextIfExists(id, value) {
 
 
     <h2>Research Backtest</h2>
-    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">223 trades</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$9,659</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$19,659</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">20.60%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">1.687</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-10.65%</div></div><div class="research-card"><div class="research-label">Win Rate</div><div class="research-value" id="researchWinRate">68.61%</div></div><div class="research-card"><div class="research-label">Average Trade</div><div class="research-value" id="researchAverageTrade">$43.31</div></div><div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value" id="researchProfitFactor">1.98</div></div><div class="research-card"><div class="research-label">Risk Framework</div><div class="research-value" id="researchRiskFramework">15% fixed</div></div></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;" role="group" aria-label="Exact replay sizing">
-      <button type="button" id="fixedSizingButton" class="btn btn-dark btn-sm" onclick="showResearchSizing('fixed')">15% fixed · Non-compounding</button>
-      <button type="button" id="compoundedSizingButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('compounded')">15% · Compounded</button>
-      <button type="button" id="overlayCompoundedButton" class="btn btn-outline-dark btn-sm" onclick="showResearchSizing('overlay-compounded')">Intraday + R5 30DTE · 10% Risk Cap</button>
-    </div>
+    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">223 intraday · 159 swing entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$31,818.60</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$41,818.60</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">48.66%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">2.567</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-14.36%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,128</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
     <label style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
-    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_completed_spx_fixed_vs_spy.png?v=20260823-complete-spx" alt="Completed current-production fixed-risk replay versus SPY"></div>
-    <p class="small" id="researchSizingNote"><strong>Sizing note:</strong> Today's policy is applied hypothetically across history: 15% global base risk, current setup multipliers, and R4 at 0.50. The default does not compound.</p>
-    <div id="fixedOverlayResearchDetails" hidden></div>
-    <div id="overlayResearchDetails" hidden>
-      <div class="pnl-note"><strong>Historical research—live activation pending.</strong> The R5 30DTE overlay is not active on the Pis. Deployment awaits regular-market-hours Alpaca delta validation. No live 30DTE trades have occurred, and all pre-activation overlay trades shown here are hypothetical.</div>
+    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_completed_spx_cap10_combined.png?v=20260824-current-only" alt="Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns"></div>
+    <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the complete current intraday production strategy plus the R5 30DTE sleeve, capped at 10% aggregate contractual swing risk. The intraday-only curve is independently compounded, so swing profits never affect comparator sizing.</p>
+    <div id="overlayResearchDetails">
+      <div class="pnl-note"><strong>Current validated research portfolio.</strong> R5 30DTE is part of the combined benchmark with a 10% aggregate maximum-risk cap. The 2023 R1/SPX opportunity history was causally reconstructed from historical ThetaData SPXW synchronized NBBO. Exploratory sleeves, alternative deletion variants, and post-hoc candidate curves are excluded.</div>
       <h3 style="margin-top:24px;">Capped Combined Portfolio Results</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current intraday only</th><th>Intraday + overlay</th></tr></thead><tbody>
         <tr><td>Starting equity</td><td>$10,000</td><td>$10,000</td></tr>
@@ -630,7 +624,7 @@ function setTextIfExists(id, value) {
         <tr><td>June–August 2026 combined / swing contribution</td><td>+$5,684 / +$379</td></tr>
       </tbody></table></div>
       <p class="small"><strong>Sequential sizing with capped overlap:</strong> New swing entries are skipped when aggregate contractual swing maximum risk would exceed 10% of current realized portfolio equity. Existing positions are never resized or replaced. Intraday sizing uses realized equity after open-position reservations; unrealized swing gains and entry premium are not sizing capital.</p>
-      <p class="small"><strong>Disclosure:</strong> The current live strategy remains the six-setup intraday portfolio. The overlay was developed after reviewing historical data and has no completed post-freeze trades. Results are in-sample and selection-sensitive. The 96.06% historical target-hit rate includes asymmetric loss risk; one maximum loss may offset numerous target wins.</p>
+      <p class="small"><strong>Methodology and risk:</strong> Current rules are replayed chronologically without future information using validated ThetaData/NBBO inputs and true overlapping-position accounting. Historical performance does not guarantee future results. Large-account execution capacity may differ materially from this $10,000 research sizing.</p>
     </div>
     <div id="interestResearchDetails" hidden>
       <div class="pnl-note"><strong>Hypothetical cash-yield scenario.</strong> Cash yield is a hypothetical constant-3.30%-APY scenario applied to eligible idle cash. Alpaca’s High-Yield Cash program requires enrollment, rates are variable, and 3.30% was not available throughout the historical period. Actual swept balances and interest may differ.</div>
@@ -647,18 +641,12 @@ function setTextIfExists(id, value) {
       <h3 style="margin-top:24px;">Interest-Adjusted Yearly Results</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Year</th><th>Return</th><th>Ending equity</th></tr></thead><tbody id="interestYearlyRows"></tbody></table></div>
       <details style="margin-top:20px;"><summary><strong>Interest-adjusted monthly results</strong></summary><div class="research-table-wrap" style="margin-top:12px;"><table class="research-table"><thead><tr><th>Month</th><th>Return</th><th>Ending equity</th></tr></thead><tbody id="interestMonthlyRows"></tbody></table></div></details>
-      <p class="small"><strong>Research status:</strong> Cash yield was not actually earned throughout this history. The R5 30DTE overlay is not active on the Pis, no live 30DTE trades have occurred, and the current live strategy remains the six-setup intraday portfolio.</p>
+      <p class="small"><strong>Research status:</strong> Cash yield is separate from trading edge and was not actually earned throughout this history. The trading rules and trade opportunity set are unchanged when this toggle is enabled.</p>
     </div>
-    <div id="intradayResearchTables">
-    <p class="small"><strong>Data through August 21, 2026.</strong> Includes 223 replay trades through August 20, 2026, including the completed causal SPX expected-move history. Setup labels remain anonymized.</p>
-    <h3 style="margin-top:30px;">Regime Contribution</h3><p class="small">Current-policy standalone sequential hypothetical view.</p><div class="research-table-wrap"><table class="research-table"><thead><tr><th>Regime</th><th>Trades</th><th>P&amp;L</th></tr></thead><tbody><tr><td>R1</td><td>55</td><td>+$8,638</td></tr><tr><td>R4</td><td>52</td><td>+$1,625</td></tr><tr><td>R5</td><td>116</td><td>+$4,865</td></tr></tbody></table></div>
-    <h3 style="margin-top:30px;">Calendar-Year Results</h3><div class="research-table-wrap"><table class="research-table"><thead><tr><th>Year</th><th>P&amp;L</th><th>Return</th><th>Ending Equity</th></tr></thead><tbody><tr><td>2023</td><td>-$420</td><td>-4.20%</td><td>$9,580</td></tr><tr><td>2024</td><td>+$1,797</td><td>18.76%</td><td>$11,377</td></tr><tr><td>2025</td><td>+$5,691</td><td>50.02%</td><td>$17,068</td></tr><tr><td>2026</td><td>+$8,060</td><td>47.22%</td><td>$25,128</td></tr></tbody></table></div>
-    <h3 style="margin-top:30px;">Fixed-Risk Setup Results</h3><div class="research-table-wrap"><table class="research-table"><thead><tr><th>Setup</th><th>Trades</th><th>P&amp;L</th><th>Win Rate</th><th>Profit Factor</th><th>Avg Trade</th></tr></thead><tbody><tr><td>Setup A</td><td>16</td><td>+$584</td><td>62.50%</td><td>1.85</td><td>$36.50</td></tr><tr><td>Setup B</td><td>35</td><td>+$4,944</td><td>82.86%</td><td>3.68</td><td>$141.26</td></tr><tr><td>Setup C</td><td>36</td><td>+$2,270</td><td>77.78%</td><td>3.06</td><td>$63.06</td></tr><tr><td>Setup D</td><td>36</td><td>+$801</td><td>63.89%</td><td>1.43</td><td>$22.25</td></tr><tr><td>Setup E</td><td>20</td><td>-$143</td><td>65.00%</td><td>0.95</td><td>-$7.15</td></tr><tr><td>Setup F</td><td>80</td><td>+$1,203</td><td>62.50%</td><td>1.68</td><td>$15.04</td></tr></tbody></table></div>
-    </div>
+    <p class="small"><strong>Data through August 21, 2026.</strong> The main chart contains only the validated combined portfolio, the independently compounded current intraday comparator, and SPY buy and hold. Derek 60DTE campaigns, QQQ 42DTE short-put studies, shared-exposure experiments, older research-selected portfolios, and alternative setup-removal curves are not included.</p>
   </div>
 
   <script>
-    let currentResearchMode = "fixed";
     let idleCashInterestData = null;
     fetch("/data/alpaca_idle_cash_interest.json?v=20260823-330apy", { cache: "no-store" })
       .then(response => response.json())
@@ -669,42 +657,33 @@ function setTextIfExists(id, value) {
         document.getElementById("idleCashInterestToggle").checked = false;
         return;
       }
-      showResearchSizing(currentResearchMode);
+      showValidatedResearch();
     }
-    function showResearchSizing(mode) {
-      currentResearchMode = mode;
-      const overlayCompounded = mode === "overlay-compounded";
-      const overlay = overlayCompounded;
-      const compounded = mode === "compounded";
-      let metrics = overlayCompounded ? {"trades": "223 intraday + 159 swing entries", "pnl": 31818.6, "ending": 41818.6, "cagr": 48.659658, "sharpe": 2.566700, "max_dd": -14.363514, "win_rate": null, "average": null, "profit_factor": null} : compounded ? {"trades": 223, "pnl": 15128.0, "ending": 25128.0, "cagr": 29.089601, "sharpe": 1.791596, "max_dd": -14.345581, "win_rate": 68.609865, "average": 67.838565, "profit_factor": null} : {"trades": 223, "pnl": 9659.0, "ending": 19659.0, "cagr": 20.601129, "sharpe": 1.686653, "max_dd": -10.653366, "win_rate": 68.609865, "average": 43.313901, "profit_factor": 1.975755};
+    function showValidatedResearch() {
+      let metrics = {"trades": "223 intraday · 159 swing entries", "pnl": 31818.6, "ending": 41818.6, "cagr": 48.659658, "sharpe": 2.566700, "max_dd": -14.363514};
       const interestEnabled = document.getElementById("idleCashInterestToggle").checked && idleCashInterestData;
-      const scenarioKey = overlayCompounded ? "compounded_overlay" : compounded ? "compounded_intraday" : "fixed_intraday";
+      const scenarioKey = "compounded_overlay";
       const interestScenario = interestEnabled ? idleCashInterestData[scenarioKey] : null;
       if (interestScenario) {
         const im = interestScenario.metrics;
-        metrics = {"trades": overlay ? "223 intraday + 159 swing entries" : 223, "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct, "win_rate": null, "average": null, "profit_factor": null};
+        metrics = {"trades": "223 intraday · 159 swing entries", "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct};
       }
-      const normalChart = overlayCompounded ? "/images/foxchase_completed_spx_cap10_combined.png?v=20260823-complete-spx" : compounded ? "/images/foxchase_completed_spx_sequential_vs_spy.png?v=20260823-complete-spx" : "/images/foxchase_completed_spx_fixed_vs_spy.png?v=20260823-complete-spx";
-      const interestChart = "/images/foxchase_" + scenarioKey + "_interest_330_complete_spx.png?v=20260823-complete-spx-interest";
+      const normalChart = "/images/foxchase_completed_spx_cap10_combined.png?v=20260824-current-only";
+      const interestChart = "/images/foxchase_current_combined_interest_330.png?v=20260824-current-only";
       document.getElementById("researchSizingChart").src = interestEnabled ? interestChart : normalChart;
-      document.getElementById("researchSizingChart").alt = overlay ? "Historical equity comparison of the current intraday strategy, R5 30DTE overlay, and SPY" : compounded ? "Exact current-production compounded replay versus SPY" : "Exact current-production fixed-risk replay versus SPY";
-      document.getElementById("researchTradeCount").textContent = typeof metrics.trades === "number" ? metrics.trades + " trades" : metrics.trades;
-      document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString("en-US", {minimumFractionDigits: interestEnabled || overlay ? 2 : 0, maximumFractionDigits: 2});
-      document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString("en-US", {minimumFractionDigits: interestEnabled || overlay ? 2 : 0, maximumFractionDigits: 2});
+      document.getElementById("researchSizingChart").alt = "Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns";
+      document.getElementById("researchTradeCount").textContent = metrics.trades;
+      document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
       document.getElementById("researchCagr").textContent = metrics.cagr.toFixed(2) + "%";
       document.getElementById("researchSharpe").textContent = metrics.sharpe.toFixed(3);
       document.getElementById("researchMaxDrawdown").textContent = metrics.max_dd.toFixed(2) + "%";
-      document.getElementById("researchWinRate").textContent = metrics.win_rate === null ? (interestEnabled ? "Unchanged trades" : "Research view") : metrics.win_rate.toFixed(2) + "%";
-      document.getElementById("researchAverageTrade").textContent = metrics.average === null ? (overlay ? "One swing spread" : "Unchanged trades") : "$" + metrics.average.toFixed(2);
-      document.getElementById("researchProfitFactor").textContent = metrics.profit_factor === null ? "Not displayed" : metrics.profit_factor.toFixed(2);
-      document.getElementById("researchRiskFramework").textContent = overlayCompounded ? "Sequential · 10% swing-risk cap" : compounded ? "15% sequential" : "15% fixed";
-      document.getElementById("researchSizingNote").innerHTML = interestEnabled ? "<strong>Cash-yield note:</strong> 3.30% APY is hypothetical, credited monthly, and applied only to nonnegative eligible cash after reservations. SPY receives no interest." : overlayCompounded ? "<strong>Capped-combined note:</strong> This is sequentially compounded and permits overlap only while aggregate R5 contractual maximum risk remains within 10% of current realized equity. It is a historical exposure-control test, not a live rule." : compounded ? "<strong>Sizing note:</strong> Sequential broker-equity sizing compounds today's policy after every trade." : "<strong>Sizing note:</strong> Fixed sizing holds the $10,000 starting-equity risk base constant and does not compound.";
-      document.getElementById("fixedSizingButton").className = !overlay && !compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
-      document.getElementById("compoundedSizingButton").className = compounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
-      document.getElementById("overlayCompoundedButton").className = overlayCompounded ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm";
-      document.getElementById("fixedOverlayResearchDetails").hidden = true;
-      document.getElementById("overlayResearchDetails").hidden = !overlayCompounded || interestEnabled;
-      document.getElementById("intradayResearchTables").hidden = overlay || interestEnabled;
+      document.getElementById("researchWinRate").textContent = "$25,128";
+      document.getElementById("researchAverageTrade").textContent = "10% aggregate";
+      document.getElementById("researchProfitFactor").textContent = interestEnabled ? "3.30% hypothetical" : "Off";
+      document.getElementById("researchRiskFramework").textContent = "Chronological";
+      document.getElementById("researchSizingNote").innerHTML = interestEnabled ? "<strong>Cash-yield note:</strong> 3.30% APY is hypothetical, credited monthly, and applied only to nonnegative eligible cash after reservations. It is separate from trading edge; SPY receives no interest." : "<strong>Validated benchmark:</strong> A true chronological replay of the current intraday production strategy plus R5 30DTE under its 10% aggregate risk cap. The intraday-only comparator compounds independently.";
+      document.getElementById("overlayResearchDetails").hidden = interestEnabled;
       document.getElementById("interestResearchDetails").hidden = !interestEnabled;
       if (interestScenario) {
         const im = interestScenario.metrics;
@@ -714,7 +693,7 @@ function setTextIfExists(id, value) {
         document.getElementById("interestAverageReservation").textContent = "$" + im.average_excluded_reservation.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
         document.getElementById("interestQuantityChanges").textContent = im.quantity_changes_from_interest;
         document.getElementById("interestTradePnlChange").textContent = money(im.subsequent_trade_pnl_change);
-        const baseEnding = {fixed_intraday:19659, compounded_intraday:25128, compounded_overlay:41818.60}[scenarioKey];
+        const baseEnding = 41818.60;
         document.getElementById("interestReconciliation").textContent = "$" + baseEnding.toLocaleString("en-US", {minimumFractionDigits:2}) + " + " + money(im.total_credited_interest).replace("+", "") + " + " + money(im.subsequent_trade_pnl_change).replace("+", "") + " = $" + im.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
         document.getElementById("interestSpyComparison").textContent = "SPY buy and hold is unchanged and receives no modeled cash interest.";
         document.getElementById("interestYearlyRows").innerHTML = interestScenario.yearly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
