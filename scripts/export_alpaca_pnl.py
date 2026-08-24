@@ -14,6 +14,7 @@ if not API_KEY or not SECRET_KEY:
     raise SystemExit("Missing ALPACA_API_KEY or ALPACA_SECRET_KEY in .env")
 
 BASE_URL = "https://api.alpaca.markets"
+STRATEGY_STARTING_CAPITAL = float(os.getenv("FOXCHASE_STRATEGY_STARTING_CAPITAL", "6983.03"))
 
 headers = {
     "APCA-API-KEY-ID": API_KEY,
@@ -123,6 +124,7 @@ avg_loss = (sum(t["pnl"] for t in losses) / len(losses)) if losses else None
 
 output = {
     "account_type": "Live account",
+    "strategy_starting_capital": STRATEGY_STARTING_CAPITAL,
     "updated_at": datetime.now(timezone.utc).isoformat(),
     "current_equity": float(account["equity"]),
     "points": points,
