@@ -1,7 +1,7 @@
 {
   "account_type": "Live account",
   "strategy_starting_capital": 6983.03,
-  "updated_at": "2026-08-25T12:30:01.906325-04:00",
+  "updated_at": "2026-08-25T12:45:01.796710-04:00",
   "current_equity": 9461.08,
   "points": [
     {
@@ -2569,8 +2569,8 @@
   "cash": 9461.08,
   "portfolioValue": 9461.08,
   "openPositions": 0,
-  "lastUpdated": "2026-08-25T12:30:01.906325-04:00",
-  "lastUpdatedDisplay": "08/25/2026, 12:30:01 PM ET",
+  "lastUpdated": "2026-08-25T12:45:01.796710-04:00",
+  "lastUpdatedDisplay": "08/25/2026, 12:45:01 PM ET",
   "source": "Alpaca live account",
   "realized_algo_pnl": 496.00019999999967,
   "closed_trades": 23,
