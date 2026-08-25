@@ -1,16 +1,18 @@
 {
   "compounded_overlay": {
     "metrics": {
-      "ending_equity": 45484.91734974764,
-      "pnl": 35484.91734974764,
-      "cagr_pct": 51.970575961588224,
-      "sharpe": 3.0809003833381228,
+      "ending_equity": 45212.21846861029,
+      "pnl": 35212.21846861029,
+      "cagr_pct": 51.67050200454491,
+      "sharpe": 3.0660122434055497,
       "max_drawdown_pct": -10.165974524900257,
-      "total_credited_interest": 2134.3173497476573,
-      "average_eligible_cash": 18155.159458103582,
-      "average_excluded_reservation": 261.9624449339207,
+      "intraday_comparator_ending_equity": 28415.48207560696,
+      "total_credited_interest": 2038.1519938565316,
+      "accrued_uncredited_interest": 100.16647475377928,
+      "average_eligible_cash": 18184.246066662286,
+      "average_excluded_reservation": 262.14873487348734,
       "quantity_changes_from_interest": 79,
-      "subsequent_trade_pnl_change": 1153.999999999981
+      "subsequent_trade_pnl_change": 1129.9999999999868
     },
     "yearly": [
       {
@@ -30,8 +32,8 @@
       },
       {
         "period": "2026",
-        "ending_equity": 45484.91734974764,
-        "return_pct": 56.03208088115479
+        "ending_equity": 45212.21846861029,
+        "return_pct": 55.096610919746624
       }
     ],
     "monthly": [
@@ -252,8 +254,8 @@
       },
       {
         "period": "2026-08",
-        "ending_equity": 45484.91734974764,
-        "return_pct": 2.908561546490107
+        "ending_equity": 45212.21846861029,
+        "return_pct": 2.2915867067339724
       }
     ]
   }

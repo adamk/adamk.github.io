@@ -597,31 +597,31 @@ function setTextIfExists(id, value) {
 
 
     <h2>Research Backtest</h2>
-    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">224 intraday · 159 swing entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$32,196.60</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$42,196.60</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">48.85%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">2.957</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-10.31%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,559</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
+    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$31,943.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$41,943.90</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">48.56%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">2.942</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-10.31%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
     <label style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
-    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_spx_half_combined.svg?v=20260824-daily-append" alt="Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns"></div>
+    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_spx_half_combined.svg?v=20260825-daily-append" alt="Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns"></div>
     <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the complete current intraday production strategy plus the R5 30DTE sleeve, capped at 10% aggregate contractual swing risk. The intraday-only curve is independently compounded, so swing profits never affect comparator sizing.</p>
     <div id="overlayResearchDetails">
       <div class="pnl-note"><strong>Current validated research portfolio.</strong> R1 SPX-EM divergence is sized at 0.50, equivalent to a 7.5% target risk budget under the 15% global setting. R5 30DTE is part of the combined benchmark with a 10% aggregate maximum-risk cap. The 2023 R1/SPX opportunity history was causally reconstructed from historical ThetaData SPXW synchronized NBBO. Exploratory sleeves and unrelated research are excluded.</div>
       <h3 style="margin-top:24px;">Capped Combined Portfolio Results</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current intraday only</th><th>Intraday + overlay</th></tr></thead><tbody>
         <tr><td>Starting equity</td><td>$10,000</td><td>$10,000</td></tr>
-        <tr><td>Ending equity</td><td>$25,559</td><td>$42,196.60</td></tr>
-        <tr><td>P&amp;L</td><td>+$15,559</td><td>+$32,196.60</td></tr>
-        <tr><td>CAGR</td><td>29.60%</td><td>48.85%</td></tr>
-        <tr><td>Sharpe</td><td>2.127</td><td>2.957</td></tr>
+        <tr><td>Ending equity</td><td>$25,415</td><td>$41,943.90</td></tr>
+        <tr><td>P&amp;L</td><td>+$15,415</td><td>+$31,943.90</td></tr>
+        <tr><td>CAGR</td><td>29.37%</td><td>48.56%</td></tr>
+        <tr><td>Sharpe</td><td>2.113</td><td>2.942</td></tr>
         <tr><td>Maximum drawdown</td><td>-7.19%</td><td>-10.31%</td></tr>
         <tr><td>Worst month</td><td>-6.52%</td><td>-5.37%</td></tr>
         <tr><td>Longest recovery</td><td>368 days</td><td>180 days</td></tr>
       </tbody></table></div>
       <div class="research-table-wrap" style="margin-top:18px;"><table class="research-table"><thead><tr><th>Overlay attribution</th><th>Result</th></tr></thead><tbody>
-        <tr><td>Intraday contribution on capped path</td><td>+$23,960</td></tr>
-        <tr><td>Swing contribution including endpoint mark</td><td>+$8,236.60</td></tr>
+        <tr><td>Intraday contribution on capped path</td><td>+$23,696</td></tr>
+        <tr><td>Swing contribution including endpoint mark</td><td>+$8,247.90</td></tr>
         <tr><td>Swing entries taken / skipped by cap</td><td>159 / 45</td></tr>
         <tr><td>Peak aggregate swing risk</td><td>8.12% of realized equity</td></tr>
         <tr><td>Swing-only maximum drawdown</td><td>-11.35%</td></tr>
         <tr><td>Swing P&amp;L retained versus unlimited</td><td>104.51% historically</td></tr>
-        <tr><td>June–August 2026 combined / swing contribution</td><td>+$5,837 / +$389</td></tr>
+        <tr><td>June–August 2026 combined / swing contribution</td><td>+$5,584.30 / +$400.30</td></tr>
       </tbody></table></div>
       <p class="small"><strong>Sequential sizing with capped overlap:</strong> New swing entries are skipped when aggregate contractual swing maximum risk would exceed 10% of current realized portfolio equity. Existing positions are never resized or replaced. Intraday sizing uses realized equity after open-position reservations; unrealized swing gains and entry premium are not sizing capital.</p>
       <p class="small"><strong>Methodology and risk:</strong> Current rules are replayed chronologically without future information using validated ThetaData/NBBO inputs and true overlapping-position accounting. Historical performance does not guarantee future results. Large-account execution capacity may differ materially from this $10,000 research sizing.</p>
@@ -631,6 +631,7 @@ function setTextIfExists(id, value) {
       <p class="small">Interest is modeled conservatively after excluding open-spread maximum-loss reservations and remaining costs. It accrues daily on the prior day’s eligible balance and is credited only on the last business day of each month. Uncredited interest cannot affect quantities.</p>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Cash-yield attribution</th><th>Result</th></tr></thead><tbody>
         <tr><td>Total credited interest</td><td id="interestTotal"></td></tr>
+        <tr><td>Accrued, not yet credited</td><td id="interestUncredited"></td></tr>
         <tr><td>Average eligible cash</td><td id="interestAverageCash"></td></tr>
         <tr><td>Average excluded reservation</td><td id="interestAverageReservation"></td></tr>
         <tr><td>Contract quantities changed after monthly credits</td><td id="interestQuantityChanges"></td></tr>
@@ -647,7 +648,7 @@ function setTextIfExists(id, value) {
 
   <script>
     let idleCashInterestData = null;
-    fetch("/data/alpaca_idle_cash_interest.json?v=20260824-daily-append", { cache: "no-store" })
+    fetch("/data/alpaca_idle_cash_interest.json?v=20260825-daily-append", { cache: "no-store" })
       .then(response => response.json())
       .then(data => { idleCashInterestData = data; })
       .catch(() => { document.getElementById("idleCashInterestToggle").disabled = true; });
@@ -659,16 +660,16 @@ function setTextIfExists(id, value) {
       showValidatedResearch();
     }
     function showValidatedResearch() {
-      let metrics = {"trades": "224 intraday · 159 swing entries", "pnl": 32196.6, "ending": 42196.6, "cagr": 48.85223657932436, "sharpe": 2.956983747041781, "max_dd": -10.313088595898945};
+      let metrics = {"trades": "225 intraday · 159 swing entries", "pnl": 31943.899999999994, "ending": 41943.899999999994, "cagr": 48.560925938608236, "sharpe": 2.9421276872432633, "max_dd": -10.313088595898945};
       const interestEnabled = document.getElementById("idleCashInterestToggle").checked && idleCashInterestData;
       const scenarioKey = "compounded_overlay";
       const interestScenario = interestEnabled ? idleCashInterestData[scenarioKey] : null;
       if (interestScenario) {
         const im = interestScenario.metrics;
-        metrics = {"trades": "224 intraday · 159 swing entries", "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct};
+        metrics = {"trades": "225 intraday · 159 swing entries", "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct};
       }
-      const normalChart = "/images/foxchase_spx_half_combined.svg?v=20260824-daily-append";
-      const interestChart = "/images/foxchase_spx_half_combined_interest_330.svg?v=20260824-daily-append";
+      const normalChart = "/images/foxchase_spx_half_combined.svg?v=20260825-daily-append";
+      const interestChart = "/images/foxchase_spx_half_combined_interest_330.svg?v=20260825-daily-append";
       document.getElementById("researchSizingChart").src = interestEnabled ? interestChart : normalChart;
       document.getElementById("researchSizingChart").alt = "Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns";
       document.getElementById("researchTradeCount").textContent = metrics.trades;
@@ -677,7 +678,7 @@ function setTextIfExists(id, value) {
       document.getElementById("researchCagr").textContent = metrics.cagr.toFixed(2) + "%";
       document.getElementById("researchSharpe").textContent = metrics.sharpe.toFixed(3);
       document.getElementById("researchMaxDrawdown").textContent = metrics.max_dd.toFixed(2) + "%";
-      document.getElementById("researchWinRate").textContent = "$25,559";
+      document.getElementById("researchWinRate").textContent = interestEnabled ? "$" + interestScenario.metrics.intraday_comparator_ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) : "$25,415";
       document.getElementById("researchAverageTrade").textContent = "10% aggregate";
       document.getElementById("researchProfitFactor").textContent = interestEnabled ? "3.30% hypothetical" : "Off";
       document.getElementById("researchRiskFramework").textContent = "Chronological";
@@ -688,12 +689,13 @@ function setTextIfExists(id, value) {
         const im = interestScenario.metrics;
         const money = value => (value >= 0 ? "+" : "-") + "$" + Math.abs(value).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
         document.getElementById("interestTotal").textContent = money(im.total_credited_interest);
+        document.getElementById("interestUncredited").textContent = money(im.accrued_uncredited_interest);
         document.getElementById("interestAverageCash").textContent = "$" + im.average_eligible_cash.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
         document.getElementById("interestAverageReservation").textContent = "$" + im.average_excluded_reservation.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
         document.getElementById("interestQuantityChanges").textContent = im.quantity_changes_from_interest;
         document.getElementById("interestTradePnlChange").textContent = money(im.subsequent_trade_pnl_change);
-        const baseEnding = 42196.60;
-        document.getElementById("interestReconciliation").textContent = "$" + baseEnding.toLocaleString("en-US", {minimumFractionDigits:2}) + " + " + money(im.total_credited_interest).replace("+", "") + " + " + money(im.subsequent_trade_pnl_change).replace("+", "") + " = $" + im.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+        const baseEnding = 41943.90;
+        document.getElementById("interestReconciliation").textContent = "$" + baseEnding.toLocaleString("en-US", {minimumFractionDigits:2}) + " + " + money(im.total_credited_interest).replace("+", "") + " + " + money(im.accrued_uncredited_interest).replace("+", "") + " + " + money(im.subsequent_trade_pnl_change).replace("+", "") + " = $" + im.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
         document.getElementById("interestSpyComparison").textContent = "SPY buy and hold is unchanged and receives no modeled cash interest.";
         document.getElementById("interestYearlyRows").innerHTML = interestScenario.yearly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
         document.getElementById("interestMonthlyRows").innerHTML = interestScenario.monthly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
