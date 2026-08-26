@@ -375,7 +375,7 @@
       <label class="planner-field"><span class="planner-label">Loss assumption</span><span class="planner-input-shell"><select id="riskBasis"><option value="full">Full premium (true max loss)</option><option value="stop" selected>Planned stop percentage</option><option value="custom">Custom dollar loss</option></select></span></label>
       <label class="planner-field" id="plannedStopField"><span class="planner-label">Planned loss as % of position size</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="20"><span class="planner-affix">%</span></span><span class="planner-help">For a long option, position size is the premium paid. This changes planned risk, not the grade’s contract cap.</span></label>
       <label class="planner-field"><span class="planner-label" id="perContractRiskLabel">Per-contract planned loss</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="perContractRisk" type="number" min="0.01" step="1" value="25" inputmode="decimal" disabled></span><span class="planner-help" id="riskBasisHelp">Planned loss: 20% of the $125 position cost. True max loss remains $125.</span></label>
-      <label class="planner-field"><span class="planner-label">Planned target option price</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="plannedTargetPrice" type="number" min="0.01" step="0.01" placeholder="Enter target" inputmode="decimal"></span><span class="planner-help">Set this from the actual trade thesis or structural target. The planner calculates R:R from this price; it does not create the target from an arbitrary R multiple.</span></label>
+      <p class="grade-explanation">The default OCO bracket is 1:1: the target gain matches the planned loss percentage. A modified 1:1 can be managed after the move proves continuation. <a href="/0dte-risk-reward.html">Read the 1:1 framework</a>.</p>
     </section>
 
     <section class="planner-card planner-result" aria-live="polite">
@@ -393,7 +393,7 @@
         <div class="planner-metric"><span>Premium cost / contract</span><strong id="premiumCost">$125</strong></div>
         <div class="planner-metric"><span>Full-premium max exposure</span><strong id="maxExposure">$4,500</strong></div>
         <div class="planner-metric"><span>Planned account risk</span><strong id="plannedAccountRisk">6.0%</strong></div>
-        <div class="planner-metric"><span>Resulting reward:risk</span><strong id="summaryRewardRisk">—</strong></div>
+        <div class="planner-metric"><span>Risk:reward framework</span><strong>1:1</strong></div>
       </div>
     </section>
   </div>
@@ -405,7 +405,7 @@
       <div class="oco-item"><span id="ocoContractsLabel">SPY contracts to load</span><strong id="ocoContracts">36</strong></div>
       <div class="oco-item"><span>Entry / ATM basis</span><strong id="ocoEntry">$1.25</strong></div>
       <div class="oco-item"><span>Planned stop</span><strong id="ocoStop">$1.00</strong></div>
-      <div class="oco-item"><span>Planned target</span><strong id="ocoTarget">—</strong></div>
+      <div class="oco-item"><span>1:1 target</span><strong id="ocoTarget">$1.50</strong></div>
     </div>
   </section>
 
@@ -427,7 +427,7 @@
       A: { deploymentPct: 30 },
       "A+": { deploymentPct: 50 }
     };
-    const ids = ["accountSize","deploymentPct","atmPremium","riskBasis","plannedLossPct","perContractRisk","plannedTargetPrice"];
+    const ids = ["accountSize","deploymentPct","atmPremium","riskBasis","plannedLossPct","perContractRisk"];
     const fields = Object.fromEntries(ids.map(function (id) { return [id, document.getElementById(id)]; }));
     let grade = "A";
     let symbol = "SPY";
@@ -448,9 +448,7 @@
       document.getElementById("perContractRiskLabel").textContent = riskBasis === "full" ? "Per-contract max loss" : "Per-contract planned loss";
       const premiumCost = premium * 100;
       const perContract = Math.min(premiumCost, Math.max(0, number(fields.perContractRisk)));
-      const hasTarget = fields.plannedTargetPrice.value !== "" && Number(fields.plannedTargetPrice.value) > premium;
-      const targetPrice = hasTarget ? Number(fields.plannedTargetPrice.value) : NaN;
-      const rewardRisk = hasTarget && perContract > 0 ? ((targetPrice - premium) * 100) / perContract : NaN;
+      const targetPrice = premium + perContract / 100;
       const riskBudget = account * deploymentPct / 100;
       const contracts = premiumCost > 0 ? Math.max(0, Math.floor(riskBudget / premiumCost)) : 0;
       const totalRisk = contracts * perContract;
@@ -467,7 +465,6 @@
       document.getElementById("premiumCost").textContent = money(premiumCost);
       document.getElementById("maxExposure").textContent = money(maxExposure);
       document.getElementById("plannedAccountRisk").textContent = plannedAccountRisk.toFixed(1) + "%";
-      document.getElementById("summaryRewardRisk").textContent = Number.isFinite(rewardRisk) ? rewardRisk.toFixed(2) + "R" : "—";
       const isPreset = Math.abs(deploymentPct - rule.deploymentPct) < 0.001;
       document.getElementById("gradeExplanation").textContent = grade + " loads the existing " + rule.deploymentPct.toFixed(0) + "% position preset. " + (isPreset ? "Using that preset" : "Your current override is " + deploymentPct.toFixed(0) + "%") + ", modeled account risk is about " + plannedAccountRisk.toFixed(1) + "% at the displayed contract count.";
       document.getElementById("riskBasisHelp").textContent = riskBasis === "full"
@@ -480,7 +477,7 @@
       document.getElementById("ocoEntry").textContent = "$" + premium.toFixed(2);
       const stopPrice = riskBasis === "full" ? 0 : Math.max(0, premium - perContract / 100);
       document.getElementById("ocoStop").textContent = "$" + stopPrice.toFixed(2);
-      document.getElementById("ocoTarget").textContent = Number.isFinite(targetPrice) ? "$" + targetPrice.toFixed(2) : "—";
+      document.getElementById("ocoTarget").textContent = "$" + targetPrice.toFixed(2);
     }
 
     document.querySelectorAll(".grade-button").forEach(function (button) {
