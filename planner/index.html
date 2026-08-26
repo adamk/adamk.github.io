@@ -249,7 +249,7 @@
   :root { --planner-ink:#111827; --planner-muted:#64748b; --planner-line:#dce3ea; --planner-amber:#b45309; }
   #planner-app, #planner-app * { box-sizing:border-box; }
   #planner-app { width:min(100% - 32px, 980px); margin:0 auto; padding:48px 0 64px; color:var(--planner-ink); font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-  #planner-app button, #planner-app input { font:inherit; }
+  #planner-app button, #planner-app input, #planner-app select { font:inherit; }
   .planner-eyebrow { display:inline-block; margin-bottom:12px; padding:6px 11px; border-radius:999px; background:#fef3c7; color:#92400e; font-size:.78rem; font-weight:750; letter-spacing:.07em; text-transform:uppercase; }
   #planner-app h1 { margin:0; font-size:clamp(2rem,5vw,3.65rem); line-height:1.05; letter-spacing:-.045em; }
   .planner-intro { max-width:650px; margin:14px 0 28px; color:var(--planner-muted); font-size:1.05rem; line-height:1.65; }
@@ -258,13 +258,17 @@
   .planner-inputs, .planner-oco { padding:24px; }
   .planner-card h2 { margin:0 0 20px; font-size:1.18rem; }
   .planner-field { display:block; margin-top:18px; }
+  .planner-field[hidden] { display:none !important; }
   .planner-field:first-of-type { margin-top:0; }
   .planner-label { display:block; margin-bottom:7px; color:#334155; font-size:.9rem; font-weight:700; }
+  .planner-help { display:block; margin-top:6px; color:var(--planner-muted); font-size:.78rem; line-height:1.45; }
   .planner-input-shell { display:flex; align-items:center; border:1px solid #cbd5e1; border-radius:12px; background:#fff; overflow:hidden; }
   .planner-input-shell:focus-within { border-color:#d97706; box-shadow:0 0 0 3px rgba(217,119,6,.13); }
   .planner-affix { padding:0 12px; color:#64748b; font-weight:650; }
-  #planner-app input { width:100%; min-width:0; border:0; outline:0; padding:12px 13px; color:#0f172a; background:#fff; }
+  #planner-app input, #planner-app select { width:100%; min-width:0; border:0; outline:0; padding:12px 13px; color:#0f172a; background:#fff; }
+  #planner-app input:disabled { color:#475569; background:#f8fafc; }
   .grade-picker { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .symbol-picker { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
   .grade-button { padding:12px; border:1px solid #cbd5e1; border-radius:11px; background:#fff; color:#334155; font-weight:750; cursor:pointer; }
   .grade-button:hover { background:#f8fafc; }
   .grade-button.active { border-color:#111827; background:#111827; color:#fff; }
@@ -276,8 +280,8 @@
   .planner-support { display:grid; grid-template-columns:1fr 1fr; padding:8px 24px 18px; }
   .planner-metric { padding:14px 4px; border-bottom:1px solid #eef2f6; }
   .planner-metric:nth-last-child(-n+2) { border-bottom:0; }
-  .planner-metric span, .oco-item span, .advanced-result span { display:block; color:var(--planner-muted); font-size:.74rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
-  .planner-metric strong, .oco-item strong, .advanced-result strong { display:block; margin-top:4px; }
+  .planner-metric span, .oco-item span { display:block; color:var(--planner-muted); font-size:.74rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+  .planner-metric strong, .oco-item strong { display:block; margin-top:4px; }
   .planner-oco { margin-top:20px; }
   .planner-oco h2 { margin-bottom:5px; }
   .oco-copy { margin:0 0 18px; color:var(--planner-muted); font-size:.9rem; }
@@ -285,17 +289,6 @@
   .oco-item { min-width:0; padding:15px; border-right:1px solid var(--planner-line); }
   .oco-item:last-child { border-right:0; }
   .oco-item strong { font-size:1.25rem; overflow-wrap:anywhere; }
-  .planner-details { margin-top:20px; background:#fff; border:1px solid var(--planner-line); border-radius:18px; }
-  .planner-details summary { padding:18px 22px; cursor:pointer; font-weight:750; list-style:none; }
-  .planner-details summary::-webkit-details-marker { display:none; }
-  .planner-details summary::after { content:"+"; float:right; color:var(--planner-amber); font-size:1.2rem; }
-  .planner-details[open] summary::after { content:"−"; }
-  .advanced-content { padding:2px 22px 24px; border-top:1px solid #eef2f6; }
-  .advanced-intro { color:var(--planner-muted); font-size:.9rem; line-height:1.55; }
-  .advanced-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 18px; }
-  .advanced-results { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:22px; }
-  .advanced-result { padding:14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; }
-  .planner-note { margin:18px 0 0; padding:14px 16px; border-left:3px solid #f59e0b; background:#fff7ed; color:#7c2d12; font-size:.86rem; line-height:1.55; }
   @media (max-width:760px) {
     #planner-app { width:min(100% - 24px,980px); padding:32px 0 48px; }
     .planner-grid { grid-template-columns:1fr; }
@@ -305,7 +298,6 @@
     .oco-item { border-bottom:1px solid var(--planner-line); }
     .oco-item:nth-child(2) { border-right:0; }
     .oco-item:nth-last-child(-n+2) { border-bottom:0; }
-    .advanced-grid,.advanced-results { grid-template-columns:1fr; }
   }
 </style>
 
@@ -358,6 +350,18 @@
       <h2 id="sizing-title">Position sizing</h2>
       <label class="planner-field"><span class="planner-label">Account size</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="accountSize" type="number" min="0" step="100" value="15000" inputmode="decimal"></span></label>
       <div class="planner-field">
+        <span class="planner-label">Contract type</span>
+        <div class="symbol-picker" role="group" aria-label="Contract type">
+          <button class="grade-button symbol-button active" type="button" data-symbol="SPY">SPY</button>
+          <button class="grade-button symbol-button" type="button" data-symbol="SPX">SPX</button>
+        </div>
+      </div>
+      <label class="planner-field">
+        <span class="planner-label" id="premiumLabel">SPY ATM option premium (quoted)</span>
+        <span class="planner-input-shell"><span class="planner-affix">$</span><input id="atmPremium" type="number" min="0.01" step="0.01" value="1.25" inputmode="decimal"></span>
+        <span class="planner-help">Use the current at-the-money premium for the expiration and option type you plan to trade.</span>
+      </label>
+      <div class="planner-field">
         <span class="planner-label">Setup grade</span>
         <div class="grade-picker" role="group" aria-label="Setup grade">
           <button class="grade-button" type="button" data-grade="B">B</button>
@@ -365,20 +369,24 @@
           <button class="grade-button" type="button" data-grade="A+">A+</button>
         </div>
       </div>
-      <label class="planner-field"><span class="planner-label">Per-contract planned / max loss</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="perContractRisk" type="number" min="0.01" step="1" value="270" inputmode="decimal"></span></label>
+      <label class="planner-field"><span class="planner-label">Loss basis for sizing</span><span class="planner-input-shell"><select id="riskBasis"><option value="full">Full premium (true max loss)</option><option value="stop">Planned stop percentage</option><option value="custom">Custom dollar loss</option></select></span></label>
+      <label class="planner-field" id="plannedStopField" hidden><span class="planner-label">Planned loss as % of premium</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="50"><span class="planner-affix">%</span></span><span class="planner-help">This is planned risk only. An OCO stop can slip or fail to fill at the intended price.</span></label>
+      <label class="planner-field"><span class="planner-label" id="perContractRiskLabel">Per-contract max loss</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="perContractRisk" type="number" min="0.01" step="1" value="125" inputmode="decimal" disabled></span><span class="planner-help" id="riskBasisHelp">Full-premium max loss: $1.25 × 100 shares = $125 per contract.</span></label>
     </section>
 
     <section class="planner-card planner-result" aria-live="polite">
       <div class="planner-hero-result">
-        <div class="planner-result-label">Recommended Contracts</div>
-        <div class="contract-count" id="recommendedContracts">16</div>
-        <div class="contract-caption" id="contractCaption">contracts to load</div>
+        <div class="planner-result-label" id="recommendationLabel">Recommended SPY Contracts</div>
+        <div class="contract-count" id="recommendedContracts">36</div>
+        <div class="contract-caption" id="contractCaption">SPY contracts to load</div>
       </div>
       <div class="planner-support">
         <div class="planner-metric"><span>Setup grade</span><strong id="summaryGrade">A</strong></div>
         <div class="planner-metric"><span>Risk budget used</span><strong id="riskBudget">$4,500</strong></div>
-        <div class="planner-metric"><span>Estimated total planned risk</span><strong id="totalRisk">$4,320</strong></div>
-        <div class="planner-metric"><span>Per-contract risk</span><strong id="summaryPerContract">$270</strong></div>
+        <div class="planner-metric"><span>Estimated total planned risk</span><strong id="totalRisk">$4,500</strong></div>
+        <div class="planner-metric"><span>Per-contract risk</span><strong id="summaryPerContract">$125</strong></div>
+        <div class="planner-metric"><span>ATM premium basis</span><strong id="premiumBasis">SPY $1.25</strong></div>
+        <div class="planner-metric"><span>Premium cost / contract</span><strong id="premiumCost">$125</strong></div>
       </div>
     </section>
   </div>
@@ -387,51 +395,13 @@
     <h2 id="oco-title">OCO Order Size</h2>
     <p class="oco-copy">Use the contract quantity for each linked order leg in your custom OCO template.</p>
     <div class="oco-grid">
-      <div class="oco-item"><span>Contracts to load</span><strong id="ocoContracts">16</strong></div>
-      <div class="oco-item"><span>Entry</span><strong id="ocoEntry">—</strong></div>
+      <div class="oco-item"><span id="ocoContractsLabel">SPY contracts to load</span><strong id="ocoContracts">36</strong></div>
+      <div class="oco-item"><span>Entry / ATM basis</span><strong id="ocoEntry">$1.25</strong></div>
       <div class="oco-item"><span>Stop</span><strong id="ocoStop">—</strong></div>
       <div class="oco-item"><span>Target</span><strong id="ocoTarget">—</strong></div>
     </div>
   </section>
 
-  <details class="planner-details">
-    <summary>Show Details / Advanced</summary>
-    <div class="advanced-content">
-      <p class="advanced-intro">Optional order prices and the planner’s secondary expectancy, drawdown, and portfolio assumptions live here so they do not slow down live sizing.</p>
-      <div class="advanced-grid">
-        <label class="planner-field"><span class="planner-label">Entry price / credit</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="entryPrice" type="number" min="0" step="0.01" placeholder="Optional" inputmode="decimal"></span></label>
-        <label class="planner-field"><span class="planner-label">Stop price / debit</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="stopPrice" type="number" min="0" step="0.01" placeholder="Optional" inputmode="decimal"></span></label>
-        <label class="planner-field"><span class="planner-label">Target price / debit</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="targetPrice" type="number" min="0" step="0.01" placeholder="Optional" inputmode="decimal"></span></label>
-        <label class="planner-field"><span class="planner-label">Spread width</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="spreadWidth" type="number" min="0.5" step="0.5" value="3"></span></label>
-        <label class="planner-field"><span class="planner-label">Entry credit for spread math</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="spreadCredit" type="number" min="0.01" step="0.01" value="0.30"></span></label>
-        <label class="planner-field"><span class="planner-label">Stop debit multiple</span><span class="planner-input-shell"><input id="stopMultiple" type="number" min="1.1" step="0.1" value="2"><span class="planner-affix">×</span></span></label>
-        <label class="planner-field"><span class="planner-label">Win rate</span><span class="planner-input-shell"><input id="winRate" type="number" min="1" max="99" step="1" value="70"><span class="planner-affix">%</span></span></label>
-        <label class="planner-field"><span class="planner-label">Stop on option position</span><span class="planner-input-shell"><input id="stopPct" type="number" min="1" max="100" step="1" value="20"><span class="planner-affix">%</span></span></label>
-        <label class="planner-field"><span class="planner-label">Target on option position</span><span class="planner-input-shell"><input id="targetPct" type="number" min="1" max="300" step="1" value="20"><span class="planner-affix">%</span></span></label>
-        <label class="planner-field"><span class="planner-label">Trades per day</span><span class="planner-input-shell"><input id="tradesPerDay" type="number" min="1" max="10" step="1" value="2"></span></label>
-        <label class="planner-field"><span class="planner-label">Max daily capital usage</span><span class="planner-input-shell"><input id="dailyUsage" type="number" min="1" max="400" step="1" value="100"><span class="planner-affix">%</span></span></label>
-        <label class="planner-field"><span class="planner-label">Daily income goal</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="dailyGoal" type="number" min="0" step="100" value="1800"></span></label>
-        <label class="planner-field"><span class="planner-label">Max acceptable drawdown</span><span class="planner-input-shell"><input id="maxDrawdown" type="number" min="1" max="99" step="1" value="25"><span class="planner-affix">%</span></span></label>
-        <label class="planner-field"><span class="planner-label">Losing streak to model</span><span class="planner-input-shell"><input id="losingStreak" type="number" min="2" max="10" step="1" value="5"></span></label>
-        <label class="planner-field"><span class="planner-label">Target account</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="targetAccount" type="number" min="0" step="1000" value="25000"></span></label>
-      </div>
-      <div class="advanced-results">
-        <div class="advanced-result"><span>Account risk / trade</span><strong id="accountRiskPct">6.0%</strong></div>
-        <div class="advanced-result"><span>Expectancy</span><strong id="expectancyR">0.40R</strong></div>
-        <div class="advanced-result"><span>Breakeven win rate</span><strong id="breakeven">50.0%</strong></div>
-        <div class="advanced-result"><span>Mode</span><strong id="modeLabel">Balanced / transition</strong></div>
-        <div class="advanced-result"><span>Modeled streak drawdown</span><strong id="streakDrawdown">26.6%</strong></div>
-        <div class="advanced-result"><span>Recovery required</span><strong id="recoveryRequired">36.2%</strong></div>
-        <div class="advanced-result"><span>Expected $ / trade</span><strong id="expectancyDollars">$1,800</strong></div>
-        <div class="advanced-result"><span>Effective trades / day</span><strong id="effectiveTrades">2</strong></div>
-        <div class="advanced-result"><span>Profit to target</span><strong id="profitToTarget">$10,000</strong></div>
-        <div class="advanced-result"><span>Planned loss / spread</span><strong id="plannedSpreadLoss">$30</strong></div>
-        <div class="advanced-result"><span>Absolute max loss / spread</span><strong id="absoluteSpreadLoss">$270</strong></div>
-        <div class="advanced-result"><span>Credit as % of width</span><strong id="creditWidthPct">10.0%</strong></div>
-      </div>
-      <p class="planner-note">Contract quantity is intentionally rounded down. The entered per-contract loss should reflect the loss limit you are actually willing to plan around; fast 0DTE markets can gap through an intended stop.</p>
-    </div>
-  </details>
 </main>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -450,72 +420,67 @@
       A: { deploymentPct: 30, targetPct: 20, tradesPerDay: 2 },
       "A+": { deploymentPct: 50, targetPct: 40, tradesPerDay: 1 }
     };
-    const ids = ["accountSize","perContractRisk","entryPrice","stopPrice","targetPrice","spreadWidth","spreadCredit","stopMultiple","winRate","stopPct","targetPct","tradesPerDay","dailyUsage","dailyGoal","maxDrawdown","losingStreak","targetAccount"];
+    const ids = ["accountSize","atmPremium","riskBasis","plannedLossPct","perContractRisk"];
     const fields = Object.fromEntries(ids.map(function (id) { return [id, document.getElementById(id)]; }));
     let grade = "A";
+    let symbol = "SPY";
     const money = function (value) { return new Intl.NumberFormat("en-US", { style:"currency", currency:"USD", maximumFractionDigits:0 }).format(Number.isFinite(value) ? value : 0); };
     const number = function (field, fallback) { const value = Number(field.value); return Number.isFinite(value) ? value : (fallback || 0); };
-    const percent = function (value) { return (Number.isFinite(value) ? value : 0).toFixed(1) + "%"; };
-    const optionalPrice = function (field) { return field.value === "" ? "—" : "$" + Number(field.value).toFixed(2); };
 
     function update() {
       const rule = gradeRules[grade];
       const account = Math.max(0, number(fields.accountSize));
+      const premium = Math.max(0, number(fields.atmPremium));
+      const riskBasis = fields.riskBasis.value;
+      const plannedLossPct = Math.min(100, Math.max(0, number(fields.plannedLossPct, 50)));
+      if (riskBasis === "full") fields.perContractRisk.value = Math.round(premium * 100);
+      if (riskBasis === "stop") fields.perContractRisk.value = Math.round(premium * 100 * plannedLossPct / 100);
+      fields.perContractRisk.disabled = riskBasis !== "custom";
+      document.getElementById("plannedStopField").hidden = riskBasis !== "stop";
+      document.getElementById("perContractRiskLabel").textContent = riskBasis === "full" ? "Per-contract max loss" : "Per-contract planned loss";
       const perContract = Math.max(0, number(fields.perContractRisk));
       const riskBudget = account * rule.deploymentPct / 100;
       const contracts = perContract > 0 ? Math.max(0, Math.floor(riskBudget / perContract)) : 0;
       const totalRisk = contracts * perContract;
       document.getElementById("recommendedContracts").textContent = contracts;
-      document.getElementById("contractCaption").textContent = contracts === 1 ? "contract to load" : "contracts to load";
+      document.getElementById("recommendationLabel").textContent = "Recommended " + symbol + " Contracts";
+      document.getElementById("contractCaption").textContent = symbol + (contracts === 1 ? " contract to load" : " contracts to load");
       document.getElementById("summaryGrade").textContent = grade;
       document.getElementById("riskBudget").textContent = money(riskBudget);
       document.getElementById("totalRisk").textContent = money(totalRisk);
       document.getElementById("summaryPerContract").textContent = money(perContract);
+      document.getElementById("premiumBasis").textContent = symbol + " $" + premium.toFixed(2);
+      document.getElementById("premiumCost").textContent = money(premium * 100);
+      document.getElementById("riskBasisHelp").textContent = riskBasis === "full"
+        ? "Full-premium max loss: $" + premium.toFixed(2) + " × 100 shares = " + money(perContract) + " per contract."
+        : riskBasis === "stop"
+          ? "Planned loss: " + plannedLossPct.toFixed(0) + "% of the " + money(premium * 100) + " premium cost. True max loss remains " + money(premium * 100) + "."
+          : "Custom sizing loss entered manually. For a long option, true max loss remains the full " + money(premium * 100) + " premium paid.";
       document.getElementById("ocoContracts").textContent = contracts;
-      document.getElementById("ocoEntry").textContent = optionalPrice(fields.entryPrice);
-      document.getElementById("ocoStop").textContent = optionalPrice(fields.stopPrice);
-      document.getElementById("ocoTarget").textContent = optionalPrice(fields.targetPrice);
-
-      const winRate = number(fields.winRate, 70);
-      const stopPct = number(fields.stopPct, 20);
-      const targetPct = number(fields.targetPct, rule.targetPct);
-      const tradesPerDay = number(fields.tradesPerDay, rule.tradesPerDay);
-      const dailyUsage = number(fields.dailyUsage, 100);
-      const streak = number(fields.losingStreak, 5);
-      const accountRisk = rule.deploymentPct * stopPct / 100;
-      const rewardRisk = stopPct > 0 ? targetPct / stopPct : 0;
-      const expectancyR = winRate / 100 * rewardRisk - (100 - winRate) / 100;
-      const breakeven = rewardRisk > 0 ? 100 / (1 + rewardRisk) : 0;
-      const accountLeftPct = Math.pow(1 - accountRisk / 100, streak) * 100;
-      const drawdown = 100 - accountLeftPct;
-      const recovery = accountLeftPct > 0 ? (100 / accountLeftPct - 1) * 100 : Infinity;
-      const expectancyPct = winRate / 100 * (rule.deploymentPct * targetPct / 100) - (100 - winRate) / 100 * accountRisk;
-      const supportedTrades = rule.deploymentPct > 0 ? Math.floor(dailyUsage / rule.deploymentPct) : 0;
-      const spreadWidth = Math.max(0, number(fields.spreadWidth));
-      const spreadCredit = Math.min(spreadWidth, Math.max(0, number(fields.spreadCredit)));
-      const plannedDebit = Math.min(spreadWidth, spreadCredit * Math.max(0, number(fields.stopMultiple)));
-      document.getElementById("accountRiskPct").textContent = percent(accountRisk);
-      document.getElementById("expectancyR").textContent = expectancyR.toFixed(2) + "R";
-      document.getElementById("breakeven").textContent = percent(breakeven);
-      document.getElementById("modeLabel").textContent = rule.deploymentPct >= 50 ? "Growth mode / aggressive" : rule.deploymentPct >= 25 ? "Balanced / transition" : "Income-preservation mode";
-      document.getElementById("streakDrawdown").textContent = percent(drawdown);
-      document.getElementById("recoveryRequired").textContent = Number.isFinite(recovery) ? percent(recovery) : "N/A";
-      document.getElementById("expectancyDollars").textContent = money(account * expectancyPct / 100);
-      document.getElementById("effectiveTrades").textContent = Math.min(tradesPerDay, supportedTrades);
-      document.getElementById("profitToTarget").textContent = money(Math.max(0, number(fields.targetAccount) - account));
-      document.getElementById("plannedSpreadLoss").textContent = money(Math.max(0, (plannedDebit - spreadCredit) * 100));
-      document.getElementById("absoluteSpreadLoss").textContent = money(Math.max(0, (spreadWidth - spreadCredit) * 100));
-      document.getElementById("creditWidthPct").textContent = percent(spreadWidth > 0 ? spreadCredit / spreadWidth * 100 : 0);
+      document.getElementById("ocoContractsLabel").textContent = symbol + " contracts to load";
+      document.getElementById("ocoEntry").textContent = "$" + premium.toFixed(2);
     }
 
     document.querySelectorAll(".grade-button").forEach(function (button) {
+      if (button.classList.contains("symbol-button")) return;
       button.addEventListener("click", function () {
         grade = button.dataset.grade;
         document.querySelectorAll(".grade-button").forEach(function (item) { item.classList.toggle("active", item === button); });
-        fields.targetPct.value = gradeRules[grade].targetPct;
-        fields.tradesPerDay.value = gradeRules[grade].tradesPerDay;
         update();
       });
+    });
+    document.querySelectorAll(".symbol-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        symbol = button.dataset.symbol;
+        const premium = symbol === "SPY" ? 1.25 : 12.50;
+        fields.atmPremium.value = premium.toFixed(2);
+        document.getElementById("premiumLabel").textContent = symbol + " ATM option premium (quoted)";
+        document.querySelectorAll(".symbol-button").forEach(function (item) { item.classList.toggle("active", item === button); });
+        update();
+      });
+    });
+    fields.atmPremium.addEventListener("input", function () {
+      update();
     });
     ids.forEach(function (id) { fields[id].addEventListener("input", update); });
     update();
