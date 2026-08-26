@@ -371,6 +371,7 @@
         </div>
         <p class="grade-explanation" id="gradeExplanation">A allows up to 30% of account equity as position cost. At a 20% planned stop, modeled account risk is about 6%.</p>
       </div>
+      <label class="planner-field"><span class="planner-label">Position budget (% of account)</span><span class="planner-input-shell"><input id="deploymentPct" type="number" min="1" max="100" step="1" value="30"><span class="planner-affix">%</span></span><span class="planner-help">The grade loads the existing Foxchase preset, but this value is editable for income preservation or small-account growth.</span></label>
       <label class="planner-field"><span class="planner-label">Loss assumption</span><span class="planner-input-shell"><select id="riskBasis"><option value="full">Full premium (true max loss)</option><option value="stop" selected>Planned stop percentage</option><option value="custom">Custom dollar loss</option></select></span></label>
       <label class="planner-field" id="plannedStopField"><span class="planner-label">Planned loss as % of position size</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="20"><span class="planner-affix">%</span></span><span class="planner-help">For a long option, position size is the premium paid. This changes planned risk, not the grade’s contract cap.</span></label>
       <label class="planner-field"><span class="planner-label" id="perContractRiskLabel">Per-contract planned loss</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="perContractRisk" type="number" min="0.01" step="1" value="25" inputmode="decimal" disabled></span><span class="planner-help" id="riskBasisHelp">Planned loss: 20% of the $125 position cost. True max loss remains $125.</span></label>
@@ -384,7 +385,7 @@
       </div>
       <div class="planner-support">
         <div class="planner-metric"><span>Setup grade</span><strong id="summaryGrade">A</strong></div>
-        <div class="planner-metric"><span>Grade position budget</span><strong id="riskBudget">$4,500</strong></div>
+        <div class="planner-metric"><span>Current position budget</span><strong id="riskBudget">$4,500</strong></div>
         <div class="planner-metric"><span>Estimated total planned risk</span><strong id="totalRisk">$900</strong></div>
         <div class="planner-metric"><span>Per-contract planned risk</span><strong id="summaryPerContract">$25</strong></div>
         <div class="planner-metric"><span>ATM premium basis</span><strong id="premiumBasis">SPY $1.25</strong></div>
@@ -424,7 +425,7 @@
       A: { deploymentPct: 30, targetPct: 20, tradesPerDay: 2 },
       "A+": { deploymentPct: 50, targetPct: 40, tradesPerDay: 1 }
     };
-    const ids = ["accountSize","atmPremium","riskBasis","plannedLossPct","perContractRisk"];
+    const ids = ["accountSize","deploymentPct","atmPremium","riskBasis","plannedLossPct","perContractRisk"];
     const fields = Object.fromEntries(ids.map(function (id) { return [id, document.getElementById(id)]; }));
     let grade = "A";
     let symbol = "SPY";
@@ -434,6 +435,7 @@
     function update() {
       const rule = gradeRules[grade];
       const account = Math.max(0, number(fields.accountSize));
+      const deploymentPct = Math.min(100, Math.max(0, number(fields.deploymentPct, rule.deploymentPct)));
       const premium = Math.max(0, number(fields.atmPremium));
       const riskBasis = fields.riskBasis.value;
       const plannedLossPct = Math.min(100, Math.max(0, number(fields.plannedLossPct, 20)));
@@ -444,7 +446,7 @@
       document.getElementById("perContractRiskLabel").textContent = riskBasis === "full" ? "Per-contract max loss" : "Per-contract planned loss";
       const premiumCost = premium * 100;
       const perContract = Math.min(premiumCost, Math.max(0, number(fields.perContractRisk)));
-      const riskBudget = account * rule.deploymentPct / 100;
+      const riskBudget = account * deploymentPct / 100;
       const contracts = premiumCost > 0 ? Math.max(0, Math.floor(riskBudget / premiumCost)) : 0;
       const totalRisk = contracts * perContract;
       const maxExposure = contracts * premiumCost;
@@ -460,7 +462,8 @@
       document.getElementById("premiumCost").textContent = money(premiumCost);
       document.getElementById("maxExposure").textContent = money(maxExposure);
       document.getElementById("plannedAccountRisk").textContent = plannedAccountRisk.toFixed(1) + "%";
-      document.getElementById("gradeExplanation").textContent = grade + " allows up to " + rule.deploymentPct.toFixed(0) + "% of account equity as position cost. Under this loss assumption, modeled account risk is about " + plannedAccountRisk.toFixed(1) + "% at the displayed contract count.";
+      const isPreset = Math.abs(deploymentPct - rule.deploymentPct) < 0.001;
+      document.getElementById("gradeExplanation").textContent = grade + " loads the existing " + rule.deploymentPct.toFixed(0) + "% position preset. " + (isPreset ? "Using that preset" : "Your current override is " + deploymentPct.toFixed(0) + "%") + ", modeled account risk is about " + plannedAccountRisk.toFixed(1) + "% at the displayed contract count.";
       document.getElementById("riskBasisHelp").textContent = riskBasis === "full"
         ? "Full-premium max loss: $" + premium.toFixed(2) + " × 100 shares = " + money(perContract) + " per contract."
         : riskBasis === "stop"
@@ -479,6 +482,7 @@
       if (button.classList.contains("symbol-button")) return;
       button.addEventListener("click", function () {
         grade = button.dataset.grade;
+        fields.deploymentPct.value = gradeRules[grade].deploymentPct;
         document.querySelectorAll(".grade-button").forEach(function (item) { item.classList.toggle("active", item === button); });
         update();
       });
