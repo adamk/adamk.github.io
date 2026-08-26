@@ -370,7 +370,7 @@
         </div>
       </div>
       <label class="planner-field"><span class="planner-label">Loss basis for sizing</span><span class="planner-input-shell"><select id="riskBasis"><option value="full">Full premium (true max loss)</option><option value="stop">Planned stop percentage</option><option value="custom">Custom dollar loss</option></select></span></label>
-      <label class="planner-field" id="plannedStopField" hidden><span class="planner-label">Planned loss as % of premium</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="50"><span class="planner-affix">%</span></span><span class="planner-help">This is planned risk only. An OCO stop can slip or fail to fill at the intended price.</span></label>
+      <label class="planner-field" id="plannedStopField" hidden><span class="planner-label">Planned loss as % of position size</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="50"><span class="planner-affix">%</span></span><span class="planner-help">For a long option, position size is the premium paid. This is planned risk only; an OCO stop can slip or fail to fill at the intended price.</span></label>
       <label class="planner-field"><span class="planner-label" id="perContractRiskLabel">Per-contract max loss</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="perContractRisk" type="number" min="0.01" step="1" value="125" inputmode="decimal" disabled></span><span class="planner-help" id="riskBasisHelp">Full-premium max loss: $1.25 × 100 shares = $125 per contract.</span></label>
     </section>
 
@@ -454,7 +454,7 @@
       document.getElementById("riskBasisHelp").textContent = riskBasis === "full"
         ? "Full-premium max loss: $" + premium.toFixed(2) + " × 100 shares = " + money(perContract) + " per contract."
         : riskBasis === "stop"
-          ? "Planned loss: " + plannedLossPct.toFixed(0) + "% of the " + money(premium * 100) + " premium cost. True max loss remains " + money(premium * 100) + "."
+          ? "Planned loss: " + plannedLossPct.toFixed(0) + "% of the " + money(premium * 100) + " position cost. True max loss remains " + money(premium * 100) + "."
           : "Custom sizing loss entered manually. For a long option, true max loss remains the full " + money(premium * 100) + " premium paid.";
       document.getElementById("ocoContracts").textContent = contracts;
       document.getElementById("ocoContractsLabel").textContent = symbol + " contracts to load";
