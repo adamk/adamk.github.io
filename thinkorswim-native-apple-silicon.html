@@ -85,7 +85,7 @@
       <section class="mb-4">
         <h2 class="h4">What this solves</h2>
         <p>Thinkorswim's outer macOS launcher may appear as Intel software, even when the trading platform itself runs natively on Apple Silicon. These checks identify the architecture of the long-running Java process that does the actual work.</p>
-        <div class="guide-callout"><strong>Current result:</strong> the current Thinkorswim build launched normally from Applications and started its bundled ARM64 <code>java-arm</code> process. No separate JDK or shell launcher was required.</div>
+        <div class="guide-callout"><strong>Current result:</strong> on the current Thinkorswim build, a normal launch from Applications automatically starts the bundled ARM64 <code>java-arm</code> runtime. No external JDK, <code>JAVA_HOME</code> override, or custom shell launcher is required.</div>
       </section>
 
       <section class="mb-4">
@@ -102,7 +102,10 @@
         <p>Check the Mac's CPU architecture:</p>
         <pre><code>uname -m</code></pre>
         <p><code>arm64</code> means Apple Silicon. <code>x86_64</code> means Intel. Intel Mac users should install and launch Thinkorswim normally; an ARM64 process is neither expected nor compatible there.</p>
-        <p class="mb-0">“Native” here means the main Thinkorswim Java process and its architecture-specific components run as ARM64. The small outer <code>JavaApplicationStub</code> can remain Intel-only and briefly use Rosetta during startup without putting the full platform under Rosetta.</p>
+        <p>“Native” here means the main, long-running Thinkorswim Java process and its architecture-specific components run as ARM64. The outer install4j launcher or bootstrap may still appear as Intel or <code>x86_64</code>. That does not mean the main trading platform is running under Rosetta.</p>
+        <p class="mb-0">Thinkorswim's startup path is best understood as:</p>
+        <pre><code>Intel/install4j launcher/bootstrap → bundled ARM64 java-arm runtime</code></pre>
+        <p class="mb-0">It is not one bundled JRE switching to a separate ARM JRE. The bundled installation contains the <code>java-arm</code> executable that becomes the important long-running process.</p>
       </section>
 
       <section class="mb-4">
@@ -120,6 +123,20 @@
       </section>
 
       <section class="mb-4">
+        <h2 class="h4">Verified result on an M5 Mac</h2>
+        <p>A normal launch from Applications produced the following results:</p>
+        <ul>
+          <li>Bundled runtime: <code>/Applications/thinkorswim/.install4j/jre.bundle/Contents/Home/bin/java-arm</code></li>
+          <li>OpenJDK runtime: Azul Zulu 21.0.5</li>
+          <li>The bundled release file reports <code>OS_ARCH="aarch64"</code>.</li>
+          <li><code>file</code> reports <code>Mach-O 64-bit executable arm64</code>.</li>
+          <li>The JVM's internal version reports <code>bsd-aarch64</code>.</li>
+          <li>The live Thinkorswim process uses that bundled <code>java-arm</code> binary.</li>
+        </ul>
+        <p class="mb-0">These checks verify the architecture of the actual platform runtime, not merely the installer or app wrapper.</p>
+      </section>
+
+      <section class="mb-4">
         <h2 class="h4">How to verify native ARM64 execution</h2>
         <p>With Thinkorswim running after a normal app launch, use:</p>
         <pre><code>TOS_JAVA="/Applications/thinkorswim/.install4j/jre.bundle/Contents/Home/bin/java-arm"
@@ -129,14 +146,30 @@ grep -E 'JAVA_VERSION|OS_ARCH' \
 file "$TOS_JAVA"
 "$TOS_JAVA" -Xinternalversion 2&gt;&amp;1 | head -1
 pgrep -f "$TOS_JAVA" | head -1 | xargs -I{} ps -p {} -o comm=</code></pre>
-        <p>You want <code>OS_ARCH="aarch64"</code>, a Mach-O <code>arm64</code> executable, and a live process path ending in <code>java-arm</code>. On the verified normal launch, Thinkorswim used bundled Zulu 21.0.5 and selected ARM BookMap, JxBrowser, and VLC components.</p>
-        <div class="guide-note"><strong>Do not rely only on Finder's “Kind” field for the outer app.</strong> The install4j stub and the actual Java process are separate executables. Verify the running Java path shown above.</div>
+        <p>You want <code>OS_ARCH="aarch64"</code>, a Mach-O <code>arm64</code> executable, an internal JVM architecture of <code>bsd-aarch64</code>, and a live process path ending in <code>java-arm</code>. On the verified normal launch, Thinkorswim used bundled Zulu 21.0.5 and selected ARM BookMap, JxBrowser, and VLC components.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Why you may still see “Application (Intel)”</h2>
+        <p>Finder may classify the outer Thinkorswim app or launcher as Intel even though the actual trading platform runs on the bundled ARM64 Java runtime. The install4j bootstrap and the main Java process are separate executables, so Finder's “Kind” field alone is not sufficient to determine whether Thinkorswim is running natively.</p>
+        <div class="guide-note"><strong>Verify the process that matters.</strong> Check the long-running bundled <code>java-arm</code> process with the commands above rather than relying on the outer app label.</div>
       </section>
 
       <section class="mb-4">
         <h2 class="h4">About the old shell-script workaround</h2>
-        <p>An older workaround launched Thinkorswim after setting <code>INSTALL4J_JAVA_HOME_OVERRIDE</code> and <code>JAVA_HOME</code> to an external ARM64 Zulu 17 JDK. That was intended to steer the Intel install4j launcher toward ARM execution.</p>
-        <p class="mb-0">A direct comparison now shows the normal app launch produces the same bundled <code>java-arm</code> process without those overrides. The script and separate Zulu 17 installation are therefore unnecessary for the current verified build. Keep the workaround only as historical context, not as a recommended setup.</p>
+        <p>Older and transitional solutions commonly used external Zulu JDKs, <code>JAVA_HOME</code>, <code>INSTALL4J_JAVA_HOME_OVERRIDE</code>, custom shell launchers, direct <code>JavaApplicationStub</code> launches, or custom AppleScript wrappers. Those approaches may have been useful when earlier launcher behavior did not reliably select an ARM runtime.</p>
+        <p class="mb-0">Current testing shows those workarounds are unnecessary for the current Thinkorswim build. A normal Applications launch produces the bundled ARM64 <code>java-arm</code> process without an external JDK or environment override. Keep old scripts only as historical context, not as the recommended installation path.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Why this changed</h2>
+        <p class="mb-0">The change appears to be in Thinkorswim's current launcher/runtime behavior rather than the M5 hardware itself. A current build now selects the bundled ARM64 runtime correctly during a normal Applications launch. Because no exact Schwab release transition has been verified, this guide does not attribute the behavior to a specific version.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2 class="h4">Do not blindly apply old fixes</h2>
+        <p>Verify the current running process before changing anything. Do not install an external JDK just because Finder says the app is Intel.</p>
+        <p class="mb-0">Do not modify VM options, remove quarantine attributes, re-sign the app, replace launcher files, or add a custom wrapper unless a current, reproducible problem actually requires a narrowly scoped workaround. These changes are unnecessary on the verified build and may interfere with security checks or future updates.</p>
       </section>
 
       <section class="mb-4">
