@@ -651,9 +651,11 @@ function setTextIfExists(id, value) {
       <button type="button" id="edgeCurveButton" role="tab" aria-selected="false" onclick="showResearchCurve('edge')">Edge Curve (Fixed Risk)</button>
     </div>
     <label id="idleCashInterestLabel" style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
-    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_current_plus_qqq_pilot.svg?v=20260827-qqq-pilot" alt="Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns"></div>
+    <label id="spyBenchmarkLabel" style="display:flex;align-items:center;gap:8px;margin:8px 0 0;font-weight:600;"><input type="checkbox" id="spyBenchmarkToggle" onchange="showValidatedResearch()" checked> Show SPY Buy &amp; Hold (Price Return)</label>
+    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_equity_with_spy.svg?v=20260827-spy-benchmark" alt="Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns"></div>
     <div class="chart-box research-chart-box edge-chart-wrap" id="edgeCurveWrap" hidden><canvas id="edgeCurveChart" aria-label="Cumulative fixed-risk edge curve by public strategy sleeve"></canvas></div>
     <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the current production strategy, including intraday and multi-day positions plus the current minimum-size systematic premium pilot. The pilot is modeled at the same fixed one-spread size used in live validation. The pre-pilot production curve remains shown separately; pilot results never resize intraday trades or alter the cash-interest state.</p>
+    <p class="small" id="spyBenchmarkNote"><strong>SPY Buy &amp; Hold (Price Return):</strong> Provides a passive market benchmark using the same $10,000 starting capital and January 10, 2023–August 25, 2026 historical period as the Foxchase simulation. It uses theoretical fractional shares, raw cached SPY closes, no leverage or cash interest, and does not include dividend reinvestment.</p>
     <p class="small" id="edgeSizingNote" hidden><strong>Edge Curve (Fixed Risk):</strong> Shows cumulative normalized trade performance without compounding, so each trade is evaluated relative to its contractual risk rather than account size. The Edge Curve is a diagnostic of strategy consistency and does not represent an investable account balance.</p>
     <div id="overlayResearchDetails">
       <div class="pnl-note"><strong>Minimum-size pilot overlay.</strong> The fixed one-spread QQQ pilot adds $10,408.20 to the historical endpoint across 143 admitted entries. Prior production endpoint: $41,943.90. Combined endpoint: $52,352.10. Full risk-based research sizing remains excluded.</div>
@@ -667,6 +669,16 @@ function setTextIfExists(id, value) {
         <tr><td>Maximum drawdown</td><td>-7.19%</td><td>-18.52%</td></tr>
         <tr><td>Worst month</td><td>-6.52%</td><td>-5.37%</td></tr>
         <tr><td>Longest recovery</td><td>368 days</td><td>180 days</td></tr>
+      </tbody></table></div>
+      <h3 style="margin-top:24px;">Passive Benchmark Comparison</h3>
+      <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Foxchase</th><th>SPY price return</th></tr></thead><tbody>
+        <tr><td>Starting value</td><td>$10,000.00</td><td>$10,000.00</td></tr>
+        <tr><td>Ending value</td><td>$52,352.10</td><td>$19,605.71</td></tr>
+        <tr><td>Total return</td><td>423.52%</td><td>96.06%</td></tr>
+        <tr><td>CAGR</td><td>57.93%</td><td>20.43%</td></tr>
+        <tr><td>Sharpe</td><td>2.705</td><td>1.316</td></tr>
+        <tr><td>Maximum drawdown</td><td>-18.52%</td><td>-19.00%</td></tr>
+        <tr><td>Calmar</td><td>3.13</td><td>1.08</td></tr>
       </tbody></table></div>
       <div class="research-table-wrap" style="margin-top:18px;"><table class="research-table"><thead><tr><th>Overlay attribution</th><th>Result</th></tr></thead><tbody>
         <tr><td>Intraday contribution on capped path</td><td>+$23,696</td></tr>
@@ -707,6 +719,7 @@ function setTextIfExists(id, value) {
       </tbody></table></div>
       <p class="small">The 2023 and 2024 setbacks remain visible after normalization, confirming genuine losing sequences, but their compounded-account impact was amplified by fixed-contract exposure when equity was smaller. The 2025 normalized setback is materially smaller and was primarily an Intraday event.</p>
       <p class="small">One appended 2026 Intraday observation is omitted because its compact validated artifact does not preserve contractual risk; no denominator was inferred. It does not affect the 2023–2025 comparison.</p>
+      <p class="small">The Edge Curve is a normalized strategy-consistency diagnostic and is not directly comparable to a passive buy-and-hold equity curve. SPY is intentionally excluded because it has no comparable contractual trade-risk denominator.</p>
     </div>
   </div>
 
@@ -736,7 +749,9 @@ function setTextIfExists(id, value) {
       document.getElementById("researchSizingChart").parentElement.hidden = edge;
       document.getElementById("edgeCurveWrap").hidden = !edge;
       document.getElementById("idleCashInterestLabel").hidden = edge;
+      document.getElementById("spyBenchmarkLabel").hidden = edge;
       document.getElementById("researchSizingNote").hidden = edge;
+      document.getElementById("spyBenchmarkNote").hidden = edge;
       document.getElementById("edgeSizingNote").hidden = !edge;
       document.getElementById("edgeResearchDetails").hidden = !edge;
       if (edge) {
@@ -787,10 +802,11 @@ function setTextIfExists(id, value) {
         const im = interestScenario.metrics;
         metrics = {"trades": "225 intraday · 159 swing · 143 QQQ pilot entries", "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct};
       }
-      const normalChart = "/images/foxchase_current_plus_qqq_pilot.svg?v=20260827-qqq-pilot";
-      const interestChart = "/images/foxchase_current_plus_qqq_pilot_interest.svg?v=20260827-qqq-pilot";
+      const spyEnabled = document.getElementById("spyBenchmarkToggle").checked;
+      const normalChart = spyEnabled ? "/images/foxchase_equity_with_spy.svg?v=20260827-spy-benchmark" : "/images/foxchase_equity_without_spy.svg?v=20260827-spy-benchmark";
+      const interestChart = spyEnabled ? "/images/foxchase_equity_interest_with_spy.svg?v=20260827-spy-benchmark" : "/images/foxchase_equity_interest_without_spy.svg?v=20260827-spy-benchmark";
       document.getElementById("researchSizingChart").src = interestEnabled ? interestChart : normalChart;
-      document.getElementById("researchSizingChart").alt = "Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns";
+      document.getElementById("researchSizingChart").alt = spyEnabled ? "Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns" : "Validated Foxchase equity curves with drawdowns";
       document.getElementById("researchTradeCount").textContent = metrics.trades;
       document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
       document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
