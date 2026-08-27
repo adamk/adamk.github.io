@@ -141,6 +141,46 @@ function setTextIfExists(id, value) {
       color:#444;
       font-weight:700;
     }
+    .curve-view-toggle {
+      display:inline-flex;
+      gap:4px;
+      padding:4px;
+      margin:14px 0 0;
+      border:1px solid #d8dde2;
+      border-radius:999px;
+      background:#f5f7f9;
+    }
+    .curve-view-toggle button {
+      border:0;
+      border-radius:999px;
+      padding:8px 14px;
+      background:transparent;
+      color:#445;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .curve-view-toggle button.active {
+      background:#0f1c3f;
+      color:#fff;
+    }
+    .edge-chart-wrap {
+      position:relative;
+      min-height:480px;
+    }
+    .edge-metrics {
+      margin-top:18px;
+    }
+    @media (max-width:600px) {
+      .curve-view-toggle { width:100%; }
+      .curve-view-toggle button { flex:1; padding:8px 7px; font-size:13px; }
+      .edge-chart-wrap { min-height:340px; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .curve-view-toggle { background:#eef1f4; border-color:#b9c0c8; }
+      .curve-view-toggle button { color:#293241; }
+      .curve-view-toggle button.active { background:#0f1c3f; color:#fff; }
+      .edge-chart-wrap { background:#151b26; border-color:#394150; }
+    }
 
 
     @media (min-width: 992px) {
@@ -597,10 +637,24 @@ function setTextIfExists(id, value) {
 
 
     <h2>Research Backtest</h2>
-    <div class="research-metrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 143 QQQ pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$42,352.10</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$52,352.10</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">57.93%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">2.705</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-18.52%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
-    <label style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
+    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 143 QQQ pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$42,352.10</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$52,352.10</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">57.93%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">2.705</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-18.52%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
+    <div class="research-metrics edge-metrics" id="edgeResearchMetrics" hidden>
+      <div class="research-card"><div class="research-label">Risk-Defined Observations</div><div class="research-value" id="edgeTradeCount">525</div></div>
+      <div class="research-card"><div class="research-label">Cumulative Normalized Units</div><div class="research-value" id="edgeCumulative">57.3073</div></div>
+      <div class="research-card"><div class="research-label">Average P&amp;L / Risk</div><div class="research-value" id="edgeAverage">0.1092</div></div>
+      <div class="research-card"><div class="research-label">Median P&amp;L / Risk</div><div class="research-value" id="edgeMedian">0.1412</div></div>
+      <div class="research-card"><div class="research-label">Normalized Max Drawdown</div><div class="research-value" id="edgeMaxDrawdown">-3.8906</div></div>
+      <div class="research-card"><div class="research-label">Positive Trades</div><div class="research-value" id="edgePositive">83.05%</div></div>
+    </div>
+    <div class="curve-view-toggle" role="tablist" aria-label="Research chart view">
+      <button type="button" id="equityCurveButton" class="active" role="tab" aria-selected="true" onclick="showResearchCurve('equity')">Equity Curve</button>
+      <button type="button" id="edgeCurveButton" role="tab" aria-selected="false" onclick="showResearchCurve('edge')">Edge Curve (Fixed Risk)</button>
+    </div>
+    <label id="idleCashInterestLabel" style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
     <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_current_plus_qqq_pilot.svg?v=20260827-qqq-pilot" alt="Validated combined Foxchase strategy, independently compounded intraday comparator, and SPY, with drawdowns"></div>
+    <div class="chart-box research-chart-box edge-chart-wrap" id="edgeCurveWrap" hidden><canvas id="edgeCurveChart" aria-label="Cumulative fixed-risk edge curve by public strategy sleeve"></canvas></div>
     <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the current production strategy, including intraday and multi-day positions plus the current minimum-size systematic premium pilot. The pilot is modeled at the same fixed one-spread size used in live validation. The pre-pilot production curve remains shown separately; pilot results never resize intraday trades or alter the cash-interest state.</p>
+    <p class="small" id="edgeSizingNote" hidden><strong>Edge Curve (Fixed Risk):</strong> Shows cumulative normalized trade performance without compounding, so each trade is evaluated relative to its contractual risk rather than account size. The Edge Curve is a diagnostic of strategy consistency and does not represent an investable account balance.</p>
     <div id="overlayResearchDetails">
       <div class="pnl-note"><strong>Minimum-size pilot overlay.</strong> The fixed one-spread QQQ pilot adds $10,408.20 to the historical endpoint across 143 admitted entries. Prior production endpoint: $41,943.90. Combined endpoint: $52,352.10. Full risk-based research sizing remains excluded.</div>
       <h3 style="margin-top:24px;">Capped Combined Portfolio Results</h3>
@@ -644,14 +698,79 @@ function setTextIfExists(id, value) {
       <details style="margin-top:20px;"><summary><strong>Interest-adjusted monthly results</strong></summary><div class="research-table-wrap" style="margin-top:12px;"><table class="research-table"><thead><tr><th>Month</th><th>Return</th><th>Ending equity</th></tr></thead><tbody id="interestMonthlyRows"></tbody></table></div></details>
       <p class="small"><strong>Research status:</strong> Cash yield is separate from trading edge and was not actually earned throughout this history. The trading rules and trade opportunity set are unchanged when this toggle is enabled.</p>
     </div>
+    <div id="edgeResearchDetails" hidden>
+      <div class="pnl-note"><strong>Fixed-risk diagnostic.</strong> Each completed trade contributes its realized P&amp;L divided by validated contractual risk. The combined line is the chronological additive union of Intraday, Multi-Day, and Systematic Premium Pilot observations; quantity and account growth do not increase later-trade weight.</div>
+      <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Normalized edge drawdown</th><th>Peak</th><th>Trough</th><th>Drawdown units</th></tr></thead><tbody>
+        <tr><td>2023</td><td>Aug. 9, 2023</td><td>Oct. 27, 2023</td><td>-3.8906</td></tr>
+        <tr><td>2024</td><td>Apr. 16, 2024</td><td>May 2, 2024</td><td>-2.2033</td></tr>
+        <tr><td>2025</td><td>Apr. 1, 2025</td><td>Apr. 2, 2025</td><td>-0.9333</td></tr>
+      </tbody></table></div>
+      <p class="small">The 2023 and 2024 setbacks remain visible after normalization, confirming genuine losing sequences, but their compounded-account impact was amplified by fixed-contract exposure when equity was smaller. The 2025 normalized setback is materially smaller and was primarily an Intraday event.</p>
+      <p class="small">One appended 2026 Intraday observation is omitted because its compact validated artifact does not preserve contractual risk; no denominator was inferred. It does not affect the 2023–2025 comparison.</p>
+    </div>
   </div>
 
   <script>
     let idleCashInterestData = null;
+    let edgeCurveData = null;
+    let edgeCurveInstance = null;
+    let currentResearchCurve = "equity";
     fetch("/data/alpaca_idle_cash_interest.json?v=20260825-daily-append", { cache: "no-store" })
       .then(response => response.json())
       .then(data => { idleCashInterestData = data; })
       .catch(() => { document.getElementById("idleCashInterestToggle").disabled = true; });
+    fetch("/data/foxchase_edge_curve.json?v=20260827-dd-attribution", { cache: "no-store" })
+      .then(response => response.json())
+      .then(data => { edgeCurveData = data; if (currentResearchCurve === "edge") renderEdgeCurve(); })
+      .catch(() => { document.getElementById("edgeCurveButton").disabled = true; });
+    function showResearchCurve(view) {
+      if (view === "edge" && !edgeCurveData) return;
+      currentResearchCurve = view;
+      const edge = view === "edge";
+      document.getElementById("equityCurveButton").classList.toggle("active", !edge);
+      document.getElementById("edgeCurveButton").classList.toggle("active", edge);
+      document.getElementById("equityCurveButton").setAttribute("aria-selected", String(!edge));
+      document.getElementById("edgeCurveButton").setAttribute("aria-selected", String(edge));
+      document.getElementById("equityResearchMetrics").hidden = edge;
+      document.getElementById("edgeResearchMetrics").hidden = !edge;
+      document.getElementById("researchSizingChart").parentElement.hidden = edge;
+      document.getElementById("edgeCurveWrap").hidden = !edge;
+      document.getElementById("idleCashInterestLabel").hidden = edge;
+      document.getElementById("researchSizingNote").hidden = edge;
+      document.getElementById("edgeSizingNote").hidden = !edge;
+      document.getElementById("edgeResearchDetails").hidden = !edge;
+      if (edge) {
+        document.getElementById("overlayResearchDetails").hidden = true;
+        document.getElementById("interestResearchDetails").hidden = true;
+        renderEdgeCurve();
+      } else {
+        showValidatedResearch();
+      }
+    }
+    function renderEdgeCurve() {
+      if (!edgeCurveData || edgeCurveInstance) return;
+      const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const textColor = dark ? "#d6dbe3" : "#4a5568";
+      const gridColor = dark ? "rgba(214,219,227,.16)" : "rgba(74,85,104,.14)";
+      const colors = {"Combined":"#c45a24","Intraday":"#234a76","Multi-Day":"#2f855a","Systematic Premium Pilot":"#805ad5"};
+      edgeCurveInstance = new Chart(document.getElementById("edgeCurveChart"), {
+        type: "line",
+        data: {
+          labels: edgeCurveData.dates,
+          datasets: Object.keys(edgeCurveData.series).map(label => ({label, data: edgeCurveData.series[label], borderColor: colors[label], borderWidth: label === "Combined" ? 3 : 2, pointRadius: 0, tension: 0, fill: false}))
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {mode:"index", intersect:false},
+          plugins: {legend: {display:true, labels:{color:textColor, usePointStyle:true}}, tooltip:{callbacks:{label:ctx => ctx.dataset.label + ": " + Number(ctx.parsed.y).toFixed(4) + " units"}}},
+          scales: {
+            x: {ticks:{color:textColor, maxTicksLimit:8, maxRotation:0}, grid:{color:gridColor}},
+            y: {title:{display:true,text:"Cumulative normalized return units",color:textColor},ticks:{color:textColor},grid:{color:gridColor}}
+          }
+        }
+      });
+    }
     function toggleIdleCashInterest() {
       if (document.getElementById("idleCashInterestToggle").checked && !idleCashInterestData) {
         document.getElementById("idleCashInterestToggle").checked = false;
