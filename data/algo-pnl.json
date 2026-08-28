@@ -1,10 +1,10 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-08-28T15:30:03.737406-04:00",
+  "updated_at": "2026-08-28T15:44:05.108577-04:00",
   "performance": {
     "base_index": 100.0,
-    "current_index": 109.0377,
-    "total_return_pct": 9.0377,
+    "current_index": 109.8125,
+    "total_return_pct": 9.8125,
     "max_drawdown_pct": -7.6821,
     "flow_adjusted": true,
     "methodology": "Daily time-weighted return; external deposits and withdrawals are applied at the beginning of each daily interval."
@@ -385,6 +385,10 @@
     {
       "date": "2026-08-27",
       "index_value": 109.0377
+    },
+    {
+      "date": "2026-08-28",
+      "index_value": 109.8125
     }
   ],
   "stats": {
@@ -1075,94 +1079,14 @@
   },
   "recent_trades": [
     {
-      "symbols": "SPY260707C00748000|SPY260707C00749000",
-      "opened_at": "2026-07-07T14:17:26.133Z",
-      "closed_at": "2026-07-07T15:25:21.793Z",
-      "qty": 11.0,
-      "open_credit": 0.35,
-      "close_debit": 0.17,
-      "pnl": 197.99999999999994,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260710P00748000|SPY260710P00749000",
-      "opened_at": "2026-07-10T14:34:52.179Z",
-      "closed_at": "2026-07-10T14:48:35.453Z",
-      "qty": 9.0,
-      "open_credit": 0.22,
-      "close_debit": 0.13,
-      "pnl": 81.0,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260715P00750000|SPY260715P00751000",
-      "opened_at": "2026-07-15T16:05:08.227Z",
-      "closed_at": "2026-07-15T16:35:36.849Z",
-      "qty": 11.0,
-      "open_credit": 0.24,
-      "close_debit": 0.48,
-      "pnl": -263.99999999999994,
+      "symbols": "SPY260805P00771000|SPY260805P00772000",
+      "opened_at": "2026-08-05T14:55:14.072Z",
+      "closed_at": "2026-08-05T16:09:32.015Z",
+      "qty": 7.0,
+      "open_credit": 0.34,
+      "close_debit": 0.65,
+      "pnl": -217.0,
       "result": "loss"
-    },
-    {
-      "symbols": "SPY260716P00749000|SPY260716P00750000",
-      "opened_at": "2026-07-16T13:50:14.998Z",
-      "closed_at": "2026-07-16T14:09:33.479Z",
-      "qty": 11.0,
-      "open_credit": 0.28,
-      "close_debit": 0.13,
-      "pnl": 165.00000000000003,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260721C00747000|SPY260721C00748000|SPY260721P00743000|SPY260721P00744000",
-      "opened_at": "2026-07-21T14:00:30.183Z",
-      "closed_at": "2026-07-21T18:30:27.99Z",
-      "qty": 20.0,
-      "open_credit": 0.57,
-      "close_debit": 0.8,
-      "pnl": -460.0000000000001,
-      "result": "loss"
-    },
-    {
-      "symbols": "SPY260723P00739000|SPY260723P00740000",
-      "opened_at": "2026-07-23T14:37:46.095Z",
-      "closed_at": "2026-07-23T15:06:55.924Z",
-      "qty": 19.0,
-      "open_credit": 0.45,
-      "close_debit": 0.69,
-      "pnl": -455.9999999999999,
-      "result": "loss"
-    },
-    {
-      "symbols": "SPY260724C00742000|SPY260724C00743000|SPY260724P00736000|SPY260724P00737000",
-      "opened_at": "2026-07-24T15:14:47.356Z",
-      "closed_at": "2026-07-24T17:48:26.003Z",
-      "qty": 18.0,
-      "open_credit": 0.52,
-      "close_debit": 0.27,
-      "pnl": 450.0,
-      "result": "win"
-    },
-    {
-      "symbols": "SPY260729P00737000|SPY260729P00738000",
-      "opened_at": "2026-07-29T13:31:39.376Z",
-      "closed_at": "2026-07-29T14:40:33.319Z",
-      "qty": 14.0,
-      "open_credit": 0.35,
-      "close_debit": 0.67,
-      "pnl": -448.00000000000006,
-      "result": "loss"
-    },
-    {
-      "symbols": "SPY260731C00744000|SPY260731C00745000",
-      "opened_at": "2026-07-31T13:52:35.798Z",
-      "closed_at": "2026-07-31T14:07:03.964Z",
-      "qty": 14.0,
-      "open_credit": 0.35,
-      "close_debit": 0.19,
-      "pnl": 223.99999999999997,
-      "result": "win"
     },
     {
       "symbols": "SPY260806P00767000|SPY260806P00768000",
@@ -1171,7 +1095,87 @@
       "qty": 6.0,
       "open_credit": 0.28,
       "close_debit": 0.16,
-      "pnl": 72.0,
+      "pnl": 72.00000000000001,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260810P00771000|SPY260810P00772000",
+      "opened_at": "2026-08-10T13:32:14.673Z",
+      "closed_at": "2026-08-10T14:08:54.932Z",
+      "qty": 6.0,
+      "open_credit": 0.25,
+      "close_debit": 0.168333,
+      "pnl": 49.00019999999999,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260811P00768000|SPY260811P00771000",
+      "opened_at": "2026-08-11T15:15:28.509Z",
+      "closed_at": "2026-08-11T16:56:42.942Z",
+      "qty": 3.0,
+      "open_credit": 0.26,
+      "close_debit": 0.53,
+      "pnl": -81.0,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260819P00767000|SPY260819P00770000",
+      "opened_at": "2026-08-19T16:20:24.114Z",
+      "closed_at": "2026-08-19T16:28:48.626Z",
+      "qty": 5.0,
+      "open_credit": 0.19,
+      "close_debit": 0.38,
+      "pnl": -95.0,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260820C00767000|SPY260820C00770000",
+      "opened_at": "2026-08-20T14:05:31.205Z",
+      "closed_at": "2026-08-20T15:04:05.362Z",
+      "qty": 3.0,
+      "open_credit": 0.71,
+      "close_debit": 1.43,
+      "pnl": -216.0,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260824C00765000|SPY260824C00768000",
+      "opened_at": "2026-08-24T13:50:32.932Z",
+      "closed_at": "2026-08-24T14:13:09.668Z",
+      "qty": 2.0,
+      "open_credit": 0.31,
+      "close_debit": 0.17,
+      "pnl": 27.999999999999996,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260825C00766000|SPY260825C00769000",
+      "opened_at": "2026-08-25T14:50:07.701Z",
+      "closed_at": "2026-08-25T15:33:58.258Z",
+      "qty": 2.0,
+      "open_credit": 0.21,
+      "close_debit": 0.48,
+      "pnl": -54.0,
+      "result": "loss"
+    },
+    {
+      "symbols": "SPY260826C00768000|SPY260826C00771000",
+      "opened_at": "2026-08-26T14:20:24.196Z",
+      "closed_at": "2026-08-26T16:39:52.272Z",
+      "qty": 2.0,
+      "open_credit": 0.47,
+      "close_debit": 0.18,
+      "pnl": 57.99999999999999,
+      "result": "win"
+    },
+    {
+      "symbols": "SPY260828C00771000|SPY260828C00774000",
+      "opened_at": "2026-08-28T16:30:04.202Z",
+      "closed_at": "2026-08-28T17:21:48.042Z",
+      "qty": 2.0,
+      "open_credit": 0.6,
+      "close_debit": 0.26,
+      "pnl": 68.0,
       "result": "win"
     }
   ],
