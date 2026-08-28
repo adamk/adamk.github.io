@@ -1179,7 +1179,7 @@
       "result": "win"
     }
   ],
-  "note": "Performance is normalized to a starting index value of 100. External deposits and withdrawals are excluded. Index values do not represent dollars or actual account equity.",
+  "note": "Performance is time-weighted and normalized to an initial index value of 100. External deposits and withdrawals are excluded from returns. Index values do not represent actual account equity.",
   "realized_algo_pnl": 622.0001999999996,
   "closed_trades": 25,
   "win_rate": 68.0,
