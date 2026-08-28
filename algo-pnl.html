@@ -542,9 +542,9 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Important note:</strong>
-      The live-account chart shows flow-adjusted performance indexed to $10,000. External deposits
-      and withdrawals are excluded from returns, while trading results, fees, dividends, and interest
-      remain part of performance. The index does not represent the actual broker account balance.<br><br>
+      Indexed to 100 at the start of the period. External deposits and withdrawals are excluded from
+      returns, while trading results, fees, dividends, and interest remain part of performance. This
+      index does not represent actual broker account equity.<br><br>
 
       This is a privately operated strategy traded only in my own account. It is not a managed account,
       copy-trading service, or trade recommendation service.<br><br>
@@ -552,7 +552,7 @@ function setTextIfExists(id, value) {
       Foxchase Trading is independent and is not affiliated with, sponsored by, or endorsed by Alpaca.
     </div>
 
-    <h2>Live Account Performance</h2>
+    <h2>Live Account Performance Index</h2>
 
     <div class="pnl-grid live-stats-grid">
       <div class="pnl-card">
@@ -900,7 +900,7 @@ function setTextIfExists(id, value) {
       setTextIfExists("avg-win-loss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
       setTextIfExists("avgWinLoss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
         setTextIfExists("accountType", data.account_type || "Live account");
-        document.getElementById("equity").textContent = dollars(performance.current_index);
+        document.getElementById("equity").textContent = Number(performance.current_index).toFixed(2);
 
         const stats = data.stats || {};
         document.getElementById("realizedPnl").textContent = dollars(stats.realized_algo_pnl || 0);
@@ -924,7 +924,7 @@ function setTextIfExists(id, value) {
           data: {
             labels: points.map(p => p.date),
             datasets: [{
-              label: "Live Account Performance",
+              label: "Live Account Performance Index",
               data: points.map(p => p.index_value),
               tension: 0.25,
               pointRadius: 2,
@@ -940,7 +940,7 @@ function setTextIfExists(id, value) {
               tooltip: {
                 callbacks: {
                   title: contexts => formatPointDate(points[contexts[0].dataIndex]?.date),
-                  label: context => "Indexed value: " + dollars(context.parsed.y)
+                  label: context => "Index: " + Number(context.parsed.y).toFixed(2)
                 }
               }
             },
@@ -953,7 +953,7 @@ function setTextIfExists(id, value) {
                   }
                 }
               },
-              y: { ticks: { callback: value => "$" + Number(value).toLocaleString() } }
+              y: { ticks: { callback: value => Number(value).toFixed(2) } }
             }
           }
         });
