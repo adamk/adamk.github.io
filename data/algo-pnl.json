@@ -1149,7 +1149,7 @@
       "result": "win"
     }
   ],
-  "note": "Indexed to 100 at the start of the period. External deposits and withdrawals are excluded from returns. This index does not represent actual broker account equity.",
+  "note": "Performance is normalized to a starting index value of 100. External deposits and withdrawals are excluded. Index values do not represent dollars or actual account equity.",
   "realized_algo_pnl": 554.0001999999996,
   "closed_trades": 24,
   "win_rate": 66.66666666666666,
