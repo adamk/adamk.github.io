@@ -635,11 +635,11 @@ function setTextIfExists(id, value) {
 
 
     <h2>Research Backtest</h2>
-    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 100 governed pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$41,132.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$51,132.90</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">56.91%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.354</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-12.82%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
+    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 100 governed pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$41,565.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$51,565.90</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">57.28%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.352</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-12.81%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
     <div class="research-metrics edge-metrics" id="edgeResearchMetrics" hidden>
       <div class="research-card"><div class="research-label">Risk-Defined Observations</div><div class="research-value" id="edgeTradeCount">482</div></div>
-      <div class="research-card"><div class="research-label">Cumulative Normalized Units</div><div class="research-value" id="edgeCumulative">53.9652</div></div>
-      <div class="research-card"><div class="research-label">Average P&amp;L / Risk</div><div class="research-value" id="edgeAverage">0.1120</div></div>
+      <div class="research-card"><div class="research-label">Cumulative Normalized Units</div><div class="research-value" id="edgeCumulative">54.1519</div></div>
+      <div class="research-card"><div class="research-label">Average P&amp;L / Risk</div><div class="research-value" id="edgeAverage">0.1123</div></div>
       <div class="research-card"><div class="research-label">Median P&amp;L / Risk</div><div class="research-value" id="edgeMedian">0.1366</div></div>
       <div class="research-card"><div class="research-label">Normalized Max Drawdown</div><div class="research-value" id="edgeMaxDrawdown">-3.0183</div></div>
       <div class="research-card"><div class="research-label">Positive Trades</div><div class="research-value" id="edgePositive">83.20%</div></div>
@@ -650,33 +650,33 @@ function setTextIfExists(id, value) {
     </div>
     <label id="idleCashInterestLabel" style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
     <label id="spyBenchmarkLabel" style="display:flex;align-items:center;gap:8px;margin:8px 0 0;font-weight:600;"><input type="checkbox" id="spyBenchmarkToggle" onchange="showValidatedResearch()" checked> Show SPY Buy &amp; Hold (Price Return)</label>
-    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_equity_with_spy.svg?v=20260827-qqq-governed-production" alt="Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns"></div>
+    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_equity_with_spy.svg?v=20260828-r1-spx-70" alt="Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns"></div>
     <div class="chart-box research-chart-box edge-chart-wrap" id="edgeCurveWrap" hidden><canvas id="edgeCurveChart" aria-label="Cumulative fixed-risk edge curve by public strategy sleeve"></canvas></div>
     <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the current production strategy, including intraday and multi-day positions plus the current minimum-size systematic premium pilot. The pilot is modeled at the same fixed one-spread size and aggregate campaign-risk ceiling used in production. The pre-pilot production curve remains shown separately; pilot results never resize intraday trades or alter the cash-interest state.</p>
     <p class="small" id="spyBenchmarkNote"><strong>SPY Buy &amp; Hold (Price Return):</strong> Provides a passive market benchmark using the same $10,000 starting capital and January 10, 2023–August 25, 2026 historical period as the Foxchase simulation. It uses theoretical fractional shares, raw cached SPY closes, no leverage or cash interest, and does not include dividend reinvestment.</p>
     <p class="small" id="edgeSizingNote" hidden><strong>Edge Curve (Fixed Risk):</strong> Shows cumulative normalized trade performance without compounding, so each trade is evaluated relative to its contractual risk rather than account size. The Edge Curve is a diagnostic of strategy consistency and does not represent an investable account balance.</p>
     <div id="overlayResearchDetails">
-      <div class="pnl-note"><strong>Governed fixed-size pilot.</strong> The single Systematic Premium production path adds $9,189.00 across 100 campaign-governor-admitted entries. The 43 cap-rejected entries contribute $0. Prior production endpoint: $41,943.90. Current Production endpoint: $51,132.90. Full equity-scaled sizing remains disabled.</div>
+      <div class="pnl-note"><strong>Governed fixed-size pilot.</strong> The single Systematic Premium production path adds $9,189.00 across 100 campaign-governor-admitted entries. R1 SPX-EM narrow uses its current production exit policy. The 43 cap-rejected entries contribute $0. Prior production endpoint: $41,943.90. Current Production endpoint: $51,565.90. Full equity-scaled sizing remains disabled.</div>
       <h3 style="margin-top:24px;">Capped Combined Portfolio Results</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current intraday only</th><th>Current Production</th></tr></thead><tbody>
         <tr><td>Starting equity</td><td>$10,000</td><td>$10,000</td></tr>
-        <tr><td>Ending equity</td><td>$25,415</td><td>$51,132.90</td></tr>
-        <tr><td>P&amp;L</td><td>+$15,415</td><td>+$41,132.90</td></tr>
-        <tr><td>CAGR</td><td>29.37%</td><td>56.91%</td></tr>
-        <tr><td>Sharpe</td><td>2.113</td><td>3.354</td></tr>
-        <tr><td>Maximum drawdown</td><td>-7.19%</td><td>-12.82%</td></tr>
+        <tr><td>Ending equity</td><td>$25,415</td><td>$51,565.90</td></tr>
+        <tr><td>P&amp;L</td><td>+$15,415</td><td>+$41,565.90</td></tr>
+        <tr><td>CAGR</td><td>29.37%</td><td>57.28%</td></tr>
+        <tr><td>Sharpe</td><td>2.113</td><td>3.352</td></tr>
+        <tr><td>Maximum drawdown</td><td>-7.19%</td><td>-12.81%</td></tr>
         <tr><td>Worst month</td><td>-6.52%</td><td>-6.28%</td></tr>
-        <tr><td>Longest recovery</td><td>368 days</td><td>151 days</td></tr>
+        <tr><td>Longest recovery</td><td>368 days</td><td>146 days</td></tr>
       </tbody></table></div>
       <h3 style="margin-top:24px;">Passive Benchmark Comparison</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Foxchase</th><th>SPY price return</th></tr></thead><tbody>
         <tr><td>Starting value</td><td>$10,000.00</td><td>$10,000.00</td></tr>
-        <tr><td>Ending value</td><td>$51,132.90</td><td>$19,605.71</td></tr>
-        <tr><td>Total return</td><td>411.33%</td><td>96.06%</td></tr>
-        <tr><td>CAGR</td><td>56.91%</td><td>20.43%</td></tr>
-        <tr><td>Sharpe</td><td>3.354</td><td>1.316</td></tr>
-        <tr><td>Maximum drawdown</td><td>-12.82%</td><td>-19.00%</td></tr>
-        <tr><td>Calmar</td><td>4.44</td><td>1.08</td></tr>
+        <tr><td>Ending value</td><td>$51,565.90</td><td>$19,605.71</td></tr>
+        <tr><td>Total return</td><td>415.66%</td><td>96.06%</td></tr>
+        <tr><td>CAGR</td><td>57.28%</td><td>20.43%</td></tr>
+        <tr><td>Sharpe</td><td>3.352</td><td>1.316</td></tr>
+        <tr><td>Maximum drawdown</td><td>-12.81%</td><td>-19.00%</td></tr>
+        <tr><td>Calmar</td><td>4.47</td><td>1.08</td></tr>
       </tbody></table></div>
       <div class="research-table-wrap" style="margin-top:18px;"><table class="research-table"><thead><tr><th>Overlay attribution</th><th>Result</th></tr></thead><tbody>
         <tr><td>Intraday contribution on capped path</td><td>+$23,696</td></tr>
@@ -730,7 +730,7 @@ function setTextIfExists(id, value) {
       .then(response => response.json())
       .then(data => { idleCashInterestData = data; })
       .catch(() => { document.getElementById("idleCashInterestToggle").disabled = true; });
-    fetch("/data/foxchase_edge_curve.json?v=20260827-qqq-governed-production", { cache: "no-store" })
+    fetch("/data/foxchase_edge_curve.json?v=20260828-r1-spx-70", { cache: "no-store" })
       .then(response => response.json())
       .then(data => { edgeCurveData = data; if (currentResearchCurve === "edge") renderEdgeCurve(); })
       .catch(() => { document.getElementById("edgeCurveButton").disabled = true; });
@@ -792,7 +792,7 @@ function setTextIfExists(id, value) {
       showValidatedResearch();
     }
     function showValidatedResearch() {
-      let metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 41132.89999999998, "ending": 51132.89999999998, "cagr": 56.910475539630355, "sharpe": 3.3535123200025687, "max_dd": -12.8236787645862};
+      let metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 41565.89999999998, "ending": 51565.89999999998, "cagr": 57.27618324166113, "sharpe": 3.352007007595955, "max_dd": -12.806974886241285};
       const interestEnabled = document.getElementById("idleCashInterestToggle").checked && idleCashInterestData;
       const scenarioKey = "compounded_overlay";
       const interestScenario = interestEnabled ? idleCashInterestData[scenarioKey] : null;
@@ -801,8 +801,8 @@ function setTextIfExists(id, value) {
         metrics = {"trades": "225 intraday · 159 swing · 100 governed pilot entries", "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct};
       }
       const spyEnabled = document.getElementById("spyBenchmarkToggle").checked;
-      const normalChart = spyEnabled ? "/images/foxchase_equity_with_spy.svg?v=20260827-qqq-governed-production" : "/images/foxchase_equity_without_spy.svg?v=20260827-qqq-governed-production";
-      const interestChart = spyEnabled ? "/images/foxchase_equity_interest_with_spy.svg?v=20260827-qqq-governed-production" : "/images/foxchase_equity_interest_without_spy.svg?v=20260827-qqq-governed-production";
+      const normalChart = spyEnabled ? "/images/foxchase_equity_with_spy.svg?v=20260828-r1-spx-70" : "/images/foxchase_equity_without_spy.svg?v=20260828-r1-spx-70";
+      const interestChart = spyEnabled ? "/images/foxchase_equity_interest_with_spy.svg?v=20260828-r1-spx-70" : "/images/foxchase_equity_interest_without_spy.svg?v=20260828-r1-spx-70";
       document.getElementById("researchSizingChart").src = interestEnabled ? interestChart : normalChart;
       document.getElementById("researchSizingChart").alt = spyEnabled ? "Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns" : "Validated Foxchase equity curves with drawdowns";
       document.getElementById("researchTradeCount").textContent = metrics.trades;
@@ -827,7 +827,7 @@ function setTextIfExists(id, value) {
         document.getElementById("interestAverageReservation").textContent = "$" + im.average_excluded_reservation.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
         document.getElementById("interestQuantityChanges").textContent = im.quantity_changes_from_interest;
         document.getElementById("interestTradePnlChange").textContent = money(im.subsequent_trade_pnl_change);
-        const baseEnding = 51132.90;
+        const baseEnding = 51565.90;
         document.getElementById("interestReconciliation").textContent = "$" + baseEnding.toLocaleString("en-US", {minimumFractionDigits:2}) + " + " + money(im.total_credited_interest).replace("+", "") + " + " + money(im.accrued_uncredited_interest).replace("+", "") + " + " + money(im.subsequent_trade_pnl_change).replace("+", "") + " = $" + im.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
         document.getElementById("interestSpyComparison").textContent = "SPY buy and hold is unchanged and receives no modeled cash interest.";
         document.getElementById("interestYearlyRows").innerHTML = interestScenario.yearly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");

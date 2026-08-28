@@ -1,11 +1,11 @@
 {
   "compounded_overlay": {
     "metrics": {
-      "ending_equity": 54401.21846861028,
-      "pnl": 44401.21846861028,
-      "cagr_pct": 59.617507397588795,
-      "sharpe": 3.4736122017174673,
-      "max_drawdown_pct": -12.625804861057311,
+      "ending_equity": 54834.21846861028,
+      "pnl": 44834.21846861028,
+      "cagr_pct": 59.96723825411989,
+      "sharpe": 3.4690476440070332,
+      "max_drawdown_pct": -12.609710882402958,
       "intraday_comparator_ending_equity": 28415.48207560696,
       "total_credited_interest": 2038.1519938565316,
       "accrued_uncredited_interest": 100.16647475377928,
@@ -13,7 +13,8 @@
       "average_excluded_reservation": 262.14873487348734,
       "quantity_changes_from_interest": 79,
       "subsequent_trade_pnl_change": 1129.9999999999868,
-      "calmar": 4.721877777587979
+      "calmar": 4.755639428482462,
+      "longest_recovery_days": 140
     },
     "yearly": [
       {
