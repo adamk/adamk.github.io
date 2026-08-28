@@ -542,10 +542,9 @@ function setTextIfExists(id, value) {
 
     <div class="pnl-note">
       <strong>Important note:</strong>
-      The equity chart reflects live Alpaca account equity and may include the effects of deposits,
-      withdrawals, and interest earned on eligible cash balances at Alpaca’s applicable rate,
-      currently 3.3% APY. The statistics below are calculated separately from filled multi-leg
-      option trades and exclude deposits, withdrawals, and cash interest.<br><br>
+      The live-account chart shows flow-adjusted performance indexed to $10,000. External deposits
+      and withdrawals are excluded from returns, while trading results, fees, dividends, and interest
+      remain part of performance. The index does not represent the actual broker account balance.<br><br>
 
       This is a privately operated strategy traded only in my own account. It is not a managed account,
       copy-trading service, or trade recommendation service.<br><br>
@@ -553,11 +552,11 @@ function setTextIfExists(id, value) {
       Foxchase Trading is independent and is not affiliated with, sponsored by, or endorsed by Alpaca.
     </div>
 
-    <h2>Live Performance</h2>
+    <h2>Live Account Performance</h2>
 
     <div class="pnl-grid live-stats-grid">
       <div class="pnl-card">
-        <div class="pnl-label">Current Equity</div>
+        <div class="pnl-label">Current Indexed Value</div>
         <div class="pnl-value" id="equity">-</div>
       </div>
 
@@ -567,13 +566,13 @@ function setTextIfExists(id, value) {
       </div>
 
       <div class="pnl-card">
-        <div class="pnl-label">Total Return</div>
+        <div class="pnl-label">Flow-Adjusted Return</div>
         <div class="pnl-value" id="realizedAlgoReturn">-</div>
       </div>
 
       <div class="pnl-card">
-        <div class="pnl-label">Today’s Account P&amp;L</div>
-        <div class="pnl-value" id="todayAccountPnl">-</div>
+        <div class="pnl-label">Flow-Adjusted Max Drawdown</div>
+        <div class="pnl-value" id="liveMaxDrawdown">-</div>
       </div>
 
       <div class="pnl-card">
@@ -864,29 +863,23 @@ function setTextIfExists(id, value) {
         data.profitFactor ??
         null;
 
-      const todayAccountPnl =
-        tradeStats.today_account_pnl ??
-        data.today_account_pnl ??
-        data.todayAccountPnl ??
-        data.account_today_pnl ??
-        null;
-const strategyStartingCapital = Number(
-        data.strategy_starting_capital ?? 0
-      );
-
-      const realizedAlgoReturn =
-        strategyStartingCapital > 0
-          ? (Number(realizedAlgoPnl) / strategyStartingCapital) * 100
-          : null;
+      const performance = data.performance || {};
 
       setTextIfExists("realized-algo-pnl", formatMoneyValue(realizedAlgoPnl));
       setTextIfExists("realizedAlgoPnl", formatMoneyValue(realizedAlgoPnl));
 
       setTextIfExists(
         "realizedAlgoReturn",
-        realizedAlgoReturn === null
+        !Number.isFinite(Number(performance.total_return_pct))
           ? "-"
-          : realizedAlgoReturn.toFixed(2) + "%"
+          : Number(performance.total_return_pct).toFixed(2) + "%"
+      );
+
+      setTextIfExists(
+        "liveMaxDrawdown",
+        !Number.isFinite(Number(performance.max_drawdown_pct))
+          ? "-"
+          : Number(performance.max_drawdown_pct).toFixed(2) + "%"
       );
 
       setTextIfExists("win-rate", formatPctValue(winRate));
@@ -894,13 +887,6 @@ const strategyStartingCapital = Number(
 
       setTextIfExists("closed-trades", String(closedTrades));
       setTextIfExists("closedTrades", String(closedTrades));
-
-      setTextIfExists(
-        "todayAccountPnl",
-        todayAccountPnl === null
-          ? "-"
-          : formatMoneyValue(todayAccountPnl)
-      );
 
       setTextIfExists(
         "profitFactor",
@@ -914,7 +900,7 @@ const strategyStartingCapital = Number(
       setTextIfExists("avg-win-loss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
       setTextIfExists("avgWinLoss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
         setTextIfExists("accountType", data.account_type || "Live account");
-        document.getElementById("equity").textContent = dollars(data.current_equity);
+        document.getElementById("equity").textContent = dollars(performance.current_index);
 
         const stats = data.stats || {};
         document.getElementById("realizedPnl").textContent = dollars(stats.realized_algo_pnl || 0);
@@ -938,8 +924,8 @@ const strategyStartingCapital = Number(
           data: {
             labels: points.map(p => p.date),
             datasets: [{
-              label: "Account Equity",
-              data: points.map(p => p.equity),
+              label: "Live Account Performance",
+              data: points.map(p => p.index_value),
               tension: 0.25,
               pointRadius: 2,
               borderColor: "#f4c430",
@@ -954,7 +940,7 @@ const strategyStartingCapital = Number(
               tooltip: {
                 callbacks: {
                   title: contexts => formatPointDate(points[contexts[0].dataIndex]?.date),
-                  label: context => "Equity: " + dollars(context.parsed.y)
+                  label: context => "Indexed value: " + dollars(context.parsed.y)
                 }
               }
             },
