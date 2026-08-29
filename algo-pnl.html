@@ -635,7 +635,7 @@ function setTextIfExists(id, value) {
 
 
     <h2>Research Backtest</h2>
-    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 100 governed pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$41,565.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$51,565.90</div></div><div class="research-card"><div class="research-label">Total Return</div><div class="research-value" id="researchTotalReturn">415.66%</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">57.28%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.352</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-12.81%</div></div><div class="research-card"><div class="research-label">Calmar</div><div class="research-value" id="researchCalmar">4.472</div></div><div class="research-card"><div class="research-label">Longest Recovery</div><div class="research-value" id="researchLongestRecovery">146 days</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
+    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 100 governed pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$46,826.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$56,826.90</div></div><div class="research-card"><div class="research-label">Total Return</div><div class="research-value" id="researchTotalReturn">468.27%</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">61.55%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.518</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-12.49%</div></div><div class="research-card"><div class="research-label">Calmar</div><div class="research-value" id="researchCalmar">4.926</div></div><div class="research-card"><div class="research-label">Longest Recovery</div><div class="research-value" id="researchLongestRecovery">200 days</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$31,109</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
     <div class="research-metrics edge-metrics" id="edgeResearchMetrics" hidden>
       <div class="research-card"><div class="research-label">Risk-Defined Observations</div><div class="research-value" id="edgeTradeCount">482</div></div>
       <div class="research-card"><div class="research-label">Cumulative Normalized Units</div><div class="research-value" id="edgeCumulative">54.1519</div></div>
@@ -651,33 +651,33 @@ function setTextIfExists(id, value) {
     <label id="idleCashInterestLabel" style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
     <label id="plannedIncomeLabel" style="display:flex;align-items:center;gap:8px;margin:8px 0 0;font-weight:600;"><input type="checkbox" id="plannedIncomeToggle" onchange="togglePlannedIncome()"> Include planned JEPI allocation (20%)</label>
     <label id="spyBenchmarkLabel" style="display:flex;align-items:center;gap:8px;margin:8px 0 0;font-weight:600;"><input type="checkbox" id="spyBenchmarkToggle" onchange="showValidatedResearch()" checked> Show SPY Buy &amp; Hold (Price Return)</label>
-    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_equity_with_spy.svg?v=20260828-r1-spx-70" alt="Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns"></div>
+    <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_equity_with_spy.svg?v=20260829-directional-parity" alt="Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns"></div>
     <div class="chart-box research-chart-box edge-chart-wrap" id="edgeCurveWrap" hidden><canvas id="edgeCurveChart" aria-label="Cumulative fixed-risk edge curve by public strategy sleeve"></canvas></div>
     <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the current production strategy, including intraday and multi-day positions plus the current minimum-size systematic premium pilot. The pilot is modeled at the same fixed one-spread size and aggregate campaign-risk ceiling used in production. The pre-pilot production curve remains shown separately; pilot results never resize intraday trades or alter the cash-interest state.</p>
     <p class="small" id="plannedIncomeNote"><strong>Planned income architecture:</strong> The researched 20% JEPI / 55% cash allocation comes from a separate $400K sustainable-income study. Highest tested defensible withdrawal target: $5,000/month while retaining substantial cash liquidity. This is research, not a guarantee. JEPI is not currently held in the live account.</p>
     <p class="small" id="spyBenchmarkNote"><strong>SPY Buy &amp; Hold (Price Return):</strong> Provides a passive market benchmark using the same $10,000 starting capital and January 10, 2023–August 25, 2026 historical period as the Foxchase simulation. It uses theoretical fractional shares, raw cached SPY closes, no leverage or cash interest, and does not include dividend reinvestment.</p>
     <p class="small" id="edgeSizingNote" hidden><strong>Edge Curve (Fixed Risk):</strong> Shows cumulative normalized trade performance without compounding, so each trade is evaluated relative to its contractual risk rather than account size. The Edge Curve is a diagnostic of strategy consistency and does not represent an investable account balance.</p>
     <div id="overlayResearchDetails">
-      <div class="pnl-note"><strong>Governed fixed-size pilot.</strong> The single Systematic Premium production path adds $9,189.00 across 100 campaign-governor-admitted entries. R1 SPX-EM narrow uses its current production exit policy. The 43 cap-rejected entries contribute $0. Prior production endpoint: $41,943.90. Current Production endpoint: $51,565.90. Full equity-scaled sizing remains disabled.</div>
+      <div class="pnl-note"><strong>Governed fixed-size pilot.</strong> The single Systematic Premium production path adds $9,189.00 across 100 campaign-governor-admitted entries. R1 SPX-EM narrow uses its current production exit policy. The 43 cap-rejected entries contribute $0. Prior production endpoint: $41,943.90. Current Production endpoint: $56,826.90. Full equity-scaled sizing remains disabled.</div>
       <h3 style="margin-top:24px;">Capped Combined Portfolio Results</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current intraday only</th><th>Current Production</th></tr></thead><tbody>
         <tr><td>Starting equity</td><td>$10,000</td><td>$10,000</td></tr>
-        <tr><td>Ending equity</td><td>$25,415</td><td>$51,565.90</td></tr>
-        <tr><td>P&amp;L</td><td>+$15,415</td><td>+$41,565.90</td></tr>
-        <tr><td>CAGR</td><td>29.37%</td><td>57.28%</td></tr>
-        <tr><td>Sharpe</td><td>2.113</td><td>3.352</td></tr>
-        <tr><td>Maximum drawdown</td><td>-7.19%</td><td>-12.81%</td></tr>
+        <tr><td>Ending equity</td><td>$31,109</td><td>$56,826.90</td></tr>
+        <tr><td>P&amp;L</td><td>+$15,415</td><td>+$46,826.90</td></tr>
+        <tr><td>CAGR</td><td>29.37%</td><td>61.55%</td></tr>
+        <tr><td>Sharpe</td><td>2.113</td><td>3.518</td></tr>
+        <tr><td>Maximum drawdown</td><td>-7.19%</td><td>-12.49%</td></tr>
         <tr><td>Worst month</td><td>-6.52%</td><td>-6.28%</td></tr>
-        <tr><td>Longest recovery</td><td>368 days</td><td>146 days</td></tr>
+        <tr><td>Longest recovery</td><td>368 days</td><td>200 days</td></tr>
       </tbody></table></div>
       <h3 style="margin-top:24px;">Passive Benchmark Comparison</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Foxchase</th><th>SPY price return</th></tr></thead><tbody>
         <tr><td>Starting value</td><td>$10,000.00</td><td>$10,000.00</td></tr>
-        <tr><td>Ending value</td><td>$51,565.90</td><td>$19,605.71</td></tr>
-        <tr><td>Total return</td><td>415.66%</td><td>96.06%</td></tr>
-        <tr><td>CAGR</td><td>57.28%</td><td>20.43%</td></tr>
-        <tr><td>Sharpe</td><td>3.352</td><td>1.316</td></tr>
-        <tr><td>Maximum drawdown</td><td>-12.81%</td><td>-19.00%</td></tr>
+        <tr><td>Ending value</td><td>$56,826.90</td><td>$19,605.71</td></tr>
+        <tr><td>Total return</td><td>468.27%</td><td>96.06%</td></tr>
+        <tr><td>CAGR</td><td>61.55%</td><td>20.43%</td></tr>
+        <tr><td>Sharpe</td><td>3.518</td><td>1.316</td></tr>
+        <tr><td>Maximum drawdown</td><td>-12.49%</td><td>-19.00%</td></tr>
         <tr><td>Calmar</td><td>4.47</td><td>1.08</td></tr>
       </tbody></table></div>
       <div class="research-table-wrap" style="margin-top:18px;"><table class="research-table"><thead><tr><th>Overlay attribution</th><th>Result</th></tr></thead><tbody>
@@ -714,12 +714,12 @@ function setTextIfExists(id, value) {
       <div class="pnl-note"><strong>Research scenario — not currently deployed.</strong> The planned portfolio applies the validated 20% JEPI / 55% interest-bearing cash architecture to the same chronological active-strategy history. Strategy percentages remain contractual-risk ceilings rather than additional funded asset buckets.</div>
       <h3 style="margin-top:24px;">Current vs Planned</h3>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current Production</th><th>Planned Income Portfolio</th><th>Change</th></tr></thead><tbody>
-        <tr><td>Ending equity</td><td>$51,565.90</td><td>$54,416.97</td><td>+$2,851.07</td></tr>
-        <tr><td>CAGR</td><td>57.28%</td><td>59.63%</td><td>+2.35 pp</td></tr>
-        <tr><td>Sharpe</td><td>3.352</td><td>3.491</td><td>+0.139</td></tr>
-        <tr><td>Maximum drawdown</td><td>-12.81%</td><td>-13.69%</td><td>-0.88 pp</td></tr>
-        <tr><td>Calmar</td><td>4.472</td><td>4.356</td><td>-0.116</td></tr>
-        <tr><td>Longest recovery</td><td>146 days</td><td>140 days</td><td>-6 days</td></tr>
+        <tr><td>Ending equity</td><td>$56,826.90</td><td>$59,761.06</td><td>+$2,851.07</td></tr>
+        <tr><td>CAGR</td><td>61.55%</td><td>63.81%</td><td>+2.26 pp</td></tr>
+        <tr><td>Sharpe</td><td>3.518</td><td>3.660</td><td>+0.142</td></tr>
+        <tr><td>Maximum drawdown</td><td>-12.49%</td><td>-13.17%</td><td>-0.67 pp</td></tr>
+        <tr><td>Calmar</td><td>4.926</td><td>4.846</td><td>-0.080</td></tr>
+        <tr><td>Longest recovery</td><td>200 days</td><td>116 days</td><td>-6 days</td></tr>
       </tbody></table></div>
       <p class="small"><strong>JEPI methodology:</strong> Alpaca SIP daily bars with <code>adjustment=all</code> provide the validated dividend-adjusted series. Distributions are included exactly once and are not credited separately. Cash uses the validated 3.30% calendar-day accrual and month-end credit treatment.</p>
       <p class="small"><strong>Allocation semantics:</strong> JEPI and cash describe asset holdings. Intraday, R5 Multi-Day, and Systematic Premium percentages remain maximum contractual-risk ceilings relative to total equity and are not added to the asset percentages.</p>
@@ -727,8 +727,8 @@ function setTextIfExists(id, value) {
     <div id="edgeResearchDetails" hidden>
       <div class="pnl-note"><strong>Fixed-risk diagnostic.</strong> Each completed trade contributes its realized P&amp;L divided by validated contractual risk. The combined line is the chronological additive union of Intraday, Multi-Day, and Systematic Premium Pilot observations; quantity and account growth do not increase later-trade weight.</div>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Normalized edge drawdown</th><th>Peak</th><th>Trough</th><th>Drawdown units</th></tr></thead><tbody>
-        <tr><td>2023</td><td>Sep. 26, 2023</td><td>Oct. 27, 2023</td><td>-3.0183</td></tr>
-        <tr><td>2024</td><td>Apr. 16, 2024</td><td>May. 2, 2024</td><td>-1.0280</td></tr>
+        <tr><td>2023</td><td>Aug. 9, 2023</td><td>Oct. 27, 2023</td><td>-2.9445</td></tr>
+        <tr><td>2024</td><td>Apr. 16, 2024</td><td>May. 2, 2024</td><td>-1.0126</td></tr>
         <tr><td>2025</td><td>Apr. 1, 2025</td><td>Apr. 2, 2025</td><td>-0.9333</td></tr>
       </tbody></table></div>
       <p class="small">The governed 2023 and 2024 setbacks remain visible after normalization, confirming genuine losing sequences, while the campaign ceiling removes cap-rejected observations from the production path. The 2025 normalized setback is materially smaller and was primarily an Intraday event.</p>
@@ -746,7 +746,7 @@ function setTextIfExists(id, value) {
       .then(response => response.json())
       .then(data => { idleCashInterestData = data; })
       .catch(() => { document.getElementById("idleCashInterestToggle").disabled = true; });
-    fetch("/data/foxchase_edge_curve.json?v=20260828-r1-spx-70", { cache: "no-store" })
+    fetch("/data/foxchase_edge_curve.json?v=20260829-directional-parity", { cache: "no-store" })
       .then(response => response.json())
       .then(data => { edgeCurveData = data; if (currentResearchCurve === "edge") renderEdgeCurve(); })
       .catch(() => { document.getElementById("edgeCurveButton").disabled = true; });
@@ -818,21 +818,21 @@ function setTextIfExists(id, value) {
       showValidatedResearch();
     }
     function showValidatedResearch() {
-      let metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 41565.89999999998, "ending": 51565.89999999998, "total_return": 415.6589999999998, "cagr": 57.27618324166113, "sharpe": 3.352007007595955, "max_dd": -12.806974886241285, "calmar": 4.472264820570059, "recovery": 146};
+      let metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 46826.89999999998, "ending": 56826.89999999998, "total_return": 468.26899999999983, "cagr": 61.55142423795403, "sharpe": 3.5179581143536196, "max_dd": -12.494801053653127, "calmar": 4.926162807526906, "recovery": 200};
       const plannedEnabled = document.getElementById("plannedIncomeToggle").checked;
       const interestEnabled = document.getElementById("idleCashInterestToggle").checked && idleCashInterestData;
       const scenarioKey = "compounded_overlay";
       const interestScenario = interestEnabled ? idleCashInterestData[scenarioKey] : null;
       if (plannedEnabled) {
-        metrics = {"trades": "225 intraday · 159 swing · 100 governed pilot entries", "pnl": 44416.96628417584, "ending": 54416.96628417584, "total_return": 444.1696628417584, "cagr": 59.630262036843604, "sharpe": 3.4912439786072826, "max_dd": -13.688993900833768, "calmar": 4.356073387775536, "recovery": 140};
+        metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 49761.05981868012, "ending": 59761.05981868012, "total_return": 497.6105981868012, "cagr": 63.81245036579093, "sharpe": 3.659648582050498, "max_dd": -13.168065779207627, "calmar": 4.846000273369744, "recovery": 116};
       } else if (interestScenario) {
         const im = interestScenario.metrics;
         metrics = {"trades": "225 intraday · 159 swing · 100 governed pilot entries", "pnl": im.pnl, "ending": im.ending_equity, "total_return": 100 * (im.ending_equity / 10000 - 1), "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct, "calmar": im.calmar, "recovery": im.longest_recovery_days};
       }
       const spyEnabled = document.getElementById("spyBenchmarkToggle").checked;
-      const normalChart = spyEnabled ? "/images/foxchase_equity_with_spy.svg?v=20260828-r1-spx-70" : "/images/foxchase_equity_without_spy.svg?v=20260828-r1-spx-70";
-      const interestChart = spyEnabled ? "/images/foxchase_equity_interest_with_spy.svg?v=20260828-r1-spx-70" : "/images/foxchase_equity_interest_without_spy.svg?v=20260828-r1-spx-70";
-      const plannedChart = spyEnabled ? "/images/foxchase_planned_income_with_spy.svg?v=20260829-planned-income" : "/images/foxchase_planned_income_without_spy.svg?v=20260829-planned-income";
+      const normalChart = spyEnabled ? "/images/foxchase_equity_with_spy.svg?v=20260829-directional-parity" : "/images/foxchase_equity_without_spy.svg?v=20260829-directional-parity";
+      const interestChart = spyEnabled ? "/images/foxchase_equity_interest_with_spy.svg?v=20260829-directional-parity" : "/images/foxchase_equity_interest_without_spy.svg?v=20260829-directional-parity";
+      const plannedChart = spyEnabled ? "/images/foxchase_planned_income_with_spy.svg?v=20260829-directional-parity" : "/images/foxchase_planned_income_without_spy.svg?v=20260829-directional-parity";
       document.getElementById("researchSizingChart").src = plannedEnabled ? plannedChart : (interestEnabled ? interestChart : normalChart);
       document.getElementById("researchSizingChart").alt = plannedEnabled ? (spyEnabled ? "Planned income portfolio, Current Production, and SPY price-return benchmark, with drawdowns" : "Planned income portfolio and Current Production, with drawdowns") : (spyEnabled ? "Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns" : "Validated Foxchase equity curves with drawdowns");
       document.getElementById("researchTradeCount").textContent = metrics.trades;
@@ -844,7 +844,7 @@ function setTextIfExists(id, value) {
       document.getElementById("researchMaxDrawdown").textContent = metrics.max_dd.toFixed(2) + "%";
       document.getElementById("researchCalmar").textContent = metrics.calmar.toFixed(3);
       document.getElementById("researchLongestRecovery").textContent = metrics.recovery + " days";
-      document.getElementById("researchWinRate").textContent = interestEnabled && !plannedEnabled ? "$" + interestScenario.metrics.intraday_comparator_ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) : "$25,415";
+      document.getElementById("researchWinRate").textContent = interestEnabled && !plannedEnabled ? "$" + interestScenario.metrics.intraday_comparator_ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) : "$31,109";
       document.getElementById("researchAverageTrade").textContent = "10% aggregate";
       document.getElementById("researchProfitFactor").textContent = plannedEnabled ? "3.30% included" : (interestEnabled ? "3.30% hypothetical" : "Off");
       document.getElementById("researchRiskFramework").textContent = "Chronological";
@@ -861,7 +861,7 @@ function setTextIfExists(id, value) {
         document.getElementById("interestAverageReservation").textContent = "$" + im.average_excluded_reservation.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
         document.getElementById("interestQuantityChanges").textContent = im.quantity_changes_from_interest;
         document.getElementById("interestTradePnlChange").textContent = money(im.subsequent_trade_pnl_change);
-        const baseEnding = 51565.90;
+        const baseEnding = 56826.90;
         document.getElementById("interestReconciliation").textContent = "$" + baseEnding.toLocaleString("en-US", {minimumFractionDigits:2}) + " + " + money(im.total_credited_interest).replace("+", "") + " + " + money(im.accrued_uncredited_interest).replace("+", "") + " + " + money(im.subsequent_trade_pnl_change).replace("+", "") + " = $" + im.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
         document.getElementById("interestSpyComparison").textContent = "SPY buy and hold is unchanged and receives no modeled cash interest.";
         document.getElementById("interestYearlyRows").innerHTML = interestScenario.yearly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
