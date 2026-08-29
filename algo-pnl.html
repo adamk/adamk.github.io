@@ -635,7 +635,7 @@ function setTextIfExists(id, value) {
 
 
     <h2>Research Backtest</h2>
-    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 100 governed pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$41,565.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$51,565.90</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">57.28%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.352</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-12.81%</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
+    <div class="research-metrics" id="equityResearchMetrics"><div class="research-card"><div class="research-label">Backtest Sample</div><div class="research-value" id="researchTradeCount">225 intraday · 159 swing · 100 governed pilot entries</div></div><div class="research-card"><div class="research-label">Research P&amp;L</div><div class="research-value" id="researchPnl">+$41,565.90</div></div><div class="research-card"><div class="research-label">Ending Equity</div><div class="research-value" id="researchEndingEquity">$51,565.90</div></div><div class="research-card"><div class="research-label">Total Return</div><div class="research-value" id="researchTotalReturn">415.66%</div></div><div class="research-card"><div class="research-label">CAGR</div><div class="research-value" id="researchCagr">57.28%</div></div><div class="research-card"><div class="research-label">Sharpe Ratio</div><div class="research-value" id="researchSharpe">3.352</div></div><div class="research-card"><div class="research-label">Max Drawdown</div><div class="research-value" id="researchMaxDrawdown">-12.81%</div></div><div class="research-card"><div class="research-label">Calmar</div><div class="research-value" id="researchCalmar">4.472</div></div><div class="research-card"><div class="research-label">Longest Recovery</div><div class="research-value" id="researchLongestRecovery">146 days</div></div><div class="research-card"><div class="research-label">Intraday Comparator</div><div class="research-value" id="researchWinRate">$25,415</div></div><div class="research-card"><div class="research-label">R5 30DTE Risk Cap</div><div class="research-value" id="researchAverageTrade">10% aggregate</div></div><div class="research-card"><div class="research-label">Cash Yield</div><div class="research-value" id="researchProfitFactor">Off</div></div><div class="research-card"><div class="research-label">Accounting</div><div class="research-value" id="researchRiskFramework">Chronological</div></div></div>
     <div class="research-metrics edge-metrics" id="edgeResearchMetrics" hidden>
       <div class="research-card"><div class="research-label">Risk-Defined Observations</div><div class="research-value" id="edgeTradeCount">482</div></div>
       <div class="research-card"><div class="research-label">Cumulative Normalized Units</div><div class="research-value" id="edgeCumulative">54.1519</div></div>
@@ -649,10 +649,12 @@ function setTextIfExists(id, value) {
       <button type="button" id="edgeCurveButton" role="tab" aria-selected="false" onclick="showResearchCurve('edge')">Edge Curve (Fixed Risk)</button>
     </div>
     <label id="idleCashInterestLabel" style="display:flex;align-items:center;gap:8px;margin:14px 0 0;font-weight:600;"><input type="checkbox" id="idleCashInterestToggle" onchange="toggleIdleCashInterest()"> Include 3.30% APY on eligible idle cash</label>
+    <label id="plannedIncomeLabel" style="display:flex;align-items:center;gap:8px;margin:8px 0 0;font-weight:600;"><input type="checkbox" id="plannedIncomeToggle" onchange="togglePlannedIncome()"> Include planned JEPI allocation (20%)</label>
     <label id="spyBenchmarkLabel" style="display:flex;align-items:center;gap:8px;margin:8px 0 0;font-weight:600;"><input type="checkbox" id="spyBenchmarkToggle" onchange="showValidatedResearch()" checked> Show SPY Buy &amp; Hold (Price Return)</label>
     <div class="chart-box research-chart-box"><img id="researchSizingChart" src="/images/foxchase_equity_with_spy.svg?v=20260828-r1-spx-70" alt="Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns"></div>
     <div class="chart-box research-chart-box edge-chart-wrap" id="edgeCurveWrap" hidden><canvas id="edgeCurveChart" aria-label="Cumulative fixed-risk edge curve by public strategy sleeve"></canvas></div>
     <p class="small" id="researchSizingNote"><strong>Validated benchmark:</strong> A true chronological replay of the current production strategy, including intraday and multi-day positions plus the current minimum-size systematic premium pilot. The pilot is modeled at the same fixed one-spread size and aggregate campaign-risk ceiling used in production. The pre-pilot production curve remains shown separately; pilot results never resize intraday trades or alter the cash-interest state.</p>
+    <p class="small" id="plannedIncomeNote"><strong>Planned income architecture:</strong> The researched 20% JEPI / 55% cash allocation comes from a separate $400K sustainable-income study. Highest tested defensible withdrawal target: $5,000/month while retaining substantial cash liquidity. This is research, not a guarantee. JEPI is not currently held in the live account.</p>
     <p class="small" id="spyBenchmarkNote"><strong>SPY Buy &amp; Hold (Price Return):</strong> Provides a passive market benchmark using the same $10,000 starting capital and January 10, 2023–August 25, 2026 historical period as the Foxchase simulation. It uses theoretical fractional shares, raw cached SPY closes, no leverage or cash interest, and does not include dividend reinvestment.</p>
     <p class="small" id="edgeSizingNote" hidden><strong>Edge Curve (Fixed Risk):</strong> Shows cumulative normalized trade performance without compounding, so each trade is evaluated relative to its contractual risk rather than account size. The Edge Curve is a diagnostic of strategy consistency and does not represent an investable account balance.</p>
     <div id="overlayResearchDetails">
@@ -708,6 +710,20 @@ function setTextIfExists(id, value) {
       <details style="margin-top:20px;"><summary><strong>Interest-adjusted monthly results</strong></summary><div class="research-table-wrap" style="margin-top:12px;"><table class="research-table"><thead><tr><th>Month</th><th>Return</th><th>Ending equity</th></tr></thead><tbody id="interestMonthlyRows"></tbody></table></div></details>
       <p class="small"><strong>Research status:</strong> Cash yield is separate from trading edge and was not actually earned throughout this history. The trading rules and trade opportunity set are unchanged when this toggle is enabled.</p>
     </div>
+    <div id="plannedIncomeResearchDetails" hidden>
+      <div class="pnl-note"><strong>Research scenario — not currently deployed.</strong> The planned portfolio applies the validated 20% JEPI / 55% interest-bearing cash architecture to the same chronological active-strategy history. Strategy percentages remain contractual-risk ceilings rather than additional funded asset buckets.</div>
+      <h3 style="margin-top:24px;">Current vs Planned</h3>
+      <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Measure</th><th>Current Production</th><th>Planned Income Portfolio</th><th>Change</th></tr></thead><tbody>
+        <tr><td>Ending equity</td><td>$51,565.90</td><td>$54,416.97</td><td>+$2,851.07</td></tr>
+        <tr><td>CAGR</td><td>57.28%</td><td>59.63%</td><td>+2.35 pp</td></tr>
+        <tr><td>Sharpe</td><td>3.352</td><td>3.491</td><td>+0.139</td></tr>
+        <tr><td>Maximum drawdown</td><td>-12.81%</td><td>-13.69%</td><td>-0.88 pp</td></tr>
+        <tr><td>Calmar</td><td>4.472</td><td>4.356</td><td>-0.116</td></tr>
+        <tr><td>Longest recovery</td><td>146 days</td><td>140 days</td><td>-6 days</td></tr>
+      </tbody></table></div>
+      <p class="small"><strong>JEPI methodology:</strong> Alpaca SIP daily bars with <code>adjustment=all</code> provide the validated dividend-adjusted series. Distributions are included exactly once and are not credited separately. Cash uses the validated 3.30% calendar-day accrual and month-end credit treatment.</p>
+      <p class="small"><strong>Allocation semantics:</strong> JEPI and cash describe asset holdings. Intraday, R5 Multi-Day, and Systematic Premium percentages remain maximum contractual-risk ceilings relative to total equity and are not added to the asset percentages.</p>
+    </div>
     <div id="edgeResearchDetails" hidden>
       <div class="pnl-note"><strong>Fixed-risk diagnostic.</strong> Each completed trade contributes its realized P&amp;L divided by validated contractual risk. The combined line is the chronological additive union of Intraday, Multi-Day, and Systematic Premium Pilot observations; quantity and account growth do not increase later-trade weight.</div>
       <div class="research-table-wrap"><table class="research-table"><thead><tr><th>Normalized edge drawdown</th><th>Peak</th><th>Trough</th><th>Drawdown units</th></tr></thead><tbody>
@@ -747,14 +763,17 @@ function setTextIfExists(id, value) {
       document.getElementById("researchSizingChart").parentElement.hidden = edge;
       document.getElementById("edgeCurveWrap").hidden = !edge;
       document.getElementById("idleCashInterestLabel").hidden = edge;
+      document.getElementById("plannedIncomeLabel").hidden = edge;
       document.getElementById("spyBenchmarkLabel").hidden = edge;
       document.getElementById("researchSizingNote").hidden = edge;
+      document.getElementById("plannedIncomeNote").hidden = edge;
       document.getElementById("spyBenchmarkNote").hidden = edge;
       document.getElementById("edgeSizingNote").hidden = !edge;
       document.getElementById("edgeResearchDetails").hidden = !edge;
       if (edge) {
         document.getElementById("overlayResearchDetails").hidden = true;
         document.getElementById("interestResearchDetails").hidden = true;
+        document.getElementById("plannedIncomeResearchDetails").hidden = true;
         renderEdgeCurve();
       } else {
         showValidatedResearch();
@@ -791,33 +810,48 @@ function setTextIfExists(id, value) {
       }
       showValidatedResearch();
     }
+    function togglePlannedIncome() {
+      const planned = document.getElementById("plannedIncomeToggle").checked;
+      const interest = document.getElementById("idleCashInterestToggle");
+      if (planned) interest.checked = false;
+      interest.disabled = planned;
+      showValidatedResearch();
+    }
     function showValidatedResearch() {
-      let metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 41565.89999999998, "ending": 51565.89999999998, "cagr": 57.27618324166113, "sharpe": 3.352007007595955, "max_dd": -12.806974886241285};
+      let metrics = {"trades": "225 intraday \u00b7 159 swing \u00b7 100 governed pilot entries", "pnl": 41565.89999999998, "ending": 51565.89999999998, "total_return": 415.6589999999998, "cagr": 57.27618324166113, "sharpe": 3.352007007595955, "max_dd": -12.806974886241285, "calmar": 4.472264820570059, "recovery": 146};
+      const plannedEnabled = document.getElementById("plannedIncomeToggle").checked;
       const interestEnabled = document.getElementById("idleCashInterestToggle").checked && idleCashInterestData;
       const scenarioKey = "compounded_overlay";
       const interestScenario = interestEnabled ? idleCashInterestData[scenarioKey] : null;
-      if (interestScenario) {
+      if (plannedEnabled) {
+        metrics = {"trades": "225 intraday · 159 swing · 100 governed pilot entries", "pnl": 44416.96628417584, "ending": 54416.96628417584, "total_return": 444.1696628417584, "cagr": 59.630262036843604, "sharpe": 3.4912439786072826, "max_dd": -13.688993900833768, "calmar": 4.356073387775536, "recovery": 140};
+      } else if (interestScenario) {
         const im = interestScenario.metrics;
-        metrics = {"trades": "225 intraday · 159 swing · 100 governed pilot entries", "pnl": im.pnl, "ending": im.ending_equity, "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct};
+        metrics = {"trades": "225 intraday · 159 swing · 100 governed pilot entries", "pnl": im.pnl, "ending": im.ending_equity, "total_return": 100 * (im.ending_equity / 10000 - 1), "cagr": im.cagr_pct, "sharpe": im.sharpe, "max_dd": im.max_drawdown_pct, "calmar": im.calmar, "recovery": im.longest_recovery_days};
       }
       const spyEnabled = document.getElementById("spyBenchmarkToggle").checked;
       const normalChart = spyEnabled ? "/images/foxchase_equity_with_spy.svg?v=20260828-r1-spx-70" : "/images/foxchase_equity_without_spy.svg?v=20260828-r1-spx-70";
       const interestChart = spyEnabled ? "/images/foxchase_equity_interest_with_spy.svg?v=20260828-r1-spx-70" : "/images/foxchase_equity_interest_without_spy.svg?v=20260828-r1-spx-70";
-      document.getElementById("researchSizingChart").src = interestEnabled ? interestChart : normalChart;
-      document.getElementById("researchSizingChart").alt = spyEnabled ? "Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns" : "Validated Foxchase equity curves with drawdowns";
+      const plannedChart = spyEnabled ? "/images/foxchase_planned_income_with_spy.svg?v=20260829-planned-income" : "/images/foxchase_planned_income_without_spy.svg?v=20260829-planned-income";
+      document.getElementById("researchSizingChart").src = plannedEnabled ? plannedChart : (interestEnabled ? interestChart : normalChart);
+      document.getElementById("researchSizingChart").alt = plannedEnabled ? (spyEnabled ? "Planned income portfolio, Current Production, and SPY price-return benchmark, with drawdowns" : "Planned income portfolio and Current Production, with drawdowns") : (spyEnabled ? "Validated Foxchase equity curves and SPY buy-and-hold price-return benchmark, with drawdowns" : "Validated Foxchase equity curves with drawdowns");
       document.getElementById("researchTradeCount").textContent = metrics.trades;
       document.getElementById("researchPnl").textContent = (metrics.pnl >= 0 ? "+" : "-") + "$" + Math.abs(metrics.pnl).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
       document.getElementById("researchEndingEquity").textContent = "$" + metrics.ending.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      document.getElementById("researchTotalReturn").textContent = metrics.total_return.toFixed(2) + "%";
       document.getElementById("researchCagr").textContent = metrics.cagr.toFixed(2) + "%";
       document.getElementById("researchSharpe").textContent = metrics.sharpe.toFixed(3);
       document.getElementById("researchMaxDrawdown").textContent = metrics.max_dd.toFixed(2) + "%";
-      document.getElementById("researchWinRate").textContent = interestEnabled ? "$" + interestScenario.metrics.intraday_comparator_ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) : "$25,415";
+      document.getElementById("researchCalmar").textContent = metrics.calmar.toFixed(3);
+      document.getElementById("researchLongestRecovery").textContent = metrics.recovery + " days";
+      document.getElementById("researchWinRate").textContent = interestEnabled && !plannedEnabled ? "$" + interestScenario.metrics.intraday_comparator_ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) : "$25,415";
       document.getElementById("researchAverageTrade").textContent = "10% aggregate";
-      document.getElementById("researchProfitFactor").textContent = interestEnabled ? "3.30% hypothetical" : "Off";
+      document.getElementById("researchProfitFactor").textContent = plannedEnabled ? "3.30% included" : (interestEnabled ? "3.30% hypothetical" : "Off");
       document.getElementById("researchRiskFramework").textContent = "Chronological";
-      document.getElementById("researchSizingNote").innerHTML = interestEnabled ? "<strong>Cash-yield note:</strong> 3.30% APY is hypothetical, credited monthly, and applied only to nonnegative eligible cash after reservations. It is separate from trading edge; SPY receives no interest." : "<strong>Validated benchmark:</strong> Current intraday and multi-day production plus the governed fixed one-spread systematic premium pilot. The pre-pilot comparator is preserved, and pilot P&amp;L does not resize intraday trades.";
-      document.getElementById("overlayResearchDetails").hidden = interestEnabled;
-      document.getElementById("interestResearchDetails").hidden = !interestEnabled;
+      document.getElementById("researchSizingNote").innerHTML = plannedEnabled ? "<strong>Future Income Architecture:</strong> Research scenario with 20% JEPI, 55% interest-bearing cash, and the existing active-strategy architecture. JEPI is not currently deployed." : (interestEnabled ? "<strong>Cash-yield note:</strong> 3.30% APY is hypothetical, credited monthly, and applied only to nonnegative eligible cash after reservations. It is separate from trading edge; SPY receives no interest." : "<strong>Validated benchmark:</strong> Current intraday and multi-day production plus the governed fixed one-spread systematic premium pilot. The pre-pilot comparator is preserved, and pilot P&amp;L does not resize intraday trades.");
+      document.getElementById("overlayResearchDetails").hidden = interestEnabled || plannedEnabled;
+      document.getElementById("interestResearchDetails").hidden = !interestEnabled || plannedEnabled;
+      document.getElementById("plannedIncomeResearchDetails").hidden = !plannedEnabled;
       if (interestScenario) {
         const im = interestScenario.metrics;
         const money = value => (value >= 0 ? "+" : "-") + "$" + Math.abs(value).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
