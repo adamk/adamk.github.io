@@ -32,7 +32,6 @@ function setTextIfExists(id, value) {
   <title>Foxchase Trading Algo Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Foxchase Trading live algorithm performance dashboard with research backtest context.">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="styles.css">
   <style>
     .pnl-wrap { max-width:1000px; margin:40px auto; padding:0 20px; }
@@ -740,16 +739,53 @@ function setTextIfExists(id, value) {
     let edgeCurveData = null;
     let edgeCurveInstance = null;
     let currentResearchCurve = "equity";
-    fetch("/data/alpaca_idle_cash_interest.json?v=20260825-daily-append", { cache: "no-store" })
-      .then(response => response.json())
-      .then(data => { idleCashInterestData = data; })
-      .catch(() => { document.getElementById("idleCashInterestToggle").disabled = true; });
-    fetch("/data/foxchase_edge_curve.json?v=20260829-directional-parity", { cache: "no-store" })
-      .then(response => response.json())
-      .then(data => { edgeCurveData = data; if (currentResearchCurve === "edge") renderEdgeCurve(); })
-      .catch(() => { document.getElementById("edgeCurveButton").disabled = true; });
-    function showResearchCurve(view) {
-      if (view === "edge" && !edgeCurveData) return;
+    let idleCashInterestPromise = null;
+    let edgeCurvePromise = null;
+    let chartLibraryPromise = null;
+    function loadChartLibrary() {
+      if (window.Chart) return Promise.resolve(window.Chart);
+      if (!chartLibraryPromise) {
+        chartLibraryPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js";
+          script.async = true;
+          script.onload = () => resolve(window.Chart);
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      }
+      return chartLibraryPromise;
+    }
+    function loadIdleCashInterest() {
+      if (idleCashInterestData) return Promise.resolve(idleCashInterestData);
+      if (!idleCashInterestPromise) {
+        idleCashInterestPromise = fetch("/data/alpaca_idle_cash_interest.json?v=20260825-daily-append")
+          .then(response => { if (!response.ok) throw new Error("Interest data unavailable"); return response.json(); })
+          .then(data => { idleCashInterestData = data; return data; });
+      }
+      return idleCashInterestPromise;
+    }
+    function loadEdgeCurve() {
+      if (edgeCurveData) return Promise.resolve(edgeCurveData);
+      if (!edgeCurvePromise) {
+        edgeCurvePromise = fetch("/data/foxchase_edge_curve.json?v=20260829-directional-parity")
+          .then(response => { if (!response.ok) throw new Error("Edge data unavailable"); return response.json(); })
+          .then(data => { edgeCurveData = data; return data; });
+      }
+      return edgeCurvePromise;
+    }
+    async function showResearchCurve(view) {
+      if (view === "edge" && !edgeCurveData) {
+        const button = document.getElementById("edgeCurveButton");
+        button.disabled = true;
+        try {
+          await Promise.all([loadEdgeCurve(), loadChartLibrary()]);
+        } catch (_) {
+          return;
+        } finally {
+          button.disabled = false;
+        }
+      }
       currentResearchCurve = view;
       const edge = view === "edge";
       document.getElementById("equityCurveButton").classList.toggle("active", !edge);
@@ -801,10 +837,17 @@ function setTextIfExists(id, value) {
         }
       });
     }
-    function toggleIdleCashInterest() {
+    async function toggleIdleCashInterest() {
       if (document.getElementById("idleCashInterestToggle").checked && !idleCashInterestData) {
-        document.getElementById("idleCashInterestToggle").checked = false;
-        return;
+        const toggle = document.getElementById("idleCashInterestToggle");
+        toggle.disabled = true;
+        try {
+          await loadIdleCashInterest();
+        } catch (_) {
+          toggle.checked = false;
+        } finally {
+          toggle.disabled = false;
+        }
       }
       showValidatedResearch();
     }
@@ -875,9 +918,14 @@ function setTextIfExists(id, value) {
       return Number(value).toFixed(1) + "%";
     }
 
-    fetch("/data/algo-pnl.json?v=" + Date.now(), { cache: "no-store" })
-      .then(response => response.json())
-      .then(data => {
+    function loadLivePerformance() {
+      Promise.all([
+        fetch("/data/algo-pnl.json", { cache: "no-store" }).then(response => {
+          if (!response.ok) throw new Error("Live performance unavailable");
+          return response.json();
+        }),
+        loadChartLibrary()
+      ]).then(([data]) => {
 
       // Dynamic Main Stats
       const tradeStats = data.trade_stats || data.tradeStats || data.stats || {};
@@ -995,10 +1043,14 @@ function setTextIfExists(id, value) {
       .catch(() => {
         document.querySelector(".chart-box").innerHTML = "<p>Unable to load P&L data right now.</p>";
       });
+    }
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(loadLivePerformance, { timeout: 1000 });
+    } else {
+      setTimeout(loadLivePerformance, 0);
+    }
   </script>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script id="foxchase-interior-header-script">
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".foxchase-site-header").forEach(function (header) {
