@@ -1,10 +1,10 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-08-31T10:15:02.556578-04:00",
+  "updated_at": "2026-08-31T10:30:03.710151-04:00",
   "performance": {
     "base_index": 100.0,
-    "current_index": 109.8302,
-    "total_return_pct": 9.8302,
+    "current_index": 109.5667,
+    "total_return_pct": 9.5667,
     "max_drawdown_pct": -7.6821,
     "flow_adjusted": true,
     "methodology": "Daily time-weighted return; external deposits and withdrawals are applied at the beginning of each daily interval."
@@ -392,7 +392,7 @@
     },
     {
       "date": "2026-08-31",
-      "index_value": 109.8302
+      "index_value": 109.5667
     }
   ],
   "stats": {
