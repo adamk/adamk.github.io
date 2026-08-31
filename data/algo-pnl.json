@@ -1,10 +1,10 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-08-31T11:45:02.625253-04:00",
+  "updated_at": "2026-08-31T12:00:02.040857-04:00",
   "performance": {
     "base_index": 100.0,
-    "current_index": 109.8874,
-    "total_return_pct": 9.8874,
+    "current_index": 109.8645,
+    "total_return_pct": 9.8645,
     "max_drawdown_pct": -7.6821,
     "flow_adjusted": true,
     "methodology": "Daily time-weighted return; external deposits and withdrawals are applied at the beginning of each daily interval."
@@ -392,7 +392,7 @@
     },
     {
       "date": "2026-08-31",
-      "index_value": 109.8874
+      "index_value": 109.8645
     }
   ],
   "stats": {
@@ -1209,7 +1209,7 @@
       "result": "win"
     }
   ],
-  "note": "Performance is time-weighted and normalized to an initial index value of 100. External deposits and withdrawals are excluded from returns. Index values do not represent actual account equity.",
+  "note": "Performance is time-weighted and normalized to an initial index value of 100. The index reflects mark-to-market account performance, including realized and unrealized P&L, while external deposits and withdrawals are excluded. Index values do not represent actual account equity. Realized Algo P&L includes closed trades only.",
   "realized_algo_pnl": 640.0001999999996,
   "closed_trades": 26,
   "win_rate": 69.23076923076923,
