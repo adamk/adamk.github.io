@@ -18,7 +18,7 @@
   <link rel="apple-touch-icon" href="/foxchase-favicon.png?v=20260823">
   <link rel="shortcut icon" href="/foxchase-favicon.png?v=20260823">
   <!-- SEO -->
-  <meta name="description" content="Classify SPY’s pre‑market into six regimes and use unconditional & conditional probabilities to frame 0DTE setups. Works hand‑in‑hand with live customer/MM gamma and delta positioning." />
+  <meta name="description" content="Classify SPY’s pre-market into six regimes and use unconditional & conditional probabilities to frame 0DTE setups." />
   <meta name="author" content="Foxchase Trading" />
 
   <!-- Styles -->
@@ -147,17 +147,18 @@
 
       <!-- Editor's Note -->
       <div class="alert alert-info mt-3 mb-4">
-        <strong>Editor’s Note:</strong>
-        The probabilities and behaviors described in this article come from historical SPY pre-market regime research. The exact frequencies may shift depending on the dataset, cleaning method, and market environment.
-        The more recent cleaned framework filters bad pre-market OHLC spikes and uses confirmed PMH/PML construction, which improves regime quality but can slightly change the distribution versus earlier versions of the model.
-        <br><br>
-        This does <em>not</em> eliminate the edge of using regimes — the framework remains very effective as a structural guide. However, it becomes even more powerful when combined with real-time tools that do not rely only on historical patterns.
+        <strong>Editor's Note (Updated September 2026)</strong>
+        <p class="mb-2">Since publishing this article, my workflow has continued to evolve.</p>
+        <p class="mb-2">The six SPY pre-market regimes remain an important part of my framework, but I no longer combine them with intraday market-maker delta positioning as a trade signal. I now use the regimes primarily to establish structural context and quantify the historical probabilities of key intraday level interactions.</p>
+        <p class="mb-2">The probabilities and behaviors described in this article come from historical SPY pre-market regime research. Exact frequencies can shift depending on the dataset, cleaning method, and market environment. The more recent cleaned framework filters bad pre-market OHLC spikes and uses confirmed PMH/PML construction, which improves regime quality but can slightly change the distribution versus earlier versions of the model.</p>
+        <p class="mb-2">The regimes are not intended to predict every intraday move on their own. Their value is in reducing the trading day to a smaller set of statistically grounded scenarios and providing context for specific setups as they develop.</p>
+        <p class="mb-0">In <strong>Part 5, the final installment of this series</strong>, I’ll bring the current framework together by combining these regimes with specific 0DTE setups using the <strong>z-score of a call option’s extrinsic value</strong>.</p>
       </div>
       <!-- End Editor's Note -->
 
       <section class="mb-4">
         <h2 class="h4">Intro</h2>
-        <p>In <a href="cracking-0dte-code-spx.html">Part 1</a>, we showed why static (“naive”) gamma maps are great for pre‑market terrain but weak for intraday timing and how live customer/market‑maker (MM) delta positioning sharpens 0DTE entries. In Part 2, we add a second lens: <strong>pre‑market structure on SPY</strong>. By classifying the open into six regimes, we can attach <em>unconditional</em> and <em>conditional</em> probabilities to the day’s key level interactions. (Note: this applies to SPY; SPX doesn’t trade pre‑market.)</p>
+        <p>In <a href="cracking-0dte-code-spx.html">Part 1</a>, we showed why static (“naive”) gamma maps are great for pre‑market terrain but weak for intraday timing. In Part 2, we add a second lens: <strong>pre‑market structure on SPY</strong>. By classifying the open into six regimes, we can attach <em>unconditional</em> and <em>conditional</em> probabilities to the day’s key level interactions. (Note: this applies to SPY; SPX doesn’t trade pre‑market.)</p>
       </section>
 
       <section class="mb-4">
@@ -316,24 +317,26 @@
 
       <section class="mb-4">
         <h2 class="h4">Putting It Together with 0DTE Flow</h2>
-        <p>Pair regime probabilities with <strong>live customer/MM delta positioning</strong> (from CBOE open‑close 10‑min data) to build a two‑factor playbook:</p>
+        <p>Use the regime probabilities to build a practical intraday playbook:</p>
         <ul>
-          <li><strong>Inside range</strong>: Fade extremes; favor mean reversion. PMH to PML, and PML to PMH ranges very common. Watch gamma for breakouts.</li>
+          <li><strong>Inside range</strong>: Fade extremes and favor mean reversion. PMH-to-PML and PML-to-PMH rotations are common. Watch for confirmed breaks before treating an extreme as a breakout.</li>
           <li><strong>Full gaps</strong>: Look for backtests before continuation.</li>
           <li><strong>Overhangs</strong>: Watch for failed pokes to reverse, or continuation traps to spring.</li>
-          <li><strong>Wide spans</strong>: Expect multiple high‑volatility setups.</li>
+          <li><strong>Wide spans</strong>: Expect multiple high-volatility setups.</li>
         </ul>
-        <p>For 0DTE traders, this framework provides a structured edge to narrow the focus from "infinite possibilities" to six probabilistic scenarios, each with measurable odds. It encourages inaction during chop, trading only during ideal setups.</p>
-        <p>Confirmation tip: wait for a close beyond your level; if a subsequent candle closes back across against your bias, consider exiting. Always respect theta. If trading futures, obviously you can avoid this, which is an advantage.</p>
+        <p>For 0DTE traders, this framework provides a structured edge by narrowing the focus from "infinite possibilities" to six probabilistic scenarios, each with measurable odds. It encourages inaction during chop and trading only when the setup aligns with the regime.</p>
+        <p>Confirmation tip: wait for a close beyond your level; if a subsequent candle closes back across against your bias, consider exiting. Always respect theta. If trading futures, you can avoid theta decay, which is one advantage.</p>
       </section>
 
       <section class="mb-4">
         <h2 class="h4">Closing Thoughts</h2>
-        <p>Traders often say “it’s a game of probabilities,” but rarely quantify them. The six SPY pre‑market regimes give a measurable framework. Combined with MM positioning, you get a repeatable two‑factor edge:</p>
+        <p>Traders often say “it’s a game of probabilities,” but rarely quantify them. The six SPY pre‑market regimes provide a measurable, repeatable framework for answering two practical questions:</p>
         <ol>
-          <li>What is our daily bias, and what are the odds of key level interactions? (<em>regime</em>)</li>
-          <li>How are MMs positioned right now? (<em>exposure</em>)</li>
+          <li>What is the likely character of today’s session?</li>
+          <li>What are the historical odds of key level interactions within this regime?</li>
         </ol>
+        <p>The goal is not to predict every move. It is to reduce the day to a smaller set of statistically grounded scenarios and wait for price action to confirm which one is developing.</p>
+        <p>In <strong>Part 5, the final installment of this series</strong>, we’ll bring the framework together by combining these regimes with specific 0DTE setups using the <strong>z-score of a call option’s extrinsic value</strong>. This adds a real-time measure of whether call premium is unusually rich or cheap relative to its recent behavior, giving us a way to pair the day’s statistical regime with a specific execution setup.</p>
       </section>
 
       <section class="mb-4">
@@ -393,7 +396,7 @@
       "@type": "WebPage",
       "@id": "https://foxchasetrading.com/cracking-0dte-code-part-2-spy-premarket-regimes"
     },
-    "description": "Classify SPY pre‑market into six regimes and pair with live customer/MM delta positioning to frame probabilistic 0DTE setups."
+    "description": "Classify SPY pre-market into six regimes and use unconditional & conditional probabilities to frame 0DTE setups."
   }
   </script>
 
