@@ -142,6 +142,7 @@
          overflows horizontally; centering an overflowing flex row clips its
          left edge and hides the start of the review text. */
       justify-content: flex-start;
+      flex-wrap: nowrap;
       gap: 1rem;
       overflow-x: auto;
       padding: 0.5rem 0.25rem 1rem;
@@ -150,7 +151,7 @@
   
     .testimonial-shot {
       flex: 0 0 auto;
-      width: min(320px, 85vw);
+      width: min(360px, 85vw);
       max-width: 85vw;
       height: auto;
       aspect-ratio: auto;
