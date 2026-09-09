@@ -1,10 +1,10 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-09-08T20:27:58.836094-04:00",
+  "updated_at": "2026-09-09T09:30:06.128146-04:00",
   "performance": {
     "base_index": 100.0,
-    "current_index": 111.079,
-    "total_return_pct": 11.079,
+    "current_index": 110.9458,
+    "total_return_pct": 10.9458,
     "max_drawdown_pct": -7.4337,
     "flow_adjusted": true,
     "methodology": "Cash-flow-neutral time-weighted return; timestamped flows are subperiod-linked when authenticated before/after equity is available, with settled daily activities otherwise applied at the interval boundary."
@@ -416,7 +416,11 @@
     },
     {
       "date": "2026-09-08",
-      "index_value": 111.079
+      "index_value": 111.512
+    },
+    {
+      "date": "2026-09-09",
+      "index_value": 110.9458
     }
   ],
   "stats": {
@@ -1259,5 +1263,21 @@
       "result": "win"
     }
   ],
-  "note": "Performance is time-weighted and normalized to an initial index value of 100. The index reflects mark-to-market account performance, including realized and unrealized P&L, while external deposits and withdrawals are excluded. Index values do not represent actual account equity. Realized Algo P&L includes closed trades only."
+  "note": "Performance is time-weighted and normalized to an initial index value of 100. The index reflects mark-to-market account performance, including realized and unrealized P&L, while external deposits and withdrawals are excluded. Index values do not represent actual account equity. Realized Algo P&L includes closed trades only.",
+  "realized_algo_pnl": 690.0001999999996,
+  "closed_trades": 27,
+  "win_rate": 70.37037037037037,
+  "avg_win": 132.89474736842104,
+  "avg_loss": -229.375,
+  "gross_profit": 2525.0002,
+  "gross_loss": 1835.0,
+  "profit_factor": 1.3760219073569482,
+  "realizedAlgoPnl": 690.0001999999996,
+  "closedTrades": 27,
+  "winRate": 70.37037037037037,
+  "avgWin": 132.89474736842104,
+  "avgLoss": -229.375,
+  "grossProfit": 2525.0002,
+  "grossLoss": 1835.0,
+  "profitFactor": 1.3760219073569482
 }
