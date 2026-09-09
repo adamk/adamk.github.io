@@ -268,7 +268,7 @@
   .planner-affix { padding:0 12px; color:#64748b; font-weight:650; }
   #planner-app input, #planner-app select { width:100%; min-width:0; border:0; outline:0; padding:12px 13px; color:#0f172a; background:#fff; }
   #planner-app input:disabled { color:#475569; background:#f8fafc; }
-  .grade-picker { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .grade-picker { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
   .symbol-picker { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
   .grade-button { padding:12px; border:1px solid #cbd5e1; border-radius:11px; background:#fff; color:#334155; font-weight:750; cursor:pointer; }
   .grade-button:hover { background:#f8fafc; }
@@ -344,7 +344,7 @@
 <main id="planner-app">
   <span class="planner-eyebrow">0DTE OCO Contract Sizer</span>
   <h1>How many contracts should I load?</h1>
-  <p class="planner-intro">Choose the setup grade and enter the loss you are planning for each contract. The quantity updates immediately.</p>
+  <p class="planner-intro">Choose a setup-conviction preset and enter the loss you are planning for each contract. The quantity updates immediately.</p>
 
   <div class="planner-grid">
     <section class="planner-card planner-inputs" aria-labelledby="sizing-title">
@@ -363,18 +363,17 @@
         <span class="planner-help">Use the current at-the-money premium for the expiration and option type you plan to trade.</span>
       </label>
       <div class="planner-field">
-        <span class="planner-label">Setup grade</span>
-        <div class="grade-picker" role="group" aria-label="Setup grade">
-          <button class="grade-button" type="button" data-grade="B">B</button>
+        <span class="planner-label">Setup conviction</span>
+        <div class="grade-picker" role="group" aria-label="Setup conviction">
           <button class="grade-button active" type="button" data-grade="A">A</button>
           <button class="grade-button" type="button" data-grade="A+">A+</button>
         </div>
-        <p class="grade-explanation" id="gradeExplanation">A allows up to 30% of account equity as position cost. At a 20% planned stop, modeled account risk is about 6%.</p>
+        <p class="grade-explanation" id="gradeExplanation">A uses lower deployment, including qualified Extrinsic Divergence trades.</p>
       </div>
-      <label class="planner-field"><span class="planner-label">Position budget (% of account)</span><span class="planner-input-shell"><input id="deploymentPct" type="number" min="1" max="100" step="1" value="30"><span class="planner-affix">%</span></span><span class="planner-help">The grade loads the existing Foxchase preset, but this value is editable for income preservation or small-account growth.</span></label>
+      <label class="planner-field"><span class="planner-label">Position budget (% of account)</span><span class="planner-input-shell"><input id="deploymentPct" type="number" min="1" max="100" step="1" value="30"><span class="planner-affix">%</span></span><span class="planner-help">The conviction preset loads the existing Foxchase deployment, but this value is editable for income preservation or small-account growth.</span></label>
       <label class="planner-field"><span class="planner-label">Win rate assumption</span><span class="planner-input-shell"><input id="winRate" type="number" min="1" max="99" step="1" value="70"><span class="planner-affix">%</span></span><span class="planner-help">Used only to estimate expectancy with the current 1:1 bracket. It is not a forecast.</span></label>
       <label class="planner-field"><span class="planner-label">Loss assumption</span><span class="planner-input-shell"><select id="riskBasis"><option value="full">Full premium (true max loss)</option><option value="stop" selected>Planned stop percentage</option><option value="custom">Custom dollar loss</option></select></span></label>
-      <label class="planner-field" id="plannedStopField"><span class="planner-label">Planned loss as % of position size</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="20"><span class="planner-affix">%</span></span><span class="planner-help">For a long option, position size is the premium paid. This changes planned risk, not the grade’s contract cap.</span></label>
+      <label class="planner-field" id="plannedStopField"><span class="planner-label">Planned loss as % of position size</span><span class="planner-input-shell"><input id="plannedLossPct" type="number" min="1" max="100" step="1" value="20"><span class="planner-affix">%</span></span><span class="planner-help">For a long option, position size is the premium paid. This changes planned risk, not the conviction preset’s contract cap.</span></label>
       <label class="planner-field"><span class="planner-label" id="perContractRiskLabel">Per-contract planned loss</span><span class="planner-input-shell"><span class="planner-affix">$</span><input id="perContractRisk" type="number" min="0.01" step="1" value="25" inputmode="decimal" disabled></span><span class="planner-help" id="riskBasisHelp">Planned loss: 20% of the $125 position cost. True max loss remains $125.</span></label>
       <p class="grade-explanation">The default OCO bracket is 1:1: the target gain matches the planned loss percentage. A modified 1:1 can be managed after the move proves continuation. <a href="/0dte-risk-reward.html">Read the 1:1 framework</a>.</p>
     </section>
@@ -386,7 +385,7 @@
         <div class="contract-caption" id="contractCaption">SPY contracts to load</div>
       </div>
       <div class="planner-support">
-        <div class="planner-metric"><span>Setup grade</span><strong id="summaryGrade">A</strong></div>
+        <div class="planner-metric"><span>Setup conviction</span><strong id="summaryGrade">A</strong></div>
         <div class="planner-metric"><span>Current position budget</span><strong id="riskBudget">$4,500</strong></div>
         <div class="planner-metric"><span>Estimated total planned risk</span><strong id="totalRisk">$900</strong></div>
         <div class="planner-metric"><span>Per-contract planned risk</span><strong id="summaryPerContract">$25</strong></div>
@@ -425,7 +424,6 @@
 <script id="planner-simplified-script">
   document.addEventListener("DOMContentLoaded", function () {
     const gradeRules = {
-      B: { deploymentPct: 15 },
       A: { deploymentPct: 30 },
       "A+": { deploymentPct: 50 }
     };
@@ -471,12 +469,15 @@
       document.getElementById("plannedAccountRisk").textContent = plannedAccountRisk.toFixed(1) + "%";
       document.getElementById("expectancyPerTrade").textContent = money(expectancyPerTrade);
       const isPreset = Math.abs(deploymentPct - rule.deploymentPct) < 0.001;
-      document.getElementById("gradeExplanation").textContent = grade + " loads the existing " + rule.deploymentPct.toFixed(0) + "% position preset. " + (isPreset ? "Using that preset" : "Your current override is " + deploymentPct.toFixed(0) + "%") + ", modeled account risk is about " + plannedAccountRisk.toFixed(1) + "% at the displayed contract count.";
+      const convictionText = grade === "A+"
+        ? "A+ is the highest-conviction qualified setup and the maximum planner preset."
+        : "A uses lower deployment, including qualified Extrinsic Divergence trades.";
+      document.getElementById("gradeExplanation").textContent = convictionText + " " + (isPreset ? "Using the preset" : "Your current override is " + deploymentPct.toFixed(0) + "%") + ", modeled account risk is about " + plannedAccountRisk.toFixed(1) + "% at the displayed contract count.";
       document.getElementById("riskBasisHelp").textContent = riskBasis === "full"
         ? "Full-premium max loss: $" + premium.toFixed(2) + " × 100 shares = " + money(perContract) + " per contract."
         : riskBasis === "stop"
-          ? "Planned loss: " + plannedLossPct.toFixed(0) + "% of the " + money(premiumCost) + " position cost. This does not increase the grade-based contract cap; true max loss remains " + money(premiumCost) + "."
-          : "Custom planned loss entered manually. This does not increase the grade-based contract cap; true max loss remains the full " + money(premiumCost) + " premium paid.";
+          ? "Planned loss: " + plannedLossPct.toFixed(0) + "% of the " + money(premiumCost) + " position cost. This does not increase the conviction preset’s contract cap; true max loss remains " + money(premiumCost) + "."
+          : "Custom planned loss entered manually. This does not increase the conviction preset’s contract cap; true max loss remains the full " + money(premiumCost) + " premium paid.";
       document.getElementById("ocoContracts").textContent = contracts;
       document.getElementById("ocoContractsLabel").textContent = symbol + " contracts to load";
       document.getElementById("ocoEntry").textContent = "$" + premium.toFixed(2);
