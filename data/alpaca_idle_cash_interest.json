@@ -1,6 +1,6 @@
 {
   "compounded_overlay": {
-    "ex_pilot_overlay_note": "Frozen canonical EX portfolio delta applied; live account cash-flow series is separate and unchanged.",
+    "directional_pilot_overlay_note": "Frozen canonical directional-pilot portfolio delta applied; live account cash-flow series is separate and unchanged.",
     "intraday_accounting_basis": "gross; historical Intraday fees unavailable",
     "metrics": {
       "cagr_pct": 79.95322202116222,
