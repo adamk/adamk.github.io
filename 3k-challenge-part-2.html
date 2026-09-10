@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZKVBZ3QJ1F');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Foxchase $3k Account Series II</title>
+  <link rel="icon" href="/foxchase-favicon.png?v=20260823" type="image/png">
+  <meta name="description" content="A planned public archive for Foxchase $3k Account Series II, documenting daily balance progression, trade reasoning, and lessons learned as sessions are posted." />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121b2d;
+      --panel-2: #18233a;
+      --text: #e8edf7;
+      --muted: #9fb0cc;
+      --accent: #f59e0b;
+      --green: #22c55e;
+      --border: #27344f;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      padding: 42px 0 24px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 10px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.24);
+      border-radius: 999px;
+      color: #ffd38a;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .completion-label {
+      color: #f2cc60;
+      font-size: .38em;
+      font-weight: 700;
+      letter-spacing: 0;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .sub {
+      max-width: none;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 24px 0 34px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .green { color: var(--green); }
+    .red { color: #ef4444; }
+
+    .section-title {
+      font-size: 28px;
+      margin: 40px 0 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .equity-card {
+      margin: 0 0 8px;
+      padding: 22px;
+      overflow: hidden;
+    }
+
+    .equity-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .equity-heading {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .equity-summary {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .equity-summary span {
+      white-space: nowrap;
+    }
+
+    .equity-summary strong {
+      color: var(--text);
+      margin-left: 4px;
+    }
+
+    .equity-chart {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(159, 176, 204, 0.16);
+      border-radius: 14px;
+      background: rgba(3, 8, 18, 0.24);
+    }
+
+    .equity-point {
+      cursor: pointer;
+    }
+
+    .equity-point-dot {
+      fill: #fbbf24;
+      stroke: #0b1220;
+      stroke-width: 1.5;
+      transition: r 0.15s ease, fill 0.15s ease, stroke 0.15s ease;
+    }
+
+    .equity-point:hover .equity-point-dot,
+    .equity-point:focus .equity-point-dot {
+      fill: #fff7d6;
+      stroke: #f59e0b;
+      stroke-width: 2.5;
+    }
+
+    .equity-tooltip {
+      pointer-events: none;
+    }
+
+    .equity-tooltip rect {
+      fill: #111b2d;
+      stroke: rgba(251, 191, 36, 0.72);
+      stroke-width: 1;
+    }
+
+    .equity-tooltip-title {
+      fill: #fff7d6;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .equity-tooltip-detail {
+      fill: #cbd5e1;
+      font-size: 11px;
+    }
+
+    .equity-caption {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 14px 0 0;
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 980px;
+      margin-bottom: 18px;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .rules ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .rules li { margin-bottom: 8px; }
+
+    .day-log {
+      display: grid;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .day-card {
+      background: linear-gradient(180deg, rgba(18, 27, 45, 0.95) 0%, rgba(24, 35, 58, 0.95) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 24px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .day-card:target,
+    .day-card.is-chart-target {
+      border-color: rgba(251, 191, 36, 0.8);
+      box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.14), var(--shadow);
+    }
+
+    .day-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .day-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      background: rgba(34, 197, 94, 0.12);
+      color: #9ff0b8;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 14px 0 18px;
+    }
+
+    .metric {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 20px;
+      margin-top: 6px;
+    }
+
+    .trade {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .trade h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .trade p {
+      margin: 6px 0;
+    }
+
+    .trade-label {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent);
+      background: rgba(245, 158, 11, 0.08);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .img-placeholder {
+      min-height: 180px;
+      border: 1px dashed rgba(159, 176, 204, 0.35);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+      text-align: center;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding: 48px 0 64px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .metrics, .rules { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 18px; }
+      .grid, .metrics, .rules, .img-grid { grid-template-columns: 1fr; }
+      .day-card { padding: 18px; }
+      .day-title { font-size: 22px; }
+      .equity-card { padding: 16px; }
+      .equity-heading { font-size: 21px; }
+    }
+      .info-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+
+  .info-btn {
+    appearance: none;
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    background: rgba(245, 158, 11, 0.12);
+    color: #ffd38a;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.18s ease;
+  }
+
+  .info-btn:hover {
+    background: rgba(245, 158, 11, 0.18);
+    transform: translateY(-1px);
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 8, 18, 0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+  }
+
+  .modal-backdrop.active {
+    display: flex;
+  }
+
+  .modal {
+    width: min(760px, 100%);
+    max-height: 85vh;
+    overflow: auto;
+    background: linear-gradient(180deg, rgba(18, 27, 45, 0.98) 0%, rgba(24, 35, 58, 0.98) 100%);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+  }
+
+  .modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .modal-title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .modal-close {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .modal-body {
+    color: var(--muted);
+  }
+
+  .modal-body p {
+    margin: 0 0 14px;
+  }
+
+  .modal-body strong {
+    color: var(--text);
+  }
+
+  .modal-callout {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--accent);
+    background: rgba(245, 158, 11, 0.08);
+    border-radius: 0 12px 12px 0;
+    color: var(--text);
+  }
+
+    .fc-nav {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 8px;
+      padding: 0 18px;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .fc-nav-inner {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: rgba(18, 27, 45, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,.25);
+    }
+
+    .fc-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .fc-nav a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .fc-nav a.active {
+      background: rgba(245, 158, 11, 0.18);
+      color: #ffd38a;
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
+    .fc-nav-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: rgba(18, 27, 45, 0.95);
+      color: var(--text);
+      border-radius: .5rem;
+      padding: .45rem .65rem;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    @media (max-width: 991.98px) {
+      .fc-nav {
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+      }
+
+      .fc-nav-toggle {
+        display: block;
+      }
+
+      .fc-nav-inner {
+        display: none;
+        width: 100%;
+        border-radius: .75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .fc-nav.open .fc-nav-inner {
+        display: flex;
+      }
+    }
+
+  </style>
+
+<style id="sitewide-navbar-spacing">
+  html,
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body > nav.navbar:first-of-type {
+    position: static !important;
+    inset: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 1rem !important;
+  }
+
+  body > nav.navbar:first-of-type > .container {
+    margin-top: 0 !important;
+  }
+
+  @media (max-width: 991.98px) {
+    body > nav.navbar:first-of-type > .container {
+      justify-content: flex-end !important;
+    }
+
+    body > nav.navbar:first-of-type .navbar-toggler {
+      margin-left: auto !important;
+    }
+  }
+</style>
+
+
+<style id="foxchase-interior-header-css">
+  .foxchase-site-header,
+  .foxchase-site-header * {
+    box-sizing: border-box;
+  }
+
+  .foxchase-site-header {
+    position: relative;
+    z-index: 3000;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border-bottom: 1px solid #dee2e6;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .foxchase-header-wrap {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: 66px;
+    margin: 0;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .foxchase-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #212529 !important;
+    text-decoration: none !important;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .foxchase-brand:hover {
+    color: #212529 !important;
+    text-decoration: none !important;
+  }
+
+  .foxchase-brand-logo {
+    display: block;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex: 0 0 42px;
+  }
+
+  .foxchase-main-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .foxchase-navigation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 999px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .2);
+  }
+
+  .foxchase-navigation a {
+    display: block;
+    color: #495057 !important;
+    background: transparent;
+    text-decoration: none !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 8px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .foxchase-navigation a:hover {
+    color: #111 !important;
+    background: #f1f3f5;
+    text-decoration: none !important;
+  }
+
+  .foxchase-navigation a.active {
+    color: #b45309 !important;
+    background: rgba(245, 158, 11, 0.14);
+    font-weight: 700;
+  }
+
+  .foxchase-menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 1120px) {
+    .foxchase-site-header {
+      padding: 0;
+    }
+
+    .foxchase-header-wrap {
+      min-height: 66px;
+      max-width: none;
+      padding: 0 18px;
+      justify-content: space-between;
+    }
+
+    .foxchase-brand {
+      min-width: 0;
+      font-size: 1rem;
+    }
+
+    .foxchase-brand-logo {
+      width: 36px;
+      height: 36px;
+      flex-basis: 36px;
+    }
+
+    .foxchase-main-nav {
+      position: static;
+      transform: none;
+      margin-left: auto;
+    }
+
+    .foxchase-menu-toggle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin: 0;
+      padding: 9px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .foxchase-menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 2px 0;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .foxchase-navigation {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 18px;
+      right: 18px;
+      width: auto;
+      padding: 10px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+    }
+
+    .foxchase-navigation.is-open {
+      display: flex;
+    }
+
+    .foxchase-navigation a {
+      width: 100%;
+      padding: 12px 14px;
+      color: #f4f4f4 !important;
+      background: transparent;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .foxchase-navigation a:hover {
+      color: #fff !important;
+      background: rgba(255,255,255,.08);
+    }
+
+    .foxchase-navigation a.active {
+      color: #b45309 !important;
+      background: rgba(245, 158, 11, 0.14);
+    }
+  }
+</style>
+
+
+<style id="challenge-header-theme">
+  .foxchase-site-header {
+    background: #0b1220 !important;
+    border-bottom: 1px solid #27344f !important;
+  }
+
+  .foxchase-brand,
+  .foxchase-brand:hover {
+    color: #f4f4f4 !important;
+  }
+</style>
+
+</head>
+<body>
+  <header class="foxchase-site-header">
+    <div class="foxchase-header-wrap">
+      <a class="foxchase-brand" href="/" aria-label="Foxchase Trading home">
+        <img
+          src="/foxchasetrading-transparent.png"
+          alt="Foxchase Trading logo"
+          class="foxchase-brand-logo"
+        />
+        <span>Foxchase Trading</span>
+      </a>
+
+      <nav class="foxchase-main-nav" aria-label="Main navigation">
+        <button
+          class="foxchase-menu-toggle"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="foxchase-navigation">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/3k-challenge" class="active" aria-current="page">$3k Series</a>
+            <a href="/setups/">Setups</a>
+            <a href="/planner/">Planner</a>
+            <a href="/algo-pnl.html">Algo</a>
+            <a href="/library/">Library</a>
+            <a href="/products.html">Products</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">🦊 Planned Public Series</span>
+    <h1>Foxchase $3k Account Series II</h1>
+    <p class="sub">A second public $3,000 discretionary 0DTE series built around the lessons from the original 87-session experiment. Series I demonstrated both the potential of aggressive small-account compounding and the consequences of inconsistent risk management, lower-quality trades, and trading during poor market participation. Series II starts again from the same $3,000 balance with a more defined execution framework.</p>
+
+    <div class="grid">
+      <div class="card"><div class="stat-label">Starting Balance</div><div class="stat-value">$3,000</div></div>
+      <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$3,000</div></div>
+      <div class="card"><div class="stat-label">Total Series PnL</div><div class="stat-value">$0</div></div>
+      <div class="card"><div class="stat-label">Total Return</div><div class="stat-value">0.0%</div></div>
+      <div class="card"><div class="stat-label">Green Day Rate</div><div class="stat-value">—</div></div>
+      <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">0</div></div>
+    </div>
+  </section>
+
+  <section class="card" style="margin:24px 0;">
+    <h2 style="margin-top:0;">Why this series exists</h2>
+    <p class="intro">The original $3k Account Series was a public proof of concept for the Foxchase discretionary 0DTE framework. The account grew from $3,000 to a peak above $22,000 before a significant drawdown reduced the ending balance to roughly $6,300.</p>
+    <p class="intro">Series II asks a different question: can the same aggressive small-account growth approach produce a better equity curve when the lessons from the first series are incorporated from Day 1?</p>
+    <p class="intro" style="margin-bottom:0;">This remains a growth-mode experiment. Profits will be compounded rather than withdrawn, and position sizing will remain intentionally aggressive. The difference is greater selectivity, predefined risk, and more consistent execution.</p>
+  </section>
+
+  <section class="card" style="margin:24px 0;">
+    <h2 style="margin-top:0;">Series II Rules</h2>
+    <div class="rules"><ul>
+      <li>A+ setups: 50% position deployment.</li>
+      <li>Qualified A setups: 30% position deployment, primarily qualifying Extrinsic Divergence opportunities.</li>
+      <li>Anything below A: no trade.</li>
+      <li>Low relative volume: no trade, regardless of setup quality.</li>
+      <li>Position sizing is determined using the Foxchase 0DTE OCO Contract Sizer and the current account balance.</li>
+      <li>Every trade begins with a predefined 1:1 OCO order, normally using a -20% stop and +20% target.</li>
+      <li>Stops may be tightened after entry but may never be widened.</li>
+      <li>No averaging down on losing positions.</li>
+    </ul><ul>
+      <li>No chasing missed entries.</li>
+      <li>Re-entries must independently qualify as a new A or A+ setup.</li>
+      <li>The default 1:1 target should generally be respected rather than routinely converting winners into larger discretionary target attempts.</li>
+    </ul></div>
+    <p class="intro" style="margin:18px 0 0;">The operating principle is simple: take the qualified trade, size it according to the planner, define the risk before entry, never widen the loss, take the planned win, and do not manufacture another trade.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Setup Quality &amp; Deployment Framework</h2>
+    <p class="intro">Deployment follows current setup conviction: A+ is the highest-conviction qualified setup and maximum planner preset at 50% deployment (approximately 10% planned account risk); A uses 30% deployment (approximately 6% planned account risk), including qualified Extrinsic Divergence trades; below A means no trade.</p>
+    <div class="card" style="margin-top:1rem; text-align:center;"><a href="/planner/" target="_self"><img src="/images/setup-deployment-framework.jpg" alt="Foxchase 0DTE setup deployment framework" style="width:100%; max-width:1100px; border-radius:18px; border:1px solid rgba(255,255,255,0.08); display:block; margin:0 auto;" /></a><p style="margin:14px 0 0;"><a href="/planner/">Open the 0DTE Contract Sizer</a></p></div>
+  </section>
+
+  <section class="card equity-card" aria-labelledby="equityCurveTitle" style="margin-top:24px;">
+    <div class="equity-head"><div><h2 class="equity-heading" id="equityCurveTitle">Documented equity curve</h2><p class="intro" style="margin:6px 0 0;">End-of-day account balance after every posted Series II session. The chart will update as the series progresses.</p></div><div class="equity-summary" aria-label="Equity curve highlights"><span>Start<strong>$3,000</strong></span><span>Peak<strong>$3,000</strong></span><span>Current<strong>$3,000</strong></span></div></div>
+    <svg class="equity-chart" id="seriesEquityChart" viewBox="0 0 1000 390" role="img" aria-labelledby="equityChartTitle equityChartDescription"><title id="equityChartTitle">Foxchase Small Account Series II documented equity curve</title><desc id="equityChartDescription">Initial Series II account balance of three thousand dollars; the chart will update as sessions are posted.</desc></svg>
+    <p class="equity-caption">The chart begins at $3,000. Future stabilized end-of-day balances will be added as documented sessions are posted.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Day-by-day archive</h2>
+    <div class="day-log"><article class="day-card"><h3 class="day-title">No sessions logged yet</h3><p class="muted" style="margin-bottom:0;">Series II is prepared for launch. No trading days have been added.</p></article></div>
+    <p class="intro" style="margin-top:18px;">Each future session will record day number, Green / Red / Neutral status, starting balance, current balance, daily PnL, total Series PnL, and every trade’s A or A+ setup grade, planned deployment, entry reason, supporting context, management / exit, and optional screenshots. Initial OCO values may be recorded when available.</p>
+  </section>
+
+  <section class="footer"><p>© 2026 Foxchase Trading, LLC</p><p>Foxchase Trading, LLC provides educational content only and does not provide investment advice. Trading involves substantial risk of loss and is not suitable for all investors.</p></section>
+</div>
+<script>
+(function renderSeriesIIEquityChart() {
+  const svg = document.getElementById('seriesEquityChart'); if (!svg) return;
+  const width=1000,height=390,margin={top:30,right:32,bottom:46,left:76}, maxBalance=6000;
+  const chartWidth=width-margin.left-margin.right, chartHeight=height-margin.top-margin.bottom;
+  const x=margin.left+chartWidth/2, y=margin.top+(1-3000/maxBalance)*chartHeight;
+  const money=(v)=>`$${Math.round(v/1000)}k`;
+  const grid=[0,1500,3000,4500,6000].map(v=>{const py=margin.top+(1-v/maxBalance)*chartHeight;return `<g><line x1="${margin.left}" y1="${py}" x2="${width-margin.right}" y2="${py}" stroke="rgba(159,176,204,.18)"/><text x="${margin.left-12}" y="${py+4}" text-anchor="end" fill="#9fb0cc" font-size="12">${money(v)}</text></g>`}).join('');
+  svg.innerHTML=`<title id="equityChartTitle">Foxchase Small Account Series II documented equity curve</title><desc id="equityChartDescription">Initial Series II account balance of three thousand dollars.</desc>${grid}<line x1="${margin.left}" y1="${y}" x2="${width-margin.right}" y2="${y}" stroke="#fbbf24" stroke-width="3"/><circle cx="${x}" cy="${y}" r="5" fill="#fbbf24" stroke="#0b1220" stroke-width="2"/><text x="${x}" y="${y-14}" text-anchor="middle" fill="#fde68a" font-size="12" font-weight="700">Start $3,000</text><text x="${width/2}" y="${height-17}" text-anchor="middle" fill="#9fb0cc" font-size="12">Series II launch</text>`;
+})();
+</script>
+  <script>
+    function toggleFcNav() {
+      const nav = document.getElementById("fcNav");
+      const btn = nav.querySelector(".fc-nav-toggle");
+      nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
+    }
+  </script>
+
+
+<script id="foxchase-interior-header-script">
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".foxchase-site-header").forEach(function (header) {
+      const toggle = header.querySelector(".foxchase-menu-toggle");
+      const navigation = header.querySelector(".foxchase-navigation");
+
+      if (!toggle || !navigation) return;
+
+      toggle.addEventListener("click", function () {
+        const open = navigation.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      navigation.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navigation.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
