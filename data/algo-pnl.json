@@ -1,10 +1,10 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-09-17T11:45:03.304275-04:00",
+  "updated_at": "2026-09-17T12:00:06.435349-04:00",
   "performance": {
     "base_index": 100.0,
-    "current_index": 107.3574,
-    "total_return_pct": 7.3574,
+    "current_index": 107.4151,
+    "total_return_pct": 7.4151,
     "max_drawdown_pct": -8.9442,
     "flow_adjusted": true,
     "methodology": "Cash-flow-neutral time-weighted return; timestamped flows are subperiod-linked when authenticated before/after equity is available, with settled daily activities otherwise applied at the interval boundary."
@@ -444,7 +444,7 @@
     },
     {
       "date": "2026-09-17",
-      "index_value": 107.3574
+      "index_value": 107.4151
     }
   ],
   "stats": {
