@@ -857,27 +857,29 @@
   <section class="card" style="margin:24px 0;">
     <h2 style="margin-top:0;">Why this series exists</h2>
     <p class="intro">The original $3k Account Series was a public proof of concept for the Foxchase discretionary 0DTE framework. The account grew from $3,000 to a peak above $22,000 before a significant drawdown reduced the ending balance to roughly $6,300.</p>
+    <p class="intro">One of the biggest lessons from Series I was discovering just how important 5-minute relative volume (rVol) is for filtering out false or lower-quality setups. Not accounting for low-participation conditions contributed heavily to the July drawdown.</p>
+    <p class="intro">August and September have provided time to study rVol further, reaffirm that observation, and tighten several other parts of the framework. At the same time, work has continued on the private algo and dashboard.</p>
+    <p class="intro">The rest of September is being used as an observation and development period before the discretionary $3k Small Account Series II begins. This includes continuing to monitor the market through the new Series II rules, addressing any remaining algo bugs, and closely observing the gated Extrinsic Divergence trades recently added to the bot.</p>
     <p class="intro">Series II asks a different question: can the same aggressive small-account growth approach produce a better equity curve when the lessons from the first series are incorporated from Day 1?</p>
-    <p class="intro" style="margin-bottom:0;">This remains a growth-mode experiment. Profits will be compounded rather than withdrawn, and position sizing will remain intentionally aggressive. The difference is greater selectivity, predefined risk, and more consistent execution.</p>
+    <p class="intro" style="margin-bottom:0;">This remains a growth-mode experiment. Profits will be compounded rather than withdrawn, and position sizing will remain intentionally aggressive. The difference is greater selectivity, predefined risk, and more consistent execution. There is no arbitrary account target; the series will simply follow the rules, compound the account, and document what happens.</p>
   </section>
 
   <section class="card" style="margin:24px 0;">
     <h2 style="margin-top:0;">Series II Rules</h2>
     <div class="rules"><ol>
-      <li>A+ setups: 50% position deployment.</li>
-      <li>Qualified A setups: 30% position deployment, primarily qualifying Extrinsic Divergence opportunities.</li>
-      <li>Anything below A: no trade.</li>
-      <li>Low relative volume: no trade, regardless of setup quality.</li>
-      <li>Position sizing is determined using the Foxchase 0DTE OCO Contract Sizer and the current account balance.</li>
-      <li>Every trade begins with a predefined 1:1 OCO order, normally using a -20% stop and +20% target.</li>
-      <li>Stops may be tightened after entry but may never be widened.</li>
-      <li>No averaging down on losing positions.</li>
+      <li>A+ setups: 50% deployment</li>
+      <li>Qualified A setups: 30% deployment, primarily qualifying Extrinsic Divergences</li>
+      <li>Anything below A: no trade</li>
+      <li>Low rVol (5-min): no trade</li>
+      <li>Default OCO: -20% stop / +20% target</li>
+      <li>Stops may tighten, never widen</li>
+      <li>Profit targets may extend</li>
+      <li>No adding to positions after entry</li>
     </ol><ol start="9">
-      <li>No chasing missed entries.</li>
-      <li>Re-entries must independently qualify as a new A or A+ setup.</li>
-      <li>The default 1:1 target should generally be respected rather than routinely converting winners into larger discretionary target attempts.</li>
+      <li>No chasing missed entries</li>
+      <li>Re-entries must independently qualify as a new A or A+ setup</li>
     </ol></div>
-    <p class="intro" style="margin:18px 0 0;">The operating principle is simple: take the qualified trade, size it according to the planner, define the risk before entry, never widen the loss, take the planned win, and do not manufacture another trade.</p>
+    <p class="intro" style="margin:18px 0 0;">The operating principle is simple: take the qualified trade, size it according to the planner, define the risk before entry, never widen the loss, and do not manufacture another trade.</p>
   </section>
 
   <section>
