@@ -775,7 +775,7 @@ function setTextIfExists(id, value) {
           <div class="stat-row"><span class="stat-name" id="monthlyReturnLabel">Month to date</span><span class="stat-value" id="monthlyReturn">—</span></div>
           <div class="stat-row"><span class="stat-name">Current Drawdown</span><span class="stat-value" id="currentDrawdown">—</span></div>
           <div class="stat-row"><span class="stat-name">YTD Return</span><span class="stat-value" id="ytdReturn">—</span></div>
-          <div class="stat-row"><span class="stat-name">Growth of $10,000</span><span class="stat-value" id="growthOf10000">—</span></div>
+          <div class="stat-row"><span class="stat-name">Days Underwater</span><span class="stat-value" id="currentDaysUnderwater">—</span></div>
         </div>
         <aside class="drawdown-panel" aria-label="Drawdown context">
           <div class="drawdown-primary"><div class="metric-label">Current Drawdown</div><div class="stat-value" id="drawdownCurrent">—</div></div>
@@ -1232,7 +1232,7 @@ function setTextIfExists(id, value) {
       setTextIfExists("monthlyReturn", formatCanonicalPercent(performance.monthly_return_pct));
       setTextIfExists("currentDrawdown", formatCanonicalPercent(performance.current_drawdown_pct));
       setTextIfExists("ytdReturn", formatCanonicalPercent(performance.ytd_return_pct));
-      setTextIfExists("growthOf10000", formatCanonicalMoney(performance.growth_of_10000));
+      setTextIfExists("currentDaysUnderwater", numericValue(performance.current_days_underwater) === null ? unavailableValue : performance.current_days_underwater + " days");
 
       setTextIfExists("drawdownCurrent", formatCanonicalPercent(performance.current_drawdown_pct));
       setTextIfExists("drawdownPeak", formatCanonicalDate(performance.max_drawdown_peak_date));
