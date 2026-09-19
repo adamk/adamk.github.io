@@ -35,7 +35,7 @@ function setTextIfExists(id, value) {
   <meta name="description" content="Foxchase Trading live algorithm performance dashboard with research backtest context.">
   <link rel="stylesheet" href="styles.css">
   <style>
-    .pnl-wrap { max-width:1000px; margin:40px auto; padding:0 20px; }
+    .pnl-wrap { max-width:1120px; margin:48px auto; padding:0 24px; color:#172033; }
     .pnl-note { background:#fff8e5; border:1px solid #e8c66a; color:#2b2b2b; padding:16px; border-radius:10px; margin:20px 0; line-height:1.5; }
     .pnl-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin:25px 0; }
     .pnl-card { border:1px solid #ddd; border-radius:10px; padding:16px; background:#fff; }
@@ -48,6 +48,205 @@ function setTextIfExists(id, value) {
     .pnl-value { font-size:24px; font-weight:700; margin-top:8px; }
     .chart-box { margin-top:25px; padding:16px; border:1px solid #ddd; border-radius:10px; background:#fff; }
     .small { color:#666; font-size:13px; margin-top:15px; line-height:1.5; }
+    .performance-hero {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:32px;
+      padding:14px 0 24px;
+      border-bottom:1px solid #dfe3e8;
+    }
+    .performance-kicker {
+      margin:0 0 8px;
+      color:#9a6800;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .performance-hero h1 {
+      margin:0;
+      color:#111827;
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.05;
+      letter-spacing:-.035em;
+    }
+    .performance-intro {
+      max-width:720px;
+      margin:12px 0 0;
+      color:#596273;
+      font-size:16px;
+      line-height:1.55;
+    }
+    .data-freshness {
+      min-width:220px;
+      padding:12px 14px;
+      border:1px solid #dfe3e8;
+      border-radius:8px;
+      background:#fafbfc;
+      text-align:right;
+    }
+    .status-badge {
+      display:inline-block;
+      color:#4c5565;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .data-freshness[data-status="live"] .status-badge { color:#276749; }
+    .data-freshness[data-status="stale"] .status-badge { color:#8a4b08; }
+    .as-of {
+      margin-top:4px;
+      color:#6b7280;
+      font-size:12px;
+      font-variant-numeric:tabular-nums;
+    }
+    .section-heading {
+      margin:38px 0 6px;
+      color:#111827;
+      font-size:20px;
+      letter-spacing:-.015em;
+    }
+    .section-caption {
+      margin:0;
+      color:#6b7280;
+      font-size:13px;
+      line-height:1.5;
+    }
+    .headline-grid {
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      margin:22px 0 8px;
+      border:1px solid #dfe3e8;
+      border-radius:12px;
+      background:#fff;
+      overflow:hidden;
+    }
+    .headline-metric {
+      min-width:0;
+      padding:20px 18px;
+      border-right:1px solid #e8ebef;
+    }
+    .headline-metric:last-child { border-right:0; }
+    .metric-label {
+      color:#697386;
+      font-size:11px;
+      font-weight:750;
+      letter-spacing:.06em;
+      line-height:1.35;
+      text-transform:uppercase;
+    }
+    .metric-value {
+      margin-top:9px;
+      color:#111827;
+      font-size:clamp(22px,2.35vw,30px);
+      font-weight:750;
+      letter-spacing:-.025em;
+      line-height:1.1;
+      font-variant-numeric:tabular-nums;
+    }
+    .performance-chart-panel {
+      margin-top:26px;
+      padding:22px;
+      border:1px solid #dfe3e8;
+      border-radius:12px;
+      background:#fff;
+    }
+    .chart-box.performance-chart {
+      height:390px;
+      margin:18px 0 0;
+      padding:0;
+      border:0;
+      border-radius:0;
+    }
+    .chart-box.performance-chart canvas { height:100% !important; }
+    .snapshot-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);
+      gap:28px;
+      margin-top:18px;
+    }
+    .stat-list,
+    .drawdown-panel,
+    .trade-panel {
+      border-top:2px solid #1f2937;
+      border-bottom:1px solid #dfe3e8;
+      background:#fff;
+    }
+    .stat-row,
+    .drawdown-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      min-height:50px;
+      padding:11px 4px;
+      border-bottom:1px solid #edf0f3;
+    }
+    .stat-row:last-child,
+    .drawdown-row:last-child { border-bottom:0; }
+    .stat-name { color:#596273; font-size:14px; }
+    .stat-value {
+      color:#111827;
+      font-size:16px;
+      font-weight:700;
+      text-align:right;
+      font-variant-numeric:tabular-nums;
+    }
+    .drawdown-panel { padding:4px 18px; border:1px solid #dfe3e8; border-top:2px solid #1f2937; }
+    .drawdown-primary {
+      padding:17px 0 13px;
+      border-bottom:1px solid #edf0f3;
+    }
+    .drawdown-primary .stat-value { margin-top:5px; font-size:28px; text-align:left; }
+    .trade-panel { margin-top:18px; padding:2px 0; }
+    .trade-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+    .trade-stat {
+      min-width:0;
+      padding:16px 18px;
+      border-right:1px solid #edf0f3;
+      border-bottom:1px solid #edf0f3;
+    }
+    .trade-stat:nth-child(3n) { border-right:0; }
+    .trade-stat:nth-last-child(-n+3) { border-bottom:0; }
+    .trade-stat .stat-value { margin-top:6px; text-align:left; }
+    .basis-note {
+      margin:12px 0 0;
+      padding-left:12px;
+      border-left:3px solid #d6a400;
+      color:#626b79;
+      font-size:13px;
+      line-height:1.5;
+    }
+    .methodology-note { margin-top:36px; }
+    .hidden { display:none !important; }
+    @media (max-width:980px) {
+      .headline-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .headline-metric:nth-child(3) { border-right:0; }
+      .headline-metric:nth-child(-n+3) { border-bottom:1px solid #e8ebef; }
+      .snapshot-layout { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .pnl-wrap { margin-top:28px; padding-left:16px; padding-right:16px; }
+      .performance-hero { align-items:flex-start; flex-direction:column; gap:18px; }
+      .data-freshness { width:100%; min-width:0; text-align:left; }
+      .headline-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .headline-metric { padding:17px 14px; }
+      .headline-metric:nth-child(3) { border-right:1px solid #e8ebef; }
+      .headline-metric:nth-child(2n) { border-right:0; }
+      .headline-metric:nth-child(-n+4) { border-bottom:1px solid #e8ebef; }
+      .performance-chart-panel { padding:16px 12px; }
+      .chart-box.performance-chart { height:300px; }
+      .trade-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .trade-stat:nth-child(3n) { border-right:1px solid #edf0f3; }
+      .trade-stat:nth-child(2n) { border-right:0; }
+      .trade-stat:nth-last-child(-n+3) { border-bottom:1px solid #edf0f3; }
+      .trade-stat:last-child { border-bottom:0; }
+    }
     .algo-brand {
       display:flex;
       align-items:center;
@@ -537,10 +736,79 @@ function setTextIfExists(id, value) {
     </div>
   </header>
 <div class="pnl-wrap">
-    <h1>Foxchase Algo P&L</h1>
-    <p>Live account performance dashboard for Foxchase Trading’s automated, defined-risk options-selling strategy.</p>
+    <section class="performance-hero" aria-labelledby="performance-title">
+      <div>
+        <p class="performance-kicker">Live Account Performance</p>
+        <h1 id="performance-title">Foxchase Algo P&amp;L</h1>
+        <p class="performance-intro">Canonical performance record for Foxchase Trading’s automated, defined-risk options-selling strategy.</p>
+      </div>
+      <div class="data-freshness" id="dataFreshness" data-status="stale" aria-live="polite">
+        <div class="status-badge" id="dataStatus">Checking data</div>
+        <div class="as-of" id="asOfTimestamp">—</div>
+      </div>
+    </section>
 
-    <div class="pnl-note">
+    <section aria-labelledby="headline-metrics-title">
+      <h2 class="section-heading" id="headline-metrics-title">Performance record</h2>
+      <p class="section-caption">Normalized strategy performance and core live-trade statistics.</p>
+      <div class="headline-grid">
+        <div class="headline-metric"><div class="metric-label">Current Index</div><div class="metric-value" id="currentIndex">—</div></div>
+        <div class="headline-metric"><div class="metric-label">Since Inception</div><div class="metric-value" id="sinceInceptionReturn">—</div></div>
+        <div class="headline-metric"><div class="metric-label">Max Drawdown</div><div class="metric-value" id="headlineMaxDrawdown">—</div></div>
+        <div class="headline-metric"><div class="metric-label">Profit Factor</div><div class="metric-value" id="headlineProfitFactor">—</div></div>
+        <div class="headline-metric"><div class="metric-label">Win Rate</div><div class="metric-value" id="headlineWinRate">—</div></div>
+        <div class="headline-metric"><div class="metric-label">Closed Trades</div><div class="metric-value" id="headlineClosedTrades">—</div></div>
+      </div>
+    </section>
+
+    <section class="performance-chart-panel" aria-labelledby="performance-chart-title">
+      <h2 class="section-heading" id="performance-chart-title">Live Account Performance Index</h2>
+      <p class="section-caption">Normalized to 100 at inception. External deposits and withdrawals are excluded.</p>
+      <div class="chart-box performance-chart">
+        <canvas id="equityChart" aria-label="Live Account Performance Index chart"></canvas>
+      </div>
+      <p class="small" id="note"></p>
+    </section>
+
+    <section aria-labelledby="snapshot-title">
+      <h2 class="section-heading" id="snapshot-title">Performance snapshot</h2>
+      <p class="section-caption">Current return and drawdown context from canonical index history.</p>
+      <div class="snapshot-layout">
+        <div class="stat-list">
+          <div class="stat-row"><span class="stat-name" id="monthlyReturnLabel">Month to date</span><span class="stat-value" id="monthlyReturn">—</span></div>
+          <div class="stat-row"><span class="stat-name">Current Drawdown</span><span class="stat-value" id="currentDrawdown">—</span></div>
+          <div class="stat-row"><span class="stat-name">YTD Return</span><span class="stat-value" id="ytdReturn">—</span></div>
+          <div class="stat-row"><span class="stat-name">Growth of $10,000</span><span class="stat-value" id="growthOf10000">—</span></div>
+        </div>
+        <aside class="drawdown-panel" aria-label="Drawdown context">
+          <div class="drawdown-primary"><div class="metric-label">Current Drawdown</div><div class="stat-value" id="drawdownCurrent">—</div></div>
+          <div class="drawdown-row"><span class="stat-name">Peak</span><span class="stat-value" id="drawdownPeak">—</span></div>
+          <div class="drawdown-row"><span class="stat-name">Current trough</span><span class="stat-value" id="drawdownTrough">—</span></div>
+          <div class="drawdown-row hidden" id="drawdownRecoveryRow"><span class="stat-name">Recovered</span><span class="stat-value" id="drawdownRecovery">—</span></div>
+          <div class="drawdown-row"><span class="stat-name">Underwater</span><span class="stat-value" id="drawdownDays">—</span></div>
+          <div class="drawdown-row"><span class="stat-name">Max DD</span><span class="stat-value" id="drawdownMax">—</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="trade-statistics-title">
+      <h2 class="section-heading" id="trade-statistics-title">Trade statistics</h2>
+      <p class="section-caption">Supporting economics from completed live strategy trades.</p>
+      <div class="trade-panel"><div class="trade-grid">
+        <div class="trade-stat"><div class="stat-name">Gross expectancy / trade</div><div class="stat-value" id="grossExpectancy">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Average winner</div><div class="stat-value" id="averageWinner">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Average loser</div><div class="stat-value" id="averageLoser">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Payoff ratio</div><div class="stat-value" id="payoffRatio">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Average holding time</div><div class="stat-value" id="averageHoldingTime">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Median holding time</div><div class="stat-value" id="medianHoldingTime">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Same-day trades</div><div class="stat-value" id="sameDayTrades">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Worst trade</div><div class="stat-value" id="worstTrade">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Max consecutive losses</div><div class="stat-value" id="maxConsecutiveLosses">—</div></div>
+      </div></div>
+      <p class="basis-note" id="tradeMetricsDisclosure">Trade statistics are reconstructed from closed strategy trades and are currently shown gross before fees.</p>
+    </section>
+
+    <div class="pnl-note methodology-note">
       <strong>Important note:</strong>
       Performance is time-weighted and normalized to an initial index value of 100. The index reflects
       mark-to-market account performance, including realized and unrealized P&amp;L, while external deposits
@@ -552,57 +820,6 @@ function setTextIfExists(id, value) {
 
       Foxchase Trading is independent and is not affiliated with, sponsored by, or endorsed by Alpaca.
     </div>
-
-    <h2>Live Account Performance Index</h2>
-
-    <div class="pnl-grid live-stats-grid">
-      <div class="pnl-card">
-        <div class="pnl-label">Current Index</div>
-        <div class="pnl-value" id="equity">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Realized Algo P&amp;L</div>
-        <div class="pnl-value" id="realizedPnl">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Total Return</div>
-        <div class="pnl-value" id="realizedAlgoReturn">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Max Drawdown</div>
-        <div class="pnl-value" id="liveMaxDrawdown">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Closed Trades</div>
-        <div class="pnl-value" id="closedTrades">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Win Rate</div>
-        <div class="pnl-value" id="winRate">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Profit Factor</div>
-        <div class="pnl-value" id="profitFactor">-</div>
-      </div>
-
-      <div class="pnl-card">
-        <div class="pnl-label">Avg Win / Avg Loss</div>
-        <div class="pnl-value" id="avgWinLoss">-</div>
-      </div>
-    </div>
-
-    <div class="chart-box">
-      <canvas id="equityChart"></canvas>
-    </div>
-
-    <p class="small" id="updated"></p>
-    <p class="small" id="note"></p>
 
 
 
@@ -928,13 +1145,55 @@ function setTextIfExists(id, value) {
         document.getElementById("interestMonthlyRows").innerHTML = interestScenario.monthly.map(row => "<tr><td>" + row.period + "</td><td>" + row.return_pct.toFixed(2) + "%</td><td>$" + row.ending_equity.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) + "</td></tr>").join("");
       }
     }
-    function dollars(value) {
-      return Number(value).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    const unavailableValue = "—";
+
+    function numericValue(value) {
+      if (value === null || value === undefined || value === "") return null;
+      const number = Number(value);
+      return Number.isFinite(number) ? number : null;
     }
 
-    function pct(value) {
-      if (value === null || value === undefined || Number.isNaN(Number(value))) return "-";
-      return Number(value).toFixed(1) + "%";
+    function formatCanonicalMoney(value) {
+      const number = numericValue(value);
+      return number === null
+        ? unavailableValue
+        : number.toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatCanonicalPercent(value) {
+      const number = numericValue(value);
+      if (number === null) return unavailableValue;
+      return (number > 0 ? "+" : "") + number.toFixed(2) + "%";
+    }
+
+    function formatUnsignedPercent(value) {
+      const number = numericValue(value);
+      return number === null ? unavailableValue : number.toFixed(2) + "%";
+    }
+
+    function formatCanonicalNumber(value, digits = 2) {
+      const number = numericValue(value);
+      return number === null ? unavailableValue : number.toFixed(digits);
+    }
+
+    function formatCanonicalDate(value) {
+      if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return unavailableValue;
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+    }
+
+    function formatCanonicalTimestamp(value) {
+      if (!value) return unavailableValue;
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return unavailableValue;
+      const datePart = date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "America/New_York" });
+      const timePart = date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" });
+      return "As of " + datePart + " · " + timePart + " ET";
+    }
+
+    function formatMinutes(value) {
+      const number = numericValue(value);
+      return number === null ? unavailableValue : Math.round(number) + " min";
     }
 
     function loadLivePerformance() {
@@ -948,91 +1207,54 @@ function setTextIfExists(id, value) {
 
       const canonicalState = canonicalArtifactState(data);
       const liveAvailable = canonicalState.valuesAvailable;
+      const canonicalMetrics = liveAvailable ? (data.canonical_metrics || {}) : {};
+      const performance = canonicalMetrics.performance || {};
+      const trades = canonicalMetrics.trades || {};
 
-      // Dynamic Main Stats
-      const tradeStats = liveAvailable
-        ? (data.trade_stats || data.tradeStats || data.stats || {})
-        : {};
-      const realizedAlgoPnl = liveAvailable
-        ? (tradeStats.realized_algo_pnl ?? data.realized_algo_pnl ?? data.realizedAlgoPnl ?? null)
-        : null;
-      const winRate = liveAvailable
-        ? (tradeStats.win_rate_pct ?? tradeStats.win_rate ?? data.win_rate ?? data.winRate ?? null)
-        : null;
-      const closedTrades = liveAvailable
-        ? (tradeStats.closed_trades ?? data.closed_trades ?? data.closedTrades ?? null)
-        : null;
-      const avgWin = liveAvailable
-        ? (tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? null)
-        : null;
-      const avgLoss = liveAvailable
-        ? (tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? null)
-        : null;
+      const statusLabels = {
+        live: "Live",
+        latest_closed_session: "Latest closed session",
+        stale: "Data temporarily unavailable"
+      };
+      const freshness = document.getElementById("dataFreshness");
+      freshness.dataset.status = canonicalState.dataStatus;
+      setTextIfExists("dataStatus", statusLabels[canonicalState.dataStatus] || statusLabels.stale);
+      setTextIfExists("asOfTimestamp", formatCanonicalTimestamp(canonicalState.asOfTimestamp));
 
+      setTextIfExists("currentIndex", formatCanonicalNumber(performance.current_index));
+      setTextIfExists("sinceInceptionReturn", formatCanonicalPercent(performance.since_inception_return_pct));
+      setTextIfExists("headlineMaxDrawdown", formatCanonicalPercent(performance.max_drawdown_pct));
+      setTextIfExists("headlineProfitFactor", formatCanonicalNumber(trades.profit_factor));
+      setTextIfExists("headlineWinRate", formatUnsignedPercent(trades.win_rate_pct));
+      setTextIfExists("headlineClosedTrades", numericValue(trades.closed_trade_count) === null ? unavailableValue : String(trades.closed_trade_count));
 
-      const profitFactor = liveAvailable
-        ? (tradeStats.profit_factor ?? data.profit_factor ?? data.profitFactor ?? null)
-        : null;
+      if (typeof performance.as_of_date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(performance.as_of_date)) {
+        const month = new Date(performance.as_of_date + "T00:00:00Z").toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
+        setTextIfExists("monthlyReturnLabel", month + " MTD");
+      }
+      setTextIfExists("monthlyReturn", formatCanonicalPercent(performance.monthly_return_pct));
+      setTextIfExists("currentDrawdown", formatCanonicalPercent(performance.current_drawdown_pct));
+      setTextIfExists("ytdReturn", formatCanonicalPercent(performance.ytd_return_pct));
+      setTextIfExists("growthOf10000", formatCanonicalMoney(performance.growth_of_10000));
 
-      const performance = canonicalState.livePerformance || {};
+      setTextIfExists("drawdownCurrent", formatCanonicalPercent(performance.current_drawdown_pct));
+      setTextIfExists("drawdownPeak", formatCanonicalDate(performance.max_drawdown_peak_date));
+      setTextIfExists("drawdownTrough", formatCanonicalDate(performance.max_drawdown_trough_date));
+      setTextIfExists("drawdownRecovery", formatCanonicalDate(performance.max_drawdown_recovery_date));
+      setTextIfExists("drawdownDays", numericValue(performance.current_days_underwater) === null ? unavailableValue : performance.current_days_underwater + " days");
+      setTextIfExists("drawdownMax", formatCanonicalPercent(performance.max_drawdown_pct));
+      document.getElementById("drawdownRecoveryRow").classList.toggle("hidden", !performance.max_drawdown_recovery_date);
 
-      setTextIfExists("realized-algo-pnl", realizedAlgoPnl === null ? "-" : formatMoneyValue(realizedAlgoPnl));
-      setTextIfExists("realizedAlgoPnl", realizedAlgoPnl === null ? "-" : formatMoneyValue(realizedAlgoPnl));
+      setTextIfExists("grossExpectancy", formatCanonicalMoney(trades.gross_expectancy_per_trade));
+      setTextIfExists("averageWinner", formatCanonicalMoney(trades.average_winner));
+      setTextIfExists("averageLoser", formatCanonicalMoney(trades.average_loser));
+      setTextIfExists("payoffRatio", formatCanonicalNumber(trades.payoff_ratio));
+      setTextIfExists("averageHoldingTime", formatMinutes(trades.average_holding_time_minutes));
+      setTextIfExists("medianHoldingTime", formatMinutes(trades.median_holding_time_minutes));
+      setTextIfExists("sameDayTrades", formatUnsignedPercent(trades.same_day_close_pct));
+      setTextIfExists("worstTrade", formatCanonicalMoney(trades.worst_trade));
+      setTextIfExists("maxConsecutiveLosses", numericValue(trades.max_consecutive_losses) === null ? unavailableValue : String(trades.max_consecutive_losses));
 
-      setTextIfExists(
-        "realizedAlgoReturn",
-        !Number.isFinite(Number(performance.total_return_pct))
-          ? "-"
-          : Number(performance.total_return_pct).toFixed(2) + "%"
-      );
-
-      setTextIfExists(
-        "liveMaxDrawdown",
-        !Number.isFinite(Number(performance.max_drawdown_pct))
-          ? "-"
-          : Number(performance.max_drawdown_pct).toFixed(2) + "%"
-      );
-
-      setTextIfExists("win-rate", winRate === null ? "-" : formatPctValue(winRate));
-      setTextIfExists("winRate", winRate === null ? "-" : formatPctValue(winRate));
-
-      setTextIfExists("closed-trades", closedTrades === null ? "-" : String(closedTrades));
-      setTextIfExists("closedTrades", closedTrades === null ? "-" : String(closedTrades));
-
-      setTextIfExists(
-        "profitFactor",
-        profitFactor === null ||
-        !Number.isFinite(Number(profitFactor))
-          ? "-"
-          : Number(profitFactor).toFixed(2)
-      );
-
-      const avgWinLossDisplay = avgWin === null || avgLoss === null
-        ? "-"
-        : `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLoss)}`;
-      setTextIfExists("avg-win-loss", avgWinLossDisplay);
-      setTextIfExists("avgWinLoss", avgWinLossDisplay);
-        setTextIfExists("accountType", data.account_type || "Live account");
-        document.getElementById("equity").textContent = Number.isFinite(Number(performance.current_index))
-          ? Number(performance.current_index).toFixed(2)
-          : "-";
-
-        const stats = liveAvailable ? (data.stats || {}) : {};
-        document.getElementById("realizedPnl").textContent = liveAvailable
-          ? dollars(stats.realized_algo_pnl || 0)
-          : "-";
-        document.getElementById("winRate").textContent = liveAvailable
-          ? pct(stats.win_rate_pct)
-          : "-";
-        // closedTrades and avgWinLoss are handled by Dynamic Main Stats above.
-
-        const asOf = canonicalState.asOfTimestamp || data.updated_at;
-        document.getElementById("updated").textContent = canonicalState.dataStatus === "live"
-          ? "Live — as of " + new Date(asOf).toLocaleString()
-          : canonicalState.dataStatus === "latest_closed_session"
-            ? "Latest closed-session snapshot — as of " + new Date(asOf).toLocaleString()
-            : "Historical chart only — current metrics unavailable; artifact as of "
-              + new Date(asOf).toLocaleString();
         document.getElementById("note").textContent = data.note || "";
 
         const points = canonicalState.historicalPoints;
