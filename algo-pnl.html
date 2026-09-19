@@ -3,6 +3,7 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script src="/js/canonical-performance.js?v=20260919-tier1-session"></script>
   <script>
 function formatMoneyValue(value) {
   const n = Number(value || 0);
@@ -945,25 +946,38 @@ function setTextIfExists(id, value) {
         loadChartLibrary()
       ]).then(([data]) => {
 
+      const canonicalState = canonicalArtifactState(data);
+      const liveAvailable = canonicalState.valuesAvailable;
+
       // Dynamic Main Stats
-      const tradeStats = data.trade_stats || data.tradeStats || data.stats || {};
-      const realizedAlgoPnl = tradeStats.realized_algo_pnl ?? data.realized_algo_pnl ?? data.realizedAlgoPnl ?? 0;
-      const winRate = tradeStats.win_rate_pct ?? tradeStats.win_rate ?? data.win_rate ?? data.winRate ?? 0;
-      const closedTrades = tradeStats.closed_trades ?? data.closed_trades ?? data.closedTrades ?? 0;
-      const avgWin = tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? 0;
-      const avgLoss = tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? 0;
+      const tradeStats = liveAvailable
+        ? (data.trade_stats || data.tradeStats || data.stats || {})
+        : {};
+      const realizedAlgoPnl = liveAvailable
+        ? (tradeStats.realized_algo_pnl ?? data.realized_algo_pnl ?? data.realizedAlgoPnl ?? null)
+        : null;
+      const winRate = liveAvailable
+        ? (tradeStats.win_rate_pct ?? tradeStats.win_rate ?? data.win_rate ?? data.winRate ?? null)
+        : null;
+      const closedTrades = liveAvailable
+        ? (tradeStats.closed_trades ?? data.closed_trades ?? data.closedTrades ?? null)
+        : null;
+      const avgWin = liveAvailable
+        ? (tradeStats.avg_win ?? data.avg_win ?? data.avgWin ?? null)
+        : null;
+      const avgLoss = liveAvailable
+        ? (tradeStats.avg_loss ?? data.avg_loss ?? data.avgLoss ?? null)
+        : null;
 
 
-      const profitFactor =
-        tradeStats.profit_factor ??
-        data.profit_factor ??
-        data.profitFactor ??
-        null;
+      const profitFactor = liveAvailable
+        ? (tradeStats.profit_factor ?? data.profit_factor ?? data.profitFactor ?? null)
+        : null;
 
-      const performance = data.performance || {};
+      const performance = canonicalState.livePerformance || {};
 
-      setTextIfExists("realized-algo-pnl", formatMoneyValue(realizedAlgoPnl));
-      setTextIfExists("realizedAlgoPnl", formatMoneyValue(realizedAlgoPnl));
+      setTextIfExists("realized-algo-pnl", realizedAlgoPnl === null ? "-" : formatMoneyValue(realizedAlgoPnl));
+      setTextIfExists("realizedAlgoPnl", realizedAlgoPnl === null ? "-" : formatMoneyValue(realizedAlgoPnl));
 
       setTextIfExists(
         "realizedAlgoReturn",
@@ -979,11 +993,11 @@ function setTextIfExists(id, value) {
           : Number(performance.max_drawdown_pct).toFixed(2) + "%"
       );
 
-      setTextIfExists("win-rate", formatPctValue(winRate));
-      setTextIfExists("winRate", formatPctValue(winRate));
+      setTextIfExists("win-rate", winRate === null ? "-" : formatPctValue(winRate));
+      setTextIfExists("winRate", winRate === null ? "-" : formatPctValue(winRate));
 
-      setTextIfExists("closed-trades", String(closedTrades));
-      setTextIfExists("closedTrades", String(closedTrades));
+      setTextIfExists("closed-trades", closedTrades === null ? "-" : String(closedTrades));
+      setTextIfExists("closedTrades", closedTrades === null ? "-" : String(closedTrades));
 
       setTextIfExists(
         "profitFactor",
@@ -993,22 +1007,35 @@ function setTextIfExists(id, value) {
           : Number(profitFactor).toFixed(2)
       );
 
-      const avgLossDisplay = avgLoss === null ? 0 : avgLoss;
-      setTextIfExists("avg-win-loss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
-      setTextIfExists("avgWinLoss", `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLossDisplay)}`);
+      const avgWinLossDisplay = avgWin === null || avgLoss === null
+        ? "-"
+        : `${avgWin > 0 ? "+" : ""}${formatMoneyValue(avgWin)} / ${formatMoneyValue(avgLoss)}`;
+      setTextIfExists("avg-win-loss", avgWinLossDisplay);
+      setTextIfExists("avgWinLoss", avgWinLossDisplay);
         setTextIfExists("accountType", data.account_type || "Live account");
-        document.getElementById("equity").textContent = Number(performance.current_index).toFixed(2);
+        document.getElementById("equity").textContent = Number.isFinite(Number(performance.current_index))
+          ? Number(performance.current_index).toFixed(2)
+          : "-";
 
-        const stats = data.stats || {};
-        document.getElementById("realizedPnl").textContent = dollars(stats.realized_algo_pnl || 0);
-        document.getElementById("winRate").textContent = pct(stats.win_rate_pct);
+        const stats = liveAvailable ? (data.stats || {}) : {};
+        document.getElementById("realizedPnl").textContent = liveAvailable
+          ? dollars(stats.realized_algo_pnl || 0)
+          : "-";
+        document.getElementById("winRate").textContent = liveAvailable
+          ? pct(stats.win_rate_pct)
+          : "-";
         // closedTrades and avgWinLoss are handled by Dynamic Main Stats above.
 
-        document.getElementById("updated").textContent =
-          "Last updated: " + new Date(data.updated_at).toLocaleString();
+        const asOf = canonicalState.asOfTimestamp || data.updated_at;
+        document.getElementById("updated").textContent = canonicalState.dataStatus === "live"
+          ? "Live — as of " + new Date(asOf).toLocaleString()
+          : canonicalState.dataStatus === "latest_closed_session"
+            ? "Latest closed-session snapshot — as of " + new Date(asOf).toLocaleString()
+            : "Historical chart only — current metrics unavailable; artifact as of "
+              + new Date(asOf).toLocaleString();
         document.getElementById("note").textContent = data.note || "";
 
-        const points = data.points || [];
+        const points = canonicalState.historicalPoints;
         const formatPointDate = value => {
           const [year, month, day] = String(value).split("-").map(Number);
           const date = new Date(year, month - 1, day);
