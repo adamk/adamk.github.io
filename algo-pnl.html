@@ -1293,8 +1293,11 @@ function setTextIfExists(id, value) {
           },
           options: {
             responsive: true,
+            interaction: { mode: "index", intersect: false, axis: "x" },
             plugins: {
               tooltip: {
+                animation: false,
+                xAlign: "center",
                 callbacks: {
                   title: contexts => formatPointDate(points[contexts[0].dataIndex]?.date),
                   label: context => Number(context.parsed.y).toFixed(2) + " index points"
