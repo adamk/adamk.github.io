@@ -3,6 +3,7 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+  <script src="/js/time-format.js?v=20260921-hold"></script>
   <script src="/js/canonical-performance.js?v=20260919-tier1-session"></script>
   <script>
 function formatMoneyValue(value) {
@@ -1203,8 +1204,7 @@ function setTextIfExists(id, value) {
     }
 
     function formatMinutes(value) {
-      const number = numericValue(value);
-      return number === null ? unavailableValue : Math.round(number) + " min";
+      return FoxchaseTime.formatDurationMinutes(value);
     }
 
     function loadLivePerformance() {
