@@ -297,6 +297,21 @@ function setTextIfExists(id, value) {
       gap:16px;
       margin:22px 0;
     }
+    .historical-comparison-controls {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 18px;
+      margin:18px 0 0;
+    }
+    .historical-comparison-controls label {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      cursor:pointer;
+    }
+    .historical-comparison-controls small {
+      color:#666;
+    }
     .current-allocation-grid {
       grid-template-columns:repeat(5,minmax(0,1fr));
     }
@@ -875,10 +890,20 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Annualized Daily Sharpe</div><div class="research-value">2.387</div></div>
       <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value">-$899 / -7.89%</div></div>
     </div>
-    <div class="chart-box research-chart-box">
-      <img src="/images/intraday_research_equity_20260922.svg" alt="Historical Intraday cumulative gross profit and loss across 263 trades, ending at plus $22,332">
+    <h3>Historical portfolio-value comparison</h3>
+    <p class="small">Each line starts at a hypothetical $10,000. Benchmark distributions are included through adjusted total-return prices. This chart is not live account equity.</p>
+    <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
+      <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
+      <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
+      <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c45a24">Foxchase Combined <small>(through Aug 25)</small></label>
+      <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
+      <label><input type="checkbox" data-comparison-series="JEPI Buy &amp; Hold" style="accent-color:#805ad5">JEPI Buy &amp; Hold</label>
     </div>
-    <p class="small">173 wins · 89 losses · 1 flat. Cumulative gross research P&amp;L before fees; not live account equity. Curve ends with the last validated trade on September 15, 2026.</p>
+    <div class="chart-box research-chart-box" style="height:390px;">
+      <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
+    </div>
+    <p class="small" id="historicalComparisonStatus">Loading historical comparison…</p>
+    <p class="small">173 wins · 89 losses · 1 flat. Intraday gross P&amp;L is +$22,332; its additive hypothetical value ends at $32,332. Multi-Day and Combined stop on August 25, 2026, their last validated date. Combined retains its prior validated model, not a restatement with the new Intraday ledger. No later marks are estimated.</p>
     <div class="research-table-wrap"><table class="research-table">
       <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
       <tbody>
@@ -907,6 +932,66 @@ function setTextIfExists(id, value) {
       }
       return chartLibraryPromise;
     }
+    function loadHistoricalComparison() {
+      const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
+      const status = document.getElementById("historicalComparisonStatus");
+      Promise.all([
+        fetch("/data/historical_comparison_20260923.json").then(response => {
+          if (!response.ok) throw new Error("Comparison data unavailable");
+          return response.json();
+        }),
+        loadChartLibrary()
+      ]).then(([data]) => {
+        const names = controls.map(control => control.dataset.comparisonSeries);
+        if (data.initial_value !== 10000 || data.comparison_start !== "2023-01-04" ||
+            data.study_end !== "2026-09-22" || !Array.isArray(data.dates) ||
+            data.series.length !== names.length ||
+            data.series.some(series => !names.includes(series.label) || series.values.length !== data.dates.length || series.values[0] !== 10000)) {
+          throw new Error("Comparison data failed validation");
+        }
+        const colors = {
+          "Foxchase Intraday": "#234a76",
+          "Foxchase Multi-Day": "#2f855a",
+          "Foxchase Combined": "#c45a24",
+          "SPY Buy & Hold": "#666666",
+          "JEPI Buy & Hold": "#805ad5"
+        };
+        const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const textColor = dark ? "#d6dbe3" : "#4a5568";
+        const gridColor = dark ? "rgba(214,219,227,.16)" : "rgba(74,85,104,.14)";
+        const money = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:2});
+        const chart = new Chart(document.getElementById("historicalComparisonChart"), {
+          type: "line",
+          data: {labels:data.dates, datasets:[]},
+          options: {
+            responsive:true, maintainAspectRatio:false,
+            interaction:{mode:"index", intersect:false},
+            plugins:{
+              legend:{display:false},
+              tooltip:{callbacks:{
+                title:items => items.length ? new Date(items[0].label + "T12:00:00Z").toLocaleDateString("en-US", {timeZone:"UTC", month:"short", day:"numeric", year:"numeric"}) : "",
+                label:item => item.dataset.label + ": " + money.format(item.parsed.y)
+              }}
+            },
+            scales:{
+              x:{ticks:{color:textColor, maxTicksLimit:8, callback:value => data.dates[value].slice(0,7)}, grid:{color:gridColor}},
+              y:{title:{display:true, text:"Hypothetical portfolio value (USD)", color:textColor}, ticks:{color:textColor, callback:value => money.format(value)}, grid:{color:gridColor}}
+            }
+          }
+        });
+        function updateSeries() {
+          chart.data.datasets = data.series.filter(series => controls.some(control => control.dataset.comparisonSeries === series.label && control.checked)).map(series => ({
+            label:series.label, data:series.values, borderColor:colors[series.label], borderWidth:series.label === "Foxchase Intraday" ? 3 : 2,
+            pointRadius:0, pointHitRadius:8, tension:0, spanGaps:false
+          }));
+          chart.update();
+        }
+        controls.forEach(control => control.addEventListener("change", updateSeries));
+        updateSeries();
+        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. Multi-Day and Combined have no plotted values after August 25, 2026.";
+      }).catch(() => { status.textContent = "Historical comparison chart is temporarily unavailable."; });
+    }
+    loadHistoricalComparison();
     const unavailableValue = "—";
 
     function numericValue(value) {
