@@ -1,6 +1,6 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-09-24T14:45:03.868463-04:00",
+  "updated_at": "2026-09-24T15:00:04.770021-04:00",
   "market_session_calendar": {
     "source": "alpaca_market_calendar",
     "coverage_start": "2026-09-24T00:00:00-04:00",
