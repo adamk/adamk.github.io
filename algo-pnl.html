@@ -895,7 +895,7 @@ function setTextIfExists(id, value) {
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
       <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
       <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
-      <label><input type="checkbox" data-comparison-series="Historical Portfolio" style="accent-color:#c45a24">Historical Portfolio <small>(through Aug 25)</small></label>
+      <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c45a24">Foxchase Combined <small>(through Aug 25)</small></label>
       <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
       <label><input type="checkbox" data-comparison-series="JEPI Buy &amp; Hold" style="accent-color:#805ad5">JEPI Buy &amp; Hold</label>
     </div>
@@ -903,7 +903,7 @@ function setTextIfExists(id, value) {
       <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
     </div>
     <p class="small" id="historicalComparisonStatus">Loading historical comparison…</p>
-    <p class="small">173 wins · 89 losses · 1 flat. Intraday gross P&amp;L is +$22,332; its additive hypothetical value ends at $32,332. Foxchase Multi-Day represents longer-duration systematic options strategies. Multi-Day and Historical Portfolio stop on August 25, 2026, their last validated date. Historical Portfolio is earlier governed multi-strategy research, not a recombination of the current Intraday study. No later marks are estimated.</p>
+    <p class="small">173 wins · 89 losses · 1 flat. Intraday gross P&amp;L is +$22,332; its additive hypothetical value ends at $32,332. Foxchase Multi-Day represents longer-duration systematic options strategies. Foxchase Combined represents a single-account replay of the current Intraday and Multi-Day strategies under shared capital and risk governance. Combined is not obtained by summing the two $10,000 component curves. Foxchase Intraday continues through September 22, 2026. Foxchase Multi-Day and Foxchase Combined stop on August 25, 2026, their last validated date. No later Combined or Multi-Day marks are estimated.</p>
     <div class="research-table-wrap"><table class="research-table">
       <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
       <tbody>
@@ -936,7 +936,7 @@ function setTextIfExists(id, value) {
       const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
       const status = document.getElementById("historicalComparisonStatus");
       Promise.all([
-        fetch("/data/historical_comparison_20260923.json").then(response => {
+        fetch("/data/historical_comparison_20260923.json?v=20260926-combined").then(response => {
           if (!response.ok) throw new Error("Comparison data unavailable");
           return response.json();
         }),
@@ -952,7 +952,7 @@ function setTextIfExists(id, value) {
         const colors = {
           "Foxchase Intraday": "#234a76",
           "Foxchase Multi-Day": "#2f855a",
-          "Historical Portfolio": "#c45a24",
+          "Foxchase Combined": "#c45a24",
           "SPY Buy & Hold": "#666666",
           "JEPI Buy & Hold": "#805ad5"
         };
@@ -988,7 +988,7 @@ function setTextIfExists(id, value) {
         }
         controls.forEach(control => control.addEventListener("change", updateSeries));
         updateSeries();
-        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. Foxchase Multi-Day and Historical Portfolio have no plotted values after August 25, 2026.";
+        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. Foxchase Multi-Day and Foxchase Combined have no plotted values after August 25, 2026.";
       }).catch(() => { status.textContent = "Historical comparison chart is temporarily unavailable."; });
     }
     loadHistoricalComparison();
