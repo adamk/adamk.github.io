@@ -957,7 +957,7 @@ function setTextIfExists(id, value) {
           "JEPI Buy & Hold": "#805ad5"
         };
         const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const textColor = dark ? "#d6dbe3" : "#4a5568";
+        const textColor = "#111";
         const gridColor = dark ? "rgba(214,219,227,.16)" : "rgba(74,85,104,.14)";
         const money = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:2});
         const chart = new Chart(document.getElementById("historicalComparisonChart"), {
