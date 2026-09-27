@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "classification": "FULL_RANGE_RESEARCH_REPLAY",
+  "study_start": "2023-01-04",
+  "study_end": "2026-09-22",
+  "sessions_considered": 932,
+  "fully_evaluable_sessions": 929,
+  "unresolved_sessions": ["2023-06-05", "2026-08-26", "2026-09-22"],
+  "setup_families": 6,
+  "scope": "This 263-trade backtest applies six defined intraday credit-spread setups and their management rules. It does not include separate divergence strategies or reproduce the full current live configuration.",
+  "input_policy": "Unavailable required inputs are not estimated or synthesized.",
+  "execution_basis": "Modeled trades sell at the quoted bid and buy at the quoted ask at entry and exit, rather than assuming midpoint fills.",
+  "cost_basis": "gross_before_fees",
+  "cost_note": "Commissions and exchange fees are not included. No separate slippage model is documented.",
+  "statistics": {
+    "trades": 263,
+    "wins": 173,
+    "losses": 89,
+    "breakeven": 1,
+    "gross_pnl": 22332.0,
+    "ending_equity": 32332.0,
+    "win_rate_pct": 65.77946768060836,
+    "profit_factor": 2.5978820835718373,
+    "daily_sharpe_annualized": 2.3869493525516,
+    "max_drawdown_dollars": -899.0,
+    "max_drawdown_pct": -7.894983591186123
+  },
+  "source_result_sha256": "71f360583ee7dcf4c1cc60e19ffd2282d4c1149b8e94d1eefd39f32ff4410af2",
+  "source_ledger_sha256": "5d3f1111c720c6409abe0b4efe7e7998f4378f6a65e87255a0ee72e3c1d11735"
+}
