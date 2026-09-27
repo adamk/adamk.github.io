@@ -12,9 +12,9 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foxchase $3k Account Series</title>
+  <title>Foxchase $3k Small Account Series | Series I &amp; II</title>
   <link rel="icon" href="/foxchase-favicon.png?v=20260823" type="image/png">
-  <meta name="description" content="A public day-by-day archive of the Foxchase $3k Account Series, including daily PnL, balance progression, trade reasoning, and lessons learned." />
+  <meta name="description" content="Follow the Foxchase Trading $3k Small Account Series, including the completed 87-session Series I archive and the planned Series II experiment starting from the same $3,000 balance." />
   <style>
     :root {
       --bg: #0b1220;
@@ -386,6 +386,32 @@
     gap: 12px;
     flex-wrap: wrap;
     margin-top: 18px;
+  }
+
+  .series-hub { padding-bottom: 12px; }
+  .series-hub .hero { padding-bottom: 12px; }
+  .series-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .series-card { display: flex; flex-direction: column; gap: 12px; }
+  .series-card h2 { margin: 0; font-size: 25px; }
+  .series-card h3 { margin: -8px 0 0; color: #ffd38a; font-size: 17px; }
+  .series-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; color: var(--muted); }
+  .series-stats strong { color: var(--text); }
+  .series-card p { margin: 0; color: var(--muted); }
+  .series-cta { align-self: flex-start; margin-top: auto; font-weight: 700; }
+  .series-why { margin: 28px 0 18px; }
+  .series-why h2 { margin-top: 0; }
+  .series-why p:last-child { margin-bottom: 0; }
+  .series-comparison { width: 100%; border-collapse: collapse; margin: 0 0 38px; background: rgba(18, 27, 45, .72); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .series-comparison th, .series-comparison td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  .series-comparison th { color: var(--text); background: rgba(255,255,255,.035); }
+  .series-comparison tr:last-child td { border-bottom: 0; }
+  .series-archive-callout { margin: 0 0 24px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  #series-1 { scroll-margin-top: 20px; }
+  @media (max-width: 700px) {
+    .series-cards { grid-template-columns: 1fr; }
+    .series-comparison { font-size: 13px; }
+    .series-comparison th, .series-comparison td { padding: 9px 7px; }
+    .series-archive-callout { align-items: flex-start; flex-direction: column; }
   }
 
   .info-btn {
@@ -838,12 +864,66 @@
   </header>
 
   <div class="wrap">
-    <section class="hero">
-      <span class="eyebrow">🦊 Public Series Archive</span>
-      <h1>Foxchase $3k Account Series <span class="completion-label">(Completed)</span></h1>
-      <p class="sub">
-        A completed, public day-by-day archive of the small account series. It documents the results, drawdowns, decisions, and lessons of discretionary 0DTE trading, not a smooth or repeatable return path.
-      </p>
+    <section class="series-hub" aria-labelledby="seriesHubTitle">
+      <div class="hero">
+        <span class="eyebrow">🦊 Foxchase Small Account Series</span>
+        <h1 id="seriesHubTitle">The $3k Account Series</h1>
+        <p class="sub">A public record of discretionary 0DTE small-account trading, documenting the trades, decisions, drawdowns, mistakes, and lessons as they happened.</p>
+      </div>
+
+      <div class="series-cards">
+        <article class="card series-card">
+          <h2>Series I — Completed</h2>
+          <h3>Aggressive Compounding</h3>
+          <div class="series-stats" aria-label="Series I statistics">
+            <span>Start: <strong>$3,000</strong></span><span>Peak: <strong>$22,828.93</strong></span>
+            <span>Finish: <strong>$6,277.33</strong></span><span>Sessions: <strong>87</strong></span>
+          </div>
+          <p>The original experiment in aggressive small-account growth. Series I demonstrated both the upside of compounding and the consequences of maintaining aggressive exposure through low-participation and difficult market conditions.</p>
+          <a class="series-cta" href="#series-1">View Series I Archive ↓</a>
+        </article>
+
+        <article class="card series-card">
+          <h2>Series II — Starts October 1</h2>
+          <h3>Same $3,000. Different Rules.</h3>
+          <div class="series-stats" aria-label="Series II statistics">
+            <span>Start: <strong>$3,000</strong></span><span>Status: <strong>Planned</strong></span>
+            <span>A+: <strong>50% deployment</strong></span><span>A: <strong>30% deployment</strong></span>
+          </div>
+          <p>Series II starts from the same $3,000 balance while applying the lessons from the original 87-session experiment: stricter setup qualification, 5-minute rVol filtering, planner-based sizing, and predefined OCO risk.</p>
+          <a class="series-cta" href="/3k-challenge-part-2">Follow Series II →</a>
+        </article>
+      </div>
+
+      <section class="card series-why">
+        <h2>Why Series II?</h2>
+        <p>Series I was never meant to show a smooth or repeatable equity curve. It documented what aggressive discretionary 0DTE compounding actually looked like in real time.</p>
+        <p>The account grew from $3,000 to more than $22,000 before a major drawdown during a difficult low-participation period.</p>
+        <p>Series II does not replace that result. It builds on it.</p>
+        <p>Starting again from the same $3,000 balance allows the two series to be compared while Series II applies a stricter set of rules developed from the mistakes and lessons of Series I.</p>
+      </section>
+
+      <table class="series-comparison">
+        <thead><tr><th></th><th>Series I</th><th>Series II</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Start</th><td>$3,000</td><td>$3,000</td></tr>
+          <tr><th scope="row">Objective</th><td>Aggressive growth</td><td>Aggressive growth</td></tr>
+          <tr><th scope="row">Setup selection</th><td>More discretionary</td><td>A/A+ only</td></tr>
+          <tr><th scope="row">Low rVol</th><td>Not initially filtered</td><td>No trade</td></tr>
+          <tr><th scope="row">Sizing</th><td>More discretionary</td><td>Planner-based</td></tr>
+          <tr><th scope="row">OCO</th><td>Less standardized</td><td>Default ±20%</td></tr>
+          <tr><th scope="row">Status</th><td>Completed</td><td>Starts Oct. 1</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="series-archive" id="series-1" aria-labelledby="seriesArchiveTitle">
+      <h2 class="section-title" id="seriesArchiveTitle">Series I Archive</h2>
+      <h3>Foxchase $3k Account Series I — Completed</h3>
+      <div class="card series-archive-callout">
+        <span>Series II is now planned for October 1 and starts again from the same $3,000 balance using the updated Series II rules.</span>
+        <a class="series-cta" href="/3k-challenge-part-2">Follow Series II →</a>
+      </div>
 
 <div class="grid">
   <div class="card">
@@ -4345,6 +4425,7 @@
 </article>
   </div>
 </section>
+    </section>
     <section class="footer">
       <p>© 2026 Foxchase Trading, LLC</p>
       <p>

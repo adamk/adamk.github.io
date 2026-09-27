@@ -241,6 +241,10 @@
 
     .rules li { margin-bottom: 8px; }
 
+    .series-switcher { margin: 22px 0 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+    .series-switcher a { font-weight: 700; }
+    .series-switcher [aria-current="page"] { color: var(--text); font-weight: 700; }
+
     .day-log {
       display: grid;
       gap: 20px;
@@ -840,6 +844,10 @@
   </header>
 
   <div class="wrap">
+  <nav class="series-switcher" aria-label="Small Account Series navigation">
+    <strong>Small Account Series</strong>
+    <span><a href="/3k-challenge#series-1">← Series I Archive</a> | <span aria-current="page">Series II</span></span>
+  </nav>
   <section class="hero">
     <span class="eyebrow">🦊 Planned Public Series</span>
     <h1>Foxchase $3k Account Series II</h1>
