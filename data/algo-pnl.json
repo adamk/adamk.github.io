@@ -1,16 +1,11 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-09-25T17:30:04.528303-04:00",
+  "updated_at": "2026-09-28T09:30:05.246508-04:00",
   "market_session_calendar": {
     "source": "alpaca_market_calendar",
-    "coverage_start": "2026-09-25T00:00:00-04:00",
-    "coverage_end": "2026-10-31T00:00:00-04:00",
+    "coverage_start": "2026-09-28T00:00:00-04:00",
+    "coverage_end": "2026-11-03T00:00:00-05:00",
     "sessions": [
-      {
-        "date": "2026-09-25",
-        "open_at": "2026-09-25T09:30:00-04:00",
-        "close_at": "2026-09-25T16:00:00-04:00"
-      },
       {
         "date": "2026-09-28",
         "open_at": "2026-09-28T09:30:00-04:00",
@@ -135,6 +130,11 @@
         "date": "2026-10-30",
         "open_at": "2026-10-30T09:30:00-04:00",
         "close_at": "2026-10-30T16:00:00-04:00"
+      },
+      {
+        "date": "2026-11-02",
+        "open_at": "2026-11-02T09:30:00-05:00",
+        "close_at": "2026-11-02T16:00:00-05:00"
       }
     ]
   },
@@ -606,6 +606,10 @@
     {
       "date": "2026-09-25",
       "index_value": 109.8261
+    },
+    {
+      "date": "2026-09-28",
+      "index_value": 109.8261
     }
   ],
   "canonical_metrics": {
@@ -617,14 +621,14 @@
       "monthly_return": -0.006753017016843277,
       "monthly_return_pct": -0.6753017016843277,
       "monthly_return_start_date": "2026-08-31",
-      "monthly_return_end_date": "2026-09-25",
+      "monthly_return_end_date": "2026-09-28",
       "monthly_return_is_partial": true,
       "ytd_return": 0.09826099999999993,
       "ytd_return_pct": 9.826099999999993,
       "ytd_return_start_date": "2026-05-04",
       "growth_of_10000": 10982.61,
       "inception_date": "2026-05-04",
-      "as_of_date": "2026-09-25",
+      "as_of_date": "2026-09-28",
       "performance_source": "canonical_cash_flow_adjusted_normalized_index",
       "return_unit": "decimal",
       "drawdown_timing_resolution": "daily_date",
@@ -636,8 +640,8 @@
       "max_drawdown_trough_date": "2026-09-16",
       "max_drawdown_recovery_date": null,
       "current_drawdown_start_date": "2026-07-28",
-      "current_days_underwater": 59,
-      "max_days_underwater": 59
+      "current_days_underwater": 62,
+      "max_days_underwater": 62
     },
     "trades": {
       "closed_trade_count": 30,
