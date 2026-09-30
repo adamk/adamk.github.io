@@ -652,29 +652,29 @@
       "max_days_underwater": 64
     },
     "trades": {
-      "closed_trade_count": 30,
+      "closed_trade_count": 31,
       "wins": 22,
-      "losses": 8,
+      "losses": 9,
       "breakeven_trades": 0,
-      "win_rate": 73.33333333333333,
-      "win_rate_pct": 73.33333333333333,
-      "win_rate_fraction": 0.7333333333333333,
+      "win_rate": 70.96774193548387,
+      "win_rate_pct": 70.96774193548387,
+      "win_rate_fraction": 0.7096774193548387,
       "gross_profit": 2658.0002,
-      "gross_loss": 1835.0,
-      "profit_factor": 1.4485014713896458,
+      "gross_loss": 1864.0,
+      "profit_factor": 1.4259657725321888,
       "average_winner": 120.8181909090909,
-      "average_loser": -229.375,
-      "payoff_ratio": 0.526727807778053,
-      "gross_expectancy_per_trade": 27.433339999999987,
-      "average_holding_time_minutes": 1081.4844272222222,
-      "median_holding_time_minutes": 47.78664166666667,
-      "trades_per_month": 10.259831460674159,
-      "trades_per_year": 123.11544943820225,
-      "trade_frequency_observed_days": 89,
-      "same_day_close_count": 29,
-      "same_day_close_pct": 96.66666666666667,
+      "average_loser": -207.11111111111111,
+      "payoff_ratio": 0.5833496342177136,
+      "gross_expectancy_per_trade": 25.612909677419342,
+      "average_holding_time_minutes": 1046.8019779569893,
+      "median_holding_time_minutes": 43.842616666666665,
+      "trades_per_month": 9.828776041666666,
+      "trades_per_year": 117.942890625,
+      "trade_frequency_observed_days": 96,
+      "same_day_close_count": 30,
+      "same_day_close_pct": 96.7741935483871,
       "overnight_trade_count": 1,
-      "overnight_trade_pct": 3.3333333333333335,
+      "overnight_trade_pct": 3.225806451612903,
       "worst_trade": -460.0000000000001,
       "worst_trading_day": {
         "date": "2026-07-21",
@@ -686,40 +686,40 @@
       "trade_history_completeness": "reconstructed_partial",
       "holding_time_unit": "minutes",
       "trade_frequency_basis": "annualized_from_inclusive_observed_calendar_span",
-      "closed_trades": 30,
+      "closed_trades": 31,
       "average_win": 120.8181909090909,
-      "average_loss": -229.375,
+      "average_loss": -207.11111111111111,
       "avg_win": 120.8181909090909,
-      "avg_loss": -229.375,
-      "realized_pnl": 823.0001999999996,
-      "realized_algo_pnl": 823.0001999999996
+      "avg_loss": -207.11111111111111,
+      "realized_pnl": 794.0001999999996,
+      "realized_algo_pnl": 794.0001999999996
     },
     "freshness_max_age_seconds": 1200
   },
   "stats": {
-    "closed_trade_count": 30,
+    "closed_trade_count": 31,
     "wins": 22,
-    "losses": 8,
+    "losses": 9,
     "breakeven_trades": 0,
-    "win_rate": 73.33333333333333,
-    "win_rate_pct": 73.33333333333333,
-    "win_rate_fraction": 0.7333333333333333,
+    "win_rate": 70.96774193548387,
+    "win_rate_pct": 70.96774193548387,
+    "win_rate_fraction": 0.7096774193548387,
     "gross_profit": 2658.0002,
-    "gross_loss": 1835.0,
-    "profit_factor": 1.4485014713896458,
+    "gross_loss": 1864.0,
+    "profit_factor": 1.4259657725321888,
     "average_winner": 120.8181909090909,
-    "average_loser": -229.375,
-    "payoff_ratio": 0.526727807778053,
-    "gross_expectancy_per_trade": 27.433339999999987,
-    "average_holding_time_minutes": 1081.4844272222222,
-    "median_holding_time_minutes": 47.78664166666667,
-    "trades_per_month": 10.259831460674159,
-    "trades_per_year": 123.11544943820225,
-    "trade_frequency_observed_days": 89,
-    "same_day_close_count": 29,
-    "same_day_close_pct": 96.66666666666667,
+    "average_loser": -207.11111111111111,
+    "payoff_ratio": 0.5833496342177136,
+    "gross_expectancy_per_trade": 25.612909677419342,
+    "average_holding_time_minutes": 1046.8019779569893,
+    "median_holding_time_minutes": 43.842616666666665,
+    "trades_per_month": 9.828776041666666,
+    "trades_per_year": 117.942890625,
+    "trade_frequency_observed_days": 96,
+    "same_day_close_count": 30,
+    "same_day_close_pct": 96.7741935483871,
     "overnight_trade_count": 1,
-    "overnight_trade_pct": 3.3333333333333335,
+    "overnight_trade_pct": 3.225806451612903,
     "worst_trade": -460.0000000000001,
     "worst_trading_day": {
       "date": "2026-07-21",
@@ -731,15 +731,17 @@
     "trade_history_completeness": "reconstructed_partial",
     "holding_time_unit": "minutes",
     "trade_frequency_basis": "annualized_from_inclusive_observed_calendar_span",
-    "closed_trades": 30,
+    "closed_trades": 31,
     "average_win": 120.8181909090909,
-    "average_loss": -229.375,
+    "average_loss": -207.11111111111111,
     "avg_win": 120.8181909090909,
-    "avg_loss": -229.375,
-    "realized_pnl": 823.0001999999996,
-    "realized_algo_pnl": 823.0001999999996,
+    "avg_loss": -207.11111111111111,
+    "realized_pnl": 794.0001999999996,
+    "realized_algo_pnl": 794.0001999999996,
     "trades": [
       {
+        "entry_order_id": "37eafdc3-9e57-4b91-800e-72d1652facd6",
+        "exit_order_id": "0399f37a-ddaa-4e71-8a8f-928dc854c4d5",
         "opened_at": "2026-06-25T16:35:19.789Z",
         "closed_at": "2026-06-25T17:45:39.475Z",
         "symbols": [
@@ -753,6 +755,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b8d8711c-4f25-46fe-9a76-202482aa249d",
+        "exit_order_id": "bc4496b3-2a66-4323-88d2-2dc640c7d24c",
         "opened_at": "2026-06-29T14:09:19.999Z",
         "closed_at": "2026-06-29T14:34:52.178Z",
         "symbols": [
@@ -766,6 +770,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "8129c889-0973-49e4-91ea-6da096105029",
+        "exit_order_id": "cc5b84af-27b2-4a9f-806c-9e6af1c94524",
         "opened_at": "2026-06-30T13:31:03.829Z",
         "closed_at": "2026-06-30T13:55:16.382Z",
         "symbols": [
@@ -779,6 +785,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "1c9f785f-9091-48fd-8eb2-cbefc2a57168",
+        "exit_order_id": "674ff429-3b37-4c99-b29b-c96b747163e8",
         "opened_at": "2026-07-01T13:39:37.628Z",
         "closed_at": "2026-07-01T13:53:00.525Z",
         "symbols": [
@@ -792,6 +800,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "3f2c3ae6-5179-408d-9d11-d20b559501f2",
+        "exit_order_id": "3e486c5f-3662-44b6-a593-5837ee85277b",
         "opened_at": "2026-07-02T13:31:06.125Z",
         "closed_at": "2026-07-02T13:37:29.323Z",
         "symbols": [
@@ -805,6 +815,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "3b16d979-0149-4360-ae72-bc6a8710b4ab",
+        "exit_order_id": "a4360be0-0857-4807-a0c4-782c5512dba7",
         "opened_at": "2026-07-02T15:10:05.436Z",
         "closed_at": "2026-07-02T15:12:16.258Z",
         "symbols": [
@@ -818,6 +830,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "636871cb-4789-4bd0-8b52-8732d55f70b0",
+        "exit_order_id": "cdcd5afa-ade1-44e2-989e-295eafb3c86c",
         "opened_at": "2026-07-07T14:17:26.133Z",
         "closed_at": "2026-07-07T15:25:21.793Z",
         "symbols": [
@@ -831,6 +845,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "9b3fc1be-dd79-42f8-a012-7e766f490751",
+        "exit_order_id": "f45e955a-1b91-4b05-9bcd-eb881d010b81",
         "opened_at": "2026-07-10T14:34:52.179Z",
         "closed_at": "2026-07-10T14:48:35.453Z",
         "symbols": [
@@ -844,6 +860,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "30f17c4a-062b-4183-a796-be3275bfb6bc",
+        "exit_order_id": "9b9f029c-80bf-4549-8a25-31ae013e644d",
         "opened_at": "2026-07-15T16:05:08.227Z",
         "closed_at": "2026-07-15T16:35:36.849Z",
         "symbols": [
@@ -857,6 +875,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "dacacaf5-3678-4356-ab49-fb2a54dde9f8",
+        "exit_order_id": "ac0cb1a0-8fc8-41e8-93de-17e63bda7cbc",
         "opened_at": "2026-07-16T13:50:14.998Z",
         "closed_at": "2026-07-16T14:09:33.479Z",
         "symbols": [
@@ -870,6 +890,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "8b4c76fe-9d62-4164-9674-0f375dffc54b",
+        "exit_order_id": "a1eb93d4-07ce-4ff3-99b9-38382df43888",
         "opened_at": "2026-07-21T14:00:30.183Z",
         "closed_at": "2026-07-21T18:30:27.99Z",
         "symbols": [
@@ -885,6 +907,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "6d25d2ed-e722-4f7c-aa62-122e27b93695",
+        "exit_order_id": "ac5c1886-5aeb-4874-a517-15adbbfd1bbc",
         "opened_at": "2026-07-23T14:37:46.095Z",
         "closed_at": "2026-07-23T15:06:55.924Z",
         "symbols": [
@@ -898,6 +922,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "8949b08a-23af-4528-b663-d4ae51f62116",
+        "exit_order_id": "640054e5-eba9-41f8-a5ca-b6998c588b9a",
         "opened_at": "2026-07-24T15:14:47.356Z",
         "closed_at": "2026-07-24T17:48:26.003Z",
         "symbols": [
@@ -913,6 +939,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b2264a9b-d419-4c3a-befe-b9573eac2b3e",
+        "exit_order_id": "bd9f941a-592e-49ac-8580-a00c3687a9fb",
         "opened_at": "2026-07-29T13:31:39.376Z",
         "closed_at": "2026-07-29T14:40:33.319Z",
         "symbols": [
@@ -926,6 +954,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "2a63d183-66e4-4c58-99a5-3a742678992f",
+        "exit_order_id": "fce69bc5-aa23-4a54-8ed4-e277f4b5dc22",
         "opened_at": "2026-07-31T13:52:35.798Z",
         "closed_at": "2026-07-31T14:07:03.964Z",
         "symbols": [
@@ -939,6 +969,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "abcb7b24-ca09-4930-a0f7-14f87e463417",
+        "exit_order_id": "a2904447-f554-482c-ba03-b4c2c2c185bc",
         "opened_at": "2026-08-05T14:55:14.072Z",
         "closed_at": "2026-08-05T16:09:32.015Z",
         "symbols": [
@@ -952,6 +984,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "53aca80b-ea2f-4012-b495-9a504ee62bba",
+        "exit_order_id": "5f745e30-de34-445c-b436-9424b7223797",
         "opened_at": "2026-08-06T15:21:28.034Z",
         "closed_at": "2026-08-06T18:15:36.036Z",
         "symbols": [
@@ -965,6 +999,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "2541109d-c534-4f1a-8a6f-fe6b650ffeec",
+        "exit_order_id": "8d18b69f-05d9-4314-99dc-935c94697a17",
         "opened_at": "2026-08-10T13:32:14.673Z",
         "closed_at": "2026-08-10T14:08:54.932Z",
         "symbols": [
@@ -978,6 +1014,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b2d9792b-892b-4366-b26c-8f4992a45fd4",
+        "exit_order_id": "99176b25-80de-4cbe-b1eb-1ff231a2d38a",
         "opened_at": "2026-08-11T15:15:28.509Z",
         "closed_at": "2026-08-11T16:56:42.942Z",
         "symbols": [
@@ -991,6 +1029,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "254ec136-c4d9-4f2d-b6be-d029e8c03658",
+        "exit_order_id": "408b6f6b-8593-46a5-b95c-1a323e14d418",
         "opened_at": "2026-08-19T16:20:24.114Z",
         "closed_at": "2026-08-19T16:28:48.626Z",
         "symbols": [
@@ -1004,6 +1044,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "4431a79b-3d3a-4b94-a413-2369a6491c9c",
+        "exit_order_id": "34539425-4bce-48cc-a179-50203d9484fe",
         "opened_at": "2026-08-20T14:05:31.205Z",
         "closed_at": "2026-08-20T15:04:05.362Z",
         "symbols": [
@@ -1017,6 +1059,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "710318ac-641a-4414-bee3-de632d83cac9",
+        "exit_order_id": "f396e26a-289b-407a-a170-107bd0f3be80",
         "opened_at": "2026-08-24T13:50:32.932Z",
         "closed_at": "2026-08-24T14:13:09.668Z",
         "symbols": [
@@ -1030,6 +1074,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b62a1633-3fc3-4489-8033-eef718eba43f",
+        "exit_order_id": "cad14311-3dec-42bb-8d50-5ffb89a87d0d",
         "opened_at": "2026-08-25T14:50:07.701Z",
         "closed_at": "2026-08-25T15:33:58.258Z",
         "symbols": [
@@ -1043,6 +1089,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "c7fe8911-b84e-41a2-bb94-85e9bcd46516",
+        "exit_order_id": "dae41e29-dd19-48d9-9960-778204ec431f",
         "opened_at": "2026-08-26T14:20:24.196Z",
         "closed_at": "2026-08-26T16:39:52.272Z",
         "symbols": [
@@ -1056,6 +1104,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "41fa6875-60ee-4c17-9ab8-116c4cde0baf",
+        "exit_order_id": "faf372c4-6551-4b5b-8ff7-9cf53bfd2841",
         "opened_at": "2026-08-28T16:30:04.202Z",
         "closed_at": "2026-08-28T17:21:48.042Z",
         "symbols": [
@@ -1069,6 +1119,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "409fc35f-fd99-452c-a7b2-d2673247dee8",
+        "exit_order_id": "7c8bd03c-0651-4913-b29e-0f2fbc3bb6ac",
         "opened_at": "2026-08-31T13:55:13.487Z",
         "closed_at": "2026-08-31T14:02:28.743Z",
         "symbols": [
@@ -1082,6 +1134,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "edd245b1-303f-425e-8e61-384fc67cfbb1",
+        "exit_order_id": "9153a48b-14c6-4d13-a888-0a93b726f191",
         "opened_at": "2026-09-04T14:55:13.897Z",
         "closed_at": "2026-09-04T17:30:32.752Z",
         "symbols": [
@@ -1095,6 +1149,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "22b8b19f-88d1-43a1-9f49-019213d4519c",
+        "exit_order_id": "581453ec-e81b-4f26-b495-016942884acb",
         "opened_at": "2026-09-09T15:10:57.832Z",
         "closed_at": "2026-09-09T16:46:08.303Z",
         "symbols": [
@@ -1108,6 +1164,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "3780a26e-6d2b-4b2d-8b05-7c48042e410f",
+        "exit_order_id": "5001e350-a9b5-4481-ac53-bc2e81eae43d",
         "opened_at": "2026-09-18T14:15:31.546Z",
         "closed_at": "2026-09-18T16:16:57.367Z",
         "symbols": [
@@ -1149,34 +1207,61 @@
         "credit_capture_pct": 50.724637681159415,
         "max_risk": 362.0,
         "return_on_risk_pct": 19.337016574585636,
-        "hold_minutes": 30544.788116666667
+        "hold_minutes": 30544.788116666667,
+        "entry_order_id": "da35db3f-36db-4203-b923-fb3a2badf7c7",
+        "external_close_order_ids": [
+          "4838c175-68c5-42ef-adbf-6df6ae3bf38b",
+          "5701edea-da53-460b-990e-d4ae3e8d22b9"
+        ]
+      },
+      {
+        "logical_id": "single-option-ex:d134b09c-fafc-40ec-a679-f2e14b170ff7:7c085e10-cf55-4219-865f-aee652219403",
+        "entry_order_id": "d134b09c-fafc-40ec-a679-f2e14b170ff7",
+        "exit_order_id": "7c085e10-cf55-4219-865f-aee652219403",
+        "opened_at": "2026-09-28T14:08:34.379Z",
+        "closed_at": "2026-09-28T14:14:54.089Z",
+        "symbols": [
+          "SPY260928C00768000"
+        ],
+        "qty": 1.0,
+        "quantity": 1.0,
+        "open_avg": 1.16,
+        "close_avg": 0.87,
+        "pnl": -29.0,
+        "realized_pnl": -29.0,
+        "setup": "R1 Bull EX",
+        "trade_type": "single_option_ex",
+        "source": "persisted_ex_exit_filled_and_broker_fills",
+        "exit_reason": "stop",
+        "pnl_basis": "alpaca_single_option_fills_gross_before_fees",
+        "result": "loss"
       }
     ]
   },
   "trade_stats": {
-    "closed_trade_count": 30,
+    "closed_trade_count": 31,
     "wins": 22,
-    "losses": 8,
+    "losses": 9,
     "breakeven_trades": 0,
-    "win_rate": 73.33333333333333,
-    "win_rate_pct": 73.33333333333333,
-    "win_rate_fraction": 0.7333333333333333,
+    "win_rate": 70.96774193548387,
+    "win_rate_pct": 70.96774193548387,
+    "win_rate_fraction": 0.7096774193548387,
     "gross_profit": 2658.0002,
-    "gross_loss": 1835.0,
-    "profit_factor": 1.4485014713896458,
+    "gross_loss": 1864.0,
+    "profit_factor": 1.4259657725321888,
     "average_winner": 120.8181909090909,
-    "average_loser": -229.375,
-    "payoff_ratio": 0.526727807778053,
-    "gross_expectancy_per_trade": 27.433339999999987,
-    "average_holding_time_minutes": 1081.4844272222222,
-    "median_holding_time_minutes": 47.78664166666667,
-    "trades_per_month": 10.259831460674159,
-    "trades_per_year": 123.11544943820225,
-    "trade_frequency_observed_days": 89,
-    "same_day_close_count": 29,
-    "same_day_close_pct": 96.66666666666667,
+    "average_loser": -207.11111111111111,
+    "payoff_ratio": 0.5833496342177136,
+    "gross_expectancy_per_trade": 25.612909677419342,
+    "average_holding_time_minutes": 1046.8019779569893,
+    "median_holding_time_minutes": 43.842616666666665,
+    "trades_per_month": 9.828776041666666,
+    "trades_per_year": 117.942890625,
+    "trade_frequency_observed_days": 96,
+    "same_day_close_count": 30,
+    "same_day_close_pct": 96.7741935483871,
     "overnight_trade_count": 1,
-    "overnight_trade_pct": 3.3333333333333335,
+    "overnight_trade_pct": 3.225806451612903,
     "worst_trade": -460.0000000000001,
     "worst_trading_day": {
       "date": "2026-07-21",
@@ -1188,15 +1273,17 @@
     "trade_history_completeness": "reconstructed_partial",
     "holding_time_unit": "minutes",
     "trade_frequency_basis": "annualized_from_inclusive_observed_calendar_span",
-    "closed_trades": 30,
+    "closed_trades": 31,
     "average_win": 120.8181909090909,
-    "average_loss": -229.375,
+    "average_loss": -207.11111111111111,
     "avg_win": 120.8181909090909,
-    "avg_loss": -229.375,
-    "realized_pnl": 823.0001999999996,
-    "realized_algo_pnl": 823.0001999999996,
+    "avg_loss": -207.11111111111111,
+    "realized_pnl": 794.0001999999996,
+    "realized_algo_pnl": 794.0001999999996,
     "trades": [
       {
+        "entry_order_id": "37eafdc3-9e57-4b91-800e-72d1652facd6",
+        "exit_order_id": "0399f37a-ddaa-4e71-8a8f-928dc854c4d5",
         "opened_at": "2026-06-25T16:35:19.789Z",
         "closed_at": "2026-06-25T17:45:39.475Z",
         "symbols": [
@@ -1210,6 +1297,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b8d8711c-4f25-46fe-9a76-202482aa249d",
+        "exit_order_id": "bc4496b3-2a66-4323-88d2-2dc640c7d24c",
         "opened_at": "2026-06-29T14:09:19.999Z",
         "closed_at": "2026-06-29T14:34:52.178Z",
         "symbols": [
@@ -1223,6 +1312,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "8129c889-0973-49e4-91ea-6da096105029",
+        "exit_order_id": "cc5b84af-27b2-4a9f-806c-9e6af1c94524",
         "opened_at": "2026-06-30T13:31:03.829Z",
         "closed_at": "2026-06-30T13:55:16.382Z",
         "symbols": [
@@ -1236,6 +1327,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "1c9f785f-9091-48fd-8eb2-cbefc2a57168",
+        "exit_order_id": "674ff429-3b37-4c99-b29b-c96b747163e8",
         "opened_at": "2026-07-01T13:39:37.628Z",
         "closed_at": "2026-07-01T13:53:00.525Z",
         "symbols": [
@@ -1249,6 +1342,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "3f2c3ae6-5179-408d-9d11-d20b559501f2",
+        "exit_order_id": "3e486c5f-3662-44b6-a593-5837ee85277b",
         "opened_at": "2026-07-02T13:31:06.125Z",
         "closed_at": "2026-07-02T13:37:29.323Z",
         "symbols": [
@@ -1262,6 +1357,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "3b16d979-0149-4360-ae72-bc6a8710b4ab",
+        "exit_order_id": "a4360be0-0857-4807-a0c4-782c5512dba7",
         "opened_at": "2026-07-02T15:10:05.436Z",
         "closed_at": "2026-07-02T15:12:16.258Z",
         "symbols": [
@@ -1275,6 +1372,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "636871cb-4789-4bd0-8b52-8732d55f70b0",
+        "exit_order_id": "cdcd5afa-ade1-44e2-989e-295eafb3c86c",
         "opened_at": "2026-07-07T14:17:26.133Z",
         "closed_at": "2026-07-07T15:25:21.793Z",
         "symbols": [
@@ -1288,6 +1387,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "9b3fc1be-dd79-42f8-a012-7e766f490751",
+        "exit_order_id": "f45e955a-1b91-4b05-9bcd-eb881d010b81",
         "opened_at": "2026-07-10T14:34:52.179Z",
         "closed_at": "2026-07-10T14:48:35.453Z",
         "symbols": [
@@ -1301,6 +1402,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "30f17c4a-062b-4183-a796-be3275bfb6bc",
+        "exit_order_id": "9b9f029c-80bf-4549-8a25-31ae013e644d",
         "opened_at": "2026-07-15T16:05:08.227Z",
         "closed_at": "2026-07-15T16:35:36.849Z",
         "symbols": [
@@ -1314,6 +1417,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "dacacaf5-3678-4356-ab49-fb2a54dde9f8",
+        "exit_order_id": "ac0cb1a0-8fc8-41e8-93de-17e63bda7cbc",
         "opened_at": "2026-07-16T13:50:14.998Z",
         "closed_at": "2026-07-16T14:09:33.479Z",
         "symbols": [
@@ -1327,6 +1432,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "8b4c76fe-9d62-4164-9674-0f375dffc54b",
+        "exit_order_id": "a1eb93d4-07ce-4ff3-99b9-38382df43888",
         "opened_at": "2026-07-21T14:00:30.183Z",
         "closed_at": "2026-07-21T18:30:27.99Z",
         "symbols": [
@@ -1342,6 +1449,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "6d25d2ed-e722-4f7c-aa62-122e27b93695",
+        "exit_order_id": "ac5c1886-5aeb-4874-a517-15adbbfd1bbc",
         "opened_at": "2026-07-23T14:37:46.095Z",
         "closed_at": "2026-07-23T15:06:55.924Z",
         "symbols": [
@@ -1355,6 +1464,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "8949b08a-23af-4528-b663-d4ae51f62116",
+        "exit_order_id": "640054e5-eba9-41f8-a5ca-b6998c588b9a",
         "opened_at": "2026-07-24T15:14:47.356Z",
         "closed_at": "2026-07-24T17:48:26.003Z",
         "symbols": [
@@ -1370,6 +1481,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b2264a9b-d419-4c3a-befe-b9573eac2b3e",
+        "exit_order_id": "bd9f941a-592e-49ac-8580-a00c3687a9fb",
         "opened_at": "2026-07-29T13:31:39.376Z",
         "closed_at": "2026-07-29T14:40:33.319Z",
         "symbols": [
@@ -1383,6 +1496,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "2a63d183-66e4-4c58-99a5-3a742678992f",
+        "exit_order_id": "fce69bc5-aa23-4a54-8ed4-e277f4b5dc22",
         "opened_at": "2026-07-31T13:52:35.798Z",
         "closed_at": "2026-07-31T14:07:03.964Z",
         "symbols": [
@@ -1396,6 +1511,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "abcb7b24-ca09-4930-a0f7-14f87e463417",
+        "exit_order_id": "a2904447-f554-482c-ba03-b4c2c2c185bc",
         "opened_at": "2026-08-05T14:55:14.072Z",
         "closed_at": "2026-08-05T16:09:32.015Z",
         "symbols": [
@@ -1409,6 +1526,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "53aca80b-ea2f-4012-b495-9a504ee62bba",
+        "exit_order_id": "5f745e30-de34-445c-b436-9424b7223797",
         "opened_at": "2026-08-06T15:21:28.034Z",
         "closed_at": "2026-08-06T18:15:36.036Z",
         "symbols": [
@@ -1422,6 +1541,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "2541109d-c534-4f1a-8a6f-fe6b650ffeec",
+        "exit_order_id": "8d18b69f-05d9-4314-99dc-935c94697a17",
         "opened_at": "2026-08-10T13:32:14.673Z",
         "closed_at": "2026-08-10T14:08:54.932Z",
         "symbols": [
@@ -1435,6 +1556,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b2d9792b-892b-4366-b26c-8f4992a45fd4",
+        "exit_order_id": "99176b25-80de-4cbe-b1eb-1ff231a2d38a",
         "opened_at": "2026-08-11T15:15:28.509Z",
         "closed_at": "2026-08-11T16:56:42.942Z",
         "symbols": [
@@ -1448,6 +1571,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "254ec136-c4d9-4f2d-b6be-d029e8c03658",
+        "exit_order_id": "408b6f6b-8593-46a5-b95c-1a323e14d418",
         "opened_at": "2026-08-19T16:20:24.114Z",
         "closed_at": "2026-08-19T16:28:48.626Z",
         "symbols": [
@@ -1461,6 +1586,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "4431a79b-3d3a-4b94-a413-2369a6491c9c",
+        "exit_order_id": "34539425-4bce-48cc-a179-50203d9484fe",
         "opened_at": "2026-08-20T14:05:31.205Z",
         "closed_at": "2026-08-20T15:04:05.362Z",
         "symbols": [
@@ -1474,6 +1601,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "710318ac-641a-4414-bee3-de632d83cac9",
+        "exit_order_id": "f396e26a-289b-407a-a170-107bd0f3be80",
         "opened_at": "2026-08-24T13:50:32.932Z",
         "closed_at": "2026-08-24T14:13:09.668Z",
         "symbols": [
@@ -1487,6 +1616,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "b62a1633-3fc3-4489-8033-eef718eba43f",
+        "exit_order_id": "cad14311-3dec-42bb-8d50-5ffb89a87d0d",
         "opened_at": "2026-08-25T14:50:07.701Z",
         "closed_at": "2026-08-25T15:33:58.258Z",
         "symbols": [
@@ -1500,6 +1631,8 @@
         "result": "loss"
       },
       {
+        "entry_order_id": "c7fe8911-b84e-41a2-bb94-85e9bcd46516",
+        "exit_order_id": "dae41e29-dd19-48d9-9960-778204ec431f",
         "opened_at": "2026-08-26T14:20:24.196Z",
         "closed_at": "2026-08-26T16:39:52.272Z",
         "symbols": [
@@ -1513,6 +1646,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "41fa6875-60ee-4c17-9ab8-116c4cde0baf",
+        "exit_order_id": "faf372c4-6551-4b5b-8ff7-9cf53bfd2841",
         "opened_at": "2026-08-28T16:30:04.202Z",
         "closed_at": "2026-08-28T17:21:48.042Z",
         "symbols": [
@@ -1526,6 +1661,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "409fc35f-fd99-452c-a7b2-d2673247dee8",
+        "exit_order_id": "7c8bd03c-0651-4913-b29e-0f2fbc3bb6ac",
         "opened_at": "2026-08-31T13:55:13.487Z",
         "closed_at": "2026-08-31T14:02:28.743Z",
         "symbols": [
@@ -1539,6 +1676,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "edd245b1-303f-425e-8e61-384fc67cfbb1",
+        "exit_order_id": "9153a48b-14c6-4d13-a888-0a93b726f191",
         "opened_at": "2026-09-04T14:55:13.897Z",
         "closed_at": "2026-09-04T17:30:32.752Z",
         "symbols": [
@@ -1552,6 +1691,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "22b8b19f-88d1-43a1-9f49-019213d4519c",
+        "exit_order_id": "581453ec-e81b-4f26-b495-016942884acb",
         "opened_at": "2026-09-09T15:10:57.832Z",
         "closed_at": "2026-09-09T16:46:08.303Z",
         "symbols": [
@@ -1565,6 +1706,8 @@
         "result": "win"
       },
       {
+        "entry_order_id": "3780a26e-6d2b-4b2d-8b05-7c48042e410f",
+        "exit_order_id": "5001e350-a9b5-4481-ac53-bc2e81eae43d",
         "opened_at": "2026-09-18T14:15:31.546Z",
         "closed_at": "2026-09-18T16:16:57.367Z",
         "symbols": [
@@ -1606,21 +1749,38 @@
         "credit_capture_pct": 50.724637681159415,
         "max_risk": 362.0,
         "return_on_risk_pct": 19.337016574585636,
-        "hold_minutes": 30544.788116666667
+        "hold_minutes": 30544.788116666667,
+        "entry_order_id": "da35db3f-36db-4203-b923-fb3a2badf7c7",
+        "external_close_order_ids": [
+          "4838c175-68c5-42ef-adbf-6df6ae3bf38b",
+          "5701edea-da53-460b-990e-d4ae3e8d22b9"
+        ]
+      },
+      {
+        "logical_id": "single-option-ex:d134b09c-fafc-40ec-a679-f2e14b170ff7:7c085e10-cf55-4219-865f-aee652219403",
+        "entry_order_id": "d134b09c-fafc-40ec-a679-f2e14b170ff7",
+        "exit_order_id": "7c085e10-cf55-4219-865f-aee652219403",
+        "opened_at": "2026-09-28T14:08:34.379Z",
+        "closed_at": "2026-09-28T14:14:54.089Z",
+        "symbols": [
+          "SPY260928C00768000"
+        ],
+        "qty": 1.0,
+        "quantity": 1.0,
+        "open_avg": 1.16,
+        "close_avg": 0.87,
+        "pnl": -29.0,
+        "realized_pnl": -29.0,
+        "setup": "R1 Bull EX",
+        "trade_type": "single_option_ex",
+        "source": "persisted_ex_exit_filled_and_broker_fills",
+        "exit_reason": "stop",
+        "pnl_basis": "alpaca_single_option_fills_gross_before_fees",
+        "result": "loss"
       }
     ]
   },
   "recent_trades": [
-    {
-      "symbols": "SPY260820C00767000|SPY260820C00770000",
-      "opened_at": "2026-08-20T14:05:31.205Z",
-      "closed_at": "2026-08-20T15:04:05.362Z",
-      "qty": 3.0,
-      "open_credit": 0.71,
-      "close_debit": 1.43,
-      "pnl": -216.0,
-      "result": "loss"
-    },
     {
       "symbols": "SPY260824C00765000|SPY260824C00768000",
       "opened_at": "2026-08-24T13:50:32.932Z",
@@ -1710,23 +1870,33 @@
       "close_debit": 0.68,
       "pnl": 70.0,
       "result": "win"
+    },
+    {
+      "symbols": "SPY260928C00768000",
+      "opened_at": "2026-09-28T14:08:34.379Z",
+      "closed_at": "2026-09-28T14:14:54.089Z",
+      "qty": 1.0,
+      "open_credit": 1.16,
+      "close_debit": 0.87,
+      "pnl": -29.0,
+      "result": "loss"
     }
   ],
   "note": "Performance is time-weighted and normalized to an initial index value of 100. The index reflects mark-to-market account performance, including realized and unrealized P&L, while external deposits and withdrawals are excluded. Index values do not represent actual account equity. Realized Algo P&L includes closed trades only.",
-  "realized_algo_pnl": 823.0001999999996,
-  "closed_trades": 30,
-  "win_rate": 73.33333333333333,
+  "realized_algo_pnl": 794.0001999999996,
+  "closed_trades": 31,
+  "win_rate": 70.96774193548387,
   "avg_win": 120.8181909090909,
-  "avg_loss": -229.375,
+  "avg_loss": -207.11111111111111,
   "gross_profit": 2658.0002,
-  "gross_loss": 1835.0,
-  "profit_factor": 1.4485014713896458,
-  "realizedAlgoPnl": 823.0001999999996,
-  "closedTrades": 30,
-  "winRate": 73.33333333333333,
+  "gross_loss": 1864.0,
+  "profit_factor": 1.4259657725321888,
+  "realizedAlgoPnl": 794.0001999999996,
+  "closedTrades": 31,
+  "winRate": 70.96774193548387,
   "avgWin": 120.8181909090909,
-  "avgLoss": -229.375,
+  "avgLoss": -207.11111111111111,
   "grossProfit": 2658.0002,
-  "grossLoss": 1835.0,
-  "profitFactor": 1.4485014713896458
+  "grossLoss": 1864.0,
+  "profitFactor": 1.4259657725321888
 }
