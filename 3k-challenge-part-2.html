@@ -860,11 +860,11 @@
 
     <div class="grid">
       <div class="card"><div class="stat-label">Starting Balance</div><div class="stat-value">$3,000</div></div>
-      <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$2,960.22</div></div>
-      <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value red">-$39.78</div></div>
-      <div class="card"><div class="stat-label">Total Return</div><div class="stat-value red">-1.33%</div></div>
-      <div class="card"><div class="stat-label">Green Day Rate</div><div class="stat-value">0%</div></div>
-      <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">1</div></div>
+      <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$3,372.51</div></div>
+      <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value green">+$372.51</div></div>
+      <div class="card"><div class="stat-label">Total Return</div><div class="stat-value green">+12.42%</div></div>
+      <div class="card"><div class="stat-label">Green Day Rate</div><div class="stat-value">50%</div></div>
+      <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">2</div></div>
     </div>
   </section>
 
@@ -903,9 +903,9 @@
   </section>
 
   <section class="card equity-card" aria-labelledby="equityCurveTitle" style="margin-top:24px;">
-    <div class="equity-head"><div><h2 class="equity-heading" id="equityCurveTitle">Documented equity curve</h2><p class="intro" style="margin:6px 0 0;">End-of-day account balance after every posted Series II session.</p></div><div class="equity-summary" aria-label="Equity curve highlights"><span>Start<strong>$3,000</strong></span><span>Peak<strong>$3,000</strong></span><span>Current<strong>$2,960.22</strong></span></div></div>
-    <svg class="equity-chart" id="seriesEquityChart" viewBox="0 0 1000 390" role="img" aria-labelledby="equityChartTitle equityChartDescription"><title id="equityChartTitle">Foxchase Small Account Series II documented equity curve</title><desc id="equityChartDescription">Account balance moved from three thousand dollars at the start to two thousand nine hundred sixty dollars and twenty-two cents after Session 1. Select Session 1 to view Day 1 details.</desc></svg>
-    <p class="equity-caption">The curve tracks documented account equity, from $3,000 at the start to $2,960.22 after Session 1.</p>
+    <div class="equity-head"><div><h2 class="equity-heading" id="equityCurveTitle">Documented equity curve</h2><p class="intro" style="margin:6px 0 0;">End-of-day account balance after every posted Series II session.</p></div><div class="equity-summary" aria-label="Equity curve highlights"><span>Start<strong>$3,000</strong></span><span>Peak<strong>$3,372.51</strong></span><span>Current<strong>$3,372.51</strong></span></div></div>
+    <svg class="equity-chart" id="seriesEquityChart" viewBox="0 0 1000 390" role="img" aria-labelledby="equityChartTitle equityChartDescription"><title id="equityChartTitle">Foxchase Small Account Series II documented equity curve</title><desc id="equityChartDescription">Documented account equity: $3,000 at start, $2,960.22 after Session 1, and $3,372.51 after Session 2. Select either session point to view its archive entry.</desc></svg>
+    <p class="equity-caption">The curve tracks documented account equity: $3,000 at start, $2,960.22 after Session 1, and $3,372.51 after Session 2.</p>
   </section>
 
   <section>
@@ -967,6 +967,52 @@
           <img src="/images/series2-day-1-equity.jpg" alt="Final Schwab Day 1 available balance showing $2,960.22" style="width:100%; border-radius:16px; border:1px solid rgba(255,255,255,0.08); display:block;" />
         </div>
       </article>
+      <article class="day-card" id="day-2" tabindex="-1">
+        <div class="day-head"><h3 class="day-title">🦊 Day 2</h3><div class="pill">🟢 Green Day</div></div>
+        <div class="metrics">
+          <div class="metric"><span class="muted">Starting Balance</span><strong>$2,960.22</strong></div>
+          <div class="metric"><span class="muted">Current Balance</span><strong>$3,372.51</strong></div>
+          <div class="metric"><span class="muted">Daily P&amp;L</span><strong class="green">+$441</strong></div>
+          <div class="metric"><span class="muted">Total Series P&amp;L</span><strong class="green">+$372.51</strong></div>
+        </div>
+        <p class="muted">Thinkorswim displayed +$441.00 P&amp;L Day. Documented account balance moved from $2,960.22 to $3,372.51 (+$412.29).</p>
+        <div class="trade">
+          <h4>Trade 1</h4>
+          <p><span class="trade-label">Setup Grade:</span> A</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Bearish Extrinsic Divergence short</p>
+          <p><span class="trade-label">Supporting Context:</span> A setup / opening Bear Div</p>
+          <p><span class="trade-label">Management / Exit:</span> Took a quick short scalp right at the open on the Bear Div and closed for a profit. I accidentally selected the wrong OCO order, so the position was much smaller than intended.</p>
+        </div>
+        <div class="trade">
+          <h4>Trade 2</h4>
+          <p><span class="trade-label">Setup Grade:</span> A+</p>
+          <p><span class="trade-label">Planned Deployment:</span> 50%</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Spot up / vol up long</p>
+          <p><span class="trade-label">Supporting Context:</span> A+ setup / R2 structure</p>
+          <p><span class="trade-label">Management / Exit:</span> Took the A+ long with spot and volatility rising together. The move failed to follow through and hit the predefined OCO stop loss.</p>
+        </div>
+        <div class="trade">
+          <h4>Trade 3</h4>
+          <p><span class="trade-label">Setup Grade:</span> A+</p>
+          <p><span class="trade-label">Planned Deployment:</span> 50%</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> A+ long re-entry</p>
+          <p><span class="trade-label">Supporting Context:</span> Same long thesis / z-score bounced exactly from the 0 zone</p>
+          <p><span class="trade-label">Management / Exit:</span> Re-entered the A+ long after noticing z-score had simply bounced directly from the 0 zone rather than breaking down. The re-entry worked and profit was taken at PMH.</p>
+        </div>
+        <div class="trade">
+          <h4>Trade 4</h4>
+          <p><span class="trade-label">Setup Grade:</span> A+</p>
+          <p><span class="trade-label">Planned Deployment:</span> 50%</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> PMH rejection short</p>
+          <p><span class="trade-label">Supporting Context:</span> A+ setup / R2 / PMH rejection</p>
+          <p><span class="trade-label">Management / Exit:</span> Knowing how important PMH tends to be on R2 days, took the short when the rejection became clear. Took profit just above VWAP. Good trade, although the exit was too early and price continued lower afterward.</p>
+        </div>
+        <div class="note"><strong>Closing observation:</strong> Very good Day 2 overall. The first Bear Div worked despite the accidental undersizing, the initial A+ long stopped out cleanly, and the re-entry was justified by the z-score 0-zone behavior rather than simply trying the same trade again. The PMH rejection then gave another clean A+ opportunity on the short side, a classic Regime 2 behavior.</div>
+        <div class="img-grid">
+          <img src="/images/series2-day-2-pnl.jpg" alt="Thinkorswim Day 2 P&amp;L showing +$441.00" style="width:100%; border-radius:16px; border:1px solid rgba(255,255,255,0.08); display:block;" />
+          <img src="/images/series2-day-2-equity.jpg" alt="Schwab Day 2 available balance showing $3,372.51" style="width:100%; border-radius:16px; border:1px solid rgba(255,255,255,0.08); display:block;" />
+        </div>
+      </article>
     </div>
     <p class="intro" style="margin-top:18px;">Each session records day number, Green / Red / Neutral status, starting balance, current balance, daily P&amp;L, total Series P&amp;L, and each trade’s setup grade, planned deployment, entry reason, supporting context, management / exit, and screenshots.</p>
   </section>
@@ -978,11 +1024,15 @@
   const svg = document.getElementById('seriesEquityChart'); if (!svg) return;
   const width=1000,height=390,margin={top:36,right:40,bottom:46,left:76},maxBalance=6000;
   const chartWidth=width-margin.left-margin.right,chartHeight=height-margin.top-margin.bottom;
-  const balances=[3000,2960.22],x=(i)=>margin.left+i*chartWidth,y=(value)=>margin.top+(1-value/maxBalance)*chartHeight;
+  const balances=[3000,2960.22,3372.51],x=(i)=>margin.left+i*chartWidth/(balances.length-1),y=(value)=>margin.top+(1-value/maxBalance)*chartHeight;
   const money=(value)=>`$${Number((value/1000).toFixed(1))}k`;
   const exact=(value)=>`$${value.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
   const grid=[0,1500,3000,4500,6000].map(value=>{const py=y(value);return `<g><line x1="${margin.left}" y1="${py}" x2="${width-margin.right}" y2="${py}" stroke="rgba(159,176,204,.18)"/><text x="${margin.left-12}" y="${py+4}" text-anchor="end" fill="#9fb0cc" font-size="12">${money(value)}</text></g>`}).join('');
-  svg.innerHTML=`<title id="equityChartTitle">Foxchase Small Account Series II documented equity curve</title><desc id="equityChartDescription">Account balance moved from three thousand dollars at the start to two thousand nine hundred sixty dollars and twenty-two cents after Session 1.</desc>${grid}<polyline points="${x(0)},${y(balances[0])} ${x(1)},${y(balances[1])}" fill="none" stroke="#fbbf24" stroke-width="3"/><circle cx="${x(0)}" cy="${y(balances[0])}" r="4.5" fill="#fbbf24" stroke="#0b1220" stroke-width="2"/><a class="equity-point" href="#day-1" aria-label="View Day 1, October 1, 2026. Closing balance ${exact(balances[1])}."><rect x="${x(1)-chartWidth/4}" y="${margin.top}" width="${chartWidth/2}" height="${chartHeight}" fill="#000" fill-opacity="0"/><circle class="equity-point-dot" cx="${x(1)}" cy="${y(balances[1])}" r="5" fill="#fbbf24" stroke="#0b1220" stroke-width="2"/></a><text x="${x(0)+8}" y="${y(balances[0])-12}" fill="#fde68a" font-size="12" font-weight="700">Start $3,000</text><text x="${x(0)+8}" y="${y(balances[0])-27}" fill="#fde68a" font-size="12" font-weight="700">Peak $3,000</text><text x="${x(1)-8}" y="${y(balances[1])-12}" text-anchor="end" fill="#fde68a" font-size="12" font-weight="700">Session 1 $2,960.22</text><text x="${x(0)}" y="${height-17}" text-anchor="middle" fill="#9fb0cc" font-size="12">Start</text><text x="${x(1)}" y="${height-17}" text-anchor="middle" fill="#9fb0cc" font-size="12">Session 1</text>`;
+  const chartPoints=balances.map((value,index)=>`${x(index)},${y(value)}`).join(' ');
+  const step=chartWidth/(balances.length-1);
+  const sessionLinks=balances.slice(1).map((balance,offset)=>{const day=offset+1,left=Math.max(margin.left,x(day)-step/2),right=Math.min(width-margin.right,x(day)+step/2);return `<a class="equity-point" href="#day-${day}" aria-label="View Day ${day}. Closing balance ${exact(balance)}."><rect x="${left}" y="${margin.top}" width="${right-left}" height="${chartHeight}" fill="#000" fill-opacity="0"/><circle class="equity-point-dot" cx="${x(day)}" cy="${y(balance)}" r="5" fill="#fbbf24" stroke="#0b1220" stroke-width="2"/></a>`;}).join('');
+  const sessionLabels=balances.map((_,index)=>`<text x="${x(index)}" y="${height-17}" text-anchor="middle" fill="#9fb0cc" font-size="12">${index===0?'Start':`Session ${index}`}</text>`).join('');
+  svg.innerHTML=`<title id="equityChartTitle">Foxchase Small Account Series II documented equity curve</title><desc id="equityChartDescription">Documented account equity: three thousand dollars at start, two thousand nine hundred sixty dollars and twenty-two cents after Session 1, and three thousand three hundred seventy-two dollars and fifty-one cents after Session 2.</desc>${grid}<polyline points="${chartPoints}" fill="none" stroke="#fbbf24" stroke-width="3"/><circle cx="${x(0)}" cy="${y(balances[0])}" r="4.5" fill="#fbbf24" stroke="#0b1220" stroke-width="2"/>${sessionLinks}<text x="${x(0)+8}" y="${y(balances[0])-12}" fill="#fde68a" font-size="12" font-weight="700">Start $3,000</text><text x="${x(1)}" y="${y(balances[1])-12}" text-anchor="middle" fill="#fde68a" font-size="12" font-weight="700">$2,960.22</text><text x="${x(2)-8}" y="${y(balances[2])-22}" text-anchor="end" fill="#fde68a" font-size="12" font-weight="700">Peak $3,372.51</text><text x="${x(2)-8}" y="${y(balances[2])-7}" text-anchor="end" fill="#fde68a" font-size="12" font-weight="700">Current $3,372.51</text>${sessionLabels}`;
 })();
 </script>
   <script>
