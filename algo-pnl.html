@@ -312,6 +312,20 @@ function setTextIfExists(id, value) {
     .historical-comparison-controls small {
       color:#666;
     }
+    .historical-scale-control {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:18px;
+    }
+    .historical-scale-control select {
+      font:inherit;
+      padding:8px 12px;
+      border:1px solid #777;
+      border-radius:6px;
+      background:#fff;
+      color:#111;
+    }
     .current-allocation-grid {
       grid-template-columns:repeat(5,minmax(0,1fr));
     }
@@ -942,8 +956,9 @@ function setTextIfExists(id, value) {
       <p class="small" id="attributionDataStatus" aria-live="polite"></p>
     </section>
     <h3>Historical portfolio-value comparison</h3>
-    <p class="small">Foxchase Intraday uses the current modeled intraday and EX research architecture: position sizes compound with modeled equity, starting at a hypothetical $10,000 with no deposits. This is not actual account equity. Foxchase Multi-Day shows the archived longer-duration research contribution on the same comparison starting basis. It is not an independently compounded account or a complete daily mark-to-market reconstruction. Benchmark distributions are included through adjusted total-return prices.</p>
+    <p class="small">Each curve starts at a hypothetical $10,000 with no deposits. Foxchase Intraday uses the current modeled intraday and EX research architecture; position sizes compound with modeled equity. Foxchase Multi-Day represents corrected standalone longer-duration research with daily marked values. For Intraday and Combined, gains and losses affect the size of subsequent trades. This is not actual account equity. Benchmark distributions are included through adjusted total-return prices.</p>
     <p class="small">Foxchase Combined is a single-account historical replay of the current Intraday and Multi-Day research portfolios under shared capital and risk constraints. Combined is not obtained by summing independently compounded component curves. Combined ends at the last date for which both components have validated historical evidence.</p>
+    <p class="small">Intraday research is gross before transaction fees. Multi-Day includes its modeled costs; Combined inherits these differing cost treatments. Later modeled positions can be materially larger than earlier ones. Full broker fees, order-book capacity and market impact are not modeled.</p>
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
       <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
       <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
@@ -951,6 +966,14 @@ function setTextIfExists(id, value) {
       <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
       <label><input type="checkbox" data-comparison-series="JEPI Buy &amp; Hold" style="accent-color:#805ad5">JEPI Buy &amp; Hold</label>
     </div>
+    <div class="historical-scale-control">
+      <label for="historicalScale">Chart scale</label>
+      <select id="historicalScale" aria-describedby="historicalScaleStatus">
+        <option value="linear">Linear</option>
+        <option value="logarithmic">Logarithmic</option>
+      </select>
+    </div>
+    <p class="small" id="historicalScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
     <div class="chart-box research-chart-box" style="height:390px;">
       <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
     </div>
@@ -991,8 +1014,10 @@ function setTextIfExists(id, value) {
     function loadHistoricalComparison() {
       const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
       const status = document.getElementById("historicalComparisonStatus");
-      Promise.all([
-        fetch("/data/historical_comparison_20261003.json?v=20261003-shared-account").then(response => {
+      const scaleControl = document.getElementById("historicalScale");
+      const scaleStatus = document.getElementById("historicalScaleStatus");
+      return Promise.all([
+        fetch("/data/historical_comparison_20261003.json?v=20261003-realism").then(response => {
           if (!response.ok) throw new Error("Comparison data unavailable");
           return response.json();
         }),
@@ -1000,13 +1025,27 @@ function setTextIfExists(id, value) {
         fetch("/data/combined_research_20261003.json?v=20261003-shared-account").then(response => {
           if (!response.ok) throw new Error("Combined research unavailable");
           return response.json();
+        }),
+        fetch("/data/multiday_research_20261003.json?v=20261003-corrected").then(response => {
+          if (!response.ok) throw new Error("Multi-Day research unavailable");
+          return response.json();
+        }),
+        fetch("/data/benchmark_research_20261003.json?v=20261003-verified").then(response => {
+          if (!response.ok) throw new Error("Benchmark evidence unavailable");
+          return response.json();
         })
-      ]).then(([data, , combined]) => {
+      ]).then(([data, , combined, multiday, benchmarks]) => {
         const names = controls.map(control => control.dataset.comparisonSeries);
         if (data.initial_value !== 10000 || data.comparison_start !== "2023-01-04" ||
             data.study_end !== "2026-09-22" || !Array.isArray(data.dates) ||
-            data.series.length !== names.length ||
-            data.series.some(series => !names.includes(series.label) || series.values.length !== data.dates.length || series.values[0] !== 10000)) {
+            data.dates[0] !== data.comparison_start || data.dates.at(-1) !== data.study_end ||
+            !Array.isArray(data.series) || data.series.length !== names.length ||
+            new Set(data.dates).size !== data.dates.length || data.dates.some((date,i) => i > 0 && date <= data.dates[i-1]) ||
+            new Set(data.series.map(series => series.label)).size !== names.length ||
+            data.series.some(series => !names.includes(series.label) || series.values.length !== data.dates.length || series.values[0] !== 10000 ||
+              series.values.some(value => value === null
+                ? !["Foxchase Multi-Day", "Foxchase Combined"].includes(series.label)
+                : !Number.isFinite(value) || value <= 0))) {
           throw new Error("Comparison data failed validation");
         }
         const combinedSeries = data.series.find(series => series.label === "Foxchase Combined");
@@ -1021,12 +1060,43 @@ function setTextIfExists(id, value) {
         }
         const combinedValues = new Map(combined.daily.map(point => [point.date, point.equity]));
         if (combinedValues.size !== combined.daily.length ||
+            combined.daily.length !== data.dates.indexOf(combined.end) + 1 || combined.daily.some((point,i) => point.date !== data.dates[i]) ||
             combined.daily.some(point => !Number.isFinite(point.equity) || point.equity <= 0) ||
             combined.daily[0]?.date !== combined.start || combined.daily[0]?.equity !== 10000 ||
             combined.daily.at(-1)?.date !== combined.end ||
             combined.daily.at(-1)?.equity !== combined.metrics?.ending_equity ||
             data.dates.some((date, index) => combinedSeries.values[index] !== (date <= combined.end ? combinedValues.get(date) : null))) {
           throw new Error("Combined curve failed reconciliation");
+        }
+        const multidaySeries = data.series.find(series => series.label === "Foxchase Multi-Day");
+        if (multiday.status !== "VALIDATED_MULTIDAY_RESEARCH" || multiday.initial_value !== 10000 ||
+            multiday.start !== data.comparison_start || multiday.end !== combined.end ||
+            !Array.isArray(multiday.daily) ||
+            !["accounting_reconciles", "no_missing_valuations", "contract_continuity_verified", "source_controls_unchanged"].every(name => multiday.validation?.[name] === true) ||
+            multidaySeries.validated_through !== multiday.end || multidaySeries.curve_sha256 !== multiday.curve_sha256) {
+          throw new Error("Multi-Day research failed validation");
+        }
+        const multidayValues = new Map(multiday.daily.map(point => [point.date, point.equity]));
+        if (multidayValues.size !== multiday.daily.length || multiday.daily.some(point => !Number.isFinite(point.equity) || point.equity <= 0) ||
+            multiday.daily.length !== data.dates.indexOf(multiday.end) + 1 || multiday.daily.some((point,i) => point.date !== data.dates[i]) ||
+            multiday.daily[0]?.date !== multiday.start || multiday.daily[0]?.equity !== 10000 ||
+            multiday.daily.at(-1)?.date !== multiday.end || multiday.daily.at(-1)?.equity !== multiday.metrics?.ending_equity ||
+            data.dates.some((date,index) => multidaySeries.values[index] !== (date <= multiday.end ? multidayValues.get(date) : null))) {
+          throw new Error("Multi-Day curve failed reconciliation");
+        }
+        if (benchmarks.status !== "VERIFIED_ADJUSTED_BENCHMARKS" || benchmarks.initial_value !== 10000 ||
+            benchmarks.start !== data.comparison_start || benchmarks.end !== data.study_end ||
+            benchmarks.adjustment !== "split_and_dividend" || !Array.isArray(benchmarks.daily) || benchmarks.daily.length !== data.dates.length ||
+            benchmarks.daily.some((point,index) => point.date !== data.dates[index])) {
+          throw new Error("Benchmark evidence failed validation");
+        }
+        for (const ticker of ["SPY", "JEPI"]) {
+          const series = data.series.find(series => series.label === ticker + " Buy & Hold");
+          const base = benchmarks.daily[0][ticker];
+          if (!Number.isFinite(base) || base <= 0 || benchmarks.daily.some((point,index) =>
+            !Number.isFinite(point[ticker]) || point[ticker] <= 0 || series.values[index] !== Math.round(10000 * point[ticker] / base * 100) / 100)) {
+            throw new Error("Benchmark curve failed reconciliation");
+          }
         }
         const colors = {
           "Foxchase Intraday": "#234a76",
@@ -1039,11 +1109,12 @@ function setTextIfExists(id, value) {
         const textColor = "#111";
         const gridColor = dark ? "rgba(214,219,227,.16)" : "rgba(74,85,104,.14)";
         const money = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:2});
+        const axisMoney = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:0});
         const chart = new Chart(document.getElementById("historicalComparisonChart"), {
           type: "line",
           data: {labels:data.dates, datasets:[]},
           options: {
-            responsive:true, maintainAspectRatio:false,
+            responsive:true, maintainAspectRatio:false, animation:false,
             interaction:{mode:"index", intersect:false},
             plugins:{
               legend:{display:false},
@@ -1054,7 +1125,13 @@ function setTextIfExists(id, value) {
             },
             scales:{
               x:{ticks:{color:textColor, maxTicksLimit:8, callback:value => data.dates[value].slice(0,7)}, grid:{color:gridColor}},
-              y:{title:{display:true, text:"Hypothetical portfolio value (USD)", color:textColor}, ticks:{color:textColor, callback:value => money.format(value)}, grid:{color:gridColor}}
+              y:{type:"linear", title:{display:true, text:"Hypothetical portfolio value (USD, linear scale)", color:textColor}, ticks:{color:textColor, callback:function(value) {
+                if (this.type === "logarithmic") {
+                  const magnitude = Math.pow(10, Math.floor(Math.log10(value)));
+                  if (![1, 2, 5].some(mantissa => Math.abs(value / magnitude - mantissa) < 1e-8)) return null;
+                }
+                return axisMoney.format(value);
+              }}, grid:{color:gridColor}}
             }
           }
         });
@@ -1065,9 +1142,24 @@ function setTextIfExists(id, value) {
           }));
           chart.update();
         }
+        function updateScale() {
+          const logarithmic = scaleControl.value === "logarithmic";
+          chart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
+          chart.options.scales.y.title.text = "Hypothetical portfolio value (USD, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
+          scaleStatus.textContent = logarithmic
+            ? "Logarithmic scale: equal spacing represents equal percentage changes. Dollar values and returns are unchanged."
+            : "Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.";
+          chart.update();
+        }
         controls.forEach(control => control.addEventListener("change", updateSeries));
+        scaleControl.addEventListener("change", updateScale);
         updateSeries();
-        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. Foxchase Multi-Day and Foxchase Combined have no plotted values after August 25, 2026.";
+        updateScale();
+        const jointIndex = data.dates.indexOf(combined.end);
+        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. At the August 25, 2026 joint endpoint: SPY " +
+          money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[jointIndex]) + "; JEPI " +
+          money.format(data.series.find(series => series.label === "JEPI Buy & Hold").values[jointIndex]) +
+          ". Intraday and benchmark curves continue through September 22. Multi-Day and Combined have no plotted values after August 25.";
       }).catch(() => { status.textContent = "Historical comparison chart is temporarily unavailable."; });
     }
     loadHistoricalComparison();
