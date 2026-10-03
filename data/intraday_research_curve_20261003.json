@@ -1,5 +1,5 @@
 {
-  "basis": "conditional combined modeled research; daily closing equity; unequal component coverage",
+  "basis": "Hypothetical research values with retrospective normalized sizing and modeled-equity compounding; not live account equity.",
   "initial_value": 10000,
   "points": [
     {
@@ -3731,7 +3731,7 @@
       "equity": 216578.0
     }
   ],
-  "source_ledger_sha256": "a54dc9ada54608e7a7294d16ff0c5758a46f489a6ce41fdff4d849288d9c2ab6",
+  "source_ledger_sha256": "d812ee79f24b00b24aa01fb26dfb125952ab7b273a0b56c4e56d15bd4026bc4e",
   "study_end": "2026-09-22",
   "study_start": "2023-01-04",
   "trade_count": 526

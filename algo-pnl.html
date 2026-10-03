@@ -893,15 +893,13 @@ function setTextIfExists(id, value) {
       <div class="research-metrics integrity-grid">
         <div class="research-card"><div class="research-label">Data coverage</div><div class="research-value" id="researchCoverage">—</div><p class="research-detail" id="researchCoveragePct">—</p></div>
         <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Separate component cohorts; missing outcomes remain unknown.</p></div>
-        <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Defined setup and management rules.</p></div>
+        <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Frozen modeled research rules.</p></div>
         <div class="research-card"><div class="research-label">Transaction costs</div><div class="research-value" id="researchCostBasis">—</div><p class="research-detail" id="researchCostNote"></p></div>
       </div>
       <p class="small" id="researchScope"></p>
       <p class="small" id="researchExecutionBasis"></p>
       <p class="small" id="researchInputPolicy"></p>
       <p class="small" id="researchSizingBasis"></p>
-      <p class="small" id="researchProvenance"></p>
-      <p class="small" id="researchVintage"></p>
       <p class="small" id="researchDataStatus" aria-live="polite"></p>
     </section>
     <section aria-labelledby="liveHistoricalTitle">
@@ -928,7 +926,7 @@ function setTextIfExists(id, value) {
     <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Extrinsic sleeves: <strong id="researchEXTrades">—</strong> trades.</p>
     <section aria-labelledby="modelComparisonTitle">
       <h3 id="modelComparisonTitle">Modeled portfolio comparison</h3>
-      <p class="small">The same frozen portfolio engine, starting capital, sizing rules and accounting are used on both sides. Disabling EX lets the spread-only equity and position sizes evolve independently.</p>
+      <p class="small">Both portfolios use the same retrospective risk-normalized sizing and accounting. Position sizes compound with each portfolio's modeled equity.</p>
       <div class="research-table-wrap" role="region" tabindex="0" aria-labelledby="modelComparisonTitle"><table class="research-table">
         <thead><tr><th scope="col">Metric</th><th scope="col">Spread-only normalized</th><th scope="col">Spread + EX</th></tr></thead>
         <tbody>
@@ -941,15 +939,13 @@ function setTextIfExists(id, value) {
       </table></div>
       <p class="small" id="researchLegacyContext"></p>
       <p class="small" id="researchModelInterpretation"></p>
-      <p class="small" id="researchEXAttribution"></p>
       <p class="small" id="attributionDataStatus" aria-live="polite"></p>
     </section>
     <h3>Historical portfolio-value comparison</h3>
-    <p class="small">Foxchase Intraday is the normalized spread + EX research portfolio: position sizes compound with modeled equity, starting at a hypothetical $10,000 with no deposits. This is not actual account equity. Legacy six-spread research is a separate prior record. Benchmark distributions are included through adjusted total-return prices.</p>
+    <p class="small">Foxchase Intraday uses the current modeled intraday and EX research architecture: position sizes compound with modeled equity, starting at a hypothetical $10,000 with no deposits. This is not actual account equity. Foxchase Multi-Day shows the archived longer-duration research contribution on the same comparison starting basis. It is not an independently compounded account or a complete daily mark-to-market reconstruction. Benchmark distributions are included through adjusted total-return prices.</p>
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
       <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
       <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
-      <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c45a24">Foxchase Combined <small>(through Aug 25)</small></label>
       <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
       <label><input type="checkbox" data-comparison-series="JEPI Buy &amp; Hold" style="accent-color:#805ad5">JEPI Buy &amp; Hold</label>
     </div>
@@ -957,7 +953,7 @@ function setTextIfExists(id, value) {
       <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
     </div>
     <p class="small" id="historicalComparisonStatus">Loading historical comparison…</p>
-    <p class="small"><span id="researchTradeSummary">—</span> Foxchase Intraday now represents the combined modeled spread/EX research with unequal component coverage. Its spread inputs extend through September 22, 2026 and its original EX cohort through May 5, 2026. The chart uses daily closing research equity. Foxchase Multi-Day and Foxchase Combined are unchanged earlier research records through August 25, 2026; neither incorporates this updated Intraday model. Combined is not a sum of the two $10,000 curves. No later Multi-Day or archived Combined marks are estimated.</p>
+    <p class="small"><span id="researchTradeSummary">—</span> The chart uses daily closing research values. Intraday spread data extends through September 22, 2026, EX data through May 5, 2026, and Multi-Day research through August 25, 2026. These coverage periods differ. A Combined shared-account replay is not shown because required historical valuations could not be fully validated. It must not be obtained by summing independently compounded portfolio curves. Missing inputs are not synthesized.</p>
     <div class="research-table-wrap"><table class="research-table">
       <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
       <tbody>
@@ -969,11 +965,11 @@ function setTextIfExists(id, value) {
     </table></div>
     <section class="research-limitations" aria-labelledby="researchLimitationsTitle">
       <h3 id="researchLimitationsTitle">Research Limitations</h3>
-      <p class="small" id="researchLimitations">Loading historical research limitations…</p>
+      <p class="small" id="researchLimitations">Historical results are simulated research and are separate from live account performance. The research uses modeled historical execution, retrospective portfolio sizing, and datasets with differing coverage periods. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity, or market impact. Required missing inputs remain unknown; this update does not estimate or synthesize them. Historical results do not guarantee future performance.</p>
     </section>
   </div>
 
-  <script src="/js/algo-pnl-research-integrity.js?v=20261003-attribution"></script>
+  <script src="/js/algo-pnl-research-integrity.js?v=20261003-public-copy"></script>
   <script>
     let chartLibraryPromise = null;
     function loadChartLibrary() {
@@ -994,7 +990,7 @@ function setTextIfExists(id, value) {
       const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
       const status = document.getElementById("historicalComparisonStatus");
       Promise.all([
-        fetch("/data/historical_comparison_20261003.json?v=20261003-ex").then(response => {
+        fetch("/data/historical_comparison_20261003.json?v=20261003-public-copy").then(response => {
           if (!response.ok) throw new Error("Comparison data unavailable");
           return response.json();
         }),
@@ -1010,7 +1006,6 @@ function setTextIfExists(id, value) {
         const colors = {
           "Foxchase Intraday": "#234a76",
           "Foxchase Multi-Day": "#2f855a",
-          "Foxchase Combined": "#c45a24",
           "SPY Buy & Hold": "#666666",
           "JEPI Buy & Hold": "#805ad5"
         };
@@ -1046,7 +1041,7 @@ function setTextIfExists(id, value) {
         }
         controls.forEach(control => control.addEventListener("change", updateSeries));
         updateSeries();
-        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. Foxchase Multi-Day and Foxchase Combined have no plotted values after August 25, 2026.";
+        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. Foxchase Multi-Day has no plotted values after August 25, 2026. A Combined curve is not currently shown.";
       }).catch(() => { status.textContent = "Historical comparison chart is temporarily unavailable."; });
     }
     loadHistoricalComparison();

@@ -10,7 +10,7 @@ on:
       - data/intraday_spread_only*.csv
       - data/historical_comparison*.json
       - data/algo-pnl.json
-      - tests/*.test.js
+      - tests/*.js
       - .github/workflows/intraday-research-integrity.yml
   pull_request:
     paths:
@@ -21,7 +21,7 @@ on:
       - data/intraday_spread_only*.csv
       - data/historical_comparison*.json
       - data/algo-pnl.json
-      - tests/*.test.js
+      - tests/*.js
       - .github/workflows/intraday-research-integrity.yml
 
 permissions:

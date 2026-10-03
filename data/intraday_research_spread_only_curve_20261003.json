@@ -1,5 +1,5 @@
 {
-  "basis": "EX disabled in the same frozen portfolio engine; daily closing modeled equity; not actual account equity",
+  "basis": "Hypothetical research values with retrospective normalized sizing and modeled-equity compounding; not live account equity.",
   "end": "2026-09-22",
   "initial_equity": 10000,
   "points": [
@@ -3732,7 +3732,7 @@
       "equity": 32332.0
     }
   ],
-  "source_ledger_sha256": "8eba7f70a8da659f0ace5a061809502791675326b03a92b348b38cf51ca0e644",
+  "source_ledger_sha256": "db45f70c9567312a8cc843fac9148fd8c929755c6fd0428f6ff189c13ec14d9d",
   "start": "2023-01-04",
   "trades": 263
 }

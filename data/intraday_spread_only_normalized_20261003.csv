@@ -1,264 +1,264 @@
-record_id,date,close_sequence,component,status,quantity,gross_pnl
-spread-control-0001,2023-01-18,1,Core Intraday Spreads,Modeled Research,5,105.0
-spread-control-0002,2023-01-19,2,Core Intraday Spreads,Modeled Research,2,26.0
-spread-control-0003,2023-01-24,3,Core Intraday Spreads,Modeled Research,2,-52.0
-spread-control-0004,2023-01-25,4,Core Intraday Spreads,Modeled Research,2,54.0
-spread-control-0005,2023-02-17,5,Core Intraday Spreads,Modeled Research,2,12.0
-spread-control-0006,2023-02-21,6,Core Intraday Spreads,Modeled Research,3,105.0
-spread-control-0007,2023-02-21,7,Core Intraday Spreads,Modeled Research,5,-95.0
-spread-control-0008,2023-02-22,8,Core Intraday Spreads,Modeled Research,3,-27.0
-spread-control-0009,2023-02-23,9,Core Intraday Spreads,Modeled Research,3,-144.0
-spread-control-0010,2023-02-24,10,Core Intraday Spreads,Modeled Research,2,32.0
-spread-control-0011,2023-02-28,11,Core Intraday Spreads,Modeled Research,3,48.0
-spread-control-0012,2023-03-01,12,Core Intraday Spreads,Modeled Research,3,57.0
-spread-control-0013,2023-03-07,13,Core Intraday Spreads,Modeled Research,6,252.0
-spread-control-0014,2023-03-10,14,Core Intraday Spreads,Modeled Research,3,9.0
-spread-control-0015,2023-03-17,15,Core Intraday Spreads,Modeled Research,6,252.0
-spread-control-0016,2023-03-24,16,Core Intraday Spreads,Modeled Research,3,-63.0
-spread-control-0017,2023-03-24,17,Core Intraday Spreads,Modeled Research,5,60.0
-spread-control-0018,2023-04-04,18,Core Intraday Spreads,Modeled Research,2,28.0
-spread-control-0019,2023-04-12,19,Core Intraday Spreads,Modeled Research,3,-156.0
-spread-control-0020,2023-04-25,20,Core Intraday Spreads,Modeled Research,2,26.0
-spread-control-0021,2023-04-26,21,Core Intraday Spreads,Modeled Research,3,-129.0
-spread-control-0022,2023-04-27,22,Core Intraday Spreads,Modeled Research,3,-171.0
-spread-control-0023,2023-05-04,23,Core Intraday Spreads,Modeled Research,2,26.0
-spread-control-0024,2023-05-04,24,Core Intraday Spreads,Modeled Research,5,45.0
-spread-control-0025,2023-05-09,25,Core Intraday Spreads,Modeled Research,2,-6.0
-spread-control-0026,2023-05-11,26,Core Intraday Spreads,Modeled Research,2,-28.0
-spread-control-0027,2023-05-12,27,Core Intraday Spreads,Modeled Research,2,-46.0
-spread-control-0028,2023-05-24,28,Core Intraday Spreads,Modeled Research,2,24.0
-spread-control-0029,2023-05-24,29,Core Intraday Spreads,Modeled Research,5,55.0
-spread-control-0030,2023-05-31,30,Core Intraday Spreads,Modeled Research,2,44.0
-spread-control-0031,2023-06-01,31,Core Intraday Spreads,Modeled Research,2,-38.0
-spread-control-0032,2023-06-06,32,Core Intraday Spreads,Modeled Research,2,36.0
-spread-control-0033,2023-06-08,33,Core Intraday Spreads,Modeled Research,2,-48.0
-spread-control-0034,2023-06-20,34,Core Intraday Spreads,Modeled Research,2,34.0
-spread-control-0035,2023-06-23,35,Core Intraday Spreads,Modeled Research,3,-51.0
-spread-control-0036,2023-07-18,36,Core Intraday Spreads,Modeled Research,3,-162.0
-spread-control-0037,2023-08-02,37,Core Intraday Spreads,Modeled Research,5,-100.0
-spread-control-0038,2023-08-08,38,Core Intraday Spreads,Modeled Research,2,28.0
-spread-control-0039,2023-08-09,39,Core Intraday Spreads,Modeled Research,2,36.0
-spread-control-0040,2023-08-11,40,Core Intraday Spreads,Modeled Research,3,-198.0
-spread-control-0041,2023-08-15,41,Core Intraday Spreads,Modeled Research,2,40.0
-spread-control-0042,2023-08-21,42,Core Intraday Spreads,Modeled Research,2,-68.0
-spread-control-0043,2023-08-22,43,Core Intraday Spreads,Modeled Research,2,34.0
-spread-control-0044,2023-08-25,44,Core Intraday Spreads,Modeled Research,5,145.0
-spread-control-0045,2023-09-01,45,Core Intraday Spreads,Modeled Research,2,-44.0
-spread-control-0046,2023-09-05,46,Core Intraday Spreads,Modeled Research,2,2.0
-spread-control-0047,2023-09-07,47,Core Intraday Spreads,Modeled Research,2,-10.0
-spread-control-0048,2023-09-13,48,Core Intraday Spreads,Modeled Research,2,-60.0
-spread-control-0049,2023-09-15,49,Core Intraday Spreads,Modeled Research,2,32.0
-spread-control-0050,2023-09-18,50,Core Intraday Spreads,Modeled Research,2,-20.0
-spread-control-0051,2023-09-19,51,Core Intraday Spreads,Modeled Research,2,56.0
-spread-control-0052,2023-09-26,52,Core Intraday Spreads,Modeled Research,2,58.0
-spread-control-0053,2023-09-28,53,Core Intraday Spreads,Modeled Research,2,-90.0
-spread-control-0054,2023-10-03,54,Core Intraday Spreads,Modeled Research,3,132.0
-spread-control-0055,2023-10-13,55,Core Intraday Spreads,Modeled Research,5,90.0
-spread-control-0056,2023-10-16,56,Core Intraday Spreads,Modeled Research,2,-74.0
-spread-control-0057,2023-10-19,57,Core Intraday Spreads,Modeled Research,3,-36.0
-spread-control-0058,2023-10-20,58,Core Intraday Spreads,Modeled Research,3,126.0
-spread-control-0059,2023-10-20,59,Core Intraday Spreads,Modeled Research,5,65.0
-spread-control-0060,2023-10-25,60,Core Intraday Spreads,Modeled Research,3,-51.0
-spread-control-0061,2023-10-25,61,Core Intraday Spreads,Modeled Research,5,-125.0
-spread-control-0062,2023-11-08,62,Core Intraday Spreads,Modeled Research,2,-46.0
-spread-control-0063,2023-11-09,63,Core Intraday Spreads,Modeled Research,2,-42.0
-spread-control-0064,2023-11-21,64,Core Intraday Spreads,Modeled Research,2,26.0
-spread-control-0065,2023-11-27,65,Core Intraday Spreads,Modeled Research,2,28.0
-spread-control-0066,2023-11-28,66,Core Intraday Spreads,Modeled Research,2,-72.0
-spread-control-0067,2023-12-11,67,Core Intraday Spreads,Modeled Research,2,12.0
-spread-control-0068,2023-12-21,68,Core Intraday Spreads,Modeled Research,5,135.0
-spread-control-0069,2024-01-03,69,Core Intraday Spreads,Modeled Research,2,40.0
-spread-control-0070,2024-01-12,70,Core Intraday Spreads,Modeled Research,5,-160.0
-spread-control-0071,2024-01-16,71,Core Intraday Spreads,Modeled Research,2,-50.0
-spread-control-0072,2024-01-17,72,Core Intraday Spreads,Modeled Research,2,0.0
-spread-control-0073,2024-01-25,73,Core Intraday Spreads,Modeled Research,2,50.0
-spread-control-0074,2024-01-31,74,Core Intraday Spreads,Modeled Research,2,22.0
-spread-control-0075,2024-01-31,75,Core Intraday Spreads,Modeled Research,5,90.0
-spread-control-0076,2024-02-20,76,Core Intraday Spreads,Modeled Research,2,4.0
-spread-control-0077,2024-02-27,77,Core Intraday Spreads,Modeled Research,2,12.0
-spread-control-0078,2024-03-05,78,Core Intraday Spreads,Modeled Research,2,44.0
-spread-control-0079,2024-03-11,79,Core Intraday Spreads,Modeled Research,2,-18.0
-spread-control-0080,2024-03-14,80,Core Intraday Spreads,Modeled Research,3,144.0
-spread-control-0081,2024-03-15,81,Core Intraday Spreads,Modeled Research,3,-90.0
-spread-control-0082,2024-04-09,82,Core Intraday Spreads,Modeled Research,3,93.0
-spread-control-0083,2024-04-11,83,Core Intraday Spreads,Modeled Research,3,-63.0
-spread-control-0084,2024-04-11,84,Core Intraday Spreads,Modeled Research,5,60.0
-spread-control-0085,2024-04-15,85,Core Intraday Spreads,Modeled Research,6,234.0
-spread-control-0086,2024-04-16,86,Core Intraday Spreads,Modeled Research,3,30.0
-spread-control-0087,2024-04-16,87,Core Intraday Spreads,Modeled Research,5,100.0
-spread-control-0088,2024-04-17,88,Core Intraday Spreads,Modeled Research,6,-234.0
-spread-control-0089,2024-04-30,89,Core Intraday Spreads,Modeled Research,3,84.0
-spread-control-0090,2024-05-01,90,Core Intraday Spreads,Modeled Research,3,-18.0
-spread-control-0091,2024-05-01,91,Core Intraday Spreads,Modeled Research,5,70.0
-spread-control-0092,2024-05-02,92,Core Intraday Spreads,Modeled Research,7,-595.0
-spread-control-0093,2024-05-17,93,Core Intraday Spreads,Modeled Research,2,-10.0
-spread-control-0094,2024-05-23,94,Core Intraday Spreads,Modeled Research,2,-76.0
-spread-control-0095,2024-05-29,95,Core Intraday Spreads,Modeled Research,2,-24.0
-spread-control-0096,2024-05-31,96,Core Intraday Spreads,Modeled Research,3,96.0
-spread-control-0097,2024-06-13,97,Core Intraday Spreads,Modeled Research,5,20.0
-spread-control-0098,2024-06-20,98,Core Intraday Spreads,Modeled Research,2,50.0
-spread-control-0099,2024-06-21,99,Core Intraday Spreads,Modeled Research,2,-4.0
-spread-control-0100,2024-06-27,100,Core Intraday Spreads,Modeled Research,2,34.0
-spread-control-0101,2024-07-01,101,Core Intraday Spreads,Modeled Research,5,-235.0
-spread-control-0102,2024-07-11,102,Core Intraday Spreads,Modeled Research,2,68.0
-spread-control-0103,2024-07-18,103,Core Intraday Spreads,Modeled Research,2,30.0
-spread-control-0104,2024-07-30,104,Core Intraday Spreads,Modeled Research,6,-12.0
-spread-control-0105,2024-08-01,105,Core Intraday Spreads,Modeled Research,3,141.0
-spread-control-0106,2024-08-02,106,Core Intraday Spreads,Modeled Research,2,58.0
-spread-control-0107,2024-08-02,107,Core Intraday Spreads,Modeled Research,6,192.0
-spread-control-0108,2024-08-20,108,Core Intraday Spreads,Modeled Research,2,68.0
-spread-control-0109,2024-08-22,109,Core Intraday Spreads,Modeled Research,2,48.0
-spread-control-0110,2024-08-26,110,Core Intraday Spreads,Modeled Research,2,74.0
-spread-control-0111,2024-08-27,111,Core Intraday Spreads,Modeled Research,3,-147.0
-spread-control-0112,2024-08-28,112,Core Intraday Spreads,Modeled Research,3,-66.0
-spread-control-0113,2024-09-03,113,Core Intraday Spreads,Modeled Research,3,111.0
-spread-control-0114,2024-09-05,114,Core Intraday Spreads,Modeled Research,5,60.0
-spread-control-0115,2024-09-06,115,Core Intraday Spreads,Modeled Research,3,201.0
-spread-control-0116,2024-09-10,116,Core Intraday Spreads,Modeled Research,3,-222.0
-spread-control-0117,2024-09-20,117,Core Intraday Spreads,Modeled Research,3,69.0
-spread-control-0118,2024-09-20,118,Core Intraday Spreads,Modeled Research,5,60.0
-spread-control-0119,2024-10-01,119,Core Intraday Spreads,Modeled Research,7,434.0
-spread-control-0120,2024-10-15,120,Core Intraday Spreads,Modeled Research,6,234.0
-spread-control-0121,2024-10-23,121,Core Intraday Spreads,Modeled Research,6,240.0
-spread-control-0122,2024-10-29,122,Core Intraday Spreads,Modeled Research,3,-153.0
-spread-control-0123,2024-11-04,123,Core Intraday Spreads,Modeled Research,6,72.0
-spread-control-0124,2024-11-15,124,Core Intraday Spreads,Modeled Research,6,-126.0
-spread-control-0125,2024-11-27,125,Core Intraday Spreads,Modeled Research,3,60.0
-spread-control-0126,2024-12-09,126,Core Intraday Spreads,Modeled Research,6,108.0
-spread-control-0127,2024-12-17,127,Core Intraday Spreads,Modeled Research,3,36.0
-spread-control-0128,2024-12-27,128,Core Intraday Spreads,Modeled Research,3,123.0
-spread-control-0129,2025-01-02,129,Core Intraday Spreads,Modeled Research,3,102.0
-spread-control-0130,2025-01-07,130,Core Intraday Spreads,Modeled Research,7,294.0
-spread-control-0131,2025-01-08,131,Core Intraday Spreads,Modeled Research,3,-45.0
-spread-control-0132,2025-01-10,132,Core Intraday Spreads,Modeled Research,3,45.0
-spread-control-0133,2025-01-14,133,Core Intraday Spreads,Modeled Research,4,184.0
-spread-control-0134,2025-02-03,134,Core Intraday Spreads,Modeled Research,3,-69.0
-spread-control-0135,2025-02-18,135,Core Intraday Spreads,Modeled Research,3,102.0
-spread-control-0136,2025-02-20,136,Core Intraday Spreads,Modeled Research,7,294.0
-spread-control-0137,2025-02-21,137,Core Intraday Spreads,Modeled Research,7,350.0
-spread-control-0138,2025-02-24,138,Core Intraday Spreads,Modeled Research,8,-648.0
-spread-control-0139,2025-02-25,139,Core Intraday Spreads,Modeled Research,4,320.0
-spread-control-0140,2025-02-26,140,Core Intraday Spreads,Modeled Research,4,280.0
-spread-control-0141,2025-02-27,141,Core Intraday Spreads,Modeled Research,9,729.0
-spread-control-0142,2025-03-04,142,Core Intraday Spreads,Modeled Research,5,305.0
-spread-control-0143,2025-03-04,143,Core Intraday Spreads,Modeled Research,8,272.0
-spread-control-0144,2025-03-12,144,Core Intraday Spreads,Modeled Research,5,-455.0
-spread-control-0145,2025-03-13,145,Core Intraday Spreads,Modeled Research,4,308.0
-spread-control-0146,2025-03-18,146,Core Intraday Spreads,Modeled Research,4,212.0
-spread-control-0147,2025-03-21,147,Core Intraday Spreads,Modeled Research,4,-164.0
-spread-control-0148,2025-03-26,148,Core Intraday Spreads,Modeled Research,7,189.0
-spread-control-0149,2025-03-28,149,Core Intraday Spreads,Modeled Research,4,288.0
-spread-control-0150,2025-03-31,150,Core Intraday Spreads,Modeled Research,3,-18.0
-spread-control-0151,2025-04-02,151,Core Intraday Spreads,Modeled Research,6,-108.0
-spread-control-0152,2025-04-03,152,Core Intraday Spreads,Modeled Research,3,54.0
-spread-control-0153,2025-04-03,153,Core Intraday Spreads,Modeled Research,8,256.0
-spread-control-0154,2025-04-07,154,Core Intraday Spreads,Modeled Research,4,-148.0
-spread-control-0155,2025-04-09,155,Core Intraday Spreads,Modeled Research,7,119.0
-spread-control-0156,2025-04-30,156,Core Intraday Spreads,Modeled Research,4,-96.0
-spread-control-0157,2025-04-30,157,Core Intraday Spreads,Modeled Research,7,77.0
-spread-control-0158,2025-05-06,158,Core Intraday Spreads,Modeled Research,3,-75.0
-spread-control-0159,2025-05-29,159,Core Intraday Spreads,Modeled Research,4,-288.0
-spread-control-0160,2025-06-13,160,Core Intraday Spreads,Modeled Research,3,-54.0
-spread-control-0161,2025-06-16,161,Core Intraday Spreads,Modeled Research,5,315.0
-spread-control-0162,2025-06-20,162,Core Intraday Spreads,Modeled Research,4,72.0
-spread-control-0163,2025-06-20,163,Core Intraday Spreads,Modeled Research,8,-296.0
-spread-control-0164,2025-07-01,164,Core Intraday Spreads,Modeled Research,4,112.0
-spread-control-0165,2025-07-11,165,Core Intraday Spreads,Modeled Research,4,-92.0
-spread-control-0166,2025-07-16,166,Core Intraday Spreads,Modeled Research,4,24.0
-spread-control-0167,2025-07-16,167,Core Intraday Spreads,Modeled Research,7,-252.0
-spread-control-0168,2025-07-18,168,Core Intraday Spreads,Modeled Research,3,51.0
-spread-control-0169,2025-07-22,169,Core Intraday Spreads,Modeled Research,8,-368.0
-spread-control-0170,2025-07-30,170,Core Intraday Spreads,Modeled Research,3,84.0
-spread-control-0171,2025-08-01,171,Core Intraday Spreads,Modeled Research,8,304.0
-spread-control-0172,2025-08-07,172,Core Intraday Spreads,Modeled Research,4,196.0
-spread-control-0173,2025-08-15,173,Core Intraday Spreads,Modeled Research,4,88.0
-spread-control-0174,2025-08-19,174,Core Intraday Spreads,Modeled Research,7,-154.0
-spread-control-0175,2025-08-20,175,Core Intraday Spreads,Modeled Research,4,188.0
-spread-control-0176,2025-08-29,176,Core Intraday Spreads,Modeled Research,8,312.0
-spread-control-0177,2025-09-05,177,Core Intraday Spreads,Modeled Research,4,180.0
-spread-control-0178,2025-09-09,178,Core Intraday Spreads,Modeled Research,4,-148.0
-spread-control-0179,2025-09-17,179,Core Intraday Spreads,Modeled Research,5,-30.0
-spread-control-0180,2025-09-17,180,Core Intraday Spreads,Modeled Research,8,-216.0
-spread-control-0181,2025-09-24,181,Core Intraday Spreads,Modeled Research,7,-133.0
-spread-control-0182,2025-09-25,182,Core Intraday Spreads,Modeled Research,3,-84.0
-spread-control-0183,2025-10-02,183,Core Intraday Spreads,Modeled Research,3,51.0
-spread-control-0184,2025-10-09,184,Core Intraday Spreads,Modeled Research,4,120.0
-spread-control-0185,2025-10-10,185,Core Intraday Spreads,Modeled Research,10,690.0
-spread-control-0186,2025-10-17,186,Core Intraday Spreads,Modeled Research,8,120.0
-spread-control-0187,2025-10-22,187,Core Intraday Spreads,Modeled Research,9,432.0
-spread-control-0188,2025-11-03,188,Core Intraday Spreads,Modeled Research,5,-360.0
-spread-control-0189,2025-11-06,189,Core Intraday Spreads,Modeled Research,5,265.0
-spread-control-0190,2025-11-07,190,Core Intraday Spreads,Modeled Research,4,84.0
-spread-control-0191,2025-11-07,191,Core Intraday Spreads,Modeled Research,9,324.0
-spread-control-0192,2025-11-13,192,Core Intraday Spreads,Modeled Research,10,560.0
-spread-control-0193,2025-11-17,193,Core Intraday Spreads,Modeled Research,5,-455.0
-spread-control-0194,2025-11-18,194,Core Intraday Spreads,Modeled Research,5,220.0
-spread-control-0195,2025-11-18,195,Core Intraday Spreads,Modeled Research,10,480.0
-spread-control-0196,2025-11-21,196,Core Intraday Spreads,Modeled Research,9,234.0
-spread-control-0197,2025-12-04,197,Core Intraday Spreads,Modeled Research,5,215.0
-spread-control-0198,2025-12-08,198,Core Intraday Spreads,Modeled Research,10,400.0
-spread-control-0199,2025-12-10,199,Core Intraday Spreads,Modeled Research,9,108.0
-spread-control-0200,2025-12-12,200,Core Intraday Spreads,Modeled Research,5,240.0
-spread-control-0201,2025-12-15,201,Core Intraday Spreads,Modeled Research,11,550.0
-spread-control-0202,2025-12-16,202,Core Intraday Spreads,Modeled Research,6,276.0
-spread-control-0203,2025-12-16,203,Core Intraday Spreads,Modeled Research,10,110.0
-spread-control-0204,2025-12-17,204,Core Intraday Spreads,Modeled Research,6,372.0
-spread-control-0205,2025-12-31,205,Core Intraday Spreads,Modeled Research,5,145.0
-spread-control-0206,2026-01-02,206,Core Intraday Spreads,Modeled Research,11,-638.0
-spread-control-0207,2026-01-08,207,Core Intraday Spreads,Modeled Research,5,-35.0
-spread-control-0208,2026-01-14,208,Core Intraday Spreads,Modeled Research,6,390.0
-spread-control-0209,2026-01-14,209,Core Intraday Spreads,Modeled Research,10,170.0
-spread-control-0210,2026-01-16,210,Core Intraday Spreads,Modeled Research,11,-660.0
-spread-control-0211,2026-01-28,211,Core Intraday Spreads,Modeled Research,6,264.0
-spread-control-0212,2026-01-29,212,Core Intraday Spreads,Modeled Research,13,858.0
-spread-control-0213,2026-02-03,213,Core Intraday Spreads,Modeled Research,6,384.0
-spread-control-0214,2026-02-05,214,Core Intraday Spreads,Modeled Research,7,371.0
-spread-control-0215,2026-02-05,215,Core Intraday Spreads,Modeled Research,11,297.0
-spread-control-0216,2026-02-12,216,Core Intraday Spreads,Modeled Research,13,637.0
-spread-control-0217,2026-02-17,217,Core Intraday Spreads,Modeled Research,7,-210.0
-spread-control-0218,2026-02-17,218,Core Intraday Spreads,Modeled Research,11,154.0
-spread-control-0219,2026-02-23,219,Core Intraday Spreads,Modeled Research,13,624.0
-spread-control-0220,2026-02-26,220,Core Intraday Spreads,Modeled Research,7,371.0
-spread-control-0221,2026-02-27,221,Core Intraday Spreads,Modeled Research,8,-192.0
-spread-control-0222,2026-03-03,222,Core Intraday Spreads,Modeled Research,6,120.0
-spread-control-0223,2026-03-03,223,Core Intraday Spreads,Modeled Research,12,264.0
-spread-control-0224,2026-03-05,224,Core Intraday Spreads,Modeled Research,7,364.0
-spread-control-0225,2026-03-06,225,Core Intraday Spreads,Modeled Research,7,-399.0
-spread-control-0226,2026-03-09,226,Core Intraday Spreads,Modeled Research,6,-210.0
-spread-control-0227,2026-03-12,227,Core Intraday Spreads,Modeled Research,6,168.0
-spread-control-0228,2026-03-12,228,Core Intraday Spreads,Modeled Research,12,156.0
-spread-control-0229,2026-03-13,229,Core Intraday Spreads,Modeled Research,13,429.0
-spread-control-0230,2026-03-20,230,Core Intraday Spreads,Modeled Research,8,448.0
-spread-control-0231,2026-03-20,231,Core Intraday Spreads,Modeled Research,13,338.0
-spread-control-0232,2026-04-21,232,Core Intraday Spreads,Modeled Research,7,273.0
-spread-control-0233,2026-04-29,233,Core Intraday Spreads,Modeled Research,8,-88.0
-spread-control-0234,2026-05-11,234,Core Intraday Spreads,Modeled Research,9,549.0
-spread-control-0235,2026-05-15,235,Core Intraday Spreads,Modeled Research,7,-91.0
-spread-control-0236,2026-05-15,236,Core Intraday Spreads,Modeled Research,13,143.0
-spread-control-0237,2026-05-27,237,Core Intraday Spreads,Modeled Research,7,-364.0
-spread-control-0238,2026-06-03,238,Core Intraday Spreads,Modeled Research,14,476.0
-spread-control-0239,2026-06-05,239,Core Intraday Spreads,Modeled Research,15,720.0
-spread-control-0240,2026-06-09,240,Core Intraday Spreads,Modeled Research,19,1482.0
-spread-control-0241,2026-06-22,241,Core Intraday Spreads,Modeled Research,15,375.0
-spread-control-0242,2026-06-25,242,Core Intraday Spreads,Modeled Research,20,1500.0
-spread-control-0243,2026-06-29,243,Core Intraday Spreads,Modeled Research,9,-774.0
-spread-control-0244,2026-07-02,244,Core Intraday Spreads,Modeled Research,8,312.0
-spread-control-0245,2026-07-07,245,Core Intraday Spreads,Modeled Research,17,782.0
-spread-control-0246,2026-07-08,246,Core Intraday Spreads,Modeled Research,9,324.0
-spread-control-0247,2026-07-08,247,Core Intraday Spreads,Modeled Research,15,165.0
-spread-control-0248,2026-07-15,248,Core Intraday Spreads,Modeled Research,8,-232.0
-spread-control-0249,2026-07-22,249,Core Intraday Spreads,Modeled Research,9,153.0
-spread-control-0250,2026-07-23,250,Core Intraday Spreads,Modeled Research,15,-300.0
-spread-control-0251,2026-07-29,251,Core Intraday Spreads,Modeled Research,11,770.0
-spread-control-0252,2026-07-30,252,Core Intraday Spreads,Modeled Research,9,333.0
-spread-control-0253,2026-08-05,253,Core Intraday Spreads,Modeled Research,9,558.0
-spread-control-0254,2026-08-11,254,Core Intraday Spreads,Modeled Research,17,459.0
-spread-control-0255,2026-08-20,255,Core Intraday Spreads,Modeled Research,8,-240.0
-spread-control-0256,2026-08-24,256,Core Intraday Spreads,Modeled Research,8,-40.0
-spread-control-0257,2026-08-25,257,Core Intraday Spreads,Modeled Research,8,-192.0
-spread-control-0258,2026-08-28,258,Core Intraday Spreads,Modeled Research,9,297.0
-spread-control-0259,2026-08-31,259,Core Intraday Spreads,Modeled Research,8,112.0
-spread-control-0260,2026-09-04,260,Core Intraday Spreads,Modeled Research,9,216.0
-spread-control-0261,2026-09-08,261,Core Intraday Spreads,Modeled Research,9,180.0
-spread-control-0262,2026-09-09,262,Core Intraday Spreads,Modeled Research,17,238.0
-spread-control-0263,2026-09-15,263,Core Intraday Spreads,Modeled Research,9,243.0
+record_id,date,close_sequence,gross_pnl
+spread-control-0001,2023-01-18,1,105.0
+spread-control-0002,2023-01-19,2,26.0
+spread-control-0003,2023-01-24,3,-52.0
+spread-control-0004,2023-01-25,4,54.0
+spread-control-0005,2023-02-17,5,12.0
+spread-control-0006,2023-02-21,6,105.0
+spread-control-0007,2023-02-21,7,-95.0
+spread-control-0008,2023-02-22,8,-27.0
+spread-control-0009,2023-02-23,9,-144.0
+spread-control-0010,2023-02-24,10,32.0
+spread-control-0011,2023-02-28,11,48.0
+spread-control-0012,2023-03-01,12,57.0
+spread-control-0013,2023-03-07,13,252.0
+spread-control-0014,2023-03-10,14,9.0
+spread-control-0015,2023-03-17,15,252.0
+spread-control-0016,2023-03-24,16,-63.0
+spread-control-0017,2023-03-24,17,60.0
+spread-control-0018,2023-04-04,18,28.0
+spread-control-0019,2023-04-12,19,-156.0
+spread-control-0020,2023-04-25,20,26.0
+spread-control-0021,2023-04-26,21,-129.0
+spread-control-0022,2023-04-27,22,-171.0
+spread-control-0023,2023-05-04,23,26.0
+spread-control-0024,2023-05-04,24,45.0
+spread-control-0025,2023-05-09,25,-6.0
+spread-control-0026,2023-05-11,26,-28.0
+spread-control-0027,2023-05-12,27,-46.0
+spread-control-0028,2023-05-24,28,24.0
+spread-control-0029,2023-05-24,29,55.0
+spread-control-0030,2023-05-31,30,44.0
+spread-control-0031,2023-06-01,31,-38.0
+spread-control-0032,2023-06-06,32,36.0
+spread-control-0033,2023-06-08,33,-48.0
+spread-control-0034,2023-06-20,34,34.0
+spread-control-0035,2023-06-23,35,-51.0
+spread-control-0036,2023-07-18,36,-162.0
+spread-control-0037,2023-08-02,37,-100.0
+spread-control-0038,2023-08-08,38,28.0
+spread-control-0039,2023-08-09,39,36.0
+spread-control-0040,2023-08-11,40,-198.0
+spread-control-0041,2023-08-15,41,40.0
+spread-control-0042,2023-08-21,42,-68.0
+spread-control-0043,2023-08-22,43,34.0
+spread-control-0044,2023-08-25,44,145.0
+spread-control-0045,2023-09-01,45,-44.0
+spread-control-0046,2023-09-05,46,2.0
+spread-control-0047,2023-09-07,47,-10.0
+spread-control-0048,2023-09-13,48,-60.0
+spread-control-0049,2023-09-15,49,32.0
+spread-control-0050,2023-09-18,50,-20.0
+spread-control-0051,2023-09-19,51,56.0
+spread-control-0052,2023-09-26,52,58.0
+spread-control-0053,2023-09-28,53,-90.0
+spread-control-0054,2023-10-03,54,132.0
+spread-control-0055,2023-10-13,55,90.0
+spread-control-0056,2023-10-16,56,-74.0
+spread-control-0057,2023-10-19,57,-36.0
+spread-control-0058,2023-10-20,58,126.0
+spread-control-0059,2023-10-20,59,65.0
+spread-control-0060,2023-10-25,60,-51.0
+spread-control-0061,2023-10-25,61,-125.0
+spread-control-0062,2023-11-08,62,-46.0
+spread-control-0063,2023-11-09,63,-42.0
+spread-control-0064,2023-11-21,64,26.0
+spread-control-0065,2023-11-27,65,28.0
+spread-control-0066,2023-11-28,66,-72.0
+spread-control-0067,2023-12-11,67,12.0
+spread-control-0068,2023-12-21,68,135.0
+spread-control-0069,2024-01-03,69,40.0
+spread-control-0070,2024-01-12,70,-160.0
+spread-control-0071,2024-01-16,71,-50.0
+spread-control-0072,2024-01-17,72,0.0
+spread-control-0073,2024-01-25,73,50.0
+spread-control-0074,2024-01-31,74,22.0
+spread-control-0075,2024-01-31,75,90.0
+spread-control-0076,2024-02-20,76,4.0
+spread-control-0077,2024-02-27,77,12.0
+spread-control-0078,2024-03-05,78,44.0
+spread-control-0079,2024-03-11,79,-18.0
+spread-control-0080,2024-03-14,80,144.0
+spread-control-0081,2024-03-15,81,-90.0
+spread-control-0082,2024-04-09,82,93.0
+spread-control-0083,2024-04-11,83,-63.0
+spread-control-0084,2024-04-11,84,60.0
+spread-control-0085,2024-04-15,85,234.0
+spread-control-0086,2024-04-16,86,30.0
+spread-control-0087,2024-04-16,87,100.0
+spread-control-0088,2024-04-17,88,-234.0
+spread-control-0089,2024-04-30,89,84.0
+spread-control-0090,2024-05-01,90,-18.0
+spread-control-0091,2024-05-01,91,70.0
+spread-control-0092,2024-05-02,92,-595.0
+spread-control-0093,2024-05-17,93,-10.0
+spread-control-0094,2024-05-23,94,-76.0
+spread-control-0095,2024-05-29,95,-24.0
+spread-control-0096,2024-05-31,96,96.0
+spread-control-0097,2024-06-13,97,20.0
+spread-control-0098,2024-06-20,98,50.0
+spread-control-0099,2024-06-21,99,-4.0
+spread-control-0100,2024-06-27,100,34.0
+spread-control-0101,2024-07-01,101,-235.0
+spread-control-0102,2024-07-11,102,68.0
+spread-control-0103,2024-07-18,103,30.0
+spread-control-0104,2024-07-30,104,-12.0
+spread-control-0105,2024-08-01,105,141.0
+spread-control-0106,2024-08-02,106,58.0
+spread-control-0107,2024-08-02,107,192.0
+spread-control-0108,2024-08-20,108,68.0
+spread-control-0109,2024-08-22,109,48.0
+spread-control-0110,2024-08-26,110,74.0
+spread-control-0111,2024-08-27,111,-147.0
+spread-control-0112,2024-08-28,112,-66.0
+spread-control-0113,2024-09-03,113,111.0
+spread-control-0114,2024-09-05,114,60.0
+spread-control-0115,2024-09-06,115,201.0
+spread-control-0116,2024-09-10,116,-222.0
+spread-control-0117,2024-09-20,117,69.0
+spread-control-0118,2024-09-20,118,60.0
+spread-control-0119,2024-10-01,119,434.0
+spread-control-0120,2024-10-15,120,234.0
+spread-control-0121,2024-10-23,121,240.0
+spread-control-0122,2024-10-29,122,-153.0
+spread-control-0123,2024-11-04,123,72.0
+spread-control-0124,2024-11-15,124,-126.0
+spread-control-0125,2024-11-27,125,60.0
+spread-control-0126,2024-12-09,126,108.0
+spread-control-0127,2024-12-17,127,36.0
+spread-control-0128,2024-12-27,128,123.0
+spread-control-0129,2025-01-02,129,102.0
+spread-control-0130,2025-01-07,130,294.0
+spread-control-0131,2025-01-08,131,-45.0
+spread-control-0132,2025-01-10,132,45.0
+spread-control-0133,2025-01-14,133,184.0
+spread-control-0134,2025-02-03,134,-69.0
+spread-control-0135,2025-02-18,135,102.0
+spread-control-0136,2025-02-20,136,294.0
+spread-control-0137,2025-02-21,137,350.0
+spread-control-0138,2025-02-24,138,-648.0
+spread-control-0139,2025-02-25,139,320.0
+spread-control-0140,2025-02-26,140,280.0
+spread-control-0141,2025-02-27,141,729.0
+spread-control-0142,2025-03-04,142,305.0
+spread-control-0143,2025-03-04,143,272.0
+spread-control-0144,2025-03-12,144,-455.0
+spread-control-0145,2025-03-13,145,308.0
+spread-control-0146,2025-03-18,146,212.0
+spread-control-0147,2025-03-21,147,-164.0
+spread-control-0148,2025-03-26,148,189.0
+spread-control-0149,2025-03-28,149,288.0
+spread-control-0150,2025-03-31,150,-18.0
+spread-control-0151,2025-04-02,151,-108.0
+spread-control-0152,2025-04-03,152,54.0
+spread-control-0153,2025-04-03,153,256.0
+spread-control-0154,2025-04-07,154,-148.0
+spread-control-0155,2025-04-09,155,119.0
+spread-control-0156,2025-04-30,156,-96.0
+spread-control-0157,2025-04-30,157,77.0
+spread-control-0158,2025-05-06,158,-75.0
+spread-control-0159,2025-05-29,159,-288.0
+spread-control-0160,2025-06-13,160,-54.0
+spread-control-0161,2025-06-16,161,315.0
+spread-control-0162,2025-06-20,162,72.0
+spread-control-0163,2025-06-20,163,-296.0
+spread-control-0164,2025-07-01,164,112.0
+spread-control-0165,2025-07-11,165,-92.0
+spread-control-0166,2025-07-16,166,24.0
+spread-control-0167,2025-07-16,167,-252.0
+spread-control-0168,2025-07-18,168,51.0
+spread-control-0169,2025-07-22,169,-368.0
+spread-control-0170,2025-07-30,170,84.0
+spread-control-0171,2025-08-01,171,304.0
+spread-control-0172,2025-08-07,172,196.0
+spread-control-0173,2025-08-15,173,88.0
+spread-control-0174,2025-08-19,174,-154.0
+spread-control-0175,2025-08-20,175,188.0
+spread-control-0176,2025-08-29,176,312.0
+spread-control-0177,2025-09-05,177,180.0
+spread-control-0178,2025-09-09,178,-148.0
+spread-control-0179,2025-09-17,179,-30.0
+spread-control-0180,2025-09-17,180,-216.0
+spread-control-0181,2025-09-24,181,-133.0
+spread-control-0182,2025-09-25,182,-84.0
+spread-control-0183,2025-10-02,183,51.0
+spread-control-0184,2025-10-09,184,120.0
+spread-control-0185,2025-10-10,185,690.0
+spread-control-0186,2025-10-17,186,120.0
+spread-control-0187,2025-10-22,187,432.0
+spread-control-0188,2025-11-03,188,-360.0
+spread-control-0189,2025-11-06,189,265.0
+spread-control-0190,2025-11-07,190,84.0
+spread-control-0191,2025-11-07,191,324.0
+spread-control-0192,2025-11-13,192,560.0
+spread-control-0193,2025-11-17,193,-455.0
+spread-control-0194,2025-11-18,194,220.0
+spread-control-0195,2025-11-18,195,480.0
+spread-control-0196,2025-11-21,196,234.0
+spread-control-0197,2025-12-04,197,215.0
+spread-control-0198,2025-12-08,198,400.0
+spread-control-0199,2025-12-10,199,108.0
+spread-control-0200,2025-12-12,200,240.0
+spread-control-0201,2025-12-15,201,550.0
+spread-control-0202,2025-12-16,202,276.0
+spread-control-0203,2025-12-16,203,110.0
+spread-control-0204,2025-12-17,204,372.0
+spread-control-0205,2025-12-31,205,145.0
+spread-control-0206,2026-01-02,206,-638.0
+spread-control-0207,2026-01-08,207,-35.0
+spread-control-0208,2026-01-14,208,390.0
+spread-control-0209,2026-01-14,209,170.0
+spread-control-0210,2026-01-16,210,-660.0
+spread-control-0211,2026-01-28,211,264.0
+spread-control-0212,2026-01-29,212,858.0
+spread-control-0213,2026-02-03,213,384.0
+spread-control-0214,2026-02-05,214,371.0
+spread-control-0215,2026-02-05,215,297.0
+spread-control-0216,2026-02-12,216,637.0
+spread-control-0217,2026-02-17,217,-210.0
+spread-control-0218,2026-02-17,218,154.0
+spread-control-0219,2026-02-23,219,624.0
+spread-control-0220,2026-02-26,220,371.0
+spread-control-0221,2026-02-27,221,-192.0
+spread-control-0222,2026-03-03,222,120.0
+spread-control-0223,2026-03-03,223,264.0
+spread-control-0224,2026-03-05,224,364.0
+spread-control-0225,2026-03-06,225,-399.0
+spread-control-0226,2026-03-09,226,-210.0
+spread-control-0227,2026-03-12,227,168.0
+spread-control-0228,2026-03-12,228,156.0
+spread-control-0229,2026-03-13,229,429.0
+spread-control-0230,2026-03-20,230,448.0
+spread-control-0231,2026-03-20,231,338.0
+spread-control-0232,2026-04-21,232,273.0
+spread-control-0233,2026-04-29,233,-88.0
+spread-control-0234,2026-05-11,234,549.0
+spread-control-0235,2026-05-15,235,-91.0
+spread-control-0236,2026-05-15,236,143.0
+spread-control-0237,2026-05-27,237,-364.0
+spread-control-0238,2026-06-03,238,476.0
+spread-control-0239,2026-06-05,239,720.0
+spread-control-0240,2026-06-09,240,1482.0
+spread-control-0241,2026-06-22,241,375.0
+spread-control-0242,2026-06-25,242,1500.0
+spread-control-0243,2026-06-29,243,-774.0
+spread-control-0244,2026-07-02,244,312.0
+spread-control-0245,2026-07-07,245,782.0
+spread-control-0246,2026-07-08,246,324.0
+spread-control-0247,2026-07-08,247,165.0
+spread-control-0248,2026-07-15,248,-232.0
+spread-control-0249,2026-07-22,249,153.0
+spread-control-0250,2026-07-23,250,-300.0
+spread-control-0251,2026-07-29,251,770.0
+spread-control-0252,2026-07-30,252,333.0
+spread-control-0253,2026-08-05,253,558.0
+spread-control-0254,2026-08-11,254,459.0
+spread-control-0255,2026-08-20,255,-240.0
+spread-control-0256,2026-08-24,256,-40.0
+spread-control-0257,2026-08-25,257,-192.0
+spread-control-0258,2026-08-28,258,297.0
+spread-control-0259,2026-08-31,259,112.0
+spread-control-0260,2026-09-04,260,216.0
+spread-control-0261,2026-09-08,261,180.0
+spread-control-0262,2026-09-09,262,238.0
+spread-control-0263,2026-09-15,263,243.0

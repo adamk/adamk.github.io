@@ -1,527 +1,527 @@
-record_id,date,close_sequence,component,status,quantity,gross_pnl
-research-0001,2023-01-05,1,Directional Alpha A,Commissioned Live,10,-310.0
-research-0002,2023-01-05,2,Directional Alpha A,Commissioned Live,12,564.0
-research-0003,2023-01-06,3,Directional Alpha D,Live Pilot,9,-99.0
-research-0004,2023-01-13,4,Directional Alpha A,Commissioned Live,11,517.0
-research-0005,2023-01-18,5,Core intraday spreads,Spread core,5,105.0
-research-0006,2023-01-18,6,Directional Alpha A,Commissioned Live,20,-420.0
-research-0007,2023-01-19,7,Core intraday spreads,Spread core,2,26.0
-research-0008,2023-01-24,8,Core intraday spreads,Spread core,2,-52.0
-research-0009,2023-01-25,9,Core intraday spreads,Spread core,2,54.0
-research-0010,2023-01-26,10,Directional Alpha A,Commissioned Live,13,-299.0
-research-0011,2023-01-27,11,Directional Alpha A,Commissioned Live,22,506.0
-research-0012,2023-02-03,12,Directional Alpha B,Commissioned Live,12,-336.0
-research-0013,2023-02-03,13,Directional Alpha B,Commissioned Live,18,630.0
-research-0014,2023-02-08,14,Directional Alpha A,Commissioned Live,11,-330.0
-research-0015,2023-02-15,15,Directional Alpha A,Commissioned Live,47,-329.0
-research-0016,2023-02-17,16,Directional Alpha B,Commissioned Live,6,276.0
-research-0017,2023-02-17,17,Core intraday spreads,Spread core,2,12.0
-research-0018,2023-02-21,18,Core intraday spreads,Spread core,3,105.0
-research-0019,2023-02-21,19,Core intraday spreads,Spread core,5,-95.0
-research-0020,2023-02-21,20,Directional Alpha B,Commissioned Live,22,506.0
-research-0021,2023-02-22,21,Core intraday spreads,Spread core,3,-27.0
-research-0022,2023-02-23,22,Core intraday spreads,Spread core,3,-144.0
-research-0023,2023-02-24,23,Core intraday spreads,Spread core,3,48.0
-research-0024,2023-02-28,24,Core intraday spreads,Spread core,3,48.0
-research-0025,2023-02-28,25,Directional Alpha B,Commissioned Live,15,-330.0
-research-0026,2023-03-01,26,Core intraday spreads,Spread core,3,57.0
-research-0027,2023-03-02,27,Directional Alpha B,Commissioned Live,13,-325.0
-research-0028,2023-03-07,28,Directional Alpha A,Commissioned Live,10,-300.0
-research-0029,2023-03-10,29,Core intraday spreads,Spread core,3,9.0
-research-0030,2023-03-15,30,Directional Alpha B,Commissioned Live,10,-310.0
-research-0031,2023-03-17,31,Directional Alpha A,Commissioned Live,10,450.0
-research-0032,2023-03-20,32,Directional Alpha B,Commissioned Live,8,-320.0
-research-0033,2023-03-20,33,Directional Alpha B,Commissioned Live,11,462.0
-research-0034,2023-03-22,34,Directional Alpha A,Commissioned Live,5,460.0
-research-0035,2023-03-23,35,Directional Alpha A,Commissioned Live,10,740.0
-research-0036,2023-03-24,36,Directional Alpha B,Commissioned Live,5,260.0
-research-0037,2023-03-24,37,Core intraday spreads,Spread core,4,-84.0
-research-0038,2023-03-24,38,Core intraday spreads,Spread core,6,72.0
-research-0039,2023-03-28,39,Directional Alpha B,Commissioned Live,35,-350.0
-research-0040,2023-04-04,40,Core intraday spreads,Spread core,3,42.0
-research-0041,2023-04-05,41,Directional Alpha A,Commissioned Live,14,-490.0
-research-0042,2023-04-12,42,Core intraday spreads,Spread core,3,-156.0
-research-0043,2023-04-13,43,Directional Alpha A,Commissioned Live,15,495.0
-research-0044,2023-04-17,44,Directional Alpha A,Commissioned Live,14,-420.0
-research-0045,2023-04-24,45,Directional Alpha A,Commissioned Live,16,-320.0
-research-0046,2023-04-24,46,Directional Alpha A,Commissioned Live,15,-420.0
-research-0047,2023-04-25,47,Core intraday spreads,Spread core,2,26.0
-research-0048,2023-04-26,48,Core intraday spreads,Spread core,2,-86.0
-research-0049,2023-04-27,49,Core intraday spreads,Spread core,3,-171.0
-research-0050,2023-05-03,50,Directional Alpha A,Commissioned Live,6,414.0
-research-0051,2023-05-03,51,Directional Alpha A,Commissioned Live,10,670.0
-research-0052,2023-05-04,52,Core intraday spreads,Spread core,3,39.0
-research-0053,2023-05-04,53,Directional Alpha B,Commissioned Live,2,80.0
-research-0054,2023-05-04,54,Core intraday spreads,Spread core,5,45.0
-research-0055,2023-05-08,55,Directional Alpha A,Commissioned Live,16,-352.0
-research-0056,2023-05-08,56,Directional Alpha A,Commissioned Live,18,-324.0
-research-0057,2023-05-09,57,Core intraday spreads,Spread core,3,-9.0
-research-0058,2023-05-11,58,Core intraday spreads,Spread core,3,-42.0
-research-0059,2023-05-12,59,Core intraday spreads,Spread core,2,-46.0
-research-0060,2023-05-12,60,Directional Alpha C,Live Pilot,5,115.0
-research-0061,2023-05-15,61,Directional Alpha A,Commissioned Live,15,615.0
-research-0062,2023-05-16,62,Directional Alpha A,Commissioned Live,19,836.0
-research-0063,2023-05-16,63,Directional Alpha A,Commissioned Live,21,651.0
-research-0064,2023-05-22,64,Directional Alpha A,Commissioned Live,27,-459.0
-research-0065,2023-05-24,65,Core intraday spreads,Spread core,3,36.0
-research-0066,2023-05-24,66,Core intraday spreads,Spread core,6,66.0
-research-0067,2023-05-30,67,Directional Alpha C,Live Pilot,7,-105.0
-research-0068,2023-05-31,68,Core intraday spreads,Spread core,3,66.0
-research-0069,2023-06-01,69,Core intraday spreads,Spread core,3,-57.0
-research-0070,2023-06-06,70,Core intraday spreads,Spread core,3,54.0
-research-0071,2023-06-08,71,Core intraday spreads,Spread core,3,-72.0
-research-0072,2023-06-08,72,Directional Alpha B,Commissioned Live,20,-420.0
-research-0073,2023-06-16,73,Directional Alpha A,Commissioned Live,16,-480.0
-research-0074,2023-06-20,74,Core intraday spreads,Spread core,3,51.0
-research-0075,2023-06-21,75,Directional Alpha A,Commissioned Live,17,680.0
-research-0076,2023-06-22,76,Directional Alpha B,Commissioned Live,17,748.0
-research-0077,2023-06-23,77,Core intraday spreads,Spread core,3,-51.0
-research-0078,2023-06-27,78,Directional Alpha A,Commissioned Live,43,688.0
-research-0079,2023-06-28,79,Directional Alpha A,Commissioned Live,25,-400.0
-research-0080,2023-06-28,80,Directional Alpha A,Commissioned Live,28,812.0
-research-0081,2023-06-28,81,Directional Alpha A,Commissioned Live,29,-522.0
-research-0082,2023-06-28,82,Directional Alpha A,Commissioned Live,36,-396.0
-research-0083,2023-07-05,83,Directional Alpha B,Commissioned Live,22,594.0
-research-0084,2023-07-06,84,Directional Alpha B,Commissioned Live,20,-400.0
-research-0085,2023-07-18,85,Core intraday spreads,Spread core,3,-162.0
-research-0086,2023-07-26,86,Directional Alpha A,Commissioned Live,14,-378.0
-research-0087,2023-07-28,87,Directional Alpha A,Commissioned Live,25,575.0
-research-0088,2023-08-01,88,Directional Alpha A,Commissioned Live,20,-440.0
-research-0089,2023-08-02,89,Core intraday spreads,Spread core,6,-120.0
-research-0090,2023-08-08,90,Core intraday spreads,Spread core,3,42.0
-research-0091,2023-08-08,91,Directional Alpha B,Commissioned Live,33,-726.0
-research-0092,2023-08-09,92,Core intraday spreads,Spread core,3,54.0
-research-0093,2023-08-11,93,Core intraday spreads,Spread core,3,-198.0
-research-0094,2023-08-15,94,Core intraday spreads,Spread core,3,60.0
-research-0095,2023-08-18,95,Directional Alpha B,Commissioned Live,13,-585.0
-research-0096,2023-08-18,96,Directional Alpha B,Commissioned Live,15,-405.0
-research-0097,2023-08-21,97,Core intraday spreads,Spread core,2,-68.0
-research-0098,2023-08-22,98,Core intraday spreads,Spread core,2,34.0
-research-0099,2023-08-25,99,Core intraday spreads,Spread core,6,174.0
-research-0100,2023-09-01,100,Core intraday spreads,Spread core,2,-44.0
-research-0101,2023-09-05,101,Core intraday spreads,Spread core,3,3.0
-research-0102,2023-09-06,102,Directional Alpha A,Commissioned Live,15,-345.0
-research-0103,2023-09-07,103,Core intraday spreads,Spread core,2,-10.0
-research-0104,2023-09-07,104,Directional Alpha B,Commissioned Live,18,522.0
-research-0105,2023-09-12,105,Directional Alpha A,Commissioned Live,28,-392.0
-research-0106,2023-09-13,106,Core intraday spreads,Spread core,2,-60.0
-research-0107,2023-09-15,107,Core intraday spreads,Spread core,2,32.0
-research-0108,2023-09-18,108,Core intraday spreads,Spread core,2,-20.0
-research-0109,2023-09-18,109,Directional Alpha B,Commissioned Live,21,-336.0
-research-0110,2023-09-19,110,Directional Alpha A,Commissioned Live,15,-240.0
-research-0111,2023-09-19,111,Directional Alpha A,Commissioned Live,9,-279.0
-research-0112,2023-09-19,112,Core intraday spreads,Spread core,2,56.0
-research-0113,2023-09-19,113,Directional Alpha A,Commissioned Live,24,-336.0
-research-0114,2023-09-22,114,Directional Alpha A,Commissioned Live,12,504.0
-research-0115,2023-09-26,115,Core intraday spreads,Spread core,2,58.0
-research-0116,2023-09-26,116,Directional Alpha A,Commissioned Live,23,-299.0
-research-0117,2023-09-28,117,Directional Alpha A,Commissioned Live,8,448.0
-research-0118,2023-09-28,118,Directional Alpha A,Commissioned Live,9,-324.0
-research-0119,2023-10-02,119,Directional Alpha A,Commissioned Live,32,512.0
-research-0120,2023-10-03,120,Core intraday spreads,Spread core,3,132.0
-research-0121,2023-10-04,121,Directional Alpha B,Commissioned Live,22,-352.0
-research-0122,2023-10-05,122,Directional Alpha A,Commissioned Live,13,-312.0
-research-0123,2023-10-06,123,Directional Alpha D,Live Pilot,2,-54.0
-research-0124,2023-10-11,124,Directional Alpha A,Commissioned Live,13,481.0
-research-0125,2023-10-13,125,Core intraday spreads,Spread core,5,90.0
-research-0126,2023-10-16,126,Core intraday spreads,Spread core,2,-74.0
-research-0127,2023-10-18,127,Directional Alpha A,Commissioned Live,10,440.0
-research-0128,2023-10-18,128,Directional Alpha A,Commissioned Live,22,506.0
-research-0129,2023-10-19,129,Core intraday spreads,Spread core,3,-36.0
-research-0130,2023-10-20,130,Core intraday spreads,Spread core,3,126.0
-research-0131,2023-10-20,131,Core intraday spreads,Spread core,6,78.0
-research-0132,2023-10-23,132,Directional Alpha B,Commissioned Live,28,840.0
-research-0133,2023-10-25,133,Core intraday spreads,Spread core,4,-68.0
-research-0134,2023-10-25,134,Core intraday spreads,Spread core,6,-150.0
-research-0135,2023-10-27,135,Directional Alpha A,Commissioned Live,23,-483.0
-research-0136,2023-10-27,136,Directional Alpha A,Commissioned Live,34,544.0
-research-0137,2023-10-30,137,Directional Alpha A,Commissioned Live,15,555.0
-research-0138,2023-11-06,138,Directional Alpha A,Commissioned Live,15,-390.0
-research-0139,2023-11-08,139,Core intraday spreads,Spread core,3,-69.0
-research-0140,2023-11-09,140,Core intraday spreads,Spread core,3,-63.0
-research-0141,2023-11-13,141,Directional Alpha A,Commissioned Live,22,572.0
-research-0142,2023-11-21,142,Directional Alpha A,Commissioned Live,9,315.0
-research-0143,2023-11-21,143,Core intraday spreads,Spread core,3,39.0
-research-0144,2023-11-27,144,Core intraday spreads,Spread core,3,42.0
-research-0145,2023-11-28,145,Core intraday spreads,Spread core,3,-108.0
-research-0146,2023-12-08,146,Directional Alpha B,Commissioned Live,23,736.0
-research-0147,2023-12-11,147,Core intraday spreads,Spread core,3,18.0
-research-0148,2023-12-21,148,Core intraday spreads,Spread core,7,189.0
-research-0149,2023-12-26,149,Directional Alpha A,Commissioned Live,40,760.0
-research-0150,2023-12-27,150,Directional Alpha A,Commissioned Live,22,-440.0
-research-0151,2023-12-27,151,Directional Alpha A,Commissioned Live,35,770.0
-research-0152,2023-12-27,152,Directional Alpha A,Commissioned Live,40,-720.0
-research-0153,2023-12-28,153,Directional Alpha A,Commissioned Live,39,741.0
-research-0154,2023-12-29,154,Directional Alpha A,Commissioned Live,29,-464.0
-research-0155,2023-12-29,155,Directional Alpha A,Commissioned Live,29,754.0
-research-0156,2024-01-03,156,Core intraday spreads,Spread core,4,80.0
-research-0157,2024-01-03,157,Directional Alpha B,Commissioned Live,39,780.0
-research-0158,2024-01-04,158,Directional Alpha A,Commissioned Live,47,-564.0
-research-0159,2024-01-05,159,Directional Alpha B,Commissioned Live,21,-525.0
-research-0160,2024-01-08,160,Directional Alpha B,Commissioned Live,24,-552.0
-research-0161,2024-01-08,161,Directional Alpha B,Commissioned Live,23,-529.0
-research-0162,2024-01-09,162,Directional Alpha A,Commissioned Live,27,675.0
-research-0163,2024-01-10,163,Directional Alpha A,Commissioned Live,44,660.0
-research-0164,2024-01-12,164,Core intraday spreads,Spread core,8,-256.0
-research-0165,2024-01-12,165,Directional Alpha A,Commissioned Live,31,682.0
-research-0166,2024-01-16,166,Core intraday spreads,Spread core,4,-100.0
-research-0167,2024-01-16,167,Directional Alpha B,Commissioned Live,28,-504.0
-research-0168,2024-01-17,168,Core intraday spreads,Spread core,4,0.0
-research-0169,2024-01-17,169,Directional Alpha B,Commissioned Live,13,-234.0
-research-0170,2024-01-17,170,Directional Alpha B,Commissioned Live,23,713.0
-research-0171,2024-01-22,171,Directional Alpha C,Live Pilot,9,207.0
-research-0172,2024-01-23,172,Directional Alpha A,Commissioned Live,30,-540.0
-research-0173,2024-01-25,173,Directional Alpha A,Commissioned Live,12,384.0
-research-0174,2024-01-25,174,Core intraday spreads,Spread core,4,100.0
-research-0175,2024-01-25,175,Directional Alpha A,Commissioned Live,34,748.0
-research-0176,2024-01-30,176,Directional Alpha A,Commissioned Live,27,756.0
-research-0177,2024-01-31,177,Core intraday spreads,Spread core,4,44.0
-research-0178,2024-01-31,178,Core intraday spreads,Spread core,9,162.0
-research-0179,2024-02-05,179,Directional Alpha A,Commissioned Live,25,800.0
-research-0180,2024-02-05,180,Directional Alpha A,Commissioned Live,61,-976.0
-research-0181,2024-02-06,181,Directional Alpha A,Commissioned Live,37,925.0
-research-0182,2024-02-12,182,Directional Alpha A,Commissioned Live,55,825.0
-research-0183,2024-02-15,183,Directional Alpha A,Commissioned Live,25,1000.0
-research-0184,2024-02-20,184,Core intraday spreads,Spread core,5,10.0
-research-0185,2024-02-20,185,Directional Alpha B,Commissioned Live,12,-360.0
-research-0186,2024-02-20,186,Directional Alpha B,Commissioned Live,46,-736.0
-research-0187,2024-02-20,187,Directional Alpha B,Commissioned Live,49,980.0
-research-0188,2024-02-26,188,Directional Alpha A,Commissioned Live,48,912.0
-research-0189,2024-02-27,189,Core intraday spreads,Spread core,6,36.0
-research-0190,2024-02-28,190,Directional Alpha B,Commissioned Live,36,-648.0
-research-0191,2024-02-28,191,Directional Alpha B,Commissioned Live,33,1320.0
-research-0192,2024-02-29,192,Directional Alpha D,Live Pilot,10,240.0
-research-0193,2024-03-05,193,Core intraday spreads,Spread core,5,110.0
-research-0194,2024-03-06,194,Directional Alpha A,Commissioned Live,76,2280.0
-research-0195,2024-03-11,195,Core intraday spreads,Spread core,6,-54.0
-research-0196,2024-03-14,196,Core intraday spreads,Spread core,7,336.0
-research-0197,2024-03-15,197,Core intraday spreads,Spread core,7,-210.0
-research-0198,2024-03-21,198,Directional Alpha C,Live Pilot,11,-176.0
-research-0199,2024-03-22,199,Directional Alpha B,Commissioned Live,42,1176.0
-research-0200,2024-03-25,200,Directional Alpha B,Commissioned Live,50,1150.0
-research-0201,2024-04-03,201,Directional Alpha A,Commissioned Live,50,2050.0
-research-0202,2024-04-08,202,Directional Alpha A,Commissioned Live,34,-1190.0
-research-0203,2024-04-08,203,Directional Alpha A,Commissioned Live,63,-1197.0
-research-0204,2024-04-09,204,Core intraday spreads,Spread core,8,248.0
-research-0205,2024-04-11,205,Core intraday spreads,Spread core,8,-168.0
-research-0206,2024-04-11,206,Directional Alpha B,Commissioned Live,14,-448.0
-research-0207,2024-04-11,207,Core intraday spreads,Spread core,13,156.0
-research-0208,2024-04-15,208,Core intraday spreads,Spread core,15,585.0
-research-0209,2024-04-16,209,Core intraday spreads,Spread core,9,90.0
-research-0210,2024-04-16,210,Core intraday spreads,Spread core,14,280.0
-research-0211,2024-04-17,211,Core intraday spreads,Spread core,15,-585.0
-research-0212,2024-04-17,212,Directional Alpha A,Commissioned Live,51,-1428.0
-research-0213,2024-04-18,213,Directional Alpha A,Commissioned Live,31,-775.0
-research-0214,2024-04-22,214,Directional Alpha A,Commissioned Live,24,-720.0
-research-0215,2024-04-22,215,Directional Alpha A,Commissioned Live,36,-792.0
-research-0216,2024-04-23,216,Directional Alpha A,Commissioned Live,70,-980.0
-research-0217,2024-04-30,217,Core intraday spreads,Spread core,6,168.0
-research-0218,2024-05-01,218,Core intraday spreads,Spread core,7,-42.0
-research-0219,2024-05-01,219,Core intraday spreads,Spread core,11,154.0
-research-0220,2024-05-02,220,Core intraday spreads,Spread core,15,-1275.0
-research-0221,2024-05-08,221,Directional Alpha B,Commissioned Live,31,-713.0
-research-0222,2024-05-08,222,Directional Alpha B,Commissioned Live,41,-697.0
-research-0223,2024-05-13,223,Directional Alpha A,Commissioned Live,29,-580.0
-research-0224,2024-05-14,224,Directional Alpha B,Commissioned Live,25,875.0
-research-0225,2024-05-14,225,Directional Alpha B,Commissioned Live,34,1224.0
-research-0226,2024-05-14,226,Directional Alpha B,Commissioned Live,38,950.0
-research-0227,2024-05-17,227,Core intraday spreads,Spread core,6,-30.0
-research-0228,2024-05-23,228,Core intraday spreads,Spread core,5,-190.0
-research-0229,2024-05-24,229,Directional Alpha A,Commissioned Live,28,-756.0
-research-0230,2024-05-29,230,Core intraday spreads,Spread core,5,-60.0
-research-0231,2024-05-29,231,Directional Alpha B,Commissioned Live,32,1024.0
-research-0232,2024-05-31,232,Core intraday spreads,Spread core,6,192.0
-research-0233,2024-06-04,233,Directional Alpha A,Commissioned Live,27,1026.0
-research-0234,2024-06-04,234,Directional Alpha A,Commissioned Live,100,-900.0
-research-0235,2024-06-07,235,Directional Alpha D,Live Pilot,11,-198.0
-research-0236,2024-06-10,236,Directional Alpha A,Commissioned Live,50,-850.0
-research-0237,2024-06-12,237,Directional Alpha A,Commissioned Live,41,-1230.0
-research-0238,2024-06-13,238,Directional Alpha A,Commissioned Live,3,66.0
-research-0239,2024-06-13,239,Core intraday spreads,Spread core,10,40.0
-research-0240,2024-06-14,240,Directional Alpha B,Commissioned Live,30,1200.0
-research-0241,2024-06-20,241,Core intraday spreads,Spread core,6,150.0
-research-0242,2024-06-21,242,Core intraday spreads,Spread core,6,-12.0
-research-0243,2024-06-24,243,Directional Alpha A,Commissioned Live,75,1125.0
-research-0244,2024-06-25,244,Directional Alpha A,Commissioned Live,28,1148.0
-research-0245,2024-06-27,245,Core intraday spreads,Spread core,6,102.0
-research-0246,2024-06-27,246,Directional Alpha A,Commissioned Live,70,1680.0
-research-0247,2024-06-28,247,Directional Alpha A,Commissioned Live,42,-798.0
-research-0248,2024-07-01,248,Directional Alpha A,Commissioned Live,34,1156.0
-research-0249,2024-07-01,249,Core intraday spreads,Spread core,15,-705.0
-research-0250,2024-07-11,250,Core intraday spreads,Spread core,7,238.0
-research-0251,2024-07-18,251,Core intraday spreads,Spread core,6,90.0
-research-0252,2024-07-18,252,Directional Alpha A,Commissioned Live,29,-870.0
-research-0253,2024-07-30,253,Core intraday spreads,Spread core,16,-32.0
-research-0254,2024-08-01,254,Core intraday spreads,Spread core,8,376.0
-research-0255,2024-08-02,255,Core intraday spreads,Spread core,7,203.0
-research-0256,2024-08-02,256,Core intraday spreads,Spread core,15,480.0
-research-0257,2024-08-20,257,Core intraday spreads,Spread core,7,238.0
-research-0258,2024-08-21,258,Directional Alpha A,Commissioned Live,49,-833.0
-research-0259,2024-08-21,259,Directional Alpha A,Commissioned Live,105,1155.0
-research-0260,2024-08-22,260,Core intraday spreads,Spread core,7,168.0
-research-0261,2024-08-23,261,Directional Alpha A,Commissioned Live,23,-1426.0
-research-0262,2024-08-26,262,Core intraday spreads,Spread core,7,259.0
-research-0263,2024-08-27,263,Core intraday spreads,Spread core,7,-343.0
-research-0264,2024-08-28,264,Core intraday spreads,Spread core,9,-198.0
-research-0265,2024-09-03,265,Core intraday spreads,Spread core,7,259.0
-research-0266,2024-09-05,266,Core intraday spreads,Spread core,13,156.0
-research-0267,2024-09-06,267,Core intraday spreads,Spread core,8,536.0
-research-0268,2024-09-09,268,Directional Alpha A,Commissioned Live,88,1232.0
-research-0269,2024-09-10,269,Core intraday spreads,Spread core,8,-592.0
-research-0270,2024-09-18,270,Directional Alpha A,Commissioned Live,38,2166.0
-research-0271,2024-09-18,271,Directional Alpha A,Commissioned Live,51,2091.0
-research-0272,2024-09-20,272,Core intraday spreads,Spread core,9,207.0
-research-0273,2024-09-20,273,Core intraday spreads,Spread core,16,192.0
-research-0274,2024-10-01,274,Core intraday spreads,Spread core,21,1302.0
-research-0275,2024-10-15,275,Core intraday spreads,Spread core,19,741.0
-research-0276,2024-10-23,276,Directional Alpha A,Commissioned Live,36,1584.0
-research-0277,2024-10-23,277,Directional Alpha A,Commissioned Live,1,-30.0
-research-0278,2024-10-23,278,Core intraday spreads,Spread core,20,800.0
-research-0279,2024-10-24,279,Directional Alpha A,Commissioned Live,40,-1120.0
-research-0280,2024-10-24,280,Directional Alpha A,Commissioned Live,37,1739.0
-research-0281,2024-10-24,281,Directional Alpha A,Commissioned Live,78,2184.0
-research-0282,2024-10-28,282,Directional Alpha A,Commissioned Live,83,-1411.0
-research-0283,2024-10-29,283,Core intraday spreads,Spread core,10,-510.0
-research-0284,2024-11-01,284,Directional Alpha A,Commissioned Live,74,-1554.0
-research-0285,2024-11-04,285,Core intraday spreads,Spread core,18,216.0
-research-0286,2024-11-05,286,Directional Alpha A,Commissioned Live,75,1725.0
-research-0287,2024-11-08,287,Directional Alpha A,Commissioned Live,64,1792.0
-research-0288,2024-11-14,288,Directional Alpha A,Commissioned Live,51,-1224.0
-research-0289,2024-11-14,289,Directional Alpha A,Commissioned Live,74,1850.0
-research-0290,2024-11-15,290,Core intraday spreads,Spread core,20,-420.0
-research-0291,2024-11-18,291,Directional Alpha A,Commissioned Live,54,2376.0
-research-0292,2024-11-27,292,Core intraday spreads,Spread core,11,220.0
-research-0293,2024-12-02,293,Directional Alpha A,Commissioned Live,85,1870.0
-research-0294,2024-12-09,294,Core intraday spreads,Spread core,23,414.0
-research-0295,2024-12-10,295,Directional Alpha A,Commissioned Live,57,1995.0
-research-0296,2024-12-10,296,Directional Alpha A,Commissioned Live,112,-1568.0
-research-0297,2024-12-12,297,Directional Alpha A,Commissioned Live,171,2565.0
-research-0298,2024-12-16,298,Directional Alpha A,Commissioned Live,121,2420.0
-research-0299,2024-12-17,299,Core intraday spreads,Spread core,13,156.0
-research-0300,2024-12-27,300,Core intraday spreads,Spread core,15,615.0
-research-0301,2024-12-31,301,Directional Alpha A,Commissioned Live,39,2301.0
-research-0302,2025-01-02,302,Core intraday spreads,Spread core,16,544.0
-research-0303,2025-01-03,303,Directional Alpha A,Commissioned Live,128,-1792.0
-research-0304,2025-01-07,304,Core intraday spreads,Spread core,30,1260.0
-research-0305,2025-01-08,305,Core intraday spreads,Spread core,17,-255.0
-research-0306,2025-01-10,306,Core intraday spreads,Spread core,15,225.0
-research-0307,2025-01-14,307,Core intraday spreads,Spread core,17,782.0
-research-0308,2025-01-23,308,Directional Alpha B,Commissioned Live,218,3706.0
-research-0309,2025-02-03,309,Core intraday spreads,Spread core,15,-345.0
-research-0310,2025-02-06,310,Directional Alpha A,Commissioned Live,60,-2280.0
-research-0311,2025-02-06,311,Directional Alpha A,Commissioned Live,55,-1650.0
-research-0312,2025-02-18,312,Core intraday spreads,Spread core,14,476.0
-research-0313,2025-02-20,313,Core intraday spreads,Spread core,32,1344.0
-research-0314,2025-02-21,314,Core intraday spreads,Spread core,33,1650.0
-research-0315,2025-02-24,315,Core intraday spreads,Spread core,37,-2997.0
-research-0316,2025-02-25,316,Core intraday spreads,Spread core,19,1520.0
-research-0317,2025-02-26,317,Core intraday spreads,Spread core,20,1400.0
-research-0318,2025-02-27,318,Core intraday spreads,Spread core,42,3402.0
-research-0319,2025-03-04,319,Core intraday spreads,Spread core,22,1342.0
-research-0320,2025-03-04,320,Core intraday spreads,Spread core,36,1224.0
-research-0321,2025-03-12,321,Core intraday spreads,Spread core,21,-1911.0
-research-0322,2025-03-13,322,Core intraday spreads,Spread core,20,1540.0
-research-0323,2025-03-18,323,Core intraday spreads,Spread core,21,1113.0
-research-0324,2025-03-21,324,Core intraday spreads,Spread core,17,-697.0
-research-0325,2025-03-26,325,Core intraday spreads,Spread core,34,918.0
-research-0326,2025-03-28,326,Core intraday spreads,Spread core,21,1512.0
-research-0327,2025-03-31,327,Core intraday spreads,Spread core,17,-102.0
-research-0328,2025-04-02,328,Core intraday spreads,Spread core,28,-504.0
-research-0329,2025-04-03,329,Core intraday spreads,Spread core,17,306.0
-research-0330,2025-04-03,330,Core intraday spreads,Spread core,38,1216.0
-research-0331,2025-04-07,331,Core intraday spreads,Spread core,18,-666.0
-research-0332,2025-04-09,332,Core intraday spreads,Spread core,34,578.0
-research-0333,2025-04-17,333,Directional Alpha A,Commissioned Live,72,-1944.0
-research-0334,2025-04-17,334,Directional Alpha A,Commissioned Live,105,-2625.0
-research-0335,2025-04-30,335,Core intraday spreads,Spread core,18,-432.0
-research-0336,2025-04-30,336,Core intraday spreads,Spread core,31,341.0
-research-0337,2025-05-05,337,Directional Alpha B,Commissioned Live,67,-2278.0
-research-0338,2025-05-06,338,Core intraday spreads,Spread core,15,-375.0
-research-0339,2025-05-06,339,Directional Alpha B,Commissioned Live,59,-2478.0
-research-0340,2025-05-06,340,Directional Alpha B,Commissioned Live,106,3392.0
-research-0341,2025-05-07,341,Directional Alpha A,Commissioned Live,41,-2296.0
-research-0342,2025-05-09,342,Directional Alpha A,Commissioned Live,46,-1840.0
-research-0343,2025-05-09,343,Directional Alpha A,Commissioned Live,115,2645.0
-research-0344,2025-05-14,344,Directional Alpha A,Commissioned Live,67,-2278.0
-research-0345,2025-05-15,345,Directional Alpha B,Commissioned Live,63,-1890.0
-research-0346,2025-05-15,346,Directional Alpha B,Commissioned Live,126,3906.0
-research-0347,2025-05-20,347,Directional Alpha A,Commissioned Live,74,3478.0
-research-0348,2025-05-29,348,Core intraday spreads,Spread core,19,-1368.0
-research-0349,2025-06-06,349,Directional Alpha A,Commissioned Live,62,2790.0
-research-0350,2025-06-06,350,Directional Alpha A,Commissioned Live,278,3336.0
-research-0351,2025-06-09,351,Directional Alpha A,Commissioned Live,151,-1963.0
-research-0352,2025-06-09,352,Directional Alpha A,Commissioned Live,228,-2736.0
-research-0353,2025-06-10,353,Directional Alpha D,Live Pilot,22,836.0
-research-0354,2025-06-10,354,Directional Alpha D,Live Pilot,38,722.0
-research-0355,2025-06-10,355,Directional Alpha D,Live Pilot,33,-528.0
-research-0356,2025-06-13,356,Core intraday spreads,Spread core,16,-288.0
-research-0357,2025-06-16,357,Directional Alpha A,Commissioned Live,39,-936.0
-research-0358,2025-06-16,358,Core intraday spreads,Spread core,21,1323.0
-research-0359,2025-06-18,359,Directional Alpha A,Commissioned Live,69,-2553.0
-research-0360,2025-06-18,360,Directional Alpha A,Commissioned Live,109,3815.0
-research-0361,2025-06-20,361,Core intraday spreads,Spread core,20,360.0
-research-0362,2025-06-20,362,Core intraday spreads,Spread core,35,-1295.0
-research-0363,2025-07-01,363,Core intraday spreads,Spread core,17,476.0
-research-0364,2025-07-11,364,Core intraday spreads,Spread core,19,-437.0
-research-0365,2025-07-11,365,Directional Alpha B,Commissioned Live,91,-2184.0
-research-0366,2025-07-15,366,Directional Alpha C,Live Pilot,26,-572.0
-research-0367,2025-07-16,367,Core intraday spreads,Spread core,16,96.0
-research-0368,2025-07-16,368,Core intraday spreads,Spread core,31,-1116.0
-research-0369,2025-07-18,369,Core intraday spreads,Spread core,15,255.0
-research-0370,2025-07-22,370,Core intraday spreads,Spread core,34,-1564.0
-research-0371,2025-07-24,371,Directional Alpha A,Commissioned Live,129,-2064.0
-research-0372,2025-07-30,372,Directional Alpha A,Commissioned Live,44,2684.0
-research-0373,2025-07-30,373,Directional Alpha A,Commissioned Live,95,2660.0
-research-0374,2025-08-01,374,Core intraday spreads,Spread core,36,1368.0
-research-0375,2025-08-07,375,Core intraday spreads,Spread core,18,882.0
-research-0376,2025-08-14,376,Directional Alpha B,Commissioned Live,205,-1845.0
-research-0377,2025-08-15,377,Core intraday spreads,Spread core,17,374.0
-research-0378,2025-08-18,378,Directional Alpha B,Commissioned Live,99,3564.0
-research-0379,2025-08-19,379,Core intraday spreads,Spread core,34,-748.0
-research-0380,2025-08-20,380,Core intraday spreads,Spread core,19,893.0
-research-0381,2025-08-21,381,Directional Alpha A,Commissioned Live,105,3465.0
-research-0382,2025-08-21,382,Directional Alpha A,Commissioned Live,124,3720.0
-research-0383,2025-08-29,383,Directional Alpha A,Commissioned Live,1,-40.0
-research-0384,2025-08-29,384,Core intraday spreads,Spread core,42,1638.0
-research-0385,2025-09-03,385,Directional Alpha A,Commissioned Live,266,3990.0
-research-0386,2025-09-05,386,Core intraday spreads,Spread core,25,1125.0
-research-0387,2025-09-08,387,Directional Alpha A,Commissioned Live,124,-3224.0
-research-0388,2025-09-09,388,Core intraday spreads,Spread core,21,-777.0
-research-0389,2025-09-10,389,Directional Alpha C,Live Pilot,81,891.0
-research-0390,2025-09-17,390,Core intraday spreads,Spread core,26,-156.0
-research-0391,2025-09-17,391,Core intraday spreads,Spread core,40,-1080.0
-research-0392,2025-09-19,392,Directional Alpha B,Commissioned Live,85,3910.0
-research-0393,2025-09-19,393,Directional Alpha B,Commissioned Live,283,-3113.0
-research-0394,2025-09-24,394,Directional Alpha A,Commissioned Live,128,-3200.0
-research-0395,2025-09-24,395,Core intraday spreads,Spread core,37,-703.0
-research-0396,2025-09-25,396,Core intraday spreads,Spread core,19,-532.0
-research-0397,2025-09-29,397,Directional Alpha C,Live Pilot,23,828.0
-research-0398,2025-09-30,398,Directional Alpha A,Commissioned Live,76,3876.0
-research-0399,2025-10-01,399,Directional Alpha B,Commissioned Live,98,-2548.0
-research-0400,2025-10-02,400,Core intraday spreads,Spread core,19,323.0
-research-0401,2025-10-09,401,Core intraday spreads,Spread core,21,630.0
-research-0402,2025-10-10,402,Core intraday spreads,Spread core,51,3519.0
-research-0403,2025-10-14,403,Directional Alpha B,Commissioned Live,72,-2664.0
-research-0404,2025-10-17,404,Core intraday spreads,Spread core,39,585.0
-research-0405,2025-10-22,405,Core intraday spreads,Spread core,47,2256.0
-research-0406,2025-11-03,406,Core intraday spreads,Spread core,25,-1800.0
-research-0407,2025-11-05,407,Directional Alpha B,Commissioned Live,87,4437.0
-research-0408,2025-11-06,408,Core intraday spreads,Spread core,27,1431.0
-research-0409,2025-11-06,409,Directional Alpha A,Commissioned Live,134,-2948.0
-research-0410,2025-11-07,410,Core intraday spreads,Spread core,23,483.0
-research-0411,2025-11-07,411,Core intraday spreads,Spread core,49,1764.0
-research-0412,2025-11-12,412,Directional Alpha C,Live Pilot,55,-715.0
-research-0413,2025-11-13,413,Core intraday spreads,Spread core,52,2912.0
-research-0414,2025-11-17,414,Core intraday spreads,Spread core,28,-2548.0
-research-0415,2025-11-18,415,Core intraday spreads,Spread core,28,1232.0
-research-0416,2025-11-18,416,Core intraday spreads,Spread core,51,2448.0
-research-0417,2025-11-21,417,Core intraday spreads,Spread core,47,1222.0
-research-0418,2025-12-02,418,Directional Alpha A,Commissioned Live,112,4592.0
-research-0419,2025-12-03,419,Directional Alpha A,Commissioned Live,92,-2668.0
-research-0420,2025-12-04,420,Core intraday spreads,Spread core,25,1075.0
-research-0421,2025-12-08,421,Directional Alpha A,Commissioned Live,91,-2730.0
-research-0422,2025-12-08,422,Directional Alpha A,Commissioned Live,97,-2716.0
-research-0423,2025-12-08,423,Core intraday spreads,Spread core,49,1960.0
-research-0424,2025-12-10,424,Directional Alpha B,Commissioned Live,1,68.0
-research-0425,2025-12-10,425,Core intraday spreads,Spread core,44,528.0
-research-0426,2025-12-10,426,Directional Alpha B,Commissioned Live,158,5530.0
-research-0427,2025-12-11,427,Directional Alpha A,Commissioned Live,93,-3069.0
-research-0428,2025-12-12,428,Core intraday spreads,Spread core,28,1344.0
-research-0429,2025-12-15,429,Core intraday spreads,Spread core,56,2800.0
-research-0430,2025-12-16,430,Core intraday spreads,Spread core,32,1472.0
-research-0431,2025-12-16,431,Core intraday spreads,Spread core,49,539.0
-research-0432,2025-12-17,432,Core intraday spreads,Spread core,29,1798.0
-research-0433,2025-12-18,433,Directional Alpha A,Commissioned Live,226,-1582.0
-research-0434,2025-12-19,434,Directional Alpha B,Commissioned Live,104,5408.0
-research-0435,2025-12-19,435,Directional Alpha B,Commissioned Live,116,-3712.0
-research-0436,2025-12-22,436,Directional Alpha C,Live Pilot,35,1050.0
-research-0437,2025-12-30,437,Directional Alpha A,Commissioned Live,174,-3132.0
-research-0438,2025-12-31,438,Core intraday spreads,Spread core,28,812.0
-research-0439,2026-01-02,439,Core intraday spreads,Spread core,57,-3306.0
-research-0440,2026-01-05,440,Directional Alpha A,Commissioned Live,140,4200.0
-research-0441,2026-01-07,441,Directional Alpha A,Commissioned Live,119,4284.0
-research-0442,2026-01-07,442,Directional Alpha A,Commissioned Live,381,-3429.0
-research-0443,2026-01-08,443,Core intraday spreads,Spread core,28,-196.0
-research-0444,2026-01-08,444,Directional Alpha A,Commissioned Live,305,-3050.0
-research-0445,2026-01-12,445,Directional Alpha B,Commissioned Live,132,5016.0
-research-0446,2026-01-12,446,Directional Alpha B,Commissioned Live,162,-3078.0
-research-0447,2026-01-14,447,Core intraday spreads,Spread core,31,2015.0
-research-0448,2026-01-14,448,Core intraday spreads,Spread core,53,901.0
-research-0449,2026-01-16,449,Core intraday spreads,Spread core,59,-3540.0
-research-0450,2026-01-21,450,Directional Alpha B,Commissioned Live,97,-2813.0
-research-0451,2026-01-23,451,Directional Alpha A,Commissioned Live,97,-2813.0
-research-0452,2026-01-23,452,Directional Alpha A,Commissioned Live,109,4578.0
-research-0453,2026-01-26,453,Directional Alpha B,Commissioned Live,128,-2816.0
-research-0454,2026-01-28,454,Directional Alpha A,Commissioned Live,54,2214.0
-research-0455,2026-01-28,455,Core intraday spreads,Spread core,29,1276.0
-research-0456,2026-01-29,456,Core intraday spreads,Spread core,66,4356.0
-research-0457,2026-02-03,457,Core intraday spreads,Spread core,31,1984.0
-research-0458,2026-02-05,458,Core intraday spreads,Spread core,36,1908.0
-research-0459,2026-02-05,459,Core intraday spreads,Spread core,58,1566.0
-research-0460,2026-02-10,460,Directional Alpha A,Commissioned Live,123,5043.0
-research-0461,2026-02-10,461,Directional Alpha A,Commissioned Live,228,-3876.0
-research-0462,2026-02-11,462,Directional Alpha D,Live Pilot,22,1474.0
-research-0463,2026-02-12,463,Core intraday spreads,Spread core,67,3283.0
-research-0464,2026-02-17,464,Core intraday spreads,Spread core,37,-1110.0
-research-0465,2026-02-17,465,Core intraday spreads,Spread core,58,812.0
-research-0466,2026-02-17,466,Directional Alpha B,Commissioned Live,91,5642.0
-research-0467,2026-02-17,467,Directional Alpha B,Commissioned Live,193,7527.0
-research-0468,2026-02-19,468,Directional Alpha A,Commissioned Live,94,-3666.0
-research-0469,2026-02-23,469,Directional Alpha A,Commissioned Live,94,-4888.0
-research-0470,2026-02-23,470,Core intraday spreads,Spread core,72,3456.0
-research-0471,2026-02-26,471,Core intraday spreads,Spread core,41,2173.0
-research-0472,2026-02-27,472,Core intraday spreads,Spread core,44,-1056.0
-research-0473,2026-03-03,473,Core intraday spreads,Spread core,33,660.0
-research-0474,2026-03-03,474,Core intraday spreads,Spread core,66,1452.0
-research-0475,2026-03-05,475,Directional Alpha A,Commissioned Live,76,6156.0
-research-0476,2026-03-05,476,Core intraday spreads,Spread core,43,2236.0
-research-0477,2026-03-06,477,Core intraday spreads,Spread core,39,-2223.0
-research-0478,2026-03-09,478,Core intraday spreads,Spread core,36,-1260.0
-research-0479,2026-03-11,479,Directional Alpha A,Commissioned Live,89,-3827.0
-research-0480,2026-03-11,480,Directional Alpha A,Commissioned Live,91,6552.0
-research-0481,2026-03-12,481,Core intraday spreads,Spread core,39,1092.0
-research-0482,2026-03-12,482,Core intraday spreads,Spread core,70,910.0
-research-0483,2026-03-13,483,Core intraday spreads,Spread core,79,2607.0
-research-0484,2026-03-16,484,Directional Alpha A,Commissioned Live,496,-5456.0
-research-0485,2026-03-20,485,Core intraday spreads,Spread core,44,2464.0
-research-0486,2026-03-20,486,Core intraday spreads,Spread core,75,1950.0
-research-0487,2026-04-07,487,Directional Alpha D,Live Pilot,51,1836.0
-research-0488,2026-04-09,488,Directional Alpha A,Commissioned Live,144,6192.0
-research-0489,2026-04-21,489,Core intraday spreads,Spread core,44,1716.0
-research-0490,2026-04-22,490,Directional Alpha A,Commissioned Live,572,6864.0
-research-0491,2026-04-23,491,Directional Alpha B,Commissioned Live,228,11400.0
-research-0492,2026-04-23,492,Directional Alpha B,Commissioned Live,219,-6132.0
-research-0493,2026-04-27,493,Directional Alpha A,Commissioned Live,158,7584.0
-research-0494,2026-04-28,494,Directional Alpha D,Live Pilot,51,-1530.0
-research-0495,2026-04-28,495,Directional Alpha D,Live Pilot,87,1827.0
-research-0496,2026-04-29,496,Core intraday spreads,Spread core,57,-627.0
-research-0497,2026-05-11,497,Core intraday spreads,Spread core,62,3782.0
-research-0498,2026-05-15,498,Core intraday spreads,Spread core,49,-637.0
-research-0499,2026-05-15,499,Core intraday spreads,Spread core,87,957.0
-research-0500,2026-05-27,500,Core intraday spreads,Spread core,49,-2548.0
-research-0501,2026-06-03,501,Core intraday spreads,Spread core,95,3230.0
-research-0502,2026-06-05,502,Core intraday spreads,Spread core,104,4992.0
-research-0503,2026-06-09,503,Core intraday spreads,Spread core,129,10062.0
-research-0504,2026-06-22,504,Core intraday spreads,Spread core,106,2650.0
-research-0505,2026-06-25,505,Core intraday spreads,Spread core,137,10275.0
-research-0506,2026-06-29,506,Core intraday spreads,Spread core,66,-5676.0
-research-0507,2026-07-02,507,Core intraday spreads,Spread core,59,2301.0
-research-0508,2026-07-07,508,Core intraday spreads,Spread core,118,5428.0
-research-0509,2026-07-08,509,Core intraday spreads,Spread core,61,2196.0
-research-0510,2026-07-08,510,Core intraday spreads,Spread core,105,1155.0
-research-0511,2026-07-15,511,Core intraday spreads,Spread core,54,-1566.0
-research-0512,2026-07-22,512,Core intraday spreads,Spread core,60,1020.0
-research-0513,2026-07-23,513,Core intraday spreads,Spread core,105,-2100.0
-research-0514,2026-07-29,514,Core intraday spreads,Spread core,79,5530.0
-research-0515,2026-07-30,515,Core intraday spreads,Spread core,60,2220.0
-research-0516,2026-08-05,516,Core intraday spreads,Spread core,65,4030.0
-research-0517,2026-08-11,517,Core intraday spreads,Spread core,117,3159.0
-research-0518,2026-08-20,518,Core intraday spreads,Spread core,57,-1710.0
-research-0519,2026-08-24,519,Core intraday spreads,Spread core,58,-290.0
-research-0520,2026-08-25,520,Core intraday spreads,Spread core,56,-1344.0
-research-0521,2026-08-28,521,Core intraday spreads,Spread core,63,2079.0
-research-0522,2026-08-31,522,Core intraday spreads,Spread core,56,784.0
-research-0523,2026-09-04,523,Core intraday spreads,Spread core,60,1440.0
-research-0524,2026-09-08,524,Core intraday spreads,Spread core,62,1240.0
-research-0525,2026-09-09,525,Core intraday spreads,Spread core,114,1596.0
-research-0526,2026-09-15,526,Core intraday spreads,Spread core,66,1782.0
+record_id,date,close_sequence,gross_pnl
+research-0001,2023-01-05,1,-310.0
+research-0002,2023-01-05,2,564.0
+research-0003,2023-01-06,3,-99.0
+research-0004,2023-01-13,4,517.0
+research-0005,2023-01-18,5,105.0
+research-0006,2023-01-18,6,-420.0
+research-0007,2023-01-19,7,26.0
+research-0008,2023-01-24,8,-52.0
+research-0009,2023-01-25,9,54.0
+research-0010,2023-01-26,10,-299.0
+research-0011,2023-01-27,11,506.0
+research-0012,2023-02-03,12,-336.0
+research-0013,2023-02-03,13,630.0
+research-0014,2023-02-08,14,-330.0
+research-0015,2023-02-15,15,-329.0
+research-0016,2023-02-17,16,276.0
+research-0017,2023-02-17,17,12.0
+research-0018,2023-02-21,18,105.0
+research-0019,2023-02-21,19,-95.0
+research-0020,2023-02-21,20,506.0
+research-0021,2023-02-22,21,-27.0
+research-0022,2023-02-23,22,-144.0
+research-0023,2023-02-24,23,48.0
+research-0024,2023-02-28,24,48.0
+research-0025,2023-02-28,25,-330.0
+research-0026,2023-03-01,26,57.0
+research-0027,2023-03-02,27,-325.0
+research-0028,2023-03-07,28,-300.0
+research-0029,2023-03-10,29,9.0
+research-0030,2023-03-15,30,-310.0
+research-0031,2023-03-17,31,450.0
+research-0032,2023-03-20,32,-320.0
+research-0033,2023-03-20,33,462.0
+research-0034,2023-03-22,34,460.0
+research-0035,2023-03-23,35,740.0
+research-0036,2023-03-24,36,260.0
+research-0037,2023-03-24,37,-84.0
+research-0038,2023-03-24,38,72.0
+research-0039,2023-03-28,39,-350.0
+research-0040,2023-04-04,40,42.0
+research-0041,2023-04-05,41,-490.0
+research-0042,2023-04-12,42,-156.0
+research-0043,2023-04-13,43,495.0
+research-0044,2023-04-17,44,-420.0
+research-0045,2023-04-24,45,-320.0
+research-0046,2023-04-24,46,-420.0
+research-0047,2023-04-25,47,26.0
+research-0048,2023-04-26,48,-86.0
+research-0049,2023-04-27,49,-171.0
+research-0050,2023-05-03,50,414.0
+research-0051,2023-05-03,51,670.0
+research-0052,2023-05-04,52,39.0
+research-0053,2023-05-04,53,80.0
+research-0054,2023-05-04,54,45.0
+research-0055,2023-05-08,55,-352.0
+research-0056,2023-05-08,56,-324.0
+research-0057,2023-05-09,57,-9.0
+research-0058,2023-05-11,58,-42.0
+research-0059,2023-05-12,59,-46.0
+research-0060,2023-05-12,60,115.0
+research-0061,2023-05-15,61,615.0
+research-0062,2023-05-16,62,836.0
+research-0063,2023-05-16,63,651.0
+research-0064,2023-05-22,64,-459.0
+research-0065,2023-05-24,65,36.0
+research-0066,2023-05-24,66,66.0
+research-0067,2023-05-30,67,-105.0
+research-0068,2023-05-31,68,66.0
+research-0069,2023-06-01,69,-57.0
+research-0070,2023-06-06,70,54.0
+research-0071,2023-06-08,71,-72.0
+research-0072,2023-06-08,72,-420.0
+research-0073,2023-06-16,73,-480.0
+research-0074,2023-06-20,74,51.0
+research-0075,2023-06-21,75,680.0
+research-0076,2023-06-22,76,748.0
+research-0077,2023-06-23,77,-51.0
+research-0078,2023-06-27,78,688.0
+research-0079,2023-06-28,79,-400.0
+research-0080,2023-06-28,80,812.0
+research-0081,2023-06-28,81,-522.0
+research-0082,2023-06-28,82,-396.0
+research-0083,2023-07-05,83,594.0
+research-0084,2023-07-06,84,-400.0
+research-0085,2023-07-18,85,-162.0
+research-0086,2023-07-26,86,-378.0
+research-0087,2023-07-28,87,575.0
+research-0088,2023-08-01,88,-440.0
+research-0089,2023-08-02,89,-120.0
+research-0090,2023-08-08,90,42.0
+research-0091,2023-08-08,91,-726.0
+research-0092,2023-08-09,92,54.0
+research-0093,2023-08-11,93,-198.0
+research-0094,2023-08-15,94,60.0
+research-0095,2023-08-18,95,-585.0
+research-0096,2023-08-18,96,-405.0
+research-0097,2023-08-21,97,-68.0
+research-0098,2023-08-22,98,34.0
+research-0099,2023-08-25,99,174.0
+research-0100,2023-09-01,100,-44.0
+research-0101,2023-09-05,101,3.0
+research-0102,2023-09-06,102,-345.0
+research-0103,2023-09-07,103,-10.0
+research-0104,2023-09-07,104,522.0
+research-0105,2023-09-12,105,-392.0
+research-0106,2023-09-13,106,-60.0
+research-0107,2023-09-15,107,32.0
+research-0108,2023-09-18,108,-20.0
+research-0109,2023-09-18,109,-336.0
+research-0110,2023-09-19,110,-240.0
+research-0111,2023-09-19,111,-279.0
+research-0112,2023-09-19,112,56.0
+research-0113,2023-09-19,113,-336.0
+research-0114,2023-09-22,114,504.0
+research-0115,2023-09-26,115,58.0
+research-0116,2023-09-26,116,-299.0
+research-0117,2023-09-28,117,448.0
+research-0118,2023-09-28,118,-324.0
+research-0119,2023-10-02,119,512.0
+research-0120,2023-10-03,120,132.0
+research-0121,2023-10-04,121,-352.0
+research-0122,2023-10-05,122,-312.0
+research-0123,2023-10-06,123,-54.0
+research-0124,2023-10-11,124,481.0
+research-0125,2023-10-13,125,90.0
+research-0126,2023-10-16,126,-74.0
+research-0127,2023-10-18,127,440.0
+research-0128,2023-10-18,128,506.0
+research-0129,2023-10-19,129,-36.0
+research-0130,2023-10-20,130,126.0
+research-0131,2023-10-20,131,78.0
+research-0132,2023-10-23,132,840.0
+research-0133,2023-10-25,133,-68.0
+research-0134,2023-10-25,134,-150.0
+research-0135,2023-10-27,135,-483.0
+research-0136,2023-10-27,136,544.0
+research-0137,2023-10-30,137,555.0
+research-0138,2023-11-06,138,-390.0
+research-0139,2023-11-08,139,-69.0
+research-0140,2023-11-09,140,-63.0
+research-0141,2023-11-13,141,572.0
+research-0142,2023-11-21,142,315.0
+research-0143,2023-11-21,143,39.0
+research-0144,2023-11-27,144,42.0
+research-0145,2023-11-28,145,-108.0
+research-0146,2023-12-08,146,736.0
+research-0147,2023-12-11,147,18.0
+research-0148,2023-12-21,148,189.0
+research-0149,2023-12-26,149,760.0
+research-0150,2023-12-27,150,-440.0
+research-0151,2023-12-27,151,770.0
+research-0152,2023-12-27,152,-720.0
+research-0153,2023-12-28,153,741.0
+research-0154,2023-12-29,154,-464.0
+research-0155,2023-12-29,155,754.0
+research-0156,2024-01-03,156,80.0
+research-0157,2024-01-03,157,780.0
+research-0158,2024-01-04,158,-564.0
+research-0159,2024-01-05,159,-525.0
+research-0160,2024-01-08,160,-552.0
+research-0161,2024-01-08,161,-529.0
+research-0162,2024-01-09,162,675.0
+research-0163,2024-01-10,163,660.0
+research-0164,2024-01-12,164,-256.0
+research-0165,2024-01-12,165,682.0
+research-0166,2024-01-16,166,-100.0
+research-0167,2024-01-16,167,-504.0
+research-0168,2024-01-17,168,0.0
+research-0169,2024-01-17,169,-234.0
+research-0170,2024-01-17,170,713.0
+research-0171,2024-01-22,171,207.0
+research-0172,2024-01-23,172,-540.0
+research-0173,2024-01-25,173,384.0
+research-0174,2024-01-25,174,100.0
+research-0175,2024-01-25,175,748.0
+research-0176,2024-01-30,176,756.0
+research-0177,2024-01-31,177,44.0
+research-0178,2024-01-31,178,162.0
+research-0179,2024-02-05,179,800.0
+research-0180,2024-02-05,180,-976.0
+research-0181,2024-02-06,181,925.0
+research-0182,2024-02-12,182,825.0
+research-0183,2024-02-15,183,1000.0
+research-0184,2024-02-20,184,10.0
+research-0185,2024-02-20,185,-360.0
+research-0186,2024-02-20,186,-736.0
+research-0187,2024-02-20,187,980.0
+research-0188,2024-02-26,188,912.0
+research-0189,2024-02-27,189,36.0
+research-0190,2024-02-28,190,-648.0
+research-0191,2024-02-28,191,1320.0
+research-0192,2024-02-29,192,240.0
+research-0193,2024-03-05,193,110.0
+research-0194,2024-03-06,194,2280.0
+research-0195,2024-03-11,195,-54.0
+research-0196,2024-03-14,196,336.0
+research-0197,2024-03-15,197,-210.0
+research-0198,2024-03-21,198,-176.0
+research-0199,2024-03-22,199,1176.0
+research-0200,2024-03-25,200,1150.0
+research-0201,2024-04-03,201,2050.0
+research-0202,2024-04-08,202,-1190.0
+research-0203,2024-04-08,203,-1197.0
+research-0204,2024-04-09,204,248.0
+research-0205,2024-04-11,205,-168.0
+research-0206,2024-04-11,206,-448.0
+research-0207,2024-04-11,207,156.0
+research-0208,2024-04-15,208,585.0
+research-0209,2024-04-16,209,90.0
+research-0210,2024-04-16,210,280.0
+research-0211,2024-04-17,211,-585.0
+research-0212,2024-04-17,212,-1428.0
+research-0213,2024-04-18,213,-775.0
+research-0214,2024-04-22,214,-720.0
+research-0215,2024-04-22,215,-792.0
+research-0216,2024-04-23,216,-980.0
+research-0217,2024-04-30,217,168.0
+research-0218,2024-05-01,218,-42.0
+research-0219,2024-05-01,219,154.0
+research-0220,2024-05-02,220,-1275.0
+research-0221,2024-05-08,221,-713.0
+research-0222,2024-05-08,222,-697.0
+research-0223,2024-05-13,223,-580.0
+research-0224,2024-05-14,224,875.0
+research-0225,2024-05-14,225,1224.0
+research-0226,2024-05-14,226,950.0
+research-0227,2024-05-17,227,-30.0
+research-0228,2024-05-23,228,-190.0
+research-0229,2024-05-24,229,-756.0
+research-0230,2024-05-29,230,-60.0
+research-0231,2024-05-29,231,1024.0
+research-0232,2024-05-31,232,192.0
+research-0233,2024-06-04,233,1026.0
+research-0234,2024-06-04,234,-900.0
+research-0235,2024-06-07,235,-198.0
+research-0236,2024-06-10,236,-850.0
+research-0237,2024-06-12,237,-1230.0
+research-0238,2024-06-13,238,66.0
+research-0239,2024-06-13,239,40.0
+research-0240,2024-06-14,240,1200.0
+research-0241,2024-06-20,241,150.0
+research-0242,2024-06-21,242,-12.0
+research-0243,2024-06-24,243,1125.0
+research-0244,2024-06-25,244,1148.0
+research-0245,2024-06-27,245,102.0
+research-0246,2024-06-27,246,1680.0
+research-0247,2024-06-28,247,-798.0
+research-0248,2024-07-01,248,1156.0
+research-0249,2024-07-01,249,-705.0
+research-0250,2024-07-11,250,238.0
+research-0251,2024-07-18,251,90.0
+research-0252,2024-07-18,252,-870.0
+research-0253,2024-07-30,253,-32.0
+research-0254,2024-08-01,254,376.0
+research-0255,2024-08-02,255,203.0
+research-0256,2024-08-02,256,480.0
+research-0257,2024-08-20,257,238.0
+research-0258,2024-08-21,258,-833.0
+research-0259,2024-08-21,259,1155.0
+research-0260,2024-08-22,260,168.0
+research-0261,2024-08-23,261,-1426.0
+research-0262,2024-08-26,262,259.0
+research-0263,2024-08-27,263,-343.0
+research-0264,2024-08-28,264,-198.0
+research-0265,2024-09-03,265,259.0
+research-0266,2024-09-05,266,156.0
+research-0267,2024-09-06,267,536.0
+research-0268,2024-09-09,268,1232.0
+research-0269,2024-09-10,269,-592.0
+research-0270,2024-09-18,270,2166.0
+research-0271,2024-09-18,271,2091.0
+research-0272,2024-09-20,272,207.0
+research-0273,2024-09-20,273,192.0
+research-0274,2024-10-01,274,1302.0
+research-0275,2024-10-15,275,741.0
+research-0276,2024-10-23,276,1584.0
+research-0277,2024-10-23,277,-30.0
+research-0278,2024-10-23,278,800.0
+research-0279,2024-10-24,279,-1120.0
+research-0280,2024-10-24,280,1739.0
+research-0281,2024-10-24,281,2184.0
+research-0282,2024-10-28,282,-1411.0
+research-0283,2024-10-29,283,-510.0
+research-0284,2024-11-01,284,-1554.0
+research-0285,2024-11-04,285,216.0
+research-0286,2024-11-05,286,1725.0
+research-0287,2024-11-08,287,1792.0
+research-0288,2024-11-14,288,-1224.0
+research-0289,2024-11-14,289,1850.0
+research-0290,2024-11-15,290,-420.0
+research-0291,2024-11-18,291,2376.0
+research-0292,2024-11-27,292,220.0
+research-0293,2024-12-02,293,1870.0
+research-0294,2024-12-09,294,414.0
+research-0295,2024-12-10,295,1995.0
+research-0296,2024-12-10,296,-1568.0
+research-0297,2024-12-12,297,2565.0
+research-0298,2024-12-16,298,2420.0
+research-0299,2024-12-17,299,156.0
+research-0300,2024-12-27,300,615.0
+research-0301,2024-12-31,301,2301.0
+research-0302,2025-01-02,302,544.0
+research-0303,2025-01-03,303,-1792.0
+research-0304,2025-01-07,304,1260.0
+research-0305,2025-01-08,305,-255.0
+research-0306,2025-01-10,306,225.0
+research-0307,2025-01-14,307,782.0
+research-0308,2025-01-23,308,3706.0
+research-0309,2025-02-03,309,-345.0
+research-0310,2025-02-06,310,-2280.0
+research-0311,2025-02-06,311,-1650.0
+research-0312,2025-02-18,312,476.0
+research-0313,2025-02-20,313,1344.0
+research-0314,2025-02-21,314,1650.0
+research-0315,2025-02-24,315,-2997.0
+research-0316,2025-02-25,316,1520.0
+research-0317,2025-02-26,317,1400.0
+research-0318,2025-02-27,318,3402.0
+research-0319,2025-03-04,319,1342.0
+research-0320,2025-03-04,320,1224.0
+research-0321,2025-03-12,321,-1911.0
+research-0322,2025-03-13,322,1540.0
+research-0323,2025-03-18,323,1113.0
+research-0324,2025-03-21,324,-697.0
+research-0325,2025-03-26,325,918.0
+research-0326,2025-03-28,326,1512.0
+research-0327,2025-03-31,327,-102.0
+research-0328,2025-04-02,328,-504.0
+research-0329,2025-04-03,329,306.0
+research-0330,2025-04-03,330,1216.0
+research-0331,2025-04-07,331,-666.0
+research-0332,2025-04-09,332,578.0
+research-0333,2025-04-17,333,-1944.0
+research-0334,2025-04-17,334,-2625.0
+research-0335,2025-04-30,335,-432.0
+research-0336,2025-04-30,336,341.0
+research-0337,2025-05-05,337,-2278.0
+research-0338,2025-05-06,338,-375.0
+research-0339,2025-05-06,339,-2478.0
+research-0340,2025-05-06,340,3392.0
+research-0341,2025-05-07,341,-2296.0
+research-0342,2025-05-09,342,-1840.0
+research-0343,2025-05-09,343,2645.0
+research-0344,2025-05-14,344,-2278.0
+research-0345,2025-05-15,345,-1890.0
+research-0346,2025-05-15,346,3906.0
+research-0347,2025-05-20,347,3478.0
+research-0348,2025-05-29,348,-1368.0
+research-0349,2025-06-06,349,2790.0
+research-0350,2025-06-06,350,3336.0
+research-0351,2025-06-09,351,-1963.0
+research-0352,2025-06-09,352,-2736.0
+research-0353,2025-06-10,353,836.0
+research-0354,2025-06-10,354,722.0
+research-0355,2025-06-10,355,-528.0
+research-0356,2025-06-13,356,-288.0
+research-0357,2025-06-16,357,-936.0
+research-0358,2025-06-16,358,1323.0
+research-0359,2025-06-18,359,-2553.0
+research-0360,2025-06-18,360,3815.0
+research-0361,2025-06-20,361,360.0
+research-0362,2025-06-20,362,-1295.0
+research-0363,2025-07-01,363,476.0
+research-0364,2025-07-11,364,-437.0
+research-0365,2025-07-11,365,-2184.0
+research-0366,2025-07-15,366,-572.0
+research-0367,2025-07-16,367,96.0
+research-0368,2025-07-16,368,-1116.0
+research-0369,2025-07-18,369,255.0
+research-0370,2025-07-22,370,-1564.0
+research-0371,2025-07-24,371,-2064.0
+research-0372,2025-07-30,372,2684.0
+research-0373,2025-07-30,373,2660.0
+research-0374,2025-08-01,374,1368.0
+research-0375,2025-08-07,375,882.0
+research-0376,2025-08-14,376,-1845.0
+research-0377,2025-08-15,377,374.0
+research-0378,2025-08-18,378,3564.0
+research-0379,2025-08-19,379,-748.0
+research-0380,2025-08-20,380,893.0
+research-0381,2025-08-21,381,3465.0
+research-0382,2025-08-21,382,3720.0
+research-0383,2025-08-29,383,-40.0
+research-0384,2025-08-29,384,1638.0
+research-0385,2025-09-03,385,3990.0
+research-0386,2025-09-05,386,1125.0
+research-0387,2025-09-08,387,-3224.0
+research-0388,2025-09-09,388,-777.0
+research-0389,2025-09-10,389,891.0
+research-0390,2025-09-17,390,-156.0
+research-0391,2025-09-17,391,-1080.0
+research-0392,2025-09-19,392,3910.0
+research-0393,2025-09-19,393,-3113.0
+research-0394,2025-09-24,394,-3200.0
+research-0395,2025-09-24,395,-703.0
+research-0396,2025-09-25,396,-532.0
+research-0397,2025-09-29,397,828.0
+research-0398,2025-09-30,398,3876.0
+research-0399,2025-10-01,399,-2548.0
+research-0400,2025-10-02,400,323.0
+research-0401,2025-10-09,401,630.0
+research-0402,2025-10-10,402,3519.0
+research-0403,2025-10-14,403,-2664.0
+research-0404,2025-10-17,404,585.0
+research-0405,2025-10-22,405,2256.0
+research-0406,2025-11-03,406,-1800.0
+research-0407,2025-11-05,407,4437.0
+research-0408,2025-11-06,408,1431.0
+research-0409,2025-11-06,409,-2948.0
+research-0410,2025-11-07,410,483.0
+research-0411,2025-11-07,411,1764.0
+research-0412,2025-11-12,412,-715.0
+research-0413,2025-11-13,413,2912.0
+research-0414,2025-11-17,414,-2548.0
+research-0415,2025-11-18,415,1232.0
+research-0416,2025-11-18,416,2448.0
+research-0417,2025-11-21,417,1222.0
+research-0418,2025-12-02,418,4592.0
+research-0419,2025-12-03,419,-2668.0
+research-0420,2025-12-04,420,1075.0
+research-0421,2025-12-08,421,-2730.0
+research-0422,2025-12-08,422,-2716.0
+research-0423,2025-12-08,423,1960.0
+research-0424,2025-12-10,424,68.0
+research-0425,2025-12-10,425,528.0
+research-0426,2025-12-10,426,5530.0
+research-0427,2025-12-11,427,-3069.0
+research-0428,2025-12-12,428,1344.0
+research-0429,2025-12-15,429,2800.0
+research-0430,2025-12-16,430,1472.0
+research-0431,2025-12-16,431,539.0
+research-0432,2025-12-17,432,1798.0
+research-0433,2025-12-18,433,-1582.0
+research-0434,2025-12-19,434,5408.0
+research-0435,2025-12-19,435,-3712.0
+research-0436,2025-12-22,436,1050.0
+research-0437,2025-12-30,437,-3132.0
+research-0438,2025-12-31,438,812.0
+research-0439,2026-01-02,439,-3306.0
+research-0440,2026-01-05,440,4200.0
+research-0441,2026-01-07,441,4284.0
+research-0442,2026-01-07,442,-3429.0
+research-0443,2026-01-08,443,-196.0
+research-0444,2026-01-08,444,-3050.0
+research-0445,2026-01-12,445,5016.0
+research-0446,2026-01-12,446,-3078.0
+research-0447,2026-01-14,447,2015.0
+research-0448,2026-01-14,448,901.0
+research-0449,2026-01-16,449,-3540.0
+research-0450,2026-01-21,450,-2813.0
+research-0451,2026-01-23,451,-2813.0
+research-0452,2026-01-23,452,4578.0
+research-0453,2026-01-26,453,-2816.0
+research-0454,2026-01-28,454,2214.0
+research-0455,2026-01-28,455,1276.0
+research-0456,2026-01-29,456,4356.0
+research-0457,2026-02-03,457,1984.0
+research-0458,2026-02-05,458,1908.0
+research-0459,2026-02-05,459,1566.0
+research-0460,2026-02-10,460,5043.0
+research-0461,2026-02-10,461,-3876.0
+research-0462,2026-02-11,462,1474.0
+research-0463,2026-02-12,463,3283.0
+research-0464,2026-02-17,464,-1110.0
+research-0465,2026-02-17,465,812.0
+research-0466,2026-02-17,466,5642.0
+research-0467,2026-02-17,467,7527.0
+research-0468,2026-02-19,468,-3666.0
+research-0469,2026-02-23,469,-4888.0
+research-0470,2026-02-23,470,3456.0
+research-0471,2026-02-26,471,2173.0
+research-0472,2026-02-27,472,-1056.0
+research-0473,2026-03-03,473,660.0
+research-0474,2026-03-03,474,1452.0
+research-0475,2026-03-05,475,6156.0
+research-0476,2026-03-05,476,2236.0
+research-0477,2026-03-06,477,-2223.0
+research-0478,2026-03-09,478,-1260.0
+research-0479,2026-03-11,479,-3827.0
+research-0480,2026-03-11,480,6552.0
+research-0481,2026-03-12,481,1092.0
+research-0482,2026-03-12,482,910.0
+research-0483,2026-03-13,483,2607.0
+research-0484,2026-03-16,484,-5456.0
+research-0485,2026-03-20,485,2464.0
+research-0486,2026-03-20,486,1950.0
+research-0487,2026-04-07,487,1836.0
+research-0488,2026-04-09,488,6192.0
+research-0489,2026-04-21,489,1716.0
+research-0490,2026-04-22,490,6864.0
+research-0491,2026-04-23,491,11400.0
+research-0492,2026-04-23,492,-6132.0
+research-0493,2026-04-27,493,7584.0
+research-0494,2026-04-28,494,-1530.0
+research-0495,2026-04-28,495,1827.0
+research-0496,2026-04-29,496,-627.0
+research-0497,2026-05-11,497,3782.0
+research-0498,2026-05-15,498,-637.0
+research-0499,2026-05-15,499,957.0
+research-0500,2026-05-27,500,-2548.0
+research-0501,2026-06-03,501,3230.0
+research-0502,2026-06-05,502,4992.0
+research-0503,2026-06-09,503,10062.0
+research-0504,2026-06-22,504,2650.0
+research-0505,2026-06-25,505,10275.0
+research-0506,2026-06-29,506,-5676.0
+research-0507,2026-07-02,507,2301.0
+research-0508,2026-07-07,508,5428.0
+research-0509,2026-07-08,509,2196.0
+research-0510,2026-07-08,510,1155.0
+research-0511,2026-07-15,511,-1566.0
+research-0512,2026-07-22,512,1020.0
+research-0513,2026-07-23,513,-2100.0
+research-0514,2026-07-29,514,5530.0
+research-0515,2026-07-30,515,2220.0
+research-0516,2026-08-05,516,4030.0
+research-0517,2026-08-11,517,3159.0
+research-0518,2026-08-20,518,-1710.0
+research-0519,2026-08-24,519,-290.0
+research-0520,2026-08-25,520,-1344.0
+research-0521,2026-08-28,521,2079.0
+research-0522,2026-08-31,522,784.0
+research-0523,2026-09-04,523,1440.0
+research-0524,2026-09-08,524,1240.0
+research-0525,2026-09-09,525,1596.0
+research-0526,2026-09-15,526,1782.0
