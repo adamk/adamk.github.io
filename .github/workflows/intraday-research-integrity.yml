@@ -1,0 +1,37 @@
+name: Intraday historical research integrity
+
+on:
+  push:
+    paths:
+      - algo-pnl.html
+      - js/algo-pnl-research-integrity.js
+      - data/intraday_research*.json
+      - data/intraday_research*.csv
+      - data/historical_comparison*.json
+      - data/algo-pnl.json
+      - tests/*.test.js
+      - .github/workflows/intraday-research-integrity.yml
+  pull_request:
+    paths:
+      - algo-pnl.html
+      - js/algo-pnl-research-integrity.js
+      - data/intraday_research*.json
+      - data/intraday_research*.csv
+      - data/historical_comparison*.json
+      - data/algo-pnl.json
+      - tests/*.test.js
+      - .github/workflows/intraday-research-integrity.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check js/algo-pnl-research-integrity.js
+      - run: node --test tests/*.test.js

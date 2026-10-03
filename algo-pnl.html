@@ -892,18 +892,21 @@ function setTextIfExists(id, value) {
       <h3 id="backtestIntegrityTitle">Backtest Integrity</h3>
       <div class="research-metrics integrity-grid">
         <div class="research-card"><div class="research-label">Data coverage</div><div class="research-value" id="researchCoverage">—</div><p class="research-detail" id="researchCoveragePct">—</p></div>
-        <div class="research-card"><div class="research-label">Unresolved sessions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Dates and missing evidence listed below.</p></div>
+        <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Separate component cohorts; missing outcomes remain unknown.</p></div>
         <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Defined setup and management rules.</p></div>
         <div class="research-card"><div class="research-label">Transaction costs</div><div class="research-value" id="researchCostBasis">—</div><p class="research-detail" id="researchCostNote"></p></div>
       </div>
       <p class="small" id="researchScope"></p>
       <p class="small" id="researchExecutionBasis"></p>
       <p class="small" id="researchInputPolicy"></p>
+      <p class="small" id="researchSizingBasis"></p>
+      <p class="small" id="researchProvenance"></p>
+      <p class="small" id="researchVintage"></p>
       <p class="small" id="researchDataStatus" aria-live="polite"></p>
     </section>
     <section aria-labelledby="liveHistoricalTitle">
       <h3 id="liveHistoricalTitle">Live vs Historical Behavior</h3>
-      <div class="research-table-wrap"><table class="research-table">
+      <div class="research-table-wrap" role="region" tabindex="0" aria-labelledby="liveHistoricalTitle"><table class="research-table">
         <thead><tr><th scope="col">Metric</th><th scope="col">Historical Research</th><th scope="col">Live</th></tr></thead>
         <tbody>
           <tr><th scope="row">Closed trades</th><td id="compareHistoricalTrades">—</td><td id="compareLiveTrades">—</td></tr>
@@ -922,6 +925,7 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Annualized Daily Sharpe</div><div class="research-value" id="researchSharpe">—</div></div>
       <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
     </div>
+    <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Extrinsic sleeves: <strong id="researchEXTrades">—</strong> trades.</p>
     <h3>Historical portfolio-value comparison</h3>
     <p class="small">Each line starts at a hypothetical $10,000. Benchmark distributions are included through adjusted total-return prices. This chart is not live account equity.</p>
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
@@ -935,14 +939,14 @@ function setTextIfExists(id, value) {
       <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
     </div>
     <p class="small" id="historicalComparisonStatus">Loading historical comparison…</p>
-    <p class="small"><span id="researchTradeSummary">—</span> Foxchase Multi-Day represents longer-duration systematic options strategies. Foxchase Combined is an earlier single-account historical replay of modeled Intraday and Multi-Day strategies under shared capital and risk governance. It does not incorporate the 263-trade Intraday study shown here. Combined is not obtained by summing the two $10,000 component curves. Foxchase Intraday continues through September 22, 2026. Foxchase Multi-Day and Foxchase Combined stop on August 25, 2026, their last validated date. No later Combined or Multi-Day marks are estimated.</p>
+    <p class="small"><span id="researchTradeSummary">—</span> Foxchase Intraday now represents the combined modeled spread/EX research with unequal component coverage. Its spread inputs extend through September 22, 2026 and its original EX cohort through May 5, 2026. The chart uses daily closing research equity. Foxchase Multi-Day and Foxchase Combined are unchanged earlier research records through August 25, 2026; neither incorporates this updated Intraday model. Combined is not a sum of the two $10,000 curves. No later Multi-Day or archived Combined marks are estimated.</p>
     <div class="research-table-wrap"><table class="research-table">
       <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
       <tbody>
-        <tr><th scope="row">2023</th><td>68</td><td>+$123</td></tr>
-        <tr><th scope="row">2024</th><td>60</td><td>+$1,461</td></tr>
-        <tr><th scope="row">2025</th><td>77</td><td>+$7,946</td></tr>
-        <tr><th scope="row">2026 through Sep 22</th><td>58</td><td>+$12,802</td></tr>
+        <tr><th scope="row">2023</th><td id="researchYear2023Trades">—</td><td id="researchYear2023Pnl">—</td></tr>
+        <tr><th scope="row">2024</th><td id="researchYear2024Trades">—</td><td id="researchYear2024Pnl">—</td></tr>
+        <tr><th scope="row">2025</th><td id="researchYear2025Trades">—</td><td id="researchYear2025Pnl">—</td></tr>
+        <tr><th scope="row">2026 through Sep 22</th><td id="researchYear2026Trades">—</td><td id="researchYear2026Pnl">—</td></tr>
       </tbody>
     </table></div>
     <section class="research-limitations" aria-labelledby="researchLimitationsTitle">
@@ -951,7 +955,7 @@ function setTextIfExists(id, value) {
     </section>
   </div>
 
-  <script src="/js/algo-pnl-research-integrity.js?v=20260927"></script>
+  <script src="/js/algo-pnl-research-integrity.js?v=20261003-ex"></script>
   <script>
     let chartLibraryPromise = null;
     function loadChartLibrary() {
@@ -972,7 +976,7 @@ function setTextIfExists(id, value) {
       const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
       const status = document.getElementById("historicalComparisonStatus");
       Promise.all([
-        fetch("/data/historical_comparison_20260923.json?v=20260926-combined").then(response => {
+        fetch("/data/historical_comparison_20261003.json?v=20261003-ex").then(response => {
           if (!response.ok) throw new Error("Comparison data unavailable");
           return response.json();
         }),

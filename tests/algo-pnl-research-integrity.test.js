@@ -89,7 +89,7 @@ test("page retains both canonical chart loads and distinct labels", () => {
     assert.match(page, new RegExp(`id="${id}"`));
   }
   assert.match(page, /fetch\("\/data\/algo-pnl\.json"/);
-  assert.match(page, /fetch\("\/data\/historical_comparison_20260923\.json/);
+  assert.match(page, /fetch\("\/data\/historical_comparison_20261003\.json/);
   assert.match(page, /FoxchaseResearchIntegrity\.renderLive\(document, canonicalMetrics, liveAvailable\)/);
   assert.match(page, /Live vs Historical Behavior/);
   assert.match(page, /Historical Research<\/th><th scope="col">Live/);
