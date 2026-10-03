@@ -3,6 +3,7 @@
 (function (root) {
   const unavailable = "—";
   const studyUrl = "/data/intraday_research_with_ex_20261003.json";
+  const attributionUrl = "/data/intraday_research_attribution_20261003.json";
 
   function setText(document, id, value) {
     const element = document.getElementById(id);
@@ -154,7 +155,79 @@
     });
   }
 
-  const api = { renderStudy, renderLive, loadStudy };
+  function renderAttribution(document, data, study) {
+    const equal = (a, b) => Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) < 1e-9;
+    const validMetric = metric => metric && ["trades", "wins", "losses", "breakeven"].every(key => Number.isInteger(metric[key])) &&
+      metric.trades === metric.wins + metric.losses + metric.breakeven &&
+      ["gross_pnl", "gross_profit", "gross_loss", "profit_factor", "daily_sharpe_annualized", "max_drawdown_dollars", "max_drawdown_pct"]
+        .every(key => Number.isFinite(metric[key])) && equal(metric.gross_profit - metric.gross_loss, metric.gross_pnl);
+    const invalid = () => { throw new Error("Attribution metadata invalid"); };
+    if (!data || data.schema_version !== 1 || data.classification !== "SAME_ENGINE_EX_INCREMENTAL_ATTRIBUTION" ||
+        data.same_engine !== true || data.signals_rules_allocations_changed !== false || data.gross_before_fees !== true ||
+        data.exact_live_execution !== false || data.missing_EX_outcomes_are_unknown !== true ||
+        data.counterfactual_equal_legacy_trade_by_trade !== true || !study || study.schema_version !== 2 ||
+        data.start !== study.study_start || data.end !== study.study_end || data.initial_equity !== 10000 ||
+        data.EX_endpoint !== study.ex_study_end || !data.coverage ||
+        typeof data.legacy_context !== "string" || data.legacy_context.length < 30 ||
+        data.coverage.calendar !== study.sessions_considered || data.coverage.spread !== study.spread_evaluable_sessions ||
+        data.coverage.ex !== study.ex_evaluable_sessions || data.coverage.joint !== study.jointly_evaluable_sessions ||
+        ![data.legacy, data.spread_only, data.combined].every(validMetric)) invalid();
+    for (const [key, value] of Object.entries(study.statistics)) {
+      if (typeof value === "number" && !equal(data.combined[key], value)) invalid();
+    }
+    for (const [key, value] of Object.entries(data.legacy)) {
+      if (typeof value === "number" && !equal(data.spread_only[key], value)) invalid();
+    }
+    const impact = data.attribution;
+    const terms = ["direct_EX_pnl", "matched_spread_sizing_effect", "displaced_spread_effect", "newly_affordable_spread_effect"];
+    if (!impact || !terms.every(key => Number.isFinite(impact[key])) || impact.residual !== 0 ||
+        impact.EX_compounding_included_in_direct_EX !== true || impact.separate_additive_EX_compounding_term !== null ||
+        !equal(terms.reduce((sum, key) => sum + impact[key], 0), impact.incremental_portfolio_pnl) ||
+        !equal(impact.incremental_portfolio_pnl, data.combined.gross_pnl - data.spread_only.gross_pnl) ||
+        !data.deltas || !Array.isArray(data.yearly) || data.yearly.length !== 4 ||
+        data.yearly.reduce((sum, year) => sum + year.spread_only_gross_pnl, 0) !== data.spread_only.gross_pnl ||
+        data.yearly.reduce((sum, year) => sum + year.combined_gross_pnl, 0) !== data.combined.gross_pnl) invalid();
+    for (const [key, value] of Object.entries(data.deltas)) {
+      if (!equal(value, data.combined[key] - data.spread_only[key])) invalid();
+    }
+    for (const year of data.yearly) {
+      if (year.residual !== 0 || !Number.isInteger(year.displaced_spread_count) || year.displaced_spread_count < 0 ||
+          !equal(year.incremental_portfolio_pnl, year.combined_gross_pnl - year.spread_only_gross_pnl) ||
+          !equal(terms.reduce((sum, key) => sum + year[key], 0), year.incremental_portfolio_pnl)) invalid();
+    }
+    for (const [prefix, metric] of [["modelSpread", data.spread_only], ["modelCombined", data.combined]]) {
+      setText(document, prefix + "Trades", String(metric.trades));
+      setText(document, prefix + "Pnl", money(metric.gross_pnl, true));
+      setText(document, prefix + "PF", number(metric.profit_factor, 3));
+      setText(document, prefix + "Sharpe", number(metric.daily_sharpe_annualized, 3));
+      setText(document, prefix + "DD", money(metric.max_drawdown_dollars) + " / " + percent(metric.max_drawdown_pct));
+    }
+    setText(document, "researchLegacyContext", data.legacy_context);
+    setText(document, "researchModelInterpretation", "Using the same portfolio engine, spread-only produces " +
+      money(data.spread_only.gross_pnl, true) + " compared with " + money(data.combined.gross_pnl, true) +
+      " for spread + EX. The combined replay has higher modeled gross P&L, but lower profit factor and Daily Sharpe and deeper maximum drawdown.");
+    setText(document, "researchEXAttribution", "The " + money(impact.incremental_portfolio_pnl, true) +
+      " total portfolio difference includes " + money(impact.direct_EX_pnl, true) + " direct EX P&L, " +
+      money(impact.matched_spread_sizing_effect, true) + " from changed spread quantities and " +
+      money(impact.displaced_spread_effect, true) + " from " + data.yearly.reduce((sum, year) => sum + year.displaced_spread_count, 0) +
+      " displaced spreads. It is not direct EX profit alone; EX compounding is already included in its P&L.");
+    setText(document, "attributionDataStatus", "");
+    return data;
+  }
+
+  function loadAttribution(document, fetchStudy) {
+    const get = url => fetchStudy(url).then(response => {
+      if (!response.ok) throw new Error("Attribution metadata unavailable");
+      return response.json();
+    });
+    return Promise.all([get(attributionUrl), get(studyUrl)])
+      .then(([data, study]) => renderAttribution(document, data, study)).catch(() => {
+        setText(document, "attributionDataStatus", "Modeled portfolio comparison temporarily unavailable.");
+        return null;
+      });
+  }
+
+  const api = { renderStudy, renderLive, loadStudy, renderAttribution, loadAttribution };
   root.FoxchaseResearchIntegrity = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window === "undefined" ? globalThis : window);

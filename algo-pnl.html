@@ -926,8 +926,26 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
     </div>
     <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Extrinsic sleeves: <strong id="researchEXTrades">—</strong> trades.</p>
+    <section aria-labelledby="modelComparisonTitle">
+      <h3 id="modelComparisonTitle">Modeled portfolio comparison</h3>
+      <p class="small">The same frozen portfolio engine, starting capital, sizing rules and accounting are used on both sides. Disabling EX lets the spread-only equity and position sizes evolve independently.</p>
+      <div class="research-table-wrap" role="region" tabindex="0" aria-labelledby="modelComparisonTitle"><table class="research-table">
+        <thead><tr><th scope="col">Metric</th><th scope="col">Spread-only normalized</th><th scope="col">Spread + EX</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Trades</th><td id="modelSpreadTrades">—</td><td id="modelCombinedTrades">—</td></tr>
+          <tr><th scope="row">Gross P&amp;L</th><td id="modelSpreadPnl">—</td><td id="modelCombinedPnl">—</td></tr>
+          <tr><th scope="row">Profit factor</th><td id="modelSpreadPF">—</td><td id="modelCombinedPF">—</td></tr>
+          <tr><th scope="row">Annualized Daily Sharpe</th><td id="modelSpreadSharpe">—</td><td id="modelCombinedSharpe">—</td></tr>
+          <tr><th scope="row">Maximum drawdown</th><td id="modelSpreadDD">—</td><td id="modelCombinedDD">—</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small" id="researchLegacyContext"></p>
+      <p class="small" id="researchModelInterpretation"></p>
+      <p class="small" id="researchEXAttribution"></p>
+      <p class="small" id="attributionDataStatus" aria-live="polite"></p>
+    </section>
     <h3>Historical portfolio-value comparison</h3>
-    <p class="small">Each line starts at a hypothetical $10,000. Benchmark distributions are included through adjusted total-return prices. This chart is not live account equity.</p>
+    <p class="small">Foxchase Intraday is the normalized spread + EX research portfolio: position sizes compound with modeled equity, starting at a hypothetical $10,000 with no deposits. This is not actual account equity. Legacy six-spread research is a separate prior record. Benchmark distributions are included through adjusted total-return prices.</p>
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
       <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
       <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
@@ -955,7 +973,7 @@ function setTextIfExists(id, value) {
     </section>
   </div>
 
-  <script src="/js/algo-pnl-research-integrity.js?v=20261003-ex"></script>
+  <script src="/js/algo-pnl-research-integrity.js?v=20261003-attribution"></script>
   <script>
     let chartLibraryPromise = null;
     function loadChartLibrary() {
@@ -1033,6 +1051,7 @@ function setTextIfExists(id, value) {
     }
     loadHistoricalComparison();
     FoxchaseResearchIntegrity.loadStudy(document, fetch);
+    FoxchaseResearchIntegrity.loadAttribution(document, fetch);
     const unavailableValue = "—";
 
     function numericValue(value) {
