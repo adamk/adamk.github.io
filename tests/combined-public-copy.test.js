@@ -3,12 +3,14 @@ const test=require("node:test"),assert=require("node:assert/strict"),fs=require(
 const {root,text,read,fixture}=require("./research-fixture");
 const renderer=require("../js/algo-pnl-research-integrity.js");
 
-test("an unvalidated Combined curve is removed from data, renderer, legend and selector",()=>{
+test("only the newly validated Combined curve is restored to data and selector",()=>{
   const chart=read("data/historical_comparison_20261003.json"),page=text("algo-pnl.html");
-  assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","SPY Buy & Hold","JEPI Buy & Hold"]);
-  assert.doesNotMatch(page,/Foxchase Combined/);
-  assert.match(page,/Combined shared-account replay is not shown/);
-  assert.match(page,/not.*summing independently compounded/);
+  assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold","JEPI Buy & Hold"]);
+  const source=read("data/combined_research_20261003.json");
+  assert.equal(source.status,"VALIDATED_SHARED_ACCOUNT_RESEARCH");assert.equal(source.validation.risk_breaches,0);
+  assert.match(page,/data-comparison-series="Foxchase Combined"/);
+  assert.match(page,/not obtained by summing independently compounded/);
+  assert.doesNotMatch(page,/Combined shared-account replay is not shown/);
   assert.doesNotMatch(page,/unchanged earlier research records|neither incorporates this updated Intraday/);
   for(const name of ["historical_comparison_20260923.json","ex_strategy_backtest.json","intraday_research_integrity_20260922.json","intraday_research_curve_20260922.json","INTRADAY_RESEARCH_INTEGRITY.md"])
     assert.ok(!fs.existsSync(path.join(root,"data",name)),"retired public artifacts must not remain reachable");
@@ -21,7 +23,7 @@ test("all four retained series remain numerically unchanged with correct endpoin
     "SPY Buy & Hold":"8e94e9dc6c73539f0f05ed9c7dd2803bf2314240b885646ae3fe5f2d987ed5ac",
     "JEPI Buy & Hold":"8ad1d0b895a63c2dfed6bea3a2eda4604f58d7a917d106d10c6f5d5c1d92a4af"};
   assert.equal(chart.dates.length,932);assert.equal(chart.dates[0],"2023-01-04");assert.equal(chart.dates.at(-1),"2026-09-22");
-  for(const series of chart.series){assert.equal(crypto.createHash("sha256").update(JSON.stringify(series.values)).digest("hex"),hashes[series.label]);}
+  for(const label of Object.keys(hashes)){const series=chart.series.find(s=>s.label===label);assert.ok(series);assert.equal(crypto.createHash("sha256").update(JSON.stringify(series.values)).digest("hex"),hashes[label]);}
   const multiday=chart.series.find(s=>s.label==="Foxchase Multi-Day"),index=chart.dates.indexOf("2026-08-25");
   assert.equal(multiday.validated_through,"2026-08-25");assert.equal(multiday.values[index],27291.3);
   assert.ok(multiday.values.every((value,i)=>i<=index||value===null));

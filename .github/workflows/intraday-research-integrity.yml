@@ -9,6 +9,7 @@ on:
       - data/intraday_research*.csv
       - data/intraday_spread_only*.csv
       - data/historical_comparison*.json
+      - data/combined_research*.json
       - data/algo-pnl.json
       - tests/*.js
       - .github/workflows/intraday-research-integrity.yml
@@ -20,6 +21,7 @@ on:
       - data/intraday_research*.csv
       - data/intraday_spread_only*.csv
       - data/historical_comparison*.json
+      - data/combined_research*.json
       - data/algo-pnl.json
       - tests/*.js
       - .github/workflows/intraday-research-integrity.yml
