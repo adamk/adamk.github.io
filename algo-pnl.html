@@ -964,7 +964,6 @@ function setTextIfExists(id, value) {
       <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
       <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c77724" checked>Foxchase Combined <small>(through Aug 25)</small></label>
       <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
-      <label><input type="checkbox" data-comparison-series="JEPI Buy &amp; Hold" style="accent-color:#805ad5">JEPI Buy &amp; Hold</label>
     </div>
     <div class="historical-scale-control">
       <label for="historicalScale">Chart scale</label>
@@ -1017,7 +1016,7 @@ function setTextIfExists(id, value) {
       const scaleControl = document.getElementById("historicalScale");
       const scaleStatus = document.getElementById("historicalScaleStatus");
       return Promise.all([
-        fetch("/data/historical_comparison_20261003.json?v=20261003-realism").then(response => {
+        fetch("/data/historical_comparison_20261003.json?v=20261003-spy-only").then(response => {
           if (!response.ok) throw new Error("Comparison data unavailable");
           return response.json();
         }),
@@ -1030,7 +1029,7 @@ function setTextIfExists(id, value) {
           if (!response.ok) throw new Error("Multi-Day research unavailable");
           return response.json();
         }),
-        fetch("/data/benchmark_research_20261003.json?v=20261003-verified").then(response => {
+        fetch("/data/benchmark_research_20261003.json?v=20261003-spy").then(response => {
           if (!response.ok) throw new Error("Benchmark evidence unavailable");
           return response.json();
         })
@@ -1090,7 +1089,7 @@ function setTextIfExists(id, value) {
             benchmarks.daily.some((point,index) => point.date !== data.dates[index])) {
           throw new Error("Benchmark evidence failed validation");
         }
-        for (const ticker of ["SPY", "JEPI"]) {
+        for (const ticker of ["SPY"]) {
           const series = data.series.find(series => series.label === ticker + " Buy & Hold");
           const base = benchmarks.daily[0][ticker];
           if (!Number.isFinite(base) || base <= 0 || benchmarks.daily.some((point,index) =>
@@ -1102,8 +1101,7 @@ function setTextIfExists(id, value) {
           "Foxchase Intraday": "#234a76",
           "Foxchase Multi-Day": "#2f855a",
           "Foxchase Combined": "#c77724",
-          "SPY Buy & Hold": "#666666",
-          "JEPI Buy & Hold": "#805ad5"
+          "SPY Buy & Hold": "#666666"
         };
         const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         const textColor = "#111";
@@ -1156,10 +1154,9 @@ function setTextIfExists(id, value) {
         updateSeries();
         updateScale();
         const jointIndex = data.dates.indexOf(combined.end);
-        status.textContent = "SPY and JEPI use dividend- and split-adjusted SIP daily closes. At the August 25, 2026 joint endpoint: SPY " +
-          money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[jointIndex]) + "; JEPI " +
-          money.format(data.series.find(series => series.label === "JEPI Buy & Hold").values[jointIndex]) +
-          ". Intraday and benchmark curves continue through September 22. Multi-Day and Combined have no plotted values after August 25.";
+        status.textContent = "SPY uses dividend- and split-adjusted SIP daily closes. At the August 25, 2026 joint endpoint: SPY " +
+          money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[jointIndex]) +
+          ". Intraday and SPY curves continue through September 22. Multi-Day and Combined have no plotted values after August 25.";
       }).catch(() => { status.textContent = "Historical comparison chart is temporarily unavailable."; });
     }
     loadHistoricalComparison();

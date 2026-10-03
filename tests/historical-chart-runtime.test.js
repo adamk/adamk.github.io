@@ -39,10 +39,10 @@ test("scale and visibility controls preserve every original dollar observation",
   assert.ok(chart.options.scales.y.title.text.includes("logarithmic"));
   nodes.historicalScale.value="linear";nodes.historicalScale.events.change();
   assert.equal(chart.options.scales.y.type,"linear");assert.equal(JSON.stringify(chart.data.datasets),before);
-  controls[0].checked=false;controls[0].events.change();assert.equal(chart.data.datasets.length,4);
+  controls[0].checked=false;controls[0].events.change();assert.equal(chart.data.datasets.length,3);
   controls[0].checked=true;controls[0].events.change();assert.equal(JSON.stringify(chart.data.datasets),before);
   assert.ok(nodes.historicalComparisonStatus.textContent.includes("$20,873.45"));
-  assert.ok(nodes.historicalComparisonStatus.textContent.includes("$14,163.81"));
+  assert.equal(/JEPI/i.test(nodes.historicalComparisonStatus.textContent),false);
 });
 
 test("Multi-Day certificate matches all points, daily accounting and curve digest",()=>{
@@ -54,10 +54,10 @@ test("Multi-Day certificate matches all points, daily accounting and curve diges
   assert.equal(d.daily.at(-1).date,"2026-08-25");
 });
 
-test("both adjusted benchmarks reconcile independently at every date",()=>{
+test("SPY adjusted benchmark reconciles independently at every date",()=>{
   const b=read("data/benchmark_research_20261003.json"),c=read("data/historical_comparison_20261003.json");
   assert.equal(b.adjustment,"split_and_dividend");assert.equal(b.daily.length,932);
-  for(const t of ["SPY","JEPI"]){const s=c.series.find(s=>s.label===t+" Buy & Hold");
+  for(const t of ["SPY"]){const s=c.series.find(s=>s.label===t+" Buy & Hold");
     b.daily.forEach((p,i)=>{assert.equal(p.date,c.dates[i]);assert.equal(s.values[i],Math.round(1000000*p[t]/b.daily[0][t])/100);});
     assert.equal(s.values[0],10000);
   }

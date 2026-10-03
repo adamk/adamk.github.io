@@ -5,7 +5,7 @@ const renderer=require("../js/algo-pnl-research-integrity.js");
 
 test("only the newly validated Combined curve is restored to data and selector",()=>{
   const chart=read("data/historical_comparison_20261003.json"),page=text("algo-pnl.html");
-  assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold","JEPI Buy & Hold"]);
+  assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
   const source=read("data/combined_research_20261003.json");
   assert.equal(source.status,"VALIDATED_SHARED_ACCOUNT_RESEARCH");assert.equal(source.validation.risk_breaches,0);
   assert.match(page,/data-comparison-series="Foxchase Combined"/);
@@ -16,11 +16,10 @@ test("only the newly validated Combined curve is restored to data and selector",
     assert.ok(!fs.existsSync(path.join(root,"data",name)),"retired public artifacts must not remain reachable");
 });
 
-test("the three retained series are unchanged and Multi-Day uses the corrected record",()=>{
+test("remaining original series are unchanged and Multi-Day uses the corrected record",()=>{
   const chart=read("data/historical_comparison_20261003.json");
   const hashes={"Foxchase Intraday":"977ea3ffd79ba8e17aac8a42aec8f907cfa14e91758a74c89bb7a5ff0affa270",
-    "SPY Buy & Hold":"8e94e9dc6c73539f0f05ed9c7dd2803bf2314240b885646ae3fe5f2d987ed5ac",
-    "JEPI Buy & Hold":"8ad1d0b895a63c2dfed6bea3a2eda4604f58d7a917d106d10c6f5d5c1d92a4af"};
+    "SPY Buy & Hold":"8e94e9dc6c73539f0f05ed9c7dd2803bf2314240b885646ae3fe5f2d987ed5ac"};
   assert.equal(chart.dates.length,932);assert.equal(chart.dates[0],"2023-01-04");assert.equal(chart.dates.at(-1),"2026-09-22");
   for(const label of Object.keys(hashes)){const series=chart.series.find(s=>s.label===label);assert.ok(series);assert.equal(crypto.createHash("sha256").update(JSON.stringify(series.values)).digest("hex"),hashes[label]);}
   const multiday=chart.series.find(s=>s.label==="Foxchase Multi-Day"),index=chart.dates.indexOf("2026-08-25");
