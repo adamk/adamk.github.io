@@ -5,6 +5,10 @@ on:
     paths:
       - algo-pnl.html
       - js/algo-pnl-research-integrity.js
+      - js/live-benchmarks.js
+      - scripts/refresh_live_benchmarks.py
+      - data/live-benchmarks.json
+      - data/historical-cash-benchmark.json
       - data/intraday_research*.json
       - data/intraday_research*.csv
       - data/intraday_spread_only*.csv
@@ -14,11 +18,16 @@ on:
       - data/benchmark_research*.json
       - data/algo-pnl.json
       - tests/*.js
+      - tests/*.py
       - .github/workflows/intraday-research-integrity.yml
   pull_request:
     paths:
       - algo-pnl.html
       - js/algo-pnl-research-integrity.js
+      - js/live-benchmarks.js
+      - scripts/refresh_live_benchmarks.py
+      - data/live-benchmarks.json
+      - data/historical-cash-benchmark.json
       - data/intraday_research*.json
       - data/intraday_research*.csv
       - data/intraday_spread_only*.csv
@@ -28,6 +37,7 @@ on:
       - data/benchmark_research*.json
       - data/algo-pnl.json
       - tests/*.js
+      - tests/*.py
       - .github/workflows/intraday-research-integrity.yml
 
 permissions:
@@ -42,4 +52,6 @@ jobs:
         with:
           node-version: '22'
       - run: node --check js/algo-pnl-research-integrity.js
+      - run: node --check js/live-benchmarks.js
+      - run: python3 -m unittest discover -s tests -p 'test_refresh_live_benchmarks.py'
       - run: node --test tests/*.test.js

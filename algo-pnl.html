@@ -5,6 +5,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
   <script src="/js/time-format.js?v=20260921-hold"></script>
   <script src="/js/canonical-performance.js?v=20260919-tier1-session"></script>
+  <script src="/js/live-benchmarks.js?v=20261005-live-backtest-cash"></script>
   <script>
 function formatMoneyValue(value) {
   const n = Number(value || 0);
@@ -800,7 +801,7 @@ function setTextIfExists(id, value) {
       <p class="section-caption">Normalized strategy performance and core live-trade statistics.</p>
       <div class="headline-grid">
         <div class="headline-metric"><div class="metric-label">Current Index</div><div class="metric-value" id="currentIndex">—</div></div>
-        <div class="headline-metric"><div class="metric-label">Since Inception</div><div class="metric-value" id="sinceInceptionReturn">—</div></div>
+        <div class="headline-metric"><div class="metric-label">Strategy Return</div><div class="metric-value" id="sinceInceptionReturn">—</div></div>
         <div class="headline-metric"><div class="metric-label">Max Drawdown</div><div class="metric-value" id="headlineMaxDrawdown">—</div></div>
         <div class="headline-metric"><div class="metric-label">Profit Factor</div><div class="metric-value" id="headlineProfitFactor">—</div></div>
         <div class="headline-metric"><div class="metric-label">Win Rate</div><div class="metric-value" id="headlineWinRate">—</div></div>
@@ -810,10 +811,23 @@ function setTextIfExists(id, value) {
 
     <section class="performance-chart-panel" aria-labelledby="performance-chart-title">
       <h2 class="section-heading" id="performance-chart-title">Live Account Performance Index</h2>
-      <p class="section-caption">Normalized to 100 at inception. External deposits and withdrawals are excluded.</p>
+      <p class="section-caption">Algo, cash and SPY start at 100 on the same date. External deposits and withdrawals are excluded from the algo.</p>
+      <div class="trade-panel"><div class="trade-grid">
+        <div class="trade-stat"><div class="stat-name">Risk-Free / Cash · primary benchmark</div><div class="stat-value" id="cashBenchmarkReturn">—</div></div>
+        <div class="trade-stat"><div class="stat-name">Excess Return over Cash</div><div class="stat-value" id="excessCashReturn">—</div></div>
+        <div class="trade-stat"><div class="stat-name">SPY Buy &amp; Hold · secondary reference</div><div class="stat-value" id="spyBenchmarkReturn">—</div></div>
+      </div></div>
+      <p class="small">Cash is a modeled 3-month U.S. Treasury yield proxy, the primary hurdle for taking active trading risk. SPY is a secondary comparison to broad U.S. equity exposure.</p>
       <div class="chart-box performance-chart">
-        <canvas id="equityChart" aria-label="Live Account Performance Index chart"></canvas>
+        <canvas id="equityChart" aria-label="Normalized performance: Foxchase Algo, Risk-Free / Cash primary benchmark, and SPY Buy and Hold secondary reference"></canvas>
       </div>
+      <p class="small" id="liveBenchmarkStatus" aria-live="polite">Checking comparable benchmark data.</p>
+      <details class="small"><summary>Benchmark methodology</summary>
+        <p>Cash uses the U.S. Treasury’s daily 3-month par yield (BC_3MONTH), quoted as an annual percentage. Calendar-day accrual is yield ÷ 100 ÷ 365, compounded daily. Each day uses the latest observation dated before that day; weekends, holidays and publication gaps carry the last rate for at most seven calendar days. No earlier missing rates are backfilled.</p>
+        <p>All three indices start at 100 on the live record’s first date and use its date axis and latest performance date. Cash is a modeled accrual proxy, not an investable total-return index or a guarantee of realized return. It excludes taxes, fees and Treasury price changes. Excess return is the strategy’s cumulative return minus cash’s cumulative return, in percentage points.</p>
+        <p>SPY remains a secondary equity-market reference. It uses dividend- and split-adjusted SIP prices from Alpaca, normalized to the first date’s close. Nontrading dates retain the prior session’s price. During a session, only a minute bar completed by the live snapshot is used. Missing required observations make that comparison unavailable.</p>
+        <p>Sources: <a href="https://home.treasury.gov/treasury-daily-interest-rate-xml-feed">U.S. Treasury daily rates</a> and <a href="https://docs.alpaca.markets/reference/stockbars">Alpaca historical stock bars</a>.</p>
+      </details>
       <p class="small" id="note"></p>
     </section>
 
@@ -915,6 +929,7 @@ function setTextIfExists(id, value) {
       <p class="small" id="researchInputPolicy"></p>
       <p class="small" id="researchSizingBasis"></p>
       <p class="small" id="researchDataStatus" aria-live="polite"></p>
+      <p class="small">For both live and backtest performance, the Treasury/cash proxy is the primary benchmark and SPY is the secondary equity-market reference. Each comparison is independently aligned to its own validated period.</p>
     </section>
     <section aria-labelledby="liveHistoricalTitle">
       <h3 id="liveHistoricalTitle">Live vs Historical Behavior</h3>
@@ -938,6 +953,32 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
     </div>
     <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Extrinsic sleeves: <strong id="researchEXTrades">—</strong> trades.</p>
+    <section aria-labelledby="historicalBenchmarkTitle">
+      <h3 id="historicalBenchmarkTitle">Backtest benchmark comparison</h3>
+      <p class="small">The Intraday backtest, Treasury/cash proxy and SPY each start at index 100 over the same historical period. Cash is the primary benchmark; SPY remains the secondary equity-market comparison. This is separate from the live performance window.</p>
+      <div class="research-metrics" id="historicalBenchmarkRows">
+        <div class="research-card"><div class="research-label">Backtest Strategy Return</div><div class="research-value" id="backtestStrategyReturn">—</div></div>
+        <div class="research-card"><div class="research-label">Risk-Free / Cash · primary</div><div class="research-value" id="backtestCashReturn">—</div></div>
+        <div class="research-card"><div class="research-label">Excess Return over Cash</div><div class="research-value" id="backtestExcessReturn">—</div></div>
+        <div class="research-card"><div class="research-label">SPY Buy &amp; Hold · secondary</div><div class="research-value" id="backtestSPYReturn">—</div></div>
+      </div>
+      <div class="historical-scale-control">
+        <label for="backtestScale">Backtest chart scale</label>
+        <select id="backtestScale" aria-describedby="backtestScaleStatus">
+          <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
+        </select>
+      </div>
+      <p class="small" id="backtestScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
+      <div class="chart-box research-chart-box" style="height:390px;">
+        <canvas id="backtestBenchmarkChart" style="height:100% !important;" aria-label="Historical normalized comparison: Foxchase Backtest, Risk-Free Cash primary benchmark, and SPY Buy and Hold secondary reference, all starting at 100"></canvas>
+      </div>
+      <p class="small" id="historicalBenchmarkStatus" aria-live="polite">Loading independently aligned historical benchmarks…</p>
+      <details class="small" id="historicalBenchmarkMethodology"><summary>Backtest benchmark methodology</summary>
+        <p>Cash uses the U.S. Treasury’s daily 3-month par yield (BC_3MONTH): annual yield percentage ÷ 100 ÷ 365, compounded by calendar day. Each day uses the latest observation dated before that day, carried for at most seven calendar days. Longer gaps make cash and excess-return comparisons unavailable; missing rates are not invented. This is modeled accrual, excluding fees, taxes and Treasury price changes.</p>
+        <p>The backtest period comes from the validated historical research, independently of the live period. All three series start at 100 on that backtest date and stop at its validated endpoint, without rebasing. Excess return is backtest cumulative return minus cash cumulative return, in percentage points. SPY preserves the existing dividend- and split-adjusted historical series as a secondary reference.</p>
+        <p>Source: <a href="https://home.treasury.gov/treasury-daily-interest-rate-xml-feed">U.S. Treasury daily rates</a>. Strategy research and trading assumptions are unchanged.</p>
+      </details>
+    </section>
     <section aria-labelledby="modelComparisonTitle">
       <h3 id="modelComparisonTitle">Modeled portfolio comparison</h3>
       <p class="small">Both portfolios use the same retrospective risk-normalized sizing and accounting. Position sizes compound with each portfolio's modeled equity.</p>
@@ -956,7 +997,7 @@ function setTextIfExists(id, value) {
       <p class="small" id="attributionDataStatus" aria-live="polite"></p>
     </section>
     <h3>Historical portfolio-value comparison</h3>
-    <p class="small">Each curve starts at a hypothetical $10,000 with no deposits. Foxchase Intraday uses the current modeled intraday and EX research architecture; position sizes compound with modeled equity. Foxchase Multi-Day represents corrected standalone longer-duration research with daily marked values. For Intraday and Combined, gains and losses affect the size of subsequent trades. This is not actual account equity. Benchmark distributions are included through adjusted total-return prices.</p>
+    <p class="small">Each curve starts at a hypothetical $10,000 with no deposits. Foxchase Intraday uses the current modeled intraday and EX research architecture; position sizes compound with modeled equity. Foxchase Multi-Day represents corrected standalone longer-duration research with daily marked values. For Intraday and Combined, gains and losses affect the size of subsequent trades. This is not actual account equity. SPY, the secondary equity-market reference, includes distributions through adjusted total-return prices.</p>
     <p class="small">Foxchase Combined is a single-account historical replay of the current Intraday and Multi-Day research portfolios under shared capital and risk constraints. Combined is not obtained by summing independently compounded component curves. Combined ends at the last date for which both components have validated historical evidence.</p>
     <p class="small">Intraday research is gross before transaction fees. Multi-Day includes its modeled costs; Combined inherits these differing cost treatments. Later modeled positions can be materially larger than earlier ones. Full broker fees, order-book capacity and market impact are not modeled.</p>
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
@@ -1032,8 +1073,12 @@ function setTextIfExists(id, value) {
         fetch("/data/benchmark_research_20261003.json?v=20261003-spy").then(response => {
           if (!response.ok) throw new Error("Benchmark evidence unavailable");
           return response.json();
-        })
-      ]).then(([data, , combined, multiday, benchmarks]) => {
+        }),
+        fetch("/data/historical-cash-benchmark.json", { cache: "no-store" }).then(response => {
+          if (!response.ok) throw new Error("Historical cash data unavailable");
+          return response.json();
+        }).catch(() => null)
+      ]).then(([data, , combined, multiday, benchmarks, cashSource]) => {
         const names = controls.map(control => control.dataset.comparisonSeries);
         if (data.initial_value !== 10000 || data.comparison_start !== "2023-01-04" ||
             data.study_end !== "2026-09-22" || !Array.isArray(data.dates) ||
@@ -1097,6 +1142,35 @@ function setTextIfExists(id, value) {
             throw new Error("Benchmark curve failed reconciliation");
           }
         }
+        const comparison = FoxchaseBenchmarks.historicalComparison(data, cashSource);
+        const backtest = comparison.rows.find(row => row.label === "Foxchase Intraday");
+        setTextIfExists("backtestStrategyReturn", formatCanonicalPercent(backtest.strategy_return_pct));
+        setTextIfExists("backtestCashReturn", formatCanonicalPercent(backtest.cash_return_pct));
+        setTextIfExists("backtestExcessReturn", backtest.excess_return_pp === null ? "—" :
+          (backtest.excess_return_pp > 0 ? "+" : "") + backtest.excess_return_pp.toFixed(2) + " pp");
+        setTextIfExists("backtestSPYReturn", formatCanonicalPercent(backtest.spy_return_pct));
+        setTextIfExists("historicalBenchmarkStatus", "Backtest period: " + backtest.start + "–" + backtest.end +
+          ". All indices start at 100. " + (comparison.cash.available
+            ? "Treasury/cash is the primary benchmark; SPY is the secondary equity-market reference."
+            : "Treasury/cash and excess-return comparisons are unavailable; no rate is substituted. Strategy and SPY remain available."));
+        const backtestChart = new Chart(document.getElementById("backtestBenchmarkChart"), {
+          type:"line", data:{labels:comparison.labels,datasets:comparison.datasets},
+          options:{responsive:true,maintainAspectRatio:false,animation:false,
+            interaction:{mode:"index",intersect:false},
+            plugins:{tooltip:{callbacks:{label:item => item.dataset.label + ": " + Number(item.parsed.y).toFixed(2) + " index points"}}},
+            scales:{x:{ticks:{maxTicksLimit:8,callback:value => comparison.labels[value].slice(0,7)}},
+              y:{type:"linear",title:{display:true,text:"Normalized index (100 at backtest start, linear scale)"}}}}
+        });
+        const backtestScale = document.getElementById("backtestScale");
+        backtestScale.addEventListener("change", () => {
+          const logarithmic = backtestScale.value === "logarithmic";
+          backtestChart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
+          backtestChart.options.scales.y.title.text = "Normalized index (100 at backtest start, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
+          setTextIfExists("backtestScaleStatus", logarithmic
+            ? "Logarithmic scale: equal spacing represents equal percentage changes. Index values and returns are unchanged."
+            : "Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.");
+          backtestChart.update();
+        });
         const colors = {
           "Foxchase Intraday": "#234a76",
           "Foxchase Multi-Day": "#2f855a",
@@ -1157,7 +1231,10 @@ function setTextIfExists(id, value) {
         status.textContent = "SPY uses dividend- and split-adjusted SIP daily closes. At the August 25, 2026 joint endpoint: SPY " +
           money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[jointIndex]) +
           ". Intraday and SPY curves continue through September 22. Multi-Day and Combined have no plotted values after August 25.";
-      }).catch(() => { status.textContent = "Historical comparison chart is temporarily unavailable."; });
+      }).catch(() => {
+        status.textContent = "Historical comparison chart is temporarily unavailable.";
+        setTextIfExists("historicalBenchmarkStatus", "Historical benchmark comparison is unavailable until the research data passes validation.");
+      });
     }
     loadHistoricalComparison();
     FoxchaseResearchIntegrity.loadStudy(document, fetch);
@@ -1218,8 +1295,12 @@ function setTextIfExists(id, value) {
           if (!response.ok) throw new Error("Live performance unavailable");
           return response.json();
         }),
-        loadChartLibrary()
-      ]).then(([data]) => {
+        loadChartLibrary(),
+        fetch("/data/live-benchmarks.json", { cache: "no-store" }).then(response => {
+          if (!response.ok) throw new Error("Benchmark data unavailable");
+          return response.json();
+        }).catch(() => null)
+      ]).then(([data, , benchmarkSource]) => {
 
       const canonicalState = canonicalArtifactState(data);
       const liveAvailable = canonicalState.valuesAvailable;
@@ -1275,6 +1356,18 @@ function setTextIfExists(id, value) {
         document.getElementById("note").textContent = data.note || "";
 
         const points = canonicalState.historicalPoints;
+        const comparison = FoxchaseBenchmarks.compare(data, benchmarkSource);
+        setTextIfExists("cashBenchmarkReturn", liveAvailable && comparison.cash.available ? formatCanonicalPercent(comparison.cash.return_pct) : unavailableValue);
+        setTextIfExists("excessCashReturn", liveAvailable && comparison.cash.available && comparison.excess_return_pp !== null ?
+          (comparison.excess_return_pp > 0 ? "+" : "") + comparison.excess_return_pp.toFixed(2) + " pp" : unavailableValue);
+        setTextIfExists("spyBenchmarkReturn", liveAvailable && comparison.spy.available ? formatCanonicalPercent(comparison.spy.return_pct) : unavailableValue);
+        const benchmarkMessages = [];
+        if (!comparison.cash.available) benchmarkMessages.push("Treasury/cash comparison unavailable; no rate is substituted.");
+        if (!comparison.spy.available) benchmarkMessages.push("SPY comparison unavailable for the matching live snapshot.");
+        if (!liveAvailable) benchmarkMessages.push("Current returns await a fresh canonical live record.");
+        if (!benchmarkMessages.length) benchmarkMessages.push("Same comparison period: " + points[0].date + "–" + points.at(-1).date +
+          ". Cash accrues by calendar day; SPY is the secondary market reference.");
+        setTextIfExists("liveBenchmarkStatus", benchmarkMessages.join(" "));
         const formatPointDate = value => {
           const [year, month, day] = String(value).split("-").map(Number);
           const date = new Date(year, month - 1, day);
@@ -1286,16 +1379,7 @@ function setTextIfExists(id, value) {
           type: "line",
           data: {
             labels: points.map(p => p.date),
-            datasets: [{
-              label: "Live Account Performance Index",
-              data: points.map(p => p.index_value),
-              tension: 0.25,
-              pointRadius: 2,
-              borderColor: "#f4c430",
-              backgroundColor: "rgba(244, 196, 48, 0.18)",
-              pointBackgroundColor: "#f4c430",
-              pointBorderColor: "#f4c430"
-            }]
+            datasets: comparison.datasets
           },
           options: {
             responsive: true,
@@ -1306,7 +1390,7 @@ function setTextIfExists(id, value) {
                 xAlign: "center",
                 callbacks: {
                   title: contexts => formatPointDate(points[contexts[0].dataIndex]?.date),
-                  label: context => Number(context.parsed.y).toFixed(2) + " index points"
+                  label: context => context.dataset.label + ": " + Number(context.parsed.y).toFixed(2) + " index points"
                 }
               }
             },

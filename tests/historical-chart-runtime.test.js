@@ -7,16 +7,21 @@ async function run(mutate=()=>{},missing="") {
     "/data/historical_comparison_20261003.json":read("data/historical_comparison_20261003.json"),
     "/data/combined_research_20261003.json":read("data/combined_research_20261003.json"),
     "/data/multiday_research_20261003.json":read("data/multiday_research_20261003.json"),
-    "/data/benchmark_research_20261003.json":read("data/benchmark_research_20261003.json")
+    "/data/benchmark_research_20261003.json":read("data/benchmark_research_20261003.json"),
+    "/data/historical-cash-benchmark.json":read("data/historical-cash-benchmark.json")
   };
   mutate(files);
   const el=()=>({textContent:"",value:"linear",events:{},addEventListener(name,fn){this.events[name]=fn;}});
-  const nodes=Object.fromEntries(["historicalComparisonStatus","historicalScale","historicalScaleStatus","historicalComparisonChart"].map(id=>[id,el()]));
+  const nodes=Object.fromEntries(["historicalComparisonStatus","historicalScale","historicalScaleStatus","historicalComparisonChart",
+    "backtestBenchmarkChart","historicalBenchmarkStatus","backtestStrategyReturn","backtestCashReturn","backtestExcessReturn","backtestSPYReturn","backtestScale","backtestScaleStatus"].map(id=>[id,el()]));
   const controls=files["/data/historical_comparison_20261003.json"].series.map(s=>({...el(),dataset:{comparisonSeries:s.label},checked:true}));
   const charts=[];
-  class Chart {constructor(canvas,config){Object.assign(this,config);this.updates=0;charts.push(this);}update(){this.updates++;}}
+  class Chart {constructor(canvas,config){Object.assign(this,config);this.canvas=canvas;this.updates=0;charts.push(this);}update(){this.updates++;}}
   const page=text("algo-pnl.html"),begin=page.indexOf("    function loadHistoricalComparison() {"),end=page.indexOf("    loadHistoricalComparison();",begin);
   const context=vm.createContext({Chart,Intl,Date,Map,Set,Number,Math,Error,Promise,
+    FoxchaseBenchmarks:require("../js/live-benchmarks.js"),
+    setTextIfExists:(id,value)=>{if(nodes[id])nodes[id].textContent=value;},
+    formatCanonicalPercent:value=>value===null ? "—" : (value>0 ? "+" : "")+value.toFixed(2)+"%",
     window:{matchMedia:()=>({matches:false})},loadChartLibrary:async()=>Chart,
     document:{querySelectorAll:()=>controls,getElementById:id=>nodes[id]},
     fetch:async url=>({ok:url.split("?")[0]!==missing,json:async()=>files[url.split("?")[0]]})});
@@ -25,8 +30,8 @@ async function run(mutate=()=>{},missing="") {
 }
 
 test("scale and visibility controls preserve every original dollar observation",async()=>{
-  const {charts,nodes,controls}=await run();assert.equal(charts.length,1);
-  const chart=charts[0],before=JSON.stringify(chart.data.datasets);
+  const {charts,nodes,controls}=await run();assert.equal(charts.length,2);
+  const chart=charts.find(c=>c.canvas===nodes.historicalComparisonChart),before=JSON.stringify(chart.data.datasets);
   assert.deepEqual(Object.keys(chart.options.scales),["x","y"]);assert.equal(chart.options.scales.y.type,"linear");
   const tick=chart.options.scales.y.ticks.callback;
   assert.equal(tick.call({type:"logarithmic"},10000),"$10,000");
@@ -43,6 +48,36 @@ test("scale and visibility controls preserve every original dollar observation",
   controls[0].checked=true;controls[0].events.change();assert.equal(JSON.stringify(chart.data.datasets),before);
   assert.ok(nodes.historicalComparisonStatus.textContent.includes("$20,873.45"));
   assert.equal(/JEPI/i.test(nodes.historicalComparisonStatus.textContent),false);
+});
+
+test("separate backtest benchmark chart starts at 100 and uses only canonical historical dates",async()=>{
+  const {charts,nodes,files}=await run();assert.equal(charts.length,2);
+  const chart=charts.find(c=>c.canvas===nodes.backtestBenchmarkChart),historical=files["/data/historical_comparison_20261003.json"];
+  assert.deepEqual(chart.data.datasets.map(d=>d.label),["Foxchase Backtest","Risk-Free / Cash","SPY Buy & Hold"]);
+  assert.ok(chart.data.datasets.every(d=>d.data[0]===100&&d.data.length===932));
+  assert.deepEqual(chart.data.labels,historical.dates);assert.equal(chart.data.labels[0],"2023-01-04");assert.equal(chart.data.labels.at(-1),"2026-09-22");
+  for(const [i,label] of [[0,"Foxchase Intraday"],[2,"SPY Buy & Hold"]]) {
+    const original=historical.series.find(s=>s.label===label);
+    assert.deepEqual(chart.data.datasets[i].data,original.values.map(value=>100*value/10000));
+  }
+  assert.equal(nodes.backtestStrategyReturn.textContent,"+2065.78%");assert.equal(nodes.backtestSPYReturn.textContent,"+111.29%");
+  assert.match(nodes.historicalBenchmarkStatus.textContent,/2023-01-04–2026-09-22/);
+  const before=JSON.stringify(chart.data.datasets);
+  nodes.backtestScale.value="logarithmic";nodes.backtestScale.events.change();
+  assert.equal(chart.options.scales.y.type,"logarithmic");assert.equal(JSON.stringify(chart.data.datasets),before);
+  assert.deepEqual(Object.keys(chart.options.scales),["x","y"]);
+});
+
+test("unavailable historical cash leaves strategy, SPY and original research charts intact",async()=>{
+  const valid=await run(),missing=await run(()=>{},"/data/historical-cash-benchmark.json");
+  assert.equal(missing.charts.length,2);
+  const oldChart=valid.charts.find(c=>c.canvas===valid.nodes.historicalComparisonChart),kept=missing.charts.find(c=>c.canvas===missing.nodes.historicalComparisonChart);
+  assert.equal(JSON.stringify(kept.data.datasets),JSON.stringify(oldChart.data.datasets));
+  assert.equal(missing.nodes.backtestCashReturn.textContent,"—");assert.equal(missing.nodes.backtestExcessReturn.textContent,"—");
+  assert.equal(missing.nodes.backtestStrategyReturn.textContent,"+2065.78%");assert.equal(missing.nodes.backtestSPYReturn.textContent,"+111.29%");
+  assert.match(missing.nodes.historicalBenchmarkStatus.textContent,/no rate is substituted/);
+  const normalized=missing.charts.find(c=>c.canvas===missing.nodes.backtestBenchmarkChart);
+  assert.ok(normalized.data.datasets[1].data.every(value=>value===null));
 });
 
 test("Multi-Day certificate matches all points, daily accounting and curve digest",()=>{
