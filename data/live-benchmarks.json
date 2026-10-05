@@ -3,8 +3,8 @@
   "base_index": 100,
   "source_start": "2026-05-04",
   "source_end": "2026-10-05",
-  "source_as_of": "2026-10-05T16:30:02.964671-04:00",
-  "generated_at": "2026-10-05T20:30:04.737213+00:00",
+  "source_as_of": "2026-10-05T16:30:51.864958-04:00",
+  "generated_at": "2026-10-05T20:30:53.580393+00:00",
   "cash": {
     "series": "UST_3MO_PAR",
     "field": "BC_3MONTH",
