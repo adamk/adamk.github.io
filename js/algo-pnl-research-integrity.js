@@ -5,6 +5,7 @@
   const studyUrl = "/data/intraday_research_with_ex_20261003.json";
   const attributionUrl = "/data/intraday_research_attribution_20261003.json";
   const limitations = "Historical results are simulated research and are separate from live account performance. The research uses modeled historical execution, retrospective portfolio sizing, and datasets with differing coverage periods. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity, or market impact. Required missing inputs remain unknown; this update does not estimate or synthesize them. Historical results do not guarantee future performance.";
+  const limitationsDisplay = "Historical results are simulated research, separate from live account performance, using modeled execution and retrospective sizing. Dataset coverage differs by component; missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.";
 
   function setText(document, id, value) {
     const element = document.getElementById(id);
@@ -106,10 +107,8 @@
     setText(document, "compareHistoricalWinRate", percent(stats.win_rate_pct));
     setText(document, "compareHistoricalProfitFactor", number(stats.profit_factor, 3));
     setText(document, "compareHistoricalDrawdown", percent(stats.max_drawdown_pct));
-    setText(document, "researchTradeSummary", stats.wins + " wins · " + stats.losses + " losses · " + stats.breakeven +
-      " flat. Intraday gross P&L is " + money(stats.gross_pnl, true) +
-      "; its additive hypothetical value ends at " + money(stats.ending_equity) + ".");
-    setText(document, "researchLimitations", limitations);
+    setText(document, "researchTradeSummary", stats.wins + " wins · " + stats.losses + " losses · " + stats.breakeven + " flat.");
+    setText(document, "researchLimitations", limitationsDisplay);
     setText(document, "researchDataStatus", "");
     return coverage;
   }
@@ -171,9 +170,7 @@
       setText(document, prefix + "DD", money(metric.max_drawdown_dollars) + " / " + percent(metric.max_drawdown_pct));
     }
     setText(document, "researchLegacyContext", data.legacy_context);
-    setText(document, "researchModelInterpretation", "Using the same portfolio engine, spread-only produces " +
-      money(data.spread_only.gross_pnl, true) + " compared with " + money(data.combined.gross_pnl, true) +
-      " for spread + EX. The spread + EX replay has higher modeled gross P&L, but lower profit factor and Daily Sharpe and deeper maximum drawdown.");
+    setText(document, "researchModelInterpretation", "Adding EX increases modeled gross P&L, with lower profit factor and Daily Sharpe and deeper maximum drawdown.");
     setText(document, "attributionDataStatus", "");
     return data;
   }

@@ -9,7 +9,7 @@ test("only the newly validated Combined curve is restored to data and selector",
   const source=read("data/combined_research_20261003.json");
   assert.equal(source.status,"VALIDATED_SHARED_ACCOUNT_RESEARCH");assert.equal(source.validation.risk_breaches,0);
   assert.match(page,/data-comparison-series="Foxchase Combined"/);
-  assert.match(page,/not obtained by summing independently compounded/);
+  assert.match(page,/not a sum of independently compounded curves/);
   assert.doesNotMatch(page,/Combined shared-account replay is not shown/);
   assert.doesNotMatch(page,/unchanged earlier research records|neither incorporates this updated Intraday/);
   for(const name of ["historical_comparison_20260923.json","ex_strategy_backtest.json","intraday_research_integrity_20260922.json","intraday_research_curve_20260922.json","INTRADAY_RESEARCH_INTEGRITY.md"])
@@ -41,6 +41,33 @@ test("public research artifacts contain aggregate evidence without sleeve-level 
 
 test("concise limitations preserve material transparency without internal commentary",()=>{
   const document=fixture();renderer.renderStudy(document,read("data/intraday_research_with_ex_20261003.json"));
-  assert.equal(document.getElementById("researchLimitations").textContent,"Historical results are simulated research and are separate from live account performance. The research uses modeled historical execution, retrospective portfolio sizing, and datasets with differing coverage periods. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity, or market impact. Required missing inputs remain unknown; this update does not estimate or synthesize them. Historical results do not guarantee future performance.");
+  assert.equal(document.getElementById("researchLimitations").textContent,"Historical results are simulated research, separate from live account performance, using modeled execution and retrospective sizing. Dataset coverage differs by component; missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.");
   assert.match(text("algo-pnl.html"),/not actual account equity/);
+});
+
+test("backtest references the full Treasury methodology without repeating it",()=>{
+  const page=text("algo-pnl.html");
+  assert.equal((page.match(/BC_3MONTH/g)||[]).length,1);
+  assert.equal((page.match(/yield percentage ÷ 100 ÷ 365/g)||[]).length,1);
+  assert.match(page,/id="benchmarkMethodology"/);
+  const note=page.match(/<details[^>]*id="historicalBenchmarkMethodology"[^>]*>([\s\S]*?)<\/details>/)[1];
+  assert.match(note,/href="#benchmarkMethodology"/);
+  assert.match(note,/independently aligned.*validated backtest period.*without rebasing/);
+  assert.match(note,/dividend- and split-adjusted historical series/);
+  assert.match(note,/Unsupported Treasury intervals.*unavailable/);
+  assert.doesNotMatch(note,/BC_3MONTH|÷ 365|primary benchmark|secondary reference/);
+  assert.match(page,/latest prior-dated observation.*at most seven calendar days/);
+  assert.match(page,/Longer gaps make cash and excess return unavailable; rates are not backfilled or substituted/);
+});
+
+test("concise research copy preserves costs, compounding and component dates",()=>{
+  const page=text("algo-pnl.html"),document=fixture();
+  renderer.renderStudy(document,read("data/intraday_research_with_ex_20261003.json"));
+  assert.equal(document.getElementById("researchTradeSummary").textContent,"303 wins · 222 losses · 1 flat.");
+  assert.match(page,/Intraday excludes commissions, fees and additional slippage/);
+  assert.match(page,/Multi-Day includes modeled costs; Combined inherits each component/);
+  assert.match(page,/Full broker fees, capacity and market impact are not modeled/);
+  assert.match(page,/Hypothetical portfolios start at \$10,000 with no deposits/);
+  assert.match(page,/September 22, 2026 for spreads, May 5, 2026 for EX, and August 25, 2026 for Multi-Day and Combined/);
+  assert.doesNotMatch(page,/id="researchInputPolicy"|id="researchSizingBasis"|id="researchCostNote"/);
 });

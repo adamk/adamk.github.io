@@ -48,9 +48,9 @@ test("Combined uses shared capital rather than independent-curve addition or a r
 test("Combined public copy states the shared-account boundary without private rules",()=>{
   const page=text("algo-pnl.html");
   assert.match(page,/data-comparison-series="Foxchase Combined"/);
-  assert.match(page,/single-account historical replay of the current Intraday and Multi-Day research portfolios/);
-  assert.match(page,/not obtained by summing independently compounded component curves/);
-  assert.match(page,/last date for which both components have validated historical evidence/);
+  assert.match(page,/single-account replay of current Intraday and Multi-Day research under shared capital and risk constraints/);
+  assert.match(page,/not a sum of independently compounded curves/);
+  assert.match(page,/last jointly validated date/);
   assert.doesNotMatch(page,/Combined shared-account replay is not shown|Combined curve is not currently shown|unchanged earlier research records/);
   assert.doesNotMatch(text("data/combined_research_20261003.json"),/research\/|allocation_pct|candidate_id|risk_per_unit|exposure_ceiling|priority|sleeve|R[1-6]/);
 });
