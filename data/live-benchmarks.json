@@ -3,8 +3,8 @@
   "base_index": 100,
   "source_start": "2026-05-04",
   "source_end": "2026-10-08",
-  "source_as_of": "2026-10-08T15:45:01.153459-04:00",
-  "generated_at": "2026-10-08T19:45:02.762863+00:00",
+  "source_as_of": "2026-10-08T16:00:01.175177-04:00",
+  "generated_at": "2026-10-08T20:00:02.580789+00:00",
   "cash": {
     "series": "UST_3MO_PAR",
     "field": "BC_3MONTH",
@@ -12,7 +12,7 @@
     "source": "U.S. Treasury Daily Treasury Par Yield Curve Rates, 3-month",
     "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml",
     "source_sha256": [
-      "dbd3fc41af342737cd08279ea0356910a41150309f5b0425a4578b9bb1f28710"
+      "2eac7e46954d86c93138115f89545aa9c7eebe342aed8a6150bacdf70781b549"
     ],
     "observations": [
       {
@@ -490,6 +490,10 @@
       {
         "date": "2026-10-07",
         "annual_yield_pct": 4.22
+      },
+      {
+        "date": "2026-10-08",
+        "annual_yield_pct": 4.23
       }
     ],
     "accrual": "annual_percent / 100 / 365, daily calendar compounding",
@@ -1056,10 +1060,10 @@
       },
       {
         "date": "2026-10-08",
-        "close": 773.36
+        "close": 774.005
       }
     ],
-    "partial_session": true,
-    "last_quote_timestamp": "2026-10-08T19:44:00Z"
+    "partial_session": false,
+    "last_quote_timestamp": null
   }
 }
