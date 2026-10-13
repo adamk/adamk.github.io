@@ -29,5 +29,6 @@ test("chart offers clearly labeled linear and logarithmic options on one axis",(
   assert.match(html,/id="historicalScale"/);assert.match(html,/value="linear"/);assert.match(html,/value="logarithmic"/);
   assert.match(html,/id="historicalScaleStatus"/);assert.match(html,/equal percentage changes/);
   assert.doesNotMatch(html,/yAxisID|position:\s*["']right["']/);
-  assert.match(html,/gains and losses affect the size of subsequent trades/i);
+  assert.match(html,/standalone one-contract gross replay normalized to \$10,000/i);
+  assert.doesNotMatch(html,/gains and losses affect the size of subsequent trades|Intraday includes modeled EX research/i);
 });

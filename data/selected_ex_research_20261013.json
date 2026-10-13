@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "classification": "SELECTED_EX_ONE_CONTRACT_RESEARCH",
+  "display_label": "Selected EX sleeve",
+  "study_start": "2023-01-04",
+  "study_end": "2026-09-21",
+  "sessions_considered": 932,
+  "sessions_assessable": 911,
+  "sessions_unassessable": 21,
+  "known_signals": 457,
+  "execution_assessable_signals": 455,
+  "production_candidates": 292,
+  "analysis_set": "OUTSIDE_LUNCH",
+  "stop_pct": 0.2,
+  "target_pct": 0.3,
+  "cost_basis": "gross_before_fees",
+  "statistics": {
+    "trades": 281,
+    "wins": 128,
+    "losses": 153,
+    "breakeven": 0,
+    "gross_pnl": 908.0000000000001,
+    "gross_profit": 5546,
+    "gross_loss": 4638,
+    "win_rate_pct": 45.55160142348754,
+    "profit_factor": 1.1957740405347133,
+    "dollar_expectancy": 3.231316725978648,
+    "median_pnl": -12,
+    "max_drawdown_dollars": -496,
+    "average_hold_minutes": 14.676156583629894,
+    "median_hold_minutes": 8,
+    "tp_exits": 128,
+    "sl_exits": 151,
+    "time_exits": 2,
+    "trade_return_sharpe": 0.1064055464087215
+  },
+  "yearly": [
+    {
+      "year": 2023,
+      "trades": 68,
+      "wins": 33,
+      "losses": 35,
+      "time_exits": 0,
+      "gross_pnl": 430
+    },
+    {
+      "year": 2024,
+      "trades": 75,
+      "wins": 42,
+      "losses": 33,
+      "time_exits": 0,
+      "gross_pnl": 488
+    },
+    {
+      "year": 2025,
+      "trades": 77,
+      "wins": 25,
+      "losses": 52,
+      "time_exits": 2,
+      "gross_pnl": -304
+    },
+    {
+      "year": 2026,
+      "trades": 61,
+      "wins": 28,
+      "losses": 33,
+      "time_exits": 0,
+      "gross_pnl": 294
+    }
+  ],
+  "scope": "Latest corrected Extrinsic divergence replay for the selected directional sleeve only; outside-lunch, one-contract SL20/TP30 research.",
+  "input_policy": "Certified assessable history is shown explicitly. Twenty-one sessions remain unassessable; their signal counts are unknown, not zero.",
+  "execution_basis": "Event-time ATM exact contract; executable ASK entry; subsequent BID exits; 90-second entry-age bound; 15:55 ET terminal quote. Historical quotes are sampled NBBO proxies, not live fills.",
+  "sizing_basis": "One contract per admitted trade; gross dollars before commissions, fees, latency slippage or market impact.",
+  "provenance": "Source study certified assessable history, not complete history. The prior multi-sleeve EX research is not included in this page.",
+  "limitations": "Historical results are simulated research and separate from live account performance. The selected EX replay uses modeled historical execution and one-contract gross P&L. Twenty-one sessions remain unassessable; their signal counts are unknown and not treated as zero. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact. Results do not guarantee future performance.",
+  "source_report_sha256": "b51b4c8049ef71dd01de7f4ec4657f821edbfcb26816e8c2c70afcb2a9e73e08",
+  "source_ledger_sha256": "24878a491a9832315f6113680a516f1d34e8a00496ffaa094329b993cebea90c",
+  "unknown_outcomes_are_zero": false,
+  "complete_history": false
+}
