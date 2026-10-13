@@ -5,7 +5,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
   <script src="/js/time-format.js?v=20260921-hold"></script>
   <script src="/js/canonical-performance.js?v=20260919-tier1-session"></script>
-  <script src="/js/live-benchmarks.js?v=20261013-intraday-r1"></script>
+  <script src="/js/live-benchmarks.js?v=20261013-intraday-r2"></script>
   <script>
 function formatMoneyValue(value) {
   const n = Number(value || 0);
@@ -1377,6 +1377,7 @@ function setTextIfExists(id, value) {
           },
           options: {
             responsive: true,
+            animation: false,
             interaction: { mode: "index", intersect: false, axis: "x" },
             plugins: {
               tooltip: {

@@ -99,9 +99,9 @@ const FoxchaseBenchmarks = (() => {
       labels, strategy_return_pct:strategyReturn, cash, spy,
       excess_return_pp:cash.available&&Number.isFinite(strategyReturn) ? strategyReturn-cash.return_pct : null,
       datasets:[
-        {label:"Foxchase Algo",data:points.map(p=>p.index_value),borderColor:"#f4c430",backgroundColor:"rgba(244, 196, 48, 0.18)",borderWidth:3,pointRadius:2,tension:0.25},
-        {label:"Risk-Free / Cash",data:cash.values||labels.map(()=>null),borderColor:"#087f8c",borderWidth:3,pointRadius:0,tension:0},
-        {label:"SPY Buy & Hold",data:spy.values||labels.map(()=>null),borderColor:"#666666",borderWidth:2,borderDash:[6,4],pointRadius:0,tension:0}
+        {label:"Foxchase Algo",data:points.map(p=>p.index_value),borderColor:"#f4c430",backgroundColor:"rgba(244, 196, 48, 0.18)",borderWidth:3,pointRadius:2,pointHoverRadius:2,tension:0.25},
+        {label:"Risk-Free / Cash",data:cash.values||labels.map(()=>null),borderColor:"#087f8c",borderWidth:3,pointRadius:0,pointHoverRadius:0,tension:0},
+        {label:"SPY Buy & Hold",data:spy.values||labels.map(()=>null),borderColor:"#666666",borderWidth:2,borderDash:[6,4],pointRadius:0,pointHoverRadius:0,tension:0}
       ]
     };
   }
