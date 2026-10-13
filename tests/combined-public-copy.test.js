@@ -3,25 +3,24 @@ const test=require("node:test"),assert=require("node:assert/strict"),fs=require(
 const {root,text,read,fixture}=require("./research-fixture");
 const renderer=require("../js/algo-pnl-research-integrity.js");
 
-test("only the newly validated Combined curve is restored to data and selector",()=>{
-  const chart=read("data/historical_comparison_20261003.json"),page=text("algo-pnl.html");
-  assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
-  const source=read("data/combined_research_20261003.json");
-  assert.equal(source.status,"VALIDATED_SHARED_ACCOUNT_RESEARCH");assert.equal(source.validation.risk_breaches,0);
-  assert.match(page,/data-comparison-series="Foxchase Combined"/);
-  assert.match(page,/not a sum of independently compounded curves/);
-  assert.doesNotMatch(page,/Combined shared-account replay is not shown/);
+test("only the selected EX curve is restored to data and selector",()=>{
+  const chart=read("data/selected_ex_historical_comparison_20261013.json"),page=text("algo-pnl.html");
+  assert.deepEqual(chart.series.map(s=>s.label),["Selected EX","Foxchase Multi-Day","SPY Buy & Hold"]);
+  const source=read("data/selected_ex_research_20261013.json");
+  assert.equal(source.classification,"SELECTED_EX_ONE_CONTRACT_RESEARCH");
+  assert.equal(source.statistics.trades,281);assert.equal(source.statistics.gross_pnl,908.0000000000001);
+  assert.match(page,/data-comparison-series="Selected EX"/);
+  assert.match(page,/standalone one-contract replay/);
+  assert.doesNotMatch(page,/data-comparison-series="Foxchase Combined"|Modeled portfolio comparison/);
   assert.doesNotMatch(page,/unchanged earlier research records|neither incorporates this updated Intraday/);
   for(const name of ["historical_comparison_20260923.json","ex_strategy_backtest.json","intraday_research_integrity_20260922.json","intraday_research_curve_20260922.json","INTRADAY_RESEARCH_INTEGRITY.md"])
     assert.ok(!fs.existsSync(path.join(root,"data",name)),"retired public artifacts must not remain reachable");
 });
 
-test("remaining original series are unchanged and Multi-Day uses the corrected record",()=>{
-  const chart=read("data/historical_comparison_20261003.json");
-  const hashes={"Foxchase Intraday":"977ea3ffd79ba8e17aac8a42aec8f907cfa14e91758a74c89bb7a5ff0affa270",
-    "SPY Buy & Hold":"8e94e9dc6c73539f0f05ed9c7dd2803bf2314240b885646ae3fe5f2d987ed5ac"};
+test("selected EX and Multi-Day curves retain explicit validation endpoints",()=>{
+  const chart=read("data/selected_ex_historical_comparison_20261013.json");
   assert.equal(chart.dates.length,932);assert.equal(chart.dates[0],"2023-01-04");assert.equal(chart.dates.at(-1),"2026-09-22");
-  for(const label of Object.keys(hashes)){const series=chart.series.find(s=>s.label===label);assert.ok(series);assert.equal(crypto.createHash("sha256").update(JSON.stringify(series.values)).digest("hex"),hashes[label]);}
+  const selected=chart.series.find(s=>s.label==="Selected EX");assert.equal(selected.validated_through,"2026-09-21");assert.equal(selected.values.at(-1),null);
   const multiday=chart.series.find(s=>s.label==="Foxchase Multi-Day"),index=chart.dates.indexOf("2026-08-25");
   assert.equal(multiday.validated_through,"2026-08-25");assert.equal(multiday.values[index],27351.1);
   const corrected=read("data/multiday_research_20261003.json");
@@ -40,8 +39,9 @@ test("public research artifacts contain aggregate evidence without sleeve-level 
 });
 
 test("concise limitations preserve material transparency without internal commentary",()=>{
-  const document=fixture();renderer.renderStudy(document,read("data/intraday_research_with_ex_20261003.json"));
-  assert.equal(document.getElementById("researchLimitations").textContent,"Historical results are simulated research, separate from live account performance, using modeled execution and retrospective sizing. Dataset coverage differs by component; missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.");
+  const document=fixture();renderer.renderStudy(document,read("data/selected_ex_research_20261013.json"));
+  assert.match(document.getElementById("researchLimitations").textContent,/simulated research and separate from live account performance/);
+  assert.match(document.getElementById("researchLimitations").textContent,/Twenty-one sessions remain unassessable/);
   assert.match(text("algo-pnl.html"),/not actual account equity/);
 });
 
@@ -60,14 +60,13 @@ test("backtest references the full Treasury methodology without repeating it",()
   assert.match(page,/Longer gaps make cash and excess return unavailable; rates are not backfilled or substituted/);
 });
 
-test("concise research copy preserves costs, compounding and component dates",()=>{
+test("selected EX copy preserves costs, one-contract scope and component dates",()=>{
   const page=text("algo-pnl.html"),document=fixture();
-  renderer.renderStudy(document,read("data/intraday_research_with_ex_20261003.json"));
-  assert.equal(document.getElementById("researchTradeSummary").textContent,"303 wins · 222 losses · 1 flat.");
-  assert.match(page,/Intraday excludes commissions, fees and additional slippage/);
-  assert.match(page,/Multi-Day includes modeled costs; Combined inherits each component/);
-  assert.match(page,/Full broker fees, capacity and market impact are not modeled/);
-  assert.match(page,/Hypothetical portfolios start at \$10,000 with no deposits/);
-  assert.match(page,/September 22, 2026 for spreads, May 5, 2026 for EX, and August 25, 2026 for Multi-Day and Combined/);
+  renderer.renderStudy(document,read("data/selected_ex_research_20261013.json"));
+  assert.equal(document.getElementById("researchTradeSummary").textContent,"128 wins · 153 losses · 2 time exits. Gross one-contract P&L is +$908.");
+  assert.match(page,/selected EX line is a standalone one-contract gross replay normalized to \$10,000/);
+  assert.match(page,/selected EX replay is validated through September 21, 2026/);
+  assert.match(page,/Multi-Day remains validated through August 25, 2026/);
+  assert.doesNotMatch(page,/Intraday includes modeled EX research|Foxchase Combined|position sizes compound with modeled equity/);
   assert.doesNotMatch(page,/id="researchInputPolicy"|id="researchSizingBasis"|id="researchCostNote"/);
 });
