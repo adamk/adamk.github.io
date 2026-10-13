@@ -45,11 +45,12 @@ test("Combined uses shared capital rather than independent-curve addition or a r
   assert.ok(combined.slice(end+1).every(v=>v===null));
 });
 
-test("selected EX public copy avoids stale shared-account claims",()=>{
+test("restored portfolio comparison retains its shared-account claims",()=>{
   const page=text("algo-pnl.html");
-  assert.match(page,/data-comparison-series="Selected EX"/);
-  assert.match(page,/standalone one-contract replay/);
-  assert.match(page,/no new shared-capital core-plus-EX result is inferred/);
-  assert.doesNotMatch(page,/data-comparison-series="Foxchase Combined"|single-account replay of current Intraday and Multi-Day research|last jointly validated date/);
-  assert.doesNotMatch(page,/combined_research_20261003|intraday_research_with_ex_20261003/);
+  const integrity=text("js/algo-pnl-research-integrity.js");
+  assert.match(page,/data-comparison-series="Foxchase Combined"/);
+  assert.match(page,/single-account replay of current Intraday and Multi-Day research/);
+  assert.match(page,/last jointly validated date/);
+  assert.match(page,/combined_research_20261003/);
+  assert.match(integrity,/intraday_research_attribution_20261003/);
 });

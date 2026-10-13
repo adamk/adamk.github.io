@@ -2,42 +2,43 @@
 const test=require("node:test"),assert=require("node:assert/strict");
 const renderer=require("../js/algo-pnl-research-integrity.js");
 const {read,text,fixture}=require("./research-fixture");
-const study=read("data/selected_ex_research_20261013.json"),chart=read("data/selected_ex_historical_comparison_20261013.json"),page=text("algo-pnl.html");
+const study=read("data/intraday_research_with_ex_20261013.json"),chart=read("data/historical_comparison_20261013.json"),page=text("algo-pnl.html");
 
-test("latest corrected R1 Bull replay is the only rendered EX study",()=>{
+test("latest corrected Intraday replay is the primary rendered study",()=>{
   const document=fixture();renderer.renderStudy(document,study);
-  const expected={researchTrades:"281",researchGrossPnl:"+$908",researchWinRate:"45.55%",researchProfitFactor:"1.196",researchSharpe:"0.106",researchDrawdown:"-$496",researchCoverage:"911 / 932 sessions",researchEXTrades:"281",researchUnresolved:"21 unassessable",researchRuleset:"Selected EX sleeve · SL20 / TP30"};
+  const expected={researchTrades:"530",researchGrossPnl:"+$92,414",researchWinRate:"55.47%",researchProfitFactor:"1.438",researchSharpe:"1.730",researchDrawdown:"-$14,302 / -41.15%",researchCoverage:"Spreads 929 / 932",researchCoreTrades:"258",researchEXTrades:"272",researchUnresolved:"Spreads 3 · EX 21",researchRuleset:"Intraday + corrected commissioned EX"};
   for(const [id,value] of Object.entries(expected)) assert.equal(document.getElementById(id).textContent,value);
-  assert.match(document.getElementById("researchPeriod").textContent,/January 4, 2023.*September 21, 2026.*Selected EX one-contract research/);
-  assert.match(document.getElementById("researchTradeSummary").textContent,/128 wins · 153 losses · 2 time exits/);
-  assert.equal(study.statistics.tp_exits,128);assert.equal(study.statistics.sl_exits,151);assert.equal(study.statistics.time_exits,2);
+  assert.match(document.getElementById("researchPeriod").textContent,/January 4, 2023.*September 22, 2026.*Corrected commissioned EX integration/);
+  assert.equal(document.getElementById("researchTradeSummary").textContent,"294 wins · 235 losses · 1 flat.");
 });
 
-test("selected curve is aligned, positive, and explicitly incomplete at its endpoint",()=>{
-  assert.match(chart.source_study_sha256,/^[a-f0-9]{64}$/);
-  assert.deepEqual(chart.series.map(s=>s.label),["Selected EX","Foxchase Multi-Day","SPY Buy & Hold"]);
+test("Intraday curve is aligned and complete through the corrected study endpoint",()=>{
+  assert.match(chart.provenance,/corrected commissioned EX-only integration/i);
+  assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
   assert.equal(chart.dates.length,932);assert.equal(chart.dates[0],"2023-01-04");assert.equal(chart.dates.at(-1),"2026-09-22");
-  const selected=chart.series.find(s=>s.label==="Selected EX"),end=chart.dates.indexOf("2026-09-21");
-  assert.equal(selected.validated_through,"2026-09-21");assert.equal(selected.values[0],10000);assert.ok(selected.values[end]>10000);assert.equal(selected.values.at(-1),null);
-  assert.ok(selected.values.slice(0,end+1).every(value=>Number.isFinite(value)&&value>0));
+  const intraday=chart.series.find(s=>s.label==="Foxchase Intraday");
+  assert.equal(intraday.validated_through,"2026-09-22");assert.equal(intraday.values[0],10000);assert.equal(intraday.values.at(-1),102414);
+  assert.ok(intraday.values.every(value=>Number.isFinite(value)&&value>0));
 });
 
-test("yearly totals reconcile to the selected one-contract study",()=>{
-  assert.equal(study.yearly.reduce((n,r)=>n+r.trades,0),281);
-  assert.equal(study.yearly.reduce((n,r)=>n+r.gross_pnl,0),908);
+test("yearly totals reconcile to the corrected Intraday study",()=>{
+  assert.equal(study.yearly.reduce((n,r)=>n+r.total_trades,0),530);
+  assert.equal(study.yearly.reduce((n,r)=>n+r.combined_pnl,0),92414);
   const document=fixture();renderer.renderStudy(document,study);
-  for(const r of study.yearly){assert.equal(document.getElementById(`researchYear${r.year}Trades`).textContent,String(r.trades));}
+  for(const r of study.yearly){assert.equal(document.getElementById(`researchYear${r.year}Trades`).textContent,String(r.total_trades));}
 });
 
-test("invalid selected study metadata fails closed",()=>{
-  for(const change of [{sessions_assessable:910},{statistics:{...study.statistics,trades:280}},{yearly:[]},{complete_history:true},{unknown_outcomes_are_zero:true}]){
+test("invalid corrected study metadata fails closed",()=>{
+  for(const change of [{schema_version:2},{classification:"BAD"},{sessions_considered:931},{spread_evaluable_sessions:928},{statistics:{...study.statistics,trades:529}},{yearly:[]}]){
     const document=fixture();assert.throws(()=>renderer.renderStudy(document,{...study,...change}),/metadata invalid/);assert.equal(document.getElementById("researchTrades").textContent,"—");
   }
 });
 
-test("selected study keeps historical execution and uncertainty disclosures",()=>{
-  assert.match(study.execution_basis,/event-time ATM exact contract/i);assert.match(study.execution_basis,/90-second entry-age bound/);
-  assert.match(study.sizing_basis,/One contract per admitted trade/);assert.match(study.input_policy,/unknown, not zero/);
-  assert.match(page,/selected EX historical comparison|selected EX one-contract/i);assert.match(page,/no new shared-capital core-plus-EX result is inferred/);
+test("corrected study keeps historical execution and uncertainty disclosures",()=>{
+  assert.match(study.execution_basis,/modeled/i);assert.match(study.execution_basis,/sub-minute quote polling/);
+  assert.match(study.sizing_basis,/retrospective risk-normalized sizing/);assert.match(study.input_policy,/unknown and are not synthesized/);
+  assert.match(page,/corrected commissioned EX/i);assert.match(page,/historical_comparison_20261013/);
+  assert.doesNotMatch(page,/selected_ex_historical_comparison_20261013|Selected EX/);
+  assert.match(page,/data-comparison-series="Foxchase Combined"/);
   assert.match(page,/fetch\("\/data\/algo-pnl\.json", \{ cache: "no-store" \}\)/);
 });

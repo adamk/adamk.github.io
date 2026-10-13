@@ -5,7 +5,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
   <script src="/js/time-format.js?v=20260921-hold"></script>
   <script src="/js/canonical-performance.js?v=20260919-tier1-session"></script>
-  <script src="/js/live-benchmarks.js?v=20261013-selected-ex"></script>
+  <script src="/js/live-benchmarks.js?v=20261013-intraday-r1"></script>
   <script>
 function formatMoneyValue(value) {
   const n = Number(value || 0);
@@ -920,7 +920,7 @@ function setTextIfExists(id, value) {
       <h3 id="backtestIntegrityTitle">Backtest Integrity</h3>
       <div class="research-metrics integrity-grid">
         <div class="research-card"><div class="research-label">Data coverage</div><div class="research-value" id="researchCoverage">—</div><p class="research-detail" id="researchCoveragePct">—</p></div>
-        <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Unassessable sessions remain unknown; no zero fill.</p></div>
+        <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Separate component cohorts; missing outcomes remain unknown.</p></div>
         <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Frozen modeled research rules.</p></div>
         <div class="research-card"><div class="research-label">Transaction costs</div><div class="research-value" id="researchCostBasis">—</div></div>
       </div>
@@ -946,15 +946,15 @@ function setTextIfExists(id, value) {
       <div class="research-card"><div class="research-label">Gross P&amp;L</div><div class="research-value" id="researchGrossPnl">—</div></div>
       <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value" id="researchWinRate">—</div></div>
       <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value" id="researchProfitFactor">—</div></div>
-      <div class="research-card"><div class="research-label">Trade-return Sharpe</div><div class="research-value" id="researchSharpe">—</div></div>
+      <div class="research-card"><div class="research-label">Annualized Daily Sharpe</div><div class="research-value" id="researchSharpe">—</div></div>
       <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
     </div>
-    <p class="small">Selected EX sleeve: <strong id="researchEXTrades">—</strong> one-contract trades · Other EX sleeves are excluded from this view.</p>
+    <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Corrected commissioned EX sleeve: <strong id="researchEXTrades">—</strong> modeled trades.</p>
     <section aria-labelledby="historicalBenchmarkTitle">
       <h3 id="historicalBenchmarkTitle">Backtest benchmark comparison</h3>
-      <p class="small">Benchmark returns over the validated selected EX research period.</p>
+      <p class="small">Benchmark returns over the validated Intraday research period.</p>
       <div class="research-metrics" id="historicalBenchmarkRows">
-        <div class="research-card"><div class="research-label">Selected EX Return · one contract</div><div class="research-value" id="backtestStrategyReturn">—</div></div>
+        <div class="research-card"><div class="research-label">Backtest Strategy Return</div><div class="research-value" id="backtestStrategyReturn">—</div></div>
         <div class="research-card"><div class="research-label">Risk-Free / Cash · primary</div><div class="research-value" id="backtestCashReturn">—</div></div>
         <div class="research-card"><div class="research-label">Excess Return over Cash</div><div class="research-value" id="backtestExcessReturn">—</div></div>
         <div class="research-card"><div class="research-label">SPY Buy &amp; Hold · secondary</div><div class="research-value" id="backtestSPYReturn">—</div></div>
@@ -967,23 +967,38 @@ function setTextIfExists(id, value) {
       </div>
       <p class="small" id="backtestScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="backtestBenchmarkChart" style="height:100% !important;" aria-label="Historical normalized comparison: Selected EX one-contract research, Risk-Free Cash primary benchmark, and SPY Buy and Hold secondary reference, all starting at 100"></canvas>
+      <canvas id="backtestBenchmarkChart" style="height:100% !important;" aria-label="Historical normalized comparison: Foxchase Intraday, Risk-Free Cash primary benchmark, and SPY Buy and Hold secondary reference, all starting at 100"></canvas>
       </div>
       <p class="small" id="historicalBenchmarkStatus" aria-live="polite">Loading independently aligned historical benchmarks…</p>
       <details class="small" id="historicalBenchmarkMethodology"><summary>Backtest benchmark methodology</summary>
         <p>Uses the <a href="#benchmarkMethodology">same Treasury/cash methodology as live</a>, independently aligned to the validated backtest period shown above, without rebasing. SPY retains the existing dividend- and split-adjusted historical series. Unsupported Treasury intervals leave cash and excess return unavailable.</p>
       </details>
     </section>
-    <section aria-labelledby="modelComparisonTitle" id="modelComparisonSection">
-      <h3 id="modelComparisonTitle">Portfolio comparison</h3>
-      <p class="small">Not shown for this release. The selected EX study is a standalone one-contract replay; no new shared-capital core-plus-EX result is inferred.</p>
+    <section aria-labelledby="modelComparisonTitle">
+      <h3 id="modelComparisonTitle">Modeled portfolio comparison</h3>
+      <p class="small">Both portfolios use the same retrospective risk-normalized sizing and accounting.</p>
+      <div class="research-table-wrap" role="region" tabindex="0" aria-labelledby="modelComparisonTitle"><table class="research-table">
+        <thead><tr><th scope="col">Metric</th><th scope="col">Spread-only normalized</th><th scope="col">Spread + EX</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Trades</th><td id="modelSpreadTrades">—</td><td id="modelCombinedTrades">—</td></tr>
+          <tr><th scope="row">Gross P&amp;L</th><td id="modelSpreadPnl">—</td><td id="modelCombinedPnl">—</td></tr>
+          <tr><th scope="row">Profit factor</th><td id="modelSpreadPF">—</td><td id="modelCombinedPF">—</td></tr>
+          <tr><th scope="row">Annualized Daily Sharpe</th><td id="modelSpreadSharpe">—</td><td id="modelCombinedSharpe">—</td></tr>
+          <tr><th scope="row">Maximum drawdown</th><td id="modelSpreadDD">—</td><td id="modelCombinedDD">—</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small" id="researchLegacyContext"></p>
+      <p class="small" id="researchModelInterpretation"></p>
+      <p class="small" id="attributionDataStatus" aria-live="polite"></p>
     </section>
     <h3>Historical portfolio-value comparison</h3>
-    <p class="small">The selected EX line is a standalone one-contract gross replay normalized to $10,000 for display. Multi-Day remains standalone longer-duration research with daily marks. These values are not actual account equity.</p>
-    <p class="small">No shared-capital core-plus-EX portfolio is inferred here. The selected EX study excludes commissions, fees and additional slippage; Multi-Day retains its existing modeled-cost treatment.</p>
+    <p class="small">Hypothetical portfolios start at $10,000 with no deposits. Intraday includes modeled EX research; Multi-Day is standalone longer-duration research with daily marks. Intraday and Combined position sizes compound with modeled equity: gains and losses affect the size of subsequent trades. Later positions can be materially larger. These values are not actual account equity.</p>
+    <p class="small">Combined is a single-account replay of current Intraday and Multi-Day research under shared capital and risk constraints, not a sum of independently compounded curves. It ends at the last jointly validated date.</p>
+    <p class="small">Intraday excludes commissions, fees and additional slippage. Multi-Day includes modeled costs; Combined inherits each component’s treatment. Full broker fees, capacity and market impact are not modeled.</p>
     <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
-      <label><input type="checkbox" data-comparison-series="Selected EX" style="accent-color:#234a76" checked>Selected EX</label>
+      <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
       <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
+      <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c77724" checked>Foxchase Combined <small>(through Aug 25)</small></label>
       <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
     </div>
     <div class="historical-scale-control">
@@ -998,23 +1013,23 @@ function setTextIfExists(id, value) {
       <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
     </div>
     <p class="small" id="historicalComparisonStatus">Loading historical comparison…</p>
-    <p class="small"><span id="researchTradeSummary">—</span> Daily closing research values. The selected EX replay is validated through September 21, 2026; its display curve is aligned through September 22. Multi-Day remains validated through August 25, 2026.</p>
+    <p class="small"><span id="researchTradeSummary">—</span> Daily closing research values. Corrected commissioned EX coverage runs through September 21, 2026; Multi-Day and Combined remain through August 25, 2026.</p>
     <div class="research-table-wrap"><table class="research-table">
       <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
       <tbody>
         <tr><th scope="row">2023</th><td id="researchYear2023Trades">—</td><td id="researchYear2023Pnl">—</td></tr>
         <tr><th scope="row">2024</th><td id="researchYear2024Trades">—</td><td id="researchYear2024Pnl">—</td></tr>
         <tr><th scope="row">2025</th><td id="researchYear2025Trades">—</td><td id="researchYear2025Pnl">—</td></tr>
-        <tr><th scope="row">2026 through Sep 21</th><td id="researchYear2026Trades">—</td><td id="researchYear2026Pnl">—</td></tr>
+        <tr><th scope="row">2026 through Sep 22</th><td id="researchYear2026Trades">—</td><td id="researchYear2026Pnl">—</td></tr>
       </tbody>
     </table></div>
     <section class="research-limitations" aria-labelledby="researchLimitationsTitle">
       <h3 id="researchLimitationsTitle">Research Limitations</h3>
-      <p class="small" id="researchLimitations">Historical results are simulated research, separate from live account performance. The selected EX replay uses modeled execution and one-contract gross P&amp;L; unassessable sessions remain unknown and are not treated as zero. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.</p>
+      <p class="small" id="researchLimitations">Historical results are simulated research, separate from live account performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.</p>
     </section>
   </div>
 
-  <script src="/js/algo-pnl-research-integrity.js?v=20261013-selected-ex"></script>
+  <script src="/js/algo-pnl-research-integrity.js?v=20261013-intraday-r1"></script>
   <script>
     let chartLibraryPromise = null;
     function loadChartLibrary() {
@@ -1037,11 +1052,19 @@ function setTextIfExists(id, value) {
       const scaleControl = document.getElementById("historicalScale");
       const scaleStatus = document.getElementById("historicalScaleStatus");
       return Promise.all([
-        fetch("/data/selected_ex_historical_comparison_20261013.json?v=20261013-selected-ex").then(response => {
-          if (!response.ok) throw new Error("Comparison data unavailable");
+        fetch("/data/historical_comparison_20261013.json?v=20261013-intraday-r1").then(response => {
+          if (!response.ok) throw new Error("Intraday comparison unavailable");
           return response.json();
         }),
         loadChartLibrary(),
+        fetch("/data/historical_comparison_20261003.json?v=20261003-spy-only").then(response => {
+          if (!response.ok) throw new Error("Comparison data unavailable");
+          return response.json();
+        }),
+        fetch("/data/combined_research_20261003.json?v=20261003-shared-account").then(response => {
+          if (!response.ok) throw new Error("Combined research unavailable");
+          return response.json();
+        }),
         fetch("/data/multiday_research_20261003.json?v=20261003-corrected").then(response => {
           if (!response.ok) throw new Error("Multi-Day research unavailable");
           return response.json();
@@ -1054,7 +1077,20 @@ function setTextIfExists(id, value) {
           if (!response.ok) throw new Error("Historical cash data unavailable");
           return response.json();
         }).catch(() => null)
-      ]).then(([data, , multiday, benchmarks, cashSource]) => {
+      ]).then(([backtestData, , data, combined, multiday, benchmarks, cashSource]) => {
+        const backtestNames = ["Foxchase Intraday", "Foxchase Multi-Day", "Foxchase Combined", "SPY Buy & Hold"];
+        if (backtestData.initial_value !== 10000 || backtestData.comparison_start !== "2023-01-04" ||
+            backtestData.study_end !== "2026-09-22" || !Array.isArray(backtestData.dates) ||
+            backtestData.dates[0] !== backtestData.comparison_start || backtestData.dates.at(-1) !== backtestData.study_end ||
+            !Array.isArray(backtestData.series) || backtestData.series.length !== backtestNames.length ||
+            new Set(backtestData.dates).size !== backtestData.dates.length || backtestData.dates.some((date,i) => i > 0 && date <= backtestData.dates[i-1]) ||
+            new Set(backtestData.series.map(series => series.label)).size !== backtestNames.length ||
+            backtestData.series.some(series => !backtestNames.includes(series.label) || series.values.length !== backtestData.dates.length ||
+              series.values[0] !== 10000 || series.values.some(value => value === null
+                ? !["Foxchase Multi-Day", "Foxchase Combined"].includes(series.label)
+                : !Number.isFinite(value) || value <= 0))) {
+          throw new Error("Intraday comparison failed validation");
+        }
         const names = controls.map(control => control.dataset.comparisonSeries);
         if (data.initial_value !== 10000 || data.comparison_start !== "2023-01-04" ||
             data.study_end !== "2026-09-22" || !Array.isArray(data.dates) ||
@@ -1064,17 +1100,33 @@ function setTextIfExists(id, value) {
             new Set(data.series.map(series => series.label)).size !== names.length ||
             data.series.some(series => !names.includes(series.label) || series.values.length !== data.dates.length || series.values[0] !== 10000 ||
               series.values.some(value => value === null
-                ? !["Selected EX", "Foxchase Multi-Day"].includes(series.label)
+                ? !["Foxchase Multi-Day", "Foxchase Combined"].includes(series.label)
                 : !Number.isFinite(value) || value <= 0))) {
-          throw new Error("Comparison data failed validation");
+          throw new Error("Historical comparison data failed validation");
         }
-        const selectedExSeries = data.series.find(series => series.label === "Selected EX");
-        if (!selectedExSeries || selectedExSeries.validated_through !== "2026-09-21") {
-          throw new Error("Selected EX curve failed validation");
+        const combinedSeries = data.series.find(series => series.label === "Foxchase Combined");
+        const gates = combined.validation || {};
+        if (combined.status !== "VALIDATED_SHARED_ACCOUNT_RESEARCH" ||
+            combined.initial_value !== 10000 || combined.start !== data.comparison_start ||
+            combined.end !== "2026-08-25" || !Array.isArray(combined.daily) ||
+            gates.risk_breaches !== 0 || !["accounting_reconciles", "complete_state_checks", "no_missing_valuations", "independent_review_passed", "source_controls_unchanged"].every(name => gates[name] === true) ||
+            !combinedSeries || combinedSeries.validated_through !== combined.end ||
+            combinedSeries.curve_sha256 !== combined.curve_sha256) {
+          throw new Error("Combined research failed validation");
+        }
+        const combinedValues = new Map(combined.daily.map(point => [point.date, point.equity]));
+        if (combinedValues.size !== combined.daily.length ||
+            combined.daily.length !== data.dates.indexOf(combined.end) + 1 || combined.daily.some((point,i) => point.date !== data.dates[i]) ||
+            combined.daily.some(point => !Number.isFinite(point.equity) || point.equity <= 0) ||
+            combined.daily[0]?.date !== combined.start || combined.daily[0]?.equity !== 10000 ||
+            combined.daily.at(-1)?.date !== combined.end ||
+            combined.daily.at(-1)?.equity !== combined.metrics?.ending_equity ||
+            data.dates.some((date, index) => combinedSeries.values[index] !== (date <= combined.end ? combinedValues.get(date) : null))) {
+          throw new Error("Combined curve failed reconciliation");
         }
         const multidaySeries = data.series.find(series => series.label === "Foxchase Multi-Day");
         if (multiday.status !== "VALIDATED_MULTIDAY_RESEARCH" || multiday.initial_value !== 10000 ||
-            multiday.start !== data.comparison_start || multiday.end !== "2026-08-25" ||
+            multiday.start !== data.comparison_start || multiday.end !== combined.end ||
             !Array.isArray(multiday.daily) ||
             !["accounting_reconciles", "no_missing_valuations", "contract_continuity_verified", "source_controls_unchanged"].every(name => multiday.validation?.[name] === true) ||
             multidaySeries.validated_through !== multiday.end || multidaySeries.curve_sha256 !== multiday.curve_sha256) {
@@ -1102,8 +1154,8 @@ function setTextIfExists(id, value) {
             throw new Error("Benchmark curve failed reconciliation");
           }
         }
-        const comparison = FoxchaseBenchmarks.historicalComparison(data, cashSource);
-        const backtest = comparison.rows.find(row => row.label === "Selected EX");
+        const comparison = FoxchaseBenchmarks.historicalComparison(backtestData, cashSource);
+        const backtest = comparison.rows.find(row => row.label === "Foxchase Intraday");
         setTextIfExists("backtestStrategyReturn", formatCanonicalPercent(backtest.strategy_return_pct));
         setTextIfExists("backtestCashReturn", formatCanonicalPercent(backtest.cash_return_pct));
         setTextIfExists("backtestExcessReturn", backtest.excess_return_pp === null ? "—" :
@@ -1132,8 +1184,9 @@ function setTextIfExists(id, value) {
           backtestChart.update();
         });
         const colors = {
-          "Selected EX": "#234a76",
+          "Foxchase Intraday": "#234a76",
           "Foxchase Multi-Day": "#2f855a",
+          "Foxchase Combined": "#c77724",
           "SPY Buy & Hold": "#666666"
         };
         const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -1168,7 +1221,7 @@ function setTextIfExists(id, value) {
         });
         function updateSeries() {
           chart.data.datasets = data.series.filter(series => controls.some(control => control.dataset.comparisonSeries === series.label && control.checked)).map(series => ({
-            label:series.label, data:series.values, borderColor:colors[series.label], borderWidth:series.label === "Selected EX" ? 3 : 2,
+            label:series.label, data:series.values, borderColor:colors[series.label], borderWidth:series.label === "Foxchase Intraday" ? 3 : 2,
             pointRadius:0, pointHitRadius:8, tension:0, spanGaps:false
           }));
           chart.update();
@@ -1186,9 +1239,9 @@ function setTextIfExists(id, value) {
         scaleControl.addEventListener("change", updateScale);
         updateSeries();
         updateScale();
-        const selectedExIndex = data.dates.indexOf(selectedExSeries.validated_through);
-        status.textContent = "Selected EX validated endpoint " + selectedExSeries.validated_through + "; SPY at that date: " +
-          money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[selectedExIndex]) +
+        const jointIndex = data.dates.indexOf(combined.end);
+        status.textContent = "SPY at the August 25, 2026 joint endpoint: " +
+          money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[jointIndex]) +
           ".";
       }).catch(() => {
         status.textContent = "Historical comparison chart is temporarily unavailable.";
@@ -1197,6 +1250,7 @@ function setTextIfExists(id, value) {
     }
     loadHistoricalComparison();
     FoxchaseResearchIntegrity.loadStudy(document, fetch);
+    FoxchaseResearchIntegrity.loadAttribution(document, fetch);
     const unavailableValue = "—";
 
     function numericValue(value) {

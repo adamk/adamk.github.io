@@ -108,7 +108,7 @@ const FoxchaseBenchmarks = (() => {
   function historicalComparison(data, source) {
     const labels = data && data.dates;
     dates(labels);
-    const names = ["Selected EX","Foxchase Multi-Day","SPY Buy & Hold"];
+    const names = ["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"];
     if (data.initial_value !== 10000 || data.comparison_start !== labels[0] || data.study_end !== labels.at(-1) ||
         !Array.isArray(data.series) || data.series.length !== names.length ||
         new Set(data.series.map(s=>s.label)).size !== names.length) throw new Error("historical_period_invalid");
@@ -139,9 +139,9 @@ const FoxchaseBenchmarks = (() => {
         excess_return_pp:cashReturn===null ? null : strategyReturn-cashReturn,
         spy_return_pct:(spy.values[end]/data.initial_value-1)*100};
     });
-    const selectedEx = data.series.find(s=>s.label==="Selected EX");
+    const intraday = data.series.find(s=>s.label==="Foxchase Intraday");
     return {labels,cash,rows,datasets:[
-      {label:"Selected EX one-contract",data:selectedEx.values.map(value=>value===null?null:100*value/data.initial_value),borderColor:"#234a76",borderWidth:3,pointRadius:0,tension:0},
+      {label:"Foxchase Intraday",data:intraday.values.map(value=>value===null?null:100*value/data.initial_value),borderColor:"#234a76",borderWidth:3,pointRadius:0,tension:0},
       {label:"Risk-Free / Cash",data:cash.values||labels.map(()=>null),borderColor:"#087f8c",borderWidth:3,pointRadius:0,tension:0},
       {label:"SPY Buy & Hold",data:spy.values.map(value=>100*value/data.initial_value),borderColor:"#666666",borderWidth:2,borderDash:[6,4],pointRadius:0,tension:0}
     ]};

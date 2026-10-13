@@ -6,8 +6,9 @@ const close = (a,b) => assert.ok(Math.abs(a-b)<1e-9, `${a} != ${b}`);
 function fixture() {
   return {initial_value:10000, comparison_start:"2026-05-04",study_end:"2026-05-06",
     dates:["2026-05-04","2026-05-05","2026-05-06"],series:[
-      {label:"Selected EX",validated_through:"2026-05-06",values:[10000,10100,10200]},
+      {label:"Foxchase Intraday",validated_through:"2026-05-06",values:[10000,10100,10200]},
       {label:"Foxchase Multi-Day",validated_through:"2026-05-05",values:[10000,10050,null]},
+      {label:"Foxchase Combined",validated_through:"2026-05-05",values:[10000,10025,null]},
       {label:"SPY Buy & Hold",validated_through:"2026-05-06",values:[10000,10100,10300]}]};
 }
 function source() {
@@ -21,7 +22,7 @@ test("historical benchmarks normalize to 100 without changing dollar curves",()=
   const input=fixture(),before=JSON.stringify(input),out=api.historicalComparison(input,source());
   assert.equal(out.cash.available,true);assert.equal(out.cash.values[0],100);
   close(out.cash.values[1],100.01);close(out.cash.values[2],100.030002);
-  assert.deepEqual(out.datasets.map(d=>d.label),["Selected EX one-contract","Risk-Free / Cash","SPY Buy & Hold"]);
+  assert.deepEqual(out.datasets.map(d=>d.label),["Foxchase Intraday","Risk-Free / Cash","SPY Buy & Hold"]);
   assert.ok(out.datasets.every(d=>d.data[0]===100&&d.data.length===input.dates.length));
   assert.deepEqual(out.datasets[0].data,[100,101,102]);assert.deepEqual(out.datasets[2].data,[100,101,103]);
   assert.equal(JSON.stringify(input),before);
@@ -29,12 +30,13 @@ test("historical benchmarks normalize to 100 without changing dollar curves",()=
 test("each historical strategy compares cash and SPY at its own endpoint",()=>{
   assert.equal(typeof api.historicalComparison,"function");
   const out=api.historicalComparison(fixture(),source());
-  assert.equal(out.rows.length,2);
-  const selected=out.rows[0],multiday=out.rows[1];
+  assert.equal(out.rows.length,3);
+  const selected=out.rows[0],multiday=out.rows[1],combined=out.rows[2];
   assert.equal(selected.end,"2026-05-06");close(selected.strategy_return_pct,2);
   close(selected.cash_return_pct,.030002);close(selected.excess_return_pp,2-.030002);close(selected.spy_return_pct,3);
   assert.equal(multiday.end,"2026-05-05");close(multiday.cash_return_pct,.01);close(multiday.spy_return_pct,1);
   close(multiday.excess_return_pp,.49);
+  assert.equal(combined.end,"2026-05-05");close(combined.strategy_return_pct,.25);close(combined.cash_return_pct,.01);close(combined.spy_return_pct,1);
 });
 test("missing, stale, malformed or misaligned historical rates preserve research and SPY",()=>{
   assert.equal(typeof api.historicalComparison,"function");
@@ -61,6 +63,6 @@ test("public historical section makes cash primary and retains SPY secondary",()
   assert.ok(/id="historicalBenchmarkStatus"/.test(html),"historical benchmark status missing");
   assert.ok(/id="historicalBenchmarkMethodology"/.test(html),"historical source disclosure missing");
   assert.ok(/cash.*primary.*SPY.*secondary/i.test(html),"cash must be primary and SPY secondary");
-  assert.deepEqual(read("data/selected_ex_historical_comparison_20261013.json").series.map(s=>s.label),
-    ["Selected EX","Foxchase Multi-Day","SPY Buy & Hold"]);
+  assert.deepEqual(read("data/historical_comparison_20261013.json").series.map(s=>s.label),
+    ["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
 });
