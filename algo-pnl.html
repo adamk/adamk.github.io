@@ -974,23 +974,7 @@ function setTextIfExists(id, value) {
         <p>Uses the <a href="#benchmarkMethodology">same Treasury/cash methodology as live</a>, independently aligned to the validated backtest period shown above, without rebasing. SPY retains the existing dividend- and split-adjusted historical series. Unsupported Treasury intervals leave cash and excess return unavailable.</p>
       </details>
     </section>
-    <section aria-labelledby="modelComparisonTitle">
-      <h3 id="modelComparisonTitle">Modeled portfolio comparison</h3>
-      <p class="small">Both portfolios use the same retrospective risk-normalized sizing and accounting.</p>
-      <div class="research-table-wrap" role="region" tabindex="0" aria-labelledby="modelComparisonTitle"><table class="research-table">
-        <thead><tr><th scope="col">Metric</th><th scope="col">Spread-only normalized</th><th scope="col">Spread + EX</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Trades</th><td id="modelSpreadTrades">—</td><td id="modelCombinedTrades">—</td></tr>
-          <tr><th scope="row">Gross P&amp;L</th><td id="modelSpreadPnl">—</td><td id="modelCombinedPnl">—</td></tr>
-          <tr><th scope="row">Profit factor</th><td id="modelSpreadPF">—</td><td id="modelCombinedPF">—</td></tr>
-          <tr><th scope="row">Annualized Daily Sharpe</th><td id="modelSpreadSharpe">—</td><td id="modelCombinedSharpe">—</td></tr>
-          <tr><th scope="row">Maximum drawdown</th><td id="modelSpreadDD">—</td><td id="modelCombinedDD">—</td></tr>
-        </tbody>
-      </table></div>
-      <p class="small" id="researchLegacyContext"></p>
-      <p class="small" id="researchModelInterpretation"></p>
-      <p class="small" id="attributionDataStatus" aria-live="polite"></p>
-    </section>
+    <p class="small">The corrected Intraday result above is the authoritative combined replay. The retired prior portfolio attribution is not comparable and is not displayed.</p>
     <h3>Historical portfolio-value comparison</h3>
     <p class="small">Hypothetical portfolios start at $10,000 with no deposits. Intraday includes modeled EX research; Multi-Day is standalone longer-duration research with daily marks. Intraday and Combined position sizes compound with modeled equity: gains and losses affect the size of subsequent trades. Later positions can be materially larger. These values are not actual account equity.</p>
     <p class="small">Combined is a single-account replay of current Intraday and Multi-Day research under shared capital and risk constraints, not a sum of independently compounded curves. It ends at the last jointly validated date.</p>
@@ -1250,7 +1234,6 @@ function setTextIfExists(id, value) {
     }
     loadHistoricalComparison();
     FoxchaseResearchIntegrity.loadStudy(document, fetch);
-    FoxchaseResearchIntegrity.loadAttribution(document, fetch);
     const unavailableValue = "—";
 
     function numericValue(value) {

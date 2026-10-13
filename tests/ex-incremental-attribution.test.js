@@ -53,7 +53,7 @@ test("unavailable comparison does not replace Intraday or live metrics",async()=
 });
 
 test("public comparison distinguishes portfolio return from EX trade profit",()=>{
-  assert.match(page,/Modeled portfolio comparison/);assert.match(page,/Spread-only normalized/);assert.match(page,/Spread \+ EX/);
+  assert.doesNotMatch(page,/Modeled portfolio comparison|Spread-only normalized|Spread \+ EX|modelCombinedPnl/);
   assert.match(data.legacy_context,/not EX trade profit alone/);assert.doesNotMatch(page,/researchEXAttribution/);
   assert.match(page,/position sizes compound with modeled equity/);assert.match(page,/not actual account equity/);
 });

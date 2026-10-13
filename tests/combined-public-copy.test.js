@@ -14,7 +14,8 @@ test("corrected Intraday updates only the main backtest while the portfolio char
   assert.match(page,/data-comparison-series="Foxchase Combined"/);
   assert.match(page,/historical_comparison_20261013/);
   assert.doesNotMatch(page,/selected_ex_historical_comparison_20261013|Selected EX/);
-  assert.match(page,/Modeled portfolio comparison/);
+  assert.doesNotMatch(page,/Modeled portfolio comparison|Spread \+ EX|modelCombinedPnl/);
+  assert.match(page,/authoritative combined replay/);
   assert.match(page,/corrected commissioned EX sleeve only/);
 });
 
