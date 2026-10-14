@@ -3,8 +3,8 @@
   "base_index": 100,
   "source_start": "2026-05-04",
   "source_end": "2026-10-14",
-  "source_as_of": "2026-10-14T14:45:01.176034-04:00",
-  "generated_at": "2026-10-14T18:45:02.686759+00:00",
+  "source_as_of": "2026-10-14T15:00:01.218558-04:00",
+  "generated_at": "2026-10-14T19:00:02.654950+00:00",
   "cash": {
     "series": "UST_3MO_PAR",
     "field": "BC_3MONTH",
@@ -1088,10 +1088,10 @@
       },
       {
         "date": "2026-10-14",
-        "close": 767.71
+        "close": 767.715
       }
     ],
     "partial_session": true,
-    "last_quote_timestamp": "2026-10-14T18:44:00Z"
+    "last_quote_timestamp": "2026-10-14T18:59:00Z"
   }
 }
