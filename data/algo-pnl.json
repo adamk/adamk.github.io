@@ -1,6 +1,6 @@
 {
   "account_type": "Live account performance index",
-  "updated_at": "2026-10-15T15:45:01.177256-04:00",
+  "updated_at": "2026-10-15T16:00:01.169487-04:00",
   "market_session_calendar": {
     "source": "alpaca_market_calendar",
     "coverage_start": "2026-10-15T00:00:00-04:00",
@@ -140,9 +140,9 @@
   },
   "performance": {
     "base_index": 100.0,
-    "current_index": 100.4419,
-    "total_return_pct": 0.4419,
-    "max_drawdown_pct": -14.4419,
+    "current_index": 100.5838,
+    "total_return_pct": 0.5838,
+    "max_drawdown_pct": -14.321,
     "flow_adjusted": true,
     "methodology": "Cash-flow-neutral time-weighted return; timestamped flows are subperiod-linked when authenticated before/after equity is available, with settled daily activities otherwise applied at the interval boundary."
   },
@@ -661,33 +661,33 @@
     },
     {
       "date": "2026-10-15",
-      "index_value": 100.4419
+      "index_value": 100.5838
     }
   ],
   "canonical_metrics": {
     "schema_version": 1,
     "performance": {
-      "current_index": 100.4419,
-      "since_inception_return": 0.004418999999999951,
-      "since_inception_return_pct": 0.4418999999999951,
-      "monthly_return": -0.0802975516269836,
-      "monthly_return_pct": -8.02975516269836,
+      "current_index": 100.5838,
+      "since_inception_return": 0.00583800000000001,
+      "since_inception_return_pct": 0.583800000000001,
+      "monthly_return": -0.07899823553057239,
+      "monthly_return_pct": -7.899823553057239,
       "monthly_return_start_date": "2026-09-30",
       "monthly_return_end_date": "2026-10-15",
       "monthly_return_is_partial": true,
-      "ytd_return": 0.004418999999999951,
-      "ytd_return_pct": 0.4418999999999951,
+      "ytd_return": 0.00583800000000001,
+      "ytd_return_pct": 0.583800000000001,
       "ytd_return_start_date": "2026-05-04",
-      "growth_of_10000": 10044.19,
+      "growth_of_10000": 10058.38,
       "inception_date": "2026-05-04",
       "as_of_date": "2026-10-15",
       "performance_source": "canonical_cash_flow_adjusted_normalized_index",
       "return_unit": "decimal",
       "drawdown_timing_resolution": "daily_date",
-      "current_drawdown": -0.14441876689259692,
-      "current_drawdown_pct": -14.441876689259692,
-      "max_drawdown": -0.14441876689259692,
-      "max_drawdown_pct": -14.441876689259692,
+      "current_drawdown": -0.1432100384936127,
+      "current_drawdown_pct": -14.321003849361269,
+      "max_drawdown": -0.1432100384936127,
+      "max_drawdown_pct": -14.321003849361269,
       "max_drawdown_peak_date": "2026-07-28",
       "max_drawdown_trough_date": "2026-10-15",
       "max_drawdown_recovery_date": null,
