@@ -6,16 +6,9 @@ const path = require("node:path");
 const page = fs.readFileSync(path.join(__dirname, "../algo-pnl.html"), "utf8");
 const benchmarks = require("../js/live-benchmarks.js");
 
-function liveChartBlock() {
-  const start = page.indexOf('new Chart(document.getElementById("equityChart")');
-  const end = page.indexOf("\n        });", start);
-  assert.notEqual(start, -1, "live chart construction should remain present");
-  assert.notEqual(end, -1, "live chart block should remain parseable");
-  return page.slice(start, end);
-}
-
-test("live Alpaca chart disables chart animation", () => {
-  assert.match(liveChartBlock(), /options:\s*\{[\s\S]*?animation:\s*false/);
+test("public page has no live equity chart or live feed request", () => {
+  assert.doesNotMatch(page, /id="equityChart"|new Chart\(document\.getElementById\("equityChart"\)/);
+  assert.doesNotMatch(page, /fetch\("\/data\/(?:algo-pnl|live-benchmarks)\.json"/);
 });
 
 test("live benchmark series keep a stable hover radius", () => {

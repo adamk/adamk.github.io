@@ -6,7 +6,7 @@
   const attributionUrl = "/data/intraday_research_attribution_20261003.json";
   const attributionStudyUrl = "/data/intraday_research_with_ex_20261003.json";
   const limitations = "Historical results are simulated research and are separate from live account performance. This replay uses the corrected commissioned EX sleeve only, modeled execution, retrospective portfolio sizing, and unequal component coverage. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity, or market impact. Required missing inputs remain unknown; this update does not estimate or synthesize them. Historical results do not guarantee future performance.";
-  const limitationsDisplay = "Historical results are simulated research, separate from live account performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.";
+  const limitationsDisplay = "Historical results are simulated research, separate from live trading and not verified live performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.";
 
   function setText(document, id, value) {
     const element = document.getElementById(id);
@@ -101,23 +101,10 @@
     setText(document, "researchProfitFactor", number(stats.profit_factor, 3));
     setText(document, "researchSharpe", number(stats.daily_sharpe_annualized, 3));
     setText(document, "researchDrawdown", money(stats.max_drawdown_dollars) + " / " + percent(stats.max_drawdown_pct));
-    setText(document, "compareHistoricalTrades", String(stats.trades));
-    setText(document, "compareHistoricalWinRate", percent(stats.win_rate_pct));
-    setText(document, "compareHistoricalProfitFactor", number(stats.profit_factor, 3));
-    setText(document, "compareHistoricalDrawdown", percent(stats.max_drawdown_pct));
     setText(document, "researchTradeSummary", stats.wins + " wins · " + stats.losses + " losses · " + stats.breakeven + " flat.");
     setText(document, "researchLimitations", limitationsDisplay);
     setText(document, "researchDataStatus", "");
     return coverage;
-  }
-
-  function renderLive(document, canonicalMetrics, available) {
-    const performance = available && canonicalMetrics && canonicalMetrics.performance || {};
-    const trades = available && canonicalMetrics && canonicalMetrics.trades || {};
-    setText(document, "compareLiveTrades", Number.isInteger(trades.closed_trade_count) ? String(trades.closed_trade_count) : unavailable);
-    setText(document, "compareLiveWinRate", percent(trades.win_rate_pct));
-    setText(document, "compareLiveProfitFactor", number(trades.profit_factor, 2));
-    setText(document, "compareLiveDrawdown", percent(performance.max_drawdown_pct));
   }
 
   function loadStudy(document, fetchStudy) {
@@ -185,7 +172,7 @@
       });
   }
 
-  const api = { renderStudy, renderLive, loadStudy, renderAttribution, loadAttribution };
+  const api = { renderStudy, loadStudy, renderAttribution, loadAttribution };
   root.FoxchaseResearchIntegrity = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window === "undefined" ? globalThis : window);

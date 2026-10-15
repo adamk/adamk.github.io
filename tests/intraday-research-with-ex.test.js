@@ -40,5 +40,5 @@ test("corrected study keeps historical execution and uncertainty disclosures",()
   assert.match(page,/corrected commissioned EX/i);assert.match(page,/historical_comparison_20261013/);
   assert.doesNotMatch(page,/selected_ex_historical_comparison_20261013|Selected EX/);
   assert.match(page,/data-comparison-series="Foxchase Combined"/);
-  assert.match(page,/fetch\("\/data\/algo-pnl\.json", \{ cache: "no-store" \}\)/);
+  assert.doesNotMatch(page,/fetch\("\/data\/(?:algo-pnl|live-benchmarks)\.json"/);
 });

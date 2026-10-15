@@ -42,7 +42,7 @@ test("public research artifacts contain aggregate evidence without sleeve-level 
 
 test("concise limitations preserve material transparency without internal commentary",()=>{
   const document=fixture();renderer.renderStudy(document,read("data/intraday_research_with_ex_20261013.json"));
-  assert.match(document.getElementById("researchLimitations").textContent,/simulated research, separate from live account performance/);
+  assert.match(document.getElementById("researchLimitations").textContent,/simulated research, separate from live trading and not verified live performance/);
   assert.match(document.getElementById("researchLimitations").textContent,/Missing inputs remain unknown/);
   assert.match(text("algo-pnl.html"),/not actual account equity/);
 });
