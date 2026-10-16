@@ -1,116 +1,148 @@
 "use strict";
-const test=require("node:test"),assert=require("node:assert/strict"),vm=require("node:vm"),crypto=require("node:crypto");
+const test=require("node:test"),assert=require("node:assert/strict"),vm=require("node:vm");
+const crypto=require("node:crypto");
 const {text,read}=require("./research-fixture");
 
-async function run(mutate=()=>{},missing="") {
+function chartMock() {
+  const charts=[];
+  class Chart {constructor(canvas,config){Object.assign(this,config);this.canvas=canvas;this.updates=0;charts.push(this);}update(){this.updates++;}}
+  return {Chart,charts};
+}
+function element(value="") {
+  return {textContent:"",value,events:{},addEventListener(name,fn){this.events[name]=fn;}};
+}
+async function runPrimary(mutate=()=>{},missing="") {
   const files={
-    "/data/historical_comparison_20261013.json":read("data/historical_comparison_20261013.json"),
-    "/data/historical_comparison_20261003.json":read("data/historical_comparison_20261003.json"),
-    "/data/combined_research_20261003.json":read("data/combined_research_20261003.json"),
-    "/data/multiday_research_20261003.json":read("data/multiday_research_20261003.json"),
+    "/data/core_slippage_equity_curves_20261015.json":read("data/core_slippage_equity_curves_20261015.json"),
+    "/data/core_slippage_replay_20261015.json":read("data/core_slippage_replay_20261015.json"),
     "/data/benchmark_research_20261003.json":read("data/benchmark_research_20261003.json"),
     "/data/historical-cash-benchmark.json":read("data/historical-cash-benchmark.json")
   };
+  const originals=structuredClone(files);
+  const sourceText={
+    "/data/core_slippage_equity_curves_20261015.json":text("data/core_slippage_equity_curves_20261015.json"),
+    "/data/core_slippage_replay_20261015.json":text("data/core_slippage_replay_20261015.json"),
+    "/data/benchmark_research_20261003.json":text("data/benchmark_research_20261003.json"),
+    "/data/historical-cash-benchmark.json":text("data/historical-cash-benchmark.json")
+  };
   mutate(files);
-  const el=()=>({textContent:"",value:"linear",events:{},addEventListener(name,fn){this.events[name]=fn;}});
-  const nodes=Object.fromEntries(["historicalComparisonStatus","historicalScale","historicalScaleStatus","historicalComparisonChart",
-    "backtestBenchmarkChart","historicalBenchmarkStatus","backtestStrategyReturn","backtestCashReturn","backtestExcessReturn","backtestSPYReturn","backtestScale","backtestScaleStatus"].map(id=>[id,el()]));
-  const controls=files["/data/historical_comparison_20261003.json"].series.map(s=>({...el(),dataset:{comparisonSeries:s.label},checked:s.label!=="Foxchase Multi-Day"}));
-  const charts=[];
-  class Chart {constructor(canvas,config){Object.assign(this,config);this.canvas=canvas;this.updates=0;charts.push(this);}update(){this.updates++;}}
-  const page=text("algo-pnl.html"),begin=page.indexOf("    function loadHistoricalComparison() {"),end=page.indexOf("    loadHistoricalComparison();",begin);
-  const context=vm.createContext({Chart,Intl,Date,Map,Set,Number,Math,Error,Promise,
+  const responseText=Object.fromEntries(Object.entries(files).map(([url,value])=>[
+    url,JSON.stringify(value)===JSON.stringify(originals[url])?sourceText[url]:JSON.stringify(value)
+  ]));
+  const ids=["coreBenchmarkStrategyReturn","coreBenchmarkCashReturn","coreBenchmarkExcessReturn","coreBenchmarkSPYReturn",
+    "coreBenchmarkStatus","coreBenchmarkScale","coreBenchmarkScaleStatus","coreBenchmarkChart",
+    "corePortfolioScale","corePortfolioScaleStatus","corePortfolioChart","corePortfolioStatus"];
+  const nodes=Object.fromEntries(ids.map(id=>[id,element(id.includes("Scale")?"linear":"")]));
+  const {Chart,charts}=chartMock();
+  const page=text("algo-pnl.html"),begin=page.indexOf("    async function fetchCoreSource("),end=page.indexOf("    function loadHistoricalComparison() {",begin);
+  assert.ok(begin>=0&&end>begin,"verified primary comparison loader is present");
+  const context=vm.createContext({Chart,Intl,Date,Map,Set,Number,Math,Error,Promise,TextEncoder,Uint8Array,
     FoxchaseBenchmarks:require("../js/live-benchmarks.js"),
     setTextIfExists:(id,value)=>{if(nodes[id])nodes[id].textContent=value;},
-    formatCanonicalPercent:value=>value===null ? "—" : (value>0 ? "+" : "")+value.toFixed(2)+"%",
-    window:{matchMedia:()=>({matches:false})},loadChartLibrary:async()=>Chart,
-    document:{querySelectorAll:()=>controls,getElementById:id=>nodes[id]},
-    fetch:async url=>({ok:url.split("?")[0]!==missing,json:async()=>files[url.split("?")[0]]})});
-  vm.runInContext(page.slice(begin,end),context);await context.loadHistoricalComparison();
-  return {files,nodes,controls,charts};
+    formatBenchmarkPercent:value=>(value>0?"+":"")+value.toFixed(4)+"%",
+    formatBenchmarkPoints:value=>(value>0?"+":"")+value.toFixed(4)+" pp",
+    window:{crypto:crypto.webcrypto,matchMedia:()=>({matches:false})},loadChartLibrary:async()=>Chart,
+    document:{getElementById:id=>nodes[id]},
+    fetch:async url=>({ok:url.split("?")[0]!==missing,text:async()=>responseText[url.split("?")[0]]})});
+  const loading=vm.runInContext(page.slice(begin,end)+"\nloadCorePrimaryComparison()",context);
+  await loading;
+  return {files,nodes,charts};
 }
 
-test("scale and visibility controls preserve every original dollar observation",async()=>{
-  const {charts,nodes,controls}=await run();assert.equal(charts.length,2);
-  const chart=charts.find(c=>c.canvas===nodes.historicalComparisonChart),before=JSON.stringify(chart.data.datasets);
-  assert.deepEqual(Object.keys(chart.options.scales),["x","y"]);assert.equal(chart.options.scales.y.type,"linear");
-  const tick=chart.options.scales.y.ticks.callback;
-  assert.equal(tick.call({type:"logarithmic"},10000),"$10,000");
-  assert.equal(tick.call({type:"logarithmic"},50000),"$50,000");
-  assert.equal(tick.call({type:"logarithmic"},90000),null);
-  assert.equal(tick.call({type:"linear"},90000),"$90,000");
-  nodes.historicalScale.value="logarithmic";nodes.historicalScale.events.change();
-  assert.equal(chart.options.scales.y.type,"logarithmic");assert.equal(JSON.stringify(chart.data.datasets),before);
-  assert.ok(nodes.historicalScaleStatus.textContent.includes("equal percentage changes"));
-  assert.ok(chart.options.scales.y.title.text.includes("logarithmic"));
-  nodes.historicalScale.value="linear";nodes.historicalScale.events.change();
-  assert.equal(chart.options.scales.y.type,"linear");assert.equal(JSON.stringify(chart.data.datasets),before);
-  controls[0].checked=false;controls[0].events.change();assert.equal(chart.data.datasets.length,2);
-  controls[0].checked=true;controls[0].events.change();assert.equal(JSON.stringify(chart.data.datasets),before);
-  assert.ok(nodes.historicalComparisonStatus.textContent.includes("$20,873.45"));
-  assert.equal(/JEPI/i.test(nodes.historicalComparisonStatus.textContent),false);
-});
-
-test("separate backtest benchmark chart starts at 100 and uses only canonical historical dates",async()=>{
-  const {charts,nodes,files}=await run();assert.equal(charts.length,2);
-  const chart=charts.find(c=>c.canvas===nodes.backtestBenchmarkChart),historical=files["/data/historical_comparison_20261013.json"];
-  assert.deepEqual(chart.data.datasets.map(d=>d.label),["Foxchase Intraday","Risk-Free / Cash","SPY Buy & Hold"]);
-  assert.ok(chart.data.datasets.every(d=>d.data[0]===100&&d.data.length===932));
-  assert.deepEqual(chart.data.labels,historical.dates);assert.equal(chart.data.labels[0],"2023-01-04");assert.equal(chart.data.labels.at(-1),"2026-09-22");
-  for(const [i,label] of [[0,"Foxchase Intraday"],[2,"SPY Buy & Hold"]]) {
-    const original=historical.series.find(s=>s.label===label);
-    assert.deepEqual(chart.data.datasets[i].data,original.values.map(value=>value===null?null:100*value/10000));
+test("primary CORE benchmark displays common-end returns and both verified daily curves",async()=>{
+  const {files,nodes,charts}=await runPrimary();
+  assert.equal(charts.length,2);
+  assert.equal(nodes.coreBenchmarkStrategyReturn.textContent,"+45.6840%");
+  assert.equal(nodes.coreBenchmarkCashReturn.textContent,"+18.9468%");
+  assert.equal(nodes.coreBenchmarkExcessReturn.textContent,"+26.7372 pp");
+  assert.equal(nodes.coreBenchmarkSPYReturn.textContent,"+111.3272%");
+  assert.match(nodes.coreBenchmarkStatus.textContent,/comparison endpoint: 2026-09-21/i);
+  assert.match(nodes.coreBenchmarkStatus.textContent,/September 22.*excluded/i);
+  assert.match(nodes.corePortfolioStatus.textContent,/closed-trade.*not interpolated or marked to market/i);
+  const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart);
+  const portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
+  assert.deepEqual(Array.from(benchmark.data.datasets,row=>row.label),["CORE Scenario C","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
+  assert.deepEqual(Array.from(portfolio.data.datasets,row=>row.label),["CORE Scenario C","CORE Scenario A","CORE Scenario B","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
+  assert.deepEqual(Array.from(benchmark.data.labels),files["/data/core_slippage_equity_curves_20261015.json"].dates);
+  assert.equal(benchmark.data.labels.length,931);
+  assert.equal(benchmark.data.labels[0],"2023-01-04");
+  assert.equal(benchmark.data.labels.at(-1),"2026-09-21");
+  const source=files["/data/core_slippage_equity_curves_20261015.json"];
+  for(const gap of source.gap_dates) {
+    const index=benchmark.data.labels.indexOf(gap);
+    assert.ok(index>=0);
+    assert.equal(portfolio.data.datasets[0].data[index],null);
+    assert.equal(benchmark.data.datasets[0].data[index],null);
   }
-  assert.equal(nodes.backtestStrategyReturn.textContent,"+924.14%");assert.equal(nodes.backtestSPYReturn.textContent,"+111.29%");
-  assert.match(nodes.historicalBenchmarkStatus.textContent,/2023-01-04–2026-09-22/);
-  const before=JSON.stringify(chart.data.datasets);
-  nodes.backtestScale.value="logarithmic";nodes.backtestScale.events.change();
-  assert.equal(chart.options.scales.y.type,"logarithmic");assert.equal(JSON.stringify(chart.data.datasets),before);
-  assert.deepEqual(Object.keys(chart.options.scales),["x","y"]);
+  assert.equal(portfolio.data.datasets[0].data.at(-1),14568.4);
+  assert.equal(portfolio.data.datasets[1].data.at(-1),27564.2);
+  assert.equal(portfolio.data.datasets[2].data.at(-1),22492.2);
+  assert.ok(portfolio.data.datasets.every(dataset=>dataset.data[0]===10000));
 });
 
-test("unavailable historical cash leaves strategy, SPY and original research charts intact",async()=>{
-  const valid=await run(),missing=await run(()=>{},"/data/historical-cash-benchmark.json");
-  assert.equal(missing.charts.length,2);
-  const oldChart=valid.charts.find(c=>c.canvas===valid.nodes.historicalComparisonChart),kept=missing.charts.find(c=>c.canvas===missing.nodes.historicalComparisonChart);
-  assert.equal(JSON.stringify(kept.data.datasets),JSON.stringify(oldChart.data.datasets));
-  assert.equal(missing.nodes.backtestCashReturn.textContent,"—");assert.equal(missing.nodes.backtestExcessReturn.textContent,"—");
-  assert.equal(missing.nodes.backtestStrategyReturn.textContent,"+924.14%");assert.equal(missing.nodes.backtestSPYReturn.textContent,"+111.29%");
-  assert.match(missing.nodes.historicalBenchmarkStatus.textContent,/no rate is substituted/);
-  const normalized=missing.charts.find(c=>c.canvas===missing.nodes.backtestBenchmarkChart);
-  assert.ok(normalized.data.datasets[1].data.every(value=>value===null));
+test("primary chart scales remain switchable without changing observations",async()=>{
+  const {nodes,charts}=await runPrimary();
+  const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart);
+  const portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
+  const benchmarkBefore=JSON.stringify(benchmark.data.datasets),portfolioBefore=JSON.stringify(portfolio.data.datasets);
+  nodes.coreBenchmarkScale.value="logarithmic";nodes.coreBenchmarkScale.events.change();
+  nodes.corePortfolioScale.value="logarithmic";nodes.corePortfolioScale.events.change();
+  assert.equal(benchmark.options.scales.y.type,"logarithmic");
+  assert.equal(portfolio.options.scales.y.type,"logarithmic");
+  assert.equal(JSON.stringify(benchmark.data.datasets),benchmarkBefore);
+  assert.equal(JSON.stringify(portfolio.data.datasets),portfolioBefore);
+  assert.match(nodes.corePortfolioScaleStatus.textContent,/percentage changes/i);
 });
 
-test("Multi-Day certificate matches all points, daily accounting and curve digest",()=>{
-  const d=read("data/multiday_research_20261003.json");let prior=10000;
-  for(const point of d.daily){assert.ok(Math.abs(point.equity-prior-point.net_pnl)<1e-8);prior=point.equity;}
-  assert.equal(prior,27351.1);
-  const hash=crypto.createHash("sha256").update(d.daily.map(p=>`${p.date},${p.equity.toFixed(2)}\n`).join("")).digest("hex");
-  assert.equal(hash,d.curve_sha256);assert.equal(d.metrics.ending_equity,27351.1);
-  assert.equal(d.daily.at(-1).date,"2026-08-25");
-});
-
-test("SPY adjusted benchmark reconciles independently at every date",()=>{
-  const b=read("data/benchmark_research_20261003.json"),c=read("data/historical_comparison_20261013.json");
-  assert.equal(b.adjustment,"split_and_dividend");assert.equal(b.daily.length,932);
-  for(const t of ["SPY"]){const s=c.series.find(s=>s.label===t+" Buy & Hold");
-    b.daily.forEach((p,i)=>{assert.equal(p.date,c.dates[i]);assert.equal(s.values[i],Math.round(1000000*p[t]/b.daily[0][t])/100);});
-    assert.equal(s.values[0],10000);
+test("missing or inconsistent primary evidence fails closed",async()=>{
+  const missing=await runPrimary(()=>{},"/data/historical-cash-benchmark.json");
+  assert.equal(missing.charts.length,0);
+  assert.match(missing.nodes.coreBenchmarkStatus.textContent,/temporarily unavailable/i);
+  for(const mutate of [
+    files=>{files["/data/core_slippage_equity_curves_20261015.json"].scenarios[0].daily[20].equity=null;},
+    files=>{files["/data/benchmark_research_20261003.json"].daily[100].date="2023-06-05";},
+    files=>{files["/data/historical-cash-benchmark.json"].source_end="2026-09-21";},
+    files=>{files["/data/core_slippage_replay_20261015.json"].independent_verification="FAIL";},
+    files=>{files["/data/benchmark_research_20261003.json"].daily[100].SPY+=0.01;},
+    files=>{files["/data/historical-cash-benchmark.json"].cash.observations[100].annual_yield_pct+=0.01;},
+    files=>{files["/data/core_slippage_replay_20261015.json"].scenarios[0].net_pnl+=1;}
+  ]) {
+    const out=await runPrimary(mutate);
+    assert.equal(out.charts.length,0);
+    assert.match(out.nodes.coreBenchmarkStatus.textContent,/temporarily unavailable/i);
   }
 });
 
-test("missing certificate, stale curves, nonpositive values and failed gates fail closed",async()=>{
-  const cases=[
-    f=>{f["/data/historical_comparison_20261013.json"].series[0].values[100]=0;},
-    f=>{f["/data/historical_comparison_20261013.json"].series[0].values[100]=null;},
-    f=>{f["/data/historical_comparison_20261003.json"].series[1].values[913]=27351.1;},
-    f=>{f["/data/historical_comparison_20261003.json"].series[0].values[100]=null;},
-    f=>{f["/data/combined_research_20261003.json"].validation.risk_breaches=1;},
-    f=>{f["/data/multiday_research_20261003.json"].validation.contract_continuity_verified=false;},
-    f=>{f["/data/benchmark_research_20261003.json"].adjustment="none";},
-    f=>{f["/data/multiday_research_20261003.json"].daily[1].date=f["/data/multiday_research_20261003.json"].daily[0].date;},
-    f=>{f["/data/multiday_research_20261003.json"].daily.splice(1,0,{date:"2023-01-05a",equity:10000});}
-  ];
-  for(const fn of cases){const out=await run(fn);assert.equal(out.charts.length,0);assert.ok(out.nodes.historicalComparisonStatus.textContent.includes("temporarily unavailable"));}
-  for(const name of ["historical_comparison_20261013","historical_comparison_20261003","combined_research_20261003","multiday_research_20261003","benchmark_research_20261003"]){const out=await run(()=>{},`/data/${name}.json`);assert.equal(out.charts.length,0,name);}
+test("old combined comparison is only in the closed archived research disclosure",()=>{
+  const page=text("algo-pnl.html"),archive=page.match(/<details[^>]*id="archivedCombinedResearch"[^>]*>([\s\S]*?)<\/details>/);
+  assert.ok(archive,"archived combined research disclosure exists");
+  assert.doesNotMatch(archive[0],/<details[^>]*id="archivedCombinedResearch"[^>]*open/i);
+  assert.match(archive[1],/\+924\.14%|Backtest Strategy Return/);
+  assert.match(page,/CORE Scenario C/);
+  assert.match(page,/loadHistoricalComparison\(\)/);
+  assert.match(page,/archivedCombinedResearch.*toggle|addEventListener\("toggle"/s);
+  assert.doesNotMatch(page.slice(0,archive.index),/\+924\.14%/);
+});
+
+test("archived EX and combined research loads only after its disclosure is opened",()=>{
+  const page=text("algo-pnl.html"),begin=page.indexOf("    const archivedCombinedResearch = document.getElementById("),
+    end=page.indexOf("    loadCorePrimaryComparison();",begin);
+  assert.ok(begin>=0&&end>begin);
+  let toggle,archiveLoads=0,comparisonLoads=0;
+  const archive={open:false,addEventListener(name,callback){assert.equal(name,"toggle");toggle=callback;}};
+  const context=vm.createContext({
+    document:{getElementById:id=>id==="archivedCombinedResearch"?archive:null},
+    FoxchaseResearchIntegrity:{loadStudy(){archiveLoads++;}},
+    fetch:()=>{},
+    loadHistoricalComparison(){comparisonLoads++;}
+  });
+  vm.runInContext(page.slice(begin,end),context);
+  assert.equal(archiveLoads,0);
+  assert.equal(comparisonLoads,0);
+  archive.open=true;toggle();
+  assert.equal(archiveLoads,1);
+  assert.equal(comparisonLoads,1);
+  toggle();
+  assert.equal(archiveLoads,1);
+  assert.equal(comparisonLoads,1);
 });

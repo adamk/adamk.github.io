@@ -239,7 +239,8 @@
     const start = date(study.period.start);
     const end = date(study.period.end);
     setText(document, "coreStudyPeriod", start + " – " + end + " · " + study.period.admitted_sessions +
-      " admitted of " + study.period.candidate_sessions + " candidate sessions · normalized " + moneyExact(study.period.starting_equity) + " start");
+      " admitted of " + study.period.candidate_sessions + " candidate sessions · September 22 was not evaluable and is excluded · normalized " +
+      moneyExact(study.period.starting_equity) + " start");
     for (const row of study.scenarios) {
       const prefix = "coreScenario" + row.id;
       setText(document, prefix + "Trades", String(row.trades));
@@ -268,7 +269,10 @@
     });
     study.yearly.forEach((row, index) => {
       const year = [2023, 2024, 2025, 2026][index];
-      setText(document, "coreYear" + year + "Label", row.label);
+      const displayLabel = row.label === "2026 YTD through Sep 22"
+        ? "2026 YTD through Sep 22 candidate coverage (Sep 22 excluded)"
+        : row.label;
+      setText(document, "coreYear" + year + "Label", displayLabel);
       setText(document, "coreYear" + year + "A", moneyExact(row.a_net_pnl, true));
       setText(document, "coreYear" + year + "B", moneyExact(row.b_net_pnl, true));
       setText(document, "coreYear" + year + "C", moneyExact(row.c_net_pnl, true));

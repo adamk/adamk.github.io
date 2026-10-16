@@ -56,13 +56,17 @@ test("historical comparison refuses a rebased or extended strategy path",()=>{
   const extended=fixture();extended.series[1].values[2]=10200;
   assert.throws(()=>api.historicalComparison(extended,source()));
 });
-test("public historical section makes cash primary and retains SPY secondary",()=>{
+test("primary CORE comparison aligns Scenario C, cash, and adjusted SPY while preserving the archive",()=>{
   const html=text("algo-pnl.html");
-  assert.ok(/id="backtestBenchmarkChart"/.test(html),"normalized backtest chart missing");
-  assert.ok(/id="historicalBenchmarkRows"/.test(html),"historical benchmark return rows missing");
-  assert.ok(/id="historicalBenchmarkStatus"/.test(html),"historical benchmark status missing");
-  assert.ok(/id="historicalBenchmarkMethodology"/.test(html),"historical source disclosure missing");
-  assert.ok(/cash.*primary.*SPY.*secondary/i.test(html),"cash must be primary and SPY secondary");
+  assert.ok(/id="coreBenchmarkChart"/.test(html),"normalized CORE benchmark chart missing");
+  assert.ok(/id="corePortfolioChart"/.test(html),"CORE portfolio curve missing");
+  assert.ok(/Foxchase CORE — Scenario C[\s\S]*?Risk-Free \/ Cash[\s\S]*?Excess Return over Cash[\s\S]*?SPY Buy &amp; Hold \(adjusted\)/.test(html),"common-end benchmark table missing");
+  assert.ok(/id="coreBenchmarkMethodology"/.test(html),"CORE benchmark source disclosure missing");
+  assert.ok(/id="backtestBenchmarkChart"/.test(html),"archived combined benchmark chart missing");
+  assert.ok(/id="historicalBenchmarkMethodology"/.test(html),"archived source disclosure missing");
+  assert.match(html,/id="archivedCombinedResearch"/);
+  assert.match(html,/Common validated endpoint: September 21, 2026/);
+  assert.match(html,/September 22, 2026.*not evaluable.*excluded/);
   assert.deepEqual(read("data/historical_comparison_20261013.json").series.map(s=>s.label),
     ["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
 });
