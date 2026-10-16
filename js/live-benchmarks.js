@@ -105,7 +105,7 @@ const FoxchaseBenchmarks = (() => {
       ]
     };
   }
-  function coreSlippageComparison(curves, study, spySource, cashSource) {
+  function coreSlippageComparison(curves, study, spySource, cashSource, sourceDigests) {
     const fail = message => { throw new Error(message); };
     const period = curves && curves.period, studyPeriod = study && study.period;
     if (!period || !studyPeriod || curves.schema_version !== 1 ||
@@ -114,6 +114,11 @@ const FoxchaseBenchmarks = (() => {
         !String(curves.curve_basis || "").includes("not intraday mark-to-market") ||
         study.schema_version !== 1 || study.classification !== "MODELED_CORE_SLIPPAGE_REPLAY" ||
         study.independent_verification !== "PASS") fail("core_curve_certificate_invalid");
+    const pinnedHashes = curves.source_sha256;
+    const digestFields = ["scenario_summary", "adjusted_spy", "historical_cash"];
+    if (!pinnedHashes || !sourceDigests || digestFields.some(field =>
+        !/^[a-f0-9]{64}$/.test(pinnedHashes[field] || "") ||
+        sourceDigests[field] !== pinnedHashes[field])) fail("core_source_digest_mismatch");
     const start = studyPeriod.start, candidateEnd = studyPeriod.end, comparisonEnd = curves.comparison_end;
     if (period.start !== start || period.candidate_end !== candidateEnd ||
         period.candidate_sessions !== studyPeriod.candidate_sessions ||

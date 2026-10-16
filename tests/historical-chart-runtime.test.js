@@ -1,5 +1,6 @@
 "use strict";
 const test=require("node:test"),assert=require("node:assert/strict"),vm=require("node:vm");
+const crypto=require("node:crypto");
 const {text,read}=require("./research-fixture");
 
 function chartMock() {
@@ -17,24 +18,34 @@ async function runPrimary(mutate=()=>{},missing="") {
     "/data/benchmark_research_20261003.json":read("data/benchmark_research_20261003.json"),
     "/data/historical-cash-benchmark.json":read("data/historical-cash-benchmark.json")
   };
+  const originals=structuredClone(files);
+  const sourceText={
+    "/data/core_slippage_equity_curves_20261015.json":text("data/core_slippage_equity_curves_20261015.json"),
+    "/data/core_slippage_replay_20261015.json":text("data/core_slippage_replay_20261015.json"),
+    "/data/benchmark_research_20261003.json":text("data/benchmark_research_20261003.json"),
+    "/data/historical-cash-benchmark.json":text("data/historical-cash-benchmark.json")
+  };
   mutate(files);
+  const responseText=Object.fromEntries(Object.entries(files).map(([url,value])=>[
+    url,JSON.stringify(value)===JSON.stringify(originals[url])?sourceText[url]:JSON.stringify(value)
+  ]));
   const ids=["coreBenchmarkStrategyReturn","coreBenchmarkCashReturn","coreBenchmarkExcessReturn","coreBenchmarkSPYReturn",
     "coreBenchmarkStatus","coreBenchmarkScale","coreBenchmarkScaleStatus","coreBenchmarkChart",
     "corePortfolioScale","corePortfolioScaleStatus","corePortfolioChart","corePortfolioStatus"];
   const nodes=Object.fromEntries(ids.map(id=>[id,element(id.includes("Scale")?"linear":"")]));
   const {Chart,charts}=chartMock();
-  const page=text("algo-pnl.html"),begin=page.indexOf("    function loadCorePrimaryComparison() {"),end=page.indexOf("    function loadHistoricalComparison() {",begin);
-  assert.ok(begin>=0&&end>begin,"primary comparison loader is present");
-  const context=vm.createContext({Chart,Intl,Date,Map,Set,Number,Math,Error,Promise,
+  const page=text("algo-pnl.html"),begin=page.indexOf("    async function fetchCoreSource("),end=page.indexOf("    function loadHistoricalComparison() {",begin);
+  assert.ok(begin>=0&&end>begin,"verified primary comparison loader is present");
+  const context=vm.createContext({Chart,Intl,Date,Map,Set,Number,Math,Error,Promise,TextEncoder,Uint8Array,
     FoxchaseBenchmarks:require("../js/live-benchmarks.js"),
     setTextIfExists:(id,value)=>{if(nodes[id])nodes[id].textContent=value;},
     formatBenchmarkPercent:value=>(value>0?"+":"")+value.toFixed(4)+"%",
     formatBenchmarkPoints:value=>(value>0?"+":"")+value.toFixed(4)+" pp",
-    window:{matchMedia:()=>({matches:false})},loadChartLibrary:async()=>Chart,
+    window:{crypto:crypto.webcrypto,matchMedia:()=>({matches:false})},loadChartLibrary:async()=>Chart,
     document:{getElementById:id=>nodes[id]},
-    fetch:async url=>({ok:url.split("?")[0]!==missing,json:async()=>files[url.split("?")[0]]})});
-  vm.runInContext(page.slice(begin,end)+"\nloadCorePrimaryComparison();",context);
-  await new Promise(resolve=>setImmediate(resolve));
+    fetch:async url=>({ok:url.split("?")[0]!==missing,text:async()=>responseText[url.split("?")[0]]})});
+  const loading=vm.runInContext(page.slice(begin,end)+"\nloadCorePrimaryComparison()",context);
+  await loading;
   return {files,nodes,charts};
 }
 
@@ -50,9 +61,9 @@ test("primary CORE benchmark displays common-end returns and both verified daily
   assert.match(nodes.corePortfolioStatus.textContent,/closed-trade.*not interpolated or marked to market/i);
   const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart);
   const portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
-  assert.deepEqual(benchmark.data.datasets.map(row=>row.label),["CORE Scenario C","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
-  assert.deepEqual(portfolio.data.datasets.map(row=>row.label),["CORE Scenario C","CORE Scenario A","CORE Scenario B","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
-  assert.deepEqual(benchmark.data.labels,files["/data/core_slippage_equity_curves_20261015.json"].dates);
+  assert.deepEqual(Array.from(benchmark.data.datasets,row=>row.label),["CORE Scenario C","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
+  assert.deepEqual(Array.from(portfolio.data.datasets,row=>row.label),["CORE Scenario C","CORE Scenario A","CORE Scenario B","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
+  assert.deepEqual(Array.from(benchmark.data.labels),files["/data/core_slippage_equity_curves_20261015.json"].dates);
   assert.equal(benchmark.data.labels.length,931);
   assert.equal(benchmark.data.labels[0],"2023-01-04");
   assert.equal(benchmark.data.labels.at(-1),"2026-09-21");
@@ -91,7 +102,10 @@ test("missing or inconsistent primary evidence fails closed",async()=>{
     files=>{files["/data/core_slippage_equity_curves_20261015.json"].scenarios[0].daily[20].equity=null;},
     files=>{files["/data/benchmark_research_20261003.json"].daily[100].date="2023-06-05";},
     files=>{files["/data/historical-cash-benchmark.json"].source_end="2026-09-21";},
-    files=>{files["/data/core_slippage_replay_20261015.json"].independent_verification="FAIL";}
+    files=>{files["/data/core_slippage_replay_20261015.json"].independent_verification="FAIL";},
+    files=>{files["/data/benchmark_research_20261003.json"].daily[100].SPY+=0.01;},
+    files=>{files["/data/historical-cash-benchmark.json"].cash.observations[100].annual_yield_pct+=0.01;},
+    files=>{files["/data/core_slippage_replay_20261015.json"].scenarios[0].net_pnl+=1;}
   ]) {
     const out=await runPrimary(mutate);
     assert.equal(out.charts.length,0);

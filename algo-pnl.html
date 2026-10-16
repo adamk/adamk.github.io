@@ -872,29 +872,33 @@ function setTextIfExists(id, value) {
       }
       return chartLibraryPromise;
     }
+    async function fetchCoreSource(url, options, errorMessage) {
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error(errorMessage);
+      const body = await response.text();
+      if (!window.crypto || !window.crypto.subtle || typeof TextEncoder === "undefined") {
+        throw new Error("SHA-256 verification is unavailable");
+      }
+      const digest = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(body));
+      const sha256 = Array.from(new Uint8Array(digest), value => value.toString(16).padStart(2, "0")).join("");
+      return {data:JSON.parse(body), sha256};
+    }
     function loadCorePrimaryComparison() {
       const status = document.getElementById("coreBenchmarkStatus");
       const portfolioStatus = document.getElementById("corePortfolioStatus");
       return Promise.all([
-        fetch("/data/core_slippage_equity_curves_20261015.json?v=20261015-core-curves-r1").then(response => {
-          if (!response.ok) throw new Error("CORE daily curves unavailable");
-          return response.json();
-        }),
-        fetch("/data/core_slippage_replay_20261015.json?v=20261015-core-study-r1").then(response => {
-          if (!response.ok) throw new Error("CORE source study unavailable");
-          return response.json();
-        }),
-        fetch("/data/benchmark_research_20261003.json?v=20261003-adjusted-spy-r1").then(response => {
-          if (!response.ok) throw new Error("Adjusted SPY data unavailable");
-          return response.json();
-        }),
-        fetch("/data/historical-cash-benchmark.json", { cache:"no-store" }).then(response => {
-          if (!response.ok) throw new Error("Treasury cash data unavailable");
-          return response.json();
-        }),
+        fetchCoreSource("/data/core_slippage_equity_curves_20261015.json?v=20261015-core-curves-r1", {}, "CORE daily curves unavailable"),
+        fetchCoreSource("/data/core_slippage_replay_20261015.json?v=20261015-core-study-r1", {}, "CORE source study unavailable"),
+        fetchCoreSource("/data/benchmark_research_20261003.json?v=20261003-adjusted-spy-r1", {}, "Adjusted SPY data unavailable"),
+        fetchCoreSource("/data/historical-cash-benchmark.json", { cache:"no-store" }, "Treasury cash data unavailable"),
         loadChartLibrary()
-      ]).then(([curves, study, spySource, cashSource, ChartLibrary]) => {
-        const comparison = FoxchaseBenchmarks.coreSlippageComparison(curves, study, spySource, cashSource);
+      ]).then(([curvesSource, studySource, spySource, cashSource, ChartLibrary]) => {
+        const curves = curvesSource.data, study = studySource.data;
+        const comparison = FoxchaseBenchmarks.coreSlippageComparison(curves, study, spySource.data, cashSource.data, {
+          scenario_summary:studySource.sha256,
+          adjusted_spy:spySource.sha256,
+          historical_cash:cashSource.sha256
+        });
         const percent = value => (value > 0 ? "+" : "") + value.toFixed(4) + "%";
         const points = value => (value > 0 ? "+" : "") + value.toFixed(4) + " pp";
         setTextIfExists("coreBenchmarkStrategyReturn", percent(comparison.strategy_return_pct));
