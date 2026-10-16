@@ -14,6 +14,8 @@ test("public CORE page no longer loads the obsolete combined comparison datasets
   for(const name of ["historical_comparison_20261013.json","combined_research_20261003.json","multiday_research_20261003.json"])
     assert.equal(page.includes(name),false,name);
   assert.match(text("js/core-period-page.js"),/core_alpaca_fee_periods_20261016/);
-  assert.match(page,/coreBenchmarkScenario/);
+  assert.match(page,/coreBenchmarkSelection/);
   assert.match(page,/corePortfolioChart/);
+  assert.match(page,/Natural NBBO \+ \$0\.01 Slippage/);
+  assert.doesNotMatch(page,/Scenario [ABC]|Archived Research/);
 });

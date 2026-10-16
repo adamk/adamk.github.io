@@ -1,0 +1,75 @@
+{
+  "classification": "COMBINED_MODELED_INTRADAY_RESEARCH",
+  "core_trades": 259,
+  "cost_basis": "gross_before_fees",
+  "cost_note": "Commissions, fees and additional slippage are not modeled for Intraday.",
+  "ex_evaluable_sessions": 607,
+  "ex_excluded_sessions": 229,
+  "ex_sessions_considered": 836,
+  "ex_study_end": "2026-05-05",
+  "ex_trades": 267,
+  "execution_basis": "Historical EX execution is modeled and does not reproduce actual broker fills or production sub-minute quote polling.",
+  "input_policy": "Component datasets have different coverage periods. Required missing inputs remain unknown and are not synthesized.",
+  "limitations": "Historical results are simulated research and are separate from live account performance. The research uses modeled historical execution, retrospective portfolio sizing, and datasets with differing coverage periods. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity, or market impact. Required missing inputs remain unknown; this update does not estimate or synthesize them. Historical results do not guarantee future performance.",
+  "live_execution_parity": false,
+  "schema_version": 3,
+  "scope": "This simulated historical replay combines modeled intraday strategies with Extrinsic (EX) sleeves using frozen research rules and modeled executable option quotes.",
+  "sessions_considered": 932,
+  "sizing_basis": "Historical position sizes compound with modeled equity under retrospective risk-normalized sizing and shared portfolio risk controls.",
+  "source_ledger": "/data/intraday_research_ledger_20261003.csv",
+  "source_ledger_sha256": "d812ee79f24b00b24aa01fb26dfb125952ab7b273a0b56c4e56d15bd4026bc4e",
+  "spread_evaluable_sessions": 929,
+  "spread_excluded_sessions": 3,
+  "starting_equity": 10000,
+  "statistics": {
+    "active_days": 393,
+    "average_loser": -1048.081081081081,
+    "average_winner": 1449.6765676567657,
+    "breakeven": 1,
+    "daily_sharpe_annualized": 2.316612491690042,
+    "ending_equity": 216578.0,
+    "gross_expectancy": 392.73384030418254,
+    "gross_loss": 232674.0,
+    "gross_pnl": 206578.0,
+    "gross_profit": 439252.0,
+    "losses": 222,
+    "max_consecutive_losses": 6,
+    "max_drawdown_dollars": -12146.0,
+    "max_drawdown_pct": -34.76720115083681,
+    "mean_hold_minutes": 53.58745247148289,
+    "median_hold_minutes": 29.0,
+    "payoff_ratio": 1.383172155117469,
+    "profit_factor": 1.8878430765792482,
+    "return_over_max_drawdown": 17.00790383665404,
+    "return_pct": 2065.78,
+    "same_day_pct": 100.0,
+    "trades": 526,
+    "win_rate_pct": 57.60456273764258,
+    "wins": 303
+  },
+  "study_end": "2026-09-22",
+  "study_start": "2023-01-04",
+  "unknown_component_outcomes_are_zero": false,
+  "yearly": [
+    {
+      "combined_pnl": 5324.0,
+      "total_trades": 155,
+      "year": 2023
+    },
+    {
+      "combined_pnl": 36277.0,
+      "total_trades": 146,
+      "year": 2024
+    },
+    {
+      "combined_pnl": 42426.0,
+      "total_trades": 137,
+      "year": 2025
+    },
+    {
+      "combined_pnl": 122551.0,
+      "total_trades": 88,
+      "year": 2026
+    }
+  ]
+}

@@ -3,8 +3,8 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
-  <script src="/js/core-period-research.js?v=20261016-alpaca-fees-r1"></script>
-  <script src="/js/core-period-page.js?v=20261016-alpaca-fees-r1"></script>
+  <script src="/js/core-period-research.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
+  <script src="/js/core-period-page.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
   <script src="/js/selected-ex-research.js?v=20261016-selected-ex-r1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -147,13 +147,13 @@
     .research-limitations { border-top:1px solid #dfe3e8; margin-top:24px; padding-top:16px; }
     .research-limitations h3 { font-size:17px; font-weight:600; margin:0; }
     .core-slippage-section { border-top:1px solid #dfe3e8; margin-top:30px; padding-top:20px; }
-    .core-scenario-card-primary { border:2px solid #c77724; background:#fffaf4; }
+    .core-comparison-card-primary { border:2px solid #c77724; background:#fffaf4; }
     .selected-ex-section { border-top:1px solid #dfe3e8; margin-top:34px; padding-top:22px; }
-    .core-scenario-card h4 { margin:0; font-size:17px; line-height:1.35; }
-    .core-scenario-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin:16px 0 0; }
-    .core-scenario-stats div { min-width:0; }
-    .core-scenario-stats dt { color:#596273; font-size:12px; line-height:1.35; }
-    .core-scenario-stats dd { margin:3px 0 0; font-size:15px; font-weight:700; overflow-wrap:anywhere; }
+    .core-comparison-card h4 { margin:0; font-size:17px; line-height:1.35; }
+    .core-comparison-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin:16px 0 0; }
+    .core-comparison-stats div { min-width:0; }
+    .core-comparison-stats dt { color:#596273; font-size:12px; line-height:1.35; }
+    .core-comparison-stats dd { margin:3px 0 0; font-size:15px; font-weight:700; overflow-wrap:anywhere; }
     .core-slippage-note { color:#384456; line-height:1.5; }
     .research-label {
       color:#666;
@@ -229,7 +229,7 @@
       .curve-view-toggle { width:100%; }
       .curve-view-toggle button { flex:1; padding:8px 7px; font-size:13px; }
       .edge-chart-wrap { min-height:340px; }
-      .core-scenario-stats { grid-template-columns:1fr; }
+      .core-comparison-stats { grid-template-columns:1fr; }
     }
     @media (prefers-color-scheme: dark) {
       .curve-view-toggle { background:#eef1f4; border-color:#b9c0c8; }
@@ -607,7 +607,7 @@
     </section>
 
     <h2>Historical Strategy Research</h2>
-    <p class="small">Scenario B is the default highlighted comparison: the five-signal CORE portfolio with fixed-trade adverse slippage. Scenarios A and C are shown alongside it. All results are historical modeled performance, not actual brokerage executions or verified live-account performance.</p>
+    <p class="small">Historical modeled CORE performance is shown with Natural NBBO and Natural NBBO + $0.01 Slippage. These are not actual brokerage executions or verified live-account performance.</p>
     <section class="core-slippage-section" id="coreSlippageResearch" aria-labelledby="coreSlippageTitle">
       <h3 id="coreSlippageTitle">Historical CORE Performance</h3>
       <div class="historical-scale-control">
@@ -620,101 +620,80 @@
       </div>
       <p class="small" id="coreStudyPeriod" aria-live="polite">Loading the independently verified historical CORE replay…</p>
       <p class="small">CORE-only hypothetical research. R5VWAPB is excluded from this hypothetical CORE study but remains enabled in production. Results are modeled, not actual live-account P&amp;L.</p>
-      <div class="research-metrics core-scenario-grid" aria-label="CORE historical slippage scenarios">
-        <article class="research-card core-scenario-card core-scenario-card-primary" id="coreScenarioB" aria-label="Scenario B, default highlighted matched-trade slippage comparison">
-          <h4>Scenario B — Matched-Trade Slippage</h4>
-          <p class="research-detail"><strong>Default highlighted comparison.</strong> Keeps Scenario A trades and quantities, adding $0.01 adverse slippage per option leg per side. This is different from Scenario C’s full chronological replay.</p>
-          <dl class="core-scenario-stats">
-            <div><dt>Eligible sessions</dt><dd id="coreScenarioBEligibleSessions">—</dd></div>
-            <div><dt>Trades</dt><dd id="coreScenarioBTrades">—</dd></div>
-            <div><dt>Win rate</dt><dd id="coreScenarioBWinRate">—</dd></div>
-            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioBGrossPnl">—</dd></div>
-            <div><dt>Net P&amp;L</dt><dd id="coreScenarioBNetPnl">—</dd></div>
-            <div><dt>Net profit factor</dt><dd id="coreScenarioBProfitFactor">—</dd></div>
-            <div><dt>Ending modeled equity</dt><dd id="coreScenarioBEndingEquity">—</dd></div>
-            <div><dt>Cumulative return</dt><dd id="coreScenarioBReturn">—</dd></div>
-            <div><dt>Maximum drawdown</dt><dd id="coreScenarioBMaxDrawdown">—</dd></div>
-            <div><dt>Net expectancy per trade</dt><dd id="coreScenarioBExpectancy">—</dd></div>
-            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioBExpectancyCI">—</dd></div>
-            <div><dt>Added modeled slippage</dt><dd id="coreScenarioBSlippage">—</dd></div>
-            <div><dt>Modeled pass-through fees</dt><dd id="coreScenarioBFees">—</dd></div>
+      <div class="research-metrics core-comparison-grid" aria-label="Two historical CORE execution comparisons">
+        <article class="research-card core-comparison-card core-comparison-card-primary" id="coreComparisonSlippage" aria-label="Natural NBBO plus $0.01 slippage, default highlighted comparison">
+          <h4>Natural NBBO + $0.01 Slippage</h4>
+          <p class="research-detail"><strong>Default highlighted comparison.</strong> Applies $0.01 adverse slippage per option leg per side to the same trades and contract quantities as Natural NBBO. Trade selection is unchanged; later position resizing and order eligibility are not replayed.</p>
+          <dl class="core-comparison-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreComparisonSlippageEligibleSessions">—</dd></div>
+            <div><dt>Trades</dt><dd id="coreComparisonSlippageTrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreComparisonSlippageWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreComparisonSlippageGrossPnl">—</dd></div>
+            <div><dt>Net P&amp;L</dt><dd id="coreComparisonSlippageNetPnl">—</dd></div>
+            <div><dt>Net profit factor</dt><dd id="coreComparisonSlippageProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreComparisonSlippageEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreComparisonSlippageReturn">—</dd></div>
+            <div><dt>Maximum drawdown</dt><dd id="coreComparisonSlippageMaxDrawdown">—</dd></div>
+            <div><dt>Net expectancy per trade</dt><dd id="coreComparisonSlippageExpectancy">—</dd></div>
+            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreComparisonSlippageExpectancyCI">—</dd></div>
+            <div><dt>Added modeled slippage</dt><dd id="coreComparisonSlippageSlippage">—</dd></div>
+            <div><dt>Estimated pass-through fees</dt><dd id="coreComparisonSlippageFees">—</dd></div>
           </dl>
         </article>
-        <article class="research-card core-scenario-card" id="coreScenarioA" aria-label="Scenario A, natural NBBO">
-          <h4>Scenario A — Natural NBBO</h4>
-          <p class="research-detail">Short legs sell at bid and long legs buy at ask; closes use the corresponding opposite sides. Modeled regulatory and clearing fees apply. NBBO quotes do not guarantee a fill.</p>
-          <dl class="core-scenario-stats">
-            <div><dt>Eligible sessions</dt><dd id="coreScenarioAEligibleSessions">—</dd></div>
-            <div><dt>Trades</dt><dd id="coreScenarioATrades">—</dd></div>
-            <div><dt>Win rate</dt><dd id="coreScenarioAWinRate">—</dd></div>
-            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioAGrossPnl">—</dd></div>
-            <div><dt>Net P&amp;L</dt><dd id="coreScenarioANetPnl">—</dd></div>
-            <div><dt>Net profit factor</dt><dd id="coreScenarioAProfitFactor">—</dd></div>
-            <div><dt>Ending modeled equity</dt><dd id="coreScenarioAEndingEquity">—</dd></div>
-            <div><dt>Cumulative return</dt><dd id="coreScenarioAReturn">—</dd></div>
-            <div><dt>Maximum drawdown</dt><dd id="coreScenarioAMaxDrawdown">—</dd></div>
-            <div><dt>Net expectancy per trade</dt><dd id="coreScenarioAExpectancy">—</dd></div>
-            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioAExpectancyCI">—</dd></div>
-            <div><dt>Added modeled slippage</dt><dd id="coreScenarioASlippage">—</dd></div>
-            <div><dt>Modeled pass-through fees</dt><dd id="coreScenarioAFees">—</dd></div>
+        <article class="research-card core-comparison-card" id="coreComparisonNatural" aria-label="Natural NBBO comparison">
+          <h4>Natural NBBO</h4>
+          <p class="research-detail">Short legs sell at bid and long legs buy at ask; closes use the opposite quote sides. Estimated regulatory and clearing fees apply. NBBO quotes do not guarantee a fill.</p>
+          <dl class="core-comparison-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreComparisonNaturalEligibleSessions">—</dd></div>
+            <div><dt>Trades</dt><dd id="coreComparisonNaturalTrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreComparisonNaturalWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreComparisonNaturalGrossPnl">—</dd></div>
+            <div><dt>Net P&amp;L</dt><dd id="coreComparisonNaturalNetPnl">—</dd></div>
+            <div><dt>Net profit factor</dt><dd id="coreComparisonNaturalProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreComparisonNaturalEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreComparisonNaturalReturn">—</dd></div>
+            <div><dt>Maximum drawdown</dt><dd id="coreComparisonNaturalMaxDrawdown">—</dd></div>
+            <div><dt>Net expectancy per trade</dt><dd id="coreComparisonNaturalExpectancy">—</dd></div>
+            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreComparisonNaturalExpectancyCI">—</dd></div>
+            <div><dt>Added modeled slippage</dt><dd id="coreComparisonNaturalSlippage">—</dd></div>
+            <div><dt>Estimated pass-through fees</dt><dd id="coreComparisonNaturalFees">—</dd></div>
           </dl>
         </article>
-        <article class="research-card core-scenario-card" id="coreScenarioC" aria-label="Scenario C, full live-sequence execution and sizing stress test">
-          <h4>Scenario C — Full Live-Sequence Slippage Replay</h4>
-          <p class="research-detail">Full-sequence execution and sizing stress test: applies $0.01 adverse slippage per option leg per side at fills, then replays later sizing and modeled order eligibility chronologically.</p>
-          <dl class="core-scenario-stats">
-            <div><dt>Eligible sessions</dt><dd id="coreScenarioCEligibleSessions">—</dd></div>
-            <div><dt>Trades</dt><dd id="coreScenarioCTrades">—</dd></div>
-            <div><dt>Win rate</dt><dd id="coreScenarioCWinRate">—</dd></div>
-            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioCGrossPnl">—</dd></div>
-            <div><dt>Net P&amp;L</dt><dd id="coreScenarioCNetPnl">—</dd></div>
-            <div><dt>Net profit factor</dt><dd id="coreScenarioCProfitFactor">—</dd></div>
-            <div><dt>Ending modeled equity</dt><dd id="coreScenarioCEndingEquity">—</dd></div>
-            <div><dt>Cumulative return</dt><dd id="coreScenarioCReturn">—</dd></div>
-            <div><dt>Maximum drawdown</dt><dd id="coreScenarioCMaxDrawdown">—</dd></div>
-            <div><dt>Net expectancy per trade</dt><dd id="coreScenarioCExpectancy">—</dd></div>
-            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioCExpectancyCI">—</dd></div>
-            <div><dt>Added modeled slippage</dt><dd id="coreScenarioCSlippage">—</dd></div>
-            <div><dt>Modeled pass-through fees</dt><dd id="coreScenarioCFees">—</dd></div>
-          </dl>
-        </article>
-
       </div>
-      <p class="small core-slippage-note"><strong>Scenario B uncertainty:</strong> its 95% session-cluster expectancy interval is <span id="coreStudyBInterval">—</span> per trade. Interpret the interval with the selected period and sample size; a positive point estimate alone does not establish a reliable edge.</p>
+      <p class="small core-slippage-note"><strong>Slippage uncertainty:</strong> the selected comparison’s 95% session-cluster expectancy interval is <span id="coreStudySlippageInterval">—</span> per trade. Interpret it with the selected period and sample size; a positive point estimate alone does not establish a reliable edge.</p>
       <details class="small" id="alpacaFeeMethodology"><summary>Modeled Alpaca SPY options fees and execution limits</summary>
         <p>Alpaca's published schedule generally lists $0 commissions for qualifying standard retail ETF-option flow, while pass-through regulatory and clearing fees still apply. The actual account classification, routing, partner terms and historical fee statements were not inspected. The historical model applies dated SEC and FINRA rates and uses the nearest retained Alpaca ORF/OCC/CAT schedule snapshot as an explicitly labeled retrospective approximation when an exact dated schedule is unavailable. Each fee type is aggregated by account and day and rounded up to cents.</p>
-        <p>Scenario A uses historical bid/ask leg quotes, Scenario B adds fixed adverse slippage to the same trades and quantities, and Scenario C applies slippage at fills while recomputing later sizing and eligibility. Modeled commissions, fees and slippage are not actual brokerage charges or executions. Historical quote prices do not guarantee complex-order fills, capacity or queue priority. This retrospective study does not establish a prospective trading edge.</p>
-        <p>Sources: <a href="https://files.alpaca.markets/disclosures/BrokFeeSched.pdf">Alpaca Brokerage Fee Schedule</a>, <a href="https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2">SEC fee rates</a>, and <a href="https://www.finra.org/sites/default/files/2024-11/sr-finra-2024-019.pdf">FINRA fee schedule</a>. The prior $0.65 per contract per side assumption is retained as a separate sensitivity in the research artifacts.</p>
+        <p>Natural NBBO uses historical bid/ask leg quotes. Natural NBBO + $0.01 Slippage applies additional adverse slippage to the same historical trades and contract quantities; it changes execution prices, not trade selection. It does not simulate how lower equity could change later position sizing or order eligibility, and it is not a full live broker execution simulation. Modeled fees and slippage are not actual brokerage charges or executions. Historical quote prices do not guarantee complex-order fills, capacity or queue priority. This retrospective study does not establish a prospective trading edge.</p>
+        <p>Sources: <a href="https://files.alpaca.markets/disclosures/BrokFeeSched.pdf">Alpaca Brokerage Fee Schedule</a>, <a href="https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2">SEC fee rates</a>, and <a href="https://www.finra.org/sites/default/files/2024-11/sr-finra-2024-019.pdf">FINRA fee schedule</a>.</p>
       </details>
       <h4>Per-setup results</h4>
       <div class="historical-scale-control">
-        <label for="coreSetupScenario">Setup table scenario</label>
-        <select id="coreSetupScenario">
-          <option value="B" selected>Scenario B — Matched-trade slippage</option>
-          <option value="A">Scenario A — Natural NBBO</option>
-          <option value="C">Scenario C — Full live-sequence replay</option>
+        <label for="coreSetupComparison">Setup table execution comparison</label>
+        <select id="coreSetupComparison">
+          <option value="natural_nbbo_plus_slippage" selected>Natural NBBO + $0.01 Slippage</option>
+          <option value="natural_nbbo">Natural NBBO</option>
         </select>
       </div>
       <div class="research-table-wrap" role="region" aria-label="CORE per-setup historical performance" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Historical modeled per-setup results for the selected period and execution scenario</caption>
+          <caption class="visually-hidden">Historical modeled per-setup results for the selected period and execution comparison</caption>
           <thead><tr><th scope="col">Setup</th><th scope="col">Trades</th><th scope="col">Win rate</th><th scope="col">Gross P&amp;L</th><th scope="col">Net P&amp;L</th><th scope="col">Net profit factor</th><th scope="col">Net expectancy / trade</th><th scope="col">Maximum drawdown</th><th scope="col">95% session-cluster expectancy interval</th></tr></thead>
           <tbody id="coreSetupTableBody"></tbody>
         </table>
       </div>
       <p class="small">R5 EM Lower Rejection produced zero trades under the captured effective research configuration; its per-trade statistics are not applicable.</p>
       <h4>Yearly net P&amp;L</h4>
-      <div class="research-table-wrap" role="region" aria-label="Yearly net P and L by slippage scenario" tabindex="0">
+      <div class="research-table-wrap" role="region" aria-label="Yearly net P and L for the two execution comparisons" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Yearly CORE replay net P&amp;L for the selected period and all three execution scenarios</caption>
-          <thead><tr><th scope="col">Period</th><th scope="col">Scenario A</th><th scope="col">Scenario B</th><th scope="col">Scenario C</th></tr></thead>
+          <caption class="visually-hidden">Yearly CORE replay net P&amp;L for the selected period under both execution comparisons</caption>
+          <thead><tr><th scope="col">Period</th><th scope="col">Natural NBBO</th><th scope="col">Natural NBBO + $0.01 Slippage</th></tr></thead>
           <tbody id="coreYearlyTableBody"></tbody>
         </table>
       </div>
       <h4>Historical quote observations by year</h4>
       <div class="research-table-wrap" role="region" aria-label="Historical requested option quote quality by year" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Requested OCC contract-minute quote availability and bid-ask spread distribution from the consistent full-history Scenario C replay</caption>
+          <caption class="visually-hidden">Requested OCC contract-minute quote availability and bid-ask spread distribution for the 2023–2026 CORE research inputs</caption>
           <thead><tr><th scope="col">Year</th><th scope="col">Requested contract-minutes</th><th scope="col">Valid quote availability</th><th scope="col">Missing</th><th scope="col">Provider no-data</th><th scope="col">Invalid / crossed</th><th scope="col">Option bid-ask spread p25 / median / p75</th></tr></thead>
           <tbody id="coreQuoteQualityBody"></tbody>
         </table>
@@ -726,19 +705,18 @@
       <h3 id="coreBenchmarkTitle">CORE benchmark comparison</h3>
       <p class="small" id="coreBenchmarkDescription">Each selected period uses a shared $10,000 pre-session baseline when the retained adjusted SPY source contains the prior close. The first plotted session close includes that session’s strategy result and benchmark returns. September 21, 2026 is the common validated endpoint; September 22 candidate data is excluded.</p>
       <div class="historical-scale-control">
-        <label for="coreBenchmarkScenario">CORE benchmark scenario</label>
-        <select id="coreBenchmarkScenario" aria-label="Select CORE scenario for benchmark comparison">
-          <option value="B" selected>Scenario B — Matched-trade slippage</option>
-          <option value="A">Scenario A — Natural NBBO</option>
-          <option value="C">Scenario C — Full-sequence stress test</option>
+        <label for="coreBenchmarkSelection">CORE benchmark comparison</label>
+        <select id="coreBenchmarkSelection" aria-label="Select CORE execution comparison for benchmark returns">
+          <option value="natural_nbbo_plus_slippage" selected>Natural NBBO + $0.01 Slippage</option>
+          <option value="natural_nbbo">Natural NBBO</option>
         </select>
       </div>
       <div class="research-table-wrap" role="region" aria-label="CORE benchmark returns through September 21, 2026" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Selected CORE scenario, cash, excess return and adjusted SPY common-end benchmark returns</caption>
+          <caption class="visually-hidden">Selected CORE execution comparison, cash, excess return and adjusted SPY common-end benchmark returns</caption>
           <thead><tr><th scope="col">Metric</th><th scope="col">Return</th></tr></thead>
           <tbody>
-            <tr><th scope="row" id="coreBenchmarkScenarioName">Foxchase CORE — Scenario B</th><td id="coreBenchmarkStrategyReturn">—</td></tr>
+            <tr><th scope="row" id="coreBenchmarkComparisonName">CORE — Natural NBBO + $0.01 Slippage</th><td id="coreBenchmarkStrategyReturn">—</td></tr>
             <tr><th scope="row">Risk-Free / Cash</th><td id="coreBenchmarkCashReturn">—</td></tr>
             <tr><th scope="row">Excess Return over Cash</th><td id="coreBenchmarkExcessReturn">—</td></tr>
             <tr><th scope="row">SPY Buy &amp; Hold (adjusted)</th><td id="coreBenchmarkSPYReturn">—</td></tr>
@@ -753,7 +731,7 @@
       </div>
       <p class="small" id="coreBenchmarkScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="coreBenchmarkChart" style="height:100% !important;" aria-label="CORE Scenario B cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100 through September 21, 2026"></canvas>
+        <canvas id="coreBenchmarkChart" style="height:100% !important;" aria-label="CORE Natural NBBO plus $0.01 Slippage cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100 through September 21, 2026"></canvas>
       </div>
       <p class="small" id="coreBenchmarkStatus" aria-live="polite">Loading independently aligned CORE, Treasury and adjusted SPY comparisons…</p>
       <details class="small" id="coreBenchmarkMethodology"><summary>CORE benchmark methodology</summary>
@@ -764,19 +742,19 @@
       </details>
     </section>
     <section aria-labelledby="corePortfolioTitle" id="corePortfolioComparison">
-      <h3 id="corePortfolioTitle">Historical CORE scenario equity curves</h3>
+      <h3 id="corePortfolioTitle">Historical CORE equity curves</h3>
       <p class="small" id="corePortfolioDescription">Daily cumulative modeled closed-trade equity from independently verified trade ledgers, normalized to $10,000, through September 21, 2026. These are closed-trade equity curves, not intraday mark-to-market account equity. Non-evaluable strategy dates remain visible as gaps; no strategy values are interpolated.</p>
     <div class="historical-scale-control">
-        <label for="corePortfolioScale">CORE portfolio chart scale</label>
+        <label for="corePortfolioScale">CORE equity chart scale</label>
         <select id="corePortfolioScale" aria-describedby="corePortfolioScaleStatus">
           <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
         </select>
     </div>
       <p class="small" id="corePortfolioScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="corePortfolioChart" style="height:100% !important;" aria-label="Daily cumulative closed-trade CORE Scenario B, Scenario A, Scenario C, cash and adjusted SPY equity curves, all starting at $10,000"></canvas>
+        <canvas id="corePortfolioChart" style="height:100% !important;" aria-label="Daily cumulative closed-trade CORE Natural NBBO and Natural NBBO plus $0.01 Slippage equity curves, with cash and adjusted SPY where available, all starting at $10,000"></canvas>
       </div>
-      <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE scenario curves…</p>
+      <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE comparison curves…</p>
     </section>
 
     <section class="selected-ex-section" id="selectedExResearch" aria-labelledby="selectedExTitle">
