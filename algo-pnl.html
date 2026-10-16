@@ -3,15 +3,10 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
-  <script src="/js/live-benchmarks.js?v=20261015-core-primary-r1"></script>
-  <script src="/js/core-period-research.js?v=20261015-fresh-periods-r1"></script>
-  <script src="/js/core-period-page.js?v=20261015-fresh-periods-r1"></script>
+  <script src="/js/core-period-research.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
+  <script src="/js/core-period-page.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
+  <script src="/js/selected-ex-research.js?v=20261016-selected-ex-r1"></script>
   <script>
-function setTextIfExists(id, value) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = value;
-}
-
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -117,21 +112,6 @@ function setTextIfExists(id, value) {
       gap:16px;
       margin:22px 0;
     }
-    .historical-comparison-controls {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 18px;
-      margin:18px 0 0;
-    }
-    .historical-comparison-controls label {
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      cursor:pointer;
-    }
-    .historical-comparison-controls small {
-      color:#666;
-    }
     .historical-scale-control {
       display:flex;
       align-items:center;
@@ -167,16 +147,13 @@ function setTextIfExists(id, value) {
     .research-limitations { border-top:1px solid #dfe3e8; margin-top:24px; padding-top:16px; }
     .research-limitations h3 { font-size:17px; font-weight:600; margin:0; }
     .core-slippage-section { border-top:1px solid #dfe3e8; margin-top:30px; padding-top:20px; }
-    .archived-research { margin:34px 0 10px; padding:18px; border:1px solid #d8dde2; border-radius:10px; background:#f8f9fb; }
-    .archived-research > summary { color:#354052; font-weight:700; cursor:pointer; }
-    .archived-research[open] > summary { margin-bottom:14px; }
-    .archived-research section { margin-top:20px; }
-    .core-scenario-card-primary { border:2px solid #234a76; background:#f7f9fc; }
-    .core-scenario-card h4 { margin:0; font-size:17px; line-height:1.35; }
-    .core-scenario-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin:16px 0 0; }
-    .core-scenario-stats div { min-width:0; }
-    .core-scenario-stats dt { color:#596273; font-size:12px; line-height:1.35; }
-    .core-scenario-stats dd { margin:3px 0 0; font-size:15px; font-weight:700; overflow-wrap:anywhere; }
+    .core-comparison-card-primary { border:2px solid #c77724; background:#fffaf4; }
+    .selected-ex-section { border-top:1px solid #dfe3e8; margin-top:34px; padding-top:22px; }
+    .core-comparison-card h4 { margin:0; font-size:17px; line-height:1.35; }
+    .core-comparison-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin:16px 0 0; }
+    .core-comparison-stats div { min-width:0; }
+    .core-comparison-stats dt { color:#596273; font-size:12px; line-height:1.35; }
+    .core-comparison-stats dd { margin:3px 0 0; font-size:15px; font-weight:700; overflow-wrap:anywhere; }
     .core-slippage-note { color:#384456; line-height:1.5; }
     .research-label {
       color:#666;
@@ -252,7 +229,7 @@ function setTextIfExists(id, value) {
       .curve-view-toggle { width:100%; }
       .curve-view-toggle button { flex:1; padding:8px 7px; font-size:13px; }
       .edge-chart-wrap { min-height:340px; }
-      .core-scenario-stats { grid-template-columns:1fr; }
+      .core-comparison-stats { grid-template-columns:1fr; }
     }
     @media (prefers-color-scheme: dark) {
       .curve-view-toggle { background:#eef1f4; border-color:#b9c0c8; }
@@ -630,7 +607,7 @@ function setTextIfExists(id, value) {
     </section>
 
     <h2>Historical Strategy Research</h2>
-    <p class="small">Current primary comparison: the five-signal CORE portfolio under Scenario C full live-sequence slippage replay. All results are historical modeled performance, not actual brokerage executions or verified live-account performance.</p>
+    <p class="small">Historical modeled CORE performance is shown with Natural NBBO and Natural NBBO + $0.01 Slippage. These are not actual brokerage executions or verified live-account performance.</p>
     <section class="core-slippage-section" id="coreSlippageResearch" aria-labelledby="coreSlippageTitle">
       <h3 id="coreSlippageTitle">Historical CORE Performance</h3>
       <div class="historical-scale-control">
@@ -642,96 +619,81 @@ function setTextIfExists(id, value) {
         </select>
       </div>
       <p class="small" id="coreStudyPeriod" aria-live="polite">Loading the independently verified historical CORE replay…</p>
-      <p class="small">This is historical modeled performance for a hypothetical five-signal CORE portfolio. The R5 VWAP bearish-persistence setup is excluded from this hypothetical portfolio; this research assumption does not mean this exclusion has been deployed. The study is separate from the captured live configuration, existing EX research, and actual live-account P&amp;L.</p>
-      <div class="research-metrics core-scenario-grid" aria-label="CORE historical slippage scenarios">
-        <article class="research-card core-scenario-card core-scenario-card-primary" id="coreScenarioC" aria-label="Scenario C, primary conservative comparison">
-          <h4>Scenario C — Full Live-Sequence Slippage Replay</h4>
-          <p class="research-detail">Primary conservative comparison: applies $0.01 adverse slippage per option leg per side only at execution. Planned quantity stays fixed through entry fill; later plans resize from scenario net equity, and minimum-credit rejections are modeled.</p>
-          <dl class="core-scenario-stats">
-            <div><dt>Eligible sessions</dt><dd id="coreScenarioCEligibleSessions">—</dd></div>
-            <div><dt>Trades</dt><dd id="coreScenarioCTrades">—</dd></div>
-            <div><dt>Win rate</dt><dd id="coreScenarioCWinRate">—</dd></div>
-            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioCGrossPnl">—</dd></div>
-            <div><dt>Net P&amp;L</dt><dd id="coreScenarioCNetPnl">—</dd></div>
-            <div><dt>Net profit factor</dt><dd id="coreScenarioCProfitFactor">—</dd></div>
-            <div><dt>Ending modeled equity</dt><dd id="coreScenarioCEndingEquity">—</dd></div>
-            <div><dt>Cumulative return</dt><dd id="coreScenarioCReturn">—</dd></div>
-            <div><dt>Maximum drawdown</dt><dd id="coreScenarioCMaxDrawdown">—</dd></div>
-            <div><dt>Net expectancy per trade</dt><dd id="coreScenarioCExpectancy">—</dd></div>
-            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioCExpectancyCI">—</dd></div>
-            <div><dt>Added modeled slippage</dt><dd id="coreScenarioCSlippage">—</dd></div>
-            <div><dt>Assumed commissions</dt><dd id="coreScenarioCFees">—</dd></div>
+      <p class="small">CORE-only hypothetical research. R5VWAPB is excluded from this hypothetical CORE study but remains enabled in production. Results are modeled, not actual live-account P&amp;L.</p>
+      <div class="research-metrics core-comparison-grid" aria-label="Two historical CORE execution comparisons">
+        <article class="research-card core-comparison-card core-comparison-card-primary" id="coreComparisonSlippage" aria-label="Natural NBBO plus $0.01 slippage, default highlighted comparison">
+          <h4>Natural NBBO + $0.01 Slippage</h4>
+          <p class="research-detail"><strong>Default highlighted comparison.</strong> Applies $0.01 adverse slippage per option leg per side to the same trades and contract quantities as Natural NBBO. Trade selection is unchanged; later position resizing and order eligibility are not replayed.</p>
+          <dl class="core-comparison-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreComparisonSlippageEligibleSessions">—</dd></div>
+            <div><dt>Trades</dt><dd id="coreComparisonSlippageTrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreComparisonSlippageWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreComparisonSlippageGrossPnl">—</dd></div>
+            <div><dt>Net P&amp;L</dt><dd id="coreComparisonSlippageNetPnl">—</dd></div>
+            <div><dt>Net profit factor</dt><dd id="coreComparisonSlippageProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreComparisonSlippageEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreComparisonSlippageReturn">—</dd></div>
+            <div><dt>Maximum drawdown</dt><dd id="coreComparisonSlippageMaxDrawdown">—</dd></div>
+            <div><dt>Net expectancy per trade</dt><dd id="coreComparisonSlippageExpectancy">—</dd></div>
+            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreComparisonSlippageExpectancyCI">—</dd></div>
+            <div><dt>Added modeled slippage</dt><dd id="coreComparisonSlippageSlippage">—</dd></div>
+            <div><dt>Estimated pass-through fees</dt><dd id="coreComparisonSlippageFees">—</dd></div>
           </dl>
         </article>
-        <article class="research-card core-scenario-card" id="coreScenarioA" aria-label="Scenario A, natural NBBO">
-          <h4>Scenario A — Natural NBBO</h4>
-          <p class="research-detail">Short legs sell at bid and long legs buy at ask; closes use the corresponding opposite sides. Commissions are assumed.</p>
-          <dl class="core-scenario-stats">
-            <div><dt>Eligible sessions</dt><dd id="coreScenarioAEligibleSessions">—</dd></div>
-            <div><dt>Trades</dt><dd id="coreScenarioATrades">—</dd></div>
-            <div><dt>Win rate</dt><dd id="coreScenarioAWinRate">—</dd></div>
-            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioAGrossPnl">—</dd></div>
-            <div><dt>Net P&amp;L</dt><dd id="coreScenarioANetPnl">—</dd></div>
-            <div><dt>Net profit factor</dt><dd id="coreScenarioAProfitFactor">—</dd></div>
-            <div><dt>Ending modeled equity</dt><dd id="coreScenarioAEndingEquity">—</dd></div>
-            <div><dt>Cumulative return</dt><dd id="coreScenarioAReturn">—</dd></div>
-            <div><dt>Maximum drawdown</dt><dd id="coreScenarioAMaxDrawdown">—</dd></div>
-            <div><dt>Net expectancy per trade</dt><dd id="coreScenarioAExpectancy">—</dd></div>
-            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioAExpectancyCI">—</dd></div>
-            <div><dt>Added modeled slippage</dt><dd id="coreScenarioASlippage">—</dd></div>
-            <div><dt>Assumed commissions</dt><dd id="coreScenarioAFees">—</dd></div>
-          </dl>
-        </article>
-        <article class="research-card core-scenario-card" id="coreScenarioB" aria-label="Scenario B, matched-trade slippage">
-          <h4>Scenario B — Matched-Trade Slippage</h4>
-          <p class="research-detail">Keeps Scenario A trades and quantities, adding $0.01 adverse slippage per option leg per side. This is different from Scenario C’s full chronological replay.</p>
-          <dl class="core-scenario-stats">
-            <div><dt>Eligible sessions</dt><dd id="coreScenarioBEligibleSessions">—</dd></div>
-            <div><dt>Trades</dt><dd id="coreScenarioBTrades">—</dd></div>
-            <div><dt>Win rate</dt><dd id="coreScenarioBWinRate">—</dd></div>
-            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioBGrossPnl">—</dd></div>
-            <div><dt>Net P&amp;L</dt><dd id="coreScenarioBNetPnl">—</dd></div>
-            <div><dt>Net profit factor</dt><dd id="coreScenarioBProfitFactor">—</dd></div>
-            <div><dt>Ending modeled equity</dt><dd id="coreScenarioBEndingEquity">—</dd></div>
-            <div><dt>Cumulative return</dt><dd id="coreScenarioBReturn">—</dd></div>
-            <div><dt>Maximum drawdown</dt><dd id="coreScenarioBMaxDrawdown">—</dd></div>
-            <div><dt>Net expectancy per trade</dt><dd id="coreScenarioBExpectancy">—</dd></div>
-            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioBExpectancyCI">—</dd></div>
-            <div><dt>Added modeled slippage</dt><dd id="coreScenarioBSlippage">—</dd></div>
-            <div><dt>Assumed commissions</dt><dd id="coreScenarioBFees">—</dd></div>
+        <article class="research-card core-comparison-card" id="coreComparisonNatural" aria-label="Natural NBBO comparison">
+          <h4>Natural NBBO</h4>
+          <p class="research-detail">Short legs sell at bid and long legs buy at ask; closes use the opposite quote sides. Estimated regulatory and clearing fees apply. NBBO quotes do not guarantee a fill.</p>
+          <dl class="core-comparison-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreComparisonNaturalEligibleSessions">—</dd></div>
+            <div><dt>Trades</dt><dd id="coreComparisonNaturalTrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreComparisonNaturalWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreComparisonNaturalGrossPnl">—</dd></div>
+            <div><dt>Net P&amp;L</dt><dd id="coreComparisonNaturalNetPnl">—</dd></div>
+            <div><dt>Net profit factor</dt><dd id="coreComparisonNaturalProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreComparisonNaturalEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreComparisonNaturalReturn">—</dd></div>
+            <div><dt>Maximum drawdown</dt><dd id="coreComparisonNaturalMaxDrawdown">—</dd></div>
+            <div><dt>Net expectancy per trade</dt><dd id="coreComparisonNaturalExpectancy">—</dd></div>
+            <div><dt>95% session-cluster expectancy interval</dt><dd id="coreComparisonNaturalExpectancyCI">—</dd></div>
+            <div><dt>Added modeled slippage</dt><dd id="coreComparisonNaturalSlippage">—</dd></div>
+            <div><dt>Estimated pass-through fees</dt><dd id="coreComparisonNaturalFees">—</dd></div>
           </dl>
         </article>
       </div>
-      <p class="small core-slippage-note"><strong>Scenario C uncertainty:</strong> its 95% session-cluster expectancy interval is <span id="coreStudyCInterval">—</span> per trade. Interpret the interval with the selected period and sample size; a positive point estimate alone does not establish a reliable edge.</p>
+      <p class="small core-slippage-note"><strong>Slippage uncertainty:</strong> the selected comparison’s 95% session-cluster expectancy interval is <span id="coreStudySlippageInterval">—</span> per trade. Interpret it with the selected period and sample size; a positive point estimate alone does not establish a reliable edge.</p>
+      <details class="small" id="alpacaFeeMethodology"><summary>Modeled Alpaca SPY options fees and execution limits</summary>
+        <p>Alpaca's published schedule generally lists $0 commissions for qualifying standard retail ETF-option flow, while pass-through regulatory and clearing fees still apply. The actual account classification, routing, partner terms and historical fee statements were not inspected. The historical model applies dated SEC and FINRA rates and uses the nearest retained Alpaca ORF/OCC/CAT schedule snapshot as an explicitly labeled retrospective approximation when an exact dated schedule is unavailable. Each fee type is aggregated by account and day and rounded up to cents.</p>
+        <p>Natural NBBO uses historical bid/ask leg quotes. Natural NBBO + $0.01 Slippage applies additional adverse slippage to the same historical trades and contract quantities; it changes execution prices, not trade selection. It does not simulate how lower equity could change later position sizing or order eligibility, and it is not a full live broker execution simulation. Modeled fees and slippage are not actual brokerage charges or executions. Historical quote prices do not guarantee complex-order fills, capacity or queue priority. This retrospective study does not establish a prospective trading edge.</p>
+        <p>Sources: <a href="https://files.alpaca.markets/disclosures/BrokFeeSched.pdf">Alpaca Brokerage Fee Schedule</a>, <a href="https://www.sec.gov/rules-regulations/fee-rate-advisories/2026-2">SEC fee rates</a>, and <a href="https://www.finra.org/sites/default/files/2024-11/sr-finra-2024-019.pdf">FINRA fee schedule</a>.</p>
+      </details>
       <h4>Per-setup results</h4>
       <div class="historical-scale-control">
-        <label for="coreSetupScenario">Setup table scenario</label>
-        <select id="coreSetupScenario">
-          <option value="C" selected>Scenario C — Full live-sequence replay</option>
-          <option value="A">Scenario A — Natural NBBO</option>
-          <option value="B">Scenario B — Matched-trade slippage</option>
+        <label for="coreSetupComparison">Setup table execution comparison</label>
+        <select id="coreSetupComparison">
+          <option value="natural_nbbo_plus_slippage" selected>Natural NBBO + $0.01 Slippage</option>
+          <option value="natural_nbbo">Natural NBBO</option>
         </select>
       </div>
       <div class="research-table-wrap" role="region" aria-label="CORE per-setup historical performance" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Historical modeled per-setup results for the selected period and execution scenario</caption>
+          <caption class="visually-hidden">Historical modeled per-setup results for the selected period and execution comparison</caption>
           <thead><tr><th scope="col">Setup</th><th scope="col">Trades</th><th scope="col">Win rate</th><th scope="col">Gross P&amp;L</th><th scope="col">Net P&amp;L</th><th scope="col">Net profit factor</th><th scope="col">Net expectancy / trade</th><th scope="col">Maximum drawdown</th><th scope="col">95% session-cluster expectancy interval</th></tr></thead>
           <tbody id="coreSetupTableBody"></tbody>
         </table>
       </div>
       <p class="small">R5 EM Lower Rejection produced zero trades under the captured effective research configuration; its per-trade statistics are not applicable.</p>
       <h4>Yearly net P&amp;L</h4>
-      <div class="research-table-wrap" role="region" aria-label="Yearly net P and L by slippage scenario" tabindex="0">
+      <div class="research-table-wrap" role="region" aria-label="Yearly net P and L for the two execution comparisons" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Yearly CORE replay net P&amp;L for the selected period and all three execution scenarios</caption>
-          <thead><tr><th scope="col">Period</th><th scope="col">Scenario A</th><th scope="col">Scenario B</th><th scope="col">Scenario C</th></tr></thead>
+          <caption class="visually-hidden">Yearly CORE replay net P&amp;L for the selected period under both execution comparisons</caption>
+          <thead><tr><th scope="col">Period</th><th scope="col">Natural NBBO</th><th scope="col">Natural NBBO + $0.01 Slippage</th></tr></thead>
           <tbody id="coreYearlyTableBody"></tbody>
         </table>
       </div>
       <h4>Historical quote observations by year</h4>
       <div class="research-table-wrap" role="region" aria-label="Historical requested option quote quality by year" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Requested OCC contract-minute quote availability and bid-ask spread distribution from the consistent full-history Scenario C replay</caption>
+          <caption class="visually-hidden">Requested OCC contract-minute quote availability and bid-ask spread distribution for the 2023–2026 CORE research inputs</caption>
           <thead><tr><th scope="col">Year</th><th scope="col">Requested contract-minutes</th><th scope="col">Valid quote availability</th><th scope="col">Missing</th><th scope="col">Provider no-data</th><th scope="col">Invalid / crossed</th><th scope="col">Option bid-ask spread p25 / median / p75</th></tr></thead>
           <tbody id="coreQuoteQualityBody"></tbody>
         </table>
@@ -742,12 +704,19 @@ function setTextIfExists(id, value) {
     <section aria-labelledby="coreBenchmarkTitle" id="coreBenchmarkComparison">
       <h3 id="coreBenchmarkTitle">CORE benchmark comparison</h3>
       <p class="small" id="coreBenchmarkDescription">Each selected period uses a shared $10,000 pre-session baseline when the retained adjusted SPY source contains the prior close. The first plotted session close includes that session’s strategy result and benchmark returns. September 21, 2026 is the common validated endpoint; September 22 candidate data is excluded.</p>
+      <div class="historical-scale-control">
+        <label for="coreBenchmarkSelection">CORE benchmark comparison</label>
+        <select id="coreBenchmarkSelection" aria-label="Select CORE execution comparison for benchmark returns">
+          <option value="natural_nbbo_plus_slippage" selected>Natural NBBO + $0.01 Slippage</option>
+          <option value="natural_nbbo">Natural NBBO</option>
+        </select>
+      </div>
       <div class="research-table-wrap" role="region" aria-label="CORE benchmark returns through September 21, 2026" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">CORE Scenario C, cash, excess return and adjusted SPY common-end benchmark returns</caption>
+          <caption class="visually-hidden">Selected CORE execution comparison, cash, excess return and adjusted SPY common-end benchmark returns</caption>
           <thead><tr><th scope="col">Metric</th><th scope="col">Return</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Foxchase CORE — Scenario C</th><td id="coreBenchmarkStrategyReturn">—</td></tr>
+            <tr><th scope="row" id="coreBenchmarkComparisonName">CORE — Natural NBBO + $0.01 Slippage</th><td id="coreBenchmarkStrategyReturn">—</td></tr>
             <tr><th scope="row">Risk-Free / Cash</th><td id="coreBenchmarkCashReturn">—</td></tr>
             <tr><th scope="row">Excess Return over Cash</th><td id="coreBenchmarkExcessReturn">—</td></tr>
             <tr><th scope="row">SPY Buy &amp; Hold (adjusted)</th><td id="coreBenchmarkSPYReturn">—</td></tr>
@@ -762,7 +731,7 @@ function setTextIfExists(id, value) {
       </div>
       <p class="small" id="coreBenchmarkScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="coreBenchmarkChart" style="height:100% !important;" aria-label="CORE Scenario C cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100 through September 21, 2026"></canvas>
+        <canvas id="coreBenchmarkChart" style="height:100% !important;" aria-label="CORE Natural NBBO plus $0.01 Slippage cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100 through September 21, 2026"></canvas>
       </div>
       <p class="small" id="coreBenchmarkStatus" aria-live="polite">Loading independently aligned CORE, Treasury and adjusted SPY comparisons…</p>
       <details class="small" id="coreBenchmarkMethodology"><summary>CORE benchmark methodology</summary>
@@ -773,113 +742,39 @@ function setTextIfExists(id, value) {
       </details>
     </section>
     <section aria-labelledby="corePortfolioTitle" id="corePortfolioComparison">
-      <h3 id="corePortfolioTitle">Historical CORE scenario equity curves</h3>
+      <h3 id="corePortfolioTitle">Historical CORE equity curves</h3>
       <p class="small" id="corePortfolioDescription">Daily cumulative modeled closed-trade equity from independently verified trade ledgers, normalized to $10,000, through September 21, 2026. These are closed-trade equity curves, not intraday mark-to-market account equity. Non-evaluable strategy dates remain visible as gaps; no strategy values are interpolated.</p>
     <div class="historical-scale-control">
-        <label for="corePortfolioScale">CORE portfolio chart scale</label>
+        <label for="corePortfolioScale">CORE equity chart scale</label>
         <select id="corePortfolioScale" aria-describedby="corePortfolioScaleStatus">
           <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
         </select>
     </div>
       <p class="small" id="corePortfolioScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="corePortfolioChart" style="height:100% !important;" aria-label="Daily cumulative closed-trade CORE Scenario C, Scenario A, Scenario B, cash and adjusted SPY equity curves, all starting at $10,000"></canvas>
+        <canvas id="corePortfolioChart" style="height:100% !important;" aria-label="Daily cumulative closed-trade CORE Natural NBBO and Natural NBBO plus $0.01 Slippage equity curves, with cash and adjusted SPY where available, all starting at $10,000"></canvas>
       </div>
-      <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE scenario curves…</p>
+      <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE comparison curves…</p>
     </section>
 
-    <details class="archived-research" id="archivedCombinedResearch">
-      <summary>Archived Research — previous combined CORE+EX and Multi-Day models</summary>
-      <p class="small">These older results and charts are retained for historical reference only. The prior combined CORE+EX model, including its +924.14% figure, is not the current primary CORE benchmark. The archived material retains the earlier commissioned EX research and multi-day comparisons; it is separate from the current CORE study and from actual brokerage P&amp;L.</p>
-      <p class="small" id="researchPeriod">Loading archived research details…</p>
-      <p class="small">Historical results below are simulated research, separate from live trading. They do not establish verified live performance.</p>
-      <section aria-labelledby="backtestIntegrityTitle">
-        <h3 id="backtestIntegrityTitle">Archived Backtest Integrity</h3>
-        <div class="research-metrics integrity-grid">
-          <div class="research-card"><div class="research-label">Data coverage</div><div class="research-value" id="researchCoverage">—</div><p class="research-detail" id="researchCoveragePct">—</p></div>
-          <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Separate component cohorts; missing outcomes remain unknown.</p></div>
-          <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Frozen modeled research rules.</p></div>
-          <div class="research-card"><div class="research-label">Transaction costs</div><div class="research-value" id="researchCostBasis">—</div></div>
-        </div>
-        <p class="small" id="researchScope"></p>
-        <p class="small" id="researchExecutionBasis"></p>
-        <p class="small" id="researchDataStatus" aria-live="polite"></p>
-      </section>
-      <div class="research-metrics" id="intradayResearchMetrics">
-        <div class="research-card"><div class="research-label">Trades</div><div class="research-value" id="researchTrades">—</div></div>
-        <div class="research-card"><div class="research-label">Gross P&amp;L</div><div class="research-value" id="researchGrossPnl">—</div></div>
-        <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value" id="researchWinRate">—</div></div>
-        <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value" id="researchProfitFactor">—</div></div>
-        <div class="research-card"><div class="research-label">Annualized Daily Sharpe</div><div class="research-value" id="researchSharpe">—</div></div>
-        <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
+    <section class="selected-ex-section" id="selectedExResearch" aria-labelledby="selectedExTitle">
+      <h3 id="selectedExTitle">Selected EX research</h3>
+      <p class="small">Separate one-contract historical EX research, shown gross before fees. It is not included in the CORE portfolio, is not actual brokerage performance, and has incomplete historical coverage.</p>
+      <p class="small" id="selectedExPeriod" aria-live="polite">Loading selected EX research…</p>
+      <div class="research-metrics" aria-label="Selected EX historical research results">
+        <article class="research-card"><div class="research-label">Modeled trades</div><div class="research-value" id="selectedExTrades">—</div></article>
+        <article class="research-card"><div class="research-label">Gross P&amp;L</div><div class="research-value" id="selectedExGrossPnl">—</div></article>
+        <article class="research-card"><div class="research-label">Win rate</div><div class="research-value" id="selectedExWinRate">—</div></article>
+        <article class="research-card"><div class="research-label">Profit factor</div><div class="research-value" id="selectedExProfitFactor">—</div></article>
+        <article class="research-card"><div class="research-label">Maximum drawdown</div><div class="research-value" id="selectedExDrawdown">—</div></article>
+        <article class="research-card"><div class="research-label">Unassessable sessions</div><div class="research-value" id="selectedExUnknown">—</div></article>
       </div>
-      <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Corrected commissioned EX sleeve: <strong id="researchEXTrades">—</strong> modeled trades.</p>
-      <section aria-labelledby="historicalBenchmarkTitle">
-        <h3 id="historicalBenchmarkTitle">Archived combined CORE+EX benchmark comparison</h3>
-        <p class="small">Archived benchmark returns over the prior combined CORE+EX research period. These values are not the current primary CORE comparison.</p>
-        <div class="research-metrics" id="historicalBenchmarkRows">
-          <div class="research-card"><div class="research-label">Archived Backtest Strategy Return</div><div class="research-value" id="backtestStrategyReturn">—</div></div>
-          <div class="research-card"><div class="research-label">Risk-Free / Cash · archived</div><div class="research-value" id="backtestCashReturn">—</div></div>
-          <div class="research-card"><div class="research-label">Excess Return over Cash · archived</div><div class="research-value" id="backtestExcessReturn">—</div></div>
-          <div class="research-card"><div class="research-label">SPY Buy &amp; Hold · archived</div><div class="research-value" id="backtestSPYReturn">—</div></div>
-        </div>
-        <div class="historical-scale-control">
-          <label for="backtestScale">Archived benchmark chart scale</label>
-          <select id="backtestScale" aria-describedby="backtestScaleStatus">
-            <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
-          </select>
-        </div>
-        <p class="small" id="backtestScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
-        <div class="chart-box research-chart-box" style="height:390px;">
-          <canvas id="backtestBenchmarkChart" style="height:100% !important;" aria-label="Archived combined CORE+EX normalized benchmark comparison with cash and SPY"></canvas>
-        </div>
-        <p class="small" id="historicalBenchmarkStatus" aria-live="polite">Archived benchmark comparison is not loaded until opened.</p>
-        <details class="small" id="benchmarkMethodology"><summary>Historical benchmark methodology</summary>
-        <p>The archived comparison uses the prior validation window and the historical Treasury and adjusted SPY sources retained in the archive. The full calculation and source notes are available in the <a href="#coreBenchmarkMethodology">current CORE benchmark methodology</a>; these archived returns are not aligned to the current September 21, 2026 endpoint.</p>
-        </details>
-        <details class="small" id="historicalBenchmarkMethodology"><summary>Archived benchmark methodology</summary>
-        <p>Uses the historical Treasury/cash methodology described in the <a href="#coreBenchmarkMethodology">current CORE benchmark methodology</a>, independently aligned to the archived comparison period. These archived sources are retained for historical reference only.</p>
-        </details>
-      </section>
-      <h3>Archived historical portfolio-value comparison</h3>
-      <p class="small">These previous hypothetical portfolios start at $10,000 with no deposits. Intraday includes modeled EX research; Multi-Day is standalone longer-duration research with daily marks. Intraday and Combined position sizes compound with modeled equity. These archived values are not actual account equity and are not the current primary CORE performance comparison.</p>
-      <p class="small">Combined is a single-account replay of the prior Intraday and Multi-Day research under shared capital and risk constraints, not a sum of independently compounded curves. It ends at the last jointly validated date.</p>
-      <p class="small">Intraday excludes commissions, fees and additional slippage. Multi-Day includes modeled costs; Combined inherits each component’s treatment. Full broker fees, capacity and market impact are not modeled.</p>
-      <div class="historical-comparison-controls" role="group" aria-label="Archived historical comparison series">
-        <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
-        <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
-        <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c77724" checked>Foxchase Combined <small>(through Aug 25)</small></label>
-        <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
-      </div>
-      <div class="historical-scale-control">
-        <label for="historicalScale">Archived portfolio chart scale</label>
-        <select id="historicalScale" aria-describedby="historicalScaleStatus">
-          <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
-        </select>
-      </div>
-      <p class="small" id="historicalScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
-      <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Archived historical hypothetical portfolio values starting at $10,000"></canvas>
-      </div>
-      <p class="small" id="historicalComparisonStatus">Archived historical comparison is not loaded until opened.</p>
-      <p class="small"><span id="researchTradeSummary">—</span> Daily closing research values. Corrected commissioned EX coverage runs through September 21, 2026; Multi-Day and Combined remain through August 25, 2026.</p>
-      <div class="research-table-wrap"><table class="research-table">
-        <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">2023</th><td id="researchYear2023Trades">—</td><td id="researchYear2023Pnl">—</td></tr>
-          <tr><th scope="row">2024</th><td id="researchYear2024Trades">—</td><td id="researchYear2024Pnl">—</td></tr>
-          <tr><th scope="row">2025</th><td id="researchYear2025Trades">—</td><td id="researchYear2025Pnl">—</td></tr>
-          <tr><th scope="row">2026 through Sep 22</th><td id="researchYear2026Trades">—</td><td id="researchYear2026Pnl">—</td></tr>
-        </tbody>
-      </table></div>
-      <section class="research-limitations" aria-labelledby="researchLimitationsTitle">
-        <h3 id="researchLimitationsTitle">Archived Research Limitations</h3>
-        <p class="small" id="researchLimitations">Historical results are simulated research, separate from live trading and not verified live performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.</p>
-      </section>
-    </details>
+      <p class="small" id="selectedExLimitations">Historical quotes are modeled inputs, not guaranteed fills. Missing sessions remain unknown and are not treated as zero. Fees, latency slippage, and market impact are not included.</p>
+      <p class="small" id="selectedExDataStatus" aria-live="polite"></p>
+    </section>
+
   </div>
 
-  <script src="/js/algo-pnl-research-integrity.js?v=20261015-core-primary-r1"></script>
   <script>
     let chartLibraryPromise = null;
     function loadChartLibrary() {
@@ -896,223 +791,9 @@ function setTextIfExists(id, value) {
       }
       return chartLibraryPromise;
     }
-    function loadHistoricalComparison() {
-      const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
-      const status = document.getElementById("historicalComparisonStatus");
-      const scaleControl = document.getElementById("historicalScale");
-      const scaleStatus = document.getElementById("historicalScaleStatus");
-      return Promise.all([
-        fetch("/data/historical_comparison_20261013.json?v=20261013-intraday-r1").then(response => {
-          if (!response.ok) throw new Error("Intraday comparison unavailable");
-          return response.json();
-        }),
-        loadChartLibrary(),
-        fetch("/data/historical_comparison_20261003.json?v=20261003-spy-only").then(response => {
-          if (!response.ok) throw new Error("Comparison data unavailable");
-          return response.json();
-        }),
-        fetch("/data/combined_research_20261003.json?v=20261003-shared-account").then(response => {
-          if (!response.ok) throw new Error("Combined research unavailable");
-          return response.json();
-        }),
-        fetch("/data/multiday_research_20261003.json?v=20261003-corrected").then(response => {
-          if (!response.ok) throw new Error("Multi-Day research unavailable");
-          return response.json();
-        }),
-        fetch("/data/benchmark_research_20261003.json?v=20261003-spy").then(response => {
-          if (!response.ok) throw new Error("Benchmark evidence unavailable");
-          return response.json();
-        }),
-        fetch("/data/historical-cash-benchmark.json", { cache: "no-store" }).then(response => {
-          if (!response.ok) throw new Error("Historical cash data unavailable");
-          return response.json();
-        }).catch(() => null)
-      ]).then(([backtestData, , data, combined, multiday, benchmarks, cashSource]) => {
-        const backtestNames = ["Foxchase Intraday", "Foxchase Multi-Day", "Foxchase Combined", "SPY Buy & Hold"];
-        if (backtestData.initial_value !== 10000 || backtestData.comparison_start !== "2023-01-04" ||
-            backtestData.study_end !== "2026-09-22" || !Array.isArray(backtestData.dates) ||
-            backtestData.dates[0] !== backtestData.comparison_start || backtestData.dates.at(-1) !== backtestData.study_end ||
-            !Array.isArray(backtestData.series) || backtestData.series.length !== backtestNames.length ||
-            new Set(backtestData.dates).size !== backtestData.dates.length || backtestData.dates.some((date,i) => i > 0 && date <= backtestData.dates[i-1]) ||
-            new Set(backtestData.series.map(series => series.label)).size !== backtestNames.length ||
-            backtestData.series.some(series => !backtestNames.includes(series.label) || series.values.length !== backtestData.dates.length ||
-              series.values[0] !== 10000 || series.values.some(value => value === null
-                ? !["Foxchase Multi-Day", "Foxchase Combined"].includes(series.label)
-                : !Number.isFinite(value) || value <= 0))) {
-          throw new Error("Intraday comparison failed validation");
-        }
-        const names = controls.map(control => control.dataset.comparisonSeries);
-        if (data.initial_value !== 10000 || data.comparison_start !== "2023-01-04" ||
-            data.study_end !== "2026-09-22" || !Array.isArray(data.dates) ||
-            data.dates[0] !== data.comparison_start || data.dates.at(-1) !== data.study_end ||
-            !Array.isArray(data.series) || data.series.length !== names.length ||
-            new Set(data.dates).size !== data.dates.length || data.dates.some((date,i) => i > 0 && date <= data.dates[i-1]) ||
-            new Set(data.series.map(series => series.label)).size !== names.length ||
-            data.series.some(series => !names.includes(series.label) || series.values.length !== data.dates.length || series.values[0] !== 10000 ||
-              series.values.some(value => value === null
-                ? !["Foxchase Multi-Day", "Foxchase Combined"].includes(series.label)
-                : !Number.isFinite(value) || value <= 0))) {
-          throw new Error("Historical comparison data failed validation");
-        }
-        const combinedSeries = data.series.find(series => series.label === "Foxchase Combined");
-        const gates = combined.validation || {};
-        if (combined.status !== "VALIDATED_SHARED_ACCOUNT_RESEARCH" ||
-            combined.initial_value !== 10000 || combined.start !== data.comparison_start ||
-            combined.end !== "2026-08-25" || !Array.isArray(combined.daily) ||
-            gates.risk_breaches !== 0 || !["accounting_reconciles", "complete_state_checks", "no_missing_valuations", "independent_review_passed", "source_controls_unchanged"].every(name => gates[name] === true) ||
-            !combinedSeries || combinedSeries.validated_through !== combined.end ||
-            combinedSeries.curve_sha256 !== combined.curve_sha256) {
-          throw new Error("Combined research failed validation");
-        }
-        const combinedValues = new Map(combined.daily.map(point => [point.date, point.equity]));
-        if (combinedValues.size !== combined.daily.length ||
-            combined.daily.length !== data.dates.indexOf(combined.end) + 1 || combined.daily.some((point,i) => point.date !== data.dates[i]) ||
-            combined.daily.some(point => !Number.isFinite(point.equity) || point.equity <= 0) ||
-            combined.daily[0]?.date !== combined.start || combined.daily[0]?.equity !== 10000 ||
-            combined.daily.at(-1)?.date !== combined.end ||
-            combined.daily.at(-1)?.equity !== combined.metrics?.ending_equity ||
-            data.dates.some((date, index) => combinedSeries.values[index] !== (date <= combined.end ? combinedValues.get(date) : null))) {
-          throw new Error("Combined curve failed reconciliation");
-        }
-        const multidaySeries = data.series.find(series => series.label === "Foxchase Multi-Day");
-        if (multiday.status !== "VALIDATED_MULTIDAY_RESEARCH" || multiday.initial_value !== 10000 ||
-            multiday.start !== data.comparison_start || multiday.end !== combined.end ||
-            !Array.isArray(multiday.daily) ||
-            !["accounting_reconciles", "no_missing_valuations", "contract_continuity_verified", "source_controls_unchanged"].every(name => multiday.validation?.[name] === true) ||
-            multidaySeries.validated_through !== multiday.end || multidaySeries.curve_sha256 !== multiday.curve_sha256) {
-          throw new Error("Multi-Day research failed validation");
-        }
-        const multidayValues = new Map(multiday.daily.map(point => [point.date, point.equity]));
-        if (multidayValues.size !== multiday.daily.length || multiday.daily.some(point => !Number.isFinite(point.equity) || point.equity <= 0) ||
-            multiday.daily.length !== data.dates.indexOf(multiday.end) + 1 || multiday.daily.some((point,i) => point.date !== data.dates[i]) ||
-            multiday.daily[0]?.date !== multiday.start || multiday.daily[0]?.equity !== 10000 ||
-            multiday.daily.at(-1)?.date !== multiday.end || multiday.daily.at(-1)?.equity !== multiday.metrics?.ending_equity ||
-            data.dates.some((date,index) => multidaySeries.values[index] !== (date <= multiday.end ? multidayValues.get(date) : null))) {
-          throw new Error("Multi-Day curve failed reconciliation");
-        }
-        if (benchmarks.status !== "VERIFIED_ADJUSTED_BENCHMARKS" || benchmarks.initial_value !== 10000 ||
-            benchmarks.start !== data.comparison_start || benchmarks.end !== data.study_end ||
-            benchmarks.adjustment !== "split_and_dividend" || !Array.isArray(benchmarks.daily) || benchmarks.daily.length !== data.dates.length ||
-            benchmarks.daily.some((point,index) => point.date !== data.dates[index])) {
-          throw new Error("Benchmark evidence failed validation");
-        }
-        for (const ticker of ["SPY"]) {
-          const series = data.series.find(series => series.label === ticker + " Buy & Hold");
-          const base = benchmarks.daily[0][ticker];
-          if (!Number.isFinite(base) || base <= 0 || benchmarks.daily.some((point,index) =>
-            !Number.isFinite(point[ticker]) || point[ticker] <= 0 || series.values[index] !== Math.round(10000 * point[ticker] / base * 100) / 100)) {
-            throw new Error("Benchmark curve failed reconciliation");
-          }
-        }
-        const comparison = FoxchaseBenchmarks.historicalComparison(backtestData, cashSource);
-        const backtest = comparison.rows.find(row => row.label === "Foxchase Intraday");
-        setTextIfExists("backtestStrategyReturn", formatCanonicalPercent(backtest.strategy_return_pct));
-        setTextIfExists("backtestCashReturn", formatCanonicalPercent(backtest.cash_return_pct));
-        setTextIfExists("backtestExcessReturn", backtest.excess_return_pp === null ? "—" :
-          (backtest.excess_return_pp > 0 ? "+" : "") + backtest.excess_return_pp.toFixed(2) + " pp");
-        setTextIfExists("backtestSPYReturn", formatCanonicalPercent(backtest.spy_return_pct));
-        setTextIfExists("historicalBenchmarkStatus", "Backtest period: " + backtest.start + "–" + backtest.end +
-          "." + (comparison.cash.available
-            ? ""
-            : " Treasury/cash and excess-return comparisons are unavailable; no rate is substituted. Strategy and SPY remain available."));
-        const backtestChart = new Chart(document.getElementById("backtestBenchmarkChart"), {
-          type:"line", data:{labels:comparison.labels,datasets:comparison.datasets},
-          options:{responsive:true,maintainAspectRatio:false,animation:false,
-            interaction:{mode:"index",intersect:false},
-            plugins:{tooltip:{callbacks:{label:item => item.dataset.label + ": " + Number(item.parsed.y).toFixed(2) + " index points"}}},
-            scales:{x:{ticks:{maxTicksLimit:8,callback:value => comparison.labels[value].slice(0,7)}},
-              y:{type:"linear",title:{display:true,text:"Normalized index (100 at backtest start, linear scale)"}}}}
-        });
-        const backtestScale = document.getElementById("backtestScale");
-        backtestScale.addEventListener("change", () => {
-          const logarithmic = backtestScale.value === "logarithmic";
-          backtestChart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
-          backtestChart.options.scales.y.title.text = "Normalized index (100 at backtest start, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
-          setTextIfExists("backtestScaleStatus", logarithmic
-            ? "Logarithmic scale: equal spacing represents equal percentage changes. Index values and returns are unchanged."
-            : "Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.");
-          backtestChart.update();
-        });
-        const colors = {
-          "Foxchase Intraday": "#234a76",
-          "Foxchase Multi-Day": "#2f855a",
-          "Foxchase Combined": "#c77724",
-          "SPY Buy & Hold": "#666666"
-        };
-        const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const textColor = "#111";
-        const gridColor = dark ? "rgba(214,219,227,.16)" : "rgba(74,85,104,.14)";
-        const money = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:2});
-        const axisMoney = new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:0});
-        const chart = new Chart(document.getElementById("historicalComparisonChart"), {
-          type: "line",
-          data: {labels:data.dates, datasets:[]},
-          options: {
-            responsive:true, maintainAspectRatio:false, animation:false,
-            interaction:{mode:"index", intersect:false},
-            plugins:{
-              legend:{display:false},
-              tooltip:{callbacks:{
-                title:items => items.length ? new Date(items[0].label + "T12:00:00Z").toLocaleDateString("en-US", {timeZone:"UTC", month:"short", day:"numeric", year:"numeric"}) : "",
-                label:item => item.dataset.label + ": " + money.format(item.parsed.y)
-              }}
-            },
-            scales:{
-              x:{ticks:{color:textColor, maxTicksLimit:8, callback:value => data.dates[value].slice(0,7)}, grid:{color:gridColor}},
-              y:{type:"linear", title:{display:true, text:"Hypothetical portfolio value (USD, linear scale)", color:textColor}, ticks:{color:textColor, callback:function(value) {
-                if (this.type === "logarithmic") {
-                  const magnitude = Math.pow(10, Math.floor(Math.log10(value)));
-                  if (![1, 2, 5].some(mantissa => Math.abs(value / magnitude - mantissa) < 1e-8)) return null;
-                }
-                return axisMoney.format(value);
-              }}, grid:{color:gridColor}}
-            }
-          }
-        });
-        function updateSeries() {
-          chart.data.datasets = data.series.filter(series => controls.some(control => control.dataset.comparisonSeries === series.label && control.checked)).map(series => ({
-            label:series.label, data:series.values, borderColor:colors[series.label], borderWidth:series.label === "Foxchase Intraday" ? 3 : 2,
-            pointRadius:0, pointHitRadius:8, tension:0, spanGaps:false
-          }));
-          chart.update();
-        }
-        function updateScale() {
-          const logarithmic = scaleControl.value === "logarithmic";
-          chart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
-          chart.options.scales.y.title.text = "Hypothetical portfolio value (USD, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
-          scaleStatus.textContent = logarithmic
-            ? "Logarithmic scale: equal spacing represents equal percentage changes. Dollar values and returns are unchanged."
-            : "Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.";
-          chart.update();
-        }
-        controls.forEach(control => control.addEventListener("change", updateSeries));
-        scaleControl.addEventListener("change", updateScale);
-        updateSeries();
-        updateScale();
-        const jointIndex = data.dates.indexOf(combined.end);
-        status.textContent = "SPY at the August 25, 2026 joint endpoint: " +
-          money.format(data.series.find(series => series.label === "SPY Buy & Hold").values[jointIndex]) +
-          ".";
-      }).catch(() => {
-        status.textContent = "Historical comparison chart is temporarily unavailable.";
-        setTextIfExists("historicalBenchmarkStatus", "Historical benchmark comparison is unavailable until the research data passes validation.");
-      });
-    }
-    const archivedCombinedResearch = document.getElementById("archivedCombinedResearch");
-    let archivedResearchLoaded = false;
-    archivedCombinedResearch.addEventListener("toggle", () => {
-      if (!archivedCombinedResearch.open || archivedResearchLoaded) return;
-      archivedResearchLoaded = true;
-      FoxchaseResearchIntegrity.loadStudy(document, fetch);
-      loadHistoricalComparison();
-    });
     CorePeriodPage.initialize();
-    function formatCanonicalPercent(value) {
-      if (typeof value !== "number" || !Number.isFinite(value)) return "—";
-      return (value > 0 ? "+" : "") + value.toFixed(2) + "%";
-    }
+    SelectedExResearch.initialize(document, fetch);
   </script>
-
   <script id="foxchase-interior-header-script">
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".foxchase-site-header").forEach(function (header) {

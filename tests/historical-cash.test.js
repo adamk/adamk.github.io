@@ -1,74 +1,53 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const {text,read} = require("./research-fixture");
-const api = require("../js/live-benchmarks.js");
-const close = (a,b) => assert.ok(Math.abs(a-b)<1e-9, `${a} != ${b}`);
-function fixture() {
-  return {initial_value:10000, comparison_start:"2026-05-04",study_end:"2026-05-06",
-    dates:["2026-05-04","2026-05-05","2026-05-06"],series:[
-      {label:"Foxchase Intraday",validated_through:"2026-05-06",values:[10000,10100,10200]},
-      {label:"Foxchase Multi-Day",validated_through:"2026-05-05",values:[10000,10050,null]},
-      {label:"Foxchase Combined",validated_through:"2026-05-05",values:[10000,10025,null]},
-      {label:"SPY Buy & Hold",validated_through:"2026-05-06",values:[10000,10100,10300]}]};
-}
-function source() {
-  return {schema:"foxchase-historical-cash-v1",base_index:100,source_start:"2026-05-04",source_end:"2026-05-06",
-    cash:{series:"UST_3MO_PAR",unit:"annual_percent",observations:[
-      {date:"2026-05-01",annual_yield_pct:3.65},{date:"2026-05-04",annual_yield_pct:7.3}]}};
-}
+const {read} = require("./research-fixture");
+const api = require("../js/core-period-research.js");
+const payload = read("data/core_alpaca_fee_periods_20261016.json");
+const close = (a,b) => assert.ok(Math.abs(a-b)<1e-8, `${a} != ${b}`);
 
-test("historical benchmarks normalize to 100 without changing dollar curves",()=>{
-  assert.equal(typeof api.historicalComparison,"function");
-  const input=fixture(),before=JSON.stringify(input),out=api.historicalComparison(input,source());
-  assert.equal(out.cash.available,true);assert.equal(out.cash.values[0],100);
-  close(out.cash.values[1],100.01);close(out.cash.values[2],100.030002);
-  assert.deepEqual(out.datasets.map(d=>d.label),["Foxchase Intraday","Risk-Free / Cash","SPY Buy & Hold"]);
-  assert.ok(out.datasets.every(d=>d.data[0]===100&&d.data.length===input.dates.length));
-  assert.deepEqual(out.datasets[0].data,[100,101,102]);assert.deepEqual(out.datasets[2].data,[100,101,103]);
-  assert.equal(JSON.stringify(input),before);
-});
-test("each historical strategy compares cash and SPY at its own endpoint",()=>{
-  assert.equal(typeof api.historicalComparison,"function");
-  const out=api.historicalComparison(fixture(),source());
-  assert.equal(out.rows.length,3);
-  const selected=out.rows[0],multiday=out.rows[1],combined=out.rows[2];
-  assert.equal(selected.end,"2026-05-06");close(selected.strategy_return_pct,2);
-  close(selected.cash_return_pct,.030002);close(selected.excess_return_pp,2-.030002);close(selected.spy_return_pct,3);
-  assert.equal(multiday.end,"2026-05-05");close(multiday.cash_return_pct,.01);close(multiday.spy_return_pct,1);
-  close(multiday.excess_return_pp,.49);
-  assert.equal(combined.end,"2026-05-05");close(combined.strategy_return_pct,.25);close(combined.cash_return_pct,.01);close(combined.spy_return_pct,1);
-});
-test("missing, stale, malformed or misaligned historical rates preserve research and SPY",()=>{
-  assert.equal(typeof api.historicalComparison,"function");
-  for(const change of [()=>null,s=>{s.source_end="2026-05-05";return s;},s=>{s.cash.observations=[];return s;},
-    s=>{s.cash.observations[0].date="2026-04-01";s.cash.observations.splice(1);return s;},
-    s=>{s.cash.observations[0].annual_yield_pct=365;return s;}]) {
-    const input=fixture(),before=JSON.stringify(input),out=api.historicalComparison(input,change(source()));
-    assert.equal(out.cash.available,false);assert.equal(out.cash.values,null);
-    assert.ok(out.rows.every(r=>r.cash_return_pct===null&&r.excess_return_pp===null));
-    close(out.rows[0].spy_return_pct,3);assert.equal(JSON.stringify(input),before);
+test("each CORE period aligns both execution comparisons with its cash and adjusted-SPY source",()=>{
+  for(const period of payload.periods) {
+    assert.equal(period.starting_equity,10000);
+    assert.equal(period.equity_curves.dates[0],period.start);
+    assert.equal(period.equity_curves.dates.at(-1),"2026-09-21");
+    const natural=period.comparisons.find(row=>row.id==="natural_nbbo");
+    const slippage=period.comparisons.find(row=>row.id==="natural_nbbo_plus_slippage");
+    close(period.benchmarks.comparison_returns_pct.natural_nbbo,natural.cumulative_return_pct);
+    close(period.benchmarks.comparison_returns_pct.natural_nbbo_plus_slippage,slippage.cumulative_return_pct);
+    if(period.benchmarks.available) {
+      for(const id of ["natural_nbbo","natural_nbbo_plus_slippage"]) close(period.benchmarks.excess_return_over_cash_pp_by_comparison[id],
+        period.benchmarks.comparison_returns_pct[id]-period.benchmarks.risk_free_cash_return_pct);
+      close(period.benchmarks.adjusted_spy_buy_hold_return_pct,
+        100*(period.equity_curves.adjusted_spy_buy_hold.at(-1)/10000-1));
+      close(period.benchmarks.risk_free_cash_return_pct,
+        100*(period.equity_curves.risk_free_cash.at(-1)/10000-1));
+    } else {
+      assert.equal(period.benchmarks.risk_free_cash_return_pct,null);
+      assert.equal(period.benchmarks.adjusted_spy_buy_hold_return_pct,null);
+      assert.ok(period.equity_curves.risk_free_cash.every(value=>value===null));
+      assert.ok(period.equity_curves.adjusted_spy_buy_hold.every(value=>value===null));
+    }
   }
 });
-test("historical comparison refuses a rebased or extended strategy path",()=>{
-  assert.equal(typeof api.historicalComparison,"function");
-  const rebased=fixture();rebased.series[0].values[0]=9999;
-  assert.throws(()=>api.historicalComparison(rebased,source()));
-  const extended=fixture();extended.series[1].values[2]=10200;
-  assert.throws(()=>api.historicalComparison(extended,source()));
+
+test("benchmark selection identifies the selected CORE comparison and never substitutes unavailable cash",()=>{
+  const natural=api.periodView(payload,"2024_2026","natural_nbbo","natural_nbbo");
+  const slipped=api.periodView(payload,"2024_2026","natural_nbbo_plus_slippage","natural_nbbo_plus_slippage");
+  assert.equal(natural.selectedBenchmark.return_pct,291.9886);
+  assert.equal(slipped.selectedBenchmark.return_pct,234.5107);
+  assert.equal(slipped.selectedBenchmark.excess_return_over_cash_pp,221.57869647);
+  const full=api.periodView(payload,"2023_2026","natural_nbbo_plus_slippage","natural_nbbo_plus_slippage");
+  assert.equal(full.selectedBenchmark.cash_return_pct,null);
+  assert.equal(full.selectedBenchmark.excess_return_over_cash_pp,null);
+  assert.equal(full.benchmarkDatasets.length,1);
 });
-test("primary CORE comparison aligns Scenario C, cash, and adjusted SPY while preserving the archive",()=>{
-  const html=text("algo-pnl.html");
-  assert.ok(/id="coreBenchmarkChart"/.test(html),"normalized CORE benchmark chart missing");
-  assert.ok(/id="corePortfolioChart"/.test(html),"CORE portfolio curve missing");
-  assert.ok(/Foxchase CORE — Scenario C[\s\S]*?Risk-Free \/ Cash[\s\S]*?Excess Return over Cash[\s\S]*?SPY Buy &amp; Hold \(adjusted\)/.test(html),"common-end benchmark table missing");
-  assert.ok(/id="coreBenchmarkMethodology"/.test(html),"CORE benchmark source disclosure missing");
-  assert.ok(/id="backtestBenchmarkChart"/.test(html),"archived combined benchmark chart missing");
-  assert.ok(/id="historicalBenchmarkMethodology"/.test(html),"archived source disclosure missing");
-  assert.match(html,/id="archivedCombinedResearch"/);
-  assert.match(html,/common validated September 21, 2026 endpoint/);
-  assert.match(html,/September 22 candidate data is excluded/);
-  assert.match(html,/same \$10,000 pre-session baseline at that close/);
-  assert.match(html,/no preceding adjusted close for the full-history period/);
-  assert.deepEqual(read("data/historical_comparison_20261013.json").series.map(s=>s.label),
-    ["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
+
+test("non-evaluable strategy sessions stay explicit gaps while benchmark paths remain intact",()=>{
+  const period=payload.periods.find(row=>row.id==="2024_2026");
+  for(const date of period.gap_dates) {
+    const index=period.equity_curves.dates.indexOf(date);assert.ok(index>=0);
+    for(const key of ["natural_nbbo","natural_nbbo_plus_slippage"]) assert.equal(period.equity_curves[key][index],null);
+    assert.ok(Number.isFinite(period.equity_curves.risk_free_cash[index]));
+    assert.ok(Number.isFinite(period.equity_curves.adjusted_spy_buy_hold[index]));
+  }
 });

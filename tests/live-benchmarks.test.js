@@ -1,20 +1,8 @@
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
-const crypto = require("node:crypto");
-const {read} = require("./research-fixture");
-const file = path.join(__dirname, "../js/live-benchmarks.js");
-const api = fs.existsSync(file) ? require(file) : {};
+const api = require("../js/live-benchmarks.js");
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-10, `${a} != ${b}`);
-const sha256 = name => crypto.createHash("sha256").update(fs.readFileSync(path.join(__dirname, "..", name))).digest("hex");
-const sha256Text = value => crypto.createHash("sha256").update(value).digest("hex");
-const primarySourceDigests = () => ({
-  scenario_summary:sha256("data/core_slippage_replay_20261015.json"),
-  adjusted_spy:sha256("data/benchmark_research_20261003.json"),
-  historical_cash:sha256("data/historical-cash-benchmark.json")
-});
 const rates = [{date:"2026-05-01", annual_yield_pct:3.65}, {date:"2026-05-04", annual_yield_pct:7.30}];
 const points = [{date:"2026-05-04",index_value:100}, {date:"2026-05-05",index_value:101}, {date:"2026-05-06",index_value:102}];
 function fixture() {
@@ -100,84 +88,4 @@ test("cash unavailable never becomes zero return and does not suppress SPY", () 
   const f=fixture();f.cash.observations=[];
   const out=api.compare(live,f);assert.equal(out.cash.available,false);assert.equal(out.cash.return_pct,null);
   assert.equal(out.excess_return_pp,null);assert.equal(out.spy.available,true);
-});
-
-test("CORE historical comparison reconciles closed-trade curves to common-end benchmarks", () => {
-  assert.equal(typeof api.coreSlippageComparison, "function");
-  const out = api.coreSlippageComparison(
-    read("data/core_slippage_equity_curves_20261015.json"),
-    read("data/core_slippage_replay_20261015.json"),
-    read("data/benchmark_research_20261003.json"),
-    read("data/historical-cash-benchmark.json"),
-    primarySourceDigests()
-  );
-  assert.equal(out.comparison_end, "2026-09-21");
-  assert.equal(out.labels.length, 931);
-  assert.equal(out.labels[0], "2023-01-04");
-  assert.equal(out.labels.at(-1), "2026-09-21");
-  close(out.strategy_return_pct, 45.684);
-  close(out.cash_return_pct, 18.946838120419898);
-  close(out.excess_return_pp, 26.7371618795801);
-  close(out.spy_return_pct, 111.32724987705592);
-  assert.deepEqual(out.benchmark_datasets.map(row => row.label), [
-    "CORE Scenario C", "Risk-Free / Cash", "SPY Buy & Hold (adjusted)"
-  ]);
-  assert.deepEqual(out.portfolio_datasets.map(row => row.label), [
-    "CORE Scenario C", "CORE Scenario A", "CORE Scenario B", "Risk-Free / Cash", "SPY Buy & Hold (adjusted)"
-  ]);
-  assert.ok(out.benchmark_datasets.every(row => row.data[0] === 100));
-  assert.ok(out.portfolio_datasets.every(row => row.data[0] === 10000));
-  assert.deepEqual(out.gap_dates, ["2023-06-05", "2023-10-19", "2026-08-26"]);
-  for (const dataset of out.portfolio_datasets.slice(0, 3)) {
-    assert.deepEqual(out.gap_dates.map(day => dataset.data[out.labels.indexOf(day)]), [null, null, null]);
-  }
-  assert.equal(out.portfolio_datasets[0].data.at(-1), 14568.4);
-});
-
-test("CORE comparison fails closed on candidate endpoint, gap, and adjusted-SPY drift", () => {
-  assert.equal(typeof api.coreSlippageComparison, "function");
-  const sources = [
-    read("data/core_slippage_equity_curves_20261015.json"),
-    read("data/core_slippage_replay_20261015.json"),
-    read("data/benchmark_research_20261003.json"),
-    read("data/historical-cash-benchmark.json"),
-    primarySourceDigests()
-  ];
-  const mutations = [
-    rows => { rows[0].dates[rows[0].dates.length - 1] = "2026-09-22"; },
-    rows => { rows[0].scenarios[0].daily[100].equity = null; },
-    rows => { rows[0].scenarios[0].daily[0].equity = 10000.01; },
-    rows => { delete rows[0].scenarios[0].ending_equity; },
-    rows => { rows[1].yearly.pop(); },
-    rows => { rows[2].adjustment = "none"; },
-    rows => { rows[3].source_end = "2026-09-21"; }
-  ];
-  for (const mutate of mutations) {
-    const args = structuredClone(sources);
-    mutate(args);
-    assert.throws(() => api.coreSlippageComparison(...args));
-  }
-});
-
-test("same-metadata source value drift fails against the pinned source digests", () => {
-  assert.equal(typeof api.coreSlippageComparison, "function");
-  const sources = [
-    read("data/core_slippage_equity_curves_20261015.json"),
-    read("data/core_slippage_replay_20261015.json"),
-    read("data/benchmark_research_20261003.json"),
-    read("data/historical-cash-benchmark.json"),
-    primarySourceDigests()
-  ];
-  const spy = structuredClone(sources);
-  spy[2].daily[100].SPY += 0.01;
-  spy[4].adjusted_spy = sha256Text(JSON.stringify(spy[2]));
-  assert.throws(() => api.coreSlippageComparison(...spy), /digest|hash/i);
-  const cash = structuredClone(sources);
-  cash[3].cash.observations[100].annual_yield_pct += 0.01;
-  cash[4].historical_cash = sha256Text(JSON.stringify(cash[3]));
-  assert.throws(() => api.coreSlippageComparison(...cash), /digest|hash/i);
-  const summary = structuredClone(sources);
-  summary[1].scenarios[0].net_pnl += 1;
-  summary[4].scenario_summary = sha256Text(JSON.stringify(summary[1]));
-  assert.throws(() => api.coreSlippageComparison(...summary), /digest|hash/i);
 });

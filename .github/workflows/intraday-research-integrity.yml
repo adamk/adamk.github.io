@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - algo-pnl.html
-      - js/algo-pnl-research-integrity.js
       - js/live-benchmarks.js
       - scripts/refresh_live_benchmarks.py
       - data/live-benchmarks.json
@@ -17,13 +16,14 @@ on:
       - data/multiday_research*.json
       - data/benchmark_research*.json
       - data/algo-pnl.json
+      - data/core_alpaca_fee_periods_*.json
+      - data/core_alpaca_fee_periods_*.sha256
       - tests/*.js
       - tests/*.py
       - .github/workflows/intraday-research-integrity.yml
   pull_request:
     paths:
       - algo-pnl.html
-      - js/algo-pnl-research-integrity.js
       - js/live-benchmarks.js
       - scripts/refresh_live_benchmarks.py
       - data/live-benchmarks.json
@@ -36,6 +36,8 @@ on:
       - data/multiday_research*.json
       - data/benchmark_research*.json
       - data/algo-pnl.json
+      - data/core_alpaca_fee_periods_*.json
+      - data/core_alpaca_fee_periods_*.sha256
       - tests/*.js
       - tests/*.py
       - .github/workflows/intraday-research-integrity.yml
@@ -51,7 +53,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check js/algo-pnl-research-integrity.js
       - run: node --check js/live-benchmarks.js
       - run: python3 -m unittest discover -s tests -p 'test_refresh_live_benchmarks.py'
       - run: node --test tests/*.test.js
