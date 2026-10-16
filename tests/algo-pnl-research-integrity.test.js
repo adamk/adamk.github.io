@@ -44,9 +44,11 @@ test("current CORE benchmark is primary while the former combined results stay a
   assert.match(page,/id="coreScenarioC"/);
   assert.match(page,/id="coreBenchmarkChart"/);
   assert.match(page,/id="corePortfolioChart"/);
-  assert.match(page,/September 22 was not evaluable and is excluded/);
+  assert.match(page,/September 22 candidate data is excluded/);
+  assert.doesNotMatch(page,/share the validated January 4, 2023 start/);
+  assert.match(page,/has no preceding adjusted close for the full-history period/);
   assert.match(page,/September 21, 2026/);
-  assert.match(page,/three earlier non-evaluable strategy dates remain visible as gaps/);
+  assert.match(text("js/core-period-page.js"),/non-evaluable strategy session\(s\) remain blank; no strategy values are interpolated/);
   assert.match(page,/R5 VWAP bearish-persistence setup is excluded from this hypothetical portfolio/);
   assert.match(page,/this research assumption does not mean this exclusion has been deployed/);
   assert.match(page,/Live Performance Reporting Paused/);
