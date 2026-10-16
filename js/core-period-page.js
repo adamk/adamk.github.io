@@ -39,8 +39,8 @@
 
   async function fetchPayload() {
     const [response, hashResponse] = await Promise.all([
-      fetch("/data/core_slippage_periods_20261015.json?v=20261015-fresh-periods-r1"),
-      fetch("/data/core_slippage_periods_20261015.sha256?v=20261015-fresh-periods-r1", {cache:"no-store"})
+      fetch("/data/core_alpaca_fee_periods_20261016.json?v=20261016-alpaca-fees-r1"),
+      fetch("/data/core_alpaca_fee_periods_20261016.sha256?v=20261016-alpaca-fees-r1", {cache:"no-store"})
     ]);
     if (!response.ok || !hashResponse.ok) throw new Error("period_source_unavailable");
     const body = await response.text();
@@ -72,8 +72,8 @@
       setText(prefix + "Slippage", money(row.assumed_slippage_cost));
       setText(prefix + "Fees", money(row.assumed_fees));
     }
-    const interval = view.scenarioMap.C.expectancy_ci_95;
-    setText("coreStudyCInterval", interval ? money(interval[0]) + " to " + money(interval[1]) : "—");
+    const interval = view.scenarioMap.B.expectancy_ci_95;
+    setText("coreStudyBInterval", interval ? money(interval[0]) + " to " + money(interval[1]) : "—");
   }
 
   function renderSetups(view, scenarioId) {
@@ -132,7 +132,7 @@
   function datasets(rows) {
     const palette = colors();
     return rows.map(row => ({...row, borderColor:palette[row.label], backgroundColor:"transparent",
-      borderWidth:row.label === "CORE Scenario C" ? 3 : 2,
+      borderWidth:row.label === "CORE Scenario B" ? 3 : 2,
       borderDash:row.label === "SPY Buy & Hold (adjusted)" ? [6,4] : undefined,
       pointRadius:0,pointHitRadius:8,tension:0,spanGaps:false}));
   }
@@ -142,21 +142,24 @@
     const portfolioStatus = document.getElementById("corePortfolioStatus");
     const periodSelector = document.getElementById("corePeriodSelector");
     const setupSelector = document.getElementById("coreSetupScenario");
+    const benchmarkSelector = document.getElementById("coreBenchmarkScenario");
     let payload, benchmarkChart, portfolioChart, currentPeriodId, labels;
     const chartDateAxis = values => ({ticks:{maxTicksLimit:8,callback:value => values[value].slice(0,7)}});
 
     function render(periodId) {
-      const view = root.CorePeriodResearch.periodView(payload, periodId, setupSelector.value);
+      const view = root.CorePeriodResearch.periodView(payload, periodId, setupSelector.value, benchmarkSelector.value);
       const period = view.period, benchmark = view.benchmarkReturns;
+      const selectedBenchmark = view.selectedBenchmark;
       currentPeriodId = periodId;
       setText("coreStudyPeriod", "Historical period: " + monthLabel(period.requested_start) + " – " + dateLabel(period.comparison_end) +
         ". Fresh normalized $10,000 modeled equity; " + period.eligible_sessions.toLocaleString("en-US") + " eligible of " +
         period.candidate_sessions.toLocaleString("en-US") + " candidate sessions. September 22 candidate data is excluded from the validated endpoint.");
       renderScenarios(view);
-      setText("coreBenchmarkStrategyReturn", percent(benchmark.scenario_c_return_pct,4));
+      setText("coreBenchmarkScenarioName", "Foxchase CORE — Scenario " + selectedBenchmark.id);
+      setText("coreBenchmarkStrategyReturn", percent(selectedBenchmark.return_pct,4));
       setText("coreBenchmarkCashReturn", percent(benchmark.risk_free_cash_return_pct,4));
-      setText("coreBenchmarkExcessReturn", (benchmark.excess_return_over_cash_pp > 0 ? "+" : "") +
-        (Number.isFinite(benchmark.excess_return_over_cash_pp) ? benchmark.excess_return_over_cash_pp.toFixed(4) + " pp" : "—"));
+      setText("coreBenchmarkExcessReturn", (selectedBenchmark.excess_return_over_cash_pp > 0 ? "+" : "") +
+        (Number.isFinite(selectedBenchmark.excess_return_over_cash_pp) ? selectedBenchmark.excess_return_over_cash_pp.toFixed(4) + " pp" : "—"));
       setText("coreBenchmarkSPYReturn", percent(benchmark.adjusted_spy_buy_hold_return_pct,4));
       setText("coreBenchmarkDescription", benchmark.available
         ? "Independent fresh replay: " + monthLabel(period.requested_start) + " through " + dateLabel(period.comparison_end) +
@@ -184,22 +187,22 @@
       portfolioChart.update();
       const suffix = " Selected period ends September 21, 2026; September 22 is excluded.";
       benchmarkStatus.textContent = benchmark.available
-        ? "Benchmark returns are independently normalized for " + period.label + "." + suffix
-        : "Aligned cash and adjusted SPY benchmark returns are unavailable for " + period.label + " because the retained adjusted-price source lacks a pre-period close. The CORE Scenario C curve remains available." + suffix;
+        ? "Benchmark returns are independently normalized for CORE Scenario " + selectedBenchmark.id + " in " + period.label + "." + suffix
+        : "Aligned cash and adjusted SPY benchmark returns are unavailable for " + period.label + " because the retained adjusted-price source lacks a pre-period close. The selected CORE Scenario " + selectedBenchmark.id + " curve remains available." + suffix;
       portfolioStatus.textContent = "Daily cumulative closed-trade equity from independently verified trade ledgers. Curves are not intraday mark-to-market." +
         " The selected period preserves " + period.gap_dates.length + " non-evaluable date gap(s); no values are interpolated.";
       document.getElementById("coreBenchmarkChart").setAttribute("aria-label", benchmark.available
-        ? "Selected-period CORE Scenario C cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100."
-        : "Selected-period CORE Scenario C cumulative closed-trade return, normalized to 100. Aligned cash and adjusted SPY benchmarks are unavailable.");
+        ? "Selected-period CORE Scenario " + selectedBenchmark.id + " cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100."
+        : "Selected-period CORE Scenario " + selectedBenchmark.id + " cumulative closed-trade return, normalized to 100. Aligned cash and adjusted SPY benchmarks are unavailable.");
       document.getElementById("corePortfolioChart").setAttribute("aria-label", benchmark.available
-        ? "Selected-period daily closed-trade equity for CORE Scenarios C, A, B, risk-free cash, and adjusted SPY, all normalized from $10,000 before the first period session."
-        : "Selected-period daily closed-trade equity for CORE Scenarios C, A, and B, normalized from $10,000 before the first period session. Cash and adjusted SPY benchmark curves are unavailable.");
+        ? "Selected-period daily closed-trade equity for CORE Scenarios B, A, C, risk-free cash, and adjusted SPY, all normalized from $10,000 before the first period session."
+        : "Selected-period daily closed-trade equity for CORE Scenarios B, A, and C, normalized from $10,000 before the first period session. Cash and adjusted SPY benchmark curves are unavailable.");
     }
 
     return Promise.all([fetchPayload(), root.loadChartLibrary()]).then(([data, ChartLibrary]) => {
       payload = data;
       const initialId = payload.default_period;
-      const initialView = root.CorePeriodResearch.periodView(payload, initialId, setupSelector.value);
+      const initialView = root.CorePeriodResearch.periodView(payload, initialId, setupSelector.value, benchmarkSelector.value);
       const palette = colors();
       const makeDatasets = rows => datasets(rows);
       benchmarkChart = new ChartLibrary(document.getElementById("coreBenchmarkChart"), {
@@ -238,6 +241,7 @@
       periodSelector.value = initialId;
       periodSelector.addEventListener("change", () => render(periodSelector.value));
       setupSelector.addEventListener("change", () => render(currentPeriodId));
+      benchmarkSelector.addEventListener("change", () => render(currentPeriodId));
     }).catch(() => {
       benchmarkStatus.textContent = "CORE period comparison is temporarily unavailable until the multi-period payload passes hash and research-integrity checks.";
       portfolioStatus.textContent = "CORE period curves are temporarily unavailable until the payload passes validation.";

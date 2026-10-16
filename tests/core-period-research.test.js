@@ -17,8 +17,10 @@ function period(id,start,year) {
   return {id,label:id,requested_start:start,start,start, candidate_end:"2026-09-22",comparison_end:"2026-09-21",
     candidate_sessions:3,eligible_sessions:3,starting_equity:10000,excluded_sessions:[],gap_dates:[],scenarios,
     setups,yearly_net_pnl:[{year:2026,A:1,B:1,C:1}],
-    benchmarks:{starting_equity:10000,base_date:baseDate,available:true,scenario_c_return_pct:0.01,risk_free_cash_return_pct:1.02,
-      excess_return_over_cash_pp:-1.01,adjusted_spy_buy_hold_return_pct:2.1},
+    benchmarks:{starting_equity:10000,base_date:baseDate,available:true,scenario_c_return_pct:0.01,
+      scenario_returns_pct:{A:0.01,B:0.01,C:0.01},risk_free_cash_return_pct:1.02,
+      excess_return_over_cash_pp:-1.01,excess_return_over_cash_pp_by_scenario:{A:-1.01,B:-1.01,C:-1.01},
+      adjusted_spy_buy_hold_return_pct:2.1},
     equity_curves:{dates:[start,"2026-09-21"],scenario_a:[10000,10001],scenario_b:[10000,10001],
       scenario_c:[10000,10001],risk_free_cash:[10002,10102],adjusted_spy_buy_hold:[10010,10210],
       basis:"daily cumulative closed-trade P&L, not intraday mark-to-market"},
@@ -29,7 +31,10 @@ function period(id,start,year) {
       .map(key=>[key,"a".repeat(64)]))};
 }
 function payload() {
-  return {schema_version:1,classification:"INDEPENDENT_FRESH_CORE_PERIOD_REPLAYS",independent_verification:"PASS",
+  return {schema_version:2,classification:"INDEPENDENT_FRESH_CORE_PERIOD_REPLAYS_WITH_RETROSPECTIVE_ALPACA_FEE_APPROXIMATION",independent_verification:"PASS",
+    fee_model:{commission:"$0 assuming standard retail ETF options",aggregation:"per account-day fee type rounded up to cents",
+      historical_classification:"dated SEC/FINRA and nearest Alpaca snapshots are labeled retrospective approximations",
+      prior_sensitivity:"$0.65 per contract per side"},
     default_period:"2024_2026",common_comparison_end:"2026-09-21",candidate_end:"2026-09-22",
     periods:[period("2024_2026","2024-01-02","2024"),period("2025_2026","2025-01-02","2025"),
       period("2023_2026","2023-01-04","2023")]};
@@ -45,6 +50,20 @@ test("all three fresh periods validate and selector data changes together",()=>{
   assert.notEqual(primary.benchmarkReturns.base_date,recent.benchmarkReturns.base_date);
   assert.equal(primary.setups.reduce((sum,row)=>sum+row.trades,0),1);
   assert.equal(api.periodView(data,"2024_2026","A").setups[0].id,"setup0");
+  assert.equal(primary.benchmarkDatasets[0].label,"CORE Scenario B");
+});
+
+test("fee-aware payload requires commission and historical approximation disclosures",()=>{
+  const data=payload();
+  assert.equal(api.validatePayload(data),data);
+  for(const mutate of [
+    p=>{p.fee_model.commission="unverified";},
+    p=>{p.fee_model.aggregation="per trade";},
+    p=>{delete p.fee_model.historical_classification;},
+    p=>{p.fee_model.prior_sensitivity="";}
+  ]) {
+    const copy=structuredClone(data);mutate(copy);assert.throws(()=>api.validatePayload(copy));
+  }
 });
 
 test("browser script publishes the validator on window for the production page loader",()=>{

@@ -10,9 +10,16 @@ const CorePeriodResearch = (() => {
   }
 
   function validatePayload(payload) {
-    assert(payload && payload.schema_version === 1 &&
-      payload.classification === "INDEPENDENT_FRESH_CORE_PERIOD_REPLAYS" &&
+    assert(payload && payload.schema_version === 2 &&
+      payload.classification === "INDEPENDENT_FRESH_CORE_PERIOD_REPLAYS_WITH_RETROSPECTIVE_ALPACA_FEE_APPROXIMATION" &&
       payload.independent_verification === "PASS", "period_payload_certificate_invalid");
+    const feeModel = payload.fee_model;
+    assert(feeModel && typeof feeModel.commission === "string" && feeModel.commission.includes("$0") &&
+      typeof feeModel.aggregation === "string" && feeModel.aggregation.includes("account-day") &&
+      feeModel.aggregation.includes("rounded up") &&
+      typeof feeModel.historical_classification === "string" && feeModel.historical_classification.includes("retrospective approximation") &&
+      typeof feeModel.prior_sensitivity === "string" && feeModel.prior_sensitivity.includes("$0.65"),
+    "period_fee_model_disclosure_invalid");
     assert(payload.default_period === "2024_2026" && payload.common_comparison_end === "2026-09-21" &&
       payload.candidate_end === "2026-09-22", "period_payload_endpoint_invalid");
     assert(Array.isArray(payload.periods) && payload.periods.length === PERIOD_IDS.length &&
@@ -88,6 +95,13 @@ const CorePeriodResearch = (() => {
         Math.abs(benchmark.scenario_c_return_pct - metrics.get("C").cumulative_return_pct) < 1e-7,
       "period_benchmark_returns_invalid");
       if (benchmarksAvailable) {
+        assert(benchmark.scenario_returns_pct && benchmark.excess_return_over_cash_pp_by_scenario &&
+          SCENARIO_IDS.every(id => Number.isFinite(benchmark.scenario_returns_pct[id]) &&
+            Number.isFinite(benchmark.excess_return_over_cash_pp_by_scenario[id]) &&
+            Math.abs(benchmark.scenario_returns_pct[id] - metrics.get(id).cumulative_return_pct) < 1e-7 &&
+            Math.abs(benchmark.excess_return_over_cash_pp_by_scenario[id] -
+              (benchmark.scenario_returns_pct[id] - benchmark.risk_free_cash_return_pct)) < 1e-7),
+        "period_scenario_benchmark_returns_invalid");
         assert(typeof benchmark.base_date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(benchmark.base_date) &&
           Number.isFinite(Date.parse(benchmark.base_date + "T00:00:00Z")) &&
           Date.parse(benchmark.base_date + "T00:00:00Z") < Date.parse(period.start + "T00:00:00Z") &&
@@ -101,6 +115,9 @@ const CorePeriodResearch = (() => {
       } else {
         assert(benchmark.base_date === null && benchmark.risk_free_cash_return_pct === null &&
           benchmark.adjusted_spy_buy_hold_return_pct === null && benchmark.excess_return_over_cash_pp === null &&
+          benchmark.scenario_returns_pct && benchmark.excess_return_over_cash_pp_by_scenario &&
+          SCENARIO_IDS.every(id => benchmark.scenario_returns_pct[id] === metrics.get(id).cumulative_return_pct &&
+            benchmark.excess_return_over_cash_pp_by_scenario[id] === null) &&
           period.limitations.some(row => row.includes("no preceding adjusted close")),
         "period_benchmark_unavailability_not_disclosed");
       }
@@ -129,11 +146,12 @@ const CorePeriodResearch = (() => {
     return payload;
   }
 
-  function periodView(payload, id, setupScenario = "C") {
+  function periodView(payload, id, setupScenario = "B", benchmarkScenario = "B") {
     validatePayload(payload);
     const period = payload.periods.find(row => row.id === id);
     assert(period, "period_selection_invalid");
     assert(SCENARIO_IDS.includes(setupScenario), "setup_scenario_selection_invalid");
+    assert(SCENARIO_IDS.includes(benchmarkScenario), "benchmark_scenario_selection_invalid");
     const scenarioMap = Object.fromEntries(period.scenarios.map(row => [row.id, row]));
     const normalized = values => values.map(value => value === null ? null : 100 * value / 10000);
     return {
@@ -141,16 +159,16 @@ const CorePeriodResearch = (() => {
       scenarioMap,
       labels:period.equity_curves.dates,
       benchmarkDatasets:[
-        {label:"CORE Scenario C",data:normalized(period.equity_curves.scenario_c)},
+        {label:"CORE Scenario " + benchmarkScenario,data:normalized(period.equity_curves["scenario_" + benchmarkScenario.toLowerCase()])},
         ...(period.benchmarks.available ? [
           {label:"Risk-Free / Cash",data:normalized(period.equity_curves.risk_free_cash)},
           {label:"SPY Buy & Hold (adjusted)",data:normalized(period.equity_curves.adjusted_spy_buy_hold)}
         ] : [])
       ],
       portfolioDatasets:[
-        {label:"CORE Scenario C",data:period.equity_curves.scenario_c},
-        {label:"CORE Scenario A",data:period.equity_curves.scenario_a},
         {label:"CORE Scenario B",data:period.equity_curves.scenario_b},
+        {label:"CORE Scenario A",data:period.equity_curves.scenario_a},
+        {label:"CORE Scenario C",data:period.equity_curves.scenario_c},
         ...(period.benchmarks.available ? [
           {label:"Risk-Free / Cash",data:period.equity_curves.risk_free_cash},
           {label:"SPY Buy & Hold (adjusted)",data:period.equity_curves.adjusted_spy_buy_hold}
@@ -160,7 +178,14 @@ const CorePeriodResearch = (() => {
       yearly:period.yearly_net_pnl,
       limitations:period.limitations,
       quoteQuality:period.quote_quality_by_year,
-      benchmarkReturns:period.benchmarks
+      benchmarkReturns:period.benchmarks,
+      selectedBenchmark:{
+        id:benchmarkScenario,
+        return_pct:period.benchmarks.scenario_returns_pct[benchmarkScenario],
+        cash_return_pct:period.benchmarks.risk_free_cash_return_pct,
+        excess_return_over_cash_pp:period.benchmarks.excess_return_over_cash_pp_by_scenario[benchmarkScenario],
+        adjusted_spy_return_pct:period.benchmarks.adjusted_spy_buy_hold_return_pct
+      }
     };
   }
 
