@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "classification": "MODELED_CORE_SLIPPAGE_REPLAY",
+  "period": {
+    "start": "2023-01-04",
+    "end": "2026-09-22",
+    "candidate_sessions": 932,
+    "admitted_sessions": 928,
+    "starting_equity": 10000
+  },
+  "independent_verification": "PASS",
+  "source_sha256": {
+    "slippage_methodology": "cd4c9e394a714329a3cfb2c0b62f917c6805b6eb25139f92d44c1a87aa8997a0",
+    "scenario_results": "cd1feb5b2f81d5df91374075d822dbcbce354a43066cf4d0f5381e576fe0bcf4",
+    "year_by_year": "ff03b71a43c01316185f52da5d83ed4ae6e2bb3290adfda47344fae2ecc6f399",
+    "independent_verification": "cc75a18de376b8183879bffc694a3386825dcb749185d966a6d038536334052d"
+  },
+  "scenarios": [
+    {
+      "id": "C",
+      "label": "Full Live-Sequence Slippage Replay",
+      "trades": 159,
+      "net_pnl": 4568.4,
+      "net_profit_factor": 1.3301,
+      "maximum_drawdown_dollars": -2356.4,
+      "net_expectancy_per_trade": 28.73,
+      "expectancy_ci_95": [
+        -11.87,
+        68.12
+      ],
+      "added_slippage_cost": 3524.0,
+      "assumed_fees": 2290.6
+    },
+    {
+      "id": "A",
+      "label": "Natural NBBO",
+      "trades": 168,
+      "net_pnl": 17564.2,
+      "net_profit_factor": 2.1804,
+      "maximum_drawdown_dollars": -1625.0,
+      "net_expectancy_per_trade": 104.55,
+      "expectancy_ci_95": [
+        49.32,
+        160.31
+      ],
+      "added_slippage_cost": 0.0,
+      "assumed_fees": 3296.8
+    },
+    {
+      "id": "B",
+      "label": "Matched-Trade Slippage",
+      "trades": 168,
+      "net_pnl": 12492.2,
+      "net_profit_factor": 1.7701,
+      "maximum_drawdown_dollars": -2462.6,
+      "net_expectancy_per_trade": 74.36,
+      "expectancy_ci_95": [
+        20.0,
+        129.38
+      ],
+      "added_slippage_cost": 5072.0,
+      "assumed_fees": 3296.8
+    }
+  ],
+  "setups": [
+    {
+      "label": "R1 EM Bear",
+      "trades": 38,
+      "net_pnl": 1850.8,
+      "net_profit_factor": 1.4238,
+      "maximum_drawdown_dollars": -1419.8,
+      "expectancy_ci_95": [
+        -68.44,
+        155.24
+      ]
+    },
+    {
+      "label": "R1 SPX Narrow",
+      "trades": 19,
+      "net_pnl": 563.6,
+      "net_profit_factor": 1.3767,
+      "maximum_drawdown_dollars": -1299.4,
+      "expectancy_ci_95": [
+        -74.14,
+        138.4
+      ]
+    },
+    {
+      "label": "R4 Failed PML Reclaim",
+      "trades": 17,
+      "net_pnl": 734.4,
+      "net_profit_factor": 1.3998,
+      "maximum_drawdown_dollars": -803.6,
+      "expectancy_ci_95": [
+        -109.36,
+        183.12
+      ]
+    },
+    {
+      "label": "R4 PML Break",
+      "trades": 43,
+      "net_pnl": 316.8,
+      "net_profit_factor": 1.0683,
+      "maximum_drawdown_dollars": -991.8,
+      "expectancy_ci_95": [
+        -80.47,
+        91.78
+      ]
+    },
+    {
+      "label": "R5 Late Lower EM",
+      "trades": 42,
+      "net_pnl": 1102.8,
+      "net_profit_factor": 1.736,
+      "maximum_drawdown_dollars": -452.2,
+      "expectancy_ci_95": [
+        -7.73,
+        59.82
+      ]
+    },
+    {
+      "label": "R5 EM Lower Rejection",
+      "trades": 0,
+      "net_pnl": null,
+      "net_profit_factor": null,
+      "maximum_drawdown_dollars": null,
+      "expectancy_ci_95": null
+    }
+  ],
+  "yearly": [
+    {
+      "label": "2023",
+      "a_net_pnl": -1346.8,
+      "b_net_pnl": -1998.8,
+      "c_net_pnl": -2127.8
+    },
+    {
+      "label": "2024",
+      "a_net_pnl": 1352.0,
+      "b_net_pnl": 632.0,
+      "c_net_pnl": 722.8
+    },
+    {
+      "label": "2025",
+      "a_net_pnl": 6191.4,
+      "b_net_pnl": 4567.4,
+      "c_net_pnl": 2347.6
+    },
+    {
+      "label": "2026 YTD through Sep 22",
+      "a_net_pnl": 11367.6,
+      "b_net_pnl": 9291.6,
+      "c_net_pnl": 3625.8
+    }
+  ],
+  "data_quality": {
+    "excluded_sessions": 4,
+    "invalid_or_crossed_quote_events": 19,
+    "provider_no_data_events": 122
+  }
+}
