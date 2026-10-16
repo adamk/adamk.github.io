@@ -4933,7 +4933,7 @@
       ],
       "source_sha256": {
         "adjusted_spy_source": "164b31ceb5fa9714688c17f4c308a30179524546be92f05c833a9ae381f7e115",
-        "alpaca_fee_model": "56e1da46bd138490d30bd8cd528ac82cd2f0df3a5264ed13599235b7338cc2a2",
+        "alpaca_fee_model": "33935ad59c1f2c08cd32d822226c382153edc483cdfb8ef824aa4e231365d6c0",
         "corrected_execution_runner": "fbb8794ba9ef82cf930e31cfae22fdcd5d51ce3dffe999bb61b31c261188dde0",
         "full_replay_trade_ledger": "a6ddbe7e31b463e37f79c6f823b83eac1d66666947bbb33aeac75527b480709b",
         "historical_cash_source": "c9f185acdb5e5ba0e8966460ab0c66dcc62652e254c1fa18b42fb952e486b400",
@@ -8362,7 +8362,7 @@
       ],
       "source_sha256": {
         "adjusted_spy_source": "164b31ceb5fa9714688c17f4c308a30179524546be92f05c833a9ae381f7e115",
-        "alpaca_fee_model": "56e1da46bd138490d30bd8cd528ac82cd2f0df3a5264ed13599235b7338cc2a2",
+        "alpaca_fee_model": "33935ad59c1f2c08cd32d822226c382153edc483cdfb8ef824aa4e231365d6c0",
         "corrected_execution_runner": "fbb8794ba9ef82cf930e31cfae22fdcd5d51ce3dffe999bb61b31c261188dde0",
         "full_replay_trade_ledger": "24ba412cb0a80e3c68d5d3b29a46376b47acf7cb0fc2186e28e9e7468f7b4c34",
         "historical_cash_source": "c9f185acdb5e5ba0e8966460ab0c66dcc62652e254c1fa18b42fb952e486b400",
@@ -14829,7 +14829,7 @@
       ],
       "source_sha256": {
         "adjusted_spy_source": "164b31ceb5fa9714688c17f4c308a30179524546be92f05c833a9ae381f7e115",
-        "alpaca_fee_model": "56e1da46bd138490d30bd8cd528ac82cd2f0df3a5264ed13599235b7338cc2a2",
+        "alpaca_fee_model": "33935ad59c1f2c08cd32d822226c382153edc483cdfb8ef824aa4e231365d6c0",
         "corrected_execution_runner": "fbb8794ba9ef82cf930e31cfae22fdcd5d51ce3dffe999bb61b31c261188dde0",
         "full_replay_trade_ledger": "b8d44eae9167e29033819b8256f4f8e01ce75199a4e313f95d30c3c374164873",
         "historical_cash_source": "c9f185acdb5e5ba0e8966460ab0c66dcc62652e254c1fa18b42fb952e486b400",
