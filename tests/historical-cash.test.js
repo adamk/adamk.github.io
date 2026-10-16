@@ -65,8 +65,10 @@ test("primary CORE comparison aligns Scenario C, cash, and adjusted SPY while pr
   assert.ok(/id="backtestBenchmarkChart"/.test(html),"archived combined benchmark chart missing");
   assert.ok(/id="historicalBenchmarkMethodology"/.test(html),"archived source disclosure missing");
   assert.match(html,/id="archivedCombinedResearch"/);
-  assert.match(html,/Common validated endpoint: September 21, 2026/);
-  assert.match(html,/September 22, 2026.*not evaluable.*excluded/);
+  assert.match(html,/common validated September 21, 2026 endpoint/);
+  assert.match(html,/September 22 candidate data is excluded/);
+  assert.match(html,/same \$10,000 pre-session baseline at that close/);
+  assert.match(html,/no preceding adjusted close for the full-history period/);
   assert.deepEqual(read("data/historical_comparison_20261013.json").series.map(s=>s.label),
     ["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
 });

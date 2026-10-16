@@ -4,6 +4,8 @@
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
   <script src="/js/live-benchmarks.js?v=20261015-core-primary-r1"></script>
+  <script src="/js/core-period-research.js?v=20261015-fresh-periods-r1"></script>
+  <script src="/js/core-period-page.js?v=20261015-fresh-periods-r1"></script>
   <script>
 function setTextIfExists(id, value) {
   const el = document.getElementById(id);
@@ -630,17 +632,30 @@ function setTextIfExists(id, value) {
     <h2>Historical Strategy Research</h2>
     <p class="small">Current primary comparison: the five-signal CORE portfolio under Scenario C full live-sequence slippage replay. All results are historical modeled performance, not actual brokerage executions or verified live-account performance.</p>
     <section class="core-slippage-section" id="coreSlippageResearch" aria-labelledby="coreSlippageTitle">
-      <h3 id="coreSlippageTitle">Core Spread Slippage Study</h3>
-      <p class="small" id="coreStudyPeriod">Loading the independently verified historical CORE replay…</p>
+      <h3 id="coreSlippageTitle">Historical CORE Performance</h3>
+      <div class="historical-scale-control">
+        <label for="corePeriodSelector">Historical backtest period</label>
+        <select id="corePeriodSelector" aria-describedby="coreStudyPeriod">
+          <option value="2024_2026" selected>2024–2026 (default)</option>
+          <option value="2025_2026">2025–2026 (recent market)</option>
+          <option value="2023_2026">2023–2026 (full history)</option>
+        </select>
+      </div>
+      <p class="small" id="coreStudyPeriod" aria-live="polite">Loading the independently verified historical CORE replay…</p>
       <p class="small">This is historical modeled performance for a hypothetical five-signal CORE portfolio. The R5 VWAP bearish-persistence setup is excluded from this hypothetical portfolio; this research assumption does not mean this exclusion has been deployed. The study is separate from the captured live configuration, existing EX research, and actual live-account P&amp;L.</p>
       <div class="research-metrics core-scenario-grid" aria-label="CORE historical slippage scenarios">
         <article class="research-card core-scenario-card core-scenario-card-primary" id="coreScenarioC" aria-label="Scenario C, primary conservative comparison">
           <h4>Scenario C — Full Live-Sequence Slippage Replay</h4>
           <p class="research-detail">Primary conservative comparison: applies $0.01 adverse slippage per option leg per side only at execution. Planned quantity stays fixed through entry fill; later plans resize from scenario net equity, and minimum-credit rejections are modeled.</p>
           <dl class="core-scenario-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreScenarioCEligibleSessions">—</dd></div>
             <div><dt>Trades</dt><dd id="coreScenarioCTrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreScenarioCWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioCGrossPnl">—</dd></div>
             <div><dt>Net P&amp;L</dt><dd id="coreScenarioCNetPnl">—</dd></div>
             <div><dt>Net profit factor</dt><dd id="coreScenarioCProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreScenarioCEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreScenarioCReturn">—</dd></div>
             <div><dt>Maximum drawdown</dt><dd id="coreScenarioCMaxDrawdown">—</dd></div>
             <div><dt>Net expectancy per trade</dt><dd id="coreScenarioCExpectancy">—</dd></div>
             <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioCExpectancyCI">—</dd></div>
@@ -652,9 +667,14 @@ function setTextIfExists(id, value) {
           <h4>Scenario A — Natural NBBO</h4>
           <p class="research-detail">Short legs sell at bid and long legs buy at ask; closes use the corresponding opposite sides. Commissions are assumed.</p>
           <dl class="core-scenario-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreScenarioAEligibleSessions">—</dd></div>
             <div><dt>Trades</dt><dd id="coreScenarioATrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreScenarioAWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioAGrossPnl">—</dd></div>
             <div><dt>Net P&amp;L</dt><dd id="coreScenarioANetPnl">—</dd></div>
             <div><dt>Net profit factor</dt><dd id="coreScenarioAProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreScenarioAEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreScenarioAReturn">—</dd></div>
             <div><dt>Maximum drawdown</dt><dd id="coreScenarioAMaxDrawdown">—</dd></div>
             <div><dt>Net expectancy per trade</dt><dd id="coreScenarioAExpectancy">—</dd></div>
             <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioAExpectancyCI">—</dd></div>
@@ -666,9 +686,14 @@ function setTextIfExists(id, value) {
           <h4>Scenario B — Matched-Trade Slippage</h4>
           <p class="research-detail">Keeps Scenario A trades and quantities, adding $0.01 adverse slippage per option leg per side. This is different from Scenario C’s full chronological replay.</p>
           <dl class="core-scenario-stats">
+            <div><dt>Eligible sessions</dt><dd id="coreScenarioBEligibleSessions">—</dd></div>
             <div><dt>Trades</dt><dd id="coreScenarioBTrades">—</dd></div>
+            <div><dt>Win rate</dt><dd id="coreScenarioBWinRate">—</dd></div>
+            <div><dt>Gross P&amp;L</dt><dd id="coreScenarioBGrossPnl">—</dd></div>
             <div><dt>Net P&amp;L</dt><dd id="coreScenarioBNetPnl">—</dd></div>
             <div><dt>Net profit factor</dt><dd id="coreScenarioBProfitFactor">—</dd></div>
+            <div><dt>Ending modeled equity</dt><dd id="coreScenarioBEndingEquity">—</dd></div>
+            <div><dt>Cumulative return</dt><dd id="coreScenarioBReturn">—</dd></div>
             <div><dt>Maximum drawdown</dt><dd id="coreScenarioBMaxDrawdown">—</dd></div>
             <div><dt>Net expectancy per trade</dt><dd id="coreScenarioBExpectancy">—</dd></div>
             <div><dt>95% session-cluster expectancy interval</dt><dd id="coreScenarioBExpectancyCI">—</dd></div>
@@ -677,47 +702,46 @@ function setTextIfExists(id, value) {
           </dl>
         </article>
       </div>
-      <p class="small core-slippage-note"><strong>Scenario C uncertainty:</strong> its 95% session-cluster expectancy interval is <span id="coreStudyCInterval">—</span> per trade and includes zero. The modeled edge is not statistically established.</p>
-      <h4>Scenario C setup results</h4>
-      <div class="research-table-wrap" role="region" aria-label="Scenario C setup results" tabindex="0">
+      <p class="small core-slippage-note"><strong>Scenario C uncertainty:</strong> its 95% session-cluster expectancy interval is <span id="coreStudyCInterval">—</span> per trade. Interpret the interval with the selected period and sample size; a positive point estimate alone does not establish a reliable edge.</p>
+      <h4>Per-setup results</h4>
+      <div class="historical-scale-control">
+        <label for="coreSetupScenario">Setup table scenario</label>
+        <select id="coreSetupScenario">
+          <option value="C" selected>Scenario C — Full live-sequence replay</option>
+          <option value="A">Scenario A — Natural NBBO</option>
+          <option value="B">Scenario B — Matched-trade slippage</option>
+        </select>
+      </div>
+      <div class="research-table-wrap" role="region" aria-label="CORE per-setup historical performance" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Scenario C modeled results by signal-producing setup</caption>
-          <thead><tr><th scope="col">Setup</th><th scope="col">Trades</th><th scope="col">Net P&amp;L</th><th scope="col">Net profit factor</th><th scope="col">Maximum drawdown</th><th scope="col">95% expectancy interval</th></tr></thead>
-          <tbody>
-            <tr><th id="coreSetup0Name" scope="row">—</th><td id="coreSetup0Trades">—</td><td id="coreSetup0NetPnl">—</td><td id="coreSetup0ProfitFactor">—</td><td id="coreSetup0MaxDrawdown">—</td><td id="coreSetup0ExpectancyCI">—</td></tr>
-            <tr><th id="coreSetup1Name" scope="row">—</th><td id="coreSetup1Trades">—</td><td id="coreSetup1NetPnl">—</td><td id="coreSetup1ProfitFactor">—</td><td id="coreSetup1MaxDrawdown">—</td><td id="coreSetup1ExpectancyCI">—</td></tr>
-            <tr><th id="coreSetup2Name" scope="row">—</th><td id="coreSetup2Trades">—</td><td id="coreSetup2NetPnl">—</td><td id="coreSetup2ProfitFactor">—</td><td id="coreSetup2MaxDrawdown">—</td><td id="coreSetup2ExpectancyCI">—</td></tr>
-            <tr><th id="coreSetup3Name" scope="row">—</th><td id="coreSetup3Trades">—</td><td id="coreSetup3NetPnl">—</td><td id="coreSetup3ProfitFactor">—</td><td id="coreSetup3MaxDrawdown">—</td><td id="coreSetup3ExpectancyCI">—</td></tr>
-            <tr><th id="coreSetup4Name" scope="row">—</th><td id="coreSetup4Trades">—</td><td id="coreSetup4NetPnl">—</td><td id="coreSetup4ProfitFactor">—</td><td id="coreSetup4MaxDrawdown">—</td><td id="coreSetup4ExpectancyCI">—</td></tr>
-            <tr><th id="coreSetup5Name" scope="row">—</th><td id="coreSetup5Trades">—</td><td id="coreSetup5NetPnl">—</td><td id="coreSetup5ProfitFactor">—</td><td id="coreSetup5MaxDrawdown">—</td><td id="coreSetup5ExpectancyCI">—</td></tr>
-          </tbody>
+          <caption class="visually-hidden">Historical modeled per-setup results for the selected period and execution scenario</caption>
+          <thead><tr><th scope="col">Setup</th><th scope="col">Trades</th><th scope="col">Win rate</th><th scope="col">Gross P&amp;L</th><th scope="col">Net P&amp;L</th><th scope="col">Net profit factor</th><th scope="col">Net expectancy / trade</th><th scope="col">Maximum drawdown</th><th scope="col">95% session-cluster expectancy interval</th></tr></thead>
+          <tbody id="coreSetupTableBody"></tbody>
         </table>
       </div>
       <p class="small">R5 EM Lower Rejection produced zero trades under the captured effective research configuration; its per-trade statistics are not applicable.</p>
       <h4>Yearly net P&amp;L</h4>
       <div class="research-table-wrap" role="region" aria-label="Yearly net P and L by slippage scenario" tabindex="0">
         <table class="research-table">
-          <caption class="visually-hidden">Yearly CORE replay net P&amp;L; 2026 is year-to-date through September 22</caption>
+          <caption class="visually-hidden">Yearly CORE replay net P&amp;L for the selected period and all three execution scenarios</caption>
           <thead><tr><th scope="col">Period</th><th scope="col">Scenario A</th><th scope="col">Scenario B</th><th scope="col">Scenario C</th></tr></thead>
-          <tbody>
-            <tr><th id="coreYear2023Label" scope="row">2023</th><td id="coreYear2023A">—</td><td id="coreYear2023B">—</td><td id="coreYear2023C">—</td></tr>
-            <tr><th id="coreYear2024Label" scope="row">2024</th><td id="coreYear2024A">—</td><td id="coreYear2024B">—</td><td id="coreYear2024C">—</td></tr>
-            <tr><th id="coreYear2025Label" scope="row">2025</th><td id="coreYear2025A">—</td><td id="coreYear2025B">—</td><td id="coreYear2025C">—</td></tr>
-            <tr><th id="coreYear2026Label" scope="row">2026 YTD through Sep 22 candidate coverage (Sep 22 excluded)</th><td id="coreYear2026A">—</td><td id="coreYear2026B">—</td><td id="coreYear2026C">—</td></tr>
-          </tbody>
+          <tbody id="coreYearlyTableBody"></tbody>
         </table>
       </div>
-      <ul class="small">
-        <li>All values are historical modeled trades from January 2023 through the September 22, 2026 candidate period; September 22 was not evaluable and is excluded from admitted sessions and the common-end curves. The normalized starting equity is $10,000. These results are not actual live-account P&amp;L or production-equivalent realized performance.</li>
-        <li>Scenarios B and C model $0.01 adverse slippage per option leg per side at execution. Assumed commissions are $0.65 per contract per side ($2.60 per completed vertical-spread contract quantity). These are research assumptions, not actual brokerage executions, fees, or fill records. Historical quotes do not guarantee executable fills or queue position.</li>
-        <li>Portfolio arbitration affects which trades are accepted. <span id="coreStudyDataQuality">—</span></li>
-        <li>Historical quote availability and quality are incomplete. Positive modeled P&amp;L does not establish a statistically reliable trading edge.</li>
-      </ul>
+      <h4>Historical quote observations by year</h4>
+      <div class="research-table-wrap" role="region" aria-label="Historical requested option quote quality by year" tabindex="0">
+        <table class="research-table">
+          <caption class="visually-hidden">Requested OCC contract-minute quote availability and bid-ask spread distribution from the consistent full-history Scenario C replay</caption>
+          <thead><tr><th scope="col">Year</th><th scope="col">Requested contract-minutes</th><th scope="col">Valid quote availability</th><th scope="col">Missing</th><th scope="col">Provider no-data</th><th scope="col">Invalid / crossed</th><th scope="col">Option bid-ask spread p25 / median / p75</th></tr></thead>
+          <tbody id="coreQuoteQualityBody"></tbody>
+        </table>
+      </div>
+      <ul class="small" id="corePeriodLimitations"></ul>
       <p class="small" id="coreSlippageDataStatus" aria-live="polite"></p>
     </section>
     <section aria-labelledby="coreBenchmarkTitle" id="coreBenchmarkComparison">
       <h3 id="coreBenchmarkTitle">CORE benchmark comparison</h3>
-      <p class="small">Common validated endpoint: September 21, 2026. The research candidate period extends through September 22, 2026, but that session was not evaluable and is excluded from these comparisons. Each series starts at normalized $10,000.</p>
+      <p class="small" id="coreBenchmarkDescription">Each selected period uses a shared $10,000 pre-session baseline when the retained adjusted SPY source contains the prior close. The first plotted session close includes that session’s strategy result and benchmark returns. September 21, 2026 is the common validated endpoint; September 22 candidate data is excluded.</p>
       <div class="research-table-wrap" role="region" aria-label="CORE benchmark returns through September 21, 2026" tabindex="0">
         <table class="research-table">
           <caption class="visually-hidden">CORE Scenario C, cash, excess return and adjusted SPY common-end benchmark returns</caption>
@@ -743,14 +767,14 @@ function setTextIfExists(id, value) {
       <p class="small" id="coreBenchmarkStatus" aria-live="polite">Loading independently aligned CORE, Treasury and adjusted SPY comparisons…</p>
       <details class="small" id="coreBenchmarkMethodology"><summary>CORE benchmark methodology</summary>
         <p>For historical comparisons, cash uses the U.S. Treasury’s daily 3-month par yield (BC_3MONTH). Annual yield percentage ÷ 100 ÷ 365 accrues and compounds by calendar day. Each day uses the latest prior-dated observation, carried for at most seven calendar days, including weekends and holidays. Longer gaps make cash and excess return unavailable; rates are not backfilled or substituted.</p>
-        <p>Strategy, cash and adjusted SPY series share the validated January 4, 2023 start and September 21, 2026 endpoint. Cash is an accrual proxy, not an investable total-return index or guarantee of realized return; it excludes taxes, fees and Treasury price changes. Excess return is strategy cumulative return minus cash cumulative return, in percentage points.</p>
-        <p>SPY uses Alpaca’s dividend- and split-adjusted SIP prices, normalized to the first date’s adjusted close. Missing required observations make the SPY comparison unavailable.</p>
+        <p>Where the retained adjusted-price source has a close before the first period session, strategy, cash and adjusted SPY use the same $10,000 pre-session baseline at that close. The first plotted close includes the first session’s closed-trade strategy P&amp;L, SPY return, and Treasury cash accrual. All series then run through the common validated September 21, 2026 endpoint. Cash is an accrual proxy, not an investable total-return index or guarantee of realized return; it excludes taxes, fees and Treasury price changes. Excess return is strategy cumulative return minus cash cumulative return, in percentage points.</p>
+        <p>SPY uses Alpaca’s dividend- and split-adjusted SIP prices. The retained series begins on January 4, 2023 and has no preceding adjusted close for the full-history period; the page therefore omits its aligned cash and SPY benchmark returns rather than estimating or substituting a baseline.</p>
         <p>Sources: <a href="https://home.treasury.gov/treasury-daily-interest-rate-xml-feed">U.S. Treasury daily rates</a> and <a href="https://docs.alpaca.markets/reference/stockbars">Alpaca historical stock bars</a>.</p>
       </details>
     </section>
     <section aria-labelledby="corePortfolioTitle" id="corePortfolioComparison">
       <h3 id="corePortfolioTitle">Historical CORE scenario equity curves</h3>
-      <p class="small">Daily cumulative modeled closed-trade equity from independently verified trade ledgers, normalized to $10,000, through September 21, 2026. These are closed-trade equity curves, not intraday mark-to-market account equity. The three earlier non-evaluable strategy dates remain visible as gaps; no strategy values are interpolated.</p>
+      <p class="small" id="corePortfolioDescription">Daily cumulative modeled closed-trade equity from independently verified trade ledgers, normalized to $10,000, through September 21, 2026. These are closed-trade equity curves, not intraday mark-to-market account equity. Non-evaluable strategy dates remain visible as gaps; no strategy values are interpolated.</p>
     <div class="historical-scale-control">
         <label for="corePortfolioScale">CORE portfolio chart scale</label>
         <select id="corePortfolioScale" aria-describedby="corePortfolioScaleStatus">
@@ -871,122 +895,6 @@ function setTextIfExists(id, value) {
         });
       }
       return chartLibraryPromise;
-    }
-    async function fetchCoreSource(url, options, errorMessage) {
-      const response = await fetch(url, options);
-      if (!response.ok) throw new Error(errorMessage);
-      const body = await response.text();
-      if (!window.crypto || !window.crypto.subtle || typeof TextEncoder === "undefined") {
-        throw new Error("SHA-256 verification is unavailable");
-      }
-      const digest = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(body));
-      const sha256 = Array.from(new Uint8Array(digest), value => value.toString(16).padStart(2, "0")).join("");
-      return {data:JSON.parse(body), sha256};
-    }
-    function loadCorePrimaryComparison() {
-      const status = document.getElementById("coreBenchmarkStatus");
-      const portfolioStatus = document.getElementById("corePortfolioStatus");
-      return Promise.all([
-        fetchCoreSource("/data/core_slippage_equity_curves_20261015.json?v=20261015-core-curves-r1", {}, "CORE daily curves unavailable"),
-        fetchCoreSource("/data/core_slippage_replay_20261015.json?v=20261015-core-study-r1", {}, "CORE source study unavailable"),
-        fetchCoreSource("/data/benchmark_research_20261003.json?v=20261003-adjusted-spy-r1", {}, "Adjusted SPY data unavailable"),
-        fetchCoreSource("/data/historical-cash-benchmark.json", { cache:"no-store" }, "Treasury cash data unavailable"),
-        loadChartLibrary()
-      ]).then(([curvesSource, studySource, spySource, cashSource, ChartLibrary]) => {
-        const curves = curvesSource.data, study = studySource.data;
-        const comparison = FoxchaseBenchmarks.coreSlippageComparison(curves, study, spySource.data, cashSource.data, {
-          scenario_summary:studySource.sha256,
-          adjusted_spy:spySource.sha256,
-          historical_cash:cashSource.sha256
-        });
-        const percent = value => (value > 0 ? "+" : "") + value.toFixed(4) + "%";
-        const points = value => (value > 0 ? "+" : "") + value.toFixed(4) + " pp";
-        setTextIfExists("coreBenchmarkStrategyReturn", percent(comparison.strategy_return_pct));
-        setTextIfExists("coreBenchmarkCashReturn", percent(comparison.cash_return_pct));
-        setTextIfExists("coreBenchmarkExcessReturn", points(comparison.excess_return_pp));
-        setTextIfExists("coreBenchmarkSPYReturn", percent(comparison.spy_return_pct));
-        status.textContent = "Candidate period: " + curves.period.start + "–" + curves.period.candidate_end +
-          " (" + curves.period.admitted_sessions + " admitted of " + curves.period.candidate_sessions +
-          " candidate sessions). Common comparison endpoint: " + comparison.comparison_end +
-          ". September 22, 2026 was not evaluable and is excluded. The strategy series contains three earlier non-evaluable-session gaps.";
-
-        const colors = {
-          "CORE Scenario C":"#234a76",
-          "CORE Scenario A":"#2f855a",
-          "CORE Scenario B":"#c77724",
-          "Risk-Free / Cash":"#087f8c",
-          "SPY Buy & Hold (adjusted)":"#666666"
-        };
-        const makeDatasets = datasets => datasets.map((dataset, index) => ({
-          ...dataset,
-          borderColor:colors[dataset.label],
-          backgroundColor:"transparent",
-          borderWidth:dataset.label === "CORE Scenario C" ? 3 : 2,
-          borderDash:dataset.label === "SPY Buy & Hold (adjusted)" ? [6,4] : undefined,
-          pointRadius:0,
-          pointHitRadius:8,
-          tension:0,
-          spanGaps:false
-        }));
-        const dateAxis = labels => ({ticks:{maxTicksLimit:8,callback:value => labels[value].slice(0,7)}});
-        const benchmarkChart = new ChartLibrary(document.getElementById("coreBenchmarkChart"), {
-          type:"line",
-          data:{labels:comparison.labels,datasets:makeDatasets(comparison.benchmark_datasets)},
-          options:{responsive:true,maintainAspectRatio:false,animation:false,
-            interaction:{mode:"index",intersect:false},
-            plugins:{tooltip:{callbacks:{label:item => item.dataset.label + ": " + Number(item.parsed.y).toFixed(4) + " index points"}}},
-            scales:{x:dateAxis(comparison.labels),y:{type:"linear",title:{display:true,text:"Normalized index (100 at start, linear scale)"}}}}
-        });
-        const benchmarkScale = document.getElementById("coreBenchmarkScale");
-        benchmarkScale.addEventListener("change", () => {
-          const logarithmic = benchmarkScale.value === "logarithmic";
-          benchmarkChart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
-          benchmarkChart.options.scales.y.title.text = "Normalized index (100 at start, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
-          setTextIfExists("coreBenchmarkScaleStatus", logarithmic
-            ? "Logarithmic scale: equal spacing represents equal percentage changes. Returns are unchanged."
-            : "Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.");
-          benchmarkChart.update();
-        });
-
-        const money = new Intl.NumberFormat("en-US", {style:"currency",currency:"USD",maximumFractionDigits:2});
-        const axisMoney = new Intl.NumberFormat("en-US", {style:"currency",currency:"USD",maximumFractionDigits:0});
-        const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const portfolioChart = new ChartLibrary(document.getElementById("corePortfolioChart"), {
-          type:"line",
-          data:{labels:comparison.labels,datasets:makeDatasets(comparison.portfolio_datasets)},
-          options:{responsive:true,maintainAspectRatio:false,animation:false,
-            interaction:{mode:"index",intersect:false},
-            plugins:{tooltip:{callbacks:{
-              title:items => items.length ? new Date(items[0].label + "T12:00:00Z").toLocaleDateString("en-US",{timeZone:"UTC",month:"short",day:"numeric",year:"numeric"}) : "",
-              label:item => item.parsed.y === null ? item.dataset.label + ": not evaluable" : item.dataset.label + ": " + money.format(item.parsed.y)
-            }}},
-            scales:{x:{...dateAxis(comparison.labels),grid:{color:dark?"rgba(214,219,227,.16)":"rgba(74,85,104,.14)"}},
-              y:{type:"linear",title:{display:true,text:"Cumulative closed-trade equity (USD, linear scale)"},
-                ticks:{callback:function(value){
-                  if(this.type==="logarithmic"){
-                    const magnitude=Math.pow(10,Math.floor(Math.log10(value)));
-                    if(![1,2,5].some(mantissa=>Math.abs(value/magnitude-mantissa)<1e-8)) return null;
-                  }
-                  return axisMoney.format(value);
-                }}}}}
-        });
-        const portfolioScale = document.getElementById("corePortfolioScale");
-        portfolioScale.addEventListener("change", () => {
-          const logarithmic = portfolioScale.value === "logarithmic";
-          portfolioChart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
-          portfolioChart.options.scales.y.title.text = "Cumulative closed-trade equity (USD, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
-          setTextIfExists("corePortfolioScaleStatus", logarithmic
-            ? "Logarithmic scale: equal spacing represents equal percentage changes. Dollar values and gaps are unchanged."
-            : "Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.");
-          portfolioChart.update();
-        });
-        portfolioStatus.textContent = "Daily cumulative modeled closed-trade equity from January 4, 2023 through September 21, 2026. The three blank dates are non-evaluable sessions; values are not interpolated or marked to market.";
-        return comparison;
-      }).catch(() => {
-        status.textContent = "CORE benchmark comparison is temporarily unavailable until all source data passes validation.";
-        portfolioStatus.textContent = "CORE scenario curves are temporarily unavailable until all source data passes validation.";
-        return null;
-      });
     }
     function loadHistoricalComparison() {
       const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
@@ -1198,8 +1106,7 @@ function setTextIfExists(id, value) {
       FoxchaseResearchIntegrity.loadStudy(document, fetch);
       loadHistoricalComparison();
     });
-    loadCorePrimaryComparison();
-    FoxchaseResearchIntegrity.loadCoreSlippageStudy(document, fetch);
+    CorePeriodPage.initialize();
     function formatCanonicalPercent(value) {
       if (typeof value !== "number" || !Number.isFinite(value)) return "—";
       return (value > 0 ? "+" : "") + value.toFixed(2) + "%";

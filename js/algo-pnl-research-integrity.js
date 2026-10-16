@@ -5,7 +5,6 @@
   const studyUrl = "/data/intraday_research_with_ex_20261013.json";
   const attributionUrl = "/data/intraday_research_attribution_20261003.json";
   const attributionStudyUrl = "/data/intraday_research_with_ex_20261003.json";
-  const coreSlippageStudyUrl = "/data/core_slippage_replay_20261015.json";
   const limitations = "Historical results are simulated research and are separate from live account performance. This replay uses the corrected commissioned EX sleeve only, modeled execution, retrospective portfolio sizing, and unequal component coverage. Historical quotes do not fully reproduce live market conditions, broker execution, liquidity, capacity, or market impact. Required missing inputs remain unknown; this update does not estimate or synthesize them. Historical results do not guarantee future performance.";
   const limitationsDisplay = "Historical results are simulated research, separate from live trading and not verified live performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.";
 
@@ -179,124 +178,7 @@
       });
   }
 
-  function validateCoreSlippageStudy(study) {
-    const validMoney = value => typeof value === "number" && Number.isFinite(value);
-    const validInterval = value => Array.isArray(value) && value.length === 2 && value.every(validMoney) && value[0] <= value[1];
-    const expectedScenarios = [
-      ["C", "Full Live-Sequence Slippage Replay"],
-      ["A", "Natural NBBO"],
-      ["B", "Matched-Trade Slippage"]
-    ];
-    const expectedSetups = [
-      "R1 EM Bear", "R1 SPX Narrow", "R4 Failed PML Reclaim",
-      "R4 PML Break", "R5 Late Lower EM", "R5 EM Lower Rejection"
-    ];
-    const validSourceHashes = study && study.source_sha256 &&
-      ["slippage_methodology", "scenario_results", "year_by_year", "independent_verification"]
-        .every(key => typeof study.source_sha256[key] === "string" && /^[a-f0-9]{64}$/.test(study.source_sha256[key]));
-    const scenarioShape = study && Array.isArray(study.scenarios) && study.scenarios.length === expectedScenarios.length &&
-      study.scenarios.every((row, index) => {
-        const [id, label] = expectedScenarios[index];
-        return row.id === id && row.label === label && Number.isInteger(row.trades) && row.trades > 0 &&
-          [row.net_pnl, row.net_profit_factor, row.maximum_drawdown_dollars, row.net_expectancy_per_trade,
-            row.added_slippage_cost, row.assumed_fees].every(validMoney) &&
-          row.net_profit_factor > 0 && row.maximum_drawdown_dollars <= 0 && row.added_slippage_cost >= 0 &&
-          row.assumed_fees >= 0 && validInterval(row.expectancy_ci_95) &&
-          Math.abs(row.net_pnl / row.trades - row.net_expectancy_per_trade) < 0.01;
-      });
-    const setupShape = study && Array.isArray(study.setups) && study.setups.length === expectedSetups.length &&
-      study.setups.every((row, index) => {
-        if (row.label !== expectedSetups[index] || !Number.isInteger(row.trades) || row.trades < 0) return false;
-        if (row.trades === 0) {
-          return row.net_pnl === null && row.net_profit_factor === null &&
-            row.maximum_drawdown_dollars === null && row.expectancy_ci_95 === null;
-        }
-        return [row.net_pnl, row.net_profit_factor, row.maximum_drawdown_dollars].every(validMoney) &&
-          row.net_profit_factor > 0 && row.maximum_drawdown_dollars <= 0 && validInterval(row.expectancy_ci_95);
-      });
-    const yearlyShape = study && Array.isArray(study.yearly) && study.yearly.length === 4 &&
-      study.yearly.every((row, index) => row.label === ["2023", "2024", "2025", "2026 YTD through Sep 22"][index] &&
-        [row.a_net_pnl, row.b_net_pnl, row.c_net_pnl].every(validMoney));
-    if (!study || study.schema_version !== 1 || study.classification !== "MODELED_CORE_SLIPPAGE_REPLAY" ||
-        !study.period || study.period.start !== "2023-01-04" || study.period.end !== "2026-09-22" ||
-        study.period.candidate_sessions !== 932 || study.period.admitted_sessions !== 928 ||
-        study.period.starting_equity !== 10000 || study.independent_verification !== "PASS" || !validSourceHashes ||
-        !scenarioShape || !setupShape || !yearlyShape || !study.data_quality ||
-        study.data_quality.excluded_sessions !== 4 || study.data_quality.invalid_or_crossed_quote_events !== 19 ||
-        study.data_quality.provider_no_data_events !== 122 ||
-        study.scenarios[0].expectancy_ci_95[0] >= 0 || study.scenarios[0].expectancy_ci_95[1] <= 0 ||
-        study.setups.filter(row => row.trades > 0).reduce((sum, row) => sum + row.trades, 0) !== study.scenarios[0].trades ||
-        Math.abs(study.setups.filter(row => row.trades > 0).reduce((sum, row) => sum + row.net_pnl, 0) - study.scenarios[0].net_pnl) > 0.005 ||
-        Math.abs(study.yearly.reduce((sum, row) => sum + row.a_net_pnl, 0) - study.scenarios[1].net_pnl) > 0.005 ||
-        Math.abs(study.yearly.reduce((sum, row) => sum + row.b_net_pnl, 0) - study.scenarios[2].net_pnl) > 0.005 ||
-        Math.abs(study.yearly.reduce((sum, row) => sum + row.c_net_pnl, 0) - study.scenarios[0].net_pnl) > 0.005) {
-      throw new Error("CORE slippage study metadata invalid");
-    }
-  }
-
-  function renderCoreSlippageStudy(document, study) {
-    validateCoreSlippageStudy(study);
-    const start = date(study.period.start);
-    const end = date(study.period.end);
-    setText(document, "coreStudyPeriod", start + " – " + end + " · " + study.period.admitted_sessions +
-      " admitted of " + study.period.candidate_sessions + " candidate sessions · September 22 was not evaluable and is excluded · normalized " +
-      moneyExact(study.period.starting_equity) + " start");
-    for (const row of study.scenarios) {
-      const prefix = "coreScenario" + row.id;
-      setText(document, prefix + "Trades", String(row.trades));
-      setText(document, prefix + "NetPnl", moneyExact(row.net_pnl, true));
-      setText(document, prefix + "ProfitFactor", number(row.net_profit_factor, 4));
-      setText(document, prefix + "MaxDrawdown", moneyExact(row.maximum_drawdown_dollars));
-      setText(document, prefix + "Slippage", moneyExact(row.added_slippage_cost));
-      setText(document, prefix + "Fees", moneyExact(row.assumed_fees));
-      setText(document, prefix + "Expectancy", moneyExact(row.net_expectancy_per_trade, true));
-      setText(document, prefix + "ExpectancyCI", moneyExact(row.expectancy_ci_95[0], true) + " to " +
-        moneyExact(row.expectancy_ci_95[1], true) + " / trade");
-    }
-    const conservativeInterval = study.scenarios[0].expectancy_ci_95;
-    setText(document, "coreStudyCInterval", moneyExact(conservativeInterval[0], true) + " to " +
-      moneyExact(conservativeInterval[1], true));
-    study.setups.forEach((row, index) => {
-      const prefix = "coreSetup" + index;
-      setText(document, prefix + "Name", row.label);
-      setText(document, prefix + "Trades", String(row.trades));
-      setText(document, prefix + "NetPnl", row.trades ? moneyExact(row.net_pnl, true) : unavailable);
-      setText(document, prefix + "ProfitFactor", row.trades ? number(row.net_profit_factor, 4) : unavailable);
-      setText(document, prefix + "MaxDrawdown", row.trades ? moneyExact(row.maximum_drawdown_dollars) : unavailable);
-      setText(document, prefix + "ExpectancyCI", row.trades
-        ? moneyExact(row.expectancy_ci_95[0], true) + " to " + moneyExact(row.expectancy_ci_95[1], true)
-        : unavailable);
-    });
-    study.yearly.forEach((row, index) => {
-      const year = [2023, 2024, 2025, 2026][index];
-      const displayLabel = row.label === "2026 YTD through Sep 22"
-        ? "2026 YTD through Sep 22 candidate coverage (Sep 22 excluded)"
-        : row.label;
-      setText(document, "coreYear" + year + "Label", displayLabel);
-      setText(document, "coreYear" + year + "A", moneyExact(row.a_net_pnl, true));
-      setText(document, "coreYear" + year + "B", moneyExact(row.b_net_pnl, true));
-      setText(document, "coreYear" + year + "C", moneyExact(row.c_net_pnl, true));
-    });
-    const quality = study.data_quality;
-    setText(document, "coreStudyDataQuality", quality.excluded_sessions + " of " + study.period.candidate_sessions +
-      " candidate sessions were excluded. Source review recorded " + quality.invalid_or_crossed_quote_events +
-      " negative/crossed quote events and " + quality.provider_no_data_events +
-      " provider no-data events. Missing or invalid quotes were not treated as fills.");
-    setText(document, "coreSlippageDataStatus", "");
-    return study;
-  }
-
-  function loadCoreSlippageStudy(document, fetchStudy) {
-    return fetchStudy(coreSlippageStudyUrl).then(response => {
-      if (!response.ok) throw new Error("CORE slippage research unavailable");
-      return response.json();
-    }).then(study => renderCoreSlippageStudy(document, study)).catch(() => {
-      setText(document, "coreSlippageDataStatus", "CORE slippage research details temporarily unavailable.");
-      return null;
-    });
-  }
-
-  const api = { renderStudy, loadStudy, renderAttribution, loadAttribution, renderCoreSlippageStudy, loadCoreSlippageStudy };
+  const api = { renderStudy, loadStudy, renderAttribution, loadAttribution };
   root.FoxchaseResearchIntegrity = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window === "undefined" ? globalThis : window);
