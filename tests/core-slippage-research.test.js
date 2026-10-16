@@ -22,9 +22,9 @@ test("published Alpaca-fee payload is hash-pinned and passes research-integrity 
 
 test("independent fresh-start period results reconcile to exact Alpaca-fee aggregates",()=>{
   const expected={
-    "2024_2026":{candidate:683,eligible:681,A:[133,29198.86,2.9505,-1982.68],B:[133,23451.07,2.4389,-2074.68],C:[128,12539.79,1.8459,-2966.37]},
-    "2025_2026":{candidate:431,eligible:429,A:[96,21765.57,3.1489,-1637.87],B:[96,17824.69,2.6185,-1713.86],C:[92,10069.28,1.9249,-2585.54]},
-    "2023_2026":{candidate:932,eligible:928,A:[168,25686.88,2.5689,-1810.26],B:[168,19762.17,2.103,-1894.26],C:[159,7667.44,1.5202,-2294.93]}
+    "2024_2026":{candidate:683,eligible:679,A:[133,29198.86,2.9505,-1982.68],B:[133,23451.07,2.4389,-2074.68],C:[128,12539.79,1.8459,-2966.37]},
+    "2025_2026":{candidate:431,eligible:427,A:[96,21765.57,3.1489,-1637.87],B:[96,17824.69,2.6185,-1713.86],C:[92,10069.28,1.9249,-2585.54]},
+    "2023_2026":{candidate:932,eligible:926,A:[168,25686.88,2.5689,-1810.26],B:[168,19762.17,2.103,-1894.26],C:[159,7667.44,1.5202,-2294.93]}
   };
   for(const [id,want] of Object.entries(expected)) {
     const period=periods[id];
@@ -55,6 +55,7 @@ test("all setups and annual summaries reconcile without R5VWAPB",()=>{
       assert.ok(Math.abs(period.yearly_net_pnl.reduce((sum,row)=>sum+row[scenario],0)-metrics.net_pnl)<0.011);
     }
     assert.ok(period.limitations.some(line=>/R5VWAPB.*excluded only from this hypothetical.*enabled in production/i.test(line)));
+    assert.ok(period.limitations.some(line=>/November 13, 2025.*invalid\/crossed quotes.*price-based exit check could not update/i.test(line)));
   }
 });
 
@@ -67,5 +68,14 @@ test("period view defaults to Scenario B and switches benchmark label with selec
   assert.equal(a.selectedBenchmark.return_pct,291.9886);
   assert.equal(full.selectedBenchmark.return_pct,197.6217);
   assert.equal(full.benchmarkDatasets.length,1);
-  assert.deepEqual(periods["2023_2026"].gap_dates,["2023-06-05","2023-10-19","2026-08-26"]);
+  assert.deepEqual(periods["2023_2026"].gap_dates,["2023-06-05","2023-10-19","2025-04-04","2025-09-02","2026-08-26"]);
+  for(const id of ["2024_2026","2025_2026","2023_2026"]) {
+    const period=periods[id];
+    for(const date of ["2025-04-04","2025-09-02"]) {
+      assert.ok(period.gap_dates.includes(date),`${id}.${date} remains a visible non-evaluable gap`);
+      const index=period.equity_curves.dates.indexOf(date);
+      assert.ok(index>=0,`${id}.${date} is represented on the period timeline`);
+      for(const scenario of ["a","b","c"]) assert.equal(period.equity_curves[`scenario_${scenario}`][index],null);
+    }
+  }
 });

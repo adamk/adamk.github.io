@@ -42,7 +42,7 @@
       "candidate_end": "2026-09-22",
       "candidate_sessions": 683,
       "comparison_end": "2026-09-21",
-      "eligible_sessions": 681,
+      "eligible_sessions": 679,
       "equity_curves": {
         "adjusted_spy_buy_hold": [
           9943.94107294,
@@ -2413,7 +2413,7 @@
           15704.46,
           15449.43,
           15735.55,
-          15735.55,
+          null,
           15735.55,
           15735.55,
           15869.88,
@@ -2515,7 +2515,7 @@
           16130.28,
           16130.28,
           16479.43,
-          16479.43,
+          null,
           16479.43,
           16479.43,
           16927.38,
@@ -3097,7 +3097,7 @@
           14391.6,
           14080.57,
           14330.69,
-          14330.69,
+          null,
           14330.69,
           14330.69,
           14433.02,
@@ -3199,7 +3199,7 @@
           14222.42,
           14222.42,
           14535.57,
-          14535.57,
+          null,
           14535.57,
           14535.57,
           14943.52,
@@ -3781,7 +3781,7 @@
           12265.49,
           12021.1,
           12222.63,
-          12222.63,
+          null,
           12222.63,
           12222.63,
           12299.36,
@@ -3883,7 +3883,7 @@
           12341.9,
           12341.9,
           12585.46,
-          12585.46,
+          null,
           12585.46,
           12585.46,
           12911.82,
@@ -4152,6 +4152,14 @@
       },
       "excluded_sessions": [
         {
+          "date": "2025-04-04",
+          "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
+        },
+        {
+          "date": "2025-09-02",
+          "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
+        },
+        {
           "date": "2026-08-26",
           "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
         },
@@ -4161,6 +4169,8 @@
         }
       ],
       "gap_dates": [
+        "2025-04-04",
+        "2025-09-02",
         "2026-08-26"
       ],
       "id": "2024_2026",
@@ -4218,12 +4228,13 @@
         "Alpaca's account-day fee rule is modeled by aggregating each fee type separately per account per day and rounding each total up to cents. Historical NBBO/leg quotes do not guarantee a complex-order fill or queue position.",
         "The prior $0.65 per contract per side model remains only as a separately verified sensitivity; it is not the primary fee basis and does not represent actual charges.",
         "Where leg-side minute quotes imply a negative net debit to close, signed vertical economics are retained and flagged; these quotes do not establish that a complex spread order would fill for a net credit.",
-        "Selected period: 681 eligible sessions of 683 candidate sessions; 2 candidate sessions were excluded or not evaluable.",
-        "Non-evaluable strategy dates in this selected period: 2026-08-26. These remain blank; no strategy P&L is interpolated.",
+        "Selected period: 679 eligible sessions of 683 candidate sessions; 4 candidate sessions were excluded or not evaluable.",
+        "Non-evaluable strategy dates in this selected period: 2025-04-04, 2025-09-02, 2026-08-26. These remain blank; no strategy P&L is interpolated.",
         "Historical option inputs contain timestamped bid/ask only. Quote size, depth and volume are unavailable, so displayed spreads do not establish executable capacity or market-wide liquidity.",
+        "The November 13, 2025 Scenario C R1 EM Bear trade was open from 10:55 to 13:31 ET; its long SPY 680 call had invalid/crossed quotes during 10:59\u201311:10 ET, so the price-based exit check could not update on those unusable observations. The replay later exited on a valid quote at 13:31 ET; treat this modeled path as sensitive to quote availability.",
         "The 2026 observations are year-to-date through September 21. September 22 is in candidate coverage but excluded from the common comparison endpoint.",
         "Benchmarks share a $10,000 pre-session baseline at the preceding adjusted SPY market close on 2023-12-29; the first plotted session close includes that session's strategy P&L, SPY return, and Treasury cash accrual.",
-        "Selected Scenario C session-cluster expectancy interval: $25.35 to $167.99 per trade; it does not include zero. This is descriptive historical uncertainty, not prospective evidence.",
+        "Selected Scenario C session-cluster expectancy interval: $25.21 to $167.86 per trade; it does not include zero. This is descriptive historical uncertainty, not prospective evidence.",
         "R5VWAPB is excluded only from this hypothetical research portfolio and remains enabled in production."
       ],
       "pre_period_pnl_included": false,
@@ -4243,8 +4254,8 @@
           "valid_quote_observations": 16519
         },
         "2025": {
-          "authoritative_no_data_observations": 122,
-          "availability_pct": 99.3,
+          "authoritative_no_data_observations": 0,
+          "availability_pct": 99.94,
           "invalid_quote_observations": 12,
           "missing_quote_observations": 0,
           "option_bid_ask_spread_dollars": {
@@ -4253,8 +4264,8 @@
             "p75": 0.01
           },
           "quote_size_depth_or_volume_available": false,
-          "requested_contract_minute_observations": 19170,
-          "valid_quote_observations": 19036
+          "requested_contract_minute_observations": 18922,
+          "valid_quote_observations": 18910
         },
         "2026": {
           "authoritative_no_data_observations": 0,
@@ -4275,8 +4286,8 @@
         "captured_live_launcher_sha256": "862a949efa066aa739ccae72db7be395ca5f0958d430babe0ecb6a8490fcdc63",
         "captured_live_source_sha256": "696ffb84e3caae003e53aee97785eb7979c86be2fa2e1ab437ada2edd82f226e",
         "full_replay_input_adapter_sha256": "c684b3d9ba193c866579f1c7501d2b78fe5bd3019ff15bbaad446022cf9c614e",
-        "full_replay_option_input_manifest_sha256": "be515eb66250d0a70be5fbcda6807b13df9cafcc9b2e1c4c6233d8703696cd95",
-        "natural_option_input_manifest_sha256": "be515eb66250d0a70be5fbcda6807b13df9cafcc9b2e1c4c6233d8703696cd95",
+        "full_replay_option_input_manifest_sha256": "f5098cd272f297fcd8bf95e9a1a1c8513106ee2b8d597a4b47aa0aa83e3f0e95",
+        "natural_option_input_manifest_sha256": "f5098cd272f297fcd8bf95e9a1a1c8513106ee2b8d597a4b47aa0aa83e3f0e95",
         "option_adapter_sha256": "06df0045f19b2579cadbd973716a1e3a9afbf16cc579ba96d61b6ac1a232770b",
         "production_replay_adapter_sha256": "c684b3d9ba193c866579f1c7501d2b78fe5bd3019ff15bbaad446022cf9c614e",
         "spx_em_history_sha256": "04e895611e612a4e4ac99b2a4ca4d5040b00766b23f26ac2fafb28ffb383cc98",
@@ -4290,11 +4301,11 @@
           "average_quantity": 8.38,
           "cumulative_return_pct": 125.3979,
           "daily_curve_maximum_drawdown_dollars": -2966.37,
-          "eligible_sessions": 681,
+          "eligible_sessions": 679,
           "ending_equity": 22539.79,
           "expectancy_ci_95": [
-            25.35,
-            167.99
+            25.21,
+            167.86
           ],
           "fee_components": {
             "cat": 7.25,
@@ -4324,11 +4335,11 @@
           "average_quantity": 11.05,
           "cumulative_return_pct": 291.9886,
           "daily_curve_maximum_drawdown_dollars": -1982.68,
-          "eligible_sessions": 681,
+          "eligible_sessions": 679,
           "ending_equity": 39198.86,
           "expectancy_ci_95": [
-            126.27,
-            310.57
+            127.93,
+            309.08
           ],
           "fee_components": {
             "cat": 8.99,
@@ -4358,11 +4369,11 @@
           "average_quantity": 11.05,
           "cumulative_return_pct": 234.5107,
           "daily_curve_maximum_drawdown_dollars": -2074.68,
-          "eligible_sessions": 681,
+          "eligible_sessions": 679,
           "ending_equity": 33451.07,
           "expectancy_ci_95": [
-            84.5,
-            266.21
+            85.47,
+            265.37
           ],
           "fee_components": {
             "cat": 8.99,
@@ -4397,8 +4408,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 11.12,
               "expectancy_ci_95": [
-                143.35,
-                555.74
+                141.49,
+                556.42
               ],
               "fee_components": {
                 "cat": 2.41,
@@ -4425,8 +4436,8 @@
               "assumed_slippage_cost": 1485.0,
               "average_quantity": 11.12,
               "expectancy_ci_95": [
-                104.69,
-                506.03
+                102.19,
+                507.08
               ],
               "fee_components": {
                 "cat": 2.41,
@@ -4453,8 +4464,8 @@
               "assumed_slippage_cost": 1142.0,
               "average_quantity": 8.56,
               "expectancy_ci_95": [
-                -93.22,
-                258.88
+                -99.64,
+                265.87
               ],
               "fee_components": {
                 "cat": 2.06,
@@ -4487,8 +4498,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 10.85,
               "expectancy_ci_95": [
-                116.96,
-                580.39
+                106.68,
+                570.25
               ],
               "fee_components": {
                 "cat": 0.92,
@@ -4515,8 +4526,8 @@
               "assumed_slippage_cost": 564.0,
               "average_quantity": 10.85,
               "expectancy_ci_95": [
-                76.85,
-                526.62
+                70.96,
+                516.91
               ],
               "fee_components": {
                 "cat": 0.92,
@@ -4543,8 +4554,8 @@
               "assumed_slippage_cost": 400.0,
               "average_quantity": 8.33,
               "expectancy_ci_95": [
-                86.24,
-                418.65
+                84.99,
+                416.44
               ],
               "fee_components": {
                 "cat": 0.72,
@@ -4577,8 +4588,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 11.18,
               "expectancy_ci_95": [
-                -152.75,
-                461.35
+                -160.88,
+                463.45
               ],
               "fee_components": {
                 "cat": 1.21,
@@ -4605,8 +4616,8 @@
               "assumed_slippage_cost": 655.0,
               "average_quantity": 11.18,
               "expectancy_ci_95": [
-                -195.32,
-                424.65
+                -202.29,
+                426.57
               ],
               "fee_components": {
                 "cat": 1.21,
@@ -4633,8 +4644,8 @@
               "assumed_slippage_cost": 464.0,
               "average_quantity": 8.38,
               "expectancy_ci_95": [
-                -133.03,
-                309.69
+                -138.29,
+                310.84
               ],
               "fee_components": {
                 "cat": 0.93,
@@ -4667,8 +4678,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 12.1,
               "expectancy_ci_95": [
-                -67.04,
-                416.58
+                -69.73,
+                423.04
               ],
               "fee_components": {
                 "cat": 2.02,
@@ -4695,8 +4706,8 @@
               "assumed_slippage_cost": 1500.0,
               "average_quantity": 12.1,
               "expectancy_ci_95": [
-                -116.26,
-                366.18
+                -117.53,
+                369.26
               ],
               "fee_components": {
                 "cat": 2.02,
@@ -4723,8 +4734,8 @@
               "assumed_slippage_cost": 1100.0,
               "average_quantity": 8.87,
               "expectancy_ci_95": [
-                -90.68,
-                239.44
+                -95.19,
+                241.61
               ],
               "fee_components": {
                 "cat": 1.73,
@@ -4757,8 +4768,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 10.16,
               "expectancy_ci_95": [
-                49.09,
-                192.28
+                50.58,
+                193.04
               ],
               "fee_components": {
                 "cat": 2.43,
@@ -4785,8 +4796,8 @@
               "assumed_slippage_cost": 1544.0,
               "average_quantity": 10.16,
               "expectancy_ci_95": [
-                10.34,
-                150.58
+                11.73,
+                150.57
               ],
               "fee_components": {
                 "cat": 2.43,
@@ -4813,8 +4824,8 @@
               "assumed_slippage_cost": 1092.0,
               "average_quantity": 7.8,
               "expectancy_ci_95": [
-                14.88,
-                123.23
+                16.75,
+                123.71
               ],
               "fee_components": {
                 "cat": 1.81,
@@ -4927,18 +4938,18 @@
         "full_replay_trade_ledger": "a6ddbe7e31b463e37f79c6f823b83eac1d66666947bbb33aeac75527b480709b",
         "historical_cash_source": "c9f185acdb5e5ba0e8966460ab0c66dcc62652e254c1fa18b42fb952e486b400",
         "independent_fee_verifier": "c0c32404a4fc10eb544079e49544efb513ebc4a4dccb390bb2356bad45b90cb2",
-        "independent_verification": "209d04fcc0dc3fb6715a50172365d4049a4ac5ac238354306842ca0c454b4d7d",
+        "independent_verification": "1278df017f813b809d92ba0c0d48659618299ffc70893c7ce9d88554e05edeb6",
         "matched_trade_ledger": "e6ff8d4f7fa0bb3d78c78748b6ad740b369183f734c4d50474e3e5c471b28e4d",
         "natural_trade_ledger": "1144451674cbc19b19f0b3f11d2d2be1f816d1eb74232b3f4f56c1cd0e36e3ec",
-        "payload_builder": "d23e62c53b7390c38b62f78137d4f3d07609eb5a57820415b79bf6bfd171a233",
+        "payload_builder": "e978bbd9120424170d74d74c5374d18a672f0c18451019c7e6fee5ed9960db7e",
         "period_runner": "bb8730ecdea4b2a79fedce21e03df09e5996d128419600f5beeef2d6d47a3a7d",
         "prior_fixed_commission_scenario_results": "f2b3df3239abc5998d9f3b58ea497a06cb269c6774b007c80102fc0b4778f7b6",
         "prior_fixed_commission_verification": "856024f9575cabde76aaba33f13495d5fc95d41e418baf135fae910737fe00fe",
-        "quote_quality_quote_requests": "ac196eab6a0673d4a59e641aa560b4564b018b0332bfb770564882b8dd5fec8b",
-        "quote_quality_reference": "f14074ec3029de592e676c60209a05ec43265d667ec3edf5e56e665955317e48",
-        "scenario_results": "0196b8f31b65fa51cac6d0c6411f4679a4f1f38f990af7a256948dffaf517c25",
-        "session_admission": "f07dcdf08c98248df54e069079340b66bd79c452b109fd39771b617b57954160",
-        "year_by_year": "cbbb80aa2f697c9534443d15a03f5974fbf8f1d8ca0fb14ca90bba0b26b67f05"
+        "quote_quality_quote_requests": "c37b5b804a7621e8be9ad0659d8e6ed3dfc785132e4d6d69f0fc5ed344b69318",
+        "quote_quality_reference": "5c4d1745a06d287014a162aa1fe04dd66b30d37d41df6e37b065cc2eb93e4713",
+        "scenario_results": "6d86157097eda6cfea495d6c8f2d141d6c2667fc09a859e5780c5267ccd06dc8",
+        "session_admission": "43cb2c7fe00e0ee7be12990ecf2076fe9659d08226df7c833968202b79880a4f",
+        "year_by_year": "908117957bf0a47443eab1178a8fffacd1312a0a9762d6fecd409930d016a48f"
       },
       "start": "2024-01-02",
       "starting_equity": 10000.0,
@@ -4986,7 +4997,7 @@
       "candidate_end": "2026-09-22",
       "candidate_sessions": 431,
       "comparison_end": "2026-09-21",
-      "eligible_sessions": 429,
+      "eligible_sessions": 427,
       "equity_curves": {
         "adjusted_spy_buy_hold": [
           9975.46802144,
@@ -6349,7 +6360,7 @@
           12866.43,
           12666.04,
           12888.57,
-          12888.57,
+          null,
           12888.57,
           12888.57,
           13006.1,
@@ -6451,7 +6462,7 @@
           13179.55,
           13179.55,
           13451.11,
-          13451.11,
+          null,
           13451.11,
           13451.11,
           13809.47,
@@ -6781,7 +6792,7 @@
           12487.46,
           12243.07,
           12437.6,
-          12437.6,
+          null,
           12437.6,
           12437.6,
           12527.13,
@@ -6883,7 +6894,7 @@
           12327.58,
           12327.58,
           12571.14,
-          12571.14,
+          null,
           12571.14,
           12571.14,
           12897.5,
@@ -7213,7 +7224,7 @@
           10891.43,
           10691.47,
           10864.21,
-          10864.21,
+          null,
           10864.21,
           10864.21,
           10928.16,
@@ -7315,7 +7326,7 @@
           10929.53,
           10929.53,
           11138.29,
-          11138.29,
+          null,
           11138.29,
           11138.29,
           11423.85,
@@ -7584,6 +7595,14 @@
       },
       "excluded_sessions": [
         {
+          "date": "2025-04-04",
+          "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
+        },
+        {
+          "date": "2025-09-02",
+          "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
+        },
+        {
           "date": "2026-08-26",
           "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
         },
@@ -7593,6 +7612,8 @@
         }
       ],
       "gap_dates": [
+        "2025-04-04",
+        "2025-09-02",
         "2026-08-26"
       ],
       "id": "2025_2026",
@@ -7650,19 +7671,20 @@
         "Alpaca's account-day fee rule is modeled by aggregating each fee type separately per account per day and rounding each total up to cents. Historical NBBO/leg quotes do not guarantee a complex-order fill or queue position.",
         "The prior $0.65 per contract per side model remains only as a separately verified sensitivity; it is not the primary fee basis and does not represent actual charges.",
         "Where leg-side minute quotes imply a negative net debit to close, signed vertical economics are retained and flagged; these quotes do not establish that a complex spread order would fill for a net credit.",
-        "Selected period: 429 eligible sessions of 431 candidate sessions; 2 candidate sessions were excluded or not evaluable.",
-        "Non-evaluable strategy dates in this selected period: 2026-08-26. These remain blank; no strategy P&L is interpolated.",
+        "Selected period: 427 eligible sessions of 431 candidate sessions; 4 candidate sessions were excluded or not evaluable.",
+        "Non-evaluable strategy dates in this selected period: 2025-04-04, 2025-09-02, 2026-08-26. These remain blank; no strategy P&L is interpolated.",
         "Historical option inputs contain timestamped bid/ask only. Quote size, depth and volume are unavailable, so displayed spreads do not establish executable capacity or market-wide liquidity.",
+        "The November 13, 2025 Scenario C R1 EM Bear trade was open from 10:55 to 13:31 ET; its long SPY 680 call had invalid/crossed quotes during 10:59\u201311:10 ET, so the price-based exit check could not update on those unusable observations. The replay later exited on a valid quote at 13:31 ET; treat this modeled path as sensitive to quote availability.",
         "The 2026 observations are year-to-date through September 21. September 22 is in candidate coverage but excluded from the common comparison endpoint.",
         "Benchmarks share a $10,000 pre-session baseline at the preceding adjusted SPY market close on 2024-12-31; the first plotted session close includes that session's strategy P&L, SPY return, and Treasury cash accrual.",
-        "Selected Scenario C session-cluster expectancy interval: $21.02 to $190.59 per trade; it does not include zero. This is descriptive historical uncertainty, not prospective evidence.",
+        "Selected Scenario C session-cluster expectancy interval: $20.64 to $191.46 per trade; it does not include zero. This is descriptive historical uncertainty, not prospective evidence.",
         "R5VWAPB is excluded only from this hypothetical research portfolio and remains enabled in production."
       ],
       "pre_period_pnl_included": false,
       "quote_quality_by_year": {
         "2025": {
-          "authoritative_no_data_observations": 122,
-          "availability_pct": 99.3,
+          "authoritative_no_data_observations": 0,
+          "availability_pct": 99.94,
           "invalid_quote_observations": 12,
           "missing_quote_observations": 0,
           "option_bid_ask_spread_dollars": {
@@ -7671,8 +7693,8 @@
             "p75": 0.01
           },
           "quote_size_depth_or_volume_available": false,
-          "requested_contract_minute_observations": 19170,
-          "valid_quote_observations": 19036
+          "requested_contract_minute_observations": 18922,
+          "valid_quote_observations": 18910
         },
         "2026": {
           "authoritative_no_data_observations": 0,
@@ -7693,8 +7715,8 @@
         "captured_live_launcher_sha256": "862a949efa066aa739ccae72db7be395ca5f0958d430babe0ecb6a8490fcdc63",
         "captured_live_source_sha256": "696ffb84e3caae003e53aee97785eb7979c86be2fa2e1ab437ada2edd82f226e",
         "full_replay_input_adapter_sha256": "c684b3d9ba193c866579f1c7501d2b78fe5bd3019ff15bbaad446022cf9c614e",
-        "full_replay_option_input_manifest_sha256": "51c0f4ba57d93dade464b24e4834afd2310902a4b9bc6716ba09b2c4609b8eb6",
-        "natural_option_input_manifest_sha256": "51c0f4ba57d93dade464b24e4834afd2310902a4b9bc6716ba09b2c4609b8eb6",
+        "full_replay_option_input_manifest_sha256": "d8667536875598a0d264acd3f4aac6bb833b13e2b0175f4e0f2281cb3297d4ac",
+        "natural_option_input_manifest_sha256": "d8667536875598a0d264acd3f4aac6bb833b13e2b0175f4e0f2281cb3297d4ac",
         "option_adapter_sha256": "06df0045f19b2579cadbd973716a1e3a9afbf16cc579ba96d61b6ac1a232770b",
         "production_replay_adapter_sha256": "c684b3d9ba193c866579f1c7501d2b78fe5bd3019ff15bbaad446022cf9c614e",
         "spx_em_history_sha256": "04e895611e612a4e4ac99b2a4ca4d5040b00766b23f26ac2fafb28ffb383cc98",
@@ -7708,11 +7730,11 @@
           "average_quantity": 8.29,
           "cumulative_return_pct": 100.6928,
           "daily_curve_maximum_drawdown_dollars": -2585.54,
-          "eligible_sessions": 429,
+          "eligible_sessions": 427,
           "ending_equity": 20069.28,
           "expectancy_ci_95": [
-            21.02,
-            190.59
+            20.64,
+            191.46
           ],
           "fee_components": {
             "cat": 4.31,
@@ -7742,11 +7764,11 @@
           "average_quantity": 10.49,
           "cumulative_return_pct": 217.6557,
           "daily_curve_maximum_drawdown_dollars": -1637.87,
-          "eligible_sessions": 429,
+          "eligible_sessions": 427,
           "ending_equity": 31765.57,
           "expectancy_ci_95": [
-            125.36,
-            323.98
+            127.62,
+            323.4
           ],
           "fee_components": {
             "cat": 5.3,
@@ -7776,11 +7798,11 @@
           "average_quantity": 10.49,
           "cumulative_return_pct": 178.2469,
           "daily_curve_maximum_drawdown_dollars": -1713.86,
-          "eligible_sessions": 429,
+          "eligible_sessions": 427,
           "ending_equity": 27824.69,
           "expectancy_ci_95": [
-            85.12,
-            281.6
+            86.93,
+            281.83
           ],
           "fee_components": {
             "cat": 5.3,
@@ -7815,8 +7837,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 10.62,
               "expectancy_ci_95": [
-                187.44,
-                591.95
+                188.69,
+                596.13
               ],
               "fee_components": {
                 "cat": 1.4,
@@ -7843,8 +7865,8 @@
               "assumed_slippage_cost": 1007.0,
               "average_quantity": 10.62,
               "expectancy_ci_95": [
-                147.25,
-                544.18
+                148.93,
+                549.76
               ],
               "fee_components": {
                 "cat": 1.4,
@@ -7871,8 +7893,8 @@
               "assumed_slippage_cost": 810.0,
               "average_quantity": 8.54,
               "expectancy_ci_95": [
-                -123.47,
-                323.48
+                -116.49,
+                320.95
               ],
               "fee_components": {
                 "cat": 1.23,
@@ -7905,8 +7927,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 10.67,
               "expectancy_ci_95": [
-                89.52,
-                608.23
+                96.03,
+                601.6
               ],
               "fee_components": {
                 "cat": 0.55,
@@ -7933,8 +7955,8 @@
               "assumed_slippage_cost": 384.0,
               "average_quantity": 10.67,
               "expectancy_ci_95": [
-                53.18,
-                556.89
+                58.28,
+                551.93
               ],
               "fee_components": {
                 "cat": 0.55,
@@ -7961,8 +7983,8 @@
               "assumed_slippage_cost": 280.0,
               "average_quantity": 8.75,
               "expectancy_ci_95": [
-                75.49,
-                484.19
+                77.52,
+                493.12
               ],
               "fee_components": {
                 "cat": 0.42,
@@ -7995,8 +8017,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 10.15,
               "expectancy_ci_95": [
-                -162.3,
-                474.52
+                -168.88,
+                468.29
               ],
               "fee_components": {
                 "cat": 0.75,
@@ -8023,8 +8045,8 @@
               "assumed_slippage_cost": 454.0,
               "average_quantity": 10.15,
               "expectancy_ci_95": [
-                -198.92,
-                441.35
+                -205.68,
+                432.03
               ],
               "fee_components": {
                 "cat": 0.75,
@@ -8051,8 +8073,8 @@
               "assumed_slippage_cost": 334.0,
               "average_quantity": 8.08,
               "expectancy_ci_95": [
-                -160.54,
-                364.31
+                -167.66,
+                363.28
               ],
               "fee_components": {
                 "cat": 0.58,
@@ -8085,8 +8107,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 11.73,
               "expectancy_ci_95": [
-                -110.03,
-                443.44
+                -118.92,
+                430.6
               ],
               "fee_components": {
                 "cat": 1.14,
@@ -8113,8 +8135,8 @@
               "assumed_slippage_cost": 1032.0,
               "average_quantity": 11.73,
               "expectancy_ci_95": [
-                -156.62,
-                394.06
+                -164.82,
+                379.23
               ],
               "fee_components": {
                 "cat": 1.14,
@@ -8141,8 +8163,8 @@
               "assumed_slippage_cost": 784.0,
               "average_quantity": 8.91,
               "expectancy_ci_95": [
-                -129.91,
-                272.17
+                -137.39,
+                262.6
               ],
               "fee_components": {
                 "cat": 0.99,
@@ -8175,8 +8197,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 9.5,
               "expectancy_ci_95": [
-                45.44,
-                194.89
+                47.21,
+                195.48
               ],
               "fee_components": {
                 "cat": 1.46,
@@ -8203,8 +8225,8 @@
               "assumed_slippage_cost": 1064.0,
               "average_quantity": 9.5,
               "expectancy_ci_95": [
-                8.96,
-                155.37
+                11.03,
+                156.11
               ],
               "fee_components": {
                 "cat": 1.46,
@@ -8231,8 +8253,8 @@
               "assumed_slippage_cost": 780.0,
               "average_quantity": 7.5,
               "expectancy_ci_95": [
-                20.08,
-                138.08
+                22.76,
+                138.73
               ],
               "fee_components": {
                 "cat": 1.09,
@@ -8345,18 +8367,18 @@
         "full_replay_trade_ledger": "24ba412cb0a80e3c68d5d3b29a46376b47acf7cb0fc2186e28e9e7468f7b4c34",
         "historical_cash_source": "c9f185acdb5e5ba0e8966460ab0c66dcc62652e254c1fa18b42fb952e486b400",
         "independent_fee_verifier": "c0c32404a4fc10eb544079e49544efb513ebc4a4dccb390bb2356bad45b90cb2",
-        "independent_verification": "511fa85c4d747019deb52df4871ba9a9705773ce08c5b137a47c065ebdb34bac",
+        "independent_verification": "1a7b5203f086d0c1c9da8e81b4247f3d10b15c518964d073ac44e9e219954344",
         "matched_trade_ledger": "a66539060faf2727f04a565a6b02887c11607b72452b18cf0ed5bf34d376b442",
         "natural_trade_ledger": "eb36690e3eaf0f9aa09a85b1eb5569dd50edc1d57f7d9ebe1712038514d03dcb",
-        "payload_builder": "d23e62c53b7390c38b62f78137d4f3d07609eb5a57820415b79bf6bfd171a233",
+        "payload_builder": "e978bbd9120424170d74d74c5374d18a672f0c18451019c7e6fee5ed9960db7e",
         "period_runner": "bb8730ecdea4b2a79fedce21e03df09e5996d128419600f5beeef2d6d47a3a7d",
         "prior_fixed_commission_scenario_results": "39f0d4a6456a47ac5c101467f6b49ab0021a579c2e18ff51d9dac0e84877158f",
         "prior_fixed_commission_verification": "47bdd69e81bbb680bccf274944cc58910402c59ca1396301d3951d1b3acce3c5",
-        "quote_quality_quote_requests": "ac196eab6a0673d4a59e641aa560b4564b018b0332bfb770564882b8dd5fec8b",
-        "quote_quality_reference": "f14074ec3029de592e676c60209a05ec43265d667ec3edf5e56e665955317e48",
-        "scenario_results": "6c904366dcef46e2186456e88d65c65064f6e8d61769b5cb755f920e13ab6737",
-        "session_admission": "3645719b6b792fde1b9c85b55a0171bf1dfb991a5c67066f0ad7a682d1cf0475",
-        "year_by_year": "0c71792e3ca9cf489be755eadf8aa6d624365bd521059d39aa31893682da4aaa"
+        "quote_quality_quote_requests": "c37b5b804a7621e8be9ad0659d8e6ed3dfc785132e4d6d69f0fc5ed344b69318",
+        "quote_quality_reference": "5c4d1745a06d287014a162aa1fe04dd66b30d37d41df6e37b065cc2eb93e4713",
+        "scenario_results": "b136c07bc225ff61ba2e50b1ef5cc3dbe1e0602446958aeb98b963d96335eab4",
+        "session_admission": "83b6c9d9493cbd4a7413baf9e3361cbcbc75f18557fe8f4b1de37cc67a25d87b",
+        "year_by_year": "d3f57f8379d53c800f200e3b4fed15411c06f607efa8a7dbea7732c0beb6d58c"
       },
       "start": "2025-01-02",
       "starting_equity": 10000.0,
@@ -8398,7 +8420,7 @@
       "candidate_end": "2026-09-22",
       "candidate_sessions": 932,
       "comparison_end": "2026-09-21",
-      "eligible_sessions": 928,
+      "eligible_sessions": 926,
       "equity_curves": {
         "adjusted_spy_buy_hold": [
           null,
@@ -11765,7 +11787,7 @@
           14361.19,
           14124.38,
           14378.71,
-          14378.71,
+          null,
           14378.71,
           14378.71,
           14496.24,
@@ -11867,7 +11889,7 @@
           14696.87,
           14696.87,
           15007.23,
-          15007.23,
+          null,
           15007.23,
           15007.23,
           15410.38,
@@ -12698,7 +12720,7 @@
           12468.41,
           12179.6,
           12401.93,
-          12401.93,
+          null,
           12401.93,
           12401.93,
           12491.46,
@@ -12800,7 +12822,7 @@
           12264.09,
           12264.09,
           12542.45,
-          12542.45,
+          null,
           12542.45,
           12542.45,
           12909.6,
@@ -13631,7 +13653,7 @@
           9813.88,
           9636.14,
           9780.09,
-          9780.09,
+          null,
           9780.09,
           9780.09,
           9844.04,
@@ -13733,7 +13755,7 @@
           9846.27,
           9846.27,
           10020.24,
-          10020.24,
+          null,
           10020.24,
           10020.24,
           10265.0,
@@ -14010,6 +14032,14 @@
           "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
         },
         {
+          "date": "2025-04-04",
+          "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
+        },
+        {
+          "date": "2025-09-02",
+          "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
+        },
+        {
           "date": "2026-08-26",
           "reason": "common-cohort exclusion: execution-relevant option quote gap or invalid quote"
         },
@@ -14021,6 +14051,8 @@
       "gap_dates": [
         "2023-06-05",
         "2023-10-19",
+        "2025-04-04",
+        "2025-09-02",
         "2026-08-26"
       ],
       "id": "2023_2026",
@@ -14078,12 +14110,13 @@
         "Alpaca's account-day fee rule is modeled by aggregating each fee type separately per account per day and rounding each total up to cents. Historical NBBO/leg quotes do not guarantee a complex-order fill or queue position.",
         "The prior $0.65 per contract per side model remains only as a separately verified sensitivity; it is not the primary fee basis and does not represent actual charges.",
         "Where leg-side minute quotes imply a negative net debit to close, signed vertical economics are retained and flagged; these quotes do not establish that a complex spread order would fill for a net credit.",
-        "Selected period: 928 eligible sessions of 932 candidate sessions; 4 candidate sessions were excluded or not evaluable.",
-        "Non-evaluable strategy dates in this selected period: 2023-06-05, 2023-10-19, 2026-08-26. These remain blank; no strategy P&L is interpolated.",
+        "Selected period: 926 eligible sessions of 932 candidate sessions; 6 candidate sessions were excluded or not evaluable.",
+        "Non-evaluable strategy dates in this selected period: 2023-06-05, 2023-10-19, 2025-04-04, 2025-09-02, 2026-08-26. These remain blank; no strategy P&L is interpolated.",
         "Historical option inputs contain timestamped bid/ask only. Quote size, depth and volume are unavailable, so displayed spreads do not establish executable capacity or market-wide liquidity.",
+        "The November 13, 2025 Scenario C R1 EM Bear trade was open from 10:55 to 13:31 ET; its long SPY 680 call had invalid/crossed quotes during 10:59\u201311:10 ET, so the price-based exit check could not update on those unusable observations. The replay later exited on a valid quote at 13:31 ET; treat this modeled path as sensitive to quote availability.",
         "The 2026 observations are year-to-date through September 21. September 22 is in candidate coverage but excluded from the common comparison endpoint.",
         "Aligned cash and adjusted-SPY benchmarks are unavailable: the retained verified adjusted-SPY source begins on the first session date and has no preceding adjusted close. No alternate or reconstructed baseline was substituted.",
-        "Selected Scenario C session-cluster expectancy interval: $1.74 to $94.19 per trade; it does not include zero. This is descriptive historical uncertainty, not prospective evidence.",
+        "Selected Scenario C session-cluster expectancy interval: $0.43 to $94.96 per trade; it does not include zero. This is descriptive historical uncertainty, not prospective evidence.",
         "R5VWAPB is excluded only from this hypothetical research portfolio and remains enabled in production."
       ],
       "pre_period_pnl_included": false,
@@ -14117,8 +14150,8 @@
           "valid_quote_observations": 16519
         },
         "2025": {
-          "authoritative_no_data_observations": 122,
-          "availability_pct": 99.3,
+          "authoritative_no_data_observations": 0,
+          "availability_pct": 99.94,
           "invalid_quote_observations": 12,
           "missing_quote_observations": 0,
           "option_bid_ask_spread_dollars": {
@@ -14127,8 +14160,8 @@
             "p75": 0.01
           },
           "quote_size_depth_or_volume_available": false,
-          "requested_contract_minute_observations": 19170,
-          "valid_quote_observations": 19036
+          "requested_contract_minute_observations": 18922,
+          "valid_quote_observations": 18910
         },
         "2026": {
           "authoritative_no_data_observations": 0,
@@ -14149,8 +14182,8 @@
         "captured_live_launcher_sha256": "862a949efa066aa739ccae72db7be395ca5f0958d430babe0ecb6a8490fcdc63",
         "captured_live_source_sha256": "696ffb84e3caae003e53aee97785eb7979c86be2fa2e1ab437ada2edd82f226e",
         "full_replay_input_adapter_sha256": "c684b3d9ba193c866579f1c7501d2b78fe5bd3019ff15bbaad446022cf9c614e",
-        "full_replay_option_input_manifest_sha256": "aaff377c0783766b91eb943b04da33acae45c9e4121cf16d953b24bbbcf99b86",
-        "natural_option_input_manifest_sha256": "aaff377c0783766b91eb943b04da33acae45c9e4121cf16d953b24bbbcf99b86",
+        "full_replay_option_input_manifest_sha256": "158b676f5b966dc2367ea4deee5bce9525702cbee7393dfbb71bfd2e5c0489a1",
+        "natural_option_input_manifest_sha256": "158b676f5b966dc2367ea4deee5bce9525702cbee7393dfbb71bfd2e5c0489a1",
         "option_adapter_sha256": "06df0045f19b2579cadbd973716a1e3a9afbf16cc579ba96d61b6ac1a232770b",
         "production_replay_adapter_sha256": "c684b3d9ba193c866579f1c7501d2b78fe5bd3019ff15bbaad446022cf9c614e",
         "spx_em_history_sha256": "04e895611e612a4e4ac99b2a4ca4d5040b00766b23f26ac2fafb28ffb383cc98",
@@ -14164,11 +14197,11 @@
           "average_quantity": 6.15,
           "cumulative_return_pct": 76.6744,
           "daily_curve_maximum_drawdown_dollars": -2294.93,
-          "eligible_sessions": 928,
+          "eligible_sessions": 926,
           "ending_equity": 17667.44,
           "expectancy_ci_95": [
-            1.74,
-            94.19
+            0.43,
+            94.96
           ],
           "fee_components": {
             "cat": 7.65,
@@ -14198,11 +14231,11 @@
           "average_quantity": 9.0,
           "cumulative_return_pct": 256.8688,
           "daily_curve_maximum_drawdown_dollars": -1810.26,
-          "eligible_sessions": 928,
+          "eligible_sessions": 926,
           "ending_equity": 35686.88,
           "expectancy_ci_95": [
-            84.06,
-            223.25
+            84.48,
+            219.44
           ],
           "fee_components": {
             "cat": 10.36,
@@ -14232,11 +14265,11 @@
           "average_quantity": 9.0,
           "cumulative_return_pct": 197.6217,
           "daily_curve_maximum_drawdown_dollars": -1894.26,
-          "eligible_sessions": 928,
+          "eligible_sessions": 926,
           "ending_equity": 29762.17,
           "expectancy_ci_95": [
-            49.72,
-            186.19
+            49.99,
+            182.48
           ],
           "fee_components": {
             "cat": 10.36,
@@ -14271,8 +14304,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 9.66,
               "expectancy_ci_95": [
-                150.49,
-                474.15
+                144.6,
+                474.68
               ],
               "fee_components": {
                 "cat": 2.49,
@@ -14299,8 +14332,8 @@
               "assumed_slippage_cost": 1442.0,
               "average_quantity": 9.66,
               "expectancy_ci_95": [
-                115.29,
-                432.8
+                110.74,
+                431.84
               ],
               "fee_components": {
                 "cat": 2.49,
@@ -14327,8 +14360,8 @@
               "assumed_slippage_cost": 978.0,
               "average_quantity": 6.55,
               "expectancy_ci_95": [
-                -65.01,
-                193.27
+                -68.17,
+                193.29
               ],
               "fee_components": {
                 "cat": 1.93,
@@ -14361,8 +14394,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 7.91,
               "expectancy_ci_95": [
-                -16.58,
-                301.01
+                -23.5,
+                295.46
               ],
               "fee_components": {
                 "cat": 1.39,
@@ -14389,8 +14422,8 @@
               "assumed_slippage_cost": 692.0,
               "average_quantity": 7.91,
               "expectancy_ci_95": [
-                -43.36,
-                263.26
+                -50.13,
+                256.65
               ],
               "fee_components": {
                 "cat": 1.39,
@@ -14417,8 +14450,8 @@
               "assumed_slippage_cost": 448.0,
               "average_quantity": 5.89,
               "expectancy_ci_95": [
-                -60.36,
-                181.41
+                -61.68,
+                180.88
               ],
               "fee_components": {
                 "cat": 0.99,
@@ -14451,8 +14484,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 9.72,
               "expectancy_ci_95": [
-                -146.99,
-                390.41
+                -147.26,
+                392.74
               ],
               "fee_components": {
                 "cat": 1.15,
@@ -14479,8 +14512,8 @@
               "assumed_slippage_cost": 607.0,
               "average_quantity": 9.72,
               "expectancy_ci_95": [
-                -184.96,
-                359.64
+                -183.11,
+                360.31
               ],
               "fee_components": {
                 "cat": 1.15,
@@ -14507,8 +14540,8 @@
               "assumed_slippage_cost": 372.0,
               "average_quantity": 6.29,
               "expectancy_ci_95": [
-                -102.73,
-                232.2
+                -101.79,
+                232.04
               ],
               "fee_components": {
                 "cat": 0.8,
@@ -14541,8 +14574,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 9.37,
               "expectancy_ci_95": [
-                -65.49,
-                266.36
+                -65.19,
+                266.88
               ],
               "fee_components": {
                 "cat": 2.59,
@@ -14569,8 +14602,8 @@
               "assumed_slippage_cost": 1612.0,
               "average_quantity": 9.37,
               "expectancy_ci_95": [
-                -103.25,
-                228.11
+                -103.61,
+                226.37
               ],
               "fee_components": {
                 "cat": 2.59,
@@ -14597,8 +14630,8 @@
               "assumed_slippage_cost": 1072.0,
               "average_quantity": 6.23,
               "expectancy_ci_95": [
-                -80.71,
-                119.4
+                -81.41,
+                118.74
               ],
               "fee_components": {
                 "cat": 2.09,
@@ -14631,8 +14664,8 @@
               "assumed_slippage_cost": 0.0,
               "average_quantity": 8.36,
               "expectancy_ci_95": [
-                37.45,
-                148.99
+                38.83,
+                148.05
               ],
               "fee_components": {
                 "cat": 2.74,
@@ -14659,8 +14692,8 @@
               "assumed_slippage_cost": 1572.0,
               "average_quantity": 8.36,
               "expectancy_ci_95": [
-                5.59,
-                112.95
+                6.65,
+                112.83
               ],
               "fee_components": {
                 "cat": 2.74,
@@ -14687,8 +14720,8 @@
               "assumed_slippage_cost": 968.0,
               "average_quantity": 5.76,
               "expectancy_ci_95": [
-                4.52,
-                80.95
+                5.92,
+                80.61
               ],
               "fee_components": {
                 "cat": 1.84,
@@ -14801,18 +14834,18 @@
         "full_replay_trade_ledger": "b8d44eae9167e29033819b8256f4f8e01ce75199a4e313f95d30c3c374164873",
         "historical_cash_source": "c9f185acdb5e5ba0e8966460ab0c66dcc62652e254c1fa18b42fb952e486b400",
         "independent_fee_verifier": "c0c32404a4fc10eb544079e49544efb513ebc4a4dccb390bb2356bad45b90cb2",
-        "independent_verification": "bafa7759ad213c8c25d437dd59a1b7076e75475f7031464321439b516ebd7bf1",
+        "independent_verification": "986b27a9cd59d1ef4b4fd66f7be9b06f198f35212dc870054284417c0316497d",
         "matched_trade_ledger": "bb879243ec60b3591543a980b5d7c894b5d8f32c2353ecf5d1c48d39ee2f22d2",
         "natural_trade_ledger": "79a1d718761c60704cba4db02c79a5545497ff908c8e3c8e9f657cabfab269c8",
-        "payload_builder": "d23e62c53b7390c38b62f78137d4f3d07609eb5a57820415b79bf6bfd171a233",
+        "payload_builder": "e978bbd9120424170d74d74c5374d18a672f0c18451019c7e6fee5ed9960db7e",
         "period_runner": "bb8730ecdea4b2a79fedce21e03df09e5996d128419600f5beeef2d6d47a3a7d",
         "prior_fixed_commission_scenario_results": "cd1feb5b2f81d5df91374075d822dbcbce354a43066cf4d0f5381e576fe0bcf4",
         "prior_fixed_commission_verification": "cc75a18de376b8183879bffc694a3386825dcb749185d966a6d038536334052d",
-        "quote_quality_quote_requests": "ac196eab6a0673d4a59e641aa560b4564b018b0332bfb770564882b8dd5fec8b",
-        "quote_quality_reference": "f14074ec3029de592e676c60209a05ec43265d667ec3edf5e56e665955317e48",
-        "scenario_results": "1d72bf8ada30883cbf7e9504023487709930f1971a3c12e3e86f5a8095321ce3",
-        "session_admission": "7462562711ccf2d6b257e695e4cce7d583e66db009a8ac725d0123cb242de5cf",
-        "year_by_year": "83fed6e4e8dc2a16abefa896e07499b017843d38df9fc6b396466d05d013020c"
+        "quote_quality_quote_requests": "c37b5b804a7621e8be9ad0659d8e6ed3dfc785132e4d6d69f0fc5ed344b69318",
+        "quote_quality_reference": "5c4d1745a06d287014a162aa1fe04dd66b30d37d41df6e37b065cc2eb93e4713",
+        "scenario_results": "f19903e21d872a4bb2cc84fe203d0430dbfb71beef8ced19dc9b47b599e2ba91",
+        "session_admission": "837ec1ab4324173e9e95e5a6a6024b212fcbae3dd9524fff1a0b5ef820c1e70d",
+        "year_by_year": "173c4f835f944b261b08fb629c239400779ef4739457b07d355e547be7934bc3"
       },
       "start": "2023-01-04",
       "starting_equity": 10000.0,

@@ -46,7 +46,7 @@ test("default 2024–2026 presentation highlights Scenario B and reconciles its 
   const {nodes,charts}=await runPage();
   assert.equal(charts.length,2);
   assert.match(nodes.coreStudyPeriod.textContent,/January 2024.*September 21, 2026/);
-  assert.match(nodes.coreStudyPeriod.textContent,/681 eligible of 683 candidate sessions/);
+  assert.match(nodes.coreStudyPeriod.textContent,/679 eligible of 683 candidate sessions/);
   assert.equal(nodes.coreScenarioBTrades.textContent,"133");
   assert.equal(nodes.coreScenarioBNetPnl.textContent,"+$23,451.07");
   assert.equal(nodes.coreScenarioBEndingEquity.textContent,"$33,451.07");
