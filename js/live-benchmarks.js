@@ -105,6 +105,148 @@ const FoxchaseBenchmarks = (() => {
       ]
     };
   }
+  function coreSlippageComparison(curves, study, spySource, cashSource) {
+    const fail = message => { throw new Error(message); };
+    const period = curves && curves.period, studyPeriod = study && study.period;
+    if (!period || !studyPeriod || curves.schema_version !== 1 ||
+        curves.classification !== "MODELED_CORE_CLOSED_TRADE_EQUITY" ||
+        curves.currency !== "USD" ||
+        !String(curves.curve_basis || "").includes("not intraday mark-to-market") ||
+        study.schema_version !== 1 || study.classification !== "MODELED_CORE_SLIPPAGE_REPLAY" ||
+        study.independent_verification !== "PASS") fail("core_curve_certificate_invalid");
+    const start = studyPeriod.start, candidateEnd = studyPeriod.end, comparisonEnd = curves.comparison_end;
+    if (period.start !== start || period.candidate_end !== candidateEnd ||
+        period.candidate_sessions !== studyPeriod.candidate_sessions ||
+        period.admitted_sessions !== studyPeriod.admitted_sessions ||
+        period.starting_equity !== 10000 || studyPeriod.starting_equity !== 10000 ||
+        candidateEnd !== "2026-09-22" || comparisonEnd !== "2026-09-21") fail("core_curve_period_mismatch");
+    const labels = curves.dates;
+    dates(labels);
+    if (labels[0] !== start || labels.at(-1) !== comparisonEnd ||
+        labels.length !== 931 || !Array.isArray(curves.not_evaluable_dates) ||
+        JSON.stringify(curves.not_evaluable_dates) !== JSON.stringify(["2023-06-05","2023-10-19","2026-08-26","2026-09-22"]) ||
+        JSON.stringify(curves.gap_dates) !== JSON.stringify(["2023-06-05","2023-10-19","2026-08-26"])) {
+      fail("core_curve_dates_or_gaps_invalid");
+    }
+    if (!spySource || spySource.status !== "VERIFIED_ADJUSTED_BENCHMARKS" ||
+        spySource.initial_value !== 10000 || spySource.adjustment !== "split_and_dividend" ||
+        spySource.normalization !== "starting_adjusted_close" ||
+        spySource.start !== start || spySource.end !== candidateEnd ||
+        !Array.isArray(spySource.daily) || spySource.daily.length !== period.candidate_sessions) {
+      fail("core_spy_source_invalid");
+    }
+    const candidateDates = spySource.daily.map(row => row.date);
+    dates(candidateDates);
+    if (candidateDates[0] !== start || candidateDates.at(-1) !== candidateEnd ||
+        JSON.stringify(candidateDates.slice(0, labels.length)) !== JSON.stringify(labels) ||
+        candidateDates[labels.length] !== candidateEnd) fail("core_spy_dates_mismatch");
+    const spyByDate = new Map(spySource.daily.map(row => [row.date, row.SPY]));
+    const spyStart = spyByDate.get(start);
+    if (!Number.isFinite(spyStart) || spyStart <= 0) fail("core_spy_start_invalid");
+    for (const date of labels) {
+      const value = spyByDate.get(date);
+      if (!Number.isFinite(value) || value <= 0) fail("core_spy_session_missing");
+    }
+    if (!cashSource || cashSource.schema !== "foxchase-historical-cash-v1" ||
+        cashSource.base_index !== 100 || cashSource.source_start !== start ||
+        cashSource.source_end !== candidateEnd ||
+        cashSource.cash?.series !== "UST_3MO_PAR" || cashSource.cash?.unit !== "annual_percent") {
+      fail("core_cash_source_invalid");
+    }
+    const cashIndex = cashSeries(labels, cashSource.cash.observations);
+    if (cashIndex.length !== labels.length || cashIndex[0] !== 100 ||
+        cashIndex.some(value => !Number.isFinite(value) || value <= 0)) fail("core_cash_series_invalid");
+
+    const studyRows = Array.isArray(study.scenarios) ? study.scenarios : [];
+    const curveRows = Array.isArray(curves.scenarios) ? curves.scenarios : [];
+    const studyScenarios = new Map(studyRows.map(row => [row.id, row]));
+    const curveScenarios = new Map(curveRows.map(row => [row.id, row]));
+    const years = ["2023","2024","2025","2026"];
+    if (studyRows.length !== 3 || curveRows.length !== 3 ||
+        studyScenarios.size !== 3 || curveScenarios.size !== 3 ||
+        !Array.isArray(study.yearly) || study.yearly.length !== years.length ||
+        study.yearly.some((row, index) => String(row.label).slice(0,4) !== years[index] ||
+          !["a_net_pnl","b_net_pnl","c_net_pnl"].every(field => Number.isFinite(row[field]))) ||
+        ["C","A","B"].some(id => !studyScenarios.has(id) || !curveScenarios.has(id))) {
+      fail("core_scenario_set_invalid");
+    }
+    const labelById = {C:"CORE Scenario C", A:"CORE Scenario A", B:"CORE Scenario B"};
+    const valuesById = {};
+    for (const id of ["C","A","B"]) {
+      const stats = studyScenarios.get(id), scenario = curveScenarios.get(id);
+      if (scenario.label !== labelById[id] && scenario.label !== stats.label) fail("core_scenario_label_invalid");
+      if (!Number.isInteger(stats.trades) || !Number.isFinite(stats.net_pnl) ||
+          !Number.isFinite(stats.maximum_drawdown_dollars) || !Number.isFinite(stats.net_profit_factor) ||
+          !Number.isInteger(scenario.trade_count) || scenario.trade_count !== stats.trades ||
+          !Number.isFinite(scenario.net_pnl) || !Number.isFinite(scenario.ending_equity) ||
+          !Number.isFinite(scenario.maximum_drawdown_dollars) || !Number.isFinite(scenario.net_profit_factor) ||
+          Math.abs(scenario.net_pnl - stats.net_pnl) > 0.011 ||
+          Math.abs(scenario.ending_equity - (10000 + stats.net_pnl)) > 0.011 ||
+          Math.abs(scenario.maximum_drawdown_dollars - stats.maximum_drawdown_dollars) > 0.011 ||
+          Math.abs(scenario.net_profit_factor - stats.net_profit_factor) > 0.00015 ||
+          !Array.isArray(scenario.daily) || scenario.daily.length !== labels.length) {
+        fail("core_scenario_summary_mismatch");
+      }
+      let prior = 10000, peak = prior, worstDrawdown = 0;
+      const yearly = new Map();
+      const values = [];
+      for (let index = 0; index < labels.length; index++) {
+        const point = scenario.daily[index], expectedDate = labels[index];
+        if (!point || point.date !== expectedDate) fail("core_scenario_dates_mismatch");
+        const shouldGap = curves.gap_dates.includes(expectedDate);
+        if (shouldGap) {
+          if (point.equity !== null) fail("core_scenario_gap_was_filled");
+          values.push(null);
+          continue;
+        }
+        if (typeof point.equity !== "number" || !Number.isFinite(point.equity) || point.equity <= 0 ||
+            (index === 0 && point.equity !== 10000)) {
+          fail("core_scenario_equity_invalid");
+        }
+        const change = point.equity - prior;
+        const year = expectedDate.slice(0,4);
+        yearly.set(year, (yearly.get(year) || 0) + change);
+        prior = point.equity;
+        peak = Math.max(peak, point.equity);
+        worstDrawdown = Math.min(worstDrawdown, point.equity - peak);
+        values.push(point.equity);
+      }
+      if (Math.abs(prior - scenario.ending_equity) > 0.011 ||
+          Math.abs(worstDrawdown - stats.maximum_drawdown_dollars) > 0.011) fail("core_scenario_equity_reconciliation_failed");
+      for (const row of study.yearly || []) {
+        const year = String(row.label).slice(0,4), field = id.toLowerCase() + "_net_pnl";
+        if (Math.abs((yearly.get(year) || 0) - row[field]) > 0.011) fail("core_scenario_yearly_reconciliation_failed");
+      }
+      valuesById[id] = values;
+    }
+    const spyUsd = labels.map(date => 10000 * spyByDate.get(date) / spyStart);
+    const cashUsd = cashIndex.map(value => 10000 * value / 100);
+    const toIndex = values => values.map(value => value === null ? null : 100 * value / 10000);
+    const cEquity = valuesById.C.at(-1);
+    const cEnd = cEquity;
+    const strategyReturn = 100 * (cEnd / 10000 - 1);
+    const cashReturn = cashIndex.at(-1) - 100;
+    const spyReturn = 100 * (spyUsd.at(-1) / 10000 - 1);
+    const benchmarkDatasets = [
+      {label:labelById.C, data:toIndex(valuesById.C)},
+      {label:"Risk-Free / Cash", data:toIndex(cashUsd)},
+      {label:"SPY Buy & Hold (adjusted)", data:toIndex(spyUsd)},
+    ];
+    const portfolioDatasets = [
+      {label:labelById.C, data:valuesById.C},
+      {label:labelById.A, data:valuesById.A},
+      {label:labelById.B, data:valuesById.B},
+      {label:"Risk-Free / Cash", data:cashUsd},
+      {label:"SPY Buy & Hold (adjusted)", data:spyUsd},
+    ];
+    return {
+      labels, candidate_end:candidateEnd, comparison_end:comparisonEnd,
+      gap_dates:curves.gap_dates, strategy_return_pct:strategyReturn,
+      cash_return_pct:cashReturn, excess_return_pp:strategyReturn-cashReturn,
+      spy_return_pct:spyReturn, benchmark_datasets:benchmarkDatasets,
+      portfolio_datasets:portfolioDatasets,
+    };
+  }
   function historicalComparison(data, source) {
     const labels = data && data.dates;
     dates(labels);
@@ -146,6 +288,6 @@ const FoxchaseBenchmarks = (() => {
       {label:"SPY Buy & Hold",data:spy.values.map(value=>100*value/data.initial_value),borderColor:"#666666",borderWidth:2,borderDash:[6,4],pointRadius:0,tension:0}
     ]};
   }
-  return {cashSeries,spySeries,compare,historicalComparison};
+  return {cashSeries,spySeries,compare,coreSlippageComparison,historicalComparison};
 })();
 if (typeof module !== "undefined" && module.exports) module.exports = FoxchaseBenchmarks;

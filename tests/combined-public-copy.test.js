@@ -3,7 +3,7 @@ const test=require("node:test"),assert=require("node:assert/strict"),fs=require(
 const {root,text,read,fixture}=require("./research-fixture");
 const renderer=require("../js/algo-pnl-research-integrity.js");
 
-test("corrected Intraday updates only the main backtest while the portfolio chart stays intact",()=>{
+test("prior combined CORE+EX research stays available only in the collapsed archive",()=>{
   const chart=read("data/historical_comparison_20261013.json"),portfolio=read("data/historical_comparison_20261003.json"),page=text("algo-pnl.html");
   assert.deepEqual(chart.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
   assert.deepEqual(portfolio.series.map(s=>s.label),["Foxchase Intraday","Foxchase Multi-Day","Foxchase Combined","SPY Buy & Hold"]);
@@ -15,7 +15,9 @@ test("corrected Intraday updates only the main backtest while the portfolio char
   assert.match(page,/historical_comparison_20261013/);
   assert.doesNotMatch(page,/selected_ex_historical_comparison_20261013|Selected EX/);
   assert.doesNotMatch(page,/Modeled portfolio comparison|Spread \+ EX|modelCombinedPnl/);
-  assert.match(page,/authoritative combined replay/);
+  assert.match(page,/Archived Research — previous combined CORE\+EX and Multi-Day models/);
+  assert.match(page,/prior combined CORE\+EX model, including its \+924\.14% figure, is not the current primary CORE benchmark/);
+  assert.doesNotMatch(page.slice(0,page.indexOf('id="archivedCombinedResearch"')),/\+924\.14%/);
   assert.match(page,/corrected commissioned EX sleeve only/);
 });
 
@@ -47,16 +49,14 @@ test("concise limitations preserve material transparency without internal commen
   assert.match(text("algo-pnl.html"),/not actual account equity/);
 });
 
-test("backtest references the full Treasury methodology without repeating it",()=>{
+test("current CORE benchmark references the full Treasury methodology once",()=>{
   const page=text("algo-pnl.html");
   assert.equal((page.match(/BC_3MONTH/g)||[]).length,1);
   assert.equal((page.match(/yield percentage ÷ 100 ÷ 365/g)||[]).length,1);
-  assert.match(page,/id="benchmarkMethodology"/);
+  assert.match(page,/id="coreBenchmarkMethodology"/);
   const note=page.match(/<details[^>]*id="historicalBenchmarkMethodology"[^>]*>([\s\S]*?)<\/details>/)[1];
-  assert.match(note,/href="#benchmarkMethodology"/);
-  assert.match(note,/independently aligned.*validated backtest period.*without rebasing/);
-  assert.match(note,/dividend- and split-adjusted historical series/);
-  assert.match(note,/Unsupported Treasury intervals.*unavailable/);
+  assert.match(note,/href="#coreBenchmarkMethodology"/);
+  assert.match(note,/independently aligned to the archived comparison period/);
   assert.doesNotMatch(note,/BC_3MONTH|÷ 365|primary benchmark|secondary reference/);
   assert.match(page,/latest prior-dated observation.*at most seven calendar days/);
   assert.match(page,/Longer gaps make cash and excess return unavailable; rates are not backfilled or substituted/);

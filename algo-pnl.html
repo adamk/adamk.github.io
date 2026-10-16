@@ -3,7 +3,7 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
-  <script src="/js/live-benchmarks.js?v=20261013-intraday-r2"></script>
+  <script src="/js/live-benchmarks.js?v=20261015-core-primary-r1"></script>
   <script>
 function setTextIfExists(id, value) {
   const el = document.getElementById(id);
@@ -165,6 +165,10 @@ function setTextIfExists(id, value) {
     .research-limitations { border-top:1px solid #dfe3e8; margin-top:24px; padding-top:16px; }
     .research-limitations h3 { font-size:17px; font-weight:600; margin:0; }
     .core-slippage-section { border-top:1px solid #dfe3e8; margin-top:30px; padding-top:20px; }
+    .archived-research { margin:34px 0 10px; padding:18px; border:1px solid #d8dde2; border-radius:10px; background:#f8f9fb; }
+    .archived-research > summary { color:#354052; font-weight:700; cursor:pointer; }
+    .archived-research[open] > summary { margin-bottom:14px; }
+    .archived-research section { margin-top:20px; }
     .core-scenario-card-primary { border:2px solid #234a76; background:#f7f9fc; }
     .core-scenario-card h4 { margin:0; font-size:17px; line-height:1.35; }
     .core-scenario-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin:16px 0 0; }
@@ -624,30 +628,7 @@ function setTextIfExists(id, value) {
     </section>
 
     <h2>Historical Strategy Research</h2>
-    <p class="small" id="researchPeriod">Loading historical research details…</p>
-    <p class="small">Historical results below are simulated research, separate from live trading. They do not establish verified live performance.</p>
-
-    <section aria-labelledby="backtestIntegrityTitle">
-      <h3 id="backtestIntegrityTitle">Backtest Integrity</h3>
-      <div class="research-metrics integrity-grid">
-        <div class="research-card"><div class="research-label">Data coverage</div><div class="research-value" id="researchCoverage">—</div><p class="research-detail" id="researchCoveragePct">—</p></div>
-        <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Separate component cohorts; missing outcomes remain unknown.</p></div>
-        <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Frozen modeled research rules.</p></div>
-        <div class="research-card"><div class="research-label">Transaction costs</div><div class="research-value" id="researchCostBasis">—</div></div>
-      </div>
-      <p class="small" id="researchScope"></p>
-      <p class="small" id="researchExecutionBasis"></p>
-      <p class="small" id="researchDataStatus" aria-live="polite"></p>
-    </section>
-    <div class="research-metrics" id="intradayResearchMetrics">
-      <div class="research-card"><div class="research-label">Trades</div><div class="research-value" id="researchTrades">—</div></div>
-      <div class="research-card"><div class="research-label">Gross P&amp;L</div><div class="research-value" id="researchGrossPnl">—</div></div>
-      <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value" id="researchWinRate">—</div></div>
-      <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value" id="researchProfitFactor">—</div></div>
-      <div class="research-card"><div class="research-label">Annualized Daily Sharpe</div><div class="research-value" id="researchSharpe">—</div></div>
-      <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
-    </div>
-    <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Corrected commissioned EX sleeve: <strong id="researchEXTrades">—</strong> modeled trades.</p>
+    <p class="small">Current primary comparison: the five-signal CORE portfolio under Scenario C full live-sequence slippage replay. All results are historical modeled performance, not actual brokerage executions or verified live-account performance.</p>
     <section class="core-slippage-section" id="coreSlippageResearch" aria-labelledby="coreSlippageTitle">
       <h3 id="coreSlippageTitle">Core Spread Slippage Study</h3>
       <p class="small" id="coreStudyPeriod">Loading the independently verified historical CORE replay…</p>
@@ -722,88 +703,159 @@ function setTextIfExists(id, value) {
             <tr><th id="coreYear2023Label" scope="row">2023</th><td id="coreYear2023A">—</td><td id="coreYear2023B">—</td><td id="coreYear2023C">—</td></tr>
             <tr><th id="coreYear2024Label" scope="row">2024</th><td id="coreYear2024A">—</td><td id="coreYear2024B">—</td><td id="coreYear2024C">—</td></tr>
             <tr><th id="coreYear2025Label" scope="row">2025</th><td id="coreYear2025A">—</td><td id="coreYear2025B">—</td><td id="coreYear2025C">—</td></tr>
-            <tr><th id="coreYear2026Label" scope="row">2026 YTD through Sep 22</th><td id="coreYear2026A">—</td><td id="coreYear2026B">—</td><td id="coreYear2026C">—</td></tr>
+            <tr><th id="coreYear2026Label" scope="row">2026 YTD through Sep 22 candidate coverage (Sep 22 excluded)</th><td id="coreYear2026A">—</td><td id="coreYear2026B">—</td><td id="coreYear2026C">—</td></tr>
           </tbody>
         </table>
       </div>
       <ul class="small">
-        <li>All values are historical modeled trades from January 2023 through September 22, 2026, beginning with normalized $10,000 equity. They are not actual live-account P&amp;L or production-equivalent realized performance.</li>
+        <li>All values are historical modeled trades from January 2023 through the September 22, 2026 candidate period; September 22 was not evaluable and is excluded from admitted sessions and the common-end curves. The normalized starting equity is $10,000. These results are not actual live-account P&amp;L or production-equivalent realized performance.</li>
         <li>Scenarios B and C model $0.01 adverse slippage per option leg per side at execution. Assumed commissions are $0.65 per contract per side ($2.60 per completed vertical-spread contract quantity). These are research assumptions, not actual brokerage executions, fees, or fill records. Historical quotes do not guarantee executable fills or queue position.</li>
         <li>Portfolio arbitration affects which trades are accepted. <span id="coreStudyDataQuality">—</span></li>
         <li>Historical quote availability and quality are incomplete. Positive modeled P&amp;L does not establish a statistically reliable trading edge.</li>
       </ul>
       <p class="small" id="coreSlippageDataStatus" aria-live="polite"></p>
     </section>
-    <section aria-labelledby="historicalBenchmarkTitle">
-      <h3 id="historicalBenchmarkTitle">Backtest benchmark comparison</h3>
-      <p class="small">Benchmark returns over the validated Intraday research period.</p>
-      <div class="research-metrics" id="historicalBenchmarkRows">
-        <div class="research-card"><div class="research-label">Backtest Strategy Return</div><div class="research-value" id="backtestStrategyReturn">—</div></div>
-        <div class="research-card"><div class="research-label">Risk-Free / Cash · primary</div><div class="research-value" id="backtestCashReturn">—</div></div>
-        <div class="research-card"><div class="research-label">Excess Return over Cash</div><div class="research-value" id="backtestExcessReturn">—</div></div>
-        <div class="research-card"><div class="research-label">SPY Buy &amp; Hold · secondary</div><div class="research-value" id="backtestSPYReturn">—</div></div>
+    <section aria-labelledby="coreBenchmarkTitle" id="coreBenchmarkComparison">
+      <h3 id="coreBenchmarkTitle">CORE benchmark comparison</h3>
+      <p class="small">Common validated endpoint: September 21, 2026. The research candidate period extends through September 22, 2026, but that session was not evaluable and is excluded from these comparisons. Each series starts at normalized $10,000.</p>
+      <div class="research-table-wrap" role="region" aria-label="CORE benchmark returns through September 21, 2026" tabindex="0">
+        <table class="research-table">
+          <caption class="visually-hidden">CORE Scenario C, cash, excess return and adjusted SPY common-end benchmark returns</caption>
+          <thead><tr><th scope="col">Metric</th><th scope="col">Return</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Foxchase CORE — Scenario C</th><td id="coreBenchmarkStrategyReturn">—</td></tr>
+            <tr><th scope="row">Risk-Free / Cash</th><td id="coreBenchmarkCashReturn">—</td></tr>
+            <tr><th scope="row">Excess Return over Cash</th><td id="coreBenchmarkExcessReturn">—</td></tr>
+            <tr><th scope="row">SPY Buy &amp; Hold (adjusted)</th><td id="coreBenchmarkSPYReturn">—</td></tr>
+          </tbody>
+        </table>
       </div>
       <div class="historical-scale-control">
-        <label for="backtestScale">Backtest chart scale</label>
-        <select id="backtestScale" aria-describedby="backtestScaleStatus">
+        <label for="coreBenchmarkScale">Benchmark chart scale</label>
+        <select id="coreBenchmarkScale" aria-describedby="coreBenchmarkScaleStatus">
           <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
         </select>
       </div>
-      <p class="small" id="backtestScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
+      <p class="small" id="coreBenchmarkScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
-      <canvas id="backtestBenchmarkChart" style="height:100% !important;" aria-label="Historical normalized comparison: Foxchase Intraday, Risk-Free Cash primary benchmark, and SPY Buy and Hold secondary reference, all starting at 100"></canvas>
+        <canvas id="coreBenchmarkChart" style="height:100% !important;" aria-label="CORE Scenario C cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100 through September 21, 2026"></canvas>
       </div>
-      <p class="small" id="historicalBenchmarkStatus" aria-live="polite">Loading independently aligned historical benchmarks…</p>
-      <details class="small" id="benchmarkMethodology"><summary>Historical benchmark methodology</summary>
+      <p class="small" id="coreBenchmarkStatus" aria-live="polite">Loading independently aligned CORE, Treasury and adjusted SPY comparisons…</p>
+      <details class="small" id="coreBenchmarkMethodology"><summary>CORE benchmark methodology</summary>
         <p>For historical comparisons, cash uses the U.S. Treasury’s daily 3-month par yield (BC_3MONTH). Annual yield percentage ÷ 100 ÷ 365 accrues and compounds by calendar day. Each day uses the latest prior-dated observation, carried for at most seven calendar days, including weekends and holidays. Longer gaps make cash and excess return unavailable; rates are not backfilled or substituted.</p>
-        <p>Historical comparisons use their own validated dates, with all indices starting at 100 and no rebasing. Cash is an accrual proxy, not an investable total-return index or guarantee of realized return; it excludes taxes, fees and Treasury price changes. Excess return is strategy cumulative return minus cash cumulative return, in percentage points.</p>
-        <p>SPY uses Alpaca’s dividend- and split-adjusted SIP prices, normalized to the first date’s close. Nontrading dates carry the prior session’s price. Missing required observations make the SPY comparison unavailable.</p>
+        <p>Strategy, cash and adjusted SPY series share the validated January 4, 2023 start and September 21, 2026 endpoint. Cash is an accrual proxy, not an investable total-return index or guarantee of realized return; it excludes taxes, fees and Treasury price changes. Excess return is strategy cumulative return minus cash cumulative return, in percentage points.</p>
+        <p>SPY uses Alpaca’s dividend- and split-adjusted SIP prices, normalized to the first date’s adjusted close. Missing required observations make the SPY comparison unavailable.</p>
         <p>Sources: <a href="https://home.treasury.gov/treasury-daily-interest-rate-xml-feed">U.S. Treasury daily rates</a> and <a href="https://docs.alpaca.markets/reference/stockbars">Alpaca historical stock bars</a>.</p>
       </details>
-      <details class="small" id="historicalBenchmarkMethodology"><summary>Backtest benchmark methodology</summary>
-        <p>Uses the <a href="#benchmarkMethodology">historical Treasury/cash methodology described above</a>, independently aligned to the validated backtest period shown above, without rebasing. SPY retains the existing dividend- and split-adjusted historical series. Unsupported Treasury intervals leave cash and excess return unavailable.</p>
-      </details>
     </section>
-    <p class="small">The corrected Intraday result above is the authoritative combined replay. The retired prior portfolio attribution is not comparable and is not displayed.</p>
-    <h3>Historical portfolio-value comparison</h3>
-    <p class="small">Hypothetical portfolios start at $10,000 with no deposits. Intraday includes modeled EX research; Multi-Day is standalone longer-duration research with daily marks. Intraday and Combined position sizes compound with modeled equity: gains and losses affect the size of subsequent trades. Later positions can be materially larger. These values are not actual account equity.</p>
-    <p class="small">Combined is a single-account replay of current Intraday and Multi-Day research under shared capital and risk constraints, not a sum of independently compounded curves. It ends at the last jointly validated date.</p>
-    <p class="small">Intraday excludes commissions, fees and additional slippage. Multi-Day includes modeled costs; Combined inherits each component’s treatment. Full broker fees, capacity and market impact are not modeled.</p>
-    <div class="historical-comparison-controls" role="group" aria-label="Historical comparison series">
-      <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
-      <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
-      <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c77724" checked>Foxchase Combined <small>(through Aug 25)</small></label>
-      <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
-    </div>
+    <section aria-labelledby="corePortfolioTitle" id="corePortfolioComparison">
+      <h3 id="corePortfolioTitle">Historical CORE scenario equity curves</h3>
+      <p class="small">Daily cumulative modeled closed-trade equity from independently verified trade ledgers, normalized to $10,000, through September 21, 2026. These are closed-trade equity curves, not intraday mark-to-market account equity. The three earlier non-evaluable strategy dates remain visible as gaps; no strategy values are interpolated.</p>
     <div class="historical-scale-control">
-      <label for="historicalScale">Chart scale</label>
-      <select id="historicalScale" aria-describedby="historicalScaleStatus">
-        <option value="linear">Linear</option>
-        <option value="logarithmic">Logarithmic</option>
-      </select>
+        <label for="corePortfolioScale">CORE portfolio chart scale</label>
+        <select id="corePortfolioScale" aria-describedby="corePortfolioScaleStatus">
+          <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
+        </select>
     </div>
-    <p class="small" id="historicalScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
-    <div class="chart-box research-chart-box" style="height:390px;">
-      <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Historical hypothetical portfolio values starting at $10,000"></canvas>
-    </div>
-    <p class="small" id="historicalComparisonStatus">Loading historical comparison…</p>
-    <p class="small"><span id="researchTradeSummary">—</span> Daily closing research values. Corrected commissioned EX coverage runs through September 21, 2026; Multi-Day and Combined remain through August 25, 2026.</p>
-    <div class="research-table-wrap"><table class="research-table">
-      <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">2023</th><td id="researchYear2023Trades">—</td><td id="researchYear2023Pnl">—</td></tr>
-        <tr><th scope="row">2024</th><td id="researchYear2024Trades">—</td><td id="researchYear2024Pnl">—</td></tr>
-        <tr><th scope="row">2025</th><td id="researchYear2025Trades">—</td><td id="researchYear2025Pnl">—</td></tr>
-        <tr><th scope="row">2026 through Sep 22</th><td id="researchYear2026Trades">—</td><td id="researchYear2026Pnl">—</td></tr>
-      </tbody>
-    </table></div>
-    <section class="research-limitations" aria-labelledby="researchLimitationsTitle">
-      <h3 id="researchLimitationsTitle">Research Limitations</h3>
-      <p class="small" id="researchLimitations">Historical results are simulated research, separate from live trading and not verified live performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.</p>
+      <p class="small" id="corePortfolioScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
+      <div class="chart-box research-chart-box" style="height:390px;">
+        <canvas id="corePortfolioChart" style="height:100% !important;" aria-label="Daily cumulative closed-trade CORE Scenario C, Scenario A, Scenario B, cash and adjusted SPY equity curves, all starting at $10,000"></canvas>
+      </div>
+      <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE scenario curves…</p>
     </section>
+
+    <details class="archived-research" id="archivedCombinedResearch">
+      <summary>Archived Research — previous combined CORE+EX and Multi-Day models</summary>
+      <p class="small">These older results and charts are retained for historical reference only. The prior combined CORE+EX model, including its +924.14% figure, is not the current primary CORE benchmark. The archived material retains the earlier commissioned EX research and multi-day comparisons; it is separate from the current CORE study and from actual brokerage P&amp;L.</p>
+      <p class="small" id="researchPeriod">Loading archived research details…</p>
+      <p class="small">Historical results below are simulated research, separate from live trading. They do not establish verified live performance.</p>
+      <section aria-labelledby="backtestIntegrityTitle">
+        <h3 id="backtestIntegrityTitle">Archived Backtest Integrity</h3>
+        <div class="research-metrics integrity-grid">
+          <div class="research-card"><div class="research-label">Data coverage</div><div class="research-value" id="researchCoverage">—</div><p class="research-detail" id="researchCoveragePct">—</p></div>
+          <div class="research-card"><div class="research-label">Coverage exclusions</div><div class="research-value" id="researchUnresolved">—</div><p class="research-detail">Separate component cohorts; missing outcomes remain unknown.</p></div>
+          <div class="research-card" id="researchRulesetCard"><div class="research-label">Historical ruleset</div><div class="research-value" id="researchRuleset">—</div><p class="research-detail">Frozen modeled research rules.</p></div>
+          <div class="research-card"><div class="research-label">Transaction costs</div><div class="research-value" id="researchCostBasis">—</div></div>
+        </div>
+        <p class="small" id="researchScope"></p>
+        <p class="small" id="researchExecutionBasis"></p>
+        <p class="small" id="researchDataStatus" aria-live="polite"></p>
+      </section>
+      <div class="research-metrics" id="intradayResearchMetrics">
+        <div class="research-card"><div class="research-label">Trades</div><div class="research-value" id="researchTrades">—</div></div>
+        <div class="research-card"><div class="research-label">Gross P&amp;L</div><div class="research-value" id="researchGrossPnl">—</div></div>
+        <div class="research-card"><div class="research-label">Win Rate</div><div class="research-value" id="researchWinRate">—</div></div>
+        <div class="research-card"><div class="research-label">Profit Factor</div><div class="research-value" id="researchProfitFactor">—</div></div>
+        <div class="research-card"><div class="research-label">Annualized Daily Sharpe</div><div class="research-value" id="researchSharpe">—</div></div>
+        <div class="research-card"><div class="research-label">Maximum Drawdown</div><div class="research-value" id="researchDrawdown">—</div></div>
+      </div>
+      <p class="small">Core intraday spreads: <strong id="researchCoreTrades">—</strong> trades · Corrected commissioned EX sleeve: <strong id="researchEXTrades">—</strong> modeled trades.</p>
+      <section aria-labelledby="historicalBenchmarkTitle">
+        <h3 id="historicalBenchmarkTitle">Archived combined CORE+EX benchmark comparison</h3>
+        <p class="small">Archived benchmark returns over the prior combined CORE+EX research period. These values are not the current primary CORE comparison.</p>
+        <div class="research-metrics" id="historicalBenchmarkRows">
+          <div class="research-card"><div class="research-label">Archived Backtest Strategy Return</div><div class="research-value" id="backtestStrategyReturn">—</div></div>
+          <div class="research-card"><div class="research-label">Risk-Free / Cash · archived</div><div class="research-value" id="backtestCashReturn">—</div></div>
+          <div class="research-card"><div class="research-label">Excess Return over Cash · archived</div><div class="research-value" id="backtestExcessReturn">—</div></div>
+          <div class="research-card"><div class="research-label">SPY Buy &amp; Hold · archived</div><div class="research-value" id="backtestSPYReturn">—</div></div>
+        </div>
+        <div class="historical-scale-control">
+          <label for="backtestScale">Archived benchmark chart scale</label>
+          <select id="backtestScale" aria-describedby="backtestScaleStatus">
+            <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
+          </select>
+        </div>
+        <p class="small" id="backtestScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
+        <div class="chart-box research-chart-box" style="height:390px;">
+          <canvas id="backtestBenchmarkChart" style="height:100% !important;" aria-label="Archived combined CORE+EX normalized benchmark comparison with cash and SPY"></canvas>
+        </div>
+        <p class="small" id="historicalBenchmarkStatus" aria-live="polite">Archived benchmark comparison is not loaded until opened.</p>
+        <details class="small" id="benchmarkMethodology"><summary>Historical benchmark methodology</summary>
+        <p>The archived comparison uses the prior validation window and the historical Treasury and adjusted SPY sources retained in the archive. The full calculation and source notes are available in the <a href="#coreBenchmarkMethodology">current CORE benchmark methodology</a>; these archived returns are not aligned to the current September 21, 2026 endpoint.</p>
+        </details>
+        <details class="small" id="historicalBenchmarkMethodology"><summary>Archived benchmark methodology</summary>
+        <p>Uses the historical Treasury/cash methodology described in the <a href="#coreBenchmarkMethodology">current CORE benchmark methodology</a>, independently aligned to the archived comparison period. These archived sources are retained for historical reference only.</p>
+        </details>
+      </section>
+      <h3>Archived historical portfolio-value comparison</h3>
+      <p class="small">These previous hypothetical portfolios start at $10,000 with no deposits. Intraday includes modeled EX research; Multi-Day is standalone longer-duration research with daily marks. Intraday and Combined position sizes compound with modeled equity. These archived values are not actual account equity and are not the current primary CORE performance comparison.</p>
+      <p class="small">Combined is a single-account replay of the prior Intraday and Multi-Day research under shared capital and risk constraints, not a sum of independently compounded curves. It ends at the last jointly validated date.</p>
+      <p class="small">Intraday excludes commissions, fees and additional slippage. Multi-Day includes modeled costs; Combined inherits each component’s treatment. Full broker fees, capacity and market impact are not modeled.</p>
+      <div class="historical-comparison-controls" role="group" aria-label="Archived historical comparison series">
+        <label><input type="checkbox" data-comparison-series="Foxchase Intraday" style="accent-color:#234a76" checked>Foxchase Intraday</label>
+        <label><input type="checkbox" data-comparison-series="Foxchase Multi-Day" style="accent-color:#2f855a">Foxchase Multi-Day <small>(through Aug 25)</small></label>
+        <label><input type="checkbox" data-comparison-series="Foxchase Combined" style="accent-color:#c77724" checked>Foxchase Combined <small>(through Aug 25)</small></label>
+        <label><input type="checkbox" data-comparison-series="SPY Buy &amp; Hold" style="accent-color:#666" checked>SPY Buy &amp; Hold</label>
+      </div>
+      <div class="historical-scale-control">
+        <label for="historicalScale">Archived portfolio chart scale</label>
+        <select id="historicalScale" aria-describedby="historicalScaleStatus">
+          <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
+        </select>
+      </div>
+      <p class="small" id="historicalScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
+      <div class="chart-box research-chart-box" style="height:390px;">
+        <canvas id="historicalComparisonChart" style="height:100% !important;" aria-label="Archived historical hypothetical portfolio values starting at $10,000"></canvas>
+      </div>
+      <p class="small" id="historicalComparisonStatus">Archived historical comparison is not loaded until opened.</p>
+      <p class="small"><span id="researchTradeSummary">—</span> Daily closing research values. Corrected commissioned EX coverage runs through September 21, 2026; Multi-Day and Combined remain through August 25, 2026.</p>
+      <div class="research-table-wrap"><table class="research-table">
+        <thead><tr><th scope="col">Year</th><th scope="col">Trades</th><th scope="col">Gross P&amp;L</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">2023</th><td id="researchYear2023Trades">—</td><td id="researchYear2023Pnl">—</td></tr>
+          <tr><th scope="row">2024</th><td id="researchYear2024Trades">—</td><td id="researchYear2024Pnl">—</td></tr>
+          <tr><th scope="row">2025</th><td id="researchYear2025Trades">—</td><td id="researchYear2025Pnl">—</td></tr>
+          <tr><th scope="row">2026 through Sep 22</th><td id="researchYear2026Trades">—</td><td id="researchYear2026Pnl">—</td></tr>
+        </tbody>
+      </table></div>
+      <section class="research-limitations" aria-labelledby="researchLimitationsTitle">
+        <h3 id="researchLimitationsTitle">Archived Research Limitations</h3>
+        <p class="small" id="researchLimitations">Historical results are simulated research, separate from live trading and not verified live performance, using the corrected commissioned EX sleeve only, modeled execution and retrospective sizing. Missing inputs remain unknown and are not synthesized. Results do not fully reproduce live market conditions, broker execution, liquidity, capacity or market impact and do not guarantee future performance.</p>
+      </section>
+    </details>
   </div>
 
-  <script src="/js/algo-pnl-research-integrity.js?v=20261015-core-slippage-r1"></script>
+  <script src="/js/algo-pnl-research-integrity.js?v=20261015-core-primary-r1"></script>
   <script>
     let chartLibraryPromise = null;
     function loadChartLibrary() {
@@ -819,6 +871,118 @@ function setTextIfExists(id, value) {
         });
       }
       return chartLibraryPromise;
+    }
+    function loadCorePrimaryComparison() {
+      const status = document.getElementById("coreBenchmarkStatus");
+      const portfolioStatus = document.getElementById("corePortfolioStatus");
+      return Promise.all([
+        fetch("/data/core_slippage_equity_curves_20261015.json?v=20261015-core-curves-r1").then(response => {
+          if (!response.ok) throw new Error("CORE daily curves unavailable");
+          return response.json();
+        }),
+        fetch("/data/core_slippage_replay_20261015.json?v=20261015-core-study-r1").then(response => {
+          if (!response.ok) throw new Error("CORE source study unavailable");
+          return response.json();
+        }),
+        fetch("/data/benchmark_research_20261003.json?v=20261003-adjusted-spy-r1").then(response => {
+          if (!response.ok) throw new Error("Adjusted SPY data unavailable");
+          return response.json();
+        }),
+        fetch("/data/historical-cash-benchmark.json", { cache:"no-store" }).then(response => {
+          if (!response.ok) throw new Error("Treasury cash data unavailable");
+          return response.json();
+        }),
+        loadChartLibrary()
+      ]).then(([curves, study, spySource, cashSource, ChartLibrary]) => {
+        const comparison = FoxchaseBenchmarks.coreSlippageComparison(curves, study, spySource, cashSource);
+        const percent = value => (value > 0 ? "+" : "") + value.toFixed(4) + "%";
+        const points = value => (value > 0 ? "+" : "") + value.toFixed(4) + " pp";
+        setTextIfExists("coreBenchmarkStrategyReturn", percent(comparison.strategy_return_pct));
+        setTextIfExists("coreBenchmarkCashReturn", percent(comparison.cash_return_pct));
+        setTextIfExists("coreBenchmarkExcessReturn", points(comparison.excess_return_pp));
+        setTextIfExists("coreBenchmarkSPYReturn", percent(comparison.spy_return_pct));
+        status.textContent = "Candidate period: " + curves.period.start + "–" + curves.period.candidate_end +
+          " (" + curves.period.admitted_sessions + " admitted of " + curves.period.candidate_sessions +
+          " candidate sessions). Common comparison endpoint: " + comparison.comparison_end +
+          ". September 22, 2026 was not evaluable and is excluded. The strategy series contains three earlier non-evaluable-session gaps.";
+
+        const colors = {
+          "CORE Scenario C":"#234a76",
+          "CORE Scenario A":"#2f855a",
+          "CORE Scenario B":"#c77724",
+          "Risk-Free / Cash":"#087f8c",
+          "SPY Buy & Hold (adjusted)":"#666666"
+        };
+        const makeDatasets = datasets => datasets.map((dataset, index) => ({
+          ...dataset,
+          borderColor:colors[dataset.label],
+          backgroundColor:"transparent",
+          borderWidth:dataset.label === "CORE Scenario C" ? 3 : 2,
+          borderDash:dataset.label === "SPY Buy & Hold (adjusted)" ? [6,4] : undefined,
+          pointRadius:0,
+          pointHitRadius:8,
+          tension:0,
+          spanGaps:false
+        }));
+        const dateAxis = labels => ({ticks:{maxTicksLimit:8,callback:value => labels[value].slice(0,7)}});
+        const benchmarkChart = new ChartLibrary(document.getElementById("coreBenchmarkChart"), {
+          type:"line",
+          data:{labels:comparison.labels,datasets:makeDatasets(comparison.benchmark_datasets)},
+          options:{responsive:true,maintainAspectRatio:false,animation:false,
+            interaction:{mode:"index",intersect:false},
+            plugins:{tooltip:{callbacks:{label:item => item.dataset.label + ": " + Number(item.parsed.y).toFixed(4) + " index points"}}},
+            scales:{x:dateAxis(comparison.labels),y:{type:"linear",title:{display:true,text:"Normalized index (100 at start, linear scale)"}}}}
+        });
+        const benchmarkScale = document.getElementById("coreBenchmarkScale");
+        benchmarkScale.addEventListener("change", () => {
+          const logarithmic = benchmarkScale.value === "logarithmic";
+          benchmarkChart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
+          benchmarkChart.options.scales.y.title.text = "Normalized index (100 at start, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
+          setTextIfExists("coreBenchmarkScaleStatus", logarithmic
+            ? "Logarithmic scale: equal spacing represents equal percentage changes. Returns are unchanged."
+            : "Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.");
+          benchmarkChart.update();
+        });
+
+        const money = new Intl.NumberFormat("en-US", {style:"currency",currency:"USD",maximumFractionDigits:2});
+        const axisMoney = new Intl.NumberFormat("en-US", {style:"currency",currency:"USD",maximumFractionDigits:0});
+        const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const portfolioChart = new ChartLibrary(document.getElementById("corePortfolioChart"), {
+          type:"line",
+          data:{labels:comparison.labels,datasets:makeDatasets(comparison.portfolio_datasets)},
+          options:{responsive:true,maintainAspectRatio:false,animation:false,
+            interaction:{mode:"index",intersect:false},
+            plugins:{tooltip:{callbacks:{
+              title:items => items.length ? new Date(items[0].label + "T12:00:00Z").toLocaleDateString("en-US",{timeZone:"UTC",month:"short",day:"numeric",year:"numeric"}) : "",
+              label:item => item.parsed.y === null ? item.dataset.label + ": not evaluable" : item.dataset.label + ": " + money.format(item.parsed.y)
+            }}},
+            scales:{x:{...dateAxis(comparison.labels),grid:{color:dark?"rgba(214,219,227,.16)":"rgba(74,85,104,.14)"}},
+              y:{type:"linear",title:{display:true,text:"Cumulative closed-trade equity (USD, linear scale)"},
+                ticks:{callback:function(value){
+                  if(this.type==="logarithmic"){
+                    const magnitude=Math.pow(10,Math.floor(Math.log10(value)));
+                    if(![1,2,5].some(mantissa=>Math.abs(value/magnitude-mantissa)<1e-8)) return null;
+                  }
+                  return axisMoney.format(value);
+                }}}}}
+        });
+        const portfolioScale = document.getElementById("corePortfolioScale");
+        portfolioScale.addEventListener("change", () => {
+          const logarithmic = portfolioScale.value === "logarithmic";
+          portfolioChart.options.scales.y.type = logarithmic ? "logarithmic" : "linear";
+          portfolioChart.options.scales.y.title.text = "Cumulative closed-trade equity (USD, " + (logarithmic ? "logarithmic" : "linear") + " scale)";
+          setTextIfExists("corePortfolioScaleStatus", logarithmic
+            ? "Logarithmic scale: equal spacing represents equal percentage changes. Dollar values and gaps are unchanged."
+            : "Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.");
+          portfolioChart.update();
+        });
+        portfolioStatus.textContent = "Daily cumulative modeled closed-trade equity from January 4, 2023 through September 21, 2026. The three blank dates are non-evaluable sessions; values are not interpolated or marked to market.";
+        return comparison;
+      }).catch(() => {
+        status.textContent = "CORE benchmark comparison is temporarily unavailable until all source data passes validation.";
+        portfolioStatus.textContent = "CORE scenario curves are temporarily unavailable until all source data passes validation.";
+        return null;
+      });
     }
     function loadHistoricalComparison() {
       const controls = Array.from(document.querySelectorAll("[data-comparison-series]"));
@@ -1022,8 +1186,15 @@ function setTextIfExists(id, value) {
         setTextIfExists("historicalBenchmarkStatus", "Historical benchmark comparison is unavailable until the research data passes validation.");
       });
     }
-    loadHistoricalComparison();
-    FoxchaseResearchIntegrity.loadStudy(document, fetch);
+    const archivedCombinedResearch = document.getElementById("archivedCombinedResearch");
+    let archivedResearchLoaded = false;
+    archivedCombinedResearch.addEventListener("toggle", () => {
+      if (!archivedCombinedResearch.open || archivedResearchLoaded) return;
+      archivedResearchLoaded = true;
+      FoxchaseResearchIntegrity.loadStudy(document, fetch);
+      loadHistoricalComparison();
+    });
+    loadCorePrimaryComparison();
     FoxchaseResearchIntegrity.loadCoreSlippageStudy(document, fetch);
     function formatCanonicalPercent(value) {
       if (typeof value !== "number" || !Number.isFinite(value)) return "—";

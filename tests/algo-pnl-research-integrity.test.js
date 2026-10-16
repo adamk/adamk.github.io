@@ -35,6 +35,23 @@ test("public reporting routes pause live statistics and keep historical research
   assert.doesNotMatch(legacy,/Live Account Performance|fetch\("\/data\/(?:algo-pnl|live-benchmarks)\.json"/);
 });
 
+test("current CORE benchmark is primary while the former combined results stay archived",()=>{
+  const archive=page.indexOf('<details class="archived-research" id="archivedCombinedResearch">');
+  assert.ok(archive>0);
+  assert.doesNotMatch(page.slice(0,archive),/\+924\.14%|Backtest Strategy Return|Foxchase Combined/);
+  assert.match(page.slice(archive),/\+924\.14%/);
+  assert.match(page.slice(archive),/corrected commissioned EX sleeve only/);
+  assert.match(page,/id="coreScenarioC"/);
+  assert.match(page,/id="coreBenchmarkChart"/);
+  assert.match(page,/id="corePortfolioChart"/);
+  assert.match(page,/September 22 was not evaluable and is excluded/);
+  assert.match(page,/September 21, 2026/);
+  assert.match(page,/three earlier non-evaluable strategy dates remain visible as gaps/);
+  assert.match(page,/R5 VWAP bearish-persistence setup is excluded from this hypothetical portfolio/);
+  assert.match(page,/this research assumption does not mean this exclusion has been deployed/);
+  assert.match(page,/Live Performance Reporting Paused/);
+});
+
 test("optional methodology fields may be absent without affecting core metrics",()=>{
   const document=fixture();renderer.renderStudy(document,{...study,scope:undefined,execution_basis:undefined,sizing_basis:undefined,provenance:undefined});
   for(const id of ["researchScope","researchExecutionBasis","researchSizingBasis","researchProvenance"]) assert.equal(document.getElementById(id).hidden,true);

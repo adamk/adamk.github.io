@@ -55,7 +55,7 @@ test("CORE renderer puts Scenario C first and renders the verified portfolio, se
   const document = fixture();
   renderer.renderCoreSlippageStudy(document, study);
   assert.equal(document.getElementById("coreStudyPeriod").textContent,
-    "January 4, 2023 – September 22, 2026 · 928 admitted of 932 candidate sessions · normalized $10,000.00 start");
+    "January 4, 2023 – September 22, 2026 · 928 admitted of 932 candidate sessions · September 22 was not evaluable and is excluded · normalized $10,000.00 start");
   for (const [id, values] of Object.entries({
     C: ["159", "+$4,568.40", "1.3301", "-$2,356.40", "$3,524.00", "$2,290.60", "+$28.73", "-$11.87 to +$68.12 / trade"],
     A: ["168", "+$17,564.20", "2.1804", "-$1,625.00", "$0.00", "$3,296.80", "+$104.55", "+$49.32 to +$160.31 / trade"],
@@ -73,7 +73,7 @@ test("CORE renderer puts Scenario C first and renders the verified portfolio, se
   assert.equal(document.getElementById("coreSetup5ProfitFactor").textContent, "—");
   assert.equal(document.getElementById("coreYear2023C").textContent, "-$2,127.80");
   assert.equal(document.getElementById("coreYear2026C").textContent, "+$3,625.80");
-  assert.equal(document.getElementById("coreYear2026Label").textContent, "2026 YTD through Sep 22");
+  assert.equal(document.getElementById("coreYear2026Label").textContent, "2026 YTD through Sep 22 candidate coverage (Sep 22 excluded)");
   assert.equal(document.getElementById("coreStudyCInterval").textContent, "-$11.87 to +$68.12");
   assert.match(document.getElementById("coreStudyDataQuality").textContent, /19.*crossed.*122.*no-data/i);
   assert.match(text("algo-pnl.html"), /R5 VWAP bearish-persistence setup is excluded from this hypothetical portfolio/);
