@@ -146,7 +146,7 @@ test("hash failures and internally inconsistent fee data fail closed",async()=>{
   assert.match(badPeriod.nodes.corePortfolioStatus.textContent,/temporarily unavailable/i);
 });
 
-test("public page omits third-comparison/archive presentation and keeps EX research separate",()=>{
+test("public page omits third-comparison/archive and EX presentation",()=>{
   const page=text("algo-pnl.html"),json=text("data/core_alpaca_fee_periods_20261016.json");
   assert.equal((page.match(/id="coreComparison(?:Natural|Slippage)"/g)||[]).length,2);
   assert.doesNotMatch(page,/id="coreComparisonC|coreScenario/);
@@ -154,8 +154,7 @@ test("public page omits third-comparison/archive presentation and keeps EX resea
   assert.doesNotMatch(page,/scenario_[abc]|Scenario [ABC]/i);
   assert.doesNotMatch(json,/scenario_[abc]|Scenario [ABC]|full[_ -]live[_ -]sequence/i);
   assert.match(page,/Natural NBBO \+ \$0\.01 Slippage/);
-  assert.match(page,/id="selectedExResearch"/);
-  assert.match(page,/selected-ex-research\.js/);
+  assert.doesNotMatch(page,/selectedExResearch|Selected EX research|selected-ex-research\.js|selected-ex-section|selectedEx[A-Z]/);
   assert.match(page,/Live Performance Reporting Paused/);
   assert.match(page,/R5VWAPB is excluded from this hypothetical CORE study but remains enabled in production/);
   assert.match(page,/CorePeriodPage\.initialize\(\)/);

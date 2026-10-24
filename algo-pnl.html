@@ -5,7 +5,6 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
   <script src="/js/core-period-research.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
   <script src="/js/core-period-page.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
-  <script src="/js/selected-ex-research.js?v=20261016-selected-ex-r1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -148,7 +147,6 @@
     .research-limitations h3 { font-size:17px; font-weight:600; margin:0; }
     .core-slippage-section { border-top:1px solid #dfe3e8; margin-top:30px; padding-top:20px; }
     .core-comparison-card-primary { border:2px solid #c77724; background:#fffaf4; }
-    .selected-ex-section { border-top:1px solid #dfe3e8; margin-top:34px; padding-top:22px; }
     .core-comparison-card h4 { margin:0; font-size:17px; line-height:1.35; }
     .core-comparison-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin:16px 0 0; }
     .core-comparison-stats div { min-width:0; }
@@ -757,22 +755,6 @@
       <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE comparison curves…</p>
     </section>
 
-    <section class="selected-ex-section" id="selectedExResearch" aria-labelledby="selectedExTitle">
-      <h3 id="selectedExTitle">Selected EX research</h3>
-      <p class="small">Separate one-contract historical EX research, shown gross before fees. It is not included in the CORE portfolio, is not actual brokerage performance, and has incomplete historical coverage.</p>
-      <p class="small" id="selectedExPeriod" aria-live="polite">Loading selected EX research…</p>
-      <div class="research-metrics" aria-label="Selected EX historical research results">
-        <article class="research-card"><div class="research-label">Modeled trades</div><div class="research-value" id="selectedExTrades">—</div></article>
-        <article class="research-card"><div class="research-label">Gross P&amp;L</div><div class="research-value" id="selectedExGrossPnl">—</div></article>
-        <article class="research-card"><div class="research-label">Win rate</div><div class="research-value" id="selectedExWinRate">—</div></article>
-        <article class="research-card"><div class="research-label">Profit factor</div><div class="research-value" id="selectedExProfitFactor">—</div></article>
-        <article class="research-card"><div class="research-label">Maximum drawdown</div><div class="research-value" id="selectedExDrawdown">—</div></article>
-        <article class="research-card"><div class="research-label">Unassessable sessions</div><div class="research-value" id="selectedExUnknown">—</div></article>
-      </div>
-      <p class="small" id="selectedExLimitations">Historical quotes are modeled inputs, not guaranteed fills. Missing sessions remain unknown and are not treated as zero. Fees, latency slippage, and market impact are not included.</p>
-      <p class="small" id="selectedExDataStatus" aria-live="polite"></p>
-    </section>
-
   </div>
 
   <script>
@@ -792,7 +774,6 @@
       return chartLibraryPromise;
     }
     CorePeriodPage.initialize();
-    SelectedExResearch.initialize(document, fetch);
   </script>
   <script id="foxchase-interior-header-script">
     document.addEventListener("DOMContentLoaded", function () {

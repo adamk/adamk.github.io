@@ -19,16 +19,10 @@ test("CORE-only page keeps concise production-status and modeled-P&L disclosure"
   assert.match(page,/Live algorithm performance reporting is temporarily unavailable while execution reliability and trade reconciliation are being reviewed/);
 });
 
-test("selected EX research remains standalone and separate from CORE",()=>{
-  const page=text("algo-pnl.html"),data=read("data/selected_ex_research_20261013.json");
-  assert.match(page,/id="selectedExResearch"/);
-  assert.match(page,/Selected EX research/);
-  assert.match(page,/selected-ex-research\.js/);
-  assert.equal(data.classification,"SELECTED_EX_ONE_CONTRACT_RESEARCH");
-  assert.equal(data.statistics.trades,281);
-  assert.equal(data.statistics.gross_pnl,908.0000000000001);
-  assert.equal(data.sessions_unassessable,21);
-  assert.doesNotMatch(page,/CORE[^<]{0,60}EX trades|combined CORE\+EX/i);
+test("public page omits the standalone EX research presentation",()=>{
+  const page=text("algo-pnl.html");
+  assert.doesNotMatch(page,/selectedExResearch|selectedExTitle|Selected EX research|selected-ex-research\.js|selected-ex-section|selectedEx[A-Z]/);
+  assert.match(page,/CorePeriodPage\.initialize\(\)/);
 });
 
 test("CORE fee payload is the independent fee-model source of display values",()=>{
