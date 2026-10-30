@@ -159,7 +159,7 @@
         The tool is currently being prepared for public release for a small fee through the
         <a href="/products.html">Foxchase Trading Products page</a>. The rest of this article remains
         useful for understanding the evolution from static gamma maps toward more responsive intraday
-        tools, but my current framework treats GEX as context—not as a complete trading system or a
+        tools, but my current framework treats GEX as context, not as a complete trading system or a
         precise representation of dealer positioning.
       </p>
     </div>
@@ -170,7 +170,7 @@
         <p>Intraday CBOE Open–Close 10‑minute interval data lets you see actual customer positioning (Buy‑to‑Open vs Sell‑to‑Open activity) in Calls and Puts. Converting those flows to delta (via CBOE Trades/Quotes Greeks) shows how much directional risk dealers inherit in real time.</p>
         <p>Directional Entry Rule: Focus on dominant Long Call (customer buy-to-open calls) or dominant Long Put (customer buy-to-open Puts) flow at or near the strike you're trading. These represent new directional risk customers are taking today; dealers take the other side and must hedge, creating tradeable flows.</p>
         <p>Do not use Short Calls / Short Puts (customer sell-to-open) as primary entry signals. Those flows often reflect income trades, overwrites, spreads, or hedge monetization; they more often modulate or accelerate existing moves rather than initiate direction.</p>
-        <p>Charting price action (ICT / SMC concepts) is a proxy — a visual abstraction of order flow. Options flow, when correctly parsed, is objective transaction data. Use the chart to see where price reacts; use the flow to know why and how much dealer hedging fuel remains.</p>
+        <p>Charting price action (ICT / SMC concepts) is a proxy, a visual abstraction of order flow. Options flow, when correctly parsed, is objective transaction data. Use the chart to see where price reacts; use the flow to know why and how much dealer hedging fuel remains.</p>
         <p>Late‑day charm & hedge decay windows plus documented end‑of‑day dealer rebalancing can produce outsized reversals or accelerations, suitable for "lotto" plays.</p>
       </section>
       <section class="mb-4">
@@ -183,7 +183,7 @@
         <ul>
           <li>Use ICT‑style levels to stage trades at areas where liquidity is likely concentrated.</li>
           <li>Use Long Call / Long Put dominance data to decide whether to engage at those levels and in which direction.</li>
-          <li>Use short‑side (STO) flows only as context — they can accelerate or dampen the move from your entry zone but rarely define the initial directional edge.</li>
+          <li>Use short‑side (STO) flows only as context because they can accelerate or dampen the move from your entry zone but rarely define the initial directional edge.</li>
         </ul>
       </section>
       
