@@ -3,8 +3,8 @@
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
-  <script src="/js/core-period-research.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
-  <script src="/js/core-period-page.js?v=20261016-alpaca-fees-r2-two-comparisons"></script>
+  <script src="/js/core-period-research.js?v=20261103-performance-drawdown"></script>
+  <script src="/js/core-period-page.js?v=20261103-performance-drawdown"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -111,6 +111,7 @@
       gap:16px;
       margin:22px 0;
     }
+    .core-performance-controls { display:flex; flex-wrap:wrap; gap:0 24px; }
     .historical-scale-control {
       display:flex;
       align-items:center;
@@ -607,7 +608,7 @@
     <h2>Historical Strategy Research</h2>
     <p class="small">Historical modeled CORE performance is shown with Natural NBBO and Natural NBBO + $0.01 Slippage. These are not actual brokerage executions or verified live-account performance.</p>
     <section class="core-slippage-section" id="coreSlippageResearch" aria-labelledby="coreSlippageTitle">
-      <h3 id="coreSlippageTitle">Historical CORE Performance</h3>
+      <h3 id="coreSlippageTitle">Historical CORE Study</h3>
       <div class="historical-scale-control">
         <label for="corePeriodSelector">Historical backtest period</label>
         <select id="corePeriodSelector" aria-describedby="coreStudyPeriod">
@@ -703,8 +704,8 @@
       <h3 id="coreBenchmarkTitle">CORE benchmark comparison</h3>
       <p class="small" id="coreBenchmarkDescription">Each selected period uses a shared $10,000 pre-session baseline when the retained adjusted SPY source contains the prior close. The first plotted session close includes that session’s strategy result and benchmark returns. September 21, 2026 is the common validated endpoint; September 22 candidate data is excluded.</p>
       <div class="historical-scale-control">
-        <label for="coreBenchmarkSelection">CORE benchmark comparison</label>
-        <select id="coreBenchmarkSelection" aria-label="Select CORE execution comparison for benchmark returns">
+        <label for="coreBenchmarkSelection">Benchmark metrics</label>
+        <select id="coreBenchmarkSelection" aria-label="Select CORE execution comparison for benchmark metrics">
           <option value="natural_nbbo_plus_slippage" selected>Natural NBBO + $0.01 Slippage</option>
           <option value="natural_nbbo">Natural NBBO</option>
         </select>
@@ -721,17 +722,7 @@
           </tbody>
         </table>
       </div>
-      <div class="historical-scale-control">
-        <label for="coreBenchmarkScale">Benchmark chart scale</label>
-        <select id="coreBenchmarkScale" aria-describedby="coreBenchmarkScaleStatus">
-          <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
-        </select>
-      </div>
-      <p class="small" id="coreBenchmarkScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal index-point changes. Use Logarithmic to compare percentage growth.</p>
-      <div class="chart-box research-chart-box" style="height:390px;">
-        <canvas id="coreBenchmarkChart" style="height:100% !important;" aria-label="CORE Natural NBBO plus $0.01 Slippage cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100 through September 21, 2026"></canvas>
-      </div>
-      <p class="small" id="coreBenchmarkStatus" aria-live="polite">Loading independently aligned CORE, Treasury and adjusted SPY comparisons…</p>
+      <p class="small" id="coreBenchmarkStatus" aria-live="polite"></p>
       <details class="small" id="coreBenchmarkMethodology"><summary>CORE benchmark methodology</summary>
         <p>For historical comparisons, cash uses the U.S. Treasury’s daily 3-month par yield (BC_3MONTH). Annual yield percentage ÷ 100 ÷ 365 accrues and compounds by calendar day. Each day uses the latest prior-dated observation, carried for at most seven calendar days, including weekends and holidays. Longer gaps make cash and excess return unavailable; rates are not backfilled or substituted.</p>
         <p>Where the retained adjusted-price source has a close before the first period session, strategy, cash and adjusted SPY use the same $10,000 pre-session baseline at that close. The first plotted close includes the first session’s closed-trade strategy P&amp;L, SPY return, and Treasury cash accrual. All series then run through the common validated September 21, 2026 endpoint. Cash is an accrual proxy, not an investable total-return index or guarantee of realized return; it excludes taxes, fees and Treasury price changes. Excess return is strategy cumulative return minus cash cumulative return, in percentage points.</p>
@@ -740,19 +731,36 @@
       </details>
     </section>
     <section aria-labelledby="corePortfolioTitle" id="corePortfolioComparison">
-      <h3 id="corePortfolioTitle">Historical CORE equity curves</h3>
+      <h3 id="corePortfolioTitle">Historical CORE Performance</h3>
       <p class="small" id="corePortfolioDescription">Daily cumulative modeled closed-trade equity from independently verified trade ledgers, normalized to $10,000, through September 21, 2026. These are closed-trade equity curves, not intraday mark-to-market account equity. Non-evaluable strategy dates remain visible as gaps; no strategy values are interpolated.</p>
-    <div class="historical-scale-control">
-        <label for="corePortfolioScale">CORE equity chart scale</label>
+    <div class="core-performance-controls">
+      <div class="historical-scale-control">
+        <label for="corePerformanceDisplay">Display</label>
+        <select id="corePerformanceDisplay">
+          <option value="index">Index (100 baseline)</option>
+          <option value="equity">Equity ($10,000 baseline)</option>
+        </select>
+      </div>
+      <div class="historical-scale-control">
+        <label for="corePortfolioScale">Performance scale</label>
         <select id="corePortfolioScale" aria-describedby="corePortfolioScaleStatus">
           <option value="linear">Linear</option><option value="logarithmic">Logarithmic</option>
         </select>
+      </div>
     </div>
       <p class="small" id="corePortfolioScaleStatus" aria-live="polite">Linear scale: equal spacing represents equal dollar changes. Use Logarithmic to compare percentage growth.</p>
       <div class="chart-box research-chart-box" style="height:390px;">
         <canvas id="corePortfolioChart" style="height:100% !important;" aria-label="Daily cumulative closed-trade CORE Natural NBBO and Natural NBBO plus $0.01 Slippage equity curves, with cash and adjusted SPY where available, all starting at $10,000"></canvas>
       </div>
       <p class="small" id="corePortfolioStatus" aria-live="polite">Loading verified CORE comparison curves…</p>
+    </section>
+    <section aria-labelledby="coreDrawdownTitle">
+      <h3 id="coreDrawdownTitle">Historical CORE Drawdown</h3>
+      <p class="small">Natural NBBO (green) and Natural NBBO + $0.01 Slippage (orange): percentage below each strategy's running peak, starting from the selected period's $10,000 pre-session seed. Zero marks an equity high. Modeled daily closed-trade equity, not intraday mark-to-market drawdown or actual live-account equity. Missing sessions remain gaps; the last validated peak carries across them.</p>
+      <div class="chart-box research-chart-box" style="height:300px;">
+        <canvas id="coreDrawdownChart" style="height:100% !important;" aria-label="Selected-period daily closed-trade percentage drawdown for CORE Natural NBBO and CORE Natural NBBO plus $0.01 Slippage"></canvas>
+      </div>
+      <p class="small" id="coreDrawdownStatus" aria-live="polite"></p>
     </section>
 
   </div>

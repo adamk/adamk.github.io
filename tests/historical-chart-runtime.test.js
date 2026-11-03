@@ -20,7 +20,7 @@ async function runPage({missing="",badHash=false,mutate=()=>{}}={}) {
   const digest=crypto.createHash("sha256").update(body).digest("hex");
   const ids=["coreBenchmarkStrategyReturn","coreBenchmarkComparisonName","coreBenchmarkCashReturn","coreBenchmarkExcessReturn",
     "coreBenchmarkSPYReturn","coreBenchmarkStatus","coreBenchmarkDescription","coreBenchmarkScale","coreBenchmarkScaleStatus",
-    "coreBenchmarkSelection","coreBenchmarkChart","corePortfolioScale","corePortfolioScaleStatus","corePortfolioChart",
+    "coreBenchmarkSelection","corePerformanceDisplay","coreDrawdownChart","coreDrawdownStatus","corePortfolioScale","corePortfolioScaleStatus","corePortfolioChart",
     "corePortfolioStatus","corePortfolioDescription","corePeriodSelector","coreSetupComparison","coreStudyPeriod",
     "coreComparisonNaturalTrades","coreComparisonNaturalNetPnl","coreComparisonNaturalExpectancyCI",
     "coreComparisonNaturalEligibleSessions","coreComparisonNaturalEndingEquity","coreComparisonNaturalReturn",
@@ -29,7 +29,7 @@ async function runPage({missing="",badHash=false,mutate=()=>{}}={}) {
     "coreStudySlippageInterval","coreSetupTableBody","coreYearlyTableBody","coreQuoteQualityBody",
     "corePeriodLimitations","coreSlippageDataStatus"];
   const nodes=Object.fromEntries(ids.map(id=>[id,element(id==="corePeriodSelector"?"2024_2026":
-    id==="coreSetupComparison"||id==="coreBenchmarkSelection"?SLIPPAGE:"linear")]));
+    id==="coreSetupComparison"||id==="coreBenchmarkSelection"?SLIPPAGE:id==="corePerformanceDisplay"?"index":"linear")]));
   const {Chart,charts}=chartMock();
   const window={crypto:crypto.webcrypto,matchMedia:()=>({matches:false}),CorePeriodResearch:research,loadChartLibrary:async()=>Chart};
   const fetch=async url=>{
@@ -61,11 +61,11 @@ test("default 2024–2026 display highlights fixed-trade slippage with exactly t
   assert.equal(nodes.coreBenchmarkCashReturn.textContent,"+12.9320%");
   assert.equal(nodes.coreBenchmarkExcessReturn.textContent,"+221.5787 pp");
   assert.equal(nodes.coreBenchmarkSPYReturn.textContent,"+68.0681%");
-  const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart);
+  const benchmark=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
   const portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
   assert.equal(benchmark.data.labels[0],"2024-01-02");
   assert.equal(benchmark.data.labels.at(-1),"2026-09-21");
-  assert.deepEqual(Array.from(benchmark.data.datasets,row=>row.label),["CORE — Natural NBBO + $0.01 Slippage","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
+  assert.deepEqual(Array.from(benchmark.data.datasets,row=>row.label),["CORE — Natural NBBO","CORE — Natural NBBO + $0.01 Slippage","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
   assert.deepEqual(Array.from(portfolio.data.datasets,row=>row.label),["CORE — Natural NBBO","CORE — Natural NBBO + $0.01 Slippage","Risk-Free / Cash","SPY Buy & Hold (adjusted)"]);
   const gap=benchmark.data.labels.indexOf("2026-08-26");
   assert.ok(gap>=0);
@@ -79,7 +79,7 @@ test("default 2024–2026 display highlights fixed-trade slippage with exactly t
 
 test("period switching updates both comparisons, benchmark, tables and curves",async()=>{
   const {nodes,charts,payload}=await runPage();
-  const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart),portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
+  const benchmark=charts.find(chart=>chart.canvas===nodes.corePortfolioChart),portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
   nodes.corePeriodSelector.value="2025_2026";nodes.corePeriodSelector.events.change();
   assert.match(nodes.coreStudyPeriod.textContent,/January 2025/);
   assert.equal(nodes.coreComparisonNaturalTrades.textContent,"96");
@@ -89,7 +89,7 @@ test("period switching updates both comparisons, benchmark, tables and curves",a
   assert.equal(nodes.coreBenchmarkExcessReturn.textContent,"+171.0661 pp");
   assert.equal(nodes.coreBenchmarkSPYReturn.textContent,"+34.5779%");
   assert.equal(benchmark.data.labels[0],"2025-01-02");
-  assert.equal(portfolio.data.datasets[1].data[0],10178.74);
+  assert.equal(portfolio.data.datasets[1].data[0],101.7874);
   assert.equal(nodes.coreYearlyTableBody.children.length,2);
   assert.equal(nodes.coreQuoteQualityBody.children.length,2);
   nodes.coreSetupComparison.value=NATURAL;nodes.coreSetupComparison.events.change();
@@ -104,11 +104,11 @@ test("period switching updates both comparisons, benchmark, tables and curves",a
   assert.equal(nodes.coreBenchmarkExcessReturn.textContent,"—");
   assert.equal(nodes.coreBenchmarkSPYReturn.textContent,"—");
   assert.equal(benchmark.data.labels[0],"2023-01-04");
-  assert.deepEqual(Array.from(benchmark.data.datasets,row=>row.label),["CORE — Natural NBBO + $0.01 Slippage"]);
+  assert.deepEqual(Array.from(benchmark.data.datasets,row=>row.label),["CORE — Natural NBBO","CORE — Natural NBBO + $0.01 Slippage"]);
   assert.deepEqual(Array.from(portfolio.data.datasets,row=>row.label),["CORE — Natural NBBO","CORE — Natural NBBO + $0.01 Slippage"]);
-  assert.match(nodes.coreBenchmarkChart.attributes["aria-label"],/Natural NBBO \+ \$0\.01 Slippage cumulative closed-trade return/);
-  assert.match(nodes.coreBenchmarkChart.attributes["aria-label"],/benchmarks are unavailable/i);
-  assert.equal(portfolio.data.datasets[1].data.at(-1),29762.17);
+  assert.match(nodes.corePortfolioChart.attributes["aria-label"],/Natural NBBO plus \$0\.01 Slippage/);
+  assert.match(nodes.corePortfolioChart.attributes["aria-label"],/benchmarks are unavailable/i);
+  assert.equal(portfolio.data.datasets[1].data.at(-1),297.6217);
   assert.equal(nodes.coreYearlyTableBody.children.length,4);
   assert.equal(nodes.coreQuoteQualityBody.children.length,4);
   for(const date of ["2023-06-05","2023-10-19","2026-08-26"]) {
@@ -116,9 +116,9 @@ test("period switching updates both comparisons, benchmark, tables and curves",a
   }
 });
 
-test("benchmark selector updates the comparison name, return and selected curve",async()=>{
+test("benchmark metric selector updates metrics while keeping both performance curves",async()=>{
   const {nodes,charts}=await runPage();
-  const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart);
+  const benchmark=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
   nodes.coreBenchmarkSelection.value=NATURAL;nodes.coreBenchmarkSelection.events.change();
   assert.equal(nodes.coreBenchmarkComparisonName.textContent,"CORE — Natural NBBO");
   assert.equal(nodes.coreBenchmarkStrategyReturn.textContent,"+291.9886%");
@@ -128,9 +128,9 @@ test("benchmark selector updates the comparison name, return and selected curve"
 
 test("chart scale changes preserve selected observations",async()=>{
   const {nodes,charts}=await runPage();
-  const benchmark=charts.find(chart=>chart.canvas===nodes.coreBenchmarkChart),portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
+  const benchmark=charts.find(chart=>chart.canvas===nodes.corePortfolioChart),portfolio=charts.find(chart=>chart.canvas===nodes.corePortfolioChart);
   const before=JSON.stringify(portfolio.data.datasets);
-  nodes.coreBenchmarkScale.value="logarithmic";nodes.coreBenchmarkScale.events.change();
+
   nodes.corePortfolioScale.value="logarithmic";nodes.corePortfolioScale.events.change();
   assert.equal(benchmark.options.scales.y.type,"logarithmic");
   assert.equal(portfolio.options.scales.y.type,"logarithmic");
@@ -158,4 +158,75 @@ test("public page omits third-comparison/archive and EX presentation",()=>{
   assert.match(page,/Live Performance Reporting Paused/);
   assert.match(page,/R5VWAPB is excluded from this hypothetical CORE study but remains enabled in production/);
   assert.match(page,/CorePeriodPage\.initialize\(\)/);
+});
+
+test("all periods preserve equity, index parity, metrics and independent causal drawdowns",async()=>{
+  const {nodes,charts,payload}=await runPage();
+  const performance=charts.find(row=>row.canvas===nodes.corePortfolioChart);
+  const drawdown=charts.find(row=>row.canvas===nodes.coreDrawdownChart);
+  const retained=JSON.stringify(payload);
+  for(const period of payload.periods) {
+    nodes.corePeriodSelector.value=period.id;nodes.corePeriodSelector.events.change();
+    const view=research.periodView(payload,period.id);
+    for(const display of ["equity","index"]) {
+      nodes.corePerformanceDisplay.value=display;nodes.corePerformanceDisplay.events.change();
+      const expected=research.performanceDatasets(view,display);
+      assert.deepEqual(JSON.parse(JSON.stringify(performance.data.datasets.map(({label,data})=>({label,data})))),expected);
+      for(let j=0;j<2;j++) {
+        let peak=10000;
+        const source=period.equity_curves[j?SLIPPAGE:NATURAL];
+        source.forEach((value,i)=>{
+          const actual=drawdown.data.datasets[j].data[i];
+          if(value===null) {assert.equal(actual,null);assert.equal(performance.data.datasets[j].data[i],null);return;}
+          peak=Math.max(peak,value);
+          assert.ok(Math.abs(actual-100*(value-peak)/peak)<1e-12);
+          assert.ok(actual<=0);
+          assert.equal(performance.data.datasets[j].data[i],display==="equity"?value:100*value/10000);
+        });
+      }
+      for(const scale of ["logarithmic","linear"]) {
+        const before=JSON.stringify(performance.data.datasets);
+        nodes.corePortfolioScale.value=scale;nodes.corePortfolioScale.events.change();
+        assert.equal(performance.options.scales.y.type,scale);
+        assert.equal(drawdown.options.scales.y.type,"linear");
+        assert.equal(JSON.stringify(performance.data.datasets),before);
+      }
+    }
+    assert.equal(performance.data.labels.at(-1),"2026-09-21");
+    assert.ok(!performance.data.labels.includes("2026-09-22"));
+  }
+  assert.equal(JSON.stringify(payload),retained);
+});
+
+test("drawdown includes initial loss, carries peak through gaps, and ignores future equity",()=>{
+  const actual=research.closedTradeDrawdown([9000,null,10000,12500,null,10000,15000],10000);
+  const expected=[-10,null,0,0,null,-20,0];
+  actual.forEach((value,i)=>expected[i]===null?assert.equal(value,null):assert.ok(Math.abs(value-expected[i])<1e-12));
+  const prefix=[9000,null,11000,9900];
+  assert.deepEqual(research.closedTradeDrawdown(prefix,10000),research.closedTradeDrawdown([...prefix,100000],10000).slice(0,prefix.length));
+  assert.throws(()=>research.closedTradeDrawdown([NaN],10000));
+});
+
+test("page has one performance display/scale and separate drawdown without duplicated benchmark canvas",()=>{
+  const page=text("algo-pnl.html");
+  assert.match(page,/>Historical CORE Performance</);
+  assert.match(page,/>Historical CORE Drawdown</);
+  assert.doesNotMatch(page,/id="coreBenchmark(?:Chart|Scale)"|Historical CORE equity curves/);
+  assert.equal((page.match(/id="corePerformanceDisplay"/g)||[]).length,1);
+  assert.equal((page.match(/id="corePortfolioScale"/g)||[]).length,1);
+});
+
+test("tooltips distinguish index, modeled equity and negative closed-trade drawdown",async()=>{
+  const {nodes,charts}=await runPage();
+  const performance=charts.find(row=>row.canvas===nodes.corePortfolioChart);
+  const drawdown=charts.find(row=>row.canvas===nodes.coreDrawdownChart);
+  const item={dataset:{label:"CORE — Natural NBBO"},parsed:{y:10000}};
+  assert.match(performance.options.plugins.tooltip.callbacks.label(item),/10000.0000 index points/);
+  nodes.corePerformanceDisplay.value="equity";nodes.corePerformanceDisplay.events.change();
+  assert.match(performance.options.plugins.tooltip.callbacks.label(item),/\$10,000.00/);
+  item.parsed.y=-5;
+  assert.match(drawdown.options.plugins.tooltip.callbacks.label(item),/closed-trade drawdown: -5.00%/);
+  item.parsed.y=null;
+  assert.match(drawdown.options.plugins.tooltip.callbacks.label(item),/not evaluable/);
+  assert.equal(drawdown.data.datasets.every(row=>row.spanGaps===false),true);
 });

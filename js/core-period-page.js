@@ -144,7 +144,8 @@
     const periodSelector = document.getElementById("corePeriodSelector");
     const setupSelector = document.getElementById("coreSetupComparison");
     const benchmarkSelector = document.getElementById("coreBenchmarkSelection");
-    let payload, benchmarkChart, portfolioChart, currentPeriodId, labels;
+    let payload, drawdownChart, portfolioChart, currentPeriodId, labels;
+    const displaySelector = document.getElementById("corePerformanceDisplay");
     const chartDateAxis = values => ({ticks:{maxTicksLimit:8,callback:value => values[value].slice(0,7)}});
 
     function render(periodId) {
@@ -169,75 +170,66 @@
         : "Independent fresh replay: " + monthLabel(period.requested_start) + " through " + dateLabel(period.comparison_end) +
           ". The retained adjusted SPY source has no pre-session close for this period, so aligned cash and SPY benchmark returns are unavailable; no substitute was estimated. September 22, 2026 is in candidate coverage but excluded.");
       setText("corePortfolioDescription", "Daily cumulative modeled closed-trade equity for " + monthLabel(period.requested_start) +
-        " through " + dateLabel(period.comparison_end) + ", with a fresh $10,000 seed before the first session. The first plotted daily close includes any first-session realized P&L. This is not intraday mark-to-market equity. " +
+        " through " + dateLabel(period.comparison_end) + ", with a fresh $10,000 seed before the first session. First close includes first-session P&L. Modeled strategy equity, not actual live-account or intraday mark-to-market equity. " +
         period.gap_dates.length + " non-evaluable strategy session(s) remain blank; no strategy values are interpolated.");
       renderSetups(view, setupSelector.value);
       renderYearly(view);
       renderQuoteQuality(view);
       renderLimitations(view);
 
-      if (!benchmarkChart) return;
+      if (!portfolioChart) return;
       labels = view.labels;
-      benchmarkChart.data.labels = labels;
-      benchmarkChart.data.datasets = datasets(view.benchmarkDatasets);
-      benchmarkChart.options.scales.x = chartDateAxis(labels);
-      benchmarkChart.update();
       portfolioChart.data.labels = labels;
-      portfolioChart.data.datasets = datasets(view.portfolioDatasets);
+      portfolioChart.data.datasets = datasets(root.CorePeriodResearch.performanceDatasets(view, displaySelector.value));
       portfolioChart.options.scales.x = chartDateAxis(labels);
+      const equity = displaySelector.value === "equity";
+      const log = document.getElementById("corePortfolioScale").value === "logarithmic";
+      portfolioChart.options.scales.y.type = log ? "logarithmic" : "linear";
+      portfolioChart.options.scales.y.title.text = (equity ? "Modeled equity (USD, $10,000 baseline" : "Normalized index (100 baseline") + ", " + (log ? "logarithmic" : "linear") + " scale)";
+      portfolioChart.options.scales.y.ticks = {callback:value => equity ? balance(value) : Number(value).toLocaleString("en-US")};
+      setText("corePortfolioScaleStatus", log
+        ? "Logarithmic scale: equal spacing represents equal percentage changes."
+        : "Linear scale: equal spacing represents equal " + (equity ? "dollar" : "index-point") + " changes.");
       portfolioChart.update();
-      const suffix = " Selected period ends September 21, 2026; September 22 is excluded.";
-      benchmarkStatus.textContent = benchmark.available
-        ? "Benchmark returns are independently normalized for " + selectedBenchmark.label + " in " + period.label + "." + suffix
-        : "Aligned cash and adjusted SPY benchmark returns are unavailable for " + period.label + " because the retained adjusted-price source lacks a pre-period close. The selected " + selectedBenchmark.label + " curve remains available." + suffix;
-      portfolioStatus.textContent = "Daily cumulative closed-trade equity from independently verified trade ledgers. Curves are not intraday mark-to-market." +
-        " The selected period preserves " + period.gap_dates.length + " non-evaluable date gap(s); no values are interpolated.";
-      document.getElementById("coreBenchmarkChart").setAttribute("aria-label", benchmark.available
-        ? "Selected-period " + selectedBenchmark.label + " cumulative closed-trade return compared with cash and adjusted SPY, normalized to 100."
-        : "Selected-period " + selectedBenchmark.label + " cumulative closed-trade return, normalized to 100. Aligned cash and adjusted SPY benchmarks are unavailable.");
-      document.getElementById("corePortfolioChart").setAttribute("aria-label", benchmark.available
-        ? "Selected-period daily closed-trade equity for CORE Natural NBBO, CORE Natural NBBO plus $0.01 Slippage, risk-free cash, and adjusted SPY, normalized from $10,000 before the first period session."
-        : "Selected-period daily closed-trade equity for CORE Natural NBBO and CORE Natural NBBO plus $0.01 Slippage, normalized from $10,000 before the first period session. Cash and adjusted SPY benchmark curves are unavailable.");
+      drawdownChart.data.labels = labels;
+      drawdownChart.data.datasets = datasets(root.CorePeriodResearch.drawdownDatasets(view));
+      drawdownChart.options.scales.x = chartDateAxis(labels);
+      drawdownChart.update();
+      setText("coreDrawdownStatus", period.label + ": " + period.gap_dates.length + " non-evaluable session gap(s). Through September 21, 2026; September 22 excluded.");
+      benchmarkStatus.textContent = "";
+      portfolioStatus.textContent = "";
+      document.getElementById("corePortfolioChart").setAttribute("aria-label",
+        "Selected-period modeled closed-trade CORE Natural NBBO and CORE Natural NBBO plus $0.01 Slippage; " +
+        (equity ? "$10,000 equity" : "100 index") + " pre-session baseline. " +
+        (benchmark.available ? "Includes risk-free cash and dividend/split-adjusted SPY." : "Aligned cash and adjusted SPY benchmarks are unavailable."));
     }
 
     return Promise.all([fetchPayload(), root.loadChartLibrary()]).then(([data, ChartLibrary]) => {
       payload = data;
       const initialId = payload.default_period;
       const initialView = root.CorePeriodResearch.periodView(payload, initialId, setupSelector.value, benchmarkSelector.value);
-      const palette = colors();
-      const makeDatasets = rows => datasets(rows);
-      benchmarkChart = new ChartLibrary(document.getElementById("coreBenchmarkChart"), {
-        type:"line",data:{labels:initialView.labels,datasets:makeDatasets(initialView.benchmarkDatasets)},
-        options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
-          plugins:{tooltip:{callbacks:{label:item => item.dataset.label + ": " + Number(item.parsed.y).toFixed(4) + " index points"}}},
-          scales:{x:chartDateAxis(initialView.labels),y:{type:"linear",title:{display:true,text:"Normalized index (100 before first period session, linear scale)"}}}}
-      });
-      const moneyAxis = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
-      const dark = root.matchMedia && root.matchMedia("(prefers-color-scheme: dark)").matches;
+      const tooltipTitle = items => items.length ? dateLabel(items[0].label) : "";
       portfolioChart = new ChartLibrary(document.getElementById("corePortfolioChart"), {
-        type:"line",data:{labels:initialView.labels,datasets:makeDatasets(initialView.portfolioDatasets)},
+        type:"line",data:{labels:initialView.labels,datasets:[]},
         options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
-          plugins:{tooltip:{callbacks:{
-            title:items => items.length ? new Date(items[0].label + "T12:00:00Z").toLocaleDateString("en-US",{timeZone:"UTC",month:"short",day:"numeric",year:"numeric"}) : "",
-            label:item => item.parsed.y === null ? item.dataset.label + ": not evaluable" : item.dataset.label + ": " + money(item.parsed.y)
+          plugins:{tooltip:{callbacks:{title:tooltipTitle,
+            label:item => item.dataset.label + ": " + (item.parsed.y === null ? "not evaluable" :
+              displaySelector.value === "equity" ? balance(item.parsed.y) : Number(item.parsed.y).toFixed(4) + " index points")
           }}},
-          scales:{x:{...chartDateAxis(initialView.labels),grid:{color:dark?"rgba(214,219,227,.16)":"rgba(74,85,104,.14)"}},
-            y:{type:"linear",title:{display:true,text:"Cumulative closed-trade equity (USD, linear scale)"},ticks:{callback:value=>moneyAxis.format(value)}}}}
+          scales:{x:chartDateAxis(initialView.labels),y:{type:"linear",title:{display:true,text:"Normalized index"}}}}
       });
-      function connectScale(id, chart, label, statusId, currency=false) {
-        const selector = document.getElementById(id);
-        selector.addEventListener("change", () => {
-          const log = selector.value === "logarithmic";
-          chart.options.scales.y.type = log ? "logarithmic" : "linear";
-          chart.options.scales.y.title.text = label + " (" + (currency ? "USD, " : "") + (log ? "logarithmic" : "linear") + " scale)";
-          setText(statusId, log
-            ? "Logarithmic scale: equal spacing represents equal percentage changes. Data and gaps are unchanged."
-            : "Linear scale: equal spacing represents equal " + (currency ? "dollar changes" : "index-point changes") + ".");
-          chart.update();
-        });
-      }
-      connectScale("coreBenchmarkScale",benchmarkChart,"Normalized index","coreBenchmarkScaleStatus");
-      connectScale("corePortfolioScale",portfolioChart,"Cumulative closed-trade equity","corePortfolioScaleStatus",true);
+      drawdownChart = new ChartLibrary(document.getElementById("coreDrawdownChart"), {
+        type:"line",data:{labels:initialView.labels,datasets:[]},
+        options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{mode:"index",intersect:false},
+          plugins:{legend:{display:false},tooltip:{callbacks:{title:tooltipTitle,
+            label:item => item.dataset.label + " closed-trade drawdown: " +
+              (item.parsed.y === null ? "not evaluable" : percent(item.parsed.y))
+          }}},
+          scales:{x:chartDateAxis(initialView.labels),y:{type:"linear",max:0,
+            title:{display:true,text:"Closed-trade drawdown (%)"},ticks:{callback:value=>value + "%"}}}}
+      });
+      document.getElementById("corePortfolioScale").addEventListener("change", () => render(currentPeriodId));
+      displaySelector.addEventListener("change", () => render(currentPeriodId));
       render(initialId);
       periodSelector.value = initialId;
       periodSelector.addEventListener("change", () => render(periodSelector.value));
@@ -246,6 +238,7 @@
     }).catch(() => {
       benchmarkStatus.textContent = "CORE period comparison is temporarily unavailable until the multi-period payload passes hash and research-integrity checks.";
       portfolioStatus.textContent = "CORE period curves are temporarily unavailable until the payload passes validation.";
+      setText("coreDrawdownStatus", "Drawdown unavailable until the source payload passes validation.");
       setText("coreSlippageDataStatus", "CORE period research is temporarily unavailable until all verified data passes validation.");
     });
   }

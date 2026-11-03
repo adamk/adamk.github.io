@@ -201,7 +201,32 @@ const CorePeriodResearch = (() => {
     };
   }
 
-  return {validatePayload,periodView,COMPARISON_IDS,DISPLAY_NAMES};
+  // Presentation only: use the independently validated period equity without rebasing.
+  function performanceDatasets(view, display = "index") {
+    assert(["index", "equity"].includes(display), "performance_display_invalid");
+    return view.portfolioDatasets.map(row => ({...row,
+      data:row.data.map(value => value === null ? null : display === "index" ? 100 * value / view.period.starting_equity : value)
+    }));
+  }
+
+  function closedTradeDrawdown(values, startingEquity) {
+    assert(Number.isFinite(startingEquity) && startingEquity > 0, "drawdown_baseline_invalid");
+    let peak = startingEquity;
+    return values.map(value => {
+      if (value === null) return null; // Carry peak, never create an observation.
+      assert(Number.isFinite(value) && value > 0, "drawdown_equity_invalid");
+      peak = Math.max(peak, value);
+      return 100 * (value / peak - 1);
+    });
+  }
+
+  function drawdownDatasets(view) {
+    return view.portfolioDatasets.slice(0, 2).map(row => ({...row,
+      data:closedTradeDrawdown(row.data, view.period.starting_equity)
+    }));
+  }
+
+  return {validatePayload,periodView,performanceDatasets,closedTradeDrawdown,drawdownDatasets,COMPARISON_IDS,DISPLAY_NAMES};
 })();
 if (typeof window !== "undefined") window.CorePeriodResearch = CorePeriodResearch;
 if (typeof module !== "undefined" && module.exports) module.exports = CorePeriodResearch;
