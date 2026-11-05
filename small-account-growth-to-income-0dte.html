@@ -193,7 +193,21 @@
           </table>
         </div>
 
+        <p>A 20% premium stop also does not line up with the same underlying-price movement across different contracts. Premium, delta, gamma, implied volatility, time left, and the bid/ask spread all affect how quickly the stop can be reached. ATM contracts may often give more underlying-price room before a percentage-based premium stop is hit than slightly OTM contracts, but that is not universal.</p>
+
         <p>Deploying 100% of the account does not necessarily mean you are trying to lose the entire account on that trade. If the 20% stop works properly, the intended loss is approximately 20% of the account. The key is setting the stop automatically when you enter with an OCO order. No mental stops. With 0DTE options, a 20% stop is still an intended loss rather than a guaranteed fill because fast moves and slippage can push execution beyond the stop price.</p>
+
+        <h3 class="h5 mt-4">Sizing for Zero vs. Sizing Around a Stop</h3>
+
+        <p>Some 0DTE traders size for zero: if they are comfortable losing $1,000, they buy no more than $1,000 worth of long-option premium. The premium loss is capped at $1,000, with transaction costs on top, so that maximum does not depend on a stop filling. The tradeoff is capital efficiency: with a fixed dollar-risk budget, sizing for zero limits how much premium I can put to work. To scale the position, I have to accept more premium at risk. In return, I have a clearer maximum premium loss.</p>
+
+        <p>If I am comfortable with an intended $1,000 loss and use a 20% premium stop, I could theoretically deploy $5,000 in premium: 20% of $5,000 is $1,000, before costs, if the stop executes at the intended price. That is five times the position exposure, not five times the guaranteed risk protection. A stop can slip, partially fill, be delayed, or fail to execute as intended, leaving the full premium exposed to loss. Larger positions can also run into liquidity constraints, wider effective spreads, and harder execution. Sizing around a stop does not turn the full premium exposure into a guaranteed maximum loss of 20%.</p>
+
+        <p>Neither approach is universally better. They address different trade objectives and make different assumptions about how the trade will be exited.</p>
+
+        <p>I typically use an OCO order with my default 20% stop for discretionary intraday 0DTE scalps. For a speculative end-of-day (EOD) momentum trade seeking an unusually large directional move, the objective is different. As expiration approaches, gamma sensitivity, time decay, and liquidity and execution conditions can make premium-based stops less predictable. For that kind of trade, sizing so I could lose the entire premium may be more practical than relying on a conventional 20% stop. It would let me pursue an explosive move while knowing how much premium I have committed. It does not mean I have to hold to expiration; taking profits earlier or cutting the loss earlier can still make sense.</p>
+
+        <p>I would treat any such trade as a separate, deliberately limited risk allocation rather than automatically using the same deployment percentages as ordinary intraday scalps. A large possible percentage return does not establish positive expected value. This is a risk-management distinction, not a separate EOD strategy I have implemented or validated.</p>
 
         <p>No doubt, this is still a huge loss per trade. If you lose 20% of the remaining account on each trade:</p>
         <ul>
