@@ -12,9 +12,9 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foxchase $3k Small Account Series | Series I &amp; II</title>
+  <title>Foxchase $3k Account Series</title>
   <link rel="icon" href="/foxchase-favicon.png?v=20260823" type="image/png">
-  <meta name="description" content="Follow the Foxchase Trading $3k Small Account Series, including the completed 87-session Series I archive and live Series II." />
+  <meta name="description" content="A public day-by-day archive of the Foxchase $3k Account Series, including daily PnL, balance progression, trade reasoning, and lessons learned." />
   <style>
     :root {
       --bg: #0b1220;
@@ -386,32 +386,6 @@
     gap: 12px;
     flex-wrap: wrap;
     margin-top: 18px;
-  }
-
-  .series-hub { padding-bottom: 12px; }
-  .series-hub .hero { padding-bottom: 12px; }
-  .series-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-  .series-card { display: flex; flex-direction: column; gap: 12px; }
-  .series-card h2 { margin: 0; font-size: 25px; }
-  .series-card h3 { margin: -8px 0 0; color: #ffd38a; font-size: 17px; }
-  .series-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; color: var(--muted); }
-  .series-stats strong { color: var(--text); }
-  .series-card p { margin: 0; color: var(--muted); }
-  .series-cta { align-self: flex-start; margin-top: auto; font-weight: 700; }
-  .series-why { margin: 28px 0 18px; }
-  .series-why h2 { margin-top: 0; }
-  .series-why p:last-child { margin-bottom: 0; }
-  .series-comparison { width: 100%; border-collapse: collapse; margin: 0 0 38px; background: rgba(18, 27, 45, .72); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-  .series-comparison th, .series-comparison td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
-  .series-comparison th { color: var(--text); background: rgba(255,255,255,.035); }
-  .series-comparison tr:last-child td { border-bottom: 0; }
-  .series-archive-callout { margin: 0 0 24px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  #series-1 { scroll-margin-top: 20px; }
-  @media (max-width: 700px) {
-    .series-cards { grid-template-columns: 1fr; }
-    .series-comparison { font-size: 13px; }
-    .series-comparison th, .series-comparison td { padding: 9px 7px; }
-    .series-archive-callout { align-items: flex-start; flex-direction: column; }
   }
 
   .info-btn {
@@ -864,70 +838,14 @@
   </header>
 
   <div class="wrap">
-    <section class="series-hub" aria-labelledby="seriesHubTitle">
-      <div class="hero">
-        <span class="eyebrow">🦊 Foxchase Small Account Series</span>
-        <h1 id="seriesHubTitle">The $3k Account Series</h1>
-        <p class="sub">A public record of discretionary 0DTE small-account trading, documenting the trades, decisions, drawdowns, mistakes, and lessons as they happened.</p>
-      </div>
+    <section class="hero">
+      <span class="eyebrow">🦊 Public Series Archive</span>
+      <h1>Foxchase $3k Account Series <span class="completion-label">(Completed)</span></h1>
+      <p class="sub">
+        A completed, public day-by-day archive of the small account series. It documents the results, drawdowns, decisions, and lessons of discretionary 0DTE trading, not a smooth or repeatable return path.
+      </p>
 
-      <div class="series-cards">
-        <article class="card series-card">
-          <h2>Series I — Completed</h2>
-          <h3>Original Small Account Experiment</h3>
-          <div class="series-stats" aria-label="Series I statistics">
-            <span>Start: <strong>$3,000</strong></span><span>Peak: <strong>$22,828.93</strong></span>
-            <span>Finish: <strong>$6,277.33</strong></span><span>Sessions: <strong>87</strong></span>
-          </div>
-          <p>The original experiment in aggressive small-account growth. Series I demonstrated both the upside of compounding and the consequences of maintaining aggressive exposure through low-participation and difficult market conditions.</p>
-          <a class="series-cta" href="#series-1">View Series I Archive ↓</a>
-        </article>
-
-        <article class="card series-card">
-          <h2>Series II — Live</h2>
-          <h3>Same $3,000. Evolving Framework.</h3>
-          <div class="series-stats" aria-label="Series II statistics">
-            <span>Start: <strong>$3,000</strong></span><span>Current: <strong>$1,456.01</strong></span>
-            <span>Sessions: <strong>25</strong></span><span>Status: <strong>Live</strong></span>
-            <span>Original A+: <strong>50% deployment</strong></span><span>Original A: <strong>30% deployment</strong></span>
-          </div>
-          <p>Series II began from the same $3,000 balance with A/A+ setups prioritized, a 5-minute rVol filter, planner-based sizing, and predefined OCO risk. As the series progressed, I also took selective discretionary trades informed by broader market context. The original framework remains a reference point, not a claim that every logged trade followed it.</p>
-          <a class="series-cta" href="/3k-challenge-part-2">Follow Series II →</a>
-        </article>
-      </div>
-
-      <section class="card series-why">
-        <h2>Why Series II?</h2>
-        <p>Series I was designed to test the core framework of the discretionary 0DTE strategy I developed and later described in my book, 0DTE: Regimes, Volatility, and Execution. The goal was to apply that framework with real money and document whether it could work consistently across a meaningful sample.</p>
-        <p>It did, but the series also exposed several important lessons, especially the usefulness of monitoring relative volume (rVol) on a daily basis. That became particularly clear during the low-volume month of July, when weaker participation contributed to lower-quality setups and a significant drawdown.</p>
-        <p>Series II began with A/A+ setups prioritized, a low-5-minute-rVol skip filter, planner-based sizing, and default ±20% OCO management. The original sizing framework paired qualified A+ setups with 50% deployment and A setups with 30%. As the series progressed, I found that strong exponential z-score patterns or the volatility-posture confirmation I was looking for did not appear every day, and I began taking selective discretionary trades rather than treating that original screen as the only possible opportunity.</p>
-        <p>That discretion has included SPX, NDX, and SPY GEX profiles for directional context, possible support and resistance concentrations, gamma ramps, potential price magnets, and areas where momentum or mean reversion might develop. I combine those estimates with price action, key levels, market regime, ZWAP, and relative-volume context. GEX is an additional analytical input, not a standalone entry signal; its levels and dealer-positioning interpretations are estimates, not guaranteed price behavior. A GEX-informed trade is not automatically a validated A or A+ setup.</p>
-        <p>The original A/A+ setups remain a priority. Lower-conviction or exploratory trades do not automatically receive the original A/A+ sizing, and not every session needs a trade. This archive documents the decisions I actually made, including deviations, mistakes, and unsuccessful trades. Whether the additional discretionary context improves expectancy remains an open research question.</p>
-      </section>
-
-      <table class="series-comparison">
-        <thead><tr><th></th><th>Series I</th><th>Series II</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Start</th><td>$3,000</td><td>$3,000</td></tr>
-          <tr><th scope="row">Objective</th><td>Aggressive growth</td><td>Aggressive growth</td></tr>
-          <tr><th scope="row">Setup selection over time</th><td>More discretionary</td><td>A/A+ prioritized; selective discretionary trades</td></tr>
-          <tr><th scope="row">Low rVol</th><td>Not initially filtered</td><td>Original skip filter; exceptions documented</td></tr>
-          <tr><th scope="row">Sizing</th><td>More discretionary</td><td>Planner-based; original A+ 50% / A 30%</td></tr>
-          <tr><th scope="row">OCO</th><td>Less standardized</td><td>Default ±20%</td></tr>
-          <tr><th scope="row">Status</th><td>Completed</td><td>Live</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="series-archive" id="series-1" aria-labelledby="seriesArchiveTitle">
-      <h2 class="section-title" id="seriesArchiveTitle">Series I Archive</h2>
-      <h3>Foxchase $3k Account Series I — Completed</h3>
-      <div class="card series-archive-callout">
-        <span>Series II is live, starting from the same $3,000 balance and using the updated Series II rules.</span>
-        <a class="series-cta" href="/3k-challenge-part-2">Follow Series II →</a>
-      </div>
-
-<div class="grid">
+<div class="grid" id="series-1">
   <div class="card">
     <div class="stat-label">Starting Balance</div>
     <div class="stat-value">$3,000</div>
@@ -4427,7 +4345,6 @@
 </article>
   </div>
 </section>
-    </section>
     <section class="footer">
       <p>© 2026 Foxchase Trading, LLC</p>
       <p>
@@ -4438,28 +4355,38 @@
 <div class="modal-backdrop" id="seriesInfoModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="seriesInfoTitle">
     <div class="modal-head">
-      <h2 class="modal-title" id="seriesInfoTitle">READ THIS FIRST: SERIES I</h2>
+      <h2 class="modal-title" id="seriesInfoTitle">READ THIS FIRST</h2>
       <button class="modal-close" id="closeSeriesInfo" aria-label="Close">×</button>
     </div>
 
     <div class="modal-body">
-      <p>The original Foxchase $3k Small Account Series, Series I, is complete. Series II is now live and begins again from the same $3,000 starting balance with a tighter set of rules based on what the first series taught me.</p>
+      <p>
+        The Foxchase Small Account Series is complete. It began with a <strong>$3,000 cash account</strong>, an amount selected by the Foxchase Discord community because it represented the most common participating account size.
+      </p>
 
-      <p>Series I began with a $3,000 cash account, an amount originally selected by the Foxchase Discord community because it represented the most common participating account size.</p>
+      <p>
+        The account grew above <strong>$22,000</strong> at its peak, approaching the original $25,000 goal, before a significant drawdown. The series was intentionally concluded with the account still more than doubling its starting balance.
+      </p>
 
-      <p>The account grew above $22,000 at its peak before a significant drawdown, ultimately finishing at $6,277.33 after 87 logged sessions.</p>
+      <p>
+        Ending the series was deliberate. Continuing solely to reclaim a prior high or force an arbitrary milestone would have created exactly the pressure this challenge was meant to document. <strong>Protecting capital matters more than chasing a finish line.</strong>
+      </p>
 
-      <p>Ending Series I was deliberate. Continuing solely to reclaim a prior high or force the original $25,000 milestone would have created exactly the kind of psychological pressure the series was meant to document. Protecting capital matters more than chasing a finish line.</p>
+      <p>
+        This archive remains public because discretionary 0DTE trading is not a smooth equity curve. It includes strong periods, difficult drawdowns, execution mistakes, low-volume chop, recoveries, and the psychological pressure that comes with managing a small account.
+      </p>
 
-      <p>The archive remains public because discretionary 0DTE trading is not a smooth equity curve. It includes strong periods, difficult drawdowns, execution mistakes, low-volume chop, recoveries, and the pressure that comes with aggressively compounding a small account.</p>
+      <p>
+        The clearest lesson was <strong>selectivity</strong>: long 0DTE options should be reserved for genuinely high-conviction directional opportunities. Low-participation sessions can create exaggerated wicks and poor follow-through even on setups that would otherwise qualify as A+ setups. Taking those trades can send an account back toward its starting balance very quickly.
+      </p>
 
-      <p>One of the most important lessons was selectivity, particularly the usefulness of monitoring 5-minute relative volume (rVol). Low-participation sessions can create exaggerated wicks, false setups, and poor follow-through even when the broader setup initially appears attractive.</p>
+      <p>
+        The series also changed how I think about allocation. A discretionary account dedicated to long 0DTE options is better kept at a relatively consistent size, with periodic withdrawals, so position sizing and decision-making stay grounded. Separately, Foxchase Trading's proprietary automated strategy follows predefined, defined-risk options structures when its conditions are present.
+      </p>
 
-      <p>Series I also reinforced the distinction between growth mode and income mode. Aggressive compounding can make sense while an account is intentionally being grown, but as capital becomes meaningful to preserve, deployment should gradually decrease and profits can begin to be withdrawn rather than leaving every dollar exposed.</p>
-
-      <p>Series II began with stricter setup qualification, rVol filtering, planner-based sizing, predefined OCO risk, and tighter trade-management rules. The live archive also records how my discretionary practice evolved and where actual trades departed from the original plan.</p>
-
-      <p class="modal-callout"><a class="series-cta" href="/3k-challenge-part-2">Follow Small Account Series II →</a></p>
+      <p class="modal-callout">
+        The lasting lesson: <strong>for discretionary long 0DTE trading, take only truly A+ directional opportunities supported by relative volume and Expected Move levels. Periodically withdraw profits rather than endlessly compounding the account.</strong>
+      </p>
     </div>
   </div>
 </div>
