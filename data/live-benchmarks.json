@@ -2,9 +2,9 @@
   "schema": "foxchase-live-benchmarks-v1",
   "base_index": 100,
   "source_start": "2026-05-04",
-  "source_end": "2026-11-05",
-  "source_as_of": "2026-11-05T16:30:01.203367-05:00",
-  "generated_at": "2026-11-05T21:30:02.802099+00:00",
+  "source_end": "2026-11-09",
+  "source_as_of": "2026-11-09T14:22:49.336889-05:00",
+  "generated_at": "2026-11-09T19:22:51.699340+00:00",
   "cash": {
     "series": "UST_3MO_PAR",
     "field": "BC_3MONTH",
@@ -12,7 +12,7 @@
     "source": "U.S. Treasury Daily Treasury Par Yield Curve Rates, 3-month",
     "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml",
     "source_sha256": [
-      "e96199b32569922ed01f894b55501a7ae11d17498c837f0bae088978b68a4d0b"
+      "bc7a704b72b509ffa8488a28f9c8b960da7ff9c60341e3c30aa1a24b443c636d"
     ],
     "observations": [
       {
@@ -570,16 +570,20 @@
       {
         "date": "2026-11-05",
         "annual_yield_pct": 4.17
+      },
+      {
+        "date": "2026-11-06",
+        "annual_yield_pct": 4.19
       }
     ],
     "accrual": "annual_percent / 100 / 365, daily calendar compounding",
     "rate_policy": "latest observation strictly before accrual day; at most 7 calendar days; no backfill"
   },
   "cash_validation": {
-    "calendar_accrual_days": 185,
+    "calendar_accrual_days": 189,
     "maximum_carry_days": 4,
     "unsupported_accrual_intervals": 0,
-    "end_index": 102.0124499248598
+    "end_index": 102.05929987234956
   },
   "spy": {
     "adjustment": "all",
@@ -715,7 +719,9 @@
       "2026-11-02",
       "2026-11-03",
       "2026-11-04",
-      "2026-11-05"
+      "2026-11-05",
+      "2026-11-06",
+      "2026-11-09"
     ],
     "prices": [
       {
@@ -1237,9 +1243,17 @@
       {
         "date": "2026-11-05",
         "close": 733.0
+      },
+      {
+        "date": "2026-11-06",
+        "close": 735.29
+      },
+      {
+        "date": "2026-11-09",
+        "close": 752.37
       }
     ],
-    "partial_session": false,
-    "last_quote_timestamp": null
+    "partial_session": true,
+    "last_quote_timestamp": "2026-11-09T19:21:00Z"
   }
 }
