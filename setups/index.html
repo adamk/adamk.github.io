@@ -13,7 +13,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="/foxchase-favicon.png?v=20260823" />
-  <meta name="description" content="Foxchase Trading setup reference for A+, A, and B 0DTE trading setups." />
+  <meta name="description" content="Explore Foxchase 0DTE setups and the upcoming SPX and NDX GEX Profiles library." />
   <title>Setups | Foxchase Trading</title>
 
   <style>
@@ -145,6 +145,91 @@ nav {
       background: rgba(39,212,15,.08);
     }
 
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 0 0 42px;
+    }
+
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 245px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      box-shadow: 0 20px 70px rgba(0,0,0,.25);
+      color: inherit;
+      text-decoration: none;
+      transition: border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .category-card:hover {
+      border-color: rgba(39,212,15,.55);
+      background: linear-gradient(180deg, rgba(39,212,15,.07), rgba(255,255,255,.015));
+      transform: translateY(-2px);
+    }
+
+    .category-card:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .category-status {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 6px 10px;
+      border: 1px solid rgba(39,212,15,.28);
+      border-radius: 999px;
+      background: rgba(39,212,15,.09);
+      color: #9aff8e;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .category-status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      content: "";
+    }
+
+    .category-status.coming-soon {
+      border-color: rgba(255,224,0,.28);
+      background: rgba(255,224,0,.08);
+      color: #ffe980;
+    }
+
+    .category-status.coming-soon::before { background: var(--yellow); }
+
+    .category-card h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.15;
+      letter-spacing: -.035em;
+    }
+
+    .category-card p {
+      margin: 12px 0 22px;
+      color: var(--muted);
+    }
+
+    .category-link-label {
+      margin-top: auto;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .category-card.coming-soon .category-link-label { color: var(--yellow); }
+
     .timing-warning {
       max-width: none;
       margin: 0 0 36px;
@@ -265,6 +350,8 @@ nav {
       .section-head { display: block; }
       .section-head p { margin-top: 4px; text-align: left; }
       .chart-image { border-radius: 9px; }
+      .category-grid { grid-template-columns: 1fr; gap: 12px; }
+      .category-card { min-height: 0; padding: 22px; }
     }
   
     .brand {
@@ -647,7 +734,22 @@ nav {
       </div>
     </section>
 
-<section class="setups-framework">
+    <section class="category-grid" aria-label="Setup categories">
+      <a class="category-card" href="#foxchase-0dte-setups">
+        <span class="category-status">Available</span>
+        <h2>Foxchase 0DTE Setups</h2>
+        <p>Explore the A+, A, and B setup diagrams with their descriptions and educational context.</p>
+        <span class="category-link-label">View setup library <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="category-card coming-soon" href="/setups/gex-profiles/">
+        <span class="category-status coming-soon">Coming Soon</span>
+        <h2>GEX Profiles</h2>
+        <p>SPX &amp; NDX 0DTE Gamma Exposure</p>
+        <span class="category-link-label">Explore GEX Profiles <span aria-hidden="true">→</span></span>
+      </a>
+    </section>
+
+<section class="setups-framework" id="foxchase-0dte-setups">
       <h2>Setup Deployment Framework</h2>
       <p>
         Setup quality determines deployment. Higher-conviction setups justify more size;
