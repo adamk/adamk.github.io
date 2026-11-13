@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Official Foxchase Small Account Series II archive. Live day-by-day record of a margin-enabled $3k account and selective 0DTE directional trading." />
+  <title>Foxchase Small Account Series II</title>
+  <link rel="icon" href="/foxchase-favicon.png?v=20260823" type="image/png" />
+  <style>
+    :root { --bg:#0b1220; --panel:#121b2d; --panel2:#18233a; --text:#e8edf7; --muted:#9fb0cc; --accent:#f59e0b; --green:#22c55e; --border:#27344f; --max:1100px; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:linear-gradient(180deg,#0b1220 0%,#0f172a 100%); color:var(--text); font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.6; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); background:rgba(11,18,32,.92); }
+    nav { max-width:var(--max); margin:auto; padding:14px 24px; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; }
+    nav a { padding:8px 11px; border-radius:9px; color:#d8d8d8; }
+    nav a[aria-current="page"] { background:rgba(255,255,255,.08); color:#fff; }
+    main { max-width:var(--max); margin:auto; padding:28px 24px 72px; }
+    .hero { padding:32px 0 22px; }
+    .eyebrow,.status { display:inline-block; padding:6px 11px; border:1px solid rgba(34,197,94,.3); border-radius:999px; background:rgba(34,197,94,.1); color:#86efac; font-size:13px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+    h1 { margin:14px 0 8px; font-size:clamp(34px,5vw,56px); line-height:1.08; letter-spacing:-.03em; }
+    h2 { margin:0 0 14px; font-size:clamp(23px,3vw,30px); }
+    h3 { margin:0; font-size:23px; }
+    h4 { margin:0 0 8px; font-size:18px; }
+    .sub,.muted { color:var(--muted); }
+    .sub { max-width:900px; font-size:18px; }
+    .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin:22px 0; }
+    .card,.day-card { border:1px solid var(--border); border-radius:18px; background:linear-gradient(180deg,var(--panel),var(--panel2)); box-shadow:0 10px 30px rgba(0,0,0,.22); }
+    .card { padding:18px; }
+    .stat-label { color:var(--muted); font-size:12px; font-weight:750; letter-spacing:.06em; text-transform:uppercase; }
+    .stat-value { margin-top:5px; font-size:clamp(21px,2.5vw,30px); font-weight:850; line-height:1.15; }
+    .green { color:var(--green); }
+    .details-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:14px 0 26px; }
+    .detail { padding:14px 16px; border:1px solid var(--border); border-radius:12px; background:rgba(18,27,45,.7); }
+    .section { margin:34px 0; }
+    .section-card { padding:22px; border:1px solid var(--border); border-radius:20px; background:linear-gradient(180deg,var(--panel),var(--panel2)); }
+    .framework li { margin:5px 0; }
+    .chart-wrap { overflow:hidden; }
+    svg { display:block; width:100%; height:auto; min-width:0; }
+    .day-card { padding:22px; }
+    .day-head { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:16px 0 22px; }
+    .metric { padding:12px; border:1px solid rgba(255,255,255,.08); border-radius:12px; background:rgba(11,18,32,.45); }
+    .metric strong { display:block; margin-top:3px; font-size:18px; }
+    .error { margin:18px 0; padding:16px; border-left:3px solid #fbbf24; border-radius:10px; background:rgba(251,191,36,.08); }
+    .trade { margin:16px 0; padding:16px; border:1px solid rgba(255,255,255,.08); border-radius:14px; background:rgba(11,18,32,.4); }
+    .trade p { margin:8px 0; }
+    .trade-label { color:#fcd34d; font-weight:750; }
+    .img-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:18px; }
+    .img-grid img { display:block; width:100%; height:auto; border:1px solid rgba(255,255,255,.12); border-radius:14px; }
+    .note { margin-top:18px; padding:16px; border-left:3px solid var(--accent); border-radius:10px; background:rgba(245,158,11,.08); }
+    footer { padding:28px 20px 40px; border-top:1px solid var(--border); color:#8d9ab2; font-size:14px; text-align:center; }
+    @media(max-width:800px) { nav { justify-content:center; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .details-grid { grid-template-columns:1fr 1fr; } .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:560px) { main { padding:20px 14px 50px; } .grid,.details-grid,.metrics,.img-grid { grid-template-columns:1fr; } .card,.day-card,.section-card { padding:16px; } }
+  </style>
+</head>
+<body>
+  <header><nav aria-label="Main navigation">
+    <a href="/">Home</a><a href="/blog.html">Blog</a><a href="/3k-challenge" aria-current="page">$3k Series</a><a href="/setups/">Setups</a><a href="/planner/">Planner</a><a href="/algo-pnl.html">Algo</a><a href="/library/">Library</a><a href="/products.html">Products</a>
+  </nav></header>
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Foxchase Public Series Archive</span>
+      <h1>Foxchase Small Account Series II</h1>
+      <p class="sub">Live, day-by-day record of an aggressive small-account compounding experiment using selective 0DTE directional trading. Series II begins November 13, 2026 with a $3,000 margin-enabled account and no intentional margin leverage.</p>
+      <span class="status">Live</span>
+    </section>
+
+    <section aria-label="Series II metrics">
+      <div class="grid">
+        <div class="card"><div class="stat-label">Starting Balance</div><div class="stat-value">$3,000</div></div>
+        <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$4,123.09</div></div>
+        <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value green">+$1,123.09</div></div>
+        <div class="card"><div class="stat-label">Total Return</div><div class="stat-value green">+37.44%</div></div>
+        <div class="card"><div class="stat-label">Green Day Rate</div><div class="stat-value green">100.0%</div></div>
+        <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">1</div></div>
+        <div class="card"><div class="stat-label">Peak EOD Balance</div><div class="stat-value">$4,123.09</div></div>
+      </div>
+      <div class="details-grid">
+        <div class="detail"><span class="stat-label">Start Date</span><br><strong>November 13, 2026</strong></div>
+        <div class="detail"><span class="stat-label">Account Type</span><br><strong>Margin-enabled</strong></div>
+        <div class="detail"><span class="stat-label">Intentional Margin Leverage</span><br><strong>None</strong></div>
+      </div>
+    </section>
+
+    <section class="section section-card framework">
+      <h2>Series II Framework</h2>
+      <p class="sub">Margin-enabled account is used to remove settled-cash restrictions, not to intentionally increase option leverage. Closed-trade buying power can be reused intraday so an early exit does not prevent a later qualified opportunity. The former $25k PDT restriction no longer bars repeated qualifying intraday trades in a $3k margin account under Schwab&rsquo;s current framework. This structure does not imply higher expected returns.</p>
+      <p>Trade qualification considers combined context, including regime behavior, z-score structure, SPX and NDX GEX profiles, relative volume, price action, key levels, extrinsic divergences, and volatility behavior. GEX can inform potential paths, targets, support, resistance, and reversal areas. It is not certainty or an automatic standalone entry signal.</p>
+      <p><strong>A / A+ grades describe trade quality, conviction, and deployment. They are not a closed list of named z-score setups.</strong></p>
+      <ul><li>A+ qualified trade: up to 50% deployment</li><li>A qualified trade: up to 30% deployment</li><li>Below A or insufficient confirmation: no trade</li></ul>
+    </section>
+
+    <section class="section section-card chart-wrap" aria-labelledby="equityTitle">
+      <h2 id="equityTitle">Documented Equity Curve</h2>
+      <p class="muted">Actual documented account balance determines cumulative Series P&amp;L and equity curve. Start: $3,000.00. Day 1: $4,123.09. Thinkorswim Daily P&amp;L is displayed separately as reported by the platform.</p>
+      <svg viewBox="0 0 900 300" role="img" aria-labelledby="chartTitle chartDesc">
+        <title id="chartTitle">Series II equity curve through Day 1</title>
+        <desc id="chartDesc">Two documented balances only: Start at $3,000.00 and Day 1 at $4,123.09.</desc>
+        <line x1="100" y1="235" x2="820" y2="235" stroke="#46536b" stroke-width="2" />
+        <line x1="100" y1="55" x2="100" y2="235" stroke="#46536b" stroke-width="2" />
+        <line x1="100" y1="145" x2="820" y2="145" stroke="#27344f" stroke-width="1" />
+        <polyline points="190,207 710,72" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="190" cy="207" r="8" fill="#fbbf24" /><circle cx="710" cy="72" r="8" fill="#22c55e" />
+        <text x="190" y="190" fill="#e8edf7" text-anchor="middle" font-size="17">$3,000.00</text>
+        <text x="710" y="52" fill="#e8edf7" text-anchor="middle" font-size="17">$4,123.09</text>
+        <text x="190" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Start</text>
+        <text x="710" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 1</text>
+      </svg>
+      <p class="muted">Peak: $4,123.09 · Current: $4,123.09</p>
+    </section>
+
+    <section class="section" aria-labelledby="archiveTitle">
+      <h2 id="archiveTitle">Day Archive</h2>
+      <article class="day-card" id="day-1">
+        <div class="day-head"><h3>🦊 Day 1</h3><span class="status">🟢 Green Day</span></div>
+        <div class="metrics">
+          <div class="metric"><span class="muted">Starting Balance</span><strong>$3,000.00</strong></div>
+          <div class="metric"><span class="muted">Current Balance</span><strong>$4,123.09</strong></div>
+          <div class="metric"><span class="muted">Daily P&amp;L</span><strong class="green">+$1,162</strong></div>
+          <div class="metric"><span class="muted">Total Series P&amp;L</span><strong class="green">+$1,123.09</strong></div>
+        </div>
+        <p class="muted">Thinkorswim Daily P&amp;L: +$1,162.00. Documented account-balance change: $4,123.09 minus $3,000.00 equals +$1,123.09. Total Return: +37.44%.</p>
+
+        <section class="error" aria-labelledby="executionErrorTitle">
+          <h4 id="executionErrorTitle">Execution Error</h4>
+          <p>Accidentally entered the opposite side of the intended trade at the open and immediately closed it for roughly a $90 loss. Not a strategy-generated trade, just a coffee-not-kicking-in-yet mistake. 😅</p>
+          <p class="muted">This error remains included in actual Daily P&amp;L and account balance. It is not a strategy trade and is excluded from strategy win/loss counts.</p>
+        </section>
+
+        <section class="trade" aria-labelledby="trade1Title">
+          <h4 id="trade1Title">Trade 1</h4>
+          <p><span class="trade-label">Direction:</span> Short</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Short at EM-/PML</p>
+          <p><span class="trade-label">Supporting Context:</span> Supporting GEX on both NDX and SPX / doubled PMH-YDH key levels on VXX / potential downside volatility expansion toward VXX EM+</p>
+          <p><span class="trade-label">Management / Exit:</span> Shorted around the EM-/PML area with supporting GEX structure on both NDX and SPX. VXX also had doubled PMH/YDH key levels, providing additional context for a volatility move higher toward VXX EM+, which supported further downside in SPY.</p>
+        </section>
+
+        <section class="trade" aria-labelledby="trade2Title">
+          <h4 id="trade2Title">Trade 2</h4>
+          <p><span class="trade-label">Direction:</span> Short</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Short continuation</p>
+          <p><span class="trade-label">Supporting Context:</span> Negative forward SPX GEX ramp into the OB / remaining downside potential / max negative SPX GEX at 753</p>
+          <p><span class="trade-label">Management / Exit:</span> Re-shorted after again missing the initial move, but I still had confidence there was some meat left on the bone due to the negative forward GEX ramp on SPX extending into the OB and potentially below it. Took profit just short of the OB break. The original 753 downside target, which was the max negative SPX GEX level called out earlier in the morning, ultimately hit afterward.</p>
+        </section>
+
+        <div class="note"><strong>Closing Observation</strong><br>Strong first day for Series II. Even after the opening execution mistake, the margin-account structure allowed us to correct it, move on, and continue taking qualified opportunities without settled cash becoming the limiting factor. The eventual hit of the original 753 max-negative-GEX target was also a nice confirmation of the broader downside read.</div>
+
+        <div class="img-grid">
+          <img src="/images/series2-day-1-pnl.jpg" alt="Thinkorswim P&amp;L Day showing +$1,162.00" width="162" height="68" />
+          <img src="/images/series2-day-1-equity.jpg" alt="Schwab Available Dollars showing $4,123.09" width="334" height="34" />
+        </div>
+      </article>
+    </section>
+    <p><a href="/3k-challenge">Back to $3k Series hub</a></p>
+  </main>
+  <footer><div>© 2026 Foxchase Trading, LLC</div><div>Educational content only. Not investment advice. Trading involves substantial risk of loss.</div></footer>
+</body>
+</html>
