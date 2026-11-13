@@ -11,7 +11,7 @@
   </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="GEX Profiles is an upcoming Foxchase library about recurring SPX and NDX 0DTE gamma exposure structures." />
+  <meta name="description" content="Preview Foxchase GEX Profile 01, an observed NDX negative-GEX bounce and SPX rejection in R1 and R5." />
   <title>GEX Profiles | Foxchase Trading</title>
   <link rel="icon" type="image/png" href="/foxchase-favicon.png?v=20260823" />
   <style>
@@ -196,6 +196,99 @@
     .intro p { margin: 0 0 18px; }
     .intro p:last-child { margin-bottom: 0; }
 
+    .profile-section, .more-profiles {
+      margin: 38px 0 0;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
+      box-shadow: 0 20px 70px rgba(0,0,0,.25);
+    }
+
+    .profile-kicker {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .profile-section h2, .more-profiles h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2.35rem);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+    }
+
+    .regime-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .regime-labels span {
+      padding: 5px 10px;
+      border: 1px solid rgba(39,212,15,.3);
+      border-radius: 999px;
+      background: rgba(39,212,15,.08);
+      color: #a5ff9b;
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    .profile-copy, .more-profiles p {
+      max-width: 900px;
+      color: #d8d8d8;
+    }
+
+    .profile-sequence {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 0;
+      padding-left: 1.35rem;
+      color: #d8d8d8;
+    }
+
+    .profile-sequence li { padding-left: 4px; }
+
+    .profile-figure { margin: 24px 0 0; }
+
+    .profile-image-link {
+      display: block;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .profile-image-link:focus-visible {
+      outline: 3px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .profile-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .profile-figure figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .gex-note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--yellow);
+      border-radius: 10px;
+      background: rgba(255,224,0,.055);
+      color: #dedede;
+    }
+
     .back-link {
       display: inline-flex;
       margin-top: 32px;
@@ -280,15 +373,43 @@
       <p class="eyebrow">0DTE visual library</p>
       <h1 id="page-title">GEX Profiles</h1>
       <p class="subtitle">SPX &amp; NDX 0DTE Gamma Exposure</p>
-      <p class="status">Coming Soon</p>
     </section>
 
     <section class="intro" aria-label="About GEX Profiles">
-      <p>The GEX Profiles library is in development. It will document recurring SPX and NDX 0DTE gamma exposure structures.</p>
+      <p>The GEX Profiles library documents recurring SPX and NDX 0DTE gamma exposure structures. This first profile is an observed pattern under review, not a statistically validated result.</p>
       <p>GEX may provide supporting context for an existing Foxchase setup, or it may form the primary thesis for a GEX-led setup. SPX and NDX are considered independently: some sessions may offer useful context in both indexes, in one index alone, or no actionable GEX interpretation.</p>
       <p>Profiles may recur across different regimes and are not exclusive to a particular setup. A gamma level alone is not an entry signal. Any GEX-led setup requires confirmation from market behavior.</p>
-      <a class="back-link" href="/setups/">Back to Setups</a>
     </section>
+
+    <section class="profile-section" aria-labelledby="profile-01-title">
+      <p class="profile-kicker">First Profile Preview</p>
+      <h2 id="profile-01-title">Profile 01 — NDX Negative-GEX Bounce → SPX Rejection</h2>
+      <div class="regime-labels" aria-label="Observed regimes">
+        <span>Observed in R1</span>
+        <span>Observed in R5</span>
+      </div>
+      <p class="profile-copy">This sequence has appeared in both R1 and R5, making it a candidate cross-regime pattern. This is an observation, not a claim of statistical validation or predictive accuracy.</p>
+      <figure class="profile-figure">
+        <a class="profile-image-link" href="/images/gex-profile-01.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-resolution Profile 01 GEX chart in a new tab">
+          <img class="profile-image" src="/images/gex-profile-01.png" width="1544" height="1018" alt="Observed GEX profile in R1 and R5. NDX price chops, declines to the middle large negative-GEX concentration, then recovers as SPX rallies above a small positive-GEX nub into an upper negative-GEX cluster and rejects." loading="eager" />
+        </a>
+        <figcaption>White-background NDX and SPX GEX profile. Select the chart to open its original full-resolution image; pinch to zoom on mobile.</figcaption>
+      </figure>
+      <ol class="profile-sequence" aria-label="Observed price sequence">
+        <li>NDX begins with chop and balance.</li>
+        <li>NDX declines to its middle large negative-GEX concentration and bounces.</li>
+        <li>Price recovers toward the SPX top negative-GEX cluster, above a small positive-GEX nub, then rejects.</li>
+      </ol>
+      <p class="gex-note">GEX levels describe potential structure, not certainty. Treat this profile as context and require price-action confirmation before any trade decision.</p>
+    </section>
+
+    <section class="more-profiles" aria-labelledby="more-profiles-title">
+      <p class="profile-kicker">Library in Progress</p>
+      <h2 id="more-profiles-title">More Profiles Coming Soon</h2>
+      <p>Additional reviewed SPX and NDX 0DTE GEX profile observations will be added as the visual library develops.</p>
+    </section>
+
+    <a class="back-link" href="/setups/">Back to Setups</a>
   </main>
 
   <footer>
