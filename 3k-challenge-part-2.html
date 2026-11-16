@@ -70,12 +70,12 @@
     <section aria-label="Series II metrics">
       <div class="grid">
         <div class="card"><div class="stat-label">Starting Balance</div><div class="stat-value">$3,000</div></div>
-        <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$4,123.09</div></div>
-        <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value green">+$1,123.09</div></div>
-        <div class="card"><div class="stat-label">Total Return</div><div class="stat-value green">+37.44%</div></div>
+        <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$4,507.67</div></div>
+        <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value green">+$1,507.67</div></div>
+        <div class="card"><div class="stat-label">Total Return</div><div class="stat-value green">+50.26%</div></div>
         <div class="card"><div class="stat-label">Green Day Rate</div><div class="stat-value green">100.0%</div></div>
-        <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">1</div></div>
-        <div class="card"><div class="stat-label">Peak EOD Balance</div><div class="stat-value">$4,123.09</div></div>
+        <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">2</div></div>
+        <div class="card"><div class="stat-label">Peak EOD Balance</div><div class="stat-value">$4,507.67</div></div>
       </div>
       <div class="details-grid">
         <div class="detail"><span class="stat-label">Start Date</span><br><strong>November 13, 2026</strong></div>
@@ -96,21 +96,23 @@
 
     <section class="section section-card chart-wrap" aria-labelledby="equityTitle">
       <h2 id="equityTitle">Documented Equity Curve</h2>
-      <p class="muted">Actual documented account balance determines cumulative Series P&amp;L and equity curve. Start: $3,000.00. Day 1: $4,123.09. Thinkorswim Daily P&amp;L is displayed separately as reported by the platform.</p>
+      <p class="muted">Actual documented account balance determines cumulative Series P&amp;L and equity curve. Start: $3,000.00. Day 1: $4,123.09. Day 2: $4,507.67. Thinkorswim Daily P&amp;L is displayed separately as reported by the platform.</p>
       <svg viewBox="0 0 900 300" role="img" aria-labelledby="chartTitle chartDesc">
-        <title id="chartTitle">Series II equity curve through Day 1</title>
-        <desc id="chartDesc">Two documented balances only: Start at $3,000.00 and Day 1 at $4,123.09.</desc>
+        <title id="chartTitle">Series II equity curve through Day 2</title>
+        <desc id="chartDesc">Three documented balances only: Start at $3,000.00, Day 1 at $4,123.09, and Day 2 at $4,507.67.</desc>
         <line x1="100" y1="235" x2="820" y2="235" stroke="#46536b" stroke-width="2" />
         <line x1="100" y1="55" x2="100" y2="235" stroke="#46536b" stroke-width="2" />
         <line x1="100" y1="145" x2="820" y2="145" stroke="#27344f" stroke-width="1" />
-        <polyline points="190,207 710,72" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="190" cy="207" r="8" fill="#fbbf24" /><circle cx="710" cy="72" r="8" fill="#22c55e" />
+        <polyline points="190,207 500,112 760,62" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="190" cy="207" r="8" fill="#fbbf24" /><circle cx="500" cy="112" r="8" fill="#22c55e" /><circle cx="760" cy="62" r="8" fill="#22c55e" />
         <text x="190" y="190" fill="#e8edf7" text-anchor="middle" font-size="17">$3,000.00</text>
-        <text x="710" y="52" fill="#e8edf7" text-anchor="middle" font-size="17">$4,123.09</text>
+        <text x="500" y="91" fill="#e8edf7" text-anchor="middle" font-size="17">$4,123.09</text>
+        <text x="760" y="40" fill="#e8edf7" text-anchor="middle" font-size="17">$4,507.67</text>
         <text x="190" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Start</text>
-        <text x="710" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 1</text>
+        <text x="500" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 1</text>
+        <text x="760" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 2</text>
       </svg>
-      <p class="muted">Peak: $4,123.09 · Current: $4,123.09</p>
+      <p class="muted">Peak: $4,507.67 · Current: $4,507.67</p>
     </section>
 
     <section class="section" aria-labelledby="archiveTitle">
@@ -152,6 +154,38 @@
         <div class="img-grid">
           <img src="/images/series2-day-1-pnl.jpg" alt="Thinkorswim P&amp;L Day showing +$1,162.00" width="162" height="68" />
           <img src="/images/series2-day-1-equity.jpg" alt="Schwab Available Dollars showing $4,123.09" width="334" height="34" />
+        </div>
+      </article>
+
+      <article class="day-card" id="day-2">
+        <div class="day-head"><h3>🦊 Day 2</h3><span class="status">🟢 Green Day</span></div>
+        <p class="muted">November 16, 2026</p>
+        <div class="metrics">
+          <div class="metric"><span class="muted">Starting Balance</span><strong>$4,123.09</strong></div>
+          <div class="metric"><span class="muted">Current Balance</span><strong>$4,507.67</strong></div>
+          <div class="metric"><span class="muted">Daily P&amp;L</span><strong class="green">+$392</strong></div>
+          <div class="metric"><span class="muted">Total Series P&amp;L</span><strong class="green">+$1,507.67</strong></div>
+        </div>
+        <p class="muted">Thinkorswim Daily P&amp;L: +$392.00. Documented account-balance change: $4,507.67 minus $4,123.09 equals +$384.58. Total Return: +50.26%.</p>
+
+        <section class="note" aria-labelledby="infrastructureNoteTitle">
+          <h4 id="infrastructureNoteTitle">Infrastructure Note</h4>
+          <p>My primary Pi went down over the weekend, and I was still scrambling to get the secondary Pi GEX collector publishing to the private live page before the open. It wasn&rsquo;t ready in time, so we were effectively trading without live GEX this morning.</p>
+        </section>
+
+        <section class="trade" aria-labelledby="day2Trade1Title">
+          <h4 id="day2Trade1Title">Trade 1</h4>
+          <p><span class="trade-label">Direction:</span> Short</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Regime 1 short for PML flush into an OB</p>
+          <p><span class="trade-label">Supporting Context:</span> Waited through the opening chop / PML rejection / VWAP rejection</p>
+          <p><span class="trade-label">Management / Exit:</span> Stuck with the Regime 1 timing rule and let the early chop play out before entering just before 10am. By that point price was already rejecting both PML and VWAP, so I took the short looking for the PML flush into the order block.</p>
+        </section>
+
+        <div class="note"><strong>Closing Observation</strong><br>Nice reminder today that GEX is valuable context, but the underlying Regime 1 framework still needs to stand on its own when the data is unavailable. We were flying blind on GEX, but waiting through the opening chop and respecting the price structure still gave us a clean opportunity.</div>
+
+        <div class="img-grid">
+          <img src="/images/series2-day-2-pnl.jpg" alt="Thinkorswim P&amp;L Day showing +$392.00" width="156" height="66" />
+          <img src="/images/series2-day-2-equity.jpg" alt="Schwab Available Dollars showing $4,507.67" width="334" height="32" />
         </div>
       </article>
     </section>
