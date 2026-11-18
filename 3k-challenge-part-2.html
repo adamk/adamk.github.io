@@ -70,12 +70,12 @@
     <section aria-label="Series II metrics">
       <div class="grid">
         <div class="card"><div class="stat-label">Starting Balance</div><div class="stat-value">$3,000</div></div>
-        <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$5,285.03</div></div>
-        <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value green">+$2,285.03</div></div>
-        <div class="card"><div class="stat-label">Total Return</div><div class="stat-value green">+76.17%</div></div>
+        <div class="card"><div class="stat-label">Current Balance</div><div class="stat-value">$6,208.79</div></div>
+        <div class="card"><div class="stat-label">Total Series P&amp;L</div><div class="stat-value green">+$3,208.79</div></div>
+        <div class="card"><div class="stat-label">Total Return</div><div class="stat-value green">+106.96%</div></div>
         <div class="card"><div class="stat-label">Green Day Rate</div><div class="stat-value green">100.0%</div></div>
-        <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">3</div></div>
-        <div class="card"><div class="stat-label">Peak EOD Balance</div><div class="stat-value">$5,285.03</div></div>
+        <div class="card"><div class="stat-label">Days Logged</div><div class="stat-value">4</div></div>
+        <div class="card"><div class="stat-label">Peak EOD Balance</div><div class="stat-value">$6,208.79</div></div>
       </div>
       <div class="details-grid">
         <div class="detail"><span class="stat-label">Start Date</span><br><strong>November 13, 2026</strong></div>
@@ -96,25 +96,31 @@
 
     <section class="section section-card chart-wrap" aria-labelledby="equityTitle">
       <h2 id="equityTitle">Documented Equity Curve</h2>
-      <p class="muted">Actual documented account balance determines cumulative Series P&amp;L and equity curve. Start: $3,000.00. Day 1: $4,123.09. Day 2: $4,507.67. Day 3: $5,285.03. Thinkorswim Daily P&amp;L is displayed separately as reported by the platform.</p>
+      <p class="muted">Actual documented account balance determines cumulative Series P&amp;L and equity curve. Thinkorswim Daily P&amp;L is displayed separately as reported by the platform.</p>
       <svg viewBox="0 0 900 300" role="img" aria-labelledby="chartTitle chartDesc">
-        <title id="chartTitle">Series II equity curve through Day 3</title>
-        <desc id="chartDesc">Four documented balances only: Start at $3,000.00, Day 1 at $4,123.09, Day 2 at $4,507.67, and Day 3 at $5,285.03.</desc>
+        <title id="chartTitle">Series II equity curve through Day 4</title>
+        <desc id="chartDesc">Documented account balances: Start at $3,000.00, Day 1 at $4,123.09, Day 2 at $4,507.67, Day 3 at $5,285.03, and Day 4 at $6,208.79.</desc>
         <line x1="100" y1="235" x2="820" y2="235" stroke="#46536b" stroke-width="2" />
         <line x1="100" y1="55" x2="100" y2="235" stroke="#46536b" stroke-width="2" />
         <line x1="100" y1="145" x2="820" y2="145" stroke="#27344f" stroke-width="1" />
-        <polyline points="190,207 400,120 600,90 800,55" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="190" cy="207" r="8" fill="#fbbf24" /><circle cx="400" cy="120" r="8" fill="#22c55e" /><circle cx="600" cy="90" r="8" fill="#22c55e" /><circle cx="800" cy="55" r="8" fill="#22c55e" />
-        <text x="190" y="190" fill="#e8edf7" text-anchor="middle" font-size="17">$3,000.00</text>
-        <text x="400" y="99" fill="#e8edf7" text-anchor="middle" font-size="17">$4,123.09</text>
-        <text x="600" y="69" fill="#e8edf7" text-anchor="middle" font-size="17">$4,507.67</text>
-        <text x="800" y="35" fill="#e8edf7" text-anchor="middle" font-size="17">$5,285.03</text>
-        <text x="190" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Start</text>
-        <text x="400" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 1</text>
-        <text x="600" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 2</text>
-        <text x="800" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 3</text>
+        <polyline points="140,207 305,154 470,136 635,99 800,55" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="140" cy="207" r="8" fill="#fbbf24"><title>Start: $3,000.00</title></circle>
+        <text x="140" y="189" fill="#e8edf7" text-anchor="middle" font-size="17">$3,000.00</text>
+        <text x="140" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Start</text>
+        <circle cx="305" cy="154" r="8" fill="#22c55e"><title>Day 1: $4,123.09</title></circle>
+        <text x="305" y="136" fill="#e8edf7" text-anchor="middle" font-size="17">$4,123.09</text>
+        <text x="305" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 1</text>
+        <circle cx="470" cy="136" r="8" fill="#22c55e"><title>Day 2: $4,507.67</title></circle>
+        <text x="470" y="118" fill="#e8edf7" text-anchor="middle" font-size="17">$4,507.67</text>
+        <text x="470" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 2</text>
+        <circle cx="635" cy="99" r="8" fill="#22c55e"><title>Day 3: $5,285.03</title></circle>
+        <text x="635" y="81" fill="#e8edf7" text-anchor="middle" font-size="17">$5,285.03</text>
+        <text x="635" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 3</text>
+        <circle cx="800" cy="55" r="8" fill="#22c55e"><title>Day 4: $6,208.79</title></circle>
+        <text x="800" y="37" fill="#e8edf7" text-anchor="middle" font-size="17">$6,208.79</text>
+        <text x="800" y="265" fill="#9fb0cc" text-anchor="middle" font-size="15">Day 4</text>
       </svg>
-      <p class="muted">Peak: $5,285.03 · Current: $5,285.03</p>
+      <p class="muted">Start: $3,000.00 · Current: $6,208.79 · Peak: $6,208.79</p>
     </section>
 
     <section class="section" aria-labelledby="archiveTitle">
@@ -223,6 +229,41 @@
         <div class="img-grid">
           <img src="/images/series2-day-3-pnl.jpg" alt="Thinkorswim P&amp;L Day showing +$807.00" width="155" height="66" />
           <img src="/images/series2-day-3-equity.jpg" alt="Schwab Available Dollars showing $5,285.03" width="334" height="32" />
+        </div>
+      </article>
+
+      <article class="day-card" id="day-4">
+        <div class="day-head"><h3>🦊 Day 4</h3><span class="status">🟢 Green Day</span></div>
+        <p class="muted">November 18, 2026</p>
+        <div class="metrics">
+          <div class="metric"><span class="muted">Starting Balance</span><strong>$5,285.03</strong></div>
+          <div class="metric"><span class="muted">Current Balance</span><strong>$6,208.79</strong></div>
+          <div class="metric"><span class="muted">Daily P&amp;L</span><strong class="green">+$959</strong></div>
+          <div class="metric"><span class="muted">Total Series P&amp;L</span><strong class="green">+$3,208.79</strong></div>
+        </div>
+        <p class="muted">Thinkorswim Daily P&amp;L: +$959.00. Documented account-balance change: $6,208.79 minus $5,285.03 equals +$923.76. Total Return: +106.96%.</p>
+
+        <section class="trade" aria-labelledby="day4Trade1Title">
+          <h4 id="day4Trade1Title">Trade 1</h4>
+          <p><span class="trade-label">Direction:</span> Long</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Long from the PML area</p>
+          <p><span class="trade-label">Supporting Context:</span> NDX positive GEX / potential PML-to-PMH range completion</p>
+          <p><span class="trade-label">Management / Exit:</span> Took the long at the open looking for a bounce from the PML area and a move across the range toward PMH. NDX positive GEX provided supporting context, but the trade failed and stopped out.</p>
+        </section>
+
+        <section class="trade" aria-labelledby="day4Trade2Title">
+          <h4 id="day4Trade2Title">Trade 2</h4>
+          <p><span class="trade-label">Direction:</span> Short</p>
+          <p><span class="trade-label">Primary Entry Reason:</span> Short after rejection of main NDX positive GEX</p>
+          <p><span class="trade-label">Supporting Context:</span> Main NDX positive GEX rejection / SPX max negative GEX target / PML flush / 5-minute close below PDC</p>
+          <p><span class="trade-label">Management / Exit:</span> After the rejection of the main NDX positive GEX, it became much clearer that the max negative GEX on SPX was the likely downside target. The PML flush added confirmation, and the 5-minute candle close below PDC gave me confidence to hold for a second flush. Took profit just short of the main SPX negative GEX level and above the SPY order block.</p>
+        </section>
+
+        <div class="note"><strong>Closing Observation</strong><br>Good example of letting the first idea fail, reassessing the structure, and taking the opposite side once the market gave better confirmation. The NDX GEX rejection drew attention to SPX GEX as the structure to watch, while the PML flush and close below PDC gave the downside thesis enough confirmation to stay with the second move.</div>
+
+        <div class="img-grid">
+          <img src="/images/series2-day-4-pnl.jpg" alt="Thinkorswim P&amp;L Day showing +$959.00" width="162" height="70" />
+          <img src="/images/series2-day-4-equity.jpg" alt="Schwab Available Dollars showing $6,208.79" width="330" height="34" />
         </div>
       </article>
     </section>
