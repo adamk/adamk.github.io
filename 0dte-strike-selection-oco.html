@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZKVBZ3QJ1F"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZKVBZ3QJ1F');
+  </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How Strike Selection Changes a 20% Stop Loss in 0DTE Options | Foxchase Trading</title>
+<meta content="Why I favor ATM 0DTE options and how strike selection, implied volatility, and time to expiration affect my fixed ±20% OCO orders." name="description"/>
+<meta content="Adam" name="author"/>
+<link href="https://www.foxchasetrading.com/0dte-strike-selection-oco.html" rel="canonical"/>
+<link href="/foxchase-favicon.png?v=20260823" rel="icon" type="image/png"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+<style>
+    .foxchase-site-header, .foxchase-site-header * { box-sizing: border-box; }
+    .foxchase-site-header { position:relative; z-index:3000; width:100%; background:#fff; border-bottom:1px solid #dee2e6; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .foxchase-header-wrap { position:relative; width:100%; min-height:66px; padding:0 12px; display:flex; align-items:center; }
+    .foxchase-brand { display:inline-flex; align-items:center; gap:.65rem; color:#212529!important; text-decoration:none!important; font-size:1.1rem; font-weight:700; white-space:nowrap; }
+    .foxchase-brand:hover { color:#b45309!important; }
+    .foxchase-brand-logo { display:block; width:42px; height:42px; object-fit:contain; flex:0 0 42px; }
+    .foxchase-main-nav { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+    .foxchase-navigation { display:flex; align-items:center; gap:6px; padding:8px 12px; background:#fff; border:1px solid #dee2e6; border-radius:999px; box-shadow:0 .125rem .25rem rgba(0,0,0,.2); }
+    .foxchase-navigation a { display:block; color:#495057!important; text-decoration:none!important; font-size:.95rem; font-weight:500; line-height:1.4; padding:8px 12px; border-radius:999px; white-space:nowrap; }
+    .foxchase-navigation a:hover { color:#111!important; background:#f1f3f5; }
+    .foxchase-navigation a.active { color:#b45309!important; background:rgba(245,158,11,.14); font-weight:700; }
+    .foxchase-menu-toggle { display:none; }
+    .article-wrap { max-width:920px; }
+    .guide-callout { padding:1rem 1.15rem; background:#fff8e7; border-left:4px solid #fd7e14; border-radius:.35rem; }
+    .guide-note { padding:1rem 1.15rem; background:#eef6ff; border-left:4px solid #0d6efd; border-radius:.35rem; }
+    pre { margin:0 0 1rem; padding:1rem; overflow:auto; color:#f8f9fa; background:#161b22; border-radius:.5rem; }
+    code { color:#9a3412; }
+    pre code { color:inherit; }
+    .step-list > li { margin-bottom:1.1rem; }
+    @media (max-width:1120px) {
+      .foxchase-header-wrap { padding:0 18px; justify-content:space-between; }
+      .foxchase-brand { min-width:0; font-size:1rem; }
+      .foxchase-brand-logo { width:36px; height:36px; flex-basis:36px; }
+      .foxchase-main-nav { position:static; transform:none; margin-left:auto; }
+      .foxchase-menu-toggle { display:flex; flex-direction:column; align-items:center; justify-content:center; width:42px; height:42px; padding:9px; background:#111; border:1px solid rgba(255,255,255,.22); border-radius:8px; cursor:pointer; }
+      .foxchase-menu-toggle span { display:block; width:22px; height:2px; margin:2px 0; background:#fff; border-radius:2px; }
+      .foxchase-navigation { display:none; position:absolute; top:calc(100% + 10px); left:18px; right:18px; width:auto; padding:10px; flex-direction:column; align-items:stretch; gap:2px; background:#111; border:1px solid rgba(255,255,255,.16); border-radius:12px; box-shadow:0 14px 30px rgba(0,0,0,.55); }
+      .foxchase-navigation.is-open { display:flex; }
+      .foxchase-navigation a { width:100%; padding:12px 14px; color:#f4f4f4!important; border-radius:8px; text-align:left; }
+      .foxchase-navigation a:hover { color:#fff!important; background:rgba(255,255,255,.08); }
+    }
+  </style>
+<meta content="article" property="og:type"/><meta content="Foxchase Trading" property="og:site_name"/><meta content="How Strike Selection Changes a 20% Stop Loss in 0DTE Options" property="og:title"/><meta content="Why I favor ATM 0DTE options and how strike selection, implied volatility, and time to expiration affect my fixed ±20% OCO orders." property="og:description"/><meta content="https://www.foxchasetrading.com/0dte-strike-selection-oco.html" property="og:url"/><meta content="https://www.foxchasetrading.com/images/0dte-strike-selection-oco/figure-02.png" property="og:image"/><meta content="image/png" property="og:image:type"/><meta content="2300" property="og:image:width"/><meta content="1100" property="og:image:height"/><meta content="The same OCO maps to different SPY levels." property="og:image:alt"/><meta content="2026-11-27T00:00:00-05:00" property="article:published_time"/><meta content="Adam" property="article:author"/><meta content="summary_large_image" name="twitter:card"/><meta content="@FoxchaseTrading" name="twitter:site"/><meta content="@Kimbroughski" name="twitter:creator"/><meta content="How Strike Selection Changes a 20% Stop Loss in 0DTE Options" name="twitter:title"/><meta content="Why I favor ATM 0DTE options and how strike selection, implied volatility, and time to expiration affect my fixed ±20% OCO orders." name="twitter:description"/><meta content="https://www.foxchasetrading.com/images/0dte-strike-selection-oco/figure-02.png" name="twitter:image"/><meta content="The same OCO maps to different SPY levels." name="twitter:image:alt"/><link href="/feed.xml" rel="alternate" title="Foxchase Trading articles" type="application/rss+xml"/><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Strike Selection Changes a 20% Stop Loss in 0DTE Options",
+  "description": "Why I favor ATM 0DTE options and how strike selection, implied volatility, and time to expiration affect my fixed ±20% OCO orders.",
+  "datePublished": "2026-11-27",
+  "author": {
+    "@type": "Person",
+    "name": "Adam"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Foxchase Trading",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.foxchasetrading.com/foxchasetrading.png"
+    }
+  },
+  "image": [
+    "https://www.foxchasetrading.com/images/0dte-strike-selection-oco/figure-02.png"
+  ],
+  "url": "https://www.foxchasetrading.com/0dte-strike-selection-oco.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.foxchasetrading.com/0dte-strike-selection-oco.html"
+  },
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true
+}</script><style>
+:root { color-scheme:light dark; }
+body { font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+.article-wrap { max-width:920px; }
+#article { font-size:1.0625rem; line-height:1.75; }
+#article h1 { line-height:1.18; font-weight:650; }
+.article-subtitle { font-size:1.2rem; line-height:1.55; color:#495057; margin-top:1rem; }
+.article-byline { font-size:.95rem; color:#6c757d; }
+#article-body h2 { font-size:1.65rem; line-height:1.3; margin:2.5rem 0 1rem; }
+#article-body h3 { font-size:1.35rem; margin:2rem 0 1rem; }
+#article-body p { margin-bottom:1.25rem; }
+.article-figure { margin:2rem 0; }
+.figure-scroll { overflow-x:auto; padding-bottom:.4rem; }
+.figure-scroll:focus-visible { outline:2px solid #0d6efd; outline-offset:4px; }
+.article-figure img { display:block; width:100%; height:auto; margin:0 auto; }
+.raster-detail img { min-width:896px; background:#000; }
+.chart img { min-width:896px; background:#fff; }
+.article-figure figcaption { font-size:.9rem; line-height:1.5; color:#5c636a; margin-top:.65rem; }
+#e9de { border-left:4px solid #fd7e14; padding:1rem; background:#fff8e7; margin-top:2rem; }
+@media(max-width:600px) { .article-wrap { padding-left:1rem; padding-right:1rem; } #article h1 { font-size:2rem; } }
+@media(prefers-color-scheme:dark) {
+ body.bg-light.text-dark { background:#15191e!important; color:#e9ecef!important; }
+ .article-subtitle,.article-byline,.article-figure figcaption { color:#b7bec7; }
+ #article-body a { color:#8cbdff; }
+ #e9de { background:#30291b; }
+ body > footer { color:#e9ecef!important; }
+ body > footer p { color:#b7bec7!important; }
+ .foxchase-site-header,.foxchase-navigation { background:#20252b; border-color:#46505a; }
+ .foxchase-brand,.foxchase-navigation a { color:#e9ecef!important; }
+ .foxchase-navigation a:hover { color:#fff!important; background:#343a40; }
+ .foxchase-navigation a.active { color:#ffc078!important; }
+}
+</style></head>
+<body class="bg-light text-dark">
+<header class="foxchase-site-header">
+<div class="foxchase-header-wrap">
+<a aria-label="Foxchase Trading home" class="foxchase-brand" href="/">
+<img alt="Foxchase Trading logo" class="foxchase-brand-logo" src="/foxchasetrading-fox-only.jpg"/>
+<span>Foxchase Trading</span>
+</a>
+<nav aria-label="Main navigation" class="foxchase-main-nav">
+<button aria-expanded="false" aria-label="Toggle navigation" class="foxchase-menu-toggle" type="button"><span></span><span></span><span></span></button>
+<div class="foxchase-navigation">
+<a href="/">Home</a>
+<a aria-current="page" class="active" href="/blog.html">Blog</a>
+<a href="/3k-challenge">$3k Series</a>
+<a href="/setups/">Setups</a>
+<a href="/planner/">Planner</a>
+<a href="/algo-pnl.html">Algo</a>
+<a href="/library/">Library</a>
+<a href="/products.html">Products</a>
+</div>
+</nav>
+</div>
+</header>
+<main class="container article-wrap py-4"><article id="article"><header class="mb-4"><h1 class="display-6">How Strike Selection Changes a 20% Stop Loss in 0DTE Options</h1><p class="article-subtitle">Why I favor ATM 0DTE options and how strike selection, implied volatility, and time to expiration affect my fixed ±20% OCO orders.</p><p class="article-byline">By Adam · <time datetime="2026-11-27">November 27, 2026</time> · 10 min read</p></header><div id="article-body"><p id="3ed5">In <a href="https://www.foxchasetrading.com/3k-challenge" rel="noopener noreferrer" target="_blank">Small Account Series II</a>, I continue to use the same +20% take-profit and −20% stop-loss one-cancels-the-other (OCO) bracket that I discussed more than six months ago in my post on <a href="https://www.foxchasetrading.com/0dte-risk-reward.html" rel="noopener noreferrer" target="_blank">High-Win-Rate “1:1” Trading</a>. If I buy an option at $1.00, the target is $1.20 and the stop is $0.80. But keeping those percentages fixed leaves another question unanswered: <strong>how far can SPY move before the option reaches either exit?</strong> The answer depends on the contract I choose, IV, and how much time remains.</p>
+<p id="3f2a">Buying an at-the-money (ATM) option and buying an out-of-the-money (OTM) option can produce different trade outcomes on the same SPY price path, even when both trades use the same ±20% one-cancels-the-other (OCO) orders. The difference can be meaningful, which makes strike selection part of how I manage the trade.</p>
+<h2 id="cda1">Everything involved with the 20% stop loss</h2>
+<p id="a907">A 20% stop specifies a premium threshold relative to the option’s purchase price. If I deploy $1,000 and exit exactly 20% below entry, the loss is $200 before costs. Interestingly, changing strikes can preserve the intended percentage loss while changing the amount of adverse underlying movement the position can tolerate. Changing the premium deployed changes the dollars at risk as well. My approach to trading 0DTE relies on actively managing risk through stop losses rather than sizing every position for a total loss of the premium. This allows me to scale my capital deployment around a predefined risk target per trade. Of course, this assumes the stop executes reasonably close to its intended price, which is not guaranteed. This is precisely why strike selection matters so much to me. I want sufficient breathing room for normal underlying price fluctuations without sacrificing the responsiveness that makes 0DTE attractive in the first place.</p>
+<p id="37b4">For this article, I isolate the contract-pricing question: <strong>how do identical percentage exits map onto SPY at the moment of entry?</strong></p>
+<h3 id="336d">A SPY example at 700</h3>
+<p id="ce07">Assume SPY is at $700. I compare the $700 ATM call, the $701 call, and the $702 call. These are hypothetical 0DTE prices, not a real, current option-chain snapshot. The starting assumptions are 20% annualized implied volatility, three hours remaining, zero rates and dividends, and the same IV at every strike. I use Black-Scholes repricing and solve for the SPY prices where each option is worth 80% or 120% of its entry premium.</p>
+<p id="c917"><strong>For this first comparison, no time passes during the move and IV stays constant.</strong> The model uses a 365-day calendar clock, so three hours is 3 ÷ 8,760 of a year. Broker models can allocate remaining intraday time differently, so copying a displayed IV into this model need not reproduce a live premium. The <a href="http://optionseducation.org" rel="noopener noreferrer" target="_blank">OIC</a> discusses these differences in time-decay conventions. </p>
+<figure class="article-figure raster-detail" id="361b"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-01.png" rel="noopener noreferrer" target="_blank"><img alt="Original model calculations: premiums, deltas, SPY stop distances and SPY target distances for the $700, $701 and $702 calls." decoding="async" height="65" loading="eager" src="/images/0dte-strike-selection-oco/figure-01.png" width="454"/></a></div><figcaption><em>Original model calculations. Premiums are quoted per share; distances are dollars of SPY movement. Results use unrounded prices internally.</em></figcaption></figure>
+<p id="c3b7">The $701 call reaches its modeled stop after a decline of about $0.377, compared with $0.443 for the ATM call. That is <strong>15.0% less adverse SPY movement</strong>. The $702 call allows about $0.323, or <strong>27.0% less</strong>. Those percentages compare the distances from SPY’s $700 entry to the modeled stop levels and are not percentages of SPY’s $700 share price. For the $701 comparison, the difference is about 6.6 cents of SPY movement.</p>
+<figure class="article-figure chart" id="de77"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-02.png" rel="noopener noreferrer" target="_blank"><img alt="The same OCO maps to different SPY levels." decoding="async" height="1100" loading="eager" src="/images/0dte-strike-selection-oco/figure-02.png" width="2300"/></a></div><figcaption><em>The same ±20% premium bracket maps to different SPY levels. These are immediate repricing levels with time and IV held constant.</em></figcaption></figure>
+<p id="6c48">Notice the other side of the trade: the OTM calls also need a smaller favorable SPY move to reach the +20% target. More room before the stop comes with more distance to the target in this comparison.</p>
+<p id="18e2">For the way I trade 0DTE on a five-minute chart, that tradeoff can be worthwhile. When the underlying objective of my setup is comfortably beyond the move needed for the ATM contract to reach its +20% target, I place more value on the additional room before the stop. A valid setup can involve an initial pullback, and the contract I choose helps determine how much of that movement the position can tolerate. My preference for ATM therefore depends on having enough anticipated follow-through to justify the farther target. I want the trade to tolerate ordinary fluctuations while keeping the +20% exit within the move the setup reasonably supports. The move still needs to develop before the stop is reached, and its timing matters because time decay and changes in IV continue to affect the option.</p>
+<h2 id="9cde">Why lower delta does not necessarily mean more room</h2>
+<p id="8471">It is tempting to look at the OTM contract’s lower delta and assume its premium should be less sensitive to a pullback, but this is confusing dollar sensitivity and percentage sensitivity. Delta estimates the dollar change in the quoted option premium for a $1 change in the underlying, holding other inputs constant. My stop is measured as a percentage of the premium I paid, therefore both the premium and delta matter. </p>
+<p id="be03">A useful first approximation is:</p>
+<figure class="article-figure raster-detail" id="4cfb"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-03.png" rel="noopener noreferrer" target="_blank"><img alt="Underlying stop distance ≈ (0.20 × Option Premium) / |Δ|" decoding="async" height="180" loading="lazy" src="/images/0dte-strike-selection-oco/figure-03.png" width="1642"/></a></div></figure>
+<p id="04f6">Using the example above, the ATM call costs approximately $1.034 with a delta of 0.501. The $701 call costs approximately $0.610 with a delta of 0.351. The OTM premium is smaller by proportionally more than its delta is, so a smaller SPY move can consume 20% of that premium. This is related to option elasticity: sensitivity measured relative to the amount paid. The OIC calls the percentage-leverage measure <em>lambda</em>. For this comparison, premium divided by absolute delta is a more useful starting point than delta alone. So, delta changes as SPY moves, which is why the tables use full repricing. It is also not necessary for an OTM option to have more raw gamma for its percentage changes to be larger, since gamma is generally greatest near ATM (and close to expiration).</p>
+<h2 id="8109">Why IV changes the comparison</h2>
+<p id="a287">Now keep SPY at $700, keep the strikes fixed, and keep three hours remaining. Change only the IV assumption.</p>
+<figure class="article-figure raster-detail" id="6a3d"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-04.png" rel="noopener noreferrer" target="_blank"><img alt="IV comparison table: ATM and OTM stop distances and relative differences." decoding="async" height="113" loading="lazy" src="/images/0dte-strike-selection-oco/figure-04.png" width="614"/></a></div></figure>
+<p id="13ca">At 25% IV, the $701 call’s modeled stop is 12.2% closer than the ATM call’s. At 15% IV, it is 19.3% closer. At 10% IV, it is 27.0% closer.</p>
+<p id="be25">For the $702 call, the difference is larger: 22.5% at 25% IV and 44.5% at 10% IV. These are results for specified strikes and assumptions, not a universal ATM-versus-OTM adjustment.</p>
+<figure class="article-figure chart" id="4774"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-05.png" rel="noopener noreferrer" target="_blank"><img alt="The OTM stop gap changes with IV." decoding="async" height="1200" loading="lazy" src="/images/0dte-strike-selection-oco/figure-05.png" width="2300"/></a></div><figcaption><em>At fixed dollar offsets from spot, lower IV makes the OTM stop relatively tighter in this model.</em></figcaption></figure>
+<p id="4891">The reason is that “$1 OTM” is only a dollar measurement. Its significance depends on the movement priced into the remaining life of the option. A useful approximate scale for that movement is:</p>
+<figure class="article-figure raster-detail" id="8323"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-06.png" rel="noopener noreferrer" target="_blank"><img alt="Implied dollar-volatility scale ≈ SPY price × IV × √time" decoding="async" height="94" loading="lazy" src="/images/0dte-strike-selection-oco/figure-06.png" width="1794"/></a></div></figure>
+<p id="0343">Time is expressed in years using a convention consistent with IV. As this scale shrinks, a fixed $1 or $2 strike offset becomes larger relative to the remaining implied movement. There is an important distinction here: <strong>buying a fixed dollar amount OTM is different from consistently buying a particular delta.</strong></p>
+<p id="07d9">A 30-delta call usually sits at a different strike when IV changes. Selecting by delta changes the comparison, so these fixed-strike percentages should not be carried over unchanged to a fixed-delta rule. For example, a theoretical 25-delta call has a stop about 24.3% tighter than ATM at both 20% and 25% IV in this three-hour model. Its strike changes from approximately $701.75 to $702.20. These continuous model strikes illustrate the distinction; an actual chain may not offer those exact contracts.</p>
+<h2 id="dbe6">The same strike offset changes throughout the session</h2>
+<p id="bb46">Time remaining has a similar effect. With IV fixed at 20%, the model gives the following distances for a fresh entry at each time:</p>
+<figure class="article-figure raster-detail" id="7300"><div aria-label="Scrollable original figure" class="figure-scroll" role="region" tabindex="0"><a aria-label="View original image in full size" href="/images/0dte-strike-selection-oco/figure-07.png" rel="noopener noreferrer" target="_blank"><img alt="Time remaining comparison table: ATM and OTM stop distances and relative differences." decoding="async" height="81" loading="lazy" src="/images/0dte-strike-selection-oco/figure-07.png" width="680"/></a></div><figcaption><em>Each row is a separate hypothetical new entry at SPY $700, with its own entry premium and −20% stop. This is not the evolution of one already-open trade.</em></figcaption></figure>
+<p id="4169"><strong>The late OTM example is a mathematical illustration.</strong> The $702 call with 30 minutes remaining has a modeled premium of only about $0.012. A 20% change is about $0.0024, smaller than the $0.01 increment specified for SPY options in Nasdaq’s options rules. So, that row cannot be read as an exactly executable ±20% bracket. With six hours left though, going $1 OTM reduces the modeled stop distance by 10.9%. With only 30 minutes left, the reduction is 31.6%. Going $2 OTM with 30 minutes remaining cuts the modeled distance by about half.</p>
+<p id="10db">In conclusion, always buying one strike OTM regardless of time of day does not represent a consistent percentage-response profile. This is the value of “talking in deltas.” Describing a contract as a “25-delta call” gives us information about its initial sensitivity to the underlying, while “$1 OTM” tells us only the distance between the strike and the current stock price. Delta reflects that distance together with IV and time remaining, making it a more useful reference for comparing contracts across different conditions. The same dollar offset can represent a substantially different exposure depending on when we enter and how much movement the options market is pricing in.</p>
+<h2 id="0bed">A symmetric OCO does not produce symmetric SPY distances</h2>
+<p id="f73f">The baseline example also shows that +20% and −20% in option premium do not require equal underlying moves. The ATM call needs approximately $0.390 upward to reach its target and $0.443 downward to reach its stop.</p>
+<p id="b8f6">This follows from the convexity of a long option’s value when time and IV are held fixed. For a long call, delta increases as SPY rises and decreases as SPY falls. The premium responds more strongly as the favorable move develops. But the planned premium payoff is still 1:1 before costs. If I deploy $1,000 and the position exits at exactly +20% or −20%, the result is still +$200 or −$200. While dividing the SPY target distance by the SPY stop distance gives a different measurement, it does not change that payoff. Nor does the closer target establish a higher win rate. These distances merely describe a pricing snapshot.</p>
+<h2 id="22ea">The stock can stand still while the stop gets closer</h2>
+<p id="5890">So far, I have frozen time to isolate price sensitivity. An actual trade cannot freeze time, and the effect of waiting depends on how much time remains until expiration.</p>
+<p id="2b82">Assume I enter with <strong>three hours remaining until expiration</strong>, with SPY at $700 and IV at 20%. Now let 30 minutes pass, leaving <strong>two hours and 30 minutes until expiration</strong>, while keeping SPY and IV unchanged. Repricing the same contracts with that reduced time remaining gives the following changes relative to their original entry premiums:</p>
+<ul><li id="b10d"><strong>$700 ATM call:</strong> −8.7%.</li><li id="c418"><strong>$701 call:</strong> −13.6%.</li><li id="df93"><strong>$702 call:</strong> −19.8%.</li></ul>
+<p id="6a60">These are modeled losses over that specific 30-minute interval, using the same 365-day calendar clock as the earlier examples. They are not fixed decay rates that apply to every 30-minute holding period. Entering closer to expiration would produce a different result. The $702 call is now almost at its original −20% stop without any adverse SPY move. This does not mean it loses more dollars to time decay than the ATM call. It loses a larger percentage of its much smaller starting premium in this example. The ATM call’s original stop premium also maps to a different SPY level after those 30 minutes. At entry, its modeled stop level was about $699.557. After 30 minutes, it is about $699.757. The premium stop has stayed fixed, but the corresponding underlying price has moved closer to $700. Its target level has also moved farther away, from about $700.390 to $700.543. That is the practical limitation of drawing a fixed SPY line from an option-premium stop. The line describes the relationship at a particular moment. It must change when time or IV changes.</p>
+<p id="502e">Changes in IV can also change an option’s value without a change in the underlying. An IV increase can cushion an adverse spot move for a long option; an IV decrease can offset some of a favorable move. Actual strikes can have different IVs, and those relationships can change during the trade. In a separate immediate repricing of the original example, lowering IV from 20% to 18% with SPY unchanged reduces the modeled $702 call premium by about 22.7%. That two-percentage-point IV change alone takes it beyond the theoretical stop. This is another sensitivity calculation, not a prediction of an intraday IV move.</p>
+<h2 id="b87c">What this changes in my process</h2>
+<p id="3787">For my ±20% OCO framework, keeping ATM as my default and focusing on the morning session gives me a more consistent starting point. In these examples, the ATM contract provides more initial room for an adverse SPY move, while also requiring more favorable movement to reach the target. I am willing to make that tradeoff when the move my setup reasonably supports extends beyond the ATM contract’s modeled +20% exit. I find this particularly relevant to my A+ setups, where I am often targeting a larger directional move. For a smaller scalp, the additional movement required to reach the ATM target deserves closer consideration.</p>
+<p id="2d62">Volume is my primary reason for focusing on the morning session. The time-decay examples provide an additional reason: with more time remaining, a given delay consumes a smaller fraction of the option’s remaining life and, in this model, a smaller percentage of the ATM premium. I still want prompt follow-through, but I prefer to enter when a brief hesitation places less pressure on my fixed percentage stop. An afternoon entry changes that balance, even if the chart pattern and OCO percentages look the same.</p>
+<p id="4d54">None of this proves that ATM contracts or morning entries have better expectancy. That would require comparing how my setups actually perform across strikes and entry times, including execution and costs. What these calculations provide is a clearer explanation of the tradeoffs I am choosing.</p>
+<p id="dc16">For now, concentrating this strategy on ATM 0DTEs in the morning is a deliberate choice. The setup still has to qualify, the target still has to be realistic, and I do not widen the stop to make the trade fit. If those conditions do not line up, I can pass. And, ultimately, the contract I choose and the time I enter determine how that bracket interacts with the price action.</p>
+<p id="e9de"><em>For educational purposes only. Nothing here is a recommendation to buy or sell a security. Options trading involves substantial risk. Stop orders do not guarantee execution at their trigger prices.</em></p>
+<p id="f99a"></p></div></article></main>
+<div class="bg-dark text-secondary text-center py-2">
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-primary btn-sm px-3" href="https://twitter.com/FoxchaseTrading" rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-x-twitter"></i> Follow us on X</a>
+<a class="btn btn-outline-warning btn-sm px-3" href="https://coff.ee/foxchasetrading" rel="noopener noreferrer" target="_blank"><i class="fa-solid fa-mug-hot"></i> Buy me a coffee</a>
+</div>
+</div>
+<footer style="text-align:center;color:black;font-size:14px;padding:20px;">
+<p style="margin-bottom:5px;">© 2026 Foxchase Trading, LLC</p>
+<p style="max-width:800px;margin:0 auto;font-size:12px;color:#555;">Foxchase Trading, LLC provides educational content only and does not provide investment advice. Trading involves substantial risk of loss and is not suitable for all investors.</p>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const header = document.querySelector(".foxchase-site-header");
+      const toggle = header && header.querySelector(".foxchase-menu-toggle");
+      const navigation = header && header.querySelector(".foxchase-navigation");
+      if (!toggle || !navigation) return;
+      toggle.addEventListener("click", function () {
+        const open = navigation.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      navigation.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navigation.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
